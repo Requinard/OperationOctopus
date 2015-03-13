@@ -107,6 +107,8 @@ namespace ICT4EVENT
 
     class RFIDLogModel : DBModel, IDataModelUpdate
     {
+        private DateTime DateTime { get; set; }
+        private bool InOurOut { get; set; }
         public RFIDLogModel(DBManager dbManager) :base (dbManager)
         {
 
@@ -134,6 +136,7 @@ namespace ICT4EVENT
 
     class RentableObjectModel : DBModel, IDataModelUpdate
     {
+        private string TypeOfObject { get; set; }
         public RentableObjectModel(DBManager dbManager) :base (dbManager)
         {
 
@@ -188,6 +191,9 @@ namespace ICT4EVENT
 
     class PlaceModel : DBModel, IDataModelUpdate
     {
+        private string location { get; set; }
+        private string category { get; set; }
+        private int capacity { get; set; }
         public PlaceModel(DBManager dbManager) :base (dbManager)
         {
 
@@ -297,6 +303,35 @@ namespace ICT4EVENT
         }
     }
 
-    
+    class ReservationModel : DBModel, IDataModelUpdate
+    {
+        private DateTime ReturnDate { get; set; }
+        private int Amount { get; set; }
+        public ReservationModel(DBManager dbManager) :base(dbManager)
+        {
+        }
+
+
+
+        public bool Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Destroy()
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 }
