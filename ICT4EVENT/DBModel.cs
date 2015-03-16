@@ -52,6 +52,10 @@ namespace ICT4EVENT
 
     class UserModel : DBModel, IDataModelUpdate
     {
+
+        public int ID { get; set; }
+        public List<RegistrationModel> RegistrationList = new List<RegistrationModel>();
+
         public UserModel(DBManager dbManager) :base (dbManager)
         {
 
@@ -79,6 +83,9 @@ namespace ICT4EVENT
 
     class RegistrationModel : DBModel, IDataModelUpdate
     {
+
+        public int ID { get; set; }
+
         public RegistrationModel(DBManager dbManager) :base (dbManager)
         {
 
@@ -268,6 +275,9 @@ namespace ICT4EVENT
 
     class PaymentModel : DBModel, IDataModelUpdate
     {
+
+        public int ID { get; set; }
+
         public PaymentModel(DBManager dbManager) :base (dbManager)
         {
 
