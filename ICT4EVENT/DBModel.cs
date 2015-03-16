@@ -9,6 +9,12 @@ namespace ICT4EVENT
     abstract class DBModel
     {
         private DBManager dbManager;
+        private int ID;
+
+        public int Id
+        {
+            get { return ID; }
+        }
 
         public DBModel(DBManager dbManager)
         {
