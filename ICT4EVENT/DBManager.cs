@@ -37,10 +37,10 @@ namespace ICT4EVENT
 
         private bool RunOracleDatabaseTest()
         {
-            const string create_table = @"CREATE TABLE test_db (number_thing NUMBER);";
-            const string insert_into_table = "INSERT INTO test_db (number_thing) VALUES (1);";
-            const string select_from_table = "SELECT * FROM test_db;";
-            const string drop_table = "DROP TABLE test_db;";
+            const string create_table = "CREATE TABLE test_db (number_thing NUMBER)";
+            const string insert_into_table = "INSERT INTO test_db (number_thing) VALUES (1)";
+            const string select_from_table = "SELECT * FROM test_db";
+            const string drop_table = "DROP TABLE test_db";
 
             Console.Write(QueryDDL(create_table));
             Console.WriteLine(QueryDB(insert_into_table));
@@ -63,7 +63,16 @@ namespace ICT4EVENT
 
             oracleCommand.Prepare();
 
-            int dr = oracleCommand.ExecuteNonQuery();
+            int dr = 0;
+
+            try
+            {
+                dr = oracleCommand.ExecuteNonQuery();
+            }
+            catch (OracleException exception)
+            {
+                Console.WriteLine(exception.ToString());
+            }
 
             return dr;
         }
@@ -73,8 +82,18 @@ namespace ICT4EVENT
             OracleCommand oracleCommand = oracleConnection.CreateCommand();
 
             oracleCommand.CommandText = query;
+            OracleDataReader dr = null;
+            try
+            {
+               dr = oracleCommand.ExecuteReader();
+            }
+            catch (OracleException exception)
+            {
+                Console.WriteLine(exception.ToString());
 
-            OracleDataReader dr = oracleCommand.ExecuteReader();
+                return null;
+            }
+           
 
             return dr;
         }
