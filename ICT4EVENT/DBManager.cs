@@ -56,6 +56,9 @@ namespace ICT4EVENT
             return true;
         }
 
+        /// <summary>
+        /// Destructs DBManager
+        /// </summary>
         ~DBManager()
         {
             Dispose(true);
