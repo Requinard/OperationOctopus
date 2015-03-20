@@ -1,41 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
-using Oracle.DataAccess.Types;
 
 namespace ICT4EVENT
 {
-    class DBManager
+    internal class DBManager : IDisposable
     {
-
-        private OracleConnection oracleConnection;
-
         private const string user = "SYSTEM";
         private const string pw = "test";
         private const string server = "192.168.250.130";
         private const string port = "1521";
         private const string database = "xe";
-        private const bool RUNTESTS = true;
 
+        private const bool RUNTESTS = true;
+        private readonly OracleConnection oracleConnection;
+        private bool disposed;
 
 
         public DBManager()
         {
-           oracleConnection = new OracleConnection();
+            oracleConnection = new OracleConnection();
             oracleConnection.ConnectionString = String.Format("User Id={0};Password={1};Data Source=//{2}:{3}/{4}", user,
                 pw, server, port, database);
-            
+
             oracleConnection.Open();
 
             if (RUNTESTS)
             {
                 RunOracleDatabaseTest();
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
 
         private bool RunOracleDatabaseTest()
@@ -55,9 +52,7 @@ namespace ICT4EVENT
 
         ~DBManager()
         {
-
-            oracleConnection.Close();
-            oracleConnection.Dispose();
+            Dispose(true);
         }
 
         private int QueryDDL(string query)
@@ -66,10 +61,13 @@ namespace ICT4EVENT
 
             oracleCommand.CommandText = query;
 
+            oracleCommand.Prepare();
+
             int dr = oracleCommand.ExecuteNonQuery();
 
             return dr;
         }
+
         private OracleDataReader QueryDB(string query)
         {
             OracleCommand oracleCommand = oracleConnection.CreateCommand();
@@ -79,6 +77,23 @@ namespace ICT4EVENT
             OracleDataReader dr = oracleCommand.ExecuteReader();
 
             return dr;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                oracleConnection.Close();
+                oracleConnection.Dispose();
+            }
+
+
+            disposed = true;
         }
     }
 }
