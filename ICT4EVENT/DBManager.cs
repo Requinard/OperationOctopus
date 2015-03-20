@@ -42,7 +42,7 @@ namespace ICT4EVENT
             const string select_from_table = "SELECT * FROM test_db";
             const string drop_table = "DROP TABLE test_db";
 
-            Console.Write(QueryDDL(create_table));
+            Console.WriteLine(QueryDB(create_table));
             Console.WriteLine(QueryDB(insert_into_table));
             Console.WriteLine(QueryDB(select_from_table));
             Console.WriteLine(QueryDB(drop_table));
@@ -55,37 +55,26 @@ namespace ICT4EVENT
             Dispose(true);
         }
 
-        private int QueryDDL(string query)
-        {
-            OracleCommand oracleCommand = oracleConnection.CreateCommand();
-
-            oracleCommand.CommandText = query;
-
-            oracleCommand.Prepare();
-
-            int dr = 0;
-
-            try
-            {
-                dr = oracleCommand.ExecuteNonQuery();
-            }
-            catch (OracleException exception)
-            {
-                Console.WriteLine(exception.ToString());
-            }
-
-            return dr;
-        }
-
+        /// <summary>
+        /// Sends a query to the database and returns the result
+        /// </summary>
+        /// <param name="query">Query for the database</param>
+        /// <returns>Object containing the result</returns>
         private OracleDataReader QueryDB(string query)
         {
+            OracleDataReader queryResult;
+
             OracleCommand oracleCommand = oracleConnection.CreateCommand();
 
-            oracleCommand.CommandText = query;
-            OracleDataReader dr = null;
+            // Replace ; with EOS, so that this won't ever be a problem again
+            oracleCommand.CommandText = query.Replace(';', '\0');
+
+            // Prepare for docking
+            oracleCommand.Prepare();
+
             try
             {
-               dr = oracleCommand.ExecuteReader();
+               queryResult = oracleCommand.ExecuteReader();
             }
             catch (OracleException exception)
             {
@@ -95,7 +84,7 @@ namespace ICT4EVENT
             }
            
 
-            return dr;
+            return queryResult;
         }
 
         protected virtual void Dispose(bool disposing)
