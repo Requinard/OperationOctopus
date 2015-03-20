@@ -16,7 +16,7 @@ namespace ICT4EVENT
         public int Id
         {
             get { return ID; }
-        }
+    }
     }
 
     internal class EventModel : DBModel, IDataModelUpdate
@@ -108,7 +108,7 @@ namespace ICT4EVENT
 
     internal class RFIDLogModel : DBModel, IDataModelUpdate
     {
-        public RFIDLogModel(DBManager dbManager) : base(dbManager)
+        public RFIDLogModel(DBManager dbManager) :base (dbManager)
         {
         }
 
@@ -135,7 +135,7 @@ namespace ICT4EVENT
 
     internal class RentableObjectModel : DBModel, IDataModelUpdate
     {
-        public RentableObjectModel(DBManager dbManager) : base(dbManager)
+        public RentableObjectModel(DBManager dbManager) :base (dbManager)
         {
         }
 
@@ -189,7 +189,7 @@ namespace ICT4EVENT
 
     internal class PlaceModel : DBModel, IDataModelUpdate
     {
-        public PlaceModel(DBManager dbManager) : base(dbManager)
+        public PlaceModel(DBManager dbManager) :base (dbManager)
         {
         }
 
@@ -271,7 +271,7 @@ namespace ICT4EVENT
     internal class PaymentModel : DBModel, IDataModelUpdate
     {
         public PaymentModel(DBManager dbManager) : base(dbManager)
-        {
+    {
         }
 
         public int ID { get; set; }
@@ -296,4 +296,15 @@ namespace ICT4EVENT
             throw new NotImplementedException();
         }
     }
+
+    class ReservationModel : DBModel, IDataModelUpdate
+    {
+        private DateTime ReturnDate { get; set; }
+        private int Amount { get; set; }
+        public ReservationModel(DBManager dbManager) :base(dbManager)
+        {
+    }
+
+    
+
 }
