@@ -15,7 +15,9 @@ namespace ICT4EVENT
         private readonly OracleConnection oracleConnection;
         private bool disposed;
 
-
+        /// <summary>
+        /// Connects to our database
+        /// </summary>
         public DBManager()
         {
             oracleConnection = new OracleConnection();
@@ -35,6 +37,10 @@ namespace ICT4EVENT
             Dispose(true);
         }
 
+        /// <summary>
+        /// Tests the oracle database to see if we can IO to it
+        /// </summary>
+        /// <returns>success</returns>
         private bool RunOracleDatabaseTest()
         {
             const string create_table = "CREATE TABLE test_db (number_thing NUMBER)";
@@ -87,6 +93,10 @@ namespace ICT4EVENT
             return queryResult;
         }
 
+        /// <summary>
+        /// Disposes of the DBManager object
+        /// </summary>
+        /// <param name="disposing">Are you disposing?</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposed)
