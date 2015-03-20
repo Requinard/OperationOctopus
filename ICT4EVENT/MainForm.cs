@@ -10,18 +10,21 @@ using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        private SocialMediaEventManager socialManager;
+
+        public MainForm()
         {
             InitializeComponent();
+
+            socialManager = new SocialMediaEventManager();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            DBManager m = new DBManager();
-            Console.Write("ho");
+         
         }
     }
 }
