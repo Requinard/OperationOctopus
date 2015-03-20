@@ -17,6 +17,9 @@ namespace ICT4EVENT
 
         private const string user = "SYSTEM";
         private const string pw = "test";
+        private const string server = "192.168.250.130";
+        private const string port = "1521";
+        private const string database = "xe";
         private const bool RUNTESTS = true;
 
 
@@ -24,8 +27,9 @@ namespace ICT4EVENT
         public DBManager()
         {
            oracleConnection = new OracleConnection();
-           oracleConnection.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + "//192.168.250.130:1521/xe" + ";"; 
-
+            oracleConnection.ConnectionString = String.Format("User Id={0};Password={1};Data Source=//{2}:{3}/{4}", user,
+                pw, server, port, database);
+            
             oracleConnection.Open();
 
             if (RUNTESTS)
