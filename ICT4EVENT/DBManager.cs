@@ -16,7 +16,7 @@ namespace ICT4EVENT
         private bool disposed;
 
         /// <summary>
-        /// Connects to our database
+        ///     Connects to our database
         /// </summary>
         public DBManager()
         {
@@ -38,7 +38,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Tests the oracle database to see if we can IO to it
+        ///     Tests the oracle database to see if we can IO to it
         /// </summary>
         /// <returns>success</returns>
         private bool RunOracleDatabaseTest()
@@ -57,7 +57,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Destructs DBManager
+        ///     Destructs DBManager
         /// </summary>
         ~DBManager()
         {
@@ -65,7 +65,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Sends a query to the database and returns the result
+        ///     Sends a query to the database and returns the result
         /// </summary>
         /// <param name="query">Query for the database</param>
         /// <returns>Object containing the result</returns>
@@ -83,7 +83,7 @@ namespace ICT4EVENT
 
             try
             {
-               queryResult = oracleCommand.ExecuteReader();
+                queryResult = oracleCommand.ExecuteReader();
             }
             catch (OracleException exception)
             {
@@ -91,13 +91,13 @@ namespace ICT4EVENT
 
                 return null;
             }
-           
+
 
             return queryResult;
         }
 
         /// <summary>
-        /// Disposes of the DBManager object
+        ///     Disposes of the DBManager object
         /// </summary>
         /// <param name="disposing">Are you disposing?</param>
         protected virtual void Dispose(bool disposing)
