@@ -18,5 +18,10 @@ namespace ICT4EVENT
             this.events = new List<EventModel>();
             this.users = new List<UserModel>();
         }
+
+        public ~SocialMediaEventManager()
+        {
+            dbManager = null;
+        }
     }
 }
