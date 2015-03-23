@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Drawing.Text;
+using System.IO;
 using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
     internal class DBManager : IDisposable
     {
-        private const string user = "SYSTEM";
-        private const string pw = "test";
-        private const string server = "192.168.250.130";
-        private const string port = "1521";
-        private const string database = "xe";
-
-        private const bool RUNTESTS = true;
         private readonly OracleConnection oracleConnection;
         private bool disposed;
 
@@ -21,13 +14,27 @@ namespace ICT4EVENT
         /// </summary>
         public DBManager()
         {
+            // If the file exist, we deserialize our configs
+            if (File.Exists(Settings.DBCONFIGFILE))
+            {
+                Settings.DeserializeDatabase();
+            }
+            // Else we get new configs and we serialize them
+            else if (!File.Exists(Settings.DBCONFIGFILE))
+            {
+                var dbConfigForm = new DatabaseConfigForm();
+                dbConfigForm.ShowDialog();
+                Settings.SerializeDatabase();
+            }
+
             oracleConnection = new OracleConnection();
-            oracleConnection.ConnectionString = String.Format("User Id={0};Password={1};Data Source=//{2}:{3}/{4}", user,
-                pw, server, port, database);
+            oracleConnection.ConnectionString = String.Format("User Id={0};Password={1};Data Source=//{2}:{3}/{4}",
+                Settings.DatabaseConfig.user, Settings.DatabaseConfig.pw, Settings.DatabaseConfig.host,
+                Settings.DatabaseConfig.port, Settings.DatabaseConfig.database);
 
             oracleConnection.Open();
 
-            if (RUNTESTS)
+            if (Settings.DEBUG)
             {
                 RunOracleDatabaseTest();
             }
@@ -36,8 +43,13 @@ namespace ICT4EVENT
             ConstructDatabaseSchema();
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
         /// <summary>
-        /// Constructs new database. Drops all old tables 
+        ///     Constructs new database. Drops all old tables
         /// </summary>
         public void ConstructDatabaseSchema()
         {
@@ -55,11 +67,6 @@ namespace ICT4EVENT
 
             QueryDB(drop);
             QueryDB(create);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
 
         /// <summary>
