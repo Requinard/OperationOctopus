@@ -22,15 +22,15 @@ namespace ICT4EVENT
             // Else we get new configs and we serialize them
             else if (!File.Exists(Settings.DBCONFIGFILE))
             {
-                var dbConfigForm = new DatabaseConfigForm();
+                var dbConfigForm = new DBConfigForm();
                 dbConfigForm.ShowDialog();
                 Settings.SerializeDatabase();
             }
 
             oracleConnection = new OracleConnection();
             oracleConnection.ConnectionString = String.Format("User Id={0};Password={1};Data Source=//{2}:{3}/{4}",
-                Settings.DatabaseConfig.user, Settings.DatabaseConfig.pw, Settings.DatabaseConfig.host,
-                Settings.DatabaseConfig.port, Settings.DatabaseConfig.database);
+                Settings.DbConfig.user, Settings.DbConfig.pw, Settings.DbConfig.host,
+                Settings.DbConfig.port, Settings.DbConfig.database);
 
             oracleConnection.Open();
 

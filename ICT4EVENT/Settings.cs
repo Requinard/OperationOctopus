@@ -14,14 +14,14 @@ namespace ICT4EVENT
         public const bool DEBUG = false;
         public const string DBCONFIGFILE = "db.cnf";
 
-        public static DatabaseConfig DatabaseConfig = new DatabaseConfig();
+        public static DBConfig DbConfig = new DBConfig();
 
         public static void SerializeDatabase()
         {
             Stream s = new FileStream(DBCONFIGFILE, FileMode.Create);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
 
-            binaryFormatter.Serialize(s, DatabaseConfig);
+            binaryFormatter.Serialize(s, DbConfig);
 
             s.Close();
         }
@@ -31,7 +31,7 @@ namespace ICT4EVENT
             Stream s = new FileStream(DBCONFIGFILE, FileMode.Open);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
 
-            DatabaseConfig = (DatabaseConfig) binaryFormatter.Deserialize(s);
+            DbConfig = (DBConfig) binaryFormatter.Deserialize(s);
 
             s.Close();
         }

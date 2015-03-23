@@ -1,6 +1,6 @@
 ﻿namespace ICT4EVENT
 {
-    partial class DatabaseConfigForm
+    partial class DBConfigForm
     {
         /// <summary>
         /// Required designer variable.

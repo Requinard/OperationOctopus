@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
-    public partial class DatabaseConfigForm : Form
+    public partial class DBConfigForm : Form
     {
-        public DatabaseConfigForm()
+        public DBConfigForm()
         {
             InitializeComponent();
         }
@@ -15,27 +15,27 @@ namespace ICT4EVENT
             bool FieldsAreOk = true;
 
             if (tbUser.Text.Length > 0)
-                Settings.DatabaseConfig.user = tbUser.Text;
+                Settings.DbConfig.user = tbUser.Text;
             else
                 FieldsAreOk = false;
 
             if (tbPassword.Text.Length > 0)
-                Settings.DatabaseConfig.pw = tbPassword.Text;
+                Settings.DbConfig.pw = tbPassword.Text;
             else
                 FieldsAreOk = false;
 
             if (tbHost.Text.Length > 0)
-                Settings.DatabaseConfig.host = tbHost.Text;
+                Settings.DbConfig.host = tbHost.Text;
             else
                 FieldsAreOk = false;
 
             if (tbPort.Text.Length > 0)
-                Settings.DatabaseConfig.port = tbPort.Text;
+                Settings.DbConfig.port = tbPort.Text;
             else
                 FieldsAreOk = false;
 
             if (tbDatabase.Text.Length > 0)
-                Settings.DatabaseConfig.database = tbDatabase.Text;
+                Settings.DbConfig.database = tbDatabase.Text;
             else
                 FieldsAreOk = false;
 
@@ -52,7 +52,7 @@ namespace ICT4EVENT
     }
 
     [Serializable]
-    public class DatabaseConfig
+    public class DBConfig
     {
         public string database;
         public string host;
