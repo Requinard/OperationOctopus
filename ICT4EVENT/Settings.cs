@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Configuration;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ICT4EVENT
 {
@@ -19,7 +13,7 @@ namespace ICT4EVENT
         public static void SerializeDatabase()
         {
             Stream s = new FileStream(DBCONFIGFILE, FileMode.Create);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            var binaryFormatter = new BinaryFormatter();
 
             binaryFormatter.Serialize(s, DbConfig);
 
@@ -29,7 +23,7 @@ namespace ICT4EVENT
         public static void DeserializeDatabase()
         {
             Stream s = new FileStream(DBCONFIGFILE, FileMode.Open);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            var binaryFormatter = new BinaryFormatter();
 
             DbConfig = (DBConfig) binaryFormatter.Deserialize(s);
 

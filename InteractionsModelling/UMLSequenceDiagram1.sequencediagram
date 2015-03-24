@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="863df46a-7bfd-4b3a-9f63-51aa4228d2b3" name="DBconfig" linkedPackageId="ce83ad37-c57e-47a7-9069-d993edf5a4fd" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="d6e70b84-9cae-4741-a2e9-dd2934691ef2">
+      <profileInstance Id="b3e1eea3-413c-4475-bb71-cfdad1c61617" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="4062d643-5cd3-42f4-8859-044c1ee8fcf2">
+      <profileInstance Id="8733a2e3-66b6-4a54-a29b-d98061979809" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="bdb448d9-3a38-45d6-8390-9eebd0330e0d" name="DBconfig" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <ownedCommentsInternal>
+          <comment Id="3893cc85-07e0-4a31-9ed0-4a3d03cd6af8">
+            <elementDefinition Id="f9927d24-e15d-4a11-9a28-d86a0d4c53df" />
+          </comment>
+        </ownedCommentsInternal>
+        <elementDefinition Id="504974b3-a8cb-43f6-9464-9c9d9525ebaa" />
+        <lifelines>
+          <lifeline Id="799ac7ac-993a-4d4a-b477-c89c8f550ff4" name="DBManager" isActor="false" lifelineDisplayName="DBManager">
+            <elementDefinition Id="02001a66-81f2-4e71-a7c0-d9ae7271fca5" />
+          </lifeline>
+          <lifeline Id="75ea7525-943d-49de-bb94-1ea568a93f77" name="File" isActor="false" lifelineDisplayName="File">
+            <elementDefinition Id="ba8a88ad-1039-42fd-8979-7bc64b0557f6" />
+          </lifeline>
+          <lifeline Id="df666046-fd3a-4a7f-9c63-413a0a1bece4" name="DBConfigForm" isActor="false" lifelineDisplayName="DBConfigForm">
+            <elementDefinition Id="98482327-f964-4196-b33d-5f1ce8757881" />
+          </lifeline>
+          <lifeline Id="0d733501-6492-4a0c-a89c-f9c1f1d87238" name="Settings" isActor="false" lifelineDisplayName="Settings">
+            <elementDefinition Id="d2ae0340-38df-46be-91d2-776137e4bfca" />
+          </lifeline>
+          <lifeline Id="4f28a84a-6fc2-4a33-989c-4833bd42db8a" name="DBConfig" isActor="false" lifelineDisplayName="DBConfig">
+            <elementDefinition Id="28d92e3d-b018-4a17-b76e-4f0689a0fbb8" />
+          </lifeline>
+        </lifelines>
+      </interaction>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="ce83ad37-c57e-47a7-9069-d993edf5a4fd" name="InteractionsModelling">
+    <elementDefinition Id="77ddf8a3-da1f-4fea-b1c8-e41fa58682b0" />
+  </package>
+</SequenceDesignerModel>

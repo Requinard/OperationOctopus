@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -19,7 +18,7 @@ namespace ICT4EVENT
             {
                 Settings.DeserializeDatabase();
             }
-            // Else we get new configs and we serialize them
+                // Else we get new configs and we serialize them
             else if (!File.Exists(Settings.DBCONFIGFILE))
             {
                 var dbConfigForm = new DBConfigForm();
