@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
+using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -31,7 +33,23 @@ namespace ICT4EVENT
                 Settings.DbConfig.user, Settings.DbConfig.pw, Settings.DbConfig.host,
                 Settings.DbConfig.port, Settings.DbConfig.database);
 
-            oracleConnection.Open();
+            try
+            {
+                oracleConnection.Open();
+            }
+            catch (OracleException)
+            {
+                if (
+                    MessageBox.Show(
+                        "There seems to be an error connecting to the Database. Would you like to remove the existing database configuration?",
+                        "Database error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    File.Delete(Settings.DBCONFIGFILE);
+                }
+               Environment.Exit(1); 
+                return;
+            }
+            
 
             if (Settings.DEBUG)
             {
