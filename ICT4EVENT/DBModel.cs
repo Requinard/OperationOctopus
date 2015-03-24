@@ -8,6 +8,15 @@ namespace ICT4EVENT
         private int ID;
         private DBManager dbManager;
 
+        // Creates a new row. {0} is table name, {1} is columns and {2} is values
+        private const string INSERTSTRING = "INSERT INTO {0} {1} VALUES {2}";
+        // Updates a row in the database. {0} is table name, {1} is columns and values and {2} is the row id
+        private const string UPDATESTRING = "UPDATE {0} SET {1} WHERE id={2}";
+        // Reads the corresponding row from the database. {0} is table name, {1} is the row id
+        private const string READSTRING = "SELECT * FROM {0} WHERE id={1}";
+        // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
+        private const string DESTROYSTRING = "DELETE FROM {0} WHERE id={1}";
+
         public DBModel(DBManager dbManager)
         {
             this.dbManager = dbManager;
