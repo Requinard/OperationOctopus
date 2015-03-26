@@ -46,10 +46,10 @@ namespace ICT4EVENT
                 {
                     File.Delete(Settings.DBCONFIGFILENAME);
                 }
-//Environment.Exit(1); 
+                Environment.Exit(1);
                 return;
             }
-            
+
 
             if (Settings.DEBUG)
             {
