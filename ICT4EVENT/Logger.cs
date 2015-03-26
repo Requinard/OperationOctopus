@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
 
 namespace ICT4EVENT
 {
@@ -28,6 +29,16 @@ namespace ICT4EVENT
             {
                 log = new List<LogItem>();
             }
+        }
+
+        public static List<LogItem> SortLogItemsByLogLevel(LogLevel level)
+        {
+            var s = from logItem in log
+                where logItem.Level == level
+                orderby logItem.Time
+                select logItem;
+
+            return s.ToList();
         }
 
         public static void Destruct()
