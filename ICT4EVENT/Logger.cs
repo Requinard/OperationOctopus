@@ -43,7 +43,7 @@ namespace ICT4EVENT
         {
             var s = from logItem in log
                 where logItem.Level == level
-                orderby logItem.Time
+                orderby logItem.Time descending 
                 select logItem;
 
             return s.ToList();
