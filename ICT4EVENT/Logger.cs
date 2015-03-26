@@ -15,6 +15,9 @@ namespace ICT4EVENT
             get { return log; }
         }
 
+        /// <summary>
+        /// Initializes a logger
+        /// </summary>
         public static void Initialize()
         {
             if (File.Exists(Settings.LOGFILENAME))
@@ -31,6 +34,11 @@ namespace ICT4EVENT
             }
         }
 
+        /// <summary>
+        /// Sorts the log by a specific log Level
+        /// </summary>
+        /// <param name="level">Level you want sorted</param>
+        /// <returns>A list containing all items with the specified log level</returns>
         public static List<LogItem> SortLogItemsByLogLevel(LogLevel level)
         {
             var s = from logItem in log
@@ -41,6 +49,9 @@ namespace ICT4EVENT
             return s.ToList();
         }
 
+        /// <summary>
+        /// Writes log to hard drive
+        /// </summary>
         public static void Destruct()
         {
             Stream s;
@@ -59,6 +70,11 @@ namespace ICT4EVENT
             s.Close();
         }
 
+        /// <summary>
+        /// Adds a message to the message log
+        /// </summary>
+        /// <param name="logMessage">Message that needs to be logged</param>
+        /// <param name="level">Severity of the message</param>
         public static void LogMessage(string logMessage, LogLevel level)
         {
             var item = new LogItem(logMessage, level);
@@ -68,26 +84,46 @@ namespace ICT4EVENT
             Console.WriteLine(item.ToString());
         }
 
+        /// <summary>
+        /// Logs an info message
+        /// </summary>
+        /// <param name="message">Message to be logged</param>
         public static void Info(string message)
         {
             LogMessage(message, LogLevel.Info);
         }
 
+        /// <summary>
+        /// Logs a debug message
+        /// </summary>
+        /// <param name="message">Message to be logged</param>
         public static void Debug(string message)
         {
             LogMessage(message, LogLevel.Debug);
         }
 
+        /// <summary>
+        /// Logs a success message
+        /// </summary>
+        /// <param name="message">Message to be logged</param>
         public static void Success(string message)
         {
             LogMessage(message, LogLevel.Success);
         }
 
+        /// <summary>
+        /// Logs a warning message
+        /// </summary>
+        /// <param name="message">Message to be logged</param>
         public static void Warning(string message)
         {
             LogMessage(message, LogLevel.Warning);
         }
 
+        /// <summary>
+        /// Logs an error message
+        /// </summary>
+        /// <param name="message">Message to be logged</param>
         public static void Error(string message)
         {
             LogMessage(message, LogLevel.Error);
@@ -111,6 +147,11 @@ namespace ICT4EVENT
         private readonly string message;
         private readonly DateTime time;
 
+        /// <summary>
+        /// Initializes a log item
+        /// </summary>
+        /// <param name="message">Message to be saved</param>
+        /// <param name="level">Severity of the message</param>
         public LogItem(string message, LogLevel level)
         {
             time = DateTime.Now;
@@ -133,6 +174,10 @@ namespace ICT4EVENT
             get { return level; }
         }
 
+        /// <summary>
+        /// Returns a string of the logmessage
+        /// </summary>
+        /// <returns>String that contains a formatted log</returns>
         public override string ToString()
         {
             const string LogString = "[{0}] {1}: {2}";
