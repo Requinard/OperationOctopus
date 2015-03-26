@@ -16,12 +16,12 @@ namespace ICT4EVENT
         public DBManager()
         {
             // If the file exist, we deserialize our configs
-            if (File.Exists(Settings.DBCONFIGFILE))
+            if (File.Exists(Settings.DBCONFIGFILENAME))
             {
                 Settings.DeserializeDatabase();
             }
                 // Else we get new configs and we serialize them
-            else if (!File.Exists(Settings.DBCONFIGFILE))
+            else if (!File.Exists(Settings.DBCONFIGFILENAME))
             {
                 var dbConfigForm = new DBConfigForm();
                 dbConfigForm.ShowDialog();
@@ -44,9 +44,9 @@ namespace ICT4EVENT
                         "There seems to be an error connecting to the Database. Would you like to remove the existing database configuration?",
                         "Database error", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    File.Delete(Settings.DBCONFIGFILE);
+                    File.Delete(Settings.DBCONFIGFILENAME);
                 }
-               Environment.Exit(1); 
+//Environment.Exit(1); 
                 return;
             }
             

@@ -14,9 +14,14 @@ namespace ICT4EVENT
         [STAThread]
         static void Main()
         {
+            Logger.Initialize();
+            Logger.Success("Initialized Logger");
+            Logger.Info("Starting Application");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+            Logger.Info("Exiting Application");
+            Logger.Destruct();
         }
     }
 }

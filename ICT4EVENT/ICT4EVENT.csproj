@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="DBManager.cs" />
     <Compile Include="DBModel.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
