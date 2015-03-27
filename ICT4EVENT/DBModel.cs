@@ -62,8 +62,6 @@ namespace ICT4EVENT
         {
         }
 
-        public int ID { get; set; }
-
         public bool Create()
         {
             throw new NotImplementedException();
@@ -84,14 +82,12 @@ namespace ICT4EVENT
             throw new NotImplementedException();
         }
     }
-
     internal class RegistrationModel : DBModel, IDataModelUpdate
     {
         public RegistrationModel(DBManager dbManager) : base(dbManager)
         {
         }
 
-        public int ID { get; set; }
 
         public bool Create()
         {

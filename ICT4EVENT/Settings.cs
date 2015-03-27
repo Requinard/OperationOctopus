@@ -13,20 +13,23 @@ namespace ICT4EVENT
 
         public static void SerializeDatabase()
         {
+            Logger.Info("Serializing Database");
             Stream s = new FileStream(DBCONFIGFILENAME, FileMode.Create);
             var binaryFormatter = new BinaryFormatter();
 
             binaryFormatter.Serialize(s, DbConfig);
-
+            Logger.Success("Successfully serialized database");
             s.Close();
         }
 
         public static void DeserializeDatabase()
         {
+            Logger.Info("Deserializing Database");
             Stream s = new FileStream(DBCONFIGFILENAME, FileMode.Open);
             var binaryFormatter = new BinaryFormatter();
 
             DbConfig = (DBConfig) binaryFormatter.Deserialize(s);
+            Logger.Success("Successfully deserialized database");
 
             s.Close();
         }

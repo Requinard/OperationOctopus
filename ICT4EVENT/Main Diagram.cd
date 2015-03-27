@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="ICT4EVENT.DBManager">
-    <Position X="48.75" Y="6" Width="1.5" />
+  <Class Name="ICT4EVENT.DBManager" BaseTypeListCollapsed="true">
+    <Position X="31.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIgAAAAACAAgABAAAQAAAAAAAAAkAwAAIAAAAAAAQI=</HashCode>
+      <HashCode>AAIAAAAAACAAgAAAAAQAAAAAAAAAEAQAAIAAAAAAAAA=</HashCode>
       <FileName>DBManager.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ICT4EVENT.DBModel">
-    <Position X="36.25" Y="4.5" Width="1.5" />
+    <Position X="18.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAgAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAECAAgABAAAgAAAAAAAAAQAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ICT4EVENT.EventModel">
-    <Position X="35" Y="7.5" Width="1.5" />
+    <Position X="18.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -24,7 +24,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.UserModel">
-    <Position X="46.25" Y="7.5" Width="1.5" />
+    <Position X="30" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAgAAAAAAAgAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -32,7 +32,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.RegistrationModel">
-    <Position X="28.25" Y="7.5" Width="1.5" />
+    <Position X="12" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAgAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -40,7 +40,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.RFIDLogModel">
-    <Position X="32.75" Y="7.5" Width="1.5" />
+    <Position X="16.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -48,7 +48,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.RentableObjectModel">
-    <Position X="39.5" Y="7.5" Width="1.5" />
+    <Position X="23.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -56,7 +56,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.PostModel">
-    <Position X="44" Y="7.5" Width="1.5" />
+    <Position X="27.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -64,7 +64,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.PlaceModel">
-    <Position X="26" Y="7.5" Width="1.5" />
+    <Position X="9.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -72,7 +72,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.LikeModel">
-    <Position X="30.5" Y="7.5" Width="1.5" />
+    <Position X="14.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -80,7 +80,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.PostReportModel">
-    <Position X="37.25" Y="7.5" Width="1.5" />
+    <Position X="21" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -88,7 +88,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.PaymentModel">
-    <Position X="41.75" Y="7.5" Width="1.5" />
+    <Position X="25.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAgAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
@@ -96,26 +96,54 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ICT4EVENT.SocialMediaEventManager">
-    <Position X="50.5" Y="6" Width="1.5" />
+    <Position X="35.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAgAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>SocialMediaEventManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ICT4EVENT.ReservationModel" Collapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="ICT4EVENT.ReservationModel">
+    <Position X="7.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAQAAAAAAAAAAAAAAAAAAACgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="ICT4EVENT.Settings">
+    <Position X="31.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAkIAAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.Logger">
+    <Position X="33.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAcAAAAAACBAAAggAEAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.LogItem">
+    <Position X="35.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEAAAAAAAAAAEAAAABAAAAIAAAASA=</HashCode>
+      <FileName>Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="ICT4EVENT.IDataModelUpdate">
-    <Position X="50.5" Y="8.5" Width="1.5" />
+    <Position X="31.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAABAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>IDataModelUpdate.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Enum Name="ICT4EVENT.LogLevel">
+    <Position X="33.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAABAAAgAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Logger.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
