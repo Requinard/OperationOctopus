@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ApplicationLogger;
 
 namespace ICT4EVENT
 {
@@ -11,14 +12,21 @@ namespace ICT4EVENT
         [STAThread]
         private static void Main()
         {
-            Logger.Initialize();
+            try
+            {
+                Logger.Initialize(Settings.LOGFILENAME);
+            }
+            catch (Exception)
+            {
+                Logger.Initialize();
+            }
             Logger.Success("Initialized Logger");
             Logger.Info("Starting Application");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
             Logger.Info("Exiting Application");
-            Logger.Destruct();
+            Logger.Destruct(Settings.LOGFILENAME);
         }
     }
 }

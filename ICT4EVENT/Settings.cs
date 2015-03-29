@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using ApplicationLogger;
 
 namespace ICT4EVENT
 {

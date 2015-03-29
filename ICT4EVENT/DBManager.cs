@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
+using ApplicationLogger;
 
 namespace ICT4EVENT
 {
@@ -51,7 +52,7 @@ namespace ICT4EVENT
                     File.Delete(Settings.DBCONFIGFILENAME);
                 }
                 Logger.Info("Exiting application due to broken database config");
-                Logger.Destruct();
+                Logger.Destruct(Settings.LOGFILENAME);
                 Environment.Exit(1);
                 return;
             }
