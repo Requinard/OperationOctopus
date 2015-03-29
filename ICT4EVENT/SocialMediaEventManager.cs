@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace ICT4EVENT
 {
-    class SocialMediaEventManager
+    internal class SocialMediaEventManager
     {
+        private DBManager dbManager;
         private List<EventModel> events;
         private List<UserModel> users;
-        private DBManager dbManager;
 
         public SocialMediaEventManager()
         {
-            this.dbManager = new DBManager();
-            this.events = new List<EventModel>();
-            this.users = new List<UserModel>();
+            dbManager = new DBManager();
+            events = new List<EventModel>();
+            users = new List<UserModel>();
+        }
+
+        ~SocialMediaEventManager()
+        {
+            dbManager = null;
         }
     }
 }
