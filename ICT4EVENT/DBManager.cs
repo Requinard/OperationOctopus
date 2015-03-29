@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
@@ -63,7 +64,6 @@ namespace ICT4EVENT
                 RunOracleDatabaseTest();
             }
 
-            //TODO: Add method of checking whether database already contains our data
             ConstructDatabaseSchema();
         }
 
@@ -78,15 +78,18 @@ namespace ICT4EVENT
         /// </summary>
         public void ConstructDatabaseSchema()
         {
-            //TODO: Add construction queries for all tables
-            ConstructDatabaseEventTable();
+            // Check if the table exists. 
+            if (QueryDB("SELECT * FROM event") == null)
+            {
+                ConstructDatabaseEventTable();
+            }
         }
 
         private void ConstructDatabaseEventTable()
         {
             const string drop = "DROP TABLE event";
             const string create =
-                "CREATE TABLE event (eventName varchar2(20),location varchar2(20),description CLOB,beginTime TIMESTAMP,endTime TIMESTAMP);";
+                "CREATE TABLE event (ident int, eventName varchar2(20),location varchar2(20),description CLOB,beginTime TIMESTAMP,endTime TIMESTAMP, PRIMARY KEY(ident));";
 
             //TODO: Add constraints for event table
 
