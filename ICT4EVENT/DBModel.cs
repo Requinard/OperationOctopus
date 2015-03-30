@@ -24,12 +24,13 @@ namespace ICT4EVENT
         public int Id
         {
             get { return ID; }
-        }
+    }
     }
 
     internal class EventModel : DBModel, IDataModelUpdate
     {
-        public EventModel(DBManager dbManager) : base(dbManager)
+        public EventModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -58,7 +59,8 @@ namespace ICT4EVENT
     {
         public List<RegistrationModel> RegistrationList = new List<RegistrationModel>();
 
-        public UserModel(DBManager dbManager) : base(dbManager)
+        public UserModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -84,7 +86,8 @@ namespace ICT4EVENT
     }
     internal class RegistrationModel : DBModel, IDataModelUpdate
     {
-        public RegistrationModel(DBManager dbManager) : base(dbManager)
+        public RegistrationModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -112,7 +115,8 @@ namespace ICT4EVENT
 
     internal class RFIDLogModel : DBModel, IDataModelUpdate
     {
-        public RFIDLogModel(DBManager dbManager) : base(dbManager)
+        public RFIDLogModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -139,7 +143,8 @@ namespace ICT4EVENT
 
     internal class RentableObjectModel : DBModel, IDataModelUpdate
     {
-        public RentableObjectModel(DBManager dbManager) : base(dbManager)
+        public RentableObjectModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -166,7 +171,8 @@ namespace ICT4EVENT
 
     internal class PostModel : DBModel, IDataModelUpdate
     {
-        public PostModel(DBManager dbManager) : base(dbManager)
+        public PostModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -193,7 +199,7 @@ namespace ICT4EVENT
 
     internal class PlaceModel : DBModel, IDataModelUpdate
     {
-        public PlaceModel(DBManager dbManager) : base(dbManager)
+        public PlaceModel(DBManager dbManager) :base (dbManager)
         {
         }
 
@@ -220,7 +226,8 @@ namespace ICT4EVENT
 
     internal class LikeModel : DBModel, IDataModelUpdate
     {
-        public LikeModel(DBManager dbManager) : base(dbManager)
+        public LikeModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -247,7 +254,8 @@ namespace ICT4EVENT
 
     internal class PostReportModel : DBModel, IDataModelUpdate
     {
-        public PostReportModel(DBManager dbManager) : base(dbManager)
+        public PostReportModel(DBManager dbManager)
+            : base(dbManager)
         {
         }
 
@@ -274,8 +282,9 @@ namespace ICT4EVENT
 
     internal class PaymentModel : DBModel, IDataModelUpdate
     {
-        public PaymentModel(DBManager dbManager) : base(dbManager)
-        {
+        public PaymentModel(DBManager dbManager)
+            : base(dbManager)
+    {
         }
 
         public int ID { get; set; }
@@ -304,22 +313,22 @@ namespace ICT4EVENT
     internal class ReservationModel : DBModel, IDataModelUpdate
     {
         public ReservationModel(DBManager dbManager) : base(dbManager)
-        {
+    {
         }
 
         private DateTime ReturnDate { get; set; }
         private int Amount { get; set; }
-
-        public bool Create()
+        public ReservationModel(DBManager dbManager)
+            : base(dbManager)
         {
             throw new NotImplementedException();
-        }
+    }
 
         public bool Read()
         {
             throw new NotImplementedException();
         }
-
+    
         public bool Update()
         {
             throw new NotImplementedException();
@@ -330,4 +339,5 @@ namespace ICT4EVENT
             throw new NotImplementedException();
         }
     }
+}
 }
