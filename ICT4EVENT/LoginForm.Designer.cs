@@ -1,6 +1,6 @@
 ﻿namespace ICT4EVENT
 {
-    partial class LoginScreen
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
