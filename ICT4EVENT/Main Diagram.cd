@@ -8,6 +8,20 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="ICT4EVENT.SocialMediaEventManager">
+    <Position X="35.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAgAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>SocialMediaEventManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.Settings">
+    <Position X="31.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAkIAAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="ICT4EVENT.DBModel">
     <Position X="18.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -95,27 +109,13 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ICT4EVENT.SocialMediaEventManager">
-    <Position X="35.5" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>IAAAAAgAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
-      <FileName>SocialMediaEventManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ICT4EVENT.ReservationModel">
     <Position X="7.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAQAAAAAAAAAAAAAAAAAAACgAABAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAQAAAAAAAAAAAAAAAAAAACgAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DBModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ICT4EVENT.Settings">
-    <Position X="31.75" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAkIAAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
-      <FileName>Settings.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Interface Name="ICT4EVENT.IDataModelUpdate">
     <Position X="31.75" Y="3.75" Width="1.5" />

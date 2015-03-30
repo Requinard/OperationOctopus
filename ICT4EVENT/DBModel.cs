@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ICT4EVENT
 {
-    internal abstract class DBModel
+    public abstract class DBModel
     {
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
         private const string INSERTSTRING = "INSERT INTO {0} {1} VALUES {2}";
@@ -24,7 +24,7 @@ namespace ICT4EVENT
         public int Id
         {
             get { return ID; }
-    }
+        }
     }
 
     internal class EventModel : DBModel, IDataModelUpdate
@@ -84,6 +84,7 @@ namespace ICT4EVENT
             throw new NotImplementedException();
         }
     }
+
     internal class RegistrationModel : DBModel, IDataModelUpdate
     {
         public RegistrationModel(DBManager dbManager)
@@ -199,7 +200,7 @@ namespace ICT4EVENT
 
     internal class PlaceModel : DBModel, IDataModelUpdate
     {
-        public PlaceModel(DBManager dbManager) :base (dbManager)
+        public PlaceModel(DBManager dbManager) : base(dbManager)
         {
         }
 
@@ -284,7 +285,7 @@ namespace ICT4EVENT
     {
         public PaymentModel(DBManager dbManager)
             : base(dbManager)
-    {
+        {
         }
 
         public int ID { get; set; }
@@ -310,25 +311,20 @@ namespace ICT4EVENT
         }
     }
 
-    internal class ReservationModel : DBModel, IDataModelUpdate
+    public class ReservationModel : DBModel, IDataModelUpdate
     {
         public ReservationModel(DBManager dbManager) : base(dbManager)
-    {
+        {
         }
 
         private DateTime ReturnDate { get; set; }
         private int Amount { get; set; }
-        public ReservationModel(DBManager dbManager)
-            : base(dbManager)
-        {
-            throw new NotImplementedException();
-    }
 
         public bool Read()
         {
             throw new NotImplementedException();
         }
-    
+
         public bool Update()
         {
             throw new NotImplementedException();
@@ -338,6 +334,10 @@ namespace ICT4EVENT
         {
             throw new NotImplementedException();
         }
+
+        public bool Create()
+        {
+            throw new NotImplementedException();
+        }
     }
-}
 }

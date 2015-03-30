@@ -7,7 +7,7 @@ using ApplicationLogger;
 
 namespace ICT4EVENT
 {
-    internal class DBManager : IDisposable
+    public class DBManager : IDisposable
     {
         private readonly OracleConnection oracleConnection;
         private bool disposed;
