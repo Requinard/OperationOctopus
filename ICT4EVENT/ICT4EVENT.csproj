@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="DBManager.cs" />
     <Compile Include="DBModel.cs" />
+    <Compile Include="FTPManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
