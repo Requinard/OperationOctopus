@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -23,6 +25,10 @@ namespace ICT4EVENT
         /// <param name="path"></param>
         public static void UploadFile(string path)
         {
+            StreamReader s;
+            byte[] content = new byte[]{};
+            FtpWebResponse response;
+
             Logger.Info("Uploading file " + path);
 
             // Create the request 
@@ -30,23 +36,48 @@ namespace ICT4EVENT
             request.Credentials = new NetworkCredential("user", "password");
 
             // Copy the file to a byte array
-            StreamReader s = new StreamReader(FileName);
-            byte[] content = Encoding.UTF8.GetBytes(s.ReadToEnd());
-            s.Close();
-            request.ContentLength = content.Length;
+            try
+            {
+                s = new StreamReader(FileName);
+                content = Encoding.UTF8.GetBytes(s.ReadToEnd());
+                s.Close();
+                request.ContentLength = content.Length;
+                Logger.Debug("Successfully copied data to stream");
 
-            Logger.Debug("Successfully copied data to stream");
-
-            // Copy contents to the request stream
-            Stream requestStream = request.GetRequestStream();
-            requestStream.Write(content, 0, content.Length);
-            requestStream.Close();
-
-            Logger.Debug("Successfully copied stream to request");
+                // Copy contents to the request stream
+                Stream requestStream = request.GetRequestStream();
+                requestStream.Write(content, 0, content.Length);
+                requestStream.Close();
+                Logger.Debug("Successfully copied stream to request");
+                Logger.Debug("Successfully copied stream to request");
+            }
+            catch (FileNotFoundException ex)
+            {
+                Logger.Error("File was not found: " + ex.ToString());
+                return;
+            }
+            catch (Exception Ex)
+            {
+                Logger.Error("Unspecified exception while uploading file: " + Ex.ToString());
+                return;
+            }
 
             //Make the request
-            FtpWebResponse response = (FtpWebResponse) request.GetResponse();
-            
+            try
+            {
+                response = (FtpWebResponse) request.GetResponse();
+            }
+            catch (TimeoutException exception)
+            {
+                Logger.Error("Request timed out: " + exception.ToString());
+                return;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Unspecified exception while uploading file: " + ex.ToString());
+                return;
+            }
+
             // We check if the status code is more then 200 and less then 300. 2xx is the success of FTP
             if ((int)response.StatusCode >= 200 && (int)response.StatusCode < 300)
             {
