@@ -1,38 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing.Text;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Net;
 using System.IO;
+using System.Net;
+using System.Text;
 using ApplicationLogger;
 
 namespace ICT4EVENT
 {
-    static class FTPManager
+    public static class FTPManager
     {
         private const string FolderLocation = "ftp://88.159.165.90/Disk/Public/Media/";
         private static string FileName = "sample.mp4";
 
         /// <summary>
-        /// Uploads a file to FTP
-        /// https://msdn.microsoft.com/en-us/library/ms229715%28v=vs.110%29.aspx
+        ///     Uploads a file to FTP
+        ///     https://msdn.microsoft.com/en-us/library/ms229715%28v=vs.110%29.aspx
         /// </summary>
         /// <param name="path"></param>
         public static void UploadFile(string path)
         {
             StreamReader s;
-            byte[] content = new byte[]{};
+            byte[] content = {};
             FtpWebResponse response;
 
             Logger.Info("Uploading file " + path);
 
             // Create the request 
-            FtpWebRequest request = (FtpWebRequest) WebRequest.Create(FolderLocation + FileName);
+            var request = (FtpWebRequest) WebRequest.Create(FolderLocation + FileName);
             request.Credentials = new NetworkCredential("user", "password");
 
             // Copy the file to a byte array
@@ -53,12 +46,12 @@ namespace ICT4EVENT
             }
             catch (FileNotFoundException ex)
             {
-                Logger.Error("File was not found: " + ex.ToString());
+                Logger.Error("File was not found: " + ex);
                 return;
             }
             catch (Exception Ex)
             {
-                Logger.Error("Unspecified exception while uploading file: " + Ex.ToString());
+                Logger.Error("Unspecified exception while uploading file: " + Ex);
                 return;
             }
 
@@ -69,35 +62,36 @@ namespace ICT4EVENT
             }
             catch (TimeoutException exception)
             {
-                Logger.Error("Request timed out: " + exception.ToString());
+                Logger.Error("Request timed out: " + exception);
                 return;
             }
             catch (Exception ex)
             {
-                Logger.Error("Unspecified exception while uploading file: " + ex.ToString());
+                Logger.Error("Unspecified exception while uploading file: " + ex);
                 return;
             }
 
             // We check if the status code is more then 200 and less then 300. 2xx is the success of FTP
-            if ((int)response.StatusCode >= 200 && (int)response.StatusCode < 300)
+            if ((int) response.StatusCode >= 200 && (int) response.StatusCode < 300)
             {
                 Logger.Success(String.Format("Uploaded file {0}, statuscode {1}", FileName, response.StatusDescription));
             }
             else
             {
-                Logger.Error(String.Format("Could not upload file {0}, Description: {1}", FileName, response.StatusDescription));
+                Logger.Error(String.Format("Could not upload file {0}, Description: {1}", FileName,
+                    response.StatusDescription));
             }
         }
 
         /// <summary>
-        /// Downloads a file from the server
-        /// https://msdn.microsoft.com/en-us/library/ms229711%28v=vs.110%29.aspx
+        ///     Downloads a file from the server
+        ///     https://msdn.microsoft.com/en-us/library/ms229711%28v=vs.110%29.aspx
         /// </summary>
         /// <param name="path"></param>
         public static void DownloadFile(string path)
         {
             StreamReader s;
-            byte[] content = new byte[] {};
+            byte[] content = {};
             FtpWebResponse response;
             Stream responseStream;
             StreamReader reader;
@@ -106,7 +100,7 @@ namespace ICT4EVENT
             Logger.Info("Downloading file " + path);
 
             // Create the request 
-            FtpWebRequest request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
+            var request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
             request.Credentials = new NetworkCredential("user", "password");
 
             // Get the response
@@ -116,12 +110,12 @@ namespace ICT4EVENT
             }
             catch (TimeoutException exception)
             {
-                Logger.Error("File download timed out: " + exception.ToString());
+                Logger.Error("File download timed out: " + exception);
                 return;
             }
             catch (Exception exception)
             {
-                Logger.Error("Unspecified exception during download" + exception.ToString());
+                Logger.Error("Unspecified exception during download" + exception);
                 return;
             }
 
@@ -137,9 +131,8 @@ namespace ICT4EVENT
             }
             catch (Exception exception)
             {
-                Logger.Error("Unspecified exception during file download: " + exception.ToString());
+                Logger.Error("Unspecified exception during file download: " + exception);
                 return;
-
             }
 
 
@@ -147,8 +140,6 @@ namespace ICT4EVENT
             reader.Close();
             writer.Close();
             responseStream.Close();
-
-            return;
         }
     }
 }
