@@ -1,6 +1,6 @@
 ﻿namespace ICT4EVENT
 {
-    partial class MainForm
+    partial class MateriaalVerHuurForm
     {
         /// <summary>
         /// Required designer variable.
