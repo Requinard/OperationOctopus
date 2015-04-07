@@ -88,5 +88,41 @@ namespace ICT4EVENT
                 Logger.Error(String.Format("Could not upload file {0}, Description: {1}", FileName, response.StatusDescription));
             }
         }
+
+        /// <summary>
+        /// Downloads a file from the server
+        /// https://msdn.microsoft.com/en-us/library/ms229711%28v=vs.110%29.aspx
+        /// </summary>
+        /// <param name="path"></param>
+        public static void DownloadFile(string path)
+        {
+            StreamReader s;
+            byte[] content = new byte[] { };
+            FtpWebResponse response;
+
+            Logger.Info("Downloading file " + path);
+
+            // Create the request 
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FolderLocation + path);
+            request.Credentials = new NetworkCredential("user", "password");
+
+            // Get the response
+            response = (FtpWebResponse)request.GetResponse();
+
+            // Convert repsonse to readable format and write it to a file
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+
+            StreamWriter writer = new StreamWriter(path);
+
+            writer.Write(reader.ReadToEnd());
+
+            // Close streams
+            reader.Close();
+            writer.Close();
+            responseStream.Close();
+
+            return;
+        }
     }
 }
