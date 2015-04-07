@@ -51,11 +51,11 @@
             this.gbStaticControls.Controls.Add(this.btnLogOut);
             this.gbStaticControls.Controls.Add(this.btnRentObject);
             this.gbStaticControls.Controls.Add(this.btnSMSS);
-            this.gbStaticControls.Location = new System.Drawing.Point(11, 18);
+            this.gbStaticControls.Location = new System.Drawing.Point(11, 13);
             this.gbStaticControls.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.gbStaticControls.Name = "gbStaticControls";
             this.gbStaticControls.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.gbStaticControls.Size = new System.Drawing.Size(166, 1011);
+            this.gbStaticControls.Size = new System.Drawing.Size(166, 583);
             this.gbStaticControls.TabIndex = 0;
             this.gbStaticControls.TabStop = false;
             this.gbStaticControls.Tag = "Static";
@@ -63,7 +63,7 @@
             // btnSettings
             // 
             this.btnSettings.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.Location = new System.Drawing.Point(6, 831);
+            this.btnSettings.Location = new System.Drawing.Point(6, 403);
             this.btnSettings.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(156, 82);
@@ -75,7 +75,7 @@
             // btnLogOut
             // 
             this.btnLogOut.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogOut.Location = new System.Drawing.Point(6, 921);
+            this.btnLogOut.Location = new System.Drawing.Point(6, 493);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(156, 82);
@@ -114,11 +114,11 @@
             this.gbStaticUpdates.Controls.Add(this.lblTrending);
             this.gbStaticUpdates.Controls.Add(this.btnDynamicButton);
             this.gbStaticUpdates.Controls.Add(this.lbTrending);
-            this.gbStaticUpdates.Location = new System.Drawing.Point(1727, 18);
+            this.gbStaticUpdates.Location = new System.Drawing.Point(823, 12);
             this.gbStaticUpdates.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.gbStaticUpdates.Name = "gbStaticUpdates";
             this.gbStaticUpdates.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.gbStaticUpdates.Size = new System.Drawing.Size(166, 1008);
+            this.gbStaticUpdates.Size = new System.Drawing.Size(166, 584);
             this.gbStaticUpdates.TabIndex = 4;
             this.gbStaticUpdates.TabStop = false;
             this.gbStaticUpdates.Tag = "Static";
@@ -158,7 +158,7 @@
             this.lbTrending.ItemHeight = 24;
             this.lbTrending.Location = new System.Drawing.Point(5, 164);
             this.lbTrending.Name = "lbTrending";
-            this.lbTrending.Size = new System.Drawing.Size(156, 820);
+            this.lbTrending.Size = new System.Drawing.Size(156, 412);
             this.lbTrending.TabIndex = 0;
             this.lbTrending.Tag = "Static";
             // 
@@ -175,11 +175,11 @@
             // gbDynamic
             // 
             this.gbDynamic.BackColor = System.Drawing.Color.DodgerBlue;
-            this.gbDynamic.Location = new System.Drawing.Point(183, 18);
+            this.gbDynamic.Location = new System.Drawing.Point(181, 13);
             this.gbDynamic.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.gbDynamic.Name = "gbDynamic";
             this.gbDynamic.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.gbDynamic.Size = new System.Drawing.Size(1539, 905);
+            this.gbDynamic.Size = new System.Drawing.Size(638, 583);
             this.gbDynamic.TabIndex = 6;
             this.gbDynamic.TabStop = false;
             this.gbDynamic.Tag = "Static";
@@ -188,13 +188,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1042);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.gbStaticUpdates);
             this.Controls.Add(this.gbDynamic);
             this.Controls.Add(this.pbBanner);
-            this.Controls.Add(this.gbStaticUpdates);
             this.Controls.Add(this.gbStaticControls);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "MainForm";
             this.Text = "MainForm";
