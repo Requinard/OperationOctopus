@@ -40,26 +40,37 @@
             this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.treeCategorie = new System.Windows.Forms.TreeView();
             this.btnMediaFile = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.Profiel = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lblDisplayName = new System.Windows.Forms.Label();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.gbSettings = new System.Windows.Forms.GroupBox();
-            this.btnLogOut = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbBio = new System.Windows.Forms.TextBox();
+            this.lblBiografie = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.gbAdminOptions = new System.Windows.Forms.GroupBox();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnBanner = new System.Windows.Forms.Button();
             this.gbStaticUpdates.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -69,10 +80,13 @@
             this.tabPage1.SuspendLayout();
             this.Profiel.SuspendLayout();
             this.gbProfielen.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.gbSettings.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbAdminOptions.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.SuspendLayout();
@@ -209,6 +223,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.treeCategorie);
             this.tabPage1.Controls.Add(this.btnMediaFile);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.listBox1);
@@ -220,6 +235,13 @@
             this.tabPage1.Text = "Social Media Sharing System";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // treeCategorie
+            // 
+            this.treeCategorie.Location = new System.Drawing.Point(629, 73);
+            this.treeCategorie.Name = "treeCategorie";
+            this.treeCategorie.Size = new System.Drawing.Size(155, 450);
+            this.treeCategorie.TabIndex = 7;
+            // 
             // btnMediaFile
             // 
             this.btnMediaFile.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -227,7 +249,7 @@
             this.btnMediaFile.Location = new System.Drawing.Point(628, 9);
             this.btnMediaFile.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnMediaFile.Name = "btnMediaFile";
-            this.btnMediaFile.Size = new System.Drawing.Size(156, 65);
+            this.btnMediaFile.Size = new System.Drawing.Size(156, 57);
             this.btnMediaFile.TabIndex = 6;
             this.btnMediaFile.Tag = "Static";
             this.btnMediaFile.Text = "Add File(s)";
@@ -238,7 +260,7 @@
             this.textBox1.Location = new System.Drawing.Point(6, 9);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(617, 65);
+            this.textBox1.Size = new System.Drawing.Size(617, 57);
             this.textBox1.TabIndex = 1;
             // 
             // listBox1
@@ -248,9 +270,9 @@
             this.listBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(6, 89);
+            this.listBox1.Location = new System.Drawing.Point(6, 73);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(778, 436);
+            this.listBox1.Size = new System.Drawing.Size(617, 460);
             this.listBox1.TabIndex = 0;
             this.listBox1.Tag = "Static";
             // 
@@ -276,78 +298,74 @@
             // 
             // gbProfielen
             // 
-            this.gbProfielen.Controls.Add(this.pictureBox1);
-            this.gbProfielen.Controls.Add(this.pictureBox2);
-            this.gbProfielen.Controls.Add(this.lblDisplayName);
-            this.gbProfielen.Controls.Add(this.lblPassword);
-            this.gbProfielen.Controls.Add(this.textBox3);
-            this.gbProfielen.Controls.Add(this.textBox2);
+            this.gbProfielen.Controls.Add(this.comboBox1);
+            this.gbProfielen.Controls.Add(this.groupBox1);
             this.gbProfielen.Location = new System.Drawing.Point(3, 3);
             this.gbProfielen.Name = "gbProfielen";
             this.gbProfielen.Size = new System.Drawing.Size(784, 525);
             this.gbProfielen.TabIndex = 13;
             this.gbProfielen.TabStop = false;
-            this.gbProfielen.Text = "Profiel";
+            this.gbProfielen.Text = "Profielen:";
             // 
-            // pictureBox1
+            // comboBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 24);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(154, 184);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(9, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(769, 26);
+            this.comboBox1.TabIndex = 16;
             // 
-            // pictureBox2
+            // groupBox1
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox2.Location = new System.Drawing.Point(6, 402);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(772, 117);
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
+            this.groupBox1.Controls.Add(this.pictureBox3);
+            this.groupBox1.Controls.Add(this.pictureBox4);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Location = new System.Drawing.Point(3, 87);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(784, 392);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "profiel van <username>";
             // 
-            // lblDisplayName
+            // pictureBox3
             // 
-            this.lblDisplayName.AutoSize = true;
-            this.lblDisplayName.BackColor = System.Drawing.Color.OrangeRed;
-            this.lblDisplayName.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplayName.Location = new System.Drawing.Point(166, 24);
-            this.lblDisplayName.Name = "lblDisplayName";
-            this.lblDisplayName.Size = new System.Drawing.Size(90, 24);
-            this.lblDisplayName.TabIndex = 9;
-            this.lblDisplayName.Tag = "Settings";
-            this.lblDisplayName.Text = "Display Name:";
-            this.lblDisplayName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pictureBox3.BackColor = System.Drawing.Color.OrangeRed;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 24);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(154, 184);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
             // 
-            // lblPassword
+            // pictureBox4
             // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.BackColor = System.Drawing.Color.OrangeRed;
-            this.lblPassword.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(166, 68);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(71, 24);
-            this.lblPassword.TabIndex = 10;
-            this.lblPassword.Tag = "Profiel";
-            this.lblPassword.Text = "Password:";
-            this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pictureBox4.BackColor = System.Drawing.Color.OrangeRed;
+            this.pictureBox4.Location = new System.Drawing.Point(6, 402);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(772, 117);
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
             // 
-            // textBox3
+            // label2
             // 
-            this.textBox3.Location = new System.Drawing.Point(262, 70);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(516, 24);
-            this.textBox3.TabIndex = 11;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.OrangeRed;
+            this.label2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(163, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 24);
+            this.label2.TabIndex = 9;
+            this.label2.Tag = "Settings";
+            this.label2.Text = "Display Name:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // textBox5
             // 
-            this.textBox2.Location = new System.Drawing.Point(262, 26);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(516, 24);
-            this.textBox2.TabIndex = 8;
+            this.textBox5.Location = new System.Drawing.Point(259, 25);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(516, 24);
+            this.textBox5.TabIndex = 8;
             // 
             // tabPage4
             // 
@@ -361,6 +379,7 @@
             // 
             // gbSettings
             // 
+            this.gbSettings.Controls.Add(this.groupBox2);
             this.gbSettings.Controls.Add(this.gbAdminOptions);
             this.gbSettings.Controls.Add(this.btnLogOut);
             this.gbSettings.Location = new System.Drawing.Point(3, 3);
@@ -370,24 +389,114 @@
             this.gbSettings.TabStop = false;
             this.gbSettings.Text = "Settings";
             // 
-            // btnLogOut
+            // groupBox2
             // 
-            this.btnLogOut.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogOut.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLogOut.Location = new System.Drawing.Point(616, 459);
-            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(156, 50);
-            this.btnLogOut.TabIndex = 6;
-            this.btnLogOut.Tag = "Settings";
-            this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.btnBanner);
+            this.groupBox2.Controls.Add(this.tbBio);
+            this.groupBox2.Controls.Add(this.lblBiografie);
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Location = new System.Drawing.Point(8, 24);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(779, 190);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Mijn Profiel";
+            // 
+            // tbBio
+            // 
+            this.tbBio.Location = new System.Drawing.Point(102, 90);
+            this.tbBio.Multiline = true;
+            this.tbBio.Name = "tbBio";
+            this.tbBio.Size = new System.Drawing.Size(516, 93);
+            this.tbBio.TabIndex = 16;
+            // 
+            // lblBiografie
+            // 
+            this.lblBiografie.AutoSize = true;
+            this.lblBiografie.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblBiografie.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBiografie.Location = new System.Drawing.Point(6, 90);
+            this.lblBiografie.Name = "lblBiografie";
+            this.lblBiografie.Size = new System.Drawing.Size(64, 24);
+            this.lblBiografie.TabIndex = 15;
+            this.lblBiografie.Tag = "Profiel";
+            this.lblBiografie.Text = "Biografie:";
+            this.lblBiografie.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
+            this.pictureBox1.Location = new System.Drawing.Point(635, 24);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(129, 120);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(102, 62);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(516, 22);
+            this.textBox3.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.OrangeRed;
+            this.label4.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 24);
+            this.label4.TabIndex = 12;
+            this.label4.Tag = "Profiel";
+            this.label4.Text = "Wachtwoord:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(102, 27);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(516, 24);
+            this.textBox2.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.OrangeRed;
+            this.label1.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 24);
+            this.label1.TabIndex = 10;
+            this.label1.Tag = "Settings";
+            this.label1.Text = "Display Name:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(616, 459);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(156, 50);
+            this.button2.TabIndex = 6;
+            this.button2.Tag = "Settings";
+            this.button2.Text = "Log Out";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // gbAdminOptions
             // 
             this.gbAdminOptions.Controls.Add(this.tabControl4);
             this.gbAdminOptions.Controls.Add(this.button1);
-            this.gbAdminOptions.Location = new System.Drawing.Point(8, 219);
+            this.gbAdminOptions.Location = new System.Drawing.Point(8, 220);
             this.gbAdminOptions.Name = "gbAdminOptions";
             this.gbAdminOptions.Size = new System.Drawing.Size(779, 321);
             this.gbAdminOptions.TabIndex = 11;
@@ -419,7 +528,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 27);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(192, 69);
+            this.tabPage7.Size = new System.Drawing.Size(762, 251);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "Event Beheer";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -436,6 +545,32 @@
             this.button1.Tag = "Settings";
             this.button1.Text = "Log Out";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLogOut.Location = new System.Drawing.Point(616, 459);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(156, 50);
+            this.btnLogOut.TabIndex = 6;
+            this.btnLogOut.Tag = "Settings";
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            // 
+            // btnBanner
+            // 
+            this.btnBanner.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBanner.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBanner.Location = new System.Drawing.Point(635, 151);
+            this.btnBanner.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnBanner.Name = "btnBanner";
+            this.btnBanner.Size = new System.Drawing.Size(129, 32);
+            this.btnBanner.TabIndex = 6;
+            this.btnBanner.Tag = "MijnProfiel";
+            this.btnBanner.Text = "Verander Banner";
+            this.btnBanner.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -464,11 +599,15 @@
             this.tabPage1.PerformLayout();
             this.Profiel.ResumeLayout(false);
             this.gbProfielen.ResumeLayout(false);
-            this.gbProfielen.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.gbSettings.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbAdminOptions.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -496,12 +635,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage Profiel;
         private System.Windows.Forms.GroupBox gbProfielen;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label lblDisplayName;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.GroupBox gbSettings;
         private System.Windows.Forms.GroupBox gbAdminOptions;
@@ -509,6 +642,23 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TreeView treeCategorie;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox tbBio;
+        private System.Windows.Forms.Label lblBiografie;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnBanner;
     }
 }
 
