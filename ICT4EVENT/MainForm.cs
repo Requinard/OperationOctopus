@@ -27,6 +27,10 @@ namespace ICT4EVENT
          
         }
 
+        private void tbUserName_TextChanged(object sender, EventArgs e)
+        {
+            }
+
 
 
 

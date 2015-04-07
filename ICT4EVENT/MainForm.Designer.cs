@@ -30,49 +30,51 @@
         {
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
-            this.btnDynamicButton = new System.Windows.Forms.Button();
-            this.lbTrendingPosts = new System.Windows.Forms.ListBox();
-            this.pbBanner = new System.Windows.Forms.PictureBox();
-            this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Posts = new System.Windows.Forms.TabPage();
+            this.lbTrendingPosts = new System.Windows.Forms.ListBox();
             this.Media = new System.Windows.Forms.TabPage();
             this.Organisation = new System.Windows.Forms.TabPage();
+            this.btnDynamicButton = new System.Windows.Forms.Button();
+            this.pbBanner = new System.Windows.Forms.PictureBox();
+            this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnMediaFile = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnMediaFile = new System.Windows.Forms.Button();
-            this.btnLogOut = new System.Windows.Forms.Button();
-            this.tbUserName = new System.Windows.Forms.TextBox();
-            this.lblUserName = new System.Windows.Forms.Label();
             this.Profiel = new System.Windows.Forms.TabPage();
+            this.gbProfielen = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblDisplayName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.gbProfielen = new System.Windows.Forms.GroupBox();
-            this.tabControl3 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.gbSettings = new System.Windows.Forms.GroupBox();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.gbAdminOptions = new System.Windows.Forms.GroupBox();
+            this.tabControl4 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbStaticUpdates.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
-            this.gbDynamic.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
+            this.gbDynamic.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.Profiel.SuspendLayout();
+            this.gbProfielen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.gbProfielen.SuspendLayout();
-            this.tabControl3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.gbSettings.SuspendLayout();
+            this.gbAdminOptions.SuspendLayout();
+            this.tabControl4.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbStaticUpdates
@@ -103,18 +105,27 @@
             this.lblTrending.Text = "Trending right now:";
             this.lblTrending.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnDynamicButton
+            // tabControl1
             // 
-            this.btnDynamicButton.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDynamicButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDynamicButton.Location = new System.Drawing.Point(4, 13);
-            this.btnDynamicButton.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnDynamicButton.Name = "btnDynamicButton";
-            this.btnDynamicButton.Size = new System.Drawing.Size(156, 50);
-            this.btnDynamicButton.TabIndex = 4;
-            this.btnDynamicButton.Tag = "Static";
-            this.btnDynamicButton.Text = "DynamicButton";
-            this.btnDynamicButton.UseVisualStyleBackColor = true;
+            this.tabControl1.Controls.Add(this.Posts);
+            this.tabControl1.Controls.Add(this.Media);
+            this.tabControl1.Controls.Add(this.Organisation);
+            this.tabControl1.Location = new System.Drawing.Point(4, 94);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(156, 481);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // Posts
+            // 
+            this.Posts.Controls.Add(this.lbTrendingPosts);
+            this.Posts.Location = new System.Drawing.Point(4, 27);
+            this.Posts.Name = "Posts";
+            this.Posts.Padding = new System.Windows.Forms.Padding(3);
+            this.Posts.Size = new System.Drawing.Size(148, 450);
+            this.Posts.TabIndex = 0;
+            this.Posts.Text = "Posts";
+            this.Posts.UseVisualStyleBackColor = true;
             // 
             // lbTrendingPosts
             // 
@@ -128,6 +139,38 @@
             this.lbTrendingPosts.Size = new System.Drawing.Size(136, 436);
             this.lbTrendingPosts.TabIndex = 0;
             this.lbTrendingPosts.Tag = "Static";
+            // 
+            // Media
+            // 
+            this.Media.Location = new System.Drawing.Point(4, 27);
+            this.Media.Name = "Media";
+            this.Media.Padding = new System.Windows.Forms.Padding(3);
+            this.Media.Size = new System.Drawing.Size(148, 450);
+            this.Media.TabIndex = 1;
+            this.Media.Text = "Media";
+            this.Media.UseVisualStyleBackColor = true;
+            // 
+            // Organisation
+            // 
+            this.Organisation.Location = new System.Drawing.Point(4, 27);
+            this.Organisation.Name = "Organisation";
+            this.Organisation.Size = new System.Drawing.Size(148, 450);
+            this.Organisation.TabIndex = 2;
+            this.Organisation.Text = "Organisation";
+            this.Organisation.UseVisualStyleBackColor = true;
+            // 
+            // btnDynamicButton
+            // 
+            this.btnDynamicButton.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDynamicButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDynamicButton.Location = new System.Drawing.Point(4, 13);
+            this.btnDynamicButton.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnDynamicButton.Name = "btnDynamicButton";
+            this.btnDynamicButton.Size = new System.Drawing.Size(156, 50);
+            this.btnDynamicButton.TabIndex = 4;
+            this.btnDynamicButton.Tag = "Static";
+            this.btnDynamicButton.Text = "DynamicButton";
+            this.btnDynamicButton.UseVisualStyleBackColor = true;
             // 
             // pbBanner
             // 
@@ -151,47 +194,6 @@
             this.gbDynamic.TabIndex = 6;
             this.gbDynamic.TabStop = false;
             this.gbDynamic.Tag = "Static";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.Posts);
-            this.tabControl1.Controls.Add(this.Media);
-            this.tabControl1.Controls.Add(this.Organisation);
-            this.tabControl1.Location = new System.Drawing.Point(4, 94);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(156, 481);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // Posts
-            // 
-            this.Posts.Controls.Add(this.lbTrendingPosts);
-            this.Posts.Location = new System.Drawing.Point(4, 27);
-            this.Posts.Name = "Posts";
-            this.Posts.Padding = new System.Windows.Forms.Padding(3);
-            this.Posts.Size = new System.Drawing.Size(148, 450);
-            this.Posts.TabIndex = 0;
-            this.Posts.Text = "Posts";
-            this.Posts.UseVisualStyleBackColor = true;
-            // 
-            // Media
-            // 
-            this.Media.Location = new System.Drawing.Point(4, 27);
-            this.Media.Name = "Media";
-            this.Media.Padding = new System.Windows.Forms.Padding(3);
-            this.Media.Size = new System.Drawing.Size(148, 450);
-            this.Media.TabIndex = 1;
-            this.Media.Text = "Media";
-            this.Media.UseVisualStyleBackColor = true;
-            // 
-            // Organisation
-            // 
-            this.Organisation.Location = new System.Drawing.Point(4, 27);
-            this.Organisation.Name = "Organisation";
-            this.Organisation.Size = new System.Drawing.Size(148, 450);
-            this.Organisation.TabIndex = 2;
-            this.Organisation.Text = "Organisation";
-            this.Organisation.UseVisualStyleBackColor = true;
             // 
             // tabControl2
             // 
@@ -218,6 +220,27 @@
             this.tabPage1.Text = "Social Media Sharing System";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnMediaFile
+            // 
+            this.btnMediaFile.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMediaFile.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnMediaFile.Location = new System.Drawing.Point(628, 9);
+            this.btnMediaFile.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnMediaFile.Name = "btnMediaFile";
+            this.btnMediaFile.Size = new System.Drawing.Size(156, 65);
+            this.btnMediaFile.TabIndex = 6;
+            this.btnMediaFile.Tag = "Static";
+            this.btnMediaFile.Text = "Add File(s)";
+            this.btnMediaFile.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 9);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(617, 65);
+            this.textBox1.TabIndex = 1;
+            // 
             // listBox1
             // 
             this.listBox1.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -241,75 +264,6 @@
             this.tabPage2.Text = "Materiaal Verhuur";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage4.Controls.Add(this.tabControl3);
-            this.tabPage4.Controls.Add(this.lblUserName);
-            this.tabPage4.Controls.Add(this.tbUserName);
-            this.tabPage4.Controls.Add(this.btnLogOut);
-            this.tabPage4.Location = new System.Drawing.Point(4, 27);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(790, 531);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Settings";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 9);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(617, 65);
-            this.textBox1.TabIndex = 1;
-            // 
-            // btnMediaFile
-            // 
-            this.btnMediaFile.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMediaFile.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnMediaFile.Location = new System.Drawing.Point(628, 9);
-            this.btnMediaFile.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnMediaFile.Name = "btnMediaFile";
-            this.btnMediaFile.Size = new System.Drawing.Size(156, 65);
-            this.btnMediaFile.TabIndex = 6;
-            this.btnMediaFile.Tag = "Static";
-            this.btnMediaFile.Text = "Add File(s)";
-            this.btnMediaFile.UseVisualStyleBackColor = true;
-            // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogOut.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLogOut.Location = new System.Drawing.Point(632, 473);
-            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(156, 50);
-            this.btnLogOut.TabIndex = 6;
-            this.btnLogOut.Tag = "Settings";
-            this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            // 
-            // tbUserName
-            // 
-            this.tbUserName.Location = new System.Drawing.Point(96, 27);
-            this.tbUserName.Multiline = true;
-            this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(526, 65);
-            this.tbUserName.TabIndex = 7;
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblUserName.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(3, 27);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(90, 24);
-            this.lblUserName.TabIndex = 8;
-            this.lblUserName.Tag = "Settings";
-            this.lblUserName.Text = "Display Name:";
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Profiel
             // 
             this.Profiel.Controls.Add(this.gbProfielen);
@@ -320,6 +274,21 @@
             this.Profiel.Text = "Profiel";
             this.Profiel.UseVisualStyleBackColor = true;
             // 
+            // gbProfielen
+            // 
+            this.gbProfielen.Controls.Add(this.pictureBox1);
+            this.gbProfielen.Controls.Add(this.pictureBox2);
+            this.gbProfielen.Controls.Add(this.lblDisplayName);
+            this.gbProfielen.Controls.Add(this.lblPassword);
+            this.gbProfielen.Controls.Add(this.textBox3);
+            this.gbProfielen.Controls.Add(this.textBox2);
+            this.gbProfielen.Location = new System.Drawing.Point(3, 3);
+            this.gbProfielen.Name = "gbProfielen";
+            this.gbProfielen.Size = new System.Drawing.Size(784, 525);
+            this.gbProfielen.TabIndex = 13;
+            this.gbProfielen.TabStop = false;
+            this.gbProfielen.Text = "Profiel";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
@@ -329,13 +298,14 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox2
+            // pictureBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(262, 26);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(516, 24);
-            this.textBox2.TabIndex = 8;
+            this.pictureBox2.BackColor = System.Drawing.Color.OrangeRed;
+            this.pictureBox2.Location = new System.Drawing.Point(6, 402);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(772, 117);
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
             // 
             // lblDisplayName
             // 
@@ -371,72 +341,101 @@
             this.textBox3.Size = new System.Drawing.Size(516, 24);
             this.textBox3.TabIndex = 11;
             // 
-            // pictureBox2
+            // textBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox2.Location = new System.Drawing.Point(6, 402);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(772, 117);
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
+            this.textBox2.Location = new System.Drawing.Point(262, 26);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(516, 24);
+            this.textBox2.TabIndex = 8;
             // 
-            // gbProfielen
+            // tabPage4
             // 
-            this.gbProfielen.Controls.Add(this.pictureBox1);
-            this.gbProfielen.Controls.Add(this.pictureBox2);
-            this.gbProfielen.Controls.Add(this.lblDisplayName);
-            this.gbProfielen.Controls.Add(this.lblPassword);
-            this.gbProfielen.Controls.Add(this.textBox3);
-            this.gbProfielen.Controls.Add(this.textBox2);
-            this.gbProfielen.Location = new System.Drawing.Point(3, 3);
-            this.gbProfielen.Name = "gbProfielen";
-            this.gbProfielen.Size = new System.Drawing.Size(784, 525);
-            this.gbProfielen.TabIndex = 13;
-            this.gbProfielen.TabStop = false;
-            this.gbProfielen.Text = "Profiel";
+            this.tabPage4.Controls.Add(this.gbSettings);
+            this.tabPage4.Location = new System.Drawing.Point(4, 27);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(790, 531);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Settings";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabControl3
+            // gbSettings
             // 
-            this.tabControl3.Controls.Add(this.tabPage3);
-            this.tabControl3.Controls.Add(this.tabPage5);
-            this.tabControl3.Location = new System.Drawing.Point(30, 111);
-            this.tabControl3.Name = "tabControl3";
-            this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(200, 100);
-            this.tabControl3.TabIndex = 9;
+            this.gbSettings.Controls.Add(this.gbAdminOptions);
+            this.gbSettings.Controls.Add(this.btnLogOut);
+            this.gbSettings.Location = new System.Drawing.Point(3, 3);
+            this.gbSettings.Name = "gbSettings";
+            this.gbSettings.Size = new System.Drawing.Size(787, 532);
+            this.gbSettings.TabIndex = 10;
+            this.gbSettings.TabStop = false;
+            this.gbSettings.Text = "Settings";
             // 
-            // tabPage3
+            // btnLogOut
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 27);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(192, 69);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.btnLogOut.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLogOut.Location = new System.Drawing.Point(616, 459);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(156, 50);
+            this.btnLogOut.TabIndex = 6;
+            this.btnLogOut.Tag = "Settings";
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
+            // gbAdminOptions
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 27);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(192, 69);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.gbAdminOptions.Controls.Add(this.tabControl4);
+            this.gbAdminOptions.Controls.Add(this.button1);
+            this.gbAdminOptions.Location = new System.Drawing.Point(8, 219);
+            this.gbAdminOptions.Name = "gbAdminOptions";
+            this.gbAdminOptions.Size = new System.Drawing.Size(779, 321);
+            this.gbAdminOptions.TabIndex = 11;
+            this.gbAdminOptions.TabStop = false;
+            this.gbAdminOptions.Text = "Admin Options";
             // 
-            // tableLayoutPanel1
+            // tabControl4
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(349, 253);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
-            this.tableLayoutPanel1.TabIndex = 10;
+            this.tabControl4.Controls.Add(this.tabPage6);
+            this.tabControl4.Controls.Add(this.tabPage7);
+            this.tabControl4.Location = new System.Drawing.Point(6, 24);
+            this.tabControl4.Name = "tabControl4";
+            this.tabControl4.SelectedIndex = 0;
+            this.tabControl4.Size = new System.Drawing.Size(770, 282);
+            this.tabControl4.TabIndex = 9;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 27);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(762, 251);
+            this.tabPage6.TabIndex = 0;
+            this.tabPage6.Text = "Materiaal Verhuur";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Location = new System.Drawing.Point(4, 27);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(192, 69);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "Event Beheer";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(616, 459);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(156, 50);
+            this.button1.TabIndex = 6;
+            this.button1.Tag = "Settings";
+            this.button1.Text = "Log Out";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -456,21 +455,22 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbStaticUpdates.ResumeLayout(false);
             this.gbStaticUpdates.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
-            this.gbDynamic.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.Posts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
+            this.gbDynamic.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
             this.Profiel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.gbProfielen.ResumeLayout(false);
             this.gbProfielen.PerformLayout();
-            this.tabControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.gbSettings.ResumeLayout(false);
+            this.gbAdminOptions.ResumeLayout(false);
+            this.tabControl4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -502,13 +502,13 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TabControl tabControl3;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.GroupBox gbSettings;
+        private System.Windows.Forms.GroupBox gbAdminOptions;
+        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button button1;
     }
 }
 
