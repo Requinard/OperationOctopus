@@ -97,25 +97,51 @@ namespace ICT4EVENT
         public static void DownloadFile(string path)
         {
             StreamReader s;
-            byte[] content = new byte[] { };
+            byte[] content = new byte[] {};
             FtpWebResponse response;
+            Stream responseStream;
+            StreamReader reader;
+            StreamWriter writer;
 
             Logger.Info("Downloading file " + path);
 
             // Create the request 
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(FolderLocation + path);
+            FtpWebRequest request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
             request.Credentials = new NetworkCredential("user", "password");
 
             // Get the response
-            response = (FtpWebResponse)request.GetResponse();
+            try
+            {
+                response = (FtpWebResponse) request.GetResponse();
+            }
+            catch (TimeoutException exception)
+            {
+                Logger.Error("File download timed out: " + exception.ToString());
+                return;
+            }
+            catch (Exception exception)
+            {
+                Logger.Error("Unspecified exception during download" + exception.ToString());
+                return;
+            }
 
             // Convert repsonse to readable format and write it to a file
-            Stream responseStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(responseStream);
+            try
+            {
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
 
-            StreamWriter writer = new StreamWriter(path);
+                writer = new StreamWriter(path);
 
-            writer.Write(reader.ReadToEnd());
+                writer.Write(reader.ReadToEnd());
+            }
+            catch (Exception exception)
+            {
+                Logger.Error("Unspecified exception during file download: " + exception.ToString());
+                return;
+
+            }
+
 
             // Close streams
             reader.Close();
