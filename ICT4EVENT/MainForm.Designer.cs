@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -56,6 +58,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.gbSettings = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnBanner = new System.Windows.Forms.Button();
             this.tbBio = new System.Windows.Forms.TextBox();
             this.lblBiografie = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -70,7 +73,13 @@
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.btnBanner = new System.Windows.Forms.Button();
+            this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
+            this.MaterialList = new System.Windows.Forms.ListView();
+            this.groupDetails = new System.Windows.Forms.GroupBox();
+            this.pictureDetails = new System.Windows.Forms.PictureBox();
+            this.lblDetails = new System.Windows.Forms.Label();
+            this.btnHireMaterial = new System.Windows.Forms.Button();
+            this.listMandje = new System.Windows.Forms.ListBox();
             this.gbStaticUpdates.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -78,6 +87,7 @@
             this.gbDynamic.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.Profiel.SuspendLayout();
             this.gbProfielen.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,6 +99,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbAdminOptions.SuspendLayout();
             this.tabControl4.SuspendLayout();
+            this.groupDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // gbStaticUpdates
@@ -113,7 +125,7 @@
             this.lblTrending.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrending.Location = new System.Drawing.Point(4, 67);
             this.lblTrending.Name = "lblTrending";
-            this.lblTrending.Size = new System.Drawing.Size(120, 24);
+            this.lblTrending.Size = new System.Drawing.Size(154, 28);
             this.lblTrending.TabIndex = 5;
             this.lblTrending.Tag = "Static";
             this.lblTrending.Text = "Trending right now:";
@@ -133,10 +145,10 @@
             // Posts
             // 
             this.Posts.Controls.Add(this.lbTrendingPosts);
-            this.Posts.Location = new System.Drawing.Point(4, 27);
+            this.Posts.Location = new System.Drawing.Point(4, 33);
             this.Posts.Name = "Posts";
             this.Posts.Padding = new System.Windows.Forms.Padding(3);
-            this.Posts.Size = new System.Drawing.Size(148, 450);
+            this.Posts.Size = new System.Drawing.Size(148, 444);
             this.Posts.TabIndex = 0;
             this.Posts.Text = "Posts";
             this.Posts.UseVisualStyleBackColor = true;
@@ -147,28 +159,28 @@
             this.lbTrendingPosts.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTrendingPosts.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbTrendingPosts.FormattingEnabled = true;
-            this.lbTrendingPosts.ItemHeight = 24;
+            this.lbTrendingPosts.ItemHeight = 28;
             this.lbTrendingPosts.Location = new System.Drawing.Point(6, 6);
             this.lbTrendingPosts.Name = "lbTrendingPosts";
-            this.lbTrendingPosts.Size = new System.Drawing.Size(136, 436);
+            this.lbTrendingPosts.Size = new System.Drawing.Size(136, 424);
             this.lbTrendingPosts.TabIndex = 0;
             this.lbTrendingPosts.Tag = "Static";
             // 
             // Media
             // 
-            this.Media.Location = new System.Drawing.Point(4, 27);
+            this.Media.Location = new System.Drawing.Point(4, 33);
             this.Media.Name = "Media";
             this.Media.Padding = new System.Windows.Forms.Padding(3);
-            this.Media.Size = new System.Drawing.Size(148, 450);
+            this.Media.Size = new System.Drawing.Size(148, 444);
             this.Media.TabIndex = 1;
             this.Media.Text = "Media";
             this.Media.UseVisualStyleBackColor = true;
             // 
             // Organisation
             // 
-            this.Organisation.Location = new System.Drawing.Point(4, 27);
+            this.Organisation.Location = new System.Drawing.Point(4, 33);
             this.Organisation.Name = "Organisation";
-            this.Organisation.Size = new System.Drawing.Size(148, 450);
+            this.Organisation.Size = new System.Drawing.Size(148, 444);
             this.Organisation.TabIndex = 2;
             this.Organisation.Text = "Organisation";
             this.Organisation.UseVisualStyleBackColor = true;
@@ -227,10 +239,10 @@
             this.tabPage1.Controls.Add(this.btnMediaFile);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.listBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(790, 531);
+            this.tabPage1.Size = new System.Drawing.Size(790, 525);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Social Media Sharing System";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -269,19 +281,22 @@
             this.listBox1.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
+            this.listBox1.ItemHeight = 28;
             this.listBox1.Location = new System.Drawing.Point(6, 73);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(617, 460);
+            this.listBox1.Size = new System.Drawing.Size(617, 452);
             this.listBox1.TabIndex = 0;
             this.listBox1.Tag = "Static";
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Controls.Add(this.listMandje);
+            this.tabPage2.Controls.Add(this.groupDetails);
+            this.tabPage2.Controls.Add(this.MaterialList);
+            this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(790, 531);
+            this.tabPage2.Size = new System.Drawing.Size(790, 525);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Materiaal Verhuur";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -289,9 +304,9 @@
             // Profiel
             // 
             this.Profiel.Controls.Add(this.gbProfielen);
-            this.Profiel.Location = new System.Drawing.Point(4, 27);
+            this.Profiel.Location = new System.Drawing.Point(4, 33);
             this.Profiel.Name = "Profiel";
-            this.Profiel.Size = new System.Drawing.Size(790, 531);
+            this.Profiel.Size = new System.Drawing.Size(790, 525);
             this.Profiel.TabIndex = 4;
             this.Profiel.Text = "Profiel";
             this.Profiel.UseVisualStyleBackColor = true;
@@ -312,7 +327,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(9, 24);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(769, 26);
+            this.comboBox1.Size = new System.Drawing.Size(769, 32);
             this.comboBox1.TabIndex = 16;
             // 
             // groupBox1
@@ -353,7 +368,7 @@
             this.label2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(163, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 24);
+            this.label2.Size = new System.Drawing.Size(116, 28);
             this.label2.TabIndex = 9;
             this.label2.Tag = "Settings";
             this.label2.Text = "Display Name:";
@@ -370,9 +385,9 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.gbSettings);
-            this.tabPage4.Location = new System.Drawing.Point(4, 27);
+            this.tabPage4.Location = new System.Drawing.Point(4, 33);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(790, 531);
+            this.tabPage4.Size = new System.Drawing.Size(790, 525);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Settings";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -407,6 +422,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Mijn Profiel";
             // 
+            // btnBanner
+            // 
+            this.btnBanner.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBanner.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBanner.Location = new System.Drawing.Point(635, 151);
+            this.btnBanner.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnBanner.Name = "btnBanner";
+            this.btnBanner.Size = new System.Drawing.Size(129, 32);
+            this.btnBanner.TabIndex = 6;
+            this.btnBanner.Tag = "MijnProfiel";
+            this.btnBanner.Text = "Verander Banner";
+            this.btnBanner.UseVisualStyleBackColor = true;
+            // 
             // tbBio
             // 
             this.tbBio.Location = new System.Drawing.Point(102, 90);
@@ -422,7 +450,7 @@
             this.lblBiografie.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBiografie.Location = new System.Drawing.Point(6, 90);
             this.lblBiografie.Name = "lblBiografie";
-            this.lblBiografie.Size = new System.Drawing.Size(64, 24);
+            this.lblBiografie.Size = new System.Drawing.Size(82, 28);
             this.lblBiografie.TabIndex = 15;
             this.lblBiografie.Tag = "Profiel";
             this.lblBiografie.Text = "Biografie:";
@@ -452,7 +480,7 @@
             this.label4.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 24);
+            this.label4.Size = new System.Drawing.Size(107, 28);
             this.label4.TabIndex = 12;
             this.label4.Tag = "Profiel";
             this.label4.Text = "Wachtwoord:";
@@ -473,7 +501,7 @@
             this.label1.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(6, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 24);
+            this.label1.Size = new System.Drawing.Size(116, 28);
             this.label1.TabIndex = 10;
             this.label1.Tag = "Settings";
             this.label1.Text = "Display Name:";
@@ -515,20 +543,20 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 27);
+            this.tabPage6.Location = new System.Drawing.Point(4, 33);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(762, 251);
+            this.tabPage6.Size = new System.Drawing.Size(762, 245);
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Materiaal Verhuur";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // tabPage7
             // 
-            this.tabPage7.Location = new System.Drawing.Point(4, 27);
+            this.tabPage7.Location = new System.Drawing.Point(4, 33);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(762, 251);
+            this.tabPage7.Size = new System.Drawing.Size(762, 245);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "Event Beheer";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -559,34 +587,93 @@
             this.btnLogOut.Text = "Log Out";
             this.btnLogOut.UseVisualStyleBackColor = true;
             // 
-            // btnBanner
+            // MateriaalVerhuurImages
             // 
-            this.btnBanner.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBanner.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnBanner.Location = new System.Drawing.Point(635, 151);
-            this.btnBanner.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnBanner.Name = "btnBanner";
-            this.btnBanner.Size = new System.Drawing.Size(129, 32);
-            this.btnBanner.TabIndex = 6;
-            this.btnBanner.Tag = "MijnProfiel";
-            this.btnBanner.Text = "Verander Banner";
-            this.btnBanner.UseVisualStyleBackColor = true;
+            this.MateriaalVerhuurImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("MateriaalVerhuurImages.ImageStream")));
+            this.MateriaalVerhuurImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.MateriaalVerhuurImages.Images.SetKeyName(0, "40334_pro.jpg");
+            this.MateriaalVerhuurImages.Images.SetKeyName(1, "219643-nicolas-cage.jpg");
+            this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
+            this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
+            // 
+            // MaterialList
+            // 
+            this.MaterialList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MaterialList.Location = new System.Drawing.Point(6, 6);
+            this.MaterialList.Name = "MaterialList";
+            this.MaterialList.Size = new System.Drawing.Size(630, 344);
+            this.MaterialList.SmallImageList = this.MateriaalVerhuurImages;
+            this.MaterialList.TabIndex = 0;
+            this.MaterialList.UseCompatibleStateImageBehavior = false;
+            // 
+            // groupDetails
+            // 
+            this.groupDetails.Controls.Add(this.btnHireMaterial);
+            this.groupDetails.Controls.Add(this.lblDetails);
+            this.groupDetails.Controls.Add(this.pictureDetails);
+            this.groupDetails.Location = new System.Drawing.Point(6, 356);
+            this.groupDetails.Name = "groupDetails";
+            this.groupDetails.Size = new System.Drawing.Size(630, 166);
+            this.groupDetails.TabIndex = 1;
+            this.groupDetails.TabStop = false;
+            this.groupDetails.Text = "Details";
+            // 
+            // pictureDetails
+            // 
+            this.pictureDetails.Location = new System.Drawing.Point(6, 29);
+            this.pictureDetails.Name = "pictureDetails";
+            this.pictureDetails.Size = new System.Drawing.Size(131, 131);
+            this.pictureDetails.TabIndex = 0;
+            this.pictureDetails.TabStop = false;
+            // 
+            // lblDetails
+            // 
+            this.lblDetails.Location = new System.Drawing.Point(143, 29);
+            this.lblDetails.Name = "lblDetails";
+            this.lblDetails.Size = new System.Drawing.Size(298, 131);
+            this.lblDetails.TabIndex = 1;
+            this.lblDetails.Text = "Details";
+            // 
+            // btnHireMaterial
+            // 
+            this.btnHireMaterial.BackColor = System.Drawing.Color.Transparent;
+            this.btnHireMaterial.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHireMaterial.Location = new System.Drawing.Point(447, 29);
+            this.btnHireMaterial.Name = "btnHireMaterial";
+            this.btnHireMaterial.Size = new System.Drawing.Size(177, 131);
+            this.btnHireMaterial.TabIndex = 2;
+            this.btnHireMaterial.Text = "Voeg toe aan winkelwagen";
+            this.btnHireMaterial.UseVisualStyleBackColor = false;
+            // 
+            // listMandje
+            // 
+            this.listMandje.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listMandje.Enabled = false;
+            this.listMandje.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.listMandje.FormattingEnabled = true;
+            this.listMandje.ItemHeight = 24;
+            this.listMandje.Items.AddRange(new object[] {
+            "Test1",
+            "Test2"});
+            this.listMandje.Location = new System.Drawing.Point(642, 6);
+            this.listMandje.Name = "listMandje";
+            this.listMandje.Size = new System.Drawing.Size(145, 508);
+            this.listMandje.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.gbStaticUpdates);
             this.Controls.Add(this.gbDynamic);
             this.Controls.Add(this.pbBanner);
-            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbStaticUpdates.ResumeLayout(false);
             this.gbStaticUpdates.PerformLayout();
@@ -597,6 +684,7 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.Profiel.ResumeLayout(false);
             this.gbProfielen.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -610,6 +698,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbAdminOptions.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
+            this.groupDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -659,6 +749,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnBanner;
+        private System.Windows.Forms.ListView MaterialList;
+        private System.Windows.Forms.ImageList MateriaalVerhuurImages;
+        private System.Windows.Forms.GroupBox groupDetails;
+        private System.Windows.Forms.Button btnHireMaterial;
+        private System.Windows.Forms.Label lblDetails;
+        private System.Windows.Forms.PictureBox pictureDetails;
+        private System.Windows.Forms.ListBox listMandje;
     }
 }
 
