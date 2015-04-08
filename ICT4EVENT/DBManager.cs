@@ -65,18 +65,6 @@ namespace ICT4EVENT
             }
         }
 
-        private static void ConstructDatabaseEventTable()
-        {
-            const string drop = "DROP TABLE event";
-            const string create =
-                "CREATE TABLE event (ident int, eventName varchar2(20),location varchar2(20),description CLOB,beginTime TIMESTAMP,endTime TIMESTAMP, PRIMARY KEY(ident));";
-
-            //TODO: Add constraints for event table
-
-            QueryDB(drop);
-            QueryDB(create);
-        }
-
         /// <summary>
         ///     Tests the oracle database to see if we can IO to it
         /// </summary>
