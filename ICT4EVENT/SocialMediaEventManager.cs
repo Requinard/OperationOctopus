@@ -168,4 +168,40 @@ namespace ICT4EVENT
             return s.ToList()[0] ?? null;
         }
     }
+
+    public static class PostManager
+    {
+        private static List<PostModel> posts;
+
+        public static void Initialize()
+        {
+            const string select_posts = "SELECT * FROM POST WHERE EVENTID = {0}";
+            posts = new List<PostModel>();
+
+            List<EventModel> events = EventManager.events;
+
+            foreach (EventModel event_item in events)
+            {
+                OracleDataReader reader = DBManager.QueryDB(String.Format(select_posts, event_item.Id));
+
+                while (reader.Read())
+                {
+                    UserModel user = UserManager.FindUser(Int32.Parse(reader["userid"].ToString()));
+
+                    PostModel post = new PostModel(user, event_item);
+
+                    post.Id = Int32.Parse(reader["ident"].ToString());
+                    post.PathToFile = reader["pathtofile"].ToString();
+                    post.Content = reader["PostContent"].ToString();
+
+                    posts.Add(post);
+
+                    //TODO: Add tags
+                    //TODO: add likes
+                    //TODO: add reports
+
+                }
+            }
+        }
+    }
 }

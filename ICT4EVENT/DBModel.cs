@@ -241,8 +241,53 @@ namespace ICT4EVENT
 
     public class PostModel : DBModel, IDataModelUpdate
     {
-        public PostModel()
+        private UserModel user;
+        private EventModel event_item;
+
+        private PostModel parent;
+
+        public PostModel Parent
         {
+            get { return parent; }
+            set { parent = value; }
+        }
+
+        public string Content
+        {
+            get { return content; }
+            set { content = value; }
+        }
+
+        public string PathToFile
+        {
+            get { return pathToFile; }
+            set { pathToFile = value; }
+        }
+
+        public DateTime DatePosted
+        {
+            get { return datePosted; }
+            set { datePosted = value; }
+        }
+
+        private string content;
+        private string pathToFile;
+        private DateTime datePosted;
+
+        public UserModel User
+        {
+            get { return user; }
+        }
+
+        public EventModel EventItem
+        {
+            get { return event_item; }
+        }
+
+        public PostModel(UserModel user, EventModel event_item)
+        {
+            this.user = user;
+            this.event_item = event_item;
         }
 
         public bool Create()
