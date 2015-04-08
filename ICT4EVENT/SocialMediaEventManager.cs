@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -44,11 +45,15 @@ namespace ICT4EVENT
 
                 while (reader.Read())
                 {
-                    RegistrationModel registration = new RegistrationModel();
+                    EventModel event_item = EventManager.FindEvent(Int32.Parse(reader["eventid"].ToString()));
+
+                    RegistrationModel registration = new RegistrationModel(model, event_item);
 
                     registration.Id = Int32.Parse(reader["ident"].ToString());
 
-                    // TODO: further initialize registration
+                    model.RegistrationList.Add(registration);
+
+                    event_item.RegistrationsList.Add(registration);
                 }
             }
         }

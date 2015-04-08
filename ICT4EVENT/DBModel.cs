@@ -31,6 +31,13 @@ namespace ICT4EVENT
         private DateTime startDate;
         private DateTime endDate;
 
+        public List<RegistrationModel> RegistrationsList
+        {
+            get { return registrationsList; }
+        }
+
+        private List<RegistrationModel> registrationsList ;
+
         public string Name
         {
             get { return name; }
@@ -63,6 +70,7 @@ namespace ICT4EVENT
 
         public EventModel()
         {
+            registrationsList = new List<RegistrationModel>();
         }
 
         public bool Create()
@@ -90,6 +98,7 @@ namespace ICT4EVENT
     {
         private string username;
         private string password;
+        private List<RegistrationModel> registrations; 
 
         public string Username
         {
@@ -108,6 +117,7 @@ namespace ICT4EVENT
 
         public UserModel()
         {
+            registrations = new List<RegistrationModel>();
         }
 
         public bool Create()
@@ -133,8 +143,23 @@ namespace ICT4EVENT
 
     public class RegistrationModel : DBModel, IDataModelUpdate
     {
-        public RegistrationModel()
+        private UserModel user;
+        private EventModel event_item;
+
+        public UserModel User
         {
+            get { return user; }
+        }
+
+        public EventModel EventItem
+        {
+            get { return event_item; }
+        }
+
+        public RegistrationModel(UserModel user, EventModel event_item)
+        {
+            this.user = user;
+            this.event_item = event_item;
         }
 
 
