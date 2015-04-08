@@ -144,5 +144,23 @@ namespace ICT4EVENT
                 events.Add(event_item);
             }
         }
+
+        public static EventModel FindEvent(int id)
+        {
+            var s = from event_item in events
+                where event_item.Id == id
+                select event_item;
+
+            return s.ToList()[0] ?? null;
+        }
+
+        public static EventModel FindEvent(string name)
+        {
+            var s = from event_item in events
+                where event_item.Name.Contains(name)
+                select event_item;
+
+            return s.ToList()[0] ?? null;
+        }
     }
 }
