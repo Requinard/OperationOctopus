@@ -25,6 +25,42 @@ namespace ICT4EVENT
 
     public class EventModel : DBModel, IDataModelUpdate
     {
+        private string name;
+        private string location;
+        private string description;
+        private DateTime startDate;
+        private DateTime endDate;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public string Location
+        {
+            get { return location; }
+            set { location = value; }
+        }
+
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set { startDate = value; }
+        }
+
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set { endDate = value; }
+        }
+
         public EventModel()
         {
         }
@@ -180,8 +216,7 @@ namespace ICT4EVENT
 
     public class PostModel : DBModel, IDataModelUpdate
     {
-        public PostModel(DBManager dbManager)
-            : base(dbManager)
+        public PostModel()
         {
         }
 

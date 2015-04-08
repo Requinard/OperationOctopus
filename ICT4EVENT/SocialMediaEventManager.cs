@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Text;
 using System.IO;
@@ -16,8 +17,11 @@ namespace ICT4EVENT
         public static void Initialize()
         {
             const string select_query = "SELECT * FROM USERS";
+            const string select_registration = "SELECT * FROM REGISTRATION WHERE USERID = {0}";
 
-            //TODO: query db for all users
+            users = new List<UserModel>();
+
+            // Construct users
             OracleDataReader reader = DBManager.QueryDB(select_query);
 
             while (reader.Read())
@@ -26,13 +30,27 @@ namespace ICT4EVENT
 
                 user.Username = (string)reader["username"];
                 user.Password = (string)reader["userpassword"];
-                user.Id = (int) reader["ident"];
+                user.Id = Int32.Parse(reader["ident"].ToString());
 
                 users.Add(user);
             }
 
-            //TODO: for all users we add the reservations
+            // Construct reservations
+            foreach (UserModel model in users)
+            {
+                string select = String.Format(select_registration, model.Id);
 
+                reader = DBManager.QueryDB(select);
+
+                while (reader.Read())
+                {
+                    RegistrationModel registration = new RegistrationModel();
+
+                    registration.Id = Int32.Parse(reader["ident"].ToString());
+
+                    // TODO: further initialize registration
+                }
+            }
         }
 
         /// <summary>
@@ -96,6 +114,35 @@ namespace ICT4EVENT
                 select user;
 
             return s.ToList()[0] ?? null;
+        }
+    }
+
+    public static class EventManager
+    {
+        public static List<EventModel> events;
+
+        public static void Initialize()
+        {
+            const string select_events = "SELECT * FROM EVENT";
+            events = new List<EventModel>();
+
+            // Construct all events
+
+            OracleDataReader reader = DBManager.QueryDB(select_events);
+
+            while (reader.Read())
+            {
+                EventModel event_item = new EventModel();
+
+                event_item.Id = Int32.Parse(reader["ident"].ToString());
+                event_item.Name = reader["eventname"].ToString();
+                event_item.Location = reader["eventlocation"].ToString();
+                event_item.Description = reader["description"].ToString();
+                event_item.StartDate = DateTime.Parse(reader["beginTime"].ToString());
+                event_item.EndDate = DateTime.Parse(reader["endtime"].ToString());
+
+                events.Add(event_item);
+            }
         }
     }
 }
