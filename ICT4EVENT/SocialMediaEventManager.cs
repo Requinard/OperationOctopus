@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace ICT4EVENT
 {
-    internal class SocialMediaEventManager
+    public static class UserManager
     {
-        private DBManager dbManager;
-        private List<EventModel> events;
-        private List<UserModel> users;
+        private static RNGCryptoServiceProvider crypto;
 
-        public SocialMediaEventManager()
+        public static UserModel CreateUser(string username, string password)
         {
-            dbManager = new DBManager();
-            events = new List<EventModel>();
-            users = new List<UserModel>();
-        }
+            UserModel user = new UserModel(null);
 
-        ~SocialMediaEventManager()
-        {
-            dbManager = null;
+            user.Username = username;
+            user.Password = password;
+
+            user.Create();
+
+            return user;
         }
     }
 }

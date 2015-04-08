@@ -7,6 +7,7 @@ using ApplicationLogger;
 
 namespace ICT4EVENT
 {
+    //TODO: Make static
     public class DBManager : IDisposable
     {
         private readonly OracleConnection oracleConnection;

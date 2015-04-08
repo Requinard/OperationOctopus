@@ -9,6 +9,7 @@ namespace ICT4EVENT
         public const bool DEBUG = false;
         public const string DBCONFIGFILENAME = "db.cnf";
         public const string LOGFILENAME = "log.log";
+        public static string salt = "v+jaz-PDh9w672CWXlRRwSBYGf_b0LeFgZq8ByCQQwg^B^84smwaScjP";
 
         public static DBConfig DbConfig = new DBConfig();
 

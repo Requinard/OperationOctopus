@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace ICT4EVENT
 {
@@ -57,6 +58,22 @@ namespace ICT4EVENT
 
     public class UserModel : DBModel, IDataModelUpdate
     {
+        private string username;
+        private string password;
+
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            // Automatically hashes a new string when it's set
+            set { password = (Settings.salt + value).GetHashCode().ToString(); }
+        }
+
         public List<RegistrationModel> RegistrationList = new List<RegistrationModel>();
 
         public UserModel(DBManager dbManager)
