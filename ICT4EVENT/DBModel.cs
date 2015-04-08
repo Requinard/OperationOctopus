@@ -25,6 +25,7 @@ namespace ICT4EVENT
         public int Id
         {
             get { return ID; }
+            set { ID = value; }
         }
     }
 

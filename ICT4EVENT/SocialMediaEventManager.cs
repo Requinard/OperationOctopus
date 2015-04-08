@@ -4,6 +4,7 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -17,8 +18,21 @@ namespace ICT4EVENT
             const string select_query = "SELECT * FROM USERS";
 
             //TODO: query db for all users
+            OracleDataReader reader = DBManager.QueryDB(select_query);
+
+            while (reader.Read())
+            {
+                UserModel user = new UserModel(null);
+
+                user.Username = (string)reader["username"];
+                user.Password = (string)reader["password"];
+                user.Id = (int) reader["ident"];
+
+                users.Add(user);
+            }
 
             //TODO: for all users we add the reservations
+
         }
 
         /// <summary>
