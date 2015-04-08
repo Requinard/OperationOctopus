@@ -31,6 +31,7 @@ namespace ICT4EVENT
                 Logger.Initialize();
             }
             Logger.Success("Initialized Logger");
+            DBManager.Initalize();
             Logger.Info("Starting Application");
         }
     }
