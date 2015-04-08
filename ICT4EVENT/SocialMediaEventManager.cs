@@ -22,10 +22,10 @@ namespace ICT4EVENT
 
             while (reader.Read())
             {
-                UserModel user = new UserModel(null);
+                UserModel user = new UserModel();
 
                 user.Username = (string)reader["username"];
-                user.Password = (string)reader["password"];
+                user.Password = (string)reader["userpassword"];
                 user.Id = (int) reader["ident"];
 
                 users.Add(user);
@@ -43,7 +43,7 @@ namespace ICT4EVENT
         /// <returns>New user that was created</returns>
         public static UserModel CreateUser(string username, string password)
         {
-            UserModel user = new UserModel(null);
+            UserModel user = new UserModel();
 
             user.Username = username;
             user.Password = password;

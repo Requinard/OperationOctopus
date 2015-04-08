@@ -63,20 +63,6 @@ namespace ICT4EVENT
             {
                 RunOracleDatabaseTest();
             }
-
-            ConstructDatabaseSchema();
-        }
- 
-        /// <summary>
-        ///     Constructs new database. Drops all old tables
-        /// </summary>
-        public static void ConstructDatabaseSchema()
-        {
-            // Check if the table exists. 
-            if (QueryDB("SELECT * FROM event") == null)
-            {
-                ConstructDatabaseEventTable();
-            }
         }
 
         private static void ConstructDatabaseEventTable()
