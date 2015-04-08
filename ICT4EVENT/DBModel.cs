@@ -15,12 +15,6 @@ namespace ICT4EVENT
         // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
         private const string DESTROYSTRING = "DELETE FROM {0} WHERE id={1}";
         private int ID;
-        private DBManager dbManager;
-
-        public DBModel(DBManager dbManager)
-        {
-            this.dbManager = dbManager;
-        }
 
         public int Id
         {
@@ -31,8 +25,7 @@ namespace ICT4EVENT
 
     public class EventModel : DBModel, IDataModelUpdate
     {
-        public EventModel(DBManager dbManager)
-            : base(dbManager)
+        public EventModel()
         {
         }
 
@@ -77,8 +70,7 @@ namespace ICT4EVENT
 
         public List<RegistrationModel> RegistrationList = new List<RegistrationModel>();
 
-        public UserModel(DBManager dbManager)
-            : base(dbManager)
+        public UserModel()
         {
         }
 
@@ -105,8 +97,7 @@ namespace ICT4EVENT
 
     public class RegistrationModel : DBModel, IDataModelUpdate
     {
-        public RegistrationModel(DBManager dbManager)
-            : base(dbManager)
+        public RegistrationModel()
         {
         }
 
@@ -134,8 +125,7 @@ namespace ICT4EVENT
 
     public class RFIDLogModel : DBModel, IDataModelUpdate
     {
-        public RFIDLogModel(DBManager dbManager)
-            : base(dbManager)
+        public RFIDLogModel()
         {
         }
 
@@ -162,9 +152,9 @@ namespace ICT4EVENT
 
     public class RentableObjectModel : DBModel, IDataModelUpdate
     {
-        public RentableObjectModel(DBManager dbManager)
-            : base(dbManager)
+        public RentableObjectModel()
         {
+            
         }
 
         public bool Create()
@@ -218,7 +208,7 @@ namespace ICT4EVENT
 
     public class PlaceModel : DBModel, IDataModelUpdate
     {
-        public PlaceModel(DBManager dbManager) : base(dbManager)
+        public PlaceModel()
         {
         }
 
@@ -245,8 +235,7 @@ namespace ICT4EVENT
 
     public class LikeModel : DBModel, IDataModelUpdate
     {
-        public LikeModel(DBManager dbManager)
-            : base(dbManager)
+        public LikeModel()
         {
         }
 
@@ -273,8 +262,7 @@ namespace ICT4EVENT
 
     public class PostReportModel : DBModel, IDataModelUpdate
     {
-        public PostReportModel(DBManager dbManager)
-            : base(dbManager)
+        public PostReportModel()
         {
         }
 
@@ -301,8 +289,7 @@ namespace ICT4EVENT
 
     public class PaymentModel : DBModel, IDataModelUpdate
     {
-        public PaymentModel(DBManager dbManager)
-            : base(dbManager)
+        public PaymentModel()
         {
 
         }
@@ -332,7 +319,7 @@ namespace ICT4EVENT
 
     public class ReservationModel : DBModel, IDataModelUpdate
     {
-        public ReservationModel(DBManager dbManager) : base(dbManager)
+        public ReservationModel()
         {
         }
 
