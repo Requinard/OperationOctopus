@@ -467,13 +467,21 @@ namespace ICT4EVENT
 
     public class LikeModel : DBModel, IDataModelUpdate
     {
+
+        private UserModel user;
+        private PostModel post;
+
         public LikeModel()
         {
         }
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "UserID, PostID";
+            string values = user + "," + post;
+            string finalQuery = String.Format(INSERTSTRING, "LIKES", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -488,7 +496,9 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "LIKES", Id.ToString());
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
     }
 
