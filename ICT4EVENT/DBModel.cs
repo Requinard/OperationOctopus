@@ -391,18 +391,16 @@ namespace ICT4EVENT
     {
         private EventModel event_item;
         private string description;
-
-        public string Description
-        {
-            get { return description; }
-            set { description = value; }
-        }
-
         private decimal price;
         private int amount;
         private string location;
         private string category;
         private string capacity;
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
 
         public string Capacity
         {
@@ -582,13 +580,27 @@ namespace ICT4EVENT
 
     public class ReservationModel : DBModel, IDataModelUpdate
     {
+        private UserModel user;
+        private RentableObjectModel item;
+        private DateTime returnDate;
+        private int amount;
+
+
         public ReservationModel()
         {
+            
         }
 
         private DateTime ReturnDate { get; set; }
         private int Amount { get; set; }
-
+        public bool Create()
+        {
+            string columns = "UserID, ItemID, ReturnDate, Amount";
+            string values = user.Id.ToString() + "," + item.Id.ToString() + "," + returnDate.ToString() + "," + amount.ToString();
+            string finalQuery = String.Format(INSERTSTRING, "RESERVATION", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
+        }
         public bool Read()
         {
             throw new NotImplementedException();
@@ -601,12 +613,9 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Create()
-        {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "RESERVATION", Id.ToString());
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
     }
 }
