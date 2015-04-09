@@ -76,7 +76,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            string values = name + ", " + location + " ," + description + " ," + startDate.ToString() + " ," + endDate.ToString();
+            string values = name + "," + location + "," + description + "," + startDate.ToString() + "," + endDate.ToString();
             string finalQuery = String.Format(INSERTSTRING, "EVENT", columns, values);
             DBManager.QueryDB(finalQuery);
 
@@ -103,7 +103,11 @@ namespace ICT4EVENT
 
     public class UserModel : DBModel, IDataModelUpdate
     {
+        private int RFIDnumber;
+        private string address;
         private string username;
+        private string email;
+        private string telephonenumber;
         private string password;
         private List<RegistrationModel> registrations; 
 
@@ -129,7 +133,11 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword";
+            string values = RFIDnumber.ToString() + "," + address + "," + username + "," + email + "," + telephonenumber + "," + password;
+            string finalQuery = String.Format(INSERTSTRING, "USERS", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -144,7 +152,9 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "USERS", Id.ToString());
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
     }
 
