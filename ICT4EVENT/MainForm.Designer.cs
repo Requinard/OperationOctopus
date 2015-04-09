@@ -30,10 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "Test",
             "imagepath",
             "post"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -60,6 +62,8 @@
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
             this.Profiel = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
+            this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -69,6 +73,12 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.gbSettings = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbSocialMedia = new System.Windows.Forms.GroupBox();
+            this.btnSocialMedia4 = new System.Windows.Forms.Button();
+            this.btnSocialMedia3 = new System.Windows.Forms.Button();
+            this.btnSocialMedia2 = new System.Windows.Forms.Button();
+            this.btnSocialMedia1 = new System.Windows.Forms.Button();
+            this.pbMyBanner = new System.Windows.Forms.PictureBox();
             this.tbMyBio = new System.Windows.Forms.TextBox();
             this.lblBiografie = new System.Windows.Forms.Label();
             this.pbMyProfileImage = new System.Windows.Forms.PictureBox();
@@ -84,20 +94,23 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.pbMyBanner = new System.Windows.Forms.PictureBox();
-            this.btnSocialMedia1 = new System.Windows.Forms.Button();
-            this.gbSocialMedia = new System.Windows.Forms.GroupBox();
-            this.btnSocialMedia2 = new System.Windows.Forms.Button();
-            this.btnSocialMedia3 = new System.Windows.Forms.Button();
-            this.btnSocialMedia4 = new System.Windows.Forms.Button();
-            this.pgrsbarPostReviews = new System.Windows.Forms.ProgressBar();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pgrsbarPostReviews = new System.Windows.Forms.ProgressBar();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.txtRFIDCode = new System.Windows.Forms.TextBox();
+            this.groupDetail = new System.Windows.Forms.GroupBox();
+            this.pictureDetail = new System.Windows.Forms.PictureBox();
+            this.comboMVName = new System.Windows.Forms.ComboBox();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.btnDeleteMat = new System.Windows.Forms.Button();
+            this.btnAddEvent = new System.Windows.Forms.Button();
+            this.btnDelEvent = new System.Windows.Forms.Button();
+            this.btnEditEvent = new System.Windows.Forms.Button();
+            this.listEvents = new System.Windows.Forms.ListView();
             this.gbStaticUpdates.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -110,21 +123,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).BeginInit();
             this.Profiel.SuspendLayout();
             this.gbProfielen.SuspendLayout();
+            this.gbPostsOfUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.gbSettings.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.gbSocialMedia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMyBanner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMyProfileImage)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMyBanner)).BeginInit();
-            this.gbSocialMedia.SuspendLayout();
-            this.gbPostsOfUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage6.SuspendLayout();
+            this.groupDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // gbStaticUpdates
@@ -423,6 +441,25 @@
             this.gbProfielen.TabStop = false;
             this.gbProfielen.Text = "Profielen:";
             // 
+            // gbPostsOfUser
+            // 
+            this.gbPostsOfUser.Controls.Add(this.pictureBox2);
+            this.gbPostsOfUser.Location = new System.Drawing.Point(3, 318);
+            this.gbPostsOfUser.Name = "gbPostsOfUser";
+            this.gbPostsOfUser.Size = new System.Drawing.Size(784, 214);
+            this.gbPostsOfUser.TabIndex = 15;
+            this.gbPostsOfUser.TabStop = false;
+            this.gbPostsOfUser.Text = "Posts van <username>";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.OrangeRed;
+            this.pictureBox2.Location = new System.Drawing.Point(6, 402);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(772, 117);
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -522,6 +559,64 @@
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Mijn Profiel";
+            // 
+            // gbSocialMedia
+            // 
+            this.gbSocialMedia.Controls.Add(this.btnSocialMedia4);
+            this.gbSocialMedia.Controls.Add(this.btnSocialMedia3);
+            this.gbSocialMedia.Controls.Add(this.btnSocialMedia2);
+            this.gbSocialMedia.Controls.Add(this.btnSocialMedia1);
+            this.gbSocialMedia.Location = new System.Drawing.Point(102, 208);
+            this.gbSocialMedia.Name = "gbSocialMedia";
+            this.gbSocialMedia.Size = new System.Drawing.Size(516, 100);
+            this.gbSocialMedia.TabIndex = 19;
+            this.gbSocialMedia.TabStop = false;
+            // 
+            // btnSocialMedia4
+            // 
+            this.btnSocialMedia4.Location = new System.Drawing.Point(384, 24);
+            this.btnSocialMedia4.Name = "btnSocialMedia4";
+            this.btnSocialMedia4.Size = new System.Drawing.Size(120, 61);
+            this.btnSocialMedia4.TabIndex = 21;
+            this.btnSocialMedia4.Text = "button1";
+            this.btnSocialMedia4.UseVisualStyleBackColor = true;
+            // 
+            // btnSocialMedia3
+            // 
+            this.btnSocialMedia3.Location = new System.Drawing.Point(258, 24);
+            this.btnSocialMedia3.Name = "btnSocialMedia3";
+            this.btnSocialMedia3.Size = new System.Drawing.Size(120, 61);
+            this.btnSocialMedia3.TabIndex = 20;
+            this.btnSocialMedia3.Text = "button1";
+            this.btnSocialMedia3.UseVisualStyleBackColor = true;
+            // 
+            // btnSocialMedia2
+            // 
+            this.btnSocialMedia2.Location = new System.Drawing.Point(132, 24);
+            this.btnSocialMedia2.Name = "btnSocialMedia2";
+            this.btnSocialMedia2.Size = new System.Drawing.Size(120, 61);
+            this.btnSocialMedia2.TabIndex = 19;
+            this.btnSocialMedia2.Text = "button1";
+            this.btnSocialMedia2.UseVisualStyleBackColor = true;
+            // 
+            // btnSocialMedia1
+            // 
+            this.btnSocialMedia1.Location = new System.Drawing.Point(6, 24);
+            this.btnSocialMedia1.Name = "btnSocialMedia1";
+            this.btnSocialMedia1.Size = new System.Drawing.Size(120, 61);
+            this.btnSocialMedia1.TabIndex = 18;
+            this.btnSocialMedia1.Text = "button1";
+            this.btnSocialMedia1.UseVisualStyleBackColor = true;
+            // 
+            // pbMyBanner
+            // 
+            this.pbMyBanner.BackColor = System.Drawing.Color.OrangeRed;
+            this.pbMyBanner.Location = new System.Drawing.Point(10, 323);
+            this.pbMyBanner.Name = "pbMyBanner";
+            this.pbMyBanner.Size = new System.Drawing.Size(754, 99);
+            this.pbMyBanner.TabIndex = 17;
+            this.pbMyBanner.TabStop = false;
+            this.pbMyBanner.Tag = "Settings";
             // 
             // tbMyBio
             // 
@@ -647,6 +742,7 @@
             this.tabControl3.Controls.Add(this.tabPage5);
             this.tabControl3.Controls.Add(this.tabPage8);
             this.tabControl3.Controls.Add(this.tabPage9);
+            this.tabControl3.Controls.Add(this.tabPage6);
             this.tabControl3.Location = new System.Drawing.Point(6, 24);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
@@ -655,6 +751,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btnDeleteMat);
+            this.tabPage5.Controls.Add(this.listView2);
+            this.tabPage5.Controls.Add(this.comboMVName);
             this.tabPage5.Location = new System.Drawing.Point(4, 27);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -665,6 +764,10 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.listEvents);
+            this.tabPage8.Controls.Add(this.btnEditEvent);
+            this.tabPage8.Controls.Add(this.btnDelEvent);
+            this.tabPage8.Controls.Add(this.btnAddEvent);
             this.tabPage8.Location = new System.Drawing.Point(4, 27);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
@@ -685,71 +788,6 @@
             this.tabPage9.Text = "Post Review";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
-            // pbMyBanner
-            // 
-            this.pbMyBanner.BackColor = System.Drawing.Color.OrangeRed;
-            this.pbMyBanner.Location = new System.Drawing.Point(10, 323);
-            this.pbMyBanner.Name = "pbMyBanner";
-            this.pbMyBanner.Size = new System.Drawing.Size(754, 99);
-            this.pbMyBanner.TabIndex = 17;
-            this.pbMyBanner.TabStop = false;
-            this.pbMyBanner.Tag = "Settings";
-            // 
-            // btnSocialMedia1
-            // 
-            this.btnSocialMedia1.Location = new System.Drawing.Point(6, 24);
-            this.btnSocialMedia1.Name = "btnSocialMedia1";
-            this.btnSocialMedia1.Size = new System.Drawing.Size(120, 61);
-            this.btnSocialMedia1.TabIndex = 18;
-            this.btnSocialMedia1.Text = "button1";
-            this.btnSocialMedia1.UseVisualStyleBackColor = true;
-            // 
-            // gbSocialMedia
-            // 
-            this.gbSocialMedia.Controls.Add(this.btnSocialMedia4);
-            this.gbSocialMedia.Controls.Add(this.btnSocialMedia3);
-            this.gbSocialMedia.Controls.Add(this.btnSocialMedia2);
-            this.gbSocialMedia.Controls.Add(this.btnSocialMedia1);
-            this.gbSocialMedia.Location = new System.Drawing.Point(102, 208);
-            this.gbSocialMedia.Name = "gbSocialMedia";
-            this.gbSocialMedia.Size = new System.Drawing.Size(516, 100);
-            this.gbSocialMedia.TabIndex = 19;
-            this.gbSocialMedia.TabStop = false;
-            // 
-            // btnSocialMedia2
-            // 
-            this.btnSocialMedia2.Location = new System.Drawing.Point(132, 24);
-            this.btnSocialMedia2.Name = "btnSocialMedia2";
-            this.btnSocialMedia2.Size = new System.Drawing.Size(120, 61);
-            this.btnSocialMedia2.TabIndex = 19;
-            this.btnSocialMedia2.Text = "button1";
-            this.btnSocialMedia2.UseVisualStyleBackColor = true;
-            // 
-            // btnSocialMedia3
-            // 
-            this.btnSocialMedia3.Location = new System.Drawing.Point(258, 24);
-            this.btnSocialMedia3.Name = "btnSocialMedia3";
-            this.btnSocialMedia3.Size = new System.Drawing.Size(120, 61);
-            this.btnSocialMedia3.TabIndex = 20;
-            this.btnSocialMedia3.Text = "button1";
-            this.btnSocialMedia3.UseVisualStyleBackColor = true;
-            // 
-            // btnSocialMedia4
-            // 
-            this.btnSocialMedia4.Location = new System.Drawing.Point(384, 24);
-            this.btnSocialMedia4.Name = "btnSocialMedia4";
-            this.btnSocialMedia4.Size = new System.Drawing.Size(120, 61);
-            this.btnSocialMedia4.TabIndex = 21;
-            this.btnSocialMedia4.Text = "button1";
-            this.btnSocialMedia4.UseVisualStyleBackColor = true;
-            // 
-            // pgrsbarPostReviews
-            // 
-            this.pgrsbarPostReviews.Location = new System.Drawing.Point(4, 444);
-            this.pgrsbarPostReviews.Name = "pgrsbarPostReviews";
-            this.pgrsbarPostReviews.Size = new System.Drawing.Size(755, 23);
-            this.pgrsbarPostReviews.TabIndex = 0;
-            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -758,7 +796,7 @@
             this.columnHeader4,
             this.columnHeader5});
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem3});
             this.listView1.Location = new System.Drawing.Point(4, 3);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(636, 234);
@@ -775,24 +813,118 @@
             // 
             this.columnHeader3.DisplayIndex = 0;
             // 
-            // gbPostsOfUser
+            // pgrsbarPostReviews
             // 
-            this.gbPostsOfUser.Controls.Add(this.pictureBox2);
-            this.gbPostsOfUser.Location = new System.Drawing.Point(3, 318);
-            this.gbPostsOfUser.Name = "gbPostsOfUser";
-            this.gbPostsOfUser.Size = new System.Drawing.Size(784, 214);
-            this.gbPostsOfUser.TabIndex = 15;
-            this.gbPostsOfUser.TabStop = false;
-            this.gbPostsOfUser.Text = "Posts van <username>";
+            this.pgrsbarPostReviews.Location = new System.Drawing.Point(4, 444);
+            this.pgrsbarPostReviews.Name = "pgrsbarPostReviews";
+            this.pgrsbarPostReviews.Size = new System.Drawing.Size(755, 23);
+            this.pgrsbarPostReviews.TabIndex = 0;
             // 
-            // pictureBox2
+            // tabPage6
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox2.Location = new System.Drawing.Point(6, 402);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(772, 117);
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
+            this.tabPage6.Controls.Add(this.groupDetail);
+            this.tabPage6.Controls.Add(this.txtRFIDCode);
+            this.tabPage6.Location = new System.Drawing.Point(4, 27);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(762, 470);
+            this.tabPage6.TabIndex = 3;
+            this.tabPage6.Text = "Inschrijven";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // txtRFIDCode
+            // 
+            this.txtRFIDCode.Enabled = false;
+            this.txtRFIDCode.Location = new System.Drawing.Point(14, 12);
+            this.txtRFIDCode.Name = "txtRFIDCode";
+            this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
+            this.txtRFIDCode.TabIndex = 0;
+            // 
+            // groupDetail
+            // 
+            this.groupDetail.Controls.Add(this.pictureDetail);
+            this.groupDetail.Location = new System.Drawing.Point(14, 43);
+            this.groupDetail.Name = "groupDetail";
+            this.groupDetail.Size = new System.Drawing.Size(730, 411);
+            this.groupDetail.TabIndex = 1;
+            this.groupDetail.TabStop = false;
+            this.groupDetail.Text = "Details";
+            // 
+            // pictureDetail
+            // 
+            this.pictureDetail.Location = new System.Drawing.Point(533, 15);
+            this.pictureDetail.Name = "pictureDetail";
+            this.pictureDetail.Size = new System.Drawing.Size(190, 190);
+            this.pictureDetail.TabIndex = 0;
+            this.pictureDetail.TabStop = false;
+            // 
+            // comboMVName
+            // 
+            this.comboMVName.FormattingEnabled = true;
+            this.comboMVName.Location = new System.Drawing.Point(15, 18);
+            this.comboMVName.Name = "comboMVName";
+            this.comboMVName.Size = new System.Drawing.Size(121, 26);
+            this.comboMVName.TabIndex = 1;
+            // 
+            // listView2
+            // 
+            this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.listView2.Location = new System.Drawing.Point(15, 50);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(741, 372);
+            this.listView2.TabIndex = 2;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // btnDeleteMat
+            // 
+            this.btnDeleteMat.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDeleteMat.Location = new System.Drawing.Point(313, 428);
+            this.btnDeleteMat.Name = "btnDeleteMat";
+            this.btnDeleteMat.Size = new System.Drawing.Size(133, 36);
+            this.btnDeleteMat.TabIndex = 3;
+            this.btnDeleteMat.Text = "Verwijder";
+            this.btnDeleteMat.UseVisualStyleBackColor = true;
+            // 
+            // btnAddEvent
+            // 
+            this.btnAddEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnAddEvent.Location = new System.Drawing.Point(6, 410);
+            this.btnAddEvent.Name = "btnAddEvent";
+            this.btnAddEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnAddEvent.TabIndex = 0;
+            this.btnAddEvent.Text = "Nieuw Evenement";
+            this.btnAddEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnDelEvent
+            // 
+            this.btnDelEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnDelEvent.Location = new System.Drawing.Point(285, 410);
+            this.btnDelEvent.Name = "btnDelEvent";
+            this.btnDelEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnDelEvent.TabIndex = 1;
+            this.btnDelEvent.Text = "Evenement Verwijderen";
+            this.btnDelEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnEditEvent
+            // 
+            this.btnEditEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnEditEvent.Location = new System.Drawing.Point(558, 410);
+            this.btnEditEvent.Name = "btnEditEvent";
+            this.btnEditEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnEditEvent.TabIndex = 2;
+            this.btnEditEvent.Text = "Evenement Bewerken";
+            this.btnEditEvent.UseVisualStyleBackColor = true;
+            // 
+            // listEvents
+            // 
+            this.listEvents.Location = new System.Drawing.Point(6, 6);
+            this.listEvents.Name = "listEvents";
+            this.listEvents.Size = new System.Drawing.Size(750, 398);
+            this.listEvents.TabIndex = 3;
+            this.listEvents.UseCompatibleStateImageBehavior = false;
+            this.listEvents.View = System.Windows.Forms.View.Details;
             // 
             // MainForm
             // 
@@ -823,6 +955,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).EndInit();
             this.Profiel.ResumeLayout(false);
             this.gbProfielen.ResumeLayout(false);
+            this.gbPostsOfUser.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -831,15 +965,19 @@
             this.gbSettings.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.gbSocialMedia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbMyBanner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMyProfileImage)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbMyBanner)).EndInit();
-            this.gbSocialMedia.ResumeLayout(false);
-            this.gbPostsOfUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.groupDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -910,6 +1048,17 @@
         private System.Windows.Forms.ProgressBar pgrsbarPostReviews;
         private System.Windows.Forms.GroupBox gbPostsOfUser;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.GroupBox groupDetail;
+        private System.Windows.Forms.PictureBox pictureDetail;
+        private System.Windows.Forms.TextBox txtRFIDCode;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ComboBox comboMVName;
+        private System.Windows.Forms.Button btnDeleteMat;
+        private System.Windows.Forms.ListView listEvents;
+        private System.Windows.Forms.Button btnEditEvent;
+        private System.Windows.Forms.Button btnDelEvent;
+        private System.Windows.Forms.Button btnAddEvent;
     }
 }
 
