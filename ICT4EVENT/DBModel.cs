@@ -316,8 +316,10 @@ namespace ICT4EVENT
     {
         private UserModel user;
         private EventModel event_item;
-
         private PostModel parent;
+        private string content;
+        private string pathToFile;
+        private DateTime datePosted;
 
         public PostModel Parent
         {
@@ -343,10 +345,6 @@ namespace ICT4EVENT
             set { datePosted = value; }
         }
 
-        private string content;
-        private string pathToFile;
-        private DateTime datePosted;
-
         public UserModel User
         {
             get { return user; }
@@ -365,7 +363,11 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
+            string values = user.Id.ToString() + "," + event_item.Id.ToString() + "," + parent.Id.ToString() + "," + content + "," + pathToFile + "," + datePosted.ToString();
+            string finalQuery = String.Format(INSERTSTRING, "POST", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -380,7 +382,8 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "POST", Id.ToString());
+            return true;
         }
     }
 
