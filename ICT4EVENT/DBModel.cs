@@ -208,13 +208,25 @@ namespace ICT4EVENT
 
     public class RFIDLogModel : DBModel, IDataModelUpdate
     {
-        public RFIDLogModel()
+        private UserModel user;
+        private EventModel event_item;
+        private string InOrOut;
+
+        public RFIDLogModel(UserModel user, EventModel event_item)
         {
+            this.user = user;
+            this.event_item = event_item;
         }
+
+
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "UserID,EventID,InOrOut";
+            string values = user.Id.ToString() + "," + event_item.Id.ToString() + "," + InOrOut;
+            string finalQuery = String.Format(INSERTSTRING, "RFIDLOG", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -229,7 +241,8 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "RFIDLOG", Id.ToString());
+            return true;
         }
     }
 
