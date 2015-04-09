@@ -478,7 +478,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, PostID";
-            string values = user + "," + post;
+            string values = user.Id.ToString() + "," + post.Id.ToString();
             string finalQuery = String.Format(INSERTSTRING, "LIKES", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -516,7 +516,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "PostID, UserID, Reason, Status";
-            string values = post + "," + user + "," + reason + "," + status;
+            string values = post.Id.ToString() + "," + user.Id.ToString() + "," + reason + "," + status;
             string finalQuery = String.Format(INSERTSTRING, "REPORT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -542,6 +542,10 @@ namespace ICT4EVENT
 
     public class PaymentModel : DBModel, IDataModelUpdate
     {
+        private RegistrationModel registration;
+        private int amount;
+        private string paymentType;
+
         public PaymentModel()
         {
 
@@ -551,7 +555,11 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "RegistrationID, Amount, PaymentType";
+            string values = registration.Id.ToString() + "," + amount.ToString() + "," + paymentType;
+            string finalQuery = String.Format(INSERTSTRING, "PAYMENT", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -566,7 +574,9 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "PAYMENT", Id.ToString());
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
     }
 
