@@ -69,10 +69,10 @@ namespace ICT4EVENT
             UserModel user = new UserModel();
 
             user.Username = username;
-            user.Password = password;
+            user.Password = Settings.CreateHashPassword(password);
 
-            user.Create();
-
+            //user.Create();
+            users.Add(user);
             return user;
         }
 
@@ -97,10 +97,7 @@ namespace ICT4EVENT
         /// <returns>Success of the operation</returns>
         public static bool AuthenticateUser(UserModel user, string password)
         {
-            if (user.Password == (Settings.salt + password))
-                return true;
-
-            return false;
+            return Settings.IsPasswordValid(password, user.Password);
         }
 
         public static UserModel FindUser(string username)
@@ -201,6 +198,59 @@ namespace ICT4EVENT
                     //TODO: add reports
 
                 }
+            }
+        }
+    }
+
+    public static class EquipmentManager
+    {
+        public static List<PlaceModel> places;
+        public static List<RentableObjectModel> rentables;
+ 
+        public static void Initialize()
+        {
+            const string select_places = "SELECT * FROM item WHERE itemtype = 'Place'";
+            const string select_rentables = "SELECT * FROM item WHERE itemtype = 'RentableObject'";
+
+            places = new List<PlaceModel>();
+            rentables = new List<RentableObjectModel>();
+
+            // Get places
+            OracleDataReader reader = DBManager.QueryDB(select_places);
+
+            while (reader.Read())
+            {
+                EventModel event_item = EventManager.FindEvent(Int32.Parse(reader["eventid"].ToString()));
+
+                PlaceModel model = new PlaceModel(event_item);
+
+                model.Description = reader["description"].ToString();
+                model.Price = Decimal.Parse(reader["price"].ToString());
+                model.Amount = Int32.Parse(reader["amount"].ToString());
+                model.Category = reader["PlaceCategory"].ToString();
+                model.Capacity = reader["PlaceCapacity"].ToString();
+                model.Location = reader["PlaceLocation"].ToString();
+                model.Id = Int32.Parse(reader["ident"].ToString());
+
+                places.Add(model);
+            }
+
+            // Get rentables
+            reader = DBManager.QueryDB(select_rentables);
+
+            while (reader.Read())
+            {
+                EventModel event_item = EventManager.FindEvent(Int32.Parse(reader["eventid"].ToString())); 
+
+                RentableObjectModel model = new RentableObjectModel(event_item);
+
+                model.Id = Int32.Parse(reader["ident"].ToString());
+                model.Description = reader["description"].ToString();
+                model.Price = Decimal.Parse(reader["price"].ToString());
+                model.Amount = Int32.Parse(reader["amount"].ToString());
+
+                rentables.Add(model);
+
             }
         }
     }
