@@ -504,13 +504,22 @@ namespace ICT4EVENT
 
     public class PostReportModel : DBModel, IDataModelUpdate
     {
+        private PostModel post;
+        private UserModel user;
+        private string reason;
+        private string status;
+
         public PostReportModel()
         {
         }
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "PostID, UserID, Reason, Status";
+            string values = post + "," + user + "," + reason + "," + status;
+            string finalQuery = String.Format(INSERTSTRING, "REPORT", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -525,7 +534,9 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "REPORT", Id.ToString());
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
     }
 
