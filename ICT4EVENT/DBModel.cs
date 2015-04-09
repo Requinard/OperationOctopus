@@ -249,13 +249,9 @@ namespace ICT4EVENT
     public class RentableObjectModel : DBModel, IDataModelUpdate
     {
         private EventModel event_item;
-        private string ItemType;
         private string description;
         private decimal price;
         private int amount;
-        private string placeLocation;
-        private string placeCategory;
-        private int placeCapacity;
         private string typeOfObject;
 
         public EventModel EventItem
@@ -288,9 +284,9 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            string columns = "EventID, ItemType, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity, TypeOfObject";
-            string values = event_item.Id.ToString() + "," + ItemType + "," + description + "," + price.ToString() + "," + amount.ToString() + "," + placeLocation + "," + placeCategory + "," + placeCapacity.ToString() + "," + typeOfObject;
-            string finalQuery = String.Format(INSERTSTRING, "ITEM", columns, values);
+            string columns = "EventID, Description, Price, Amount";
+            string values = event_item.Id.ToString() + "," + description + "," + price.ToString() + "," + amount.ToString() + "," + typeOfObject;
+            string finalQuery = String.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -307,7 +303,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "ITEM", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "RENTABLEOBJECT", Id.ToString());
             return true;
         }
     }
@@ -444,7 +440,11 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity";
+            string values = event_item.Id.ToString() + "," + description + "," + price.ToString() + "," + amount.ToString() + "," + location + "," + category + "," + capacity;
+            string finalQuery = String.Format(INSERTSTRING, "PLACE", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -459,7 +459,8 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "PLACE", Id.ToString());
+            return true;
         }
     }
 
