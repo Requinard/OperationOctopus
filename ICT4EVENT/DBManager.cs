@@ -7,15 +7,15 @@ using ApplicationLogger;
 
 namespace ICT4EVENT
 {
-    public class DBManager : IDisposable
+    public static class DBManager
     {
-        private readonly OracleConnection oracleConnection;
-        private bool disposed;
+        private static OracleConnection oracleConnection;
+        private static bool disposed;
 
         /// <summary>
         ///     Connects to our database
         /// </summary>
-        public DBManager()
+        public static void Initalize()
         {
             // If the file exist, we deserialize our configs
             if (File.Exists(Settings.DBCONFIGFILENAME))
@@ -63,45 +63,13 @@ namespace ICT4EVENT
             {
                 RunOracleDatabaseTest();
             }
-
-            ConstructDatabaseSchema();
-        }
-
-        public void Dispose()
-        {
-            Logger.Debug("Disposing of DBManager");
-            Dispose(true);
-        }
-
-        /// <summary>
-        ///     Constructs new database. Drops all old tables
-        /// </summary>
-        public void ConstructDatabaseSchema()
-        {
-            // Check if the table exists. 
-            if (QueryDB("SELECT * FROM event") == null)
-            {
-                ConstructDatabaseEventTable();
-            }
-        }
-
-        private void ConstructDatabaseEventTable()
-        {
-            const string drop = "DROP TABLE event";
-            const string create =
-                "CREATE TABLE event (ident int, eventName varchar2(20),location varchar2(20),description CLOB,beginTime TIMESTAMP,endTime TIMESTAMP, PRIMARY KEY(ident));";
-
-            //TODO: Add constraints for event table
-
-            QueryDB(drop);
-            QueryDB(create);
         }
 
         /// <summary>
         ///     Tests the oracle database to see if we can IO to it
         /// </summary>
         /// <returns>success</returns>
-        private bool RunOracleDatabaseTest()
+        private static bool RunOracleDatabaseTest()
         {
             const string create_table = "CREATE TABLE test_db (number_thing NUMBER)";
             const string insert_into_table = "INSERT INTO test_db (number_thing) VALUES (1)";
@@ -117,19 +85,11 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        ///     Destructs DBManager
-        /// </summary>
-        ~DBManager()
-        {
-            Dispose(true);
-        }
-
-        /// <summary>
         ///     Sends a query to the database and returns the result
         /// </summary>
         /// <param name="query">Query for the database</param>
         /// <returns>Object containing the result</returns>
-        private OracleDataReader QueryDB(string query)
+        public static OracleDataReader QueryDB(string query)
         {
             OracleDataReader queryResult;
 
@@ -158,27 +118,6 @@ namespace ICT4EVENT
 
 
             return queryResult;
-        }
-
-        /// <summary>
-        ///     Disposes of the DBManager object
-        /// </summary>
-        /// <param name="disposing">Are you disposing?</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                oracleConnection.Close();
-                oracleConnection.Dispose();
-            }
-
-
-            disposed = true;
         }
     }
 }

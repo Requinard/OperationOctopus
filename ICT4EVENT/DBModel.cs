@@ -1,44 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace ICT4EVENT
 {
     public abstract class DBModel
     {
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
-        internal const string INSERTSTRING = "INSERT INTO {0} {1} VALUES {2}";
+        protected const string INSERTSTRING = "INSERT INTO {0} ({1}) VALUES ({2})";
         // Updates a row in the database. {0} is table name, {1} is columns and values and {2} is the row id
         private const string UPDATESTRING = "UPDATE {0} SET {1} WHERE id={2}";
         // Reads the corresponding row from the database. {0} is table name, {1} is the row id
         private const string READSTRING = "SELECT * FROM {0} WHERE id={1}";
         // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
         protected const string DESTROYSTRING = "DELETE FROM {0} WHERE id={1}";
-        private int ID;
-        private DBManager dbManager;
 
-        public DBModel(DBManager dbManager)
-        {
-            this.dbManager = dbManager;
-        }
+        private int ID;
 
         public int Id
         {
             get { return ID; }
+            set { ID = value; }
         }
     }
 
     public class EventModel : DBModel, IDataModelUpdate
     {
-        public EventModel(DBManager dbManager)
-            : base(dbManager)
+        private string name;
+        private string location;
+        private string description;
+        private DateTime startDate;
+        private DateTime endDate;
+
+        public List<RegistrationModel> RegistrationsList
         {
+            get { return registrationsList; }
+        }
+
+        private List<RegistrationModel> registrationsList ;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public string Location
+        {
+            get { return location; }
+            set { location = value; }
+        }
+
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set { startDate = value; }
+    }
+
+        public DateTime EndDate
+    {
+            get { return endDate; }
+            set { endDate = value; }
+        }
+        public EventModel()
+        {
+            registrationsList = new List<RegistrationModel>();
         }
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
+            string values = name + ", " + location + " ," + description + " ," + startDate.ToString() + " ," + endDate.ToString();
+            string finalQuery = String.Format(INSERTSTRING, "EVENT", columns, values);
+            DBManager.QueryDB(finalQuery);
 
-            strin
+            return true;
         }
 
         public bool Read()
@@ -53,17 +95,36 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string query = String.Format(DESTROYSTRING, "EVENT", Id.ToString());
+            DBManager.QueryDB(query);
+            return true;
         }
     }
 
     public class UserModel : DBModel, IDataModelUpdate
     {
+        private string username;
+        private string password;
+        private List<RegistrationModel> registrations; 
+
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            // Automatically hashes a new string when it's set
+            set { password = value; }
+        }
+
         public List<RegistrationModel> RegistrationList = new List<RegistrationModel>();
 
-        public UserModel(DBManager dbManager)
-            : base(dbManager)
+        public UserModel()
         {
+            registrations = new List<RegistrationModel>();
         }
 
         public bool Create()
@@ -89,9 +150,23 @@ namespace ICT4EVENT
 
     public class RegistrationModel : DBModel, IDataModelUpdate
     {
-        public RegistrationModel(DBManager dbManager)
-            : base(dbManager)
+        private UserModel user;
+        private EventModel event_item;
+
+        public UserModel User
         {
+            get { return user; }
+        }
+
+        public EventModel EventItem
+        {
+            get { return event_item; }
+        }
+
+        public RegistrationModel(UserModel user, EventModel event_item)
+        {
+            this.user = user;
+            this.event_item = event_item;
         }
 
 
@@ -118,8 +193,7 @@ namespace ICT4EVENT
 
     public class RFIDLogModel : DBModel, IDataModelUpdate
     {
-        public RFIDLogModel(DBManager dbManager)
-            : base(dbManager)
+        public RFIDLogModel()
         {
         }
 
@@ -146,9 +220,37 @@ namespace ICT4EVENT
 
     public class RentableObjectModel : DBModel, IDataModelUpdate
     {
-        public RentableObjectModel(DBManager dbManager)
-            : base(dbManager)
+        private EventModel event_item;
+        private string description;
+        private decimal price;
+        private int amount;
+
+        public EventModel EventItem
         {
+            get { return event_item; }
+        }
+
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+
+        public RentableObjectModel(EventModel event_item)
+        {
+            this.event_item = event_item;
         }
 
         public bool Create()
@@ -174,9 +276,53 @@ namespace ICT4EVENT
 
     public class PostModel : DBModel, IDataModelUpdate
     {
-        public PostModel(DBManager dbManager)
-            : base(dbManager)
+        private UserModel user;
+        private EventModel event_item;
+
+        private PostModel parent;
+
+        public PostModel Parent
         {
+            get { return parent; }
+            set { parent = value; }
+        }
+
+        public string Content
+        {
+            get { return content; }
+            set { content = value; }
+        }
+
+        public string PathToFile
+        {
+            get { return pathToFile; }
+            set { pathToFile = value; }
+        }
+
+        public DateTime DatePosted
+        {
+            get { return datePosted; }
+            set { datePosted = value; }
+        }
+
+        private string content;
+        private string pathToFile;
+        private DateTime datePosted;
+
+        public UserModel User
+        {
+            get { return user; }
+        }
+
+        public EventModel EventItem
+        {
+            get { return event_item; }
+        }
+
+        public PostModel(UserModel user, EventModel event_item)
+        {
+            this.user = user;
+            this.event_item = event_item;
         }
 
         public bool Create()
@@ -202,8 +348,59 @@ namespace ICT4EVENT
 
     public class PlaceModel : DBModel, IDataModelUpdate
     {
-        public PlaceModel(DBManager dbManager) : base(dbManager)
+        private EventModel event_item;
+        private string description;
+
+        public string Description
         {
+            get { return description; }
+            set { description = value; }
+        }
+
+        private decimal price;
+        private int amount;
+        private string location;
+        private string category;
+        private string capacity;
+
+        public string Capacity
+        {
+            get { return capacity; }
+            set { capacity = value; }
+        }
+
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+
+        public EventModel EventItem
+        {
+            get { return event_item; }
+        }
+
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+
+        public string Location
+        {
+            get { return location; }
+            set { location = value; }
+        }
+
+        public string Category
+        {
+            get { return category; }
+            set { category = value; }
+        }
+
+        public PlaceModel(EventModel event_item)
+        {
+            this.event_item = event_item;
         }
 
         public bool Create()
@@ -229,8 +426,7 @@ namespace ICT4EVENT
 
     public class LikeModel : DBModel, IDataModelUpdate
     {
-        public LikeModel(DBManager dbManager)
-            : base(dbManager)
+        public LikeModel()
         {
         }
 
@@ -257,8 +453,7 @@ namespace ICT4EVENT
 
     public class PostReportModel : DBModel, IDataModelUpdate
     {
-        public PostReportModel(DBManager dbManager)
-            : base(dbManager)
+        public PostReportModel()
         {
         }
 
@@ -285,8 +480,7 @@ namespace ICT4EVENT
 
     public class PaymentModel : DBModel, IDataModelUpdate
     {
-        public PaymentModel(DBManager dbManager)
-            : base(dbManager)
+        public PaymentModel()
         {
 
         }
@@ -316,7 +510,7 @@ namespace ICT4EVENT
 
     public class ReservationModel : DBModel, IDataModelUpdate
     {
-        public ReservationModel(DBManager dbManager) : base(dbManager)
+        public ReservationModel()
         {
         }
 
