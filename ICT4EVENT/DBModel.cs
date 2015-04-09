@@ -182,7 +182,11 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            throw new NotImplementedException();
+            string columns = "UserID, EventID";
+            string values = user.Id.ToString() + "," + event_item.Id.ToString();
+            string finalQuery = String.Format(INSERTSTRING, "REGISTRATION", columns, values);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Read()
@@ -197,7 +201,8 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            throw new NotImplementedException();
+            string finalQuery = String.Format(DESTROYSTRING, "REGISTRATION", Id.ToString());
+            return true;
         }
     }
 
