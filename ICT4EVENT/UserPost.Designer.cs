@@ -33,6 +33,8 @@
             this.lblText = new System.Windows.Forms.Label();
             this.lblPoster = new System.Windows.Forms.LinkLabel();
             this.pbMedia = new System.Windows.Forms.PictureBox();
+            this.btnLike = new System.Windows.Forms.Button();
+            this.flowComment = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).BeginInit();
             this.SuspendLayout();
@@ -77,27 +79,55 @@
             // pbMedia
             // 
             this.pbMedia.BackColor = System.Drawing.Color.Transparent;
+            this.pbMedia.Enabled = false;
             this.pbMedia.Location = new System.Drawing.Point(109, 96);
             this.pbMedia.MaximumSize = new System.Drawing.Size(450, 450);
             this.pbMedia.MinimumSize = new System.Drawing.Size(100, 100);
             this.pbMedia.Name = "pbMedia";
             this.pbMedia.Size = new System.Drawing.Size(450, 450);
-            this.pbMedia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbMedia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbMedia.TabIndex = 3;
             this.pbMedia.TabStop = false;
+            // 
+            // btnLike
+            // 
+            this.btnLike.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLike.Location = new System.Drawing.Point(519, 3);
+            this.btnLike.Name = "btnLike";
+            this.btnLike.Size = new System.Drawing.Size(71, 23);
+            this.btnLike.TabIndex = 4;
+            this.btnLike.Text = "<>Likes";
+            this.btnLike.UseVisualStyleBackColor = true;
+            // 
+            // flowComment
+            // 
+            this.flowComment.AutoSize = true;
+            this.flowComment.BackColor = System.Drawing.Color.Transparent;
+            this.flowComment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowComment.Enabled = false;
+            this.flowComment.Location = new System.Drawing.Point(0, 177);
+            this.flowComment.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.flowComment.MaximumSize = new System.Drawing.Size(5000, 106);
+            this.flowComment.Name = "flowComment";
+            this.flowComment.Size = new System.Drawing.Size(593, 106);
+            this.flowComment.TabIndex = 5;
+            this.flowComment.Visible = false;
             // 
             // UserPost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Controls.Add(this.flowComment);
+            this.Controls.Add(this.btnLike);
             this.Controls.Add(this.pbMedia);
             this.Controls.Add(this.lblPoster);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.pictureBox1);
-            this.MinimumSize = new System.Drawing.Size(616, 107);
+            this.MaximumSize = new System.Drawing.Size(593, 3000);
+            this.MinimumSize = new System.Drawing.Size(593, 106);
             this.Name = "UserPost";
-            this.Size = new System.Drawing.Size(616, 107);
+            this.Size = new System.Drawing.Size(593, 203);
             this.Load += new System.EventHandler(this.UserControl1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).EndInit();
@@ -112,5 +142,7 @@
         private System.Windows.Forms.Label lblText;
         private System.Windows.Forms.LinkLabel lblPoster;
         private System.Windows.Forms.PictureBox pbMedia;
+        private System.Windows.Forms.Button btnLike;
+        private System.Windows.Forms.FlowLayoutPanel flowComment;
     }
 }
