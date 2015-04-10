@@ -163,8 +163,8 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword";
-            string values = "'" + RFIDnumber.ToString() + "','" + address + "','" + username + "','" + email + "','" + telephonenumber + "','" + password +"'";
+            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
+            string values = "'" + RFIDnumber.ToString() + "','" + address + "','" + username + "','" + email + "','" + telephonenumber + "','" + password +"','" + level.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "USERS", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
