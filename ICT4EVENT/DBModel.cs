@@ -117,12 +117,13 @@ namespace ICT4EVENT
 
     public class UserModel : DBModel, IDataModelUpdate
     {
-        private int RFIDnumber;
+        private string RFIDnumber;
         private string address;
         private string username;
         private string email;
         private string telephonenumber;
         private string password;
+        private string level;
         private List<RegistrationModel> registrations; 
 
         public string Username
@@ -147,8 +148,8 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword";
-            string values = "'" + RFIDnumber.ToString() + "','" + address + "','" + username + "','" + email + "','" + telephonenumber + "','" + password + "'";
+            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
+            string values = "'" + RFIDnumber + "','" + address + "','" + username + "','" + email + "','" + telephonenumber + "','" + password + "','" + level + "'";
             string finalQuery = String.Format(INSERTSTRING, "USERS", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
