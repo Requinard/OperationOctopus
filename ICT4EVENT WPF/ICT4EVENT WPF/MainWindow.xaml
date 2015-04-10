@@ -1,9 +1,0 @@
-﻿<Window x:Class="ICT4EVENT_WPF.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="-50,107,0,0" VerticalAlignment="Top"/>
-
-    </Grid>
-</Window>

@@ -9,9 +9,9 @@ namespace ICT4EVENT
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
         protected const string INSERTSTRING = "INSERT INTO {0} ({1}) VALUES ({2})";
         // Updates a row in the database. {0} is table name, {1} is columns and values and {2} is the row id
-        private const string UPDATESTRING = "UPDATE {0} SET {1} WHERE id={2}";
+        protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE id={2}";
         // Reads the corresponding row from the database. {0} is table name, {1} is the row id
-        private const string READSTRING = "SELECT * FROM {0} WHERE id={1}";
+        protected const string READSTRING = "SELECT * FROM {0} WHERE id={1}";
         // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
         protected const string DESTROYSTRING = "DELETE FROM {0} WHERE id={1}";
 
@@ -85,7 +85,11 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
+            string finalQuery = String.Format(READSTRING, "EVENT", columns);
+            DBManager.QueryDB(finalQuery);
+
+            return true;
         }
 
         public bool Update()
