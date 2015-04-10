@@ -922,6 +922,15 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(616, 450);
             this.flowLayoutPanel1.TabIndex = 12;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 33);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(790, 525);
+            this.tabPage3.TabIndex = 5;
+            this.tabPage3.Text = "MV Admin";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
