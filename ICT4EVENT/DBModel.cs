@@ -510,7 +510,10 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + user.Id.ToString() + "', PostID='" + post.Id.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "LIKES", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
