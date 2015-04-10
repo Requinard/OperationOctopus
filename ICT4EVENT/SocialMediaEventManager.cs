@@ -42,14 +42,14 @@ namespace ICT4EVENT
             }
 
             // If there are 0 users we will add an administrator
-            if (false)
+            if (users.Count == 0)
             {
                 UserModel user = new UserModel();
 
                 user.Username = "admin";
                 user.Password = CreateHashPassword("admin");
                 user.Telephonenumber = "dwad";
-                user.RfiDnumber = "";
+                user.RfiDnumber = "0000b3cde1";
                 user.Address = "dasdaw";
                 user.Email = "eadwdwa";
 
