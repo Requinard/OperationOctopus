@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Drawing.Text;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 using ApplicationLogger;
 
 namespace ICT4EVENT
@@ -9,6 +12,9 @@ namespace ICT4EVENT
         public const bool DEBUG = false;
         public const string DBCONFIGFILENAME = "db.cnf";
         public const string LOGFILENAME = "log.log";
+        public static UserModel ActiveUser = null;
+        public static EventModel ActiveEvent = null;
+        
 
         public static DBConfig DbConfig = new DBConfig();
 
