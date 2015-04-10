@@ -7,7 +7,9 @@ using ApplicationLogger;
 namespace ICT4EVENT
 {
     public static class FTPManager
-    {
+    {       
+        private const string username = "PTS08";
+        private const string pw = "PTS08";
         private const string FolderLocation = "ftp://88.159.165.90/Disk/Public/Media/";
         private static string FileName = "sample.mp4";
 
@@ -26,7 +28,7 @@ namespace ICT4EVENT
 
             // Create the request 
             var request = (FtpWebRequest) WebRequest.Create(FolderLocation + FileName);
-            request.Credentials = new NetworkCredential("user", "password");
+            request.Credentials = new NetworkCredential(username, pw);
 
             // Copy the file to a byte array
             try
@@ -101,7 +103,7 @@ namespace ICT4EVENT
 
             // Create the request 
             var request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
-            request.Credentials = new NetworkCredential("user", "password");
+            request.Credentials = new NetworkCredential(username,pw);
 
             // Get the response
             try

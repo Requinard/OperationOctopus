@@ -12,13 +12,13 @@ namespace ICT4EVENT
 {
     public partial class MainForm : Form
     {
-        private SocialMediaEventManager socialManager;
+
 
         public MainForm()
         {
             InitializeComponent();
-
-            socialManager = new SocialMediaEventManager();
+            // TODO: Repair initializations from social media manager
+            //socialManager = new SocialMediaEventManager();
         }
 
         private void Form1_Load(object sender, EventArgs e)

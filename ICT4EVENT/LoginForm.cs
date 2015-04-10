@@ -22,8 +22,14 @@ namespace ICT4EVENT
             
             rfid.Error += RFID_Error;
             rfid.Tag += RFID_Tag;
+            rfid.TagLost += rfid_TagLost;
 
             OpenRFIDConnection();
+        }
+
+        void rfid_TagLost(object sender, TagEventArgs e)
+        {
+            txtRFID.Text = "";
         }
 
         private void RFID_Error(object sender, Phidgets.Events.ErrorEventArgs e)
@@ -34,6 +40,8 @@ namespace ICT4EVENT
         private void RFID_Tag(object sender, TagEventArgs e)
         {
             txtRFID.Text = Convert.ToString(e.Tag);
+
+            if(UserManager.AuthenticateUser(e.Tag))
             txtUserName.Enabled = txtPassword.Enabled = btnLogin.Enabled = false;
         }
 
@@ -42,18 +50,30 @@ namespace ICT4EVENT
             try
             {
                 rfid.open();
-                rfid.waitForAttachment();
+                rfid.waitForAttachment(1000);
                 rfid.Antenna = rfid.LED = Enabled;
             }
             catch (PhidgetException ex)
             {
                 MessageBox.Show(ex.Description);
-                OpenRFIDConnection();
             }
         }
 
         private void FillActionList()
         {
+            if()
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (UserManager.AuthenticateUser(txtUserName.Text, txtPassword.Text))
+            {
+                FillActionList();
+            }
+            else
+            {
+                MessageBox.Show("Naam of wachtwoord niet juist.");
+            }
         }
     }
 }
