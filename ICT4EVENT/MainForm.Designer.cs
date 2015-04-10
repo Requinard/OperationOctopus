@@ -80,6 +80,7 @@
             this.lblDetails = new System.Windows.Forms.Label();
             this.btnHireMaterial = new System.Windows.Forms.Button();
             this.listMandje = new System.Windows.Forms.ListBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gbStaticUpdates.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -227,6 +228,7 @@
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Controls.Add(this.Profiel);
             this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Location = new System.Drawing.Point(5, 12);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -660,6 +662,15 @@
             this.listMandje.Size = new System.Drawing.Size(145, 508);
             this.listMandje.TabIndex = 2;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 33);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(790, 525);
+            this.tabPage3.TabIndex = 5;
+            this.tabPage3.Text = "MV Admin";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -756,6 +767,7 @@
         private System.Windows.Forms.Label lblDetails;
         private System.Windows.Forms.PictureBox pictureDetails;
         private System.Windows.Forms.ListBox listMandje;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
 
