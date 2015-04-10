@@ -558,7 +558,16 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "REPORT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            reason = reader["Reason"].ToString();
+            status = reader["status"].ToString();
+
+            return true;
         }
 
         public bool Update()
