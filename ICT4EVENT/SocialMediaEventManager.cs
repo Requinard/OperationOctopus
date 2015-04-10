@@ -15,6 +15,10 @@ namespace ICT4EVENT
         private static RNGCryptoServiceProvider crypto;
         private static List<UserModel> users;
 
+        private static readonly RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+        private static int NUM_ITERATIONS = 1000;
+        private static int SALT_SIZE = 12;
+
         public static void Initialize()
         {
             const string select_query = "SELECT * FROM USERS";
@@ -31,7 +35,25 @@ namespace ICT4EVENT
 
                 user.Username = (string)reader["username"];
                 user.Password = (string)reader["userpassword"];
+                user.RfiDnumber = (string) reader["rfidnumber"];
                 user.Id = Int32.Parse(reader["ident"].ToString());
+
+                users.Add(user);
+            }
+
+            // If there are 0 users we will add an administrator
+            if (users.Count == 0)
+            {
+                UserModel user = new UserModel();
+
+                user.Username = "admin";
+                user.Password = CreateHashPassword("admin");
+                user.Telephonenumber = "dwad";
+                user.RfiDnumber = "0000b3cde1";
+                user.Address = "dasdaw";
+                user.Email = "eadwdwa";
+
+                user.Create();
 
                 users.Add(user);
             }
@@ -41,7 +63,7 @@ namespace ICT4EVENT
             {
                 string select = String.Format(select_registration, model.Id);
 
-                reader = DBManager.QueryDB(select);
+                reader = DBManager.QueryDB(@select);
 
                 while (reader.Read())
                 {
@@ -69,9 +91,10 @@ namespace ICT4EVENT
             UserModel user = new UserModel();
 
             user.Username = username;
-            user.Password = Settings.CreateHashPassword(password);
+            user.Password = CreateHashPassword(password);
 
-            //user.Create();
+            user.Create();
+
             users.Add(user);
             return user;
         }
@@ -86,7 +109,14 @@ namespace ICT4EVENT
         {
             UserModel user = FindUser(username);
 
-            return AuthenticateUser(user, password);
+            bool success = AuthenticateUser(user, password);
+
+            if (success)
+            {
+                Settings.ActiveUser = user;
+            }
+
+            return success;
         }
 
         /// <summary>
@@ -97,7 +127,31 @@ namespace ICT4EVENT
         /// <returns>Success of the operation</returns>
         public static bool AuthenticateUser(UserModel user, string password)
         {
-            return Settings.IsPasswordValid(password, user.Password);
+            return IsPasswordValid(password, user.Password);
+        }
+
+        public static bool AuthenticateUser(string RFIDNumber)
+        {
+            UserModel userModel = null;
+
+            foreach (UserModel user in users)
+            {
+                if (user.RfiDnumber == RFIDNumber)
+                {
+                    userModel = user;
+                    break;
+                }
+            }
+
+            if (userModel == null)
+            {
+                return false;
+            }
+            else
+            {
+                Settings.ActiveUser = userModel;
+                return true;
+            }
         }
 
         public static UserModel FindUser(string username)
@@ -115,7 +169,29 @@ namespace ICT4EVENT
                 where user.Id == id
                 select user;
 
-            return s.ToList()[0] ?? null;
+            return s.ToList().First()?? null;
+        }
+
+        private static string CreateHashPassword(string password)
+        {
+            byte[] buf = new byte[SALT_SIZE];
+            rng.GetBytes(buf);
+            string salt = Convert.ToBase64String(buf);
+
+            Rfc2898DeriveBytes deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
+            string hash = Convert.ToBase64String(deriver2898.GetBytes(16));
+            return salt + ':' + hash; ;
+        }
+
+        private static bool IsPasswordValid(string password, string saltHash)
+        {
+            string[] parts = saltHash.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length != 2)
+                return false;
+            byte[] buf = Convert.FromBase64String(parts[0]);
+            Rfc2898DeriveBytes deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
+            string computedHash = Convert.ToBase64String(deriver2898.GetBytes(16));
+            return parts[1].Equals(computedHash);
         }
     }
 
