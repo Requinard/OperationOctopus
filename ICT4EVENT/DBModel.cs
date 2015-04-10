@@ -221,7 +221,7 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            string query = String.Format(READSTRING, "RENTABLEOBJECT", Id.ToString());
+            string query = String.Format(READSTRING, "REGISTRATION", Id.ToString());
             OracleDataReader reader = DBManager.QueryDB(query);
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
