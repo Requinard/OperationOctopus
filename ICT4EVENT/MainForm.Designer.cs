@@ -30,7 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
             "Test",
             "imagepath",
             "post"}, -1);
@@ -89,7 +91,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnDeleteMat = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.comboMVName = new System.Windows.Forms.ComboBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.listEvents = new System.Windows.Forms.ListView();
+            this.btnEditEvent = new System.Windows.Forms.Button();
+            this.btnDelEvent = new System.Windows.Forms.Button();
+            this.btnAddEvent = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -97,7 +106,12 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pgrsbarPostReviews = new System.Windows.Forms.ProgressBar();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.groupDetail = new System.Windows.Forms.GroupBox();
+            this.pictureDetail = new System.Windows.Forms.PictureBox();
+            this.txtRFIDCode = new System.Windows.Forms.TextBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.gbStaticUpdates.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -124,7 +138,12 @@
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.groupDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // gbStaticUpdates
@@ -260,7 +279,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.listView2);
+            this.tabPage1.Controls.Add(this.flowLayoutPanel1);
             this.tabPage1.Controls.Add(this.treeCategorie);
             this.tabPage1.Controls.Add(this.btnMediaFile);
             this.tabPage1.Controls.Add(this.textBox1);
@@ -455,7 +474,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.OrangeRed;
             this.pictureBox3.Location = new System.Drawing.Point(3, 24);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(154, 184);
+            this.pictureBox3.Size = new System.Drawing.Size(150, 150);
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
@@ -592,7 +611,7 @@
             this.tbMyBio.Location = new System.Drawing.Point(102, 90);
             this.tbMyBio.Multiline = true;
             this.tbMyBio.Name = "tbMyBio";
-            this.tbMyBio.Size = new System.Drawing.Size(516, 93);
+            this.tbMyBio.Size = new System.Drawing.Size(516, 84);
             this.tbMyBio.TabIndex = 16;
             // 
             // lblBiografie
@@ -611,9 +630,9 @@
             // pbMyProfileImage
             // 
             this.pbMyProfileImage.BackColor = System.Drawing.Color.OrangeRed;
-            this.pbMyProfileImage.Location = new System.Drawing.Point(635, 24);
+            this.pbMyProfileImage.Location = new System.Drawing.Point(624, 24);
             this.pbMyProfileImage.Name = "pbMyProfileImage";
-            this.pbMyProfileImage.Size = new System.Drawing.Size(129, 159);
+            this.pbMyProfileImage.Size = new System.Drawing.Size(150, 150);
             this.pbMyProfileImage.TabIndex = 14;
             this.pbMyProfileImage.TabStop = false;
             // 
@@ -711,6 +730,7 @@
             this.tabControl3.Controls.Add(this.tabPage5);
             this.tabControl3.Controls.Add(this.tabPage8);
             this.tabControl3.Controls.Add(this.tabPage9);
+            this.tabControl3.Controls.Add(this.tabPage6);
             this.tabControl3.Location = new System.Drawing.Point(6, 24);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
@@ -719,6 +739,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btnDeleteMat);
+            this.tabPage5.Controls.Add(this.listView2);
+            this.tabPage5.Controls.Add(this.comboMVName);
             this.tabPage5.Location = new System.Drawing.Point(4, 27);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -727,8 +750,42 @@
             this.tabPage5.Text = "Materiaal Verhuur";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // btnDeleteMat
+            // 
+            this.btnDeleteMat.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDeleteMat.Location = new System.Drawing.Point(313, 428);
+            this.btnDeleteMat.Name = "btnDeleteMat";
+            this.btnDeleteMat.Size = new System.Drawing.Size(133, 36);
+            this.btnDeleteMat.TabIndex = 3;
+            this.btnDeleteMat.Text = "Verwijder";
+            this.btnDeleteMat.UseVisualStyleBackColor = true;
+            // 
+            // listView2
+            // 
+            this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem25,
+            listViewItem26});
+            this.listView2.Location = new System.Drawing.Point(15, 50);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(741, 372);
+            this.listView2.TabIndex = 2;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // comboMVName
+            // 
+            this.comboMVName.FormattingEnabled = true;
+            this.comboMVName.Location = new System.Drawing.Point(15, 18);
+            this.comboMVName.Name = "comboMVName";
+            this.comboMVName.Size = new System.Drawing.Size(121, 26);
+            this.comboMVName.TabIndex = 1;
+            // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.listEvents);
+            this.tabPage8.Controls.Add(this.btnEditEvent);
+            this.tabPage8.Controls.Add(this.btnDelEvent);
+            this.tabPage8.Controls.Add(this.btnAddEvent);
             this.tabPage8.Location = new System.Drawing.Point(4, 27);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
@@ -736,6 +793,45 @@
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "Event Beheer";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // listEvents
+            // 
+            this.listEvents.Location = new System.Drawing.Point(6, 6);
+            this.listEvents.Name = "listEvents";
+            this.listEvents.Size = new System.Drawing.Size(750, 398);
+            this.listEvents.TabIndex = 3;
+            this.listEvents.UseCompatibleStateImageBehavior = false;
+            this.listEvents.View = System.Windows.Forms.View.Details;
+            // 
+            // btnEditEvent
+            // 
+            this.btnEditEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnEditEvent.Location = new System.Drawing.Point(558, 410);
+            this.btnEditEvent.Name = "btnEditEvent";
+            this.btnEditEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnEditEvent.TabIndex = 2;
+            this.btnEditEvent.Text = "Evenement Bewerken";
+            this.btnEditEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnDelEvent
+            // 
+            this.btnDelEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnDelEvent.Location = new System.Drawing.Point(285, 410);
+            this.btnDelEvent.Name = "btnDelEvent";
+            this.btnDelEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnDelEvent.TabIndex = 1;
+            this.btnDelEvent.Text = "Evenement Verwijderen";
+            this.btnDelEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnAddEvent
+            // 
+            this.btnAddEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnAddEvent.Location = new System.Drawing.Point(6, 410);
+            this.btnAddEvent.Name = "btnAddEvent";
+            this.btnAddEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnAddEvent.TabIndex = 0;
+            this.btnAddEvent.Text = "Nieuw Evenement";
+            this.btnAddEvent.UseVisualStyleBackColor = true;
             // 
             // tabPage9
             // 
@@ -757,7 +853,7 @@
             this.columnHeader4,
             this.columnHeader5});
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4});
+            listViewItem27});
             this.listView1.Location = new System.Drawing.Point(4, 3);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(636, 234);
@@ -781,13 +877,50 @@
             this.pgrsbarPostReviews.Size = new System.Drawing.Size(755, 23);
             this.pgrsbarPostReviews.TabIndex = 0;
             // 
-            // listView2
+            // tabPage6
             // 
-            this.listView2.Location = new System.Drawing.Point(6, 73);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(617, 450);
-            this.listView2.TabIndex = 8;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.tabPage6.Controls.Add(this.groupDetail);
+            this.tabPage6.Controls.Add(this.txtRFIDCode);
+            this.tabPage6.Location = new System.Drawing.Point(4, 27);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(762, 470);
+            this.tabPage6.TabIndex = 3;
+            this.tabPage6.Text = "Inschrijven";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // groupDetail
+            // 
+            this.groupDetail.Controls.Add(this.pictureDetail);
+            this.groupDetail.Location = new System.Drawing.Point(14, 43);
+            this.groupDetail.Name = "groupDetail";
+            this.groupDetail.Size = new System.Drawing.Size(730, 411);
+            this.groupDetail.TabIndex = 1;
+            this.groupDetail.TabStop = false;
+            this.groupDetail.Text = "Details";
+            // 
+            // pictureDetail
+            // 
+            this.pictureDetail.Location = new System.Drawing.Point(533, 15);
+            this.pictureDetail.Name = "pictureDetail";
+            this.pictureDetail.Size = new System.Drawing.Size(190, 190);
+            this.pictureDetail.TabIndex = 0;
+            this.pictureDetail.TabStop = false;
+            // 
+            // txtRFIDCode
+            // 
+            this.txtRFIDCode.Enabled = false;
+            this.txtRFIDCode.Location = new System.Drawing.Point(14, 12);
+            this.txtRFIDCode.Name = "txtRFIDCode";
+            this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
+            this.txtRFIDCode.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 73);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(616, 450);
+            this.flowLayoutPanel1.TabIndex = 12;
             // 
             // MainForm
             // 
@@ -834,7 +967,13 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.groupDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -904,7 +1043,19 @@
         private System.Windows.Forms.ProgressBar pgrsbarPostReviews;
         private System.Windows.Forms.GroupBox gbPostsOfUser;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.GroupBox groupDetail;
+        private System.Windows.Forms.PictureBox pictureDetail;
+        private System.Windows.Forms.TextBox txtRFIDCode;
         private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ComboBox comboMVName;
+        private System.Windows.Forms.Button btnDeleteMat;
+        private System.Windows.Forms.ListView listEvents;
+        private System.Windows.Forms.Button btnEditEvent;
+        private System.Windows.Forms.Button btnDelEvent;
+        private System.Windows.Forms.Button btnAddEvent;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
