@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ namespace ICT4EVENT
     public partial class RegistratieForm : Form
     {
         private RFID rfid = new RFID();
+        private string GeneratedPassword;
         public RegistratieForm()
         {
             InitializeComponent();
@@ -52,14 +54,26 @@ namespace ICT4EVENT
             }
         }
 
-        void GenerateRandomPassword()
+        private string GenerateRandomPassword()
         {
-            Security.Membership.GeneratePassword();
+            string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";
+            char[] chars = new char[8];
+            Random r = new Random();
+
+            for (int i = 0; i < 8; i++)
+            {
+                chars[i] = allowedChars[r.Next(0, allowedChars.Length)];
+            }
+
+            return new string(chars);
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            GenerateRandomPassword();
+            if (txtAdress != null && txtEmail != null && txtTel != null && txtUsername != null)
+            {
+                GenerateRandomPassword();  
+            }
         }
     }
 }
