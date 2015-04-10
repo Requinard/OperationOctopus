@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("Test2");
-            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "Test",
             "imagepath",
             "post"}, -1);
@@ -48,6 +48,7 @@
             this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.treeCategorie = new System.Windows.Forms.TreeView();
             this.btnMediaFile = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -57,13 +58,12 @@
             this.btnHireMaterial = new System.Windows.Forms.Button();
             this.lblDetails = new System.Windows.Forms.Label();
             this.pictureDetails = new System.Windows.Forms.PictureBox();
-            this.MaterialList = new System.Windows.Forms.ListView();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
             this.Profiel = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
             this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbProfileSelector = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -111,7 +111,8 @@
             this.pictureDetail = new System.Windows.Forms.PictureBox();
             this.txtRFIDCode = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.gbStaticUpdates.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -292,6 +293,14 @@
             this.tabPage1.Text = "Social Media Sharing System";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 73);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(616, 450);
+            this.flowLayoutPanel1.TabIndex = 12;
+            // 
             // treeCategorie
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
@@ -323,15 +332,16 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnRemove);
+            this.tabPage2.Controls.Add(this.flowLayoutPanel2);
             this.tabPage2.Controls.Add(this.listMandje);
             this.tabPage2.Controls.Add(this.groupDetails);
-            this.tabPage2.Controls.Add(this.MaterialList);
             this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(790, 531);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Materiaal Verhuur";
+            this.tabPage2.Text = "Materiaalverhuur";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // listMandje
@@ -346,7 +356,7 @@
             "Test2"});
             this.listMandje.Location = new System.Drawing.Point(642, 6);
             this.listMandje.Name = "listMandje";
-            this.listMandje.Size = new System.Drawing.Size(145, 508);
+            this.listMandje.Size = new System.Drawing.Size(145, 454);
             this.listMandje.TabIndex = 2;
             // 
             // groupDetails
@@ -388,16 +398,6 @@
             this.pictureDetails.TabIndex = 0;
             this.pictureDetails.TabStop = false;
             // 
-            // MaterialList
-            // 
-            this.MaterialList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MaterialList.Location = new System.Drawing.Point(6, 6);
-            this.MaterialList.Name = "MaterialList";
-            this.MaterialList.Size = new System.Drawing.Size(630, 344);
-            this.MaterialList.SmallImageList = this.MateriaalVerhuurImages;
-            this.MaterialList.TabIndex = 0;
-            this.MaterialList.UseCompatibleStateImageBehavior = false;
-            // 
             // MateriaalVerhuurImages
             // 
             this.MateriaalVerhuurImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("MateriaalVerhuurImages.ImageStream")));
@@ -420,7 +420,7 @@
             // gbProfielen
             // 
             this.gbProfielen.Controls.Add(this.gbPostsOfUser);
-            this.gbProfielen.Controls.Add(this.comboBox1);
+            this.gbProfielen.Controls.Add(this.cbProfileSelector);
             this.gbProfielen.Controls.Add(this.groupBox1);
             this.gbProfielen.Location = new System.Drawing.Point(3, 3);
             this.gbProfielen.Name = "gbProfielen";
@@ -448,13 +448,14 @@
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
             // 
-            // comboBox1
+            // cbProfileSelector
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(9, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(769, 26);
-            this.comboBox1.TabIndex = 16;
+            this.cbProfileSelector.FormattingEnabled = true;
+            this.cbProfileSelector.Location = new System.Drawing.Point(9, 24);
+            this.cbProfileSelector.Name = "cbProfileSelector";
+            this.cbProfileSelector.Size = new System.Drawing.Size(769, 26);
+            this.cbProfileSelector.TabIndex = 16;
+            this.cbProfileSelector.DropDown += new System.EventHandler(this.comboBox1_DropDown);
             // 
             // groupBox1
             // 
@@ -462,7 +463,7 @@
             this.groupBox1.Controls.Add(this.pictureBox4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Location = new System.Drawing.Point(3, 87);
+            this.groupBox1.Location = new System.Drawing.Point(0, 56);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(784, 225);
             this.groupBox1.TabIndex = 14;
@@ -712,7 +713,7 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(790, 531);
             this.tabPage3.TabIndex = 5;
-            this.tabPage3.Text = "Admin Options";
+            this.tabPage3.Text = "MV Admin";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox3
@@ -763,8 +764,8 @@
             // listView2
             // 
             this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem25,
-            listViewItem26});
+            listViewItem1,
+            listViewItem2});
             this.listView2.Location = new System.Drawing.Point(15, 50);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(741, 372);
@@ -853,7 +854,7 @@
             this.columnHeader4,
             this.columnHeader5});
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem27});
+            listViewItem3});
             this.listView1.Location = new System.Drawing.Point(4, 3);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(636, 234);
@@ -914,22 +915,25 @@
             this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
             this.txtRFIDCode.TabIndex = 0;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanel2
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 73);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(616, 450);
-            this.flowLayoutPanel1.TabIndex = 12;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 7);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(624, 343);
+            this.flowLayoutPanel2.TabIndex = 3;
             // 
-            // tabPage3
+            // btnRemove
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 33);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(790, 525);
-            this.tabPage3.TabIndex = 5;
-            this.tabPage3.Text = "MV Admin";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.btnRemove.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRemove.Location = new System.Drawing.Point(641, 465);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(144, 50);
+            this.btnRemove.TabIndex = 5;
+            this.btnRemove.Tag = "Static";
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1010,7 +1014,7 @@
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.GroupBox gbSettings;
         private System.Windows.Forms.TreeView treeCategorie;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbProfileSelector;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -1025,7 +1029,6 @@
         private System.Windows.Forms.TextBox tbMyDisplayName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListView MaterialList;
         private System.Windows.Forms.ImageList MateriaalVerhuurImages;
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
@@ -1065,6 +1068,8 @@
         private System.Windows.Forms.Button btnAddEvent;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
 

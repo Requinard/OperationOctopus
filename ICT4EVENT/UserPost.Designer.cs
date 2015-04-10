@@ -82,7 +82,7 @@
             this.pbMedia.MinimumSize = new System.Drawing.Size(100, 100);
             this.pbMedia.Name = "pbMedia";
             this.pbMedia.Size = new System.Drawing.Size(450, 450);
-            this.pbMedia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbMedia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMedia.TabIndex = 3;
             this.pbMedia.TabStop = false;
             // 

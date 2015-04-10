@@ -31,15 +31,24 @@ namespace ICT4EVENT
             get { return lblText.Text; }
             set { lblText.Text = value; }
         }
-        public UserPost()
+        public UserPost(string text,string user,Image picture,Image mediaImage)
         {
             InitializeComponent();
-        }
-
-        
-        private void UserControl1_Load(object sender, EventArgs e)
-        {
-            if (MediaImage == null)
+            Text = text;
+            if (user != null)
+            {
+                lblPoster.Text = user;
+            }
+            Picture = picture;
+            if (picture == null)
+            {
+               Picture = Image.FromFile(@"Picture.jpg");
+            }
+            else
+            {
+                Picture = picture;
+            }
+            if (mediaImage == null)
             {
                 this.Size = new Size(this.Size.Width, (lblText.Size.Height));
                 pbMedia.Enabled = false;
@@ -49,6 +58,17 @@ namespace ICT4EVENT
                 pbMedia.Location = new Point(pbMedia.Location.X,(lblText.Location.Y + lblText.Height + 3));
                 this.Size = new Size(this.Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
             }
+            
+            
+            MediaImage = mediaImage;
+            Random r = new Random();
+            BackColor = Color.FromArgb(r.Next(255), r.Next(255),r.Next(255));
+        }
+
+        
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+           
             
            
         }
