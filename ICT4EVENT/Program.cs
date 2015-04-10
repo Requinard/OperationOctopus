@@ -12,9 +12,9 @@ namespace ICT4EVENT
         [STAThread]
         private static void Main()
         {
-            InitializeApplication();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            InitializeApplication();
             Application.Run(new MainForm());
             Logger.Info("Exiting Application");
             Logger.Destruct(Settings.LOGFILENAME);
@@ -35,9 +35,6 @@ namespace ICT4EVENT
             EventManager.Initialize();
             UserManager.Initialize();
             EquipmentManager.Initialize();
-            UserManager.CreateUser("test", "test");
-            UserManager.AuthenticateUser("test", "test2");
-            UserManager.AuthenticateUser("test", "test");
             Logger.Info("Starting Application");
         }
     }

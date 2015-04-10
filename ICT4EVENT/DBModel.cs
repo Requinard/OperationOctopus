@@ -106,6 +106,31 @@ namespace ICT4EVENT
         private int RFIDnumber;
         private string address;
         private string username;
+
+        public int RfiDnumber
+        {
+            get { return RFIDnumber; }
+            set { RFIDnumber = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
+        public string Telephonenumber
+        {
+            get { return telephonenumber; }
+            set { telephonenumber = value; }
+        }
+
         private string email;
         private string telephonenumber;
         private string password;
@@ -124,17 +149,17 @@ namespace ICT4EVENT
             set { password = value; }
         }
 
-        public List<RegistrationModel> RegistrationList = new List<RegistrationModel>();
+        public List<RegistrationModel> RegistrationList;
 
         public UserModel()
         {
-            registrations = new List<RegistrationModel>();
+            RegistrationList = new List<RegistrationModel>();
         }
 
         public bool Create()
         {
             string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword";
-            string values = RFIDnumber.ToString() + "," + address + "," + username + "," + email + "," + telephonenumber + "," + password;
+            string values = "'" + RFIDnumber.ToString() + "','" + address + "','" + username + "','" + email + "','" + telephonenumber + "','" + password +"'";
             string finalQuery = String.Format(INSERTSTRING, "USERS", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
