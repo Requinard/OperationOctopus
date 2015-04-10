@@ -85,10 +85,9 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
+            string columns = "Ident, EventName, EventLocation, Description, BeginTime, EndTime";
             string finalQuery = String.Format(READSTRING, "EVENT", columns);
             DBManager.QueryDB(finalQuery);
-
             return true;
         }
 
@@ -146,7 +145,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword";
+            string finalQuery = String.Format(READSTRING, "USERS", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -195,7 +197,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, UserID, EventID";
+            string finalQuery = String.Format(READSTRING, "REGISTRATION", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -235,7 +240,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, UserID,EventID,InOrOut";
+            string finalQuery = String.Format(READSTRING, "RFIDLOG", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -297,7 +305,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, EventID, Description, Price, Amount";
+            string finalQuery = String.Format(READSTRING, "RENTABLEOBJECT", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -372,7 +383,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
+            string finalQuery = String.Format(READSTRING, "POST", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -453,7 +467,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity";
+            string finalQuery = String.Format(READSTRING, "PLACE", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -489,7 +506,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, UserID, PostID";
+            string finalQuery = String.Format(READSTRING, "LIKES", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -527,7 +547,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, PostID, UserID, Reason, Status";
+            string finalQuery = String.Format(READSTRING, "REPORT", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -567,7 +590,10 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, RegistrationID, Amount, PaymentType";
+            string finalQuery = String.Format(READSTRING, "PAYMENT", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
@@ -608,7 +634,10 @@ namespace ICT4EVENT
         }
         public bool Read()
         {
-            throw new NotImplementedException();
+            string columns = "Ident, UserID, ItemID, ReturnDate, Amount";
+            string finalQuery = String.Format(READSTRING, "RESERVATION", columns);
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Update()
