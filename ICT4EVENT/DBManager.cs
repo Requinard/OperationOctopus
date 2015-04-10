@@ -54,7 +54,7 @@ namespace ICT4EVENT
                 }
                 Logger.Info("Exiting application due to broken database config");
                 Logger.Destruct(Settings.LOGFILENAME);
-//Environment.Exit(1);
+Environment.Exit(1);
                 return;
             }
 
