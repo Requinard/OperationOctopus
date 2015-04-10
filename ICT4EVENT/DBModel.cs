@@ -121,6 +121,12 @@ namespace ICT4EVENT
         private string address;
         private string username;
 
+        public int Level
+        {
+            get { return level; }
+            set { level = value; }
+        }
+
         public string RfiDnumber
         {
             get { return RFIDnumber; }
