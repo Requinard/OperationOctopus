@@ -551,7 +551,10 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "PostID='" + post.Id.ToString() + "', UserID='" + user.Id.ToString() + "', Reason='" + reason + "', Status='" + status + "'";
+            string finalQuery = String.Format(UPDATESTRING, "REPORT", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
