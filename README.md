@@ -14,7 +14,9 @@ A C# application for the management of event creation, ticketing and infrastruct
 
 - Download Oracle Dataaccess for visual studio
 - Install it
+- Add the oracle reference
 - Install the phidget.exe
+- Add the phidget reference
 - Compile
 
 If you're having problems with MSIL errors, change the target platform from all cpu's to x64 (or x86 if that's how you roll)

@@ -26,7 +26,7 @@ namespace ICT4EVENT
             OpenRFIDConnection();
         }
 
-        private void RFID_Error(object sender, ErrorEventArgs e)
+        private void RFID_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             MessageBox.Show(e.Description);
         }
