@@ -252,7 +252,15 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "RFIDLOG", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            InOrOut = reader["InOrOut"].ToString();
+
+            return true;
         }
 
         public bool Update()
