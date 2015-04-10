@@ -594,7 +594,10 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "RegistrationID='" + registration.Id.ToString() + "', Amount='" + amount.ToString() + "', PaymentType='" + paymentType + "'";
+            string finalQuery = String.Format(UPDATESTRING, "PAYMENT", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
