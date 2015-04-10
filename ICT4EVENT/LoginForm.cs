@@ -42,7 +42,7 @@ namespace ICT4EVENT
             txtRFID.Text = Convert.ToString(e.Tag);
 
             if(UserManager.AuthenticateUser(e.Tag))
-                txtUserName.Enabled = txtPassword.Enabled = btnLogin.Enabled = false;
+            txtUserName.Enabled = txtPassword.Enabled = btnLogin.Enabled = false;
         }
 
         private void OpenRFIDConnection()
@@ -61,6 +61,15 @@ namespace ICT4EVENT
 
         private void FillActionList()
         {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (UserManager.AuthenticateUser(txtUserName.Text, txtPassword.Text))
+            {
+                
+            }
         }
     }
 }
