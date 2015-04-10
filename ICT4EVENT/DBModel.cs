@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Oracle.DataAccess.Client;
 using System.Security.Cryptography;
 
 namespace ICT4EVENT
@@ -85,9 +86,16 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            string columns = "Ident, EventName, EventLocation, Description, BeginTime, EndTime";
-            string finalQuery = String.Format(READSTRING, "EVENT", columns);
-            DBManager.QueryDB(finalQuery);
+            string query = String.Format(READSTRING, "EVENT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            name = reader["EventName"].ToString();
+            location = reader["EventLocation"].ToString();
+            description = reader["Description"].ToString();
+            startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
+            endDate = Convert.ToDateTime(reader["EndTime"].ToString());
+
             return true;
         }
 
@@ -145,10 +153,9 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            string columns = "Ident, RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword";
-            string finalQuery = String.Format(READSTRING, "USERS", columns);
-            DBManager.QueryDB(finalQuery);
-            return true;
+
+
+            throw new NotImplementedException();
         }
 
         public bool Update()
