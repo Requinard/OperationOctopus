@@ -35,6 +35,7 @@ namespace ICT4EVENT
 
                 user.Username = (string)reader["username"];
                 user.Password = (string)reader["userpassword"];
+                user.RfiDnumber = (string) reader["rfidnumber"];
                 user.Id = Int32.Parse(reader["ident"].ToString());
 
                 users.Add(user);
