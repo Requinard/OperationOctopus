@@ -70,10 +70,17 @@ namespace ICT4EVENT
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            if (txtAdress != null && txtEmail != null && txtTel != null && txtUsername != null)
+            if (txtAdress.Text != null && txtEmail.Text != null && txtTel.Text != null && txtUsername.Text != null)
             {
-                GenerateRandomPassword();  
+                GeneratedPassword = GenerateRandomPassword();
+                Aangemaakt();
             }
+        }
+
+        private void Aangemaakt()
+        {
+            txtAdress.Text = txtEmail.Text = txtRFID.Text = txtTel.Text = txtUsername.Text = "";
+            lblPassword.Text = "Gebruiker toegevoegd. Wachtwoord is: " + GeneratedPassword;
         }
     }
 }
