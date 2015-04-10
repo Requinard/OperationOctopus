@@ -9,9 +9,9 @@ namespace ICT4EVENT
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
         protected const string INSERTSTRING = "INSERT INTO {0} ({1}) VALUES ({2})";
         // Updates a row in the database. {0} is table name, {1} is columns and values and {2} is the row id
-        private const string UPDATESTRING = "UPDATE {0} SET {1} WHERE id={2}";
+        protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE id={2}";
         // Reads the corresponding row from the database. {0} is table name, {1} is the row id
-        private const string READSTRING = "SELECT * FROM {0} WHERE id={1}";
+        protected const string READSTRING = "SELECT * FROM {0} WHERE id={1}";
         // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
         protected const string DESTROYSTRING = "DELETE FROM {0} WHERE id={1}";
 
@@ -76,7 +76,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            string values = name + "," + location + "," + description + "," + startDate.ToString() + "," + endDate.ToString();
+            string values = "'" + name + "','" + location + "','" + description + "','" + startDate.ToString() + "','" + endDate.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "EVENT", columns, values);
             DBManager.QueryDB(finalQuery);
 
@@ -90,7 +90,10 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "EventName='" + name + "', EventLocation='" + location + "', Description='" + description + "', BeginTime='" + startDate.ToString() + "', EndTime='" + endDate.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "EVENT", columnvalues, "'" +  Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
@@ -172,12 +175,15 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "RFIDnumber='" + RFIDnumber.ToString() + "', Address='" + address + "', Username='" + username + "', Email='" + email + "', TelephoneNumber='" + telephonenumber+ "', UserPassword='" + password + "'";
+            string finalQuery = String.Format(UPDATESTRING, "USERS", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "USERS", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "USERS", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -208,7 +214,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, EventID";
-            string values = user.Id.ToString() + "," + event_item.Id.ToString();
+            string values = "'" + user.Id.ToString() + "','" + event_item.Id.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "REGISTRATION", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -221,12 +227,15 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + User.Id.ToString() + "', EventID='" + event_item.Id.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "REGISTRATION", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "REGISTRATION", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -248,7 +257,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID,EventID,InOrOut";
-            string values = user.Id.ToString() + "," + event_item.Id.ToString() + "," + InOrOut;
+            string values = "'" + user.Id.ToString() + "','" + event_item.Id.ToString() + "','" + InOrOut + "'";
             string finalQuery = String.Format(INSERTSTRING, "RFIDLOG", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -266,7 +275,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RFIDLOG", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "RFIDLOG", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -310,7 +319,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount";
-            string values = event_item.Id.ToString() + "," + description + "," + price.ToString() + "," + amount.ToString() + "," + typeOfObject;
+            string values = "'" + event_item.Id.ToString() + "','" + description + "','" + price.ToString() + "','" + amount.ToString() + "','" + typeOfObject + "'";
             string finalQuery = String.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -328,7 +337,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RENTABLEOBJECT", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "RENTABLEOBJECT", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -385,7 +394,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
-            string values = user.Id.ToString() + "," + event_item.Id.ToString() + "," + parent.Id.ToString() + "," + content + "," + pathToFile + "," + datePosted.ToString();
+            string values = "'" + user.Id.ToString() + "','" + event_item.Id.ToString() + "','" + parent.Id.ToString() + "','" + content + "','" + pathToFile + "','" + datePosted.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "POST", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -403,7 +412,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "POST", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "POST", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -466,7 +475,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity";
-            string values = event_item.Id.ToString() + "," + description + "," + price.ToString() + "," + amount.ToString() + "," + location + "," + category + "," + capacity;
+            string values = "'" + event_item.Id.ToString() + "','" + description + "','" + price.ToString() + "','" + amount.ToString() + "','" + location + "','" + category + "','" + capacity + "'";
             string finalQuery = String.Format(INSERTSTRING, "PLACE", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -484,7 +493,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "PLACE", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "PLACE", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -502,7 +511,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, PostID";
-            string values = user.Id.ToString() + "," + post.Id.ToString();
+            string values = "'" + user.Id.ToString() + "','" + post.Id.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "LIKES", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -520,7 +529,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "LIKES", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "LIKES", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -540,7 +549,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "PostID, UserID, Reason, Status";
-            string values = post.Id.ToString() + "," + user.Id.ToString() + "," + reason + "," + status;
+            string values = "'" + post.Id.ToString() + "','" + user.Id.ToString() + "','" + reason + "','" + status + "'";
             string finalQuery = String.Format(INSERTSTRING, "REPORT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -558,7 +567,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "REPORT", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "REPORT", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -580,7 +589,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "RegistrationID, Amount, PaymentType";
-            string values = registration.Id.ToString() + "," + amount.ToString() + "," + paymentType;
+            string values = "'" + registration.Id.ToString() + "','" + amount.ToString() + "','" + paymentType + "'";
             string finalQuery = String.Format(INSERTSTRING, "PAYMENT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -598,7 +607,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "PAYMENT", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "PAYMENT", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -622,7 +631,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, ItemID, ReturnDate, Amount";
-            string values = user.Id.ToString() + "," + item.Id.ToString() + "," + returnDate.ToString() + "," + amount.ToString();
+            string values = "'" + user.Id.ToString() + "','" + item.Id.ToString() + "','" + returnDate.ToString() + "','" + amount.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "RESERVATION", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -639,7 +648,7 @@ namespace ICT4EVENT
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RESERVATION", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "RESERVATION", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
