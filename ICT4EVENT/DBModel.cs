@@ -600,7 +600,15 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "PAYMENT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+            paymentType = reader["PaymentType"].ToString();
+
+            return true;
         }
 
         public bool Update()
