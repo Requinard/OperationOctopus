@@ -264,7 +264,6 @@ namespace ICT4EVENT
         private string description;
         private decimal price;
         private int amount;
-        private string typeOfObject;
 
         public EventModel EventItem
         {
@@ -297,7 +296,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount, TypeOfObject";
-            string values = "'" + event_item.Id.ToString() + "','" + description + "','" + price.ToString() + "','" + amount.ToString() + "','" + typeOfObject + "'";
+            string values = "'" + event_item.Id.ToString() + "','" + description + "','" + price.ToString() + "','" + amount.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -310,7 +309,7 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            string columnvalues = "EventID='" + event_item.Id.ToString() + "', Description='" + description + "', Price='" + price.ToString() + "', Amount='" + amount.ToString() + "', TypeOfObject='" + typeOfObject + "'";
+            string columnvalues = "EventID='" + event_item.Id.ToString() + "', Description='" + description + "', Price='" + price.ToString() + "', Amount='" + amount.ToString() + "'";
             string finalQuery = String.Format(UPDATESTRING, "RENTABLEOBJECT", columnvalues, "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
