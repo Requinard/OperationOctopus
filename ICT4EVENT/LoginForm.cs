@@ -61,14 +61,18 @@ namespace ICT4EVENT
 
         private void FillActionList()
         {
-
+            if()
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (UserManager.AuthenticateUser(txtUserName.Text, txtPassword.Text))
             {
-                
+                FillActionList();
+            }
+            else
+            {
+                MessageBox.Show("Naam of wachtwoord niet juist.");
             }
         }
     }
