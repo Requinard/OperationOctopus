@@ -394,7 +394,18 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "POST", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            User.Id = Convert.ToInt32(reader["UserID"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+            content = reader["PostContent"].ToString();
+            pathToFile = reader["PathToFile"].ToString();
+            datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
+
+            return true;
         }
 
         public bool Update()
