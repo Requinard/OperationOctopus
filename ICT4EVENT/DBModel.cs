@@ -638,7 +638,10 @@ namespace ICT4EVENT
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + user.Id.ToString() + "', ItemID='" + item.Id.ToString() + "', ReturnDate='" + returnDate.ToString() + "', Amount='" + amount.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "RESERVATION", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
