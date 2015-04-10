@@ -240,7 +240,6 @@
             this.tabMainTab.Size = new System.Drawing.Size(810, 562);
             this.tabMainTab.TabIndex = 1;
             this.tabMainTab.SelectedIndexChanged += new System.EventHandler(this.tabMainTab_SelectedIndexChanged);
-            this.tabMainTab.TabIndexChanged += new System.EventHandler(this.tabMainTab_TabIndexChanged);
             // 
             // tabSocialMediaSharingSystem
             // 

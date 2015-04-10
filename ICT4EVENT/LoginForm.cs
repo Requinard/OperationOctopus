@@ -15,15 +15,18 @@ namespace ICT4EVENT
 {
     public partial class LoginForm : Form
     {
-        private RFID rfid = new RFID();
+        private RFID rfid;
         public LoginForm()
         {
             InitializeComponent();
             
-            rfid.Error += RFID_Error;
-            rfid.Tag += RFID_Tag;
 
             OpenRFIDConnection();
+        }
+
+        void rfid_TagLost(object sender, TagEventArgs e)
+        {
+            txtRFID.Text = "";
         }
 
         private void RFID_Error(object sender, Phidgets.Events.ErrorEventArgs e)
@@ -33,27 +36,89 @@ namespace ICT4EVENT
 
         private void RFID_Tag(object sender, TagEventArgs e)
         {
+            rfid.Antenna = false;
+            rfid.LED = false;
             txtRFID.Text = Convert.ToString(e.Tag);
-            txtUserName.Enabled = txtPassword.Enabled = btnLogin.Enabled = false;
+
+            if (UserManager.AuthenticateUser(e.Tag))
+            {
+                txtPassword.Enabled = txtUserName.Enabled = false;
+                rfid.Error -= RFID_Error;
+                rfid.Tag -= RFID_Tag;
+                rfid.TagLost -= rfid_TagLost;
+            }
+
+            rfid.Antenna = true;
         }
 
         private void OpenRFIDConnection()
         {
             try
             {
+                rfid = new RFID();
+                rfid.Error += RFID_Error;
+                rfid.Tag += RFID_Tag;
+                rfid.TagLost += rfid_TagLost;
+          
                 rfid.open();
-                rfid.waitForAttachment();
-                rfid.Antenna = rfid.LED = Enabled;
+             
             }
             catch (PhidgetException ex)
             {
                 MessageBox.Show(ex.Description);
-                OpenRFIDConnection();
             }
         }
 
+
+
         private void FillActionList()
         {
+            //if()
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (Settings.ActiveUser != null)
+            {
+                isAuthenticated();
+            }
+            else if (UserManager.AuthenticateUser(txtUserName.Text, txtPassword.Text))
+            {
+                isAuthenticated();
+            }
+            else
+            {
+                MessageBox.Show("Naam of wachtwoord niet juist.");
+            }
+        }
+
+        private void isAuthenticated()
+        {
+            
+            Application.DoEvents();
+
+            rfid.close();
+
+
+
+            if (Settings.ActiveUser.Level == 1)
+            {
+                openForm(new MainForm());
+            }
+            else
+            {
+                FillActionList();
+            }
+
+            
+        }
+
+        private void openForm(Form form)
+        {
+            this.Hide();
+
+            form.Closed += (s, args) => this.Close();
+            form.Show();
         }
     }
 }
