@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
             "Test",
             "imagepath",
             "post"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -51,7 +51,6 @@
             this.treeCategorie = new System.Windows.Forms.TreeView();
             this.btnMediaFile = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listMandje = new System.Windows.Forms.ListBox();
             this.groupDetails = new System.Windows.Forms.GroupBox();
@@ -92,7 +91,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnDeleteMat = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.comboMVName = new System.Windows.Forms.ComboBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.listEvents = new System.Windows.Forms.ListView();
+            this.btnEditEvent = new System.Windows.Forms.Button();
+            this.btnDelEvent = new System.Windows.Forms.Button();
+            this.btnAddEvent = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -101,16 +107,11 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pgrsbarPostReviews = new System.Windows.Forms.ProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.txtRFIDCode = new System.Windows.Forms.TextBox();
             this.groupDetail = new System.Windows.Forms.GroupBox();
             this.pictureDetail = new System.Windows.Forms.PictureBox();
-            this.comboMVName = new System.Windows.Forms.ComboBox();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.btnDeleteMat = new System.Windows.Forms.Button();
-            this.btnAddEvent = new System.Windows.Forms.Button();
-            this.btnDelEvent = new System.Windows.Forms.Button();
-            this.btnEditEvent = new System.Windows.Forms.Button();
-            this.listEvents = new System.Windows.Forms.ListView();
+            this.txtRFIDCode = new System.Windows.Forms.TextBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.gbStaticUpdates.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -278,10 +279,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.flowLayoutPanel1);
             this.tabPage1.Controls.Add(this.treeCategorie);
             this.tabPage1.Controls.Add(this.btnMediaFile);
             this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
@@ -319,19 +320,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(617, 57);
             this.textBox1.TabIndex = 1;
-            // 
-            // listBox1
-            // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.listBox1.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(6, 73);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(617, 436);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.Tag = "SMSS";
             // 
             // tabPage2
             // 
@@ -486,7 +474,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.OrangeRed;
             this.pictureBox3.Location = new System.Drawing.Point(3, 24);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(154, 184);
+            this.pictureBox3.Size = new System.Drawing.Size(150, 150);
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
@@ -623,7 +611,7 @@
             this.tbMyBio.Location = new System.Drawing.Point(102, 90);
             this.tbMyBio.Multiline = true;
             this.tbMyBio.Name = "tbMyBio";
-            this.tbMyBio.Size = new System.Drawing.Size(516, 93);
+            this.tbMyBio.Size = new System.Drawing.Size(516, 84);
             this.tbMyBio.TabIndex = 16;
             // 
             // lblBiografie
@@ -642,9 +630,9 @@
             // pbMyProfileImage
             // 
             this.pbMyProfileImage.BackColor = System.Drawing.Color.OrangeRed;
-            this.pbMyProfileImage.Location = new System.Drawing.Point(635, 24);
+            this.pbMyProfileImage.Location = new System.Drawing.Point(624, 24);
             this.pbMyProfileImage.Name = "pbMyProfileImage";
-            this.pbMyProfileImage.Size = new System.Drawing.Size(129, 159);
+            this.pbMyProfileImage.Size = new System.Drawing.Size(150, 150);
             this.pbMyProfileImage.TabIndex = 14;
             this.pbMyProfileImage.TabStop = false;
             // 
@@ -762,6 +750,36 @@
             this.tabPage5.Text = "Materiaal Verhuur";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // btnDeleteMat
+            // 
+            this.btnDeleteMat.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDeleteMat.Location = new System.Drawing.Point(313, 428);
+            this.btnDeleteMat.Name = "btnDeleteMat";
+            this.btnDeleteMat.Size = new System.Drawing.Size(133, 36);
+            this.btnDeleteMat.TabIndex = 3;
+            this.btnDeleteMat.Text = "Verwijder";
+            this.btnDeleteMat.UseVisualStyleBackColor = true;
+            // 
+            // listView2
+            // 
+            this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem25,
+            listViewItem26});
+            this.listView2.Location = new System.Drawing.Point(15, 50);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(741, 372);
+            this.listView2.TabIndex = 2;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // comboMVName
+            // 
+            this.comboMVName.FormattingEnabled = true;
+            this.comboMVName.Location = new System.Drawing.Point(15, 18);
+            this.comboMVName.Name = "comboMVName";
+            this.comboMVName.Size = new System.Drawing.Size(121, 26);
+            this.comboMVName.TabIndex = 1;
+            // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.listEvents);
@@ -775,6 +793,45 @@
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "Event Beheer";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // listEvents
+            // 
+            this.listEvents.Location = new System.Drawing.Point(6, 6);
+            this.listEvents.Name = "listEvents";
+            this.listEvents.Size = new System.Drawing.Size(750, 398);
+            this.listEvents.TabIndex = 3;
+            this.listEvents.UseCompatibleStateImageBehavior = false;
+            this.listEvents.View = System.Windows.Forms.View.Details;
+            // 
+            // btnEditEvent
+            // 
+            this.btnEditEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnEditEvent.Location = new System.Drawing.Point(558, 410);
+            this.btnEditEvent.Name = "btnEditEvent";
+            this.btnEditEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnEditEvent.TabIndex = 2;
+            this.btnEditEvent.Text = "Evenement Bewerken";
+            this.btnEditEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnDelEvent
+            // 
+            this.btnDelEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnDelEvent.Location = new System.Drawing.Point(285, 410);
+            this.btnDelEvent.Name = "btnDelEvent";
+            this.btnDelEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnDelEvent.TabIndex = 1;
+            this.btnDelEvent.Text = "Evenement Verwijderen";
+            this.btnDelEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnAddEvent
+            // 
+            this.btnAddEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnAddEvent.Location = new System.Drawing.Point(6, 410);
+            this.btnAddEvent.Name = "btnAddEvent";
+            this.btnAddEvent.Size = new System.Drawing.Size(198, 54);
+            this.btnAddEvent.TabIndex = 0;
+            this.btnAddEvent.Text = "Nieuw Evenement";
+            this.btnAddEvent.UseVisualStyleBackColor = true;
             // 
             // tabPage9
             // 
@@ -796,7 +853,7 @@
             this.columnHeader4,
             this.columnHeader5});
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem27});
             this.listView1.Location = new System.Drawing.Point(4, 3);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(636, 234);
@@ -831,14 +888,6 @@
             this.tabPage6.Text = "Inschrijven";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // txtRFIDCode
-            // 
-            this.txtRFIDCode.Enabled = false;
-            this.txtRFIDCode.Location = new System.Drawing.Point(14, 12);
-            this.txtRFIDCode.Name = "txtRFIDCode";
-            this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
-            this.txtRFIDCode.TabIndex = 0;
-            // 
             // groupDetail
             // 
             this.groupDetail.Controls.Add(this.pictureDetail);
@@ -857,74 +906,21 @@
             this.pictureDetail.TabIndex = 0;
             this.pictureDetail.TabStop = false;
             // 
-            // comboMVName
+            // txtRFIDCode
             // 
-            this.comboMVName.FormattingEnabled = true;
-            this.comboMVName.Location = new System.Drawing.Point(15, 18);
-            this.comboMVName.Name = "comboMVName";
-            this.comboMVName.Size = new System.Drawing.Size(121, 26);
-            this.comboMVName.TabIndex = 1;
+            this.txtRFIDCode.Enabled = false;
+            this.txtRFIDCode.Location = new System.Drawing.Point(14, 12);
+            this.txtRFIDCode.Name = "txtRFIDCode";
+            this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
+            this.txtRFIDCode.TabIndex = 0;
             // 
-            // listView2
+            // flowLayoutPanel1
             // 
-            this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.listView2.Location = new System.Drawing.Point(15, 50);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(741, 372);
-            this.listView2.TabIndex = 2;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // btnDeleteMat
-            // 
-            this.btnDeleteMat.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnDeleteMat.Location = new System.Drawing.Point(313, 428);
-            this.btnDeleteMat.Name = "btnDeleteMat";
-            this.btnDeleteMat.Size = new System.Drawing.Size(133, 36);
-            this.btnDeleteMat.TabIndex = 3;
-            this.btnDeleteMat.Text = "Verwijder";
-            this.btnDeleteMat.UseVisualStyleBackColor = true;
-            // 
-            // btnAddEvent
-            // 
-            this.btnAddEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnAddEvent.Location = new System.Drawing.Point(6, 410);
-            this.btnAddEvent.Name = "btnAddEvent";
-            this.btnAddEvent.Size = new System.Drawing.Size(198, 54);
-            this.btnAddEvent.TabIndex = 0;
-            this.btnAddEvent.Text = "Nieuw Evenement";
-            this.btnAddEvent.UseVisualStyleBackColor = true;
-            // 
-            // btnDelEvent
-            // 
-            this.btnDelEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnDelEvent.Location = new System.Drawing.Point(285, 410);
-            this.btnDelEvent.Name = "btnDelEvent";
-            this.btnDelEvent.Size = new System.Drawing.Size(198, 54);
-            this.btnDelEvent.TabIndex = 1;
-            this.btnDelEvent.Text = "Evenement Verwijderen";
-            this.btnDelEvent.UseVisualStyleBackColor = true;
-            // 
-            // btnEditEvent
-            // 
-            this.btnEditEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnEditEvent.Location = new System.Drawing.Point(558, 410);
-            this.btnEditEvent.Name = "btnEditEvent";
-            this.btnEditEvent.Size = new System.Drawing.Size(198, 54);
-            this.btnEditEvent.TabIndex = 2;
-            this.btnEditEvent.Text = "Evenement Bewerken";
-            this.btnEditEvent.UseVisualStyleBackColor = true;
-            // 
-            // listEvents
-            // 
-            this.listEvents.Location = new System.Drawing.Point(6, 6);
-            this.listEvents.Name = "listEvents";
-            this.listEvents.Size = new System.Drawing.Size(750, 398);
-            this.listEvents.TabIndex = 3;
-            this.listEvents.UseCompatibleStateImageBehavior = false;
-            this.listEvents.View = System.Windows.Forms.View.Details;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 73);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(616, 450);
+            this.flowLayoutPanel1.TabIndex = 12;
             // 
             // tabPage3
             // 
@@ -1007,7 +1003,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnMediaFile;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage Profiel;
@@ -1068,6 +1063,8 @@
         private System.Windows.Forms.Button btnEditEvent;
         private System.Windows.Forms.Button btnDelEvent;
         private System.Windows.Forms.Button btnAddEvent;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 

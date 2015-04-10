@@ -23,9 +23,52 @@ namespace ICT4EVENT
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Random r = new Random(8);
 
-         
+            int postion = 0;
+            
+            UserPost post = new UserPost();
+            post.Text = r.Next().ToString();
+            postion ++;
+            flowLayoutPanel1.Controls.Add(post); 
+
+            post = new UserPost();
+            post.Text = r.Next().ToString();
+            Image image = Image.FromFile("Picture.jpg");
+            post.MediaImage = image;
+            postion++;
+            flowLayoutPanel1.Controls.Add(post);
+
+            post = new UserPost();
+            post.Text = r.Next().ToString();
+            postion++;
+            flowLayoutPanel1.Controls.Add(post);
+
+            post = new UserPost();
+            post.Text = r.Next().ToString();
+            postion++;
+            flowLayoutPanel1.Controls.Add(post); 
+            
+            post = new UserPost();
+            post.Text = r.Next().ToString();
+            postion++;
+            flowLayoutPanel1.Controls.Add(post); 
+
+            post = new UserPost();
+            post.Text = r.Next().ToString();
+            postion++;
+            flowLayoutPanel1.Controls.Add(post);
         }
+
+        private void pbColour_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+       
+
+        
 
 
 
