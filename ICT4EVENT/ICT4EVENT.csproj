@@ -94,6 +94,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SocialMediaEventManager.cs" />
+    <Compile Include="UserPost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserPost.Designer.cs">
+      <DependentUpon>UserPost.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DBConfigForm.resx">
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +119,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserPost.resx">
+      <DependentUpon>UserPost.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Main Diagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -23,8 +23,11 @@ namespace ICT4EVENT
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            UserPost post = new UserPost();
 
-         
+            post.Picture = null; 
+
+            listView2.Controls.Add(post);
         }
 
 
