@@ -478,7 +478,19 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "PLACE", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            description = reader["Description"].ToString();
+            price = Convert.ToDecimal(reader["Price"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+            location = reader["PlaceLocation"].ToString();
+            category = reader["PlaceCategory"].ToString();
+            capacity = reader["PlaceCapacity"].ToString();
+
+            return true;
         }
 
         public bool Update()
