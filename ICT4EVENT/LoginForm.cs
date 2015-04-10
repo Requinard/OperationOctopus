@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
@@ -16,20 +8,21 @@ namespace ICT4EVENT
     public partial class LoginForm : Form
     {
         private RFID rfid;
+
         public LoginForm()
         {
             InitializeComponent();
-            
+
 
             OpenRFIDConnection();
         }
 
-        void rfid_TagLost(object sender, TagEventArgs e)
+        private void rfid_TagLost(object sender, TagEventArgs e)
         {
             txtRFID.Text = "";
         }
 
-        private void RFID_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        private void RFID_Error(object sender, ErrorEventArgs e)
         {
             MessageBox.Show(e.Description);
         }
@@ -60,14 +53,12 @@ namespace ICT4EVENT
                 rfid.Tag += RFID_Tag;
                 rfid.TagLost += rfid_TagLost;
 
-                
-          
+
                 rfid.open(-1);
 
                 rfid.waitForAttachment(1000);
                 rfid.LED = true;
                 rfid.Antenna = true;
-             
             }
             catch (PhidgetException ex)
             {
@@ -76,13 +67,19 @@ namespace ICT4EVENT
         }
 
 
-
         private void FillActionList()
         {
+            // Fill active events
+            foreach (RegistrationModel registrationModel in Settings.ActiveUser.RegistrationList)
+            {
+                comboBox1.Items.Add(registrationModel.EventItem.Name);
+            }
             comboOptions.Items.Add("Social Media Sharing");
-            comboOptions.Items.Add("Registraties");
-            comboOptions.Items.Add("Toegangscontrole");
-
+            if (Settings.ActiveUser.Level == 2)
+            {
+                comboOptions.Items.Add("Registraties");
+                comboOptions.Items.Add("Toegangscontrole");
+            }
             if (Settings.ActiveUser.Level == 3)
             {
                 comboOptions.Items.Add("Ultra mega holocaust nigger 9000");
@@ -111,31 +108,24 @@ namespace ICT4EVENT
 
         private void isAuthenticated()
         {
-            
             Application.DoEvents();
 
             rfid.close();
 
-
-
-            if (Settings.ActiveUser.Level == 1)
-            {
-                openForm(new MainForm());
-            }
-            else
-            {
-                FillActionList();
-            }
-
-            
+            FillActionList();
         }
 
         private void openForm(Form form)
         {
-            this.Hide();
+            Hide();
 
-            form.Closed += (s, args) => this.Close();
+            form.Closed += (s, args) => Close();
             form.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
