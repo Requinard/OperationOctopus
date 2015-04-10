@@ -61,7 +61,7 @@ namespace ICT4EVENT
 
         private void FillActionList()
         {
-            if()
+            //if()
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

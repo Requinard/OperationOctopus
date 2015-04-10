@@ -21,7 +21,7 @@ namespace ICT4EVENT
 
         public static void Initialize()
         {
-            const string select_query = "SELECT * FROM USERS";
+            const string select_query = "SELECT ident FROM USERS";
             const string select_registration = "SELECT * FROM REGISTRATION WHERE USERID = {0}";
 
             users = new List<UserModel>();
@@ -33,11 +33,9 @@ namespace ICT4EVENT
             {
                 UserModel user = new UserModel();
 
-                user.Username = (string)reader["username"];
-                user.Password = (string)reader["userpassword"];
-                user.RfiDnumber = (string) reader["rfidnumber"];
                 user.Id = Int32.Parse(reader["ident"].ToString());
 
+                user.Read();
                 users.Add(user);
             }
 
