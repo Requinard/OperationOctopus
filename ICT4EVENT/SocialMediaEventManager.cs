@@ -48,7 +48,7 @@ namespace ICT4EVENT
                 user.Username = "admin";
                 user.Password = CreateHashPassword("admin");
                 user.Telephonenumber = "dwad";
-                user.RfiDnumber = 0310321321;
+                user.RfiDnumber = "0310321321";
                 user.Address = "dasdaw";
                 user.Email = "eadwdwa";
 
@@ -129,7 +129,7 @@ namespace ICT4EVENT
             return IsPasswordValid(password, user.Password);
         }
 
-        public static bool AuthenticateUser(int RFIDNumber)
+        public static bool AuthenticateUser(string RFIDNumber)
         {
             UserModel userModel = null;
 

@@ -103,11 +103,11 @@ namespace ICT4EVENT
 
     public class UserModel : DBModel, IDataModelUpdate
     {
-        private int RFIDnumber;
+        private string RFIDnumber;
         private string address;
         private string username;
 
-        public int RfiDnumber
+        public string RfiDnumber
         {
             get { return RFIDnumber; }
             set { RFIDnumber = value; }

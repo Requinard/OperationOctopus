@@ -26,7 +26,7 @@ namespace ICT4EVENT
             OpenRFIDConnection();
         }
 
-        private void RFID_Error(object sender, ErrorEventArgs e)
+        private void RFID_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             MessageBox.Show(e.Description);
         }
@@ -34,6 +34,10 @@ namespace ICT4EVENT
         private void RFID_Tag(object sender, TagEventArgs e)
         {
             txtRFID.Text = Convert.ToString(e.Tag);
+            if (UserManager.AuthenticateUser(e.Tag))
+            {
+                
+            }
             txtUserName.Enabled = txtPassword.Enabled = btnLogin.Enabled = false;
         }
 
@@ -54,6 +58,15 @@ namespace ICT4EVENT
 
         private void FillActionList()
         {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (UserManager.AuthenticateUser(txtUserName.Text, txtPassword.Text))
+            {
+                
+            }
         }
     }
 }
