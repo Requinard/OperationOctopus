@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace ICT4EVENT
             OpenRFIDConnection();
         }
 
-        private void RFID_Error(object sender, ErrorEventArgs e)
+        private void RFID_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             MessageBox.Show(e.Description);
         }
