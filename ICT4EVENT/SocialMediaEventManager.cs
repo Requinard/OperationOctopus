@@ -41,14 +41,14 @@ namespace ICT4EVENT
             }
 
             // If there are 0 users we will add an administrator
-            if (users.Count == 0)
+            if (false)
             {
                 UserModel user = new UserModel();
 
                 user.Username = "admin";
                 user.Password = CreateHashPassword("admin");
                 user.Telephonenumber = "dwad";
-                user.RfiDnumber = 0310321321;
+                user.RfiDnumber = "";
                 user.Address = "dasdaw";
                 user.Email = "eadwdwa";
 
@@ -129,7 +129,7 @@ namespace ICT4EVENT
             return IsPasswordValid(password, user.Password);
         }
 
-        public static bool AuthenticateUser(int RFIDNumber)
+        public static bool AuthenticateUser(string RFIDNumber)
         {
             UserModel userModel = null;
 
