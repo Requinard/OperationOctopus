@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ApplicationLogger;
 using Phidgets;
 using Phidgets.Events;
 
@@ -132,19 +133,25 @@ namespace ICT4EVENT
         {
             Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedText);
 
+            if (Settings.ActiveUser == null || Settings.ActiveEvent == null)
+            {
+                Logger.Error("No user or event were set to active on form initialization");
+                Environment.Exit(2);
+            }
+
             switch (comboOptions.SelectedIndex)
             {
                 case 0:
                     openForm(new MainForm());
                     break;
                 case 1:
-                    // Open registrations
+                    // TODO: Open registrations
                     break;
                 case 2:
-                    // Open access control
+                    // TODO: Open access control
                     break;
                 case 3:
-                    // Open administrator panel
+                    // TODO: Open administrator panel
                     break;
                 default:
                     openForm(new MainForm());
