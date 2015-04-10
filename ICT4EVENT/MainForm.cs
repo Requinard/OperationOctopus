@@ -25,7 +25,7 @@ namespace ICT4EVENT
         {
             Random r = new Random(8);
             UserPost post;
-            post = new UserPost("David == fucking haat", "Guus", Image.FromFile(@"The Cage.jpg"), Image.FromFile(@"nicolas-cage-will-be-in-the-expendables-3.jpg"));
+            post = new UserPost("David != fucking haat", "Guus", Image.FromFile(@"The Cage.jpg"), Image.FromFile(@"nicolas-cage-will-be-in-the-expendables-3.jpg"));
             flowLayoutPanel1.Controls.Add(post);
 
             for (int i = 0; i < 10; i++)
