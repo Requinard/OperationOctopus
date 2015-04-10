@@ -123,7 +123,7 @@ namespace ICT4EVENT
         private string email;
         private string telephonenumber;
         private string password;
-        private string level;
+        private int level;
         private List<RegistrationModel> registrations; 
 
         public string Username
@@ -157,7 +157,19 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "USERS", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            RFIDnumber = reader["RFIDnumber"].ToString();
+            address = reader["Address"].ToString();
+            username = reader["Username"].ToString();
+            email = reader["Email"].ToString();
+            telephonenumber = reader["TelephoneNumber"].ToString();
+            password = reader["UserPassword"].ToString();
+            level = Convert.ToInt32(reader["UserLevel"].ToString());
+
+            return true;
         }
 
         public bool Update()
@@ -209,7 +221,14 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "RENTABLEOBJECT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+
+            return true;
         }
 
         public bool Update()
