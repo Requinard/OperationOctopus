@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Oracle.DataAccess.Client;
 using System.Security.Cryptography;
 
 namespace ICT4EVENT
@@ -85,7 +86,17 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "EVENT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            name = reader["EventName"].ToString();
+            location = reader["EventLocation"].ToString();
+            description = reader["Description"].ToString();
+            startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
+            endDate = Convert.ToDateTime(reader["EndTime"].ToString());
+
+            return true;
         }
 
         public bool Update()
@@ -633,7 +644,16 @@ namespace ICT4EVENT
         }
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "RESERVATION", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            item.Id = Convert.ToInt32(reader["ItemID"].ToString());
+            returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+
+            return true;
         }
 
         public bool Update()
