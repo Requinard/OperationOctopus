@@ -137,6 +137,7 @@ namespace ICT4EVENT
         private string email;
         private string telephonenumber;
         private string password;
+        private int level;
         private List<RegistrationModel> registrations; 
 
         public string Username
@@ -156,6 +157,7 @@ namespace ICT4EVENT
 
         public UserModel()
         {
+            level = 1;
             RegistrationList = new List<RegistrationModel>();
         }
 
