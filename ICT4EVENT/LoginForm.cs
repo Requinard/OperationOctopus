@@ -59,8 +59,14 @@ namespace ICT4EVENT
                 rfid.Error += RFID_Error;
                 rfid.Tag += RFID_Tag;
                 rfid.TagLost += rfid_TagLost;
+
+                
           
-                rfid.open();
+                rfid.open(-1);
+
+                rfid.waitForAttachment(1000);
+                rfid.LED = true;
+                rfid.Antenna = true;
              
             }
             catch (PhidgetException ex)
@@ -73,7 +79,18 @@ namespace ICT4EVENT
 
         private void FillActionList()
         {
-            //if()
+            comboOptions.Items.Add("Social Media Sharing");
+            comboOptions.Items.Add("Registraties");
+            comboOptions.Items.Add("Toegangscontrole");
+
+            if (Settings.ActiveUser.Level == 3)
+            {
+                comboOptions.Items.Add("Ultra mega holocaust nigger 9000");
+            }
+
+            comboOptions.Enabled = true;
+            comboOptions.SelectedIndex = 0;
+            btnGO.Enabled = true;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
