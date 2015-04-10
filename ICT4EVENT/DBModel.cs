@@ -307,7 +307,7 @@ namespace ICT4EVENT
 
         public bool Create()
         {
-            string columns = "EventID, Description, Price, Amount, TypeOfObject";
+            string columns = "EventID, Description, Price, Amount";
             string values = "'" + event_item.Id.ToString() + "','" + description + "','" + price.ToString() + "','" + amount.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
             DBManager.QueryDB(finalQuery);
@@ -316,7 +316,16 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "RENTABLEOBJECT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            description = reader["Description"].ToString();
+            price = Convert.ToDecimal(reader["Price"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+
+            return true;
         }
 
         public bool Update()
