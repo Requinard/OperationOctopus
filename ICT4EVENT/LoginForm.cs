@@ -127,5 +127,30 @@ namespace ICT4EVENT
         {
 
         }
+
+        private void btnGO_Click(object sender, EventArgs e)
+        {
+            Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedText);
+
+            switch (comboOptions.SelectedIndex)
+            {
+                case 0:
+                    openForm(new MainForm());
+                    break;
+                case 1:
+                    // Open registrations
+                    break;
+                case 2:
+                    // Open access control
+                    break;
+                case 3:
+                    // Open administrator panel
+                    break;
+                default:
+                    openForm(new MainForm());
+                    break;
+            }
+        
+        }
     }
 }

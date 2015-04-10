@@ -118,6 +118,7 @@
             this.btnGO.TabIndex = 7;
             this.btnGO.Text = ">";
             this.btnGO.UseVisualStyleBackColor = true;
+            this.btnGO.Click += new System.EventHandler(this.btnGO_Click);
             // 
             // comboBox1
             // 
