@@ -142,9 +142,6 @@
     <Folder Include="Fakes\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="219643-nicolas-cage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="Phidget21COM">
       <Guid>{50484945-4745-5453-0000-000000000000}</Guid>
       <VersionMajor>2</VersionMajor>
