@@ -16,5 +16,10 @@ namespace ICT4EVENT
         {
             InitializeComponent();
         }
+
+        private void txtGebruikers_Enter(object sender, EventArgs e)
+        {
+            txtGebruikers.Text = "";
+        }
     }
 }
