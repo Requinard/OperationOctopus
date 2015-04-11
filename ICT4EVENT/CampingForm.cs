@@ -32,8 +32,8 @@ namespace ICT4EVENT
             Bungalinos = BungalinosArray();
             ComfortPlaatsen = ComfortPlaatsenArray();
             StaCaravan = StaCaravanArray();
-            Invalidenaccomodatie = Enumerable.Range(85, 91).ToArray();
-            Huurtentjes = Enumerable.Range(643, 679).ToArray();
+            Invalidenaccomodatie = Enumerable.Range(85, 6).ToArray();
+            Huurtentjes = Enumerable.Range(643, 36).ToArray();
         }
 
         private void txtGebruikers_Enter(object sender, EventArgs e)
@@ -169,10 +169,10 @@ namespace ICT4EVENT
 
         private int[] EigenTentenArray()
         {
-            int[] Tenten1 = Enumerable.Range(101, 124).ToArray();
-            int[] Tenten2 = Enumerable.Range(200, 214).ToArray();
-            int[] Tenten3 = Enumerable.Range(401, 420).ToArray();
-            int[] Tenten4 = Enumerable.Range(314, 324).ToArray();
+            int[] Tenten1 = Enumerable.Range(101, 23).ToArray();
+            int[] Tenten2 = Enumerable.Range(200, 14).ToArray();
+            int[] Tenten3 = Enumerable.Range(401, 19).ToArray();
+            int[] Tenten4 = Enumerable.Range(314, 10).ToArray();
             int[] Tenten5 = { 544, 431 };
             int[] Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
             return Tenten;
@@ -180,21 +180,21 @@ namespace ICT4EVENT
 
         private int[] BungalowArray()
         {
-            int[] Bungalows1 = Enumerable.Range(2, 13).ToArray();
-            int[] Bungalows2 = Enumerable.Range(14, 16).ToArray();
-            int[] Bungalows3 = Enumerable.Range(17, 21).ToArray();
-            int[] Bungalows4 = Enumerable.Range(23, 27).ToArray();
+            int[] Bungalows1 = Enumerable.Range(2, 11).ToArray();
+            int[] Bungalows2 = Enumerable.Range(14, 2).ToArray();
+            int[] Bungalows3 = Enumerable.Range(17, 4).ToArray();
+            int[] Bungalows4 = Enumerable.Range(23, 4).ToArray();
             int[] Bungalows = Bungalows1.Concat(Bungalows2).Concat(Bungalows3).Concat(Bungalows4).ToArray();
             return Bungalows;
         }
 
         private int[] BlokHuttenArray()
         {
-            int[] Blokhutten1 = Enumerable.Range(72, 82).ToArray();
-            int[] Blokhutten2 = Enumerable.Range(91, 93).ToArray();
-            int[] Blokhutten3 = Enumerable.Range(95, 97).ToArray();
-            int[] Blokhutten4 = Enumerable.Range(138, 143).ToArray();
-            int[] Blokhutten5 = Enumerable.Range(143, 151).ToArray();
+            int[] Blokhutten1 = Enumerable.Range(72, 10).ToArray();
+            int[] Blokhutten2 = Enumerable.Range(91, 2).ToArray();
+            int[] Blokhutten3 = Enumerable.Range(95, 2).ToArray();
+            int[] Blokhutten4 = Enumerable.Range(138, 5).ToArray();
+            int[] Blokhutten5 = Enumerable.Range(143, 8).ToArray();
             int[] Blokhutten6 = { 124 };
             int[] Blokhutten = Blokhutten1.Concat(Blokhutten2).Concat(Blokhutten3).Concat(Blokhutten4).Concat(Blokhutten5).Concat(Blokhutten6).ToArray();
             return Blokhutten;
@@ -202,27 +202,27 @@ namespace ICT4EVENT
 
         private int[] BungalinosArray()
         {
-            int[] Bungalinos1 = Enumerable.Range(50, 56).ToArray();
-            int[] Bungalinos2 = Enumerable.Range(60, 72).ToArray();
-            int[] Bungalinos3 = Enumerable.Range(101, 106).ToArray();
+            int[] Bungalinos1 = Enumerable.Range(50, 6).ToArray();
+            int[] Bungalinos2 = Enumerable.Range(60, 12).ToArray();
+            int[] Bungalinos3 = Enumerable.Range(101, 5).ToArray();
             int[] Bungalinos = Bungalinos1.Concat(Bungalinos2).Concat(Bungalinos3).ToArray();
             return Bungalinos;
         }
 
         private int[] ComfortPlaatsenArray()
         {
-            int[] Comfortplaats1 = Enumerable.Range(601, 627).ToArray();
-            int[] Comfortplaats2 = Enumerable.Range(432, 436).ToArray();
+            int[] Comfortplaats1 = Enumerable.Range(601, 26).ToArray();
+            int[] Comfortplaats2 = Enumerable.Range(432, 4).ToArray();
             int[] ComfortPlaats = Comfortplaats1.Concat(Comfortplaats2).ToArray();
             return ComfortPlaats;
         }
 
         private int[] StaCaravanArray()
         {
-            int[] StaCaravan1 = Enumerable.Range(34, 42).ToArray();
-            int[] StaCaravan2 = Enumerable.Range(125, 128).ToArray();
-            int[] StaCaravan3 = Enumerable.Range(93, 95).ToArray();
-            int[] StaCaravan4 = Enumerable.Range(97, 101).ToArray();
+            int[] StaCaravan1 = Enumerable.Range(34, 8).ToArray();
+            int[] StaCaravan2 = Enumerable.Range(125, 3).ToArray();
+            int[] StaCaravan3 = Enumerable.Range(93, 2).ToArray();
+            int[] StaCaravan4 = Enumerable.Range(97, 4).ToArray();
             int[] StaCaravan = StaCaravan1.Concat(StaCaravan2).Concat(StaCaravan3).Concat(StaCaravan4).ToArray();
             return StaCaravan;
         }
