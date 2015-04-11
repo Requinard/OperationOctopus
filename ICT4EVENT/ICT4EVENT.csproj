@@ -59,7 +59,7 @@
     <Reference Include="Oracle.DataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
     <Reference Include="Phidget21.NET, Version=2.1.8.208, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Phidgets\Phidget21.NET.dll</HintPath>
+      <HintPath>B:\Program Files\Phidgets\Phidget21.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CampingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CampingForm.Designer.cs">
+      <DependentUpon>CampingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,7 +108,12 @@
     <Compile Include="UserPost.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserPost.Designer.cs" />
+    <Compile Include="UserPost.Designer.cs">
+      <DependentUpon>UserPost.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CampingForm.resx">
+      <DependentUpon>CampingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DBConfigForm.resx">
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +151,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fakes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Phidget21COM">
+      <Guid>{50484945-4745-5453-0000-000000000000}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Phidget21COM">

@@ -15,7 +15,7 @@ namespace ICT4EVENT
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             InitializeApplication();
-            Application.Run(new LoginForm());
+            Application.Run(new CampingForm());
             Logger.Info("Exiting Application");
             Logger.Destruct(Settings.LOGFILENAME);
         }
