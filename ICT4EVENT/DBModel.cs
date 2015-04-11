@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Oracle.DataAccess.Client;
 using System.Security.Cryptography;
 
 namespace ICT4EVENT
@@ -9,11 +10,11 @@ namespace ICT4EVENT
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
         protected const string INSERTSTRING = "INSERT INTO {0} ({1}) VALUES ({2})";
         // Updates a row in the database. {0} is table name, {1} is columns and values and {2} is the row id
-        private const string UPDATESTRING = "UPDATE {0} SET {1} WHERE id={2}";
+        protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE ident={2}";
         // Reads the corresponding row from the database. {0} is table name, {1} is the row id
-        private const string READSTRING = "SELECT * FROM {0} WHERE id={1}";
+        protected const string READSTRING = "SELECT * FROM {0} WHERE ident={1}";
         // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
-        protected const string DESTROYSTRING = "DELETE FROM {0} WHERE id={1}";
+        protected const string DESTROYSTRING = "DELETE FROM {0} WHERE ident={1}";
 
         private int ID;
 
@@ -76,7 +77,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            string values = name + "," + location + "," + description + "," + startDate.ToString() + "," + endDate.ToString();
+            string values = "'" + name + "','" + location + "','" + description + "','" + startDate.ToString() + "','" + endDate.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "EVENT", columns, values);
             DBManager.QueryDB(finalQuery);
 
@@ -85,12 +86,25 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "EVENT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            name = reader["EventName"].ToString();
+            location = reader["EventLocation"].ToString();
+            description = reader["Description"].ToString();
+            startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
+            endDate = Convert.ToDateTime(reader["EndTime"].ToString());
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "EventName='" + name + "', EventLocation='" + location + "', Description='" + description + "', BeginTime='" + startDate.ToString() + "', EndTime='" + endDate.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "EVENT", columnvalues, "'" +  Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
@@ -106,6 +120,12 @@ namespace ICT4EVENT
         private string RFIDnumber;
         private string address;
         private string username;
+
+        public int Level
+        {
+            get { return level; }
+            set { level = value; }
+        }
 
         public string RfiDnumber
         {
@@ -134,6 +154,7 @@ namespace ICT4EVENT
         private string email;
         private string telephonenumber;
         private string password;
+        private int level;
         private List<RegistrationModel> registrations; 
 
         public string Username
@@ -153,13 +174,14 @@ namespace ICT4EVENT
 
         public UserModel()
         {
+            level = 1;
             RegistrationList = new List<RegistrationModel>();
         }
 
         public bool Create()
         {
-            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword";
-            string values = "'" + RFIDnumber.ToString() + "','" + address + "','" + username + "','" + email + "','" + telephonenumber + "','" + password +"'";
+            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
+            string values = "'" + RFIDnumber.ToString() + "','" + address + "','" + username + "','" + email + "','" + telephonenumber + "','" + password +"','" + level.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "USERS", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -167,17 +189,32 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "USERS", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            RFIDnumber = reader["RFIDnumber"].ToString();
+            address = reader["Address"].ToString();
+            username = reader["Username"].ToString();
+            email = reader["Email"].ToString();
+            telephonenumber = reader["TelephoneNumber"].ToString();
+            password = reader["UserPassword"].ToString();
+            level = Convert.ToInt32(reader["UserLevel"].ToString());
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "RFIDnumber='" + RFIDnumber.ToString() + "', Address='" + address + "', Username='" + username + "', Email='" + email + "', TelephoneNumber='" + telephonenumber+ "', UserPassword='" + password + "'";
+            string finalQuery = String.Format(UPDATESTRING, "USERS", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "USERS", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "USERS", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -208,7 +245,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, EventID";
-            string values = user.Id.ToString() + "," + event_item.Id.ToString();
+            string values = "'" + user.Id.ToString() + "','" + event_item.Id.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "REGISTRATION", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -216,17 +253,27 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "REGISTRATION", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + User.Id.ToString() + "', EventID='" + event_item.Id.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "REGISTRATION", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "REGISTRATION", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -248,7 +295,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID,EventID,InOrOut";
-            string values = user.Id.ToString() + "," + event_item.Id.ToString() + "," + InOrOut;
+            string values = "'" + user.Id.ToString() + "','" + event_item.Id.ToString() + "','" + InOrOut + "'";
             string finalQuery = String.Format(INSERTSTRING, "RFIDLOG", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -256,17 +303,28 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "RFIDLOG", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            InOrOut = reader["InOrOut"].ToString();
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + user.Id.ToString() + "', EventID='" + event_item.Id.ToString() + "', InOrOut='" + InOrOut + "'";
+            string finalQuery = String.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RFIDLOG", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "RFIDLOG", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -277,7 +335,6 @@ namespace ICT4EVENT
         private string description;
         private decimal price;
         private int amount;
-        private string typeOfObject;
 
         public EventModel EventItem
         {
@@ -310,7 +367,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount";
-            string values = event_item.Id.ToString() + "," + description + "," + price.ToString() + "," + amount.ToString() + "," + typeOfObject;
+            string values = "'" + event_item.Id.ToString() + "','" + description + "','" + price.ToString() + "','" + amount.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -318,17 +375,29 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "RENTABLEOBJECT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            description = reader["Description"].ToString();
+            price = Convert.ToDecimal(reader["Price"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "EventID='" + event_item.Id.ToString() + "', Description='" + description + "', Price='" + price.ToString() + "', Amount='" + amount.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "RENTABLEOBJECT", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RENTABLEOBJECT", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "RENTABLEOBJECT", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -385,7 +454,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
-            string values = user.Id.ToString() + "," + event_item.Id.ToString() + "," + parent.Id.ToString() + "," + content + "," + pathToFile + "," + datePosted.ToString();
+            string values = "'" + user.Id.ToString() + "','" + event_item.Id.ToString() + "','" + parent.Id.ToString() + "','" + content + "','" + pathToFile + "','" + datePosted.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "POST", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -393,17 +462,31 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "POST", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            User.Id = Convert.ToInt32(reader["UserID"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+            content = reader["PostContent"].ToString();
+            pathToFile = reader["PathToFile"].ToString();
+            datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + user.Id.ToString() + "', EventID='" + event_item.Id.ToString() + "', ReplyID='" + parent.Id.ToString() + "', PostContent='" + content + "', PathToFile='" + pathToFile + "', DATETIME='" + datePosted.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "POST", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "POST", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "POST", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -466,7 +549,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity";
-            string values = event_item.Id.ToString() + "," + description + "," + price.ToString() + "," + amount.ToString() + "," + location + "," + category + "," + capacity;
+            string values = "'" + event_item.Id.ToString() + "','" + description + "','" + price.ToString() + "','" + amount.ToString() + "','" + location + "','" + category + "','" + capacity + "'";
             string finalQuery = String.Format(INSERTSTRING, "PLACE", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -474,17 +557,32 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "PLACE", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            description = reader["Description"].ToString();
+            price = Convert.ToDecimal(reader["Price"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+            location = reader["PlaceLocation"].ToString();
+            category = reader["PlaceCategory"].ToString();
+            capacity = reader["PlaceCapacity"].ToString();
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "EventID='" + event_item.Id.ToString() + "', Description='" + description + "', Price='" + price.ToString() + "', Amount='" + amount.ToString() + "', PlaceLocation='" + location + "', PlaceCategory='" + category + "', PlaceCapacity='" + capacity + "'";
+            string finalQuery = String.Format(UPDATESTRING, "PLACE", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "PLACE", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "PLACE", "'" + Id.ToString() + "'");
             return true;
         }
     }
@@ -502,7 +600,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, PostID";
-            string values = user.Id.ToString() + "," + post.Id.ToString();
+            string values = "'" + user.Id.ToString() + "','" + post.Id.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "LIKES", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -510,17 +608,27 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "LIKES", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            post.Id = Convert.ToInt32(reader["PostID"].ToString());
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + user.Id.ToString() + "', PostID='" + post.Id.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "LIKES", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "LIKES", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "LIKES", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -540,7 +648,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "PostID, UserID, Reason, Status";
-            string values = post.Id.ToString() + "," + user.Id.ToString() + "," + reason + "," + status;
+            string values = "'" + post.Id.ToString() + "','" + user.Id.ToString() + "','" + reason + "','" + status + "'";
             string finalQuery = String.Format(INSERTSTRING, "REPORT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -548,17 +656,29 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "REPORT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            reason = reader["Reason"].ToString();
+            status = reader["status"].ToString();
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "PostID='" + post.Id.ToString() + "', UserID='" + user.Id.ToString() + "', Reason='" + reason + "', Status='" + status + "'";
+            string finalQuery = String.Format(UPDATESTRING, "REPORT", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "REPORT", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "REPORT", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -580,7 +700,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "RegistrationID, Amount, PaymentType";
-            string values = registration.Id.ToString() + "," + amount.ToString() + "," + paymentType;
+            string values = "'" + registration.Id.ToString() + "','" + amount.ToString() + "','" + paymentType + "'";
             string finalQuery = String.Format(INSERTSTRING, "PAYMENT", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
@@ -588,17 +708,28 @@ namespace ICT4EVENT
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "PAYMENT", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+            paymentType = reader["PaymentType"].ToString();
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "RegistrationID='" + registration.Id.ToString() + "', Amount='" + amount.ToString() + "', PaymentType='" + paymentType + "'";
+            string finalQuery = String.Format(UPDATESTRING, "PAYMENT", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "PAYMENT", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "PAYMENT", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
@@ -622,24 +753,36 @@ namespace ICT4EVENT
         public bool Create()
         {
             string columns = "UserID, ItemID, ReturnDate, Amount";
-            string values = user.Id.ToString() + "," + item.Id.ToString() + "," + returnDate.ToString() + "," + amount.ToString();
+            string values = "'" + user.Id.ToString() + "','" + item.Id.ToString() + "','" + returnDate.ToString() + "','" + amount.ToString() + "'";
             string finalQuery = String.Format(INSERTSTRING, "RESERVATION", columns, values);
             DBManager.QueryDB(finalQuery);
             return true;
         }
         public bool Read()
         {
-            throw new NotImplementedException();
+            string query = String.Format(READSTRING, "RESERVATION", Id.ToString());
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            item.Id = Convert.ToInt32(reader["ItemID"].ToString());
+            returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+
+            return true;
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            string columnvalues = "UserID='" + user.Id.ToString() + "', ItemID='" + item.Id.ToString() + "', ReturnDate='" + returnDate.ToString() + "', Amount='" + amount.ToString() + "'";
+            string finalQuery = String.Format(UPDATESTRING, "RESERVATION", columnvalues, "'" + Id.ToString() + "'");
+            DBManager.QueryDB(finalQuery);
+            return true;
         }
 
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RESERVATION", Id.ToString());
+            string finalQuery = String.Format(DESTROYSTRING, "RESERVATION", "'" + Id.ToString() + "'");
             DBManager.QueryDB(finalQuery);
             return true;
         }
