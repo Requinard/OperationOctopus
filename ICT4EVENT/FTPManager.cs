@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Text;
 using ApplicationLogger;
 
@@ -26,14 +27,16 @@ namespace ICT4EVENT
 
             Logger.Info("Uploading file " + path);
 
-            // Create the request 
-            var request = (FtpWebRequest) WebRequest.Create(FolderLocation + FileName);
+            // Create the request
+            FTPCreateFolder(path);
+            var request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
+            request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(username, pw);
 
             // Copy the file to a byte array
             try
             {
-                s = new StreamReader(FileName);
+                s = new StreamReader(path);
                 content = Encoding.UTF8.GetBytes(s.ReadToEnd());
                 s.Close();
                 request.ContentLength = content.Length;
@@ -85,6 +88,32 @@ namespace ICT4EVENT
             }
         }
 
+        private static void FTPCreateFolder(string path)
+        {
+            string[] subPaths = path.Replace(Path.GetFileName(path), "").Split('/');
+            string soFar = FolderLocation;
+
+            foreach (string sub in subPaths)
+            {
+                FtpWebRequest request = (FtpWebRequest) WebRequest.Create(soFar + sub);
+                request.Method = WebRequestMethods.Ftp.MakeDirectory;
+
+                request.Credentials = new NetworkCredential(username, pw);
+                try
+                {
+                    FtpWebResponse response = (FtpWebResponse) request.GetResponse();
+                    Stream requestStream = response.GetResponseStream();
+                    requestStream.Close();
+                    response.Close();
+                }
+                catch (Exception ex)
+                {
+                    //Directory already exists
+                }
+                soFar += string.Format("{0}/", sub);
+            }
+        }
+
         /// <summary>
         ///     Downloads a file from the server
         ///     https://msdn.microsoft.com/en-us/library/ms229711%28v=vs.110%29.aspx
@@ -102,7 +131,8 @@ namespace ICT4EVENT
             Logger.Info("Downloading file " + path);
 
             // Create the request 
-            var request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
+            FtpWebRequest request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(username,pw);
 
             // Get the response
