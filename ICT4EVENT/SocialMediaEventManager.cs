@@ -5,6 +5,7 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using Oracle.DataAccess.Client;
 
@@ -84,16 +85,21 @@ namespace ICT4EVENT
         /// <param name="username">Desired username</param>
         /// <param name="password">Desired password</param>
         /// <returns>New user that was created</returns>
-        public static UserModel CreateUser(string username, string password)
+        public static UserModel CreateUser(string username, string password, string realName, string address, string telephoneNumber, string email, string rfid)
         {
             UserModel user = new UserModel();
 
             user.Username = username;
             user.Password = CreateHashPassword(password);
+            user.RfiDnumber = rfid;
+            user.Address = address;
+            user.Telephonenumber = telephoneNumber;
+            user.Email = email;
 
             user.Create();
 
-            users.Add(user);
+            user.Read();
+
             return user;
         }
 
@@ -105,7 +111,12 @@ namespace ICT4EVENT
         /// <returns>Success of the operation</returns>
         public static bool AuthenticateUser(string username, string password)
         {
-            UserModel user = FindUser(username);
+            string query = "SELECT ident FROM users WHERE username = " + username;
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            UserModel user = new UserModel() { Id = Int32.Parse(reader["ident"].ToString())};
+
+            user.Read();
 
             bool success = AuthenticateUser(user, password);
 
@@ -154,20 +165,45 @@ namespace ICT4EVENT
 
         public static UserModel FindUser(string username)
         {
-            IEnumerable<UserModel> s = from user in users
-                where user.Username == username
-                select user;
 
-            return s.ToList()[0] ?? null;
+            string query = String.Format("SELECT * FROM USERS WHERE username = '{0}'", username);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+            UserModel user = new UserModel() {Id = Int32.Parse(reader["ident"].ToString())};
+
+            user.Read();
+
+            return user;
+        }
+
+        public static List<UserModel> FindUsers(string username)
+        {
+            List<UserModel> users = new List<UserModel>();
+            string query = String.Format("SELECT * FROM USERS WHERE USERNAME LIKE %'{0}'%");
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            while (reader.Read())
+            {
+                UserModel user = new UserModel() {Id = Int32.Parse(reader["ident"].ToString())};
+
+                user.Read();
+
+                users.Add(user);
+            }
+
+            return users;
         }
 
         public static UserModel FindUser(int id)
         {
-            var s = from user in users
-                where user.Id == id
-                select user;
+            string query = String.Format("SELECT * FROM USERS WHERE ident = '{0}'", id);
 
-            return s.ToList().First() ?? null;
+            OracleDataReader reader = DBManager.QueryDB(query);
+            UserModel user = new UserModel() { Id = Int32.Parse(reader["ident"].ToString()) };
+
+            user.Read();
+            return user; 
         }
 
         private static string CreateHashPassword(string password)
@@ -269,7 +305,7 @@ namespace ICT4EVENT
             }
         }
 
-        public static PostModel CreateNewPost(string title, string body, string filepath)
+        public static PostModel CreateNewPost(string body, string filepath)
         {
             PostModel post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
@@ -292,6 +328,10 @@ namespace ICT4EVENT
             FTPManager.UploadFile(localDirectory);
 
             post.PathToFile = localDirectory;
+
+            post.Create();
+
+            post.Read();
 
             return post;
         }
