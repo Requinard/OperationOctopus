@@ -5,6 +5,7 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using Oracle.DataAccess.Client;
 
@@ -13,87 +14,31 @@ namespace ICT4EVENT
     public static class UserManager
     {
         private static RNGCryptoServiceProvider crypto;
-        private static List<UserModel> users;
-
         private static readonly RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
         private static int NUM_ITERATIONS = 1000;
         private static int SALT_SIZE = 12;
-
-        public static void Initialize()
-        {
-            const string select_query = "SELECT ident FROM USERS";
-            const string select_registration = "SELECT * FROM REGISTRATION WHERE USERID = {0}";
-
-            users = new List<UserModel>();
-
-            // Construct users
-            OracleDataReader reader = DBManager.QueryDB(select_query);
-
-            while (reader.Read())
-            {
-                UserModel user = new UserModel();
-
-                user.Id = Int32.Parse(reader["ident"].ToString());
-
-                user.Read();
-                users.Add(user);
-            }
-
-            // If there are 0 users we will add an administrator
-            if (users.Count == 0)
-            {
-                UserModel user = new UserModel();
-
-                user.Username = "admin";
-                user.Password = CreateHashPassword("admin");
-                user.Telephonenumber = "dwad";
-                user.RfiDnumber = "0000b3cde1";
-                user.Address = "dasdaw";
-                user.Email = "eadwdwa";
-
-                user.Create();
-
-                users.Add(user);
-            }
-
-            // Construct reservations
-            foreach (UserModel model in users)
-            {
-                string select = String.Format(select_registration, model.Id);
-
-                reader = DBManager.QueryDB(@select);
-
-                while (reader.Read())
-                {
-                    EventModel event_item = EventManager.FindEvent(Int32.Parse(reader["eventid"].ToString()));
-
-                    RegistrationModel registration = new RegistrationModel(model, event_item);
-
-                    registration.Id = Int32.Parse(reader["ident"].ToString());
-
-                    registration.Read();
-
-                    model.RegistrationList.Add(registration);
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Creates a new user
         /// </summary>
         /// <param name="username">Desired username</param>
         /// <param name="password">Desired password</param>
         /// <returns>New user that was created</returns>
-        public static UserModel CreateUser(string username, string password)
+        public static UserModel CreateUser(string username, string password, string realName, string address, string telephoneNumber, string email, string rfid)
         {
             UserModel user = new UserModel();
 
             user.Username = username;
             user.Password = CreateHashPassword(password);
+            user.RfiDnumber = rfid;
+            user.Address = address;
+            user.Telephonenumber = telephoneNumber;
+            user.Email = email;
 
             user.Create();
 
-            users.Add(user);
+            user.Read();
+
             return user;
         }
 
@@ -105,13 +50,20 @@ namespace ICT4EVENT
         /// <returns>Success of the operation</returns>
         public static bool AuthenticateUser(string username, string password)
         {
-            UserModel user = FindUser(username);
+            string query = String.Format("SELECT ident FROM users WHERE username = '{0}'", username);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            reader.Read();
+            UserModel user = new UserModel() { Id = Int32.Parse(reader["ident"].ToString())};
+
+            user.Read();
 
             bool success = AuthenticateUser(user, password);
 
             if (success)
             {
                 Settings.ActiveUser = user;
+
+                GetUserRegistrations(user);
             }
 
             return success;
@@ -128,46 +80,99 @@ namespace ICT4EVENT
             return IsPasswordValid(password, user.Password);
         }
 
+        /// <summary>
+        /// Authenticates a user over his RFID number
+        /// </summary>
+        /// <param name="RFIDNumber">Readable RFID number</param>
+        /// <returns>Whether the operation was a success</returns>
         public static bool AuthenticateUser(string RFIDNumber)
         {
-            UserModel userModel = null;
+            string query = string.Format("SELECT * FROM users WHERE rfidnumber = '{0}'", RFIDNumber);
 
-            foreach (UserModel user in users)
-            {
-                if (user.RfiDnumber == RFIDNumber)
-                {
-                    userModel = user;
-                    break;
-                }
-            }
+            UserModel user = new UserModel();
 
-            if (userModel == null)
-            {
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader.RecordsAffected == 0)
                 return false;
-            }
-            else
-            {
-                Settings.ActiveUser = userModel;
-                return true;
-            }
+            
+            reader.Read();
+
+            user.Id = Int32.Parse(reader["ident"].ToString());
+
+            user.Read();
+
+            Settings.ActiveUser = user;
+
+            GetUserRegistrations(user);
+
+            return true;
         }
 
         public static UserModel FindUser(string username)
         {
-            IEnumerable<UserModel> s = from user in users
-                where user.Username == username
-                select user;
 
-            return s.ToList()[0] ?? null;
+            string query = String.Format("SELECT * FROM USERS WHERE username = '{0}'", username);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+            UserModel user = new UserModel() {Id = Int32.Parse(reader["ident"].ToString())};
+
+            user.Read();
+
+            return user;
+        }
+
+        public static List<UserModel> FindUsers(string username)
+        {
+            List<UserModel> users = new List<UserModel>();
+            string query = String.Format("SELECT * FROM USERS WHERE USERNAME LIKE %'{0}'%");
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            while (reader.Read())
+            {
+                UserModel user = new UserModel() {Id = Int32.Parse(reader["ident"].ToString())};
+
+                user.Read();
+
+                users.Add(user);
+            }
+
+            return users;
         }
 
         public static UserModel FindUser(int id)
         {
-            var s = from user in users
-                where user.Id == id
-                select user;
+            string query = String.Format("SELECT * FROM USERS WHERE ident = '{0}'", id);
 
-            return s.ToList().First() ?? null;
+            OracleDataReader reader = DBManager.QueryDB(query);
+            UserModel user = new UserModel() { Id = Int32.Parse(reader["ident"].ToString()) };
+
+            user.Read();
+            return user; 
+        }
+
+        public static UserModel GetUserRegistrations(UserModel user)
+        {
+            string query = String.Format("SELECT ev.ident as evident, re.ident as regident FROM registration re, event ev WHERE re.eventid = ev.ident AND re.userid = '{0}'", user.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            while (reader.Read())
+            {
+                EventModel model = new EventModel();
+
+                model.Id = Int32.Parse(reader["evident"].ToString());
+
+                model.Read();
+
+                RegistrationModel registration = new RegistrationModel(user, model);
+                registration.Id = Int32.Parse(reader["regident"].ToString());
+                registration.Read();
+
+                user.RegistrationList.Add(registration);
+            }
+            return user;
         }
 
         private static string CreateHashPassword(string password)
@@ -179,7 +184,6 @@ namespace ICT4EVENT
             Rfc2898DeriveBytes deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
             string hash = Convert.ToBase64String(deriver2898.GetBytes(16));
             return salt + ':' + hash;
-            ;
         }
 
         private static bool IsPasswordValid(string password, string saltHash)
@@ -267,6 +271,44 @@ namespace ICT4EVENT
                 //TODO: add likes
                 //TODO: add reports
             }
+        }
+
+        public static PostModel CreateNewPost(string body, string filepath)
+        {
+            PostModel post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
+
+            // Set up post details
+            post.Content = body;
+            DateTime datePosted = DateTime.Now;
+            post.DatePosted = datePosted;
+
+            //Upload file to FTP
+
+            // First we copy it to a local directory
+            //Extract filename
+            string fileName = Path.GetFileName(filepath);
+            string localDirectory = String.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", "test", datePosted.Year, datePosted.Month, datePosted.Day,
+                datePosted.Hour, datePosted.Minute, datePosted.Second, fileName);
+
+            Directory.CreateDirectory(localDirectory.Replace(fileName, ""));
+            File.Copy(filepath, localDirectory);
+
+            FTPManager.UploadFile(localDirectory);
+
+            post.PathToFile = localDirectory;
+
+            post.Create();
+
+            post.Read();
+
+            return post;
+        }
+
+        public static PostModel RetrievePostFile(PostModel post)
+        {
+            FTPManager.DownloadFile(post.PathToFile);
+
+            return post;
         }
     }
 
