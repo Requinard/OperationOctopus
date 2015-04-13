@@ -16,6 +16,7 @@ namespace ICT4EVENT
 
         private bool FirstTime = true;
         private CampingLogic campingLogic ;
+        private EventManagment eventManagment;
 
         
         
@@ -23,27 +24,44 @@ namespace ICT4EVENT
         public AdminGUI()
         {
             InitializeComponent();
-           
-            
+            eventManagment = new EventManagment();
+            eventManagment.EventCreated += addEvent;
+
+
         }
 
-        private void txtGebruikers_Enter(object sender, EventArgs e)
-        {
-            if (FirstTime)
-            {
-                txtGebruikers.Text = "";
-                FirstTime = false;
-            }
-        }
-
-
-        private void btnAddUser_Click(object sender, EventArgs e)
+       private void btnAddUser_Click(object sender, EventArgs e)
         {
             lbUser.Items.Add(txtGebruikers.Text);
             txtGebruikers.Text = "";
         }
 
+        private void addEvent(UserEvent userEvent)
+        {
+            flowEvent.Controls.Add(userEvent);
+        }
 
+        public class EventManagment
+        {
+            public delegate void EventCreatedEventHandeler(UserEvent userEvent);
+
+            public event EventCreatedEventHandeler EventCreated;
+            public EventManagment()
+            {
+                CreateDummyData();
+            }
+            public void CreateDummyData()
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    UserEvent userEvent = new UserEvent("EventName","Sjaak","Camping Reeendaal","Een social media event");
+                    if (EventCreated != null)
+                    {
+                        EventCreated(userEvent);
+                    }
+                }
+            }
+        }
         public class CampingLogic
         {
             private List<string> guests;
@@ -255,7 +273,7 @@ namespace ICT4EVENT
             }
         }
 
-        private void btnReserve_Click()
+        private void btnReserve_Click(object sender, EventArgs e)
         {
             List<string> userList = new List<string>();
             foreach (string s in lbUser.Items)
@@ -269,6 +287,11 @@ namespace ICT4EVENT
                 nmrPlaats.Value = 0;
                 txtGebruikers.Text = "";
             }
+        }
+
+        private void btnReserve_Click()
+        {
+
         }
 
       
