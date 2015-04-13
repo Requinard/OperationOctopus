@@ -12,18 +12,39 @@ namespace ICT4EVENT
 {
     public partial class AdminGUI : Form
     {
-        private CampingForm campingForm ;
+
+        private bool FirstTime = true;
+        private CampingLogic campingLogic ;
 
         public AdminGUI()
         {
             InitializeComponent();
-            campingForm = new CampingForm();
+            campingLogic = new CampingLogic(txtGebruikers.Text,nmrPlaats.Value);
         }
 
-        public class CampingForm
+        private void txtGebruikers_Enter(object sender, EventArgs e)
         {
-            private bool FirstTime = true;
+            if (FirstTime)
+            {
+                txtGebruikers.Text = "";
+                FirstTime = false;
+            }
+        }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            int lines = txtGebruikers.Lines.Count();
+            if (campingLogic.CheckPlaceSize(nmrPlaats.Value, lines))
+            {
+                nmrPlaats.Value = 0;
+                txtGebruikers.Text = "";
+            }
+        }
+
+        public class CampingLogic
+        {
+            private List<string> guests;
+            private decimal amount;
             private int[] Bungalows;
             private int[] Blokhutten;
             private int[] Bungalinos;
@@ -33,9 +54,10 @@ namespace ICT4EVENT
             private int[] StaCaravan;
             private int[] Invalidenaccomodatie;
 
-            public CampingForm()
+            public CampingLogic(List<string> Guests, decimal Amount)
             {
-                InitializeComponent();
+                guests = Guests;
+                amount = Amount;
                 EigenTenten = EigenTentenArray();
                 Bungalows = BungalowArray();
                 Blokhutten = BlokHuttenArray();
@@ -46,16 +68,9 @@ namespace ICT4EVENT
                 Huurtentjes = Enumerable.Range(643, 36).ToArray();
             }
 
-            private void txtGebruikers_Enter(object sender, EventArgs e)
-            {
-                if (FirstTime)
-                {
-                    AdminGUI.txtGebruikers.Text = "";
-                    FirstTime = false;
-                }
-            }
+          
 
-            private bool CheckPlaceSize(decimal place, int amountofusers)
+            public bool CheckPlaceSize(decimal place, int amountofusers)
             {
                 place = Convert.ToInt32(place);
 
@@ -167,15 +182,7 @@ namespace ICT4EVENT
                 return false;
             }
 
-            private void btnAdd_Click(object sender, EventArgs e)
-            {
-                int lines = txtGebruikers.Lines.Count();
-                if (CheckPlaceSize(nmrPlaats.Value, lines))
-                {
-                    nmrPlaats.Value = 0;
-                    txtGebruikers.Text = "";
-                }
-            }
+            
 
             private int[] EigenTentenArray()
             {
