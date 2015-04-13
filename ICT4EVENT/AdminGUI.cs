@@ -33,8 +33,8 @@ namespace ICT4EVENT
        private void btnAddUser_Click(object sender, EventArgs e)
         {
             lbUser.Items.Add(txtGebruikers.Text);
-            txtGebruikers.Text = "";
-        }
+                txtGebruikers.Text = "";
+            }
 
         private void addEvent(UserEvent userEvent)
         {
@@ -74,6 +74,7 @@ namespace ICT4EVENT
             private int[] Huurtentjes;
             private int[] StaCaravan;
             private int[] Invalidenaccomodatie;
+            private int[] AllPlaces;
             private List<string> userList;
 
             public List<string> UserList { get { return userList; } }
@@ -91,6 +92,8 @@ namespace ICT4EVENT
                 StaCaravan = StaCaravanArray();
                 Invalidenaccomodatie = Enumerable.Range(85, 6).ToArray();
                 Huurtentjes = Enumerable.Range(643, 36).ToArray();
+                AllPlaces = AllPlacesArray();
+                FillAllPlaces();
             }
 
             public void AddUser(string user)
@@ -210,7 +213,13 @@ namespace ICT4EVENT
                 return false;
             }
 
+            private void FillAllPlaces()
+            {
+                foreach (int place in AllPlaces)
+                {
             
+                }
+            }
 
             private int[] EigenTentenArray()
             {
@@ -270,6 +279,18 @@ namespace ICT4EVENT
                 int[] StaCaravan4 = Enumerable.Range(97, 4).ToArray();
                 int[] StaCaravan = StaCaravan1.Concat(StaCaravan2).Concat(StaCaravan3).Concat(StaCaravan4).ToArray();
                 return StaCaravan;
+            }
+
+            private int[] AllPlacesArray()
+            {
+                Bungalows.Concat(Blokhutten)
+                    .Concat(Bungalinos)
+                    .Concat(ComfortPlaatsen)
+                    .Concat(EigenTenten)
+                    .Concat(Huurtentjes)
+                    .Concat(StaCaravan)
+                    .Concat(Invalidenaccomodatie)
+                    .ToArray();
             }
         }
 
