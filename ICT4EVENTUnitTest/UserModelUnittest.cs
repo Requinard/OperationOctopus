@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
-using Oracle.DataAccess;
+using Oracle.DataAccess.Types;
+using Oracle.DataAccess.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ICT4EVENT;
-using Oracle.DataAccess.Client;
+
 
 namespace ICT4EVENTUnitTest
 {
@@ -16,7 +17,7 @@ namespace ICT4EVENTUnitTest
         {
             UserModel user = new UserModel();
 
-            string query = "SELECT * FROM USERS where usename = 'testcaseuser'";
+            string query = "SELECT * FROM USERS where username = 'testcaseuser'";
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
@@ -29,11 +30,8 @@ namespace ICT4EVENTUnitTest
             return user;
         }
 
-        [TestMethod]
-        public void CreateTest()
+        public UserModel InitExampleUser()
         {
-            Init.Initialize();
-            // set up
             UserModel user = new UserModel();
 
             user.Address = "Testing Street 1";
@@ -43,6 +41,17 @@ namespace ICT4EVENTUnitTest
             user.RfiDnumber = "00d0wad0aw";
             user.Telephonenumber = "0638212327";
             user.Username = "testcaseuser";
+
+            return user;
+        }
+
+        [TestMethod]
+        public void CreateTest()
+        {
+            Init.Initialize();
+            UserModel user = this.InitExampleUser();
+            // set up
+            
 
             Assert.IsTrue(user.Create(), "Cannot write user to database");
 
@@ -56,7 +65,8 @@ namespace ICT4EVENTUnitTest
             // set up
             UserModel user = getTestUser();
 
-            Assert.AreEqual(user.Email, test_user.Email, "Reading returned an unexpected result");
+
+            Assert.AreEqual(user.Email, this.InitExampleUser().Email, "Reading returned an unexpected result");
         }
 
         [TestMethod]
