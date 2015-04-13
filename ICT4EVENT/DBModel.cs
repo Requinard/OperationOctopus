@@ -16,6 +16,7 @@ namespace ICT4EVENT
         protected const string DESTROYSTRING = "DELETE FROM {0} WHERE ident={1}";
 
         public int Id { get; set; }
+
     }
 
     public class EventModel : DBModel, IDataModelUpdate
