@@ -41,34 +41,34 @@
             this.nmrPlaats = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupDetail = new System.Windows.Forms.GroupBox();
             this.pictureDetail = new System.Windows.Forms.PictureBox();
             this.txtRFIDCode = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabPostReview = new System.Windows.Forms.TabPage();
             this.tabMaterialRental = new System.Windows.Forms.TabPage();
-            this.tabEventManagment = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblSelectReservation = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.cbReservations = new System.Windows.Forms.ComboBox();
             this.listView3 = new System.Windows.Forms.ListView();
+            this.tabEventManagment = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.listView2 = new System.Windows.Forms.ListView();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.lblSelectReservation = new System.Windows.Forms.Label();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPlaats)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.tabMaterialRental.SuspendLayout();
-            this.tabEventManagment.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabEventManagment.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -185,6 +185,18 @@
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Gasten Inschrijven";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.groupDetail);
+            this.groupBox1.Controls.Add(this.txtRFIDCode);
+            this.groupBox1.Location = new System.Drawing.Point(4, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(814, 629);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // groupDetail
             // 
             this.groupDetail.Controls.Add(this.pictureDetail);
@@ -211,18 +223,6 @@
             this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
             this.txtRFIDCode.TabIndex = 0;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.groupDetail);
-            this.groupBox1.Controls.Add(this.txtRFIDCode);
-            this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(814, 629);
-            this.groupBox1.TabIndex = 13;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
             // tabPostReview
             // 
             this.tabPostReview.Location = new System.Drawing.Point(4, 27);
@@ -242,16 +242,6 @@
             this.tabMaterialRental.Text = "Materiaal Uitgifte";
             this.tabMaterialRental.UseVisualStyleBackColor = true;
             // 
-            // tabEventManagment
-            // 
-            this.tabEventManagment.Controls.Add(this.groupBox5);
-            this.tabEventManagment.Location = new System.Drawing.Point(4, 27);
-            this.tabEventManagment.Name = "tabEventManagment";
-            this.tabEventManagment.Size = new System.Drawing.Size(992, 629);
-            this.tabEventManagment.TabIndex = 4;
-            this.tabEventManagment.Text = "Event Beheer";
-            this.tabEventManagment.UseVisualStyleBackColor = true;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.lblSelectReservation);
@@ -264,6 +254,15 @@
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "groupBox4";
+            // 
+            // lblSelectReservation
+            // 
+            this.lblSelectReservation.AutoSize = true;
+            this.lblSelectReservation.Location = new System.Drawing.Point(13, 27);
+            this.lblSelectReservation.Name = "lblSelectReservation";
+            this.lblSelectReservation.Size = new System.Drawing.Size(123, 18);
+            this.lblSelectReservation.TabIndex = 4;
+            this.lblSelectReservation.Text = "Selecteer een reservering";
             // 
             // button2
             // 
@@ -294,6 +293,16 @@
             this.listView3.TabIndex = 2;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
+            // 
+            // tabEventManagment
+            // 
+            this.tabEventManagment.Controls.Add(this.groupBox5);
+            this.tabEventManagment.Location = new System.Drawing.Point(4, 27);
+            this.tabEventManagment.Name = "tabEventManagment";
+            this.tabEventManagment.Size = new System.Drawing.Size(992, 629);
+            this.tabEventManagment.TabIndex = 4;
+            this.tabEventManagment.Text = "Event Beheer";
+            this.tabEventManagment.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -330,7 +339,7 @@
             // button4
             // 
             this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(7, 458);
+            this.button4.Location = new System.Drawing.Point(6, 566);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(198, 54);
             this.button4.TabIndex = 0;
@@ -346,15 +355,6 @@
             this.button5.TabIndex = 1;
             this.button5.Text = "Evenement Verwijderen";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // lblSelectReservation
-            // 
-            this.lblSelectReservation.AutoSize = true;
-            this.lblSelectReservation.Location = new System.Drawing.Point(13, 27);
-            this.lblSelectReservation.Name = "lblSelectReservation";
-            this.lblSelectReservation.Size = new System.Drawing.Size(123, 18);
-            this.lblSelectReservation.TabIndex = 4;
-            this.lblSelectReservation.Text = "Selecteer een reservering";
             // 
             // AdminGUI
             // 
@@ -373,14 +373,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPlaats)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.groupDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).EndInit();
             this.tabMaterialRental.ResumeLayout(false);
-            this.tabEventManagment.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabEventManagment.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
