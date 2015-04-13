@@ -53,6 +53,7 @@ namespace ICT4EVENT
             private int[] Huurtentjes;
             private int[] StaCaravan;
             private int[] Invalidenaccomodatie;
+            private int[] AllPlaces;
 
             public CampingLogic(List<string> Guests, decimal Amount)
             {
@@ -66,6 +67,8 @@ namespace ICT4EVENT
                 StaCaravan = StaCaravanArray();
                 Invalidenaccomodatie = Enumerable.Range(85, 6).ToArray();
                 Huurtentjes = Enumerable.Range(643, 36).ToArray();
+                AllPlaces = AllPlacesArray();
+                FillAllPlaces();
             }
 
           
@@ -182,7 +185,13 @@ namespace ICT4EVENT
                 return false;
             }
 
-            
+            private void FillAllPlaces()
+            {
+                foreach (int place in AllPlaces)
+                {
+                    
+                }
+            }
 
             private int[] EigenTentenArray()
             {
@@ -243,10 +252,19 @@ namespace ICT4EVENT
                 int[] StaCaravan = StaCaravan1.Concat(StaCaravan2).Concat(StaCaravan3).Concat(StaCaravan4).ToArray();
                 return StaCaravan;
             }
-        }
 
-       
-    
+            private int[] AllPlacesArray()
+            {
+                Bungalows.Concat(Blokhutten)
+                    .Concat(Bungalinos)
+                    .Concat(ComfortPlaatsen)
+                    .Concat(EigenTenten)
+                    .Concat(Huurtentjes)
+                    .Concat(StaCaravan)
+                    .Concat(Invalidenaccomodatie)
+                    .ToArray();
+            }
+        }
     }
     
 }
