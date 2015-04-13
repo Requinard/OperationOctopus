@@ -171,6 +171,7 @@
             this.label3.Size = new System.Drawing.Size(110, 32);
             this.label3.TabIndex = 9;
             this.label3.Text = "Gebruikers:";
+            /*
             // 
             // nmrPlaats
             // 
@@ -183,6 +184,7 @@
             this.nmrPlaats.Name = "nmrPlaats";
             this.nmrPlaats.Size = new System.Drawing.Size(169, 25);
             this.nmrPlaats.TabIndex = 7;
+             */
             // 
             // label2
             // 
