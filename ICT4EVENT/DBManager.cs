@@ -25,9 +25,13 @@ namespace ICT4EVENT
                 // Else we get new configs and we serialize them
             else if (!File.Exists(Settings.DBCONFIGFILENAME))
             {
-                var dbConfigForm = new DBConfigForm();
-                dbConfigForm.ShowDialog();
-                Settings.SerializeDatabase();
+                if (Settings.DbConfig == null)
+                {
+                    var dbConfigForm = new DBConfigForm();
+                    dbConfigForm.ShowDialog();
+                    Settings.SerializeDatabase();
+                }
+                
             }
 
             oracleConnection = new OracleConnection();
@@ -37,23 +41,23 @@ namespace ICT4EVENT
 
             try
             {
-                Logger.Info("Attempting connection to Database.");
+                //Logger.Info("Attempting connection to Database.");
                 oracleConnection.Open();
-                Logger.Success("Database connection succesfully opened.");
+                //Logger.Success("Database connection succesfully opened.");
             }
             catch (OracleException)
             {
-                Logger.Error("Database connection could not be opened.");
+                //Logger.Error("Database connection could not be opened.");
                 if (
                     MessageBox.Show(
                         "There seems to be an error connecting to the Database. Would you like to remove the existing database configuration?",
                         "Database error", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    Logger.Warning("Deleting database config name");
+                    //Logger.Warning("Deleting database config name");
                     File.Delete(Settings.DBCONFIGFILENAME);
                 }
-                Logger.Info("Exiting application due to broken database config");
-                Logger.Destruct(Settings.LOGFILENAME);
+                //Logger.Info("Exiting application due to broken database config");
+                //Logger.Destruct(Settings.LOGFILENAME);
                 Environment.Exit(1);
                 return;
             }
@@ -103,14 +107,16 @@ namespace ICT4EVENT
 
             try
             {
-                Logger.Info("Querying Database");
-                Logger.Debug("Query: " + query);
+                //Logger.Info("Querying Database");
+                //Logger.Debug("Query: " + query);
                 queryResult = oracleCommand.ExecuteReader();
-                Logger.Success("Query Successfully executed");
+                oracleCommand.CommandText = "commit";
+                oracleCommand.ExecuteReader();
+                //Logger.Success("Query Successfully executed");
             }
             catch (OracleException exception)
             {
-                Logger.Error("Error querying datbase: " + exception.ToString());
+                //Logger.Error("Error querying datbase: " + exception.ToString());
                 Console.WriteLine(exception.ToString());
 
                 return null;

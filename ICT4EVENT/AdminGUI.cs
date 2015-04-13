@@ -291,11 +291,12 @@ namespace ICT4EVENT
                     .Concat(StaCaravan)
                     .Concat(Invalidenaccomodatie)
                     .ToArray();
+                return null;
             }
         }
 
         private void btnReserve_Click(object sender, EventArgs e)
-        {
+        {/*
             List<string> userList = new List<string>();
             foreach (string s in lbUser.Items)
             {
@@ -307,7 +308,7 @@ namespace ICT4EVENT
             {
                 nmrPlaats.Value = 0;
                 txtGebruikers.Text = "";
-            }
+            } */
         }
 
         private void btnReserve_Click()

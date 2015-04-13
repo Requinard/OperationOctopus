@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ICT4EVENT;
-using Oracle.DataAccess;
+using ApplicationLogger;
 //https://msdn.microsoft.com/en-us/library/ms182532.aspx
 using Oracle.DataAccess.Client;
 
@@ -12,6 +12,17 @@ namespace ICT4EVENTUnitTest
     {
         public UserManagerTest()
         {
+            Logger.Initialize();
+            DBConfig config = new DBConfig();
+
+            config.database = "xe";
+            config.host = "proftaak.me";
+            config.user = "PTS08";
+            config.pw = "PTS08";
+            config.port = "1521";
+
+            Settings.DbConfig = config;
+            
             DBManager.Initalize();
         }
 

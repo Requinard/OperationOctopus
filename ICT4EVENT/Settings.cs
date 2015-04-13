@@ -16,7 +16,7 @@ namespace ICT4EVENT
         public static EventModel ActiveEvent = null;
         
 
-        public static DBConfig DbConfig = new DBConfig();
+        public static DBConfig DbConfig = null;
 
         public static void SerializeDatabase()
         {

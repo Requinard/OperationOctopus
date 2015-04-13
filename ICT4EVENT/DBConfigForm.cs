@@ -8,6 +8,7 @@ namespace ICT4EVENT
         public DBConfigForm()
         {
             InitializeComponent();
+            Settings.DbConfig = new DBConfig();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
