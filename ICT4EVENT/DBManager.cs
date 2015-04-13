@@ -3,7 +3,6 @@ using System.Collections;
 using System.IO;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
-using ApplicationLogger;
 
 namespace ICT4EVENT
 {
