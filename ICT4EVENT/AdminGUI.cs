@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,14 @@ namespace ICT4EVENT
         private bool FirstTime = true;
         private CampingLogic campingLogic ;
 
+        
+        
+
         public AdminGUI()
         {
             InitializeComponent();
-            campingLogic = new CampingLogic(txtGebruikers.Text,nmrPlaats.Value);
+           
+            
         }
 
         private void txtGebruikers_Enter(object sender, EventArgs e)
@@ -31,15 +36,13 @@ namespace ICT4EVENT
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        private void btnAddUser_Click(object sender, EventArgs e)
         {
-            int lines = txtGebruikers.Lines.Count();
-            if (campingLogic.CheckPlaceSize(nmrPlaats.Value, lines))
-            {
-                nmrPlaats.Value = 0;
+            lbUser.Items.Add(txtGebruikers.Text);
                 txtGebruikers.Text = "";
             }
-        }
+
 
         public class CampingLogic
         {
@@ -54,11 +57,15 @@ namespace ICT4EVENT
             private int[] StaCaravan;
             private int[] Invalidenaccomodatie;
             private int[] AllPlaces;
+            private List<string> userList;
+
+            public List<string> UserList { get { return userList; } }
 
             public CampingLogic(List<string> Guests, decimal Amount)
             {
                 guests = Guests;
                 amount = Amount;
+                userList = new List<string>();
                 EigenTenten = EigenTentenArray();
                 Bungalows = BungalowArray();
                 Blokhutten = BlokHuttenArray();
@@ -71,7 +78,10 @@ namespace ICT4EVENT
                 FillAllPlaces();
             }
 
-          
+            public void AddUser(string user)
+            {
+                userList.Add(user);
+            }
 
             public bool CheckPlaceSize(decimal place, int amountofusers)
             {
@@ -189,7 +199,7 @@ namespace ICT4EVENT
             {
                 foreach (int place in AllPlaces)
                 {
-                    
+            
                 }
             }
 
@@ -265,6 +275,26 @@ namespace ICT4EVENT
                     .ToArray();
             }
         }
+
+        private void btnReserve_Click()
+        {
+            List<string> userList = new List<string>();
+            foreach (string s in lbUser.Items)
+            {
+                userList.Add(s);
+            }
+            campingLogic = new CampingLogic(userList, nmrPlaats.Value);
+            int lines = userList.Count();
+            if (campingLogic.CheckPlaceSize(nmrPlaats.Value, lines))
+            {
+                nmrPlaats.Value = 0;
+                txtGebruikers.Text = "";
+            }
+        }
+
+      
+       
+    
     }
     
 }

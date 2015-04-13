@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminGUI));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReserve = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtGebruikers = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -57,7 +57,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.comboPlaces = new System.Windows.Forms.ComboBox();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.lbUser = new System.Windows.Forms.ListBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -87,8 +88,9 @@
             // tabCampingPlace
             // 
             this.tabCampingPlace.BackColor = System.Drawing.Color.White;
-            this.tabCampingPlace.Controls.Add(this.comboPlaces);
-            this.tabCampingPlace.Controls.Add(this.button1);
+            this.tabCampingPlace.Controls.Add(this.lbUser);
+            this.tabCampingPlace.Controls.Add(this.btnAddUser);
+            this.tabCampingPlace.Controls.Add(this.btnReserve);
             this.tabCampingPlace.Controls.Add(this.label1);
             this.tabCampingPlace.Controls.Add(this.txtGebruikers);
             this.tabCampingPlace.Controls.Add(this.pictureBox1);
@@ -100,15 +102,15 @@
             this.tabCampingPlace.TabIndex = 0;
             this.tabCampingPlace.Text = "Kampeerplaats";
             // 
-            // button1
+            // btnReserve
             // 
-            this.button1.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(762, 233);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 43);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Reserveer";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReserve.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReserve.Location = new System.Drawing.Point(755, 273);
+            this.btnReserve.Name = "btnReserve";
+            this.btnReserve.Size = new System.Drawing.Size(169, 43);
+            this.btnReserve.TabIndex = 11;
+            this.btnReserve.Text = "Reserveer";
+            this.btnReserve.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -122,13 +124,11 @@
             // 
             // txtGebruikers
             // 
-            this.txtGebruikers.Location = new System.Drawing.Point(762, 69);
-            this.txtGebruikers.Multiline = true;
+            this.txtGebruikers.Location = new System.Drawing.Point(755, 69);
             this.txtGebruikers.Name = "txtGebruikers";
             this.txtGebruikers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGebruikers.Size = new System.Drawing.Size(169, 146);
+            this.txtGebruikers.Size = new System.Drawing.Size(169, 25);
             this.txtGebruikers.TabIndex = 10;
-            this.txtGebruikers.Text = "Elke ID op een nieuwe regel...";
             this.txtGebruikers.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pictureBox1
@@ -151,6 +151,18 @@
             this.label3.Size = new System.Drawing.Size(110, 32);
             this.label3.TabIndex = 9;
             this.label3.Text = "Gebruikers:";
+            // 
+            // nmrPlaats
+            // 
+            this.nmrPlaats.Location = new System.Drawing.Point(755, 36);
+            this.nmrPlaats.Maximum = new decimal(new int[] {
+            678,
+            0,
+            0,
+            0});
+            this.nmrPlaats.Name = "nmrPlaats";
+            this.nmrPlaats.Size = new System.Drawing.Size(169, 25);
+            this.nmrPlaats.TabIndex = 7;
             // 
             // label2
             // 
@@ -272,8 +284,8 @@
             // listView3
             // 
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.listView3.Location = new System.Drawing.Point(6, 56);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(741, 372);
@@ -308,7 +320,7 @@
             // 
             this.listView2.Location = new System.Drawing.Point(7, 54);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(750, 398);
+            this.listView2.Size = new System.Drawing.Size(982, 398);
             this.listView2.TabIndex = 3;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -316,7 +328,7 @@
             // button3
             // 
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(559, 458);
+            this.button3.Location = new System.Drawing.Point(567, 566);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(198, 54);
             this.button3.TabIndex = 2;
@@ -336,21 +348,31 @@
             // button5
             // 
             this.button5.ForeColor = System.Drawing.Color.Black;
-            this.button5.Location = new System.Drawing.Point(286, 458);
+            this.button5.Location = new System.Drawing.Point(291, 566);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(198, 54);
             this.button5.TabIndex = 1;
             this.button5.Text = "Evenement Verwijderen";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // comboPlaces
+            // btnAddUser
             // 
-            this.comboPlaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboPlaces.FormattingEnabled = true;
-            this.comboPlaces.Location = new System.Drawing.Point(799, 34);
-            this.comboPlaces.Name = "comboPlaces";
-            this.comboPlaces.Size = new System.Drawing.Size(132, 32);
-            this.comboPlaces.TabIndex = 12;
+            this.btnAddUser.Location = new System.Drawing.Point(930, 69);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(59, 25);
+            this.btnAddUser.TabIndex = 12;
+            this.btnAddUser.Text = "Voeg toe";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
+            // lbUser
+            // 
+            this.lbUser.FormattingEnabled = true;
+            this.lbUser.ItemHeight = 18;
+            this.lbUser.Location = new System.Drawing.Point(755, 101);
+            this.lbUser.Name = "lbUser";
+            this.lbUser.Size = new System.Drawing.Size(169, 166);
+            this.lbUser.TabIndex = 13;
             // 
             // AdminGUI
             // 
@@ -387,7 +409,7 @@
         private System.Windows.Forms.TabPage tabCampingPlace;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReserve;
         private System.Windows.Forms.TextBox txtGebruikers;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -409,6 +431,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboPlaces;
+        private System.Windows.Forms.ListBox lbUser;
+        private System.Windows.Forms.Button btnAddUser;
     }
 }
