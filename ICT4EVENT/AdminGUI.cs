@@ -15,11 +15,11 @@ namespace ICT4EVENT
     {
 
         private bool FirstTime = true;
-        private CampingLogic campingLogic ;
+        private CampingLogic campingLogic;
         private EventManagment eventManagment;
 
-        
-        
+
+
 
         public AdminGUI()
         {
@@ -30,31 +30,34 @@ namespace ICT4EVENT
 
         }
 
-       private void btnAddUser_Click(object sender, EventArgs e)
+        private void btnAddUser_Click(object sender, EventArgs e)
         {
             lbUser.Items.Add(txtGebruikers.Text);
-                txtGebruikers.Text = "";
-            }
+            txtGebruikers.Text = "";
+        }
 
         private void addEvent(UserEvent userEvent)
         {
             flowEvent.Controls.Add(userEvent);
         }
 
-        public class EventManagment
+        public class EventManagment : AdminGUI
         {
             public delegate void EventCreatedEventHandeler(UserEvent userEvent);
 
             public event EventCreatedEventHandeler EventCreated;
+
             public EventManagment()
             {
                 CreateDummyData();
             }
+
             public void CreateDummyData()
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    UserEvent userEvent = new UserEvent("EventName","Sjaak","Camping Reeendaal","Een social media event");
+                    UserEvent userEvent = new UserEvent("EventName", "Sjaak", "Camping Reeendaal",
+                        "Een social media event");
                     if (EventCreated != null)
                     {
                         EventCreated(userEvent);
@@ -62,7 +65,8 @@ namespace ICT4EVENT
                 }
             }
         }
-        public class CampingLogic
+
+        public class CampingLogic : AdminGUI
         {
             private List<string> guests;
             private decimal amount;
@@ -77,7 +81,10 @@ namespace ICT4EVENT
             private int[] AllPlaces;
             private List<string> userList;
 
-            public List<string> UserList { get { return userList; } }
+            public List<string> UserList
+            {
+                get { return userList; }
+            }
 
             public CampingLogic(List<string> Guests, decimal Amount)
             {
@@ -217,7 +224,7 @@ namespace ICT4EVENT
             {
                 foreach (int place in AllPlaces)
                 {
-            
+                    nmrPlaats.Items.Add(place);
                 }
             }
 
@@ -227,7 +234,7 @@ namespace ICT4EVENT
                 int[] Tenten2 = Enumerable.Range(200, 14).ToArray();
                 int[] Tenten3 = Enumerable.Range(401, 19).ToArray();
                 int[] Tenten4 = Enumerable.Range(314, 10).ToArray();
-                int[] Tenten5 = { 544, 431 };
+                int[] Tenten5 = {544, 431};
                 int[] Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
                 return Tenten;
             }
@@ -249,8 +256,14 @@ namespace ICT4EVENT
                 int[] Blokhutten3 = Enumerable.Range(95, 2).ToArray();
                 int[] Blokhutten4 = Enumerable.Range(138, 5).ToArray();
                 int[] Blokhutten5 = Enumerable.Range(143, 8).ToArray();
-                int[] Blokhutten6 = { 124 };
-                int[] Blokhutten = Blokhutten1.Concat(Blokhutten2).Concat(Blokhutten3).Concat(Blokhutten4).Concat(Blokhutten5).Concat(Blokhutten6).ToArray();
+                int[] Blokhutten6 = {124};
+                int[] Blokhutten =
+                    Blokhutten1.Concat(Blokhutten2)
+                        .Concat(Blokhutten3)
+                        .Concat(Blokhutten4)
+                        .Concat(Blokhutten5)
+                        .Concat(Blokhutten6)
+                        .ToArray();
                 return Blokhutten;
             }
 
@@ -283,7 +296,7 @@ namespace ICT4EVENT
 
             private int[] AllPlacesArray()
             {
-                Bungalows.Concat(Blokhutten)
+                int[] allplaces = Bungalows.Concat(Blokhutten)
                     .Concat(Bungalinos)
                     .Concat(ComfortPlaatsen)
                     .Concat(EigenTenten)
@@ -291,34 +304,34 @@ namespace ICT4EVENT
                     .Concat(StaCaravan)
                     .Concat(Invalidenaccomodatie)
                     .ToArray();
-                return Bungalows;
+                return allplaces;
             }
+
+            private void btnReserve_Click(object sender, EventArgs e)
+            {
+                List<string> userList = new List<string>();
+                foreach (string s in lbUser.Items)
+                {
+                    userList.Add(s);
+                }
+                campingLogic = new CampingLogic(userList, Convert.ToInt32(nmrPlaats.Text));
+                int lines = userList.Count();
+                if (campingLogic.CheckPlaceSize(Convert.ToInt32(nmrPlaats), lines))
+                {
+                    nmrPlaats.SelectedIndex = 0;
+                    txtGebruikers.Text = "";
+                }
+            }
+        }
+
+        public class RegistrationLogic
+        {
+            
         }
 
         private void btnReserve_Click(object sender, EventArgs e)
         {
-            List<string> userList = new List<string>();
-            foreach (string s in lbUser.Items)
-            {
-                userList.Add(s);
-            }
-            campingLogic = new CampingLogic(userList, nmrPlaats.Value);
-            int lines = userList.Count();
-            if (campingLogic.CheckPlaceSize(nmrPlaats.Value, lines))
-            {
-                nmrPlaats.Value = 0;
-                txtGebruikers.Text = "";
-            }
-        }
-
-        private void btnReserve_Click()
-        {
 
         }
-
-      
-       
-    
     }
-    
 }

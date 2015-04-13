@@ -33,6 +33,7 @@
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
+            this.nmrPlaats = new System.Windows.Forms.ComboBox();
             this.lbUser = new System.Windows.Forms.ListBox();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.btnReserve = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.nmrPlaats = new System.Windows.Forms.NumericUpDown();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -71,7 +71,6 @@
             this.groupBox4.SuspendLayout();
             this.tabEventManagment.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrPlaats)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -99,19 +98,28 @@
             this.tabCampingPlace.Controls.Add(this.pictureBox1);
             this.tabCampingPlace.Controls.Add(this.label3);
             this.tabCampingPlace.Controls.Add(this.label2);
-            this.tabCampingPlace.Location = new System.Drawing.Point(4, 27);
+            this.tabCampingPlace.Location = new System.Drawing.Point(4, 33);
             this.tabCampingPlace.Name = "tabCampingPlace";
-            this.tabCampingPlace.Size = new System.Drawing.Size(992, 629);
+            this.tabCampingPlace.Size = new System.Drawing.Size(992, 623);
             this.tabCampingPlace.TabIndex = 0;
             this.tabCampingPlace.Text = "Kampeerplaats";
+            // 
+            // nmrPlaats
+            // 
+            this.nmrPlaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.nmrPlaats.FormattingEnabled = true;
+            this.nmrPlaats.Location = new System.Drawing.Point(799, 34);
+            this.nmrPlaats.Name = "nmrPlaats";
+            this.nmrPlaats.Size = new System.Drawing.Size(186, 32);
+            this.nmrPlaats.TabIndex = 14;
             // 
             // lbUser
             // 
             this.lbUser.FormattingEnabled = true;
-            this.lbUser.ItemHeight = 18;
+            this.lbUser.ItemHeight = 24;
             this.lbUser.Location = new System.Drawing.Point(755, 101);
             this.lbUser.Name = "lbUser";
-            this.lbUser.Size = new System.Drawing.Size(169, 166);
+            this.lbUser.Size = new System.Drawing.Size(169, 148);
             this.lbUser.TabIndex = 13;
             // 
             // btnAddUser
@@ -141,7 +149,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(650, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 29);
+            this.label1.Size = new System.Drawing.Size(343, 36);
             this.label1.TabIndex = 8;
             this.label1.Text = "Campingplaats verhuur";
             // 
@@ -150,7 +158,7 @@
             this.txtGebruikers.Location = new System.Drawing.Point(755, 69);
             this.txtGebruikers.Name = "txtGebruikers";
             this.txtGebruikers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGebruikers.Size = new System.Drawing.Size(169, 25);
+            this.txtGebruikers.Size = new System.Drawing.Size(169, 30);
             this.txtGebruikers.TabIndex = 10;
             this.txtGebruikers.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -171,7 +179,7 @@
             this.label3.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(653, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 25);
+            this.label3.Size = new System.Drawing.Size(110, 32);
             this.label3.TabIndex = 9;
             this.label3.Text = "Gebruikers:";
             // 
@@ -181,7 +189,7 @@
             this.label2.Font = new System.Drawing.Font("Agency FB", 15.75F);
             this.label2.Location = new System.Drawing.Point(653, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 25);
+            this.label2.Size = new System.Drawing.Size(140, 32);
             this.label2.TabIndex = 8;
             this.label2.Text = "CampingPlaats:";
             // 
@@ -189,9 +197,9 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(992, 629);
+            this.tabPage1.Size = new System.Drawing.Size(992, 623);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Gasten Inschrijven";
             // 
@@ -230,14 +238,14 @@
             this.txtRFIDCode.Enabled = false;
             this.txtRFIDCode.Location = new System.Drawing.Point(6, 19);
             this.txtRFIDCode.Name = "txtRFIDCode";
-            this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
+            this.txtRFIDCode.Size = new System.Drawing.Size(730, 30);
             this.txtRFIDCode.TabIndex = 0;
             // 
             // tabPostReview
             // 
-            this.tabPostReview.Location = new System.Drawing.Point(4, 27);
+            this.tabPostReview.Location = new System.Drawing.Point(4, 33);
             this.tabPostReview.Name = "tabPostReview";
-            this.tabPostReview.Size = new System.Drawing.Size(992, 629);
+            this.tabPostReview.Size = new System.Drawing.Size(992, 623);
             this.tabPostReview.TabIndex = 2;
             this.tabPostReview.Text = "Post Review";
             this.tabPostReview.UseVisualStyleBackColor = true;
@@ -245,9 +253,9 @@
             // tabMaterialRental
             // 
             this.tabMaterialRental.Controls.Add(this.groupBox4);
-            this.tabMaterialRental.Location = new System.Drawing.Point(4, 27);
+            this.tabMaterialRental.Location = new System.Drawing.Point(4, 33);
             this.tabMaterialRental.Name = "tabMaterialRental";
-            this.tabMaterialRental.Size = new System.Drawing.Size(992, 629);
+            this.tabMaterialRental.Size = new System.Drawing.Size(992, 623);
             this.tabMaterialRental.TabIndex = 3;
             this.tabMaterialRental.Text = "Materiaal Uitgifte";
             this.tabMaterialRental.UseVisualStyleBackColor = true;
@@ -270,7 +278,7 @@
             this.lblSelectReservation.AutoSize = true;
             this.lblSelectReservation.Location = new System.Drawing.Point(13, 27);
             this.lblSelectReservation.Name = "lblSelectReservation";
-            this.lblSelectReservation.Size = new System.Drawing.Size(123, 18);
+            this.lblSelectReservation.Size = new System.Drawing.Size(163, 24);
             this.lblSelectReservation.TabIndex = 4;
             this.lblSelectReservation.Text = "Selecteer een reservering";
             // 
@@ -289,7 +297,7 @@
             this.cbReservations.FormattingEnabled = true;
             this.cbReservations.Location = new System.Drawing.Point(142, 24);
             this.cbReservations.Name = "cbReservations";
-            this.cbReservations.Size = new System.Drawing.Size(256, 26);
+            this.cbReservations.Size = new System.Drawing.Size(256, 32);
             this.cbReservations.TabIndex = 1;
             // 
             // listView3
@@ -307,9 +315,9 @@
             // tabEventManagment
             // 
             this.tabEventManagment.Controls.Add(this.groupBox5);
-            this.tabEventManagment.Location = new System.Drawing.Point(4, 27);
+            this.tabEventManagment.Location = new System.Drawing.Point(4, 33);
             this.tabEventManagment.Name = "tabEventManagment";
-            this.tabEventManagment.Size = new System.Drawing.Size(992, 629);
+            this.tabEventManagment.Size = new System.Drawing.Size(992, 623);
             this.tabEventManagment.TabIndex = 4;
             this.tabEventManagment.Text = "Event Beheer";
             this.tabEventManagment.UseVisualStyleBackColor = true;
@@ -364,16 +372,9 @@
             this.button5.Text = "Evenement Verwijderen";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // nmrPlaats
-            // 
-            this.nmrPlaats.Location = new System.Drawing.Point(763, 36);
-            this.nmrPlaats.Name = "nmrPlaats";
-            this.nmrPlaats.Size = new System.Drawing.Size(120, 25);
-            this.nmrPlaats.TabIndex = 14;
-            // 
             // AdminGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 666);
             this.Controls.Add(this.tabMainTab);
@@ -396,7 +397,6 @@
             this.groupBox4.PerformLayout();
             this.tabEventManagment.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nmrPlaats)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,6 +431,6 @@
         private System.Windows.Forms.ListBox lbUser;
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.FlowLayoutPanel flowEvent;
-        private System.Windows.Forms.NumericUpDown nmrPlaats;
+        private System.Windows.Forms.ComboBox nmrPlaats;
     }
 }
