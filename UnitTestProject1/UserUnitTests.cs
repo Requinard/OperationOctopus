@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ICT4EVENT;
 using ApplicationLogger;
 //https://msdn.microsoft.com/en-us/library/ms182532.aspx
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENTUnitTest 
 {
@@ -12,7 +11,6 @@ namespace ICT4EVENTUnitTest
     {
         public UserManagerTest()
         {
-            Logger.Initialize();
             DBConfig config = new DBConfig();
 
             config.database = "xe";
