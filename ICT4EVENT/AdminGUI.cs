@@ -50,7 +50,7 @@ namespace ICT4EVENT
             {
                 if (FirstTime)
                 {
-                    txtGebruikers.Text = "";
+                    AdminGUI.txtGebruikers.Text = "";
                     FirstTime = false;
                 }
             }
