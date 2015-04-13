@@ -171,7 +171,7 @@ namespace ICT4EVENT
         }
 
         private static string CreateHashPassword(string password)
-    {
+        {
             byte[] buf = new byte[SALT_SIZE];
             rng.GetBytes(buf);
             string salt = Convert.ToBase64String(buf);
@@ -301,13 +301,13 @@ namespace ICT4EVENT
                 model.Id = Int32.Parse(reader["ident"].ToString());
 
                 places.Add(model);
-        }
+            }
 
             // Get rentables
             reader = DBManager.QueryDB(select_rentables);
 
             while (reader.Read())
-        {
+            {
                 EventModel event_item = EventManager.FindEvent(Int32.Parse(reader["eventid"].ToString()));
 
                 RentableObjectModel model = new RentableObjectModel(event_item);
