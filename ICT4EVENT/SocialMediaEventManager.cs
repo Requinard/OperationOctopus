@@ -50,7 +50,7 @@ namespace ICT4EVENT
         /// <returns>Success of the operation</returns>
         public static bool AuthenticateUser(string username, string password)
         {
-            string query = "SELECT ident FROM users WHERE username = " + username;
+            string query = String.Format("SELECT ident FROM users WHERE username = '{0}'", username);
             OracleDataReader reader = DBManager.QueryDB(query);
             reader.Read();
             UserModel user = new UserModel() { Id = Int32.Parse(reader["ident"].ToString())};
@@ -62,6 +62,8 @@ namespace ICT4EVENT
             if (success)
             {
                 Settings.ActiveUser = user;
+
+                GetUserRegistrations(user);
             }
 
             return success;
@@ -101,6 +103,8 @@ namespace ICT4EVENT
             user.Read();
 
             Settings.ActiveUser = user;
+
+            GetUserRegistrations(user);
 
             return true;
         }
@@ -150,14 +154,25 @@ namespace ICT4EVENT
 
         public static UserModel GetUserRegistrations(UserModel user)
         {
-            string query = "SELECT ident FROM registration WHERE userid = " + user.Id;
+            string query = String.Format("SELECT ev.ident as evident, re.ident as regident FROM registration re, event ev WHERE re.eventid = ev.ident AND re.userid = '{0}'", user.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
             while (reader.Read())
             {
-                RegistrationModel registration = new RegistrationModel();
+                EventModel model = new EventModel();
+
+                model.Id = Int32.Parse(reader["evident"].ToString());
+
+                model.Read();
+
+                RegistrationModel registration = new RegistrationModel(user, model);
+                registration.Id = Int32.Parse(reader["regident"].ToString());
+                registration.Read();
+
+                user.RegistrationList.Add(registration);
             }
+            return user;
         }
 
         private static string CreateHashPassword(string password)
@@ -169,7 +184,6 @@ namespace ICT4EVENT
             Rfc2898DeriveBytes deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
             string hash = Convert.ToBase64String(deriver2898.GetBytes(16));
             return salt + ':' + hash;
-            ;
         }
 
         private static bool IsPasswordValid(string password, string saltHash)
