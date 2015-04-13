@@ -33,6 +33,7 @@
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
+            this.nmrPlaats = new System.Windows.Forms.ComboBox();
             this.lbUser = new System.Windows.Forms.ListBox();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.btnReserve = new System.Windows.Forms.Button();
@@ -88,6 +89,7 @@
             // tabCampingPlace
             // 
             this.tabCampingPlace.BackColor = System.Drawing.Color.White;
+            this.tabCampingPlace.Controls.Add(this.nmrPlaats);
             this.tabCampingPlace.Controls.Add(this.lbUser);
             this.tabCampingPlace.Controls.Add(this.btnAddUser);
             this.tabCampingPlace.Controls.Add(this.btnReserve);
@@ -102,13 +104,22 @@
             this.tabCampingPlace.TabIndex = 0;
             this.tabCampingPlace.Text = "Kampeerplaats";
             // 
+            // nmrPlaats
+            // 
+            this.nmrPlaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.nmrPlaats.FormattingEnabled = true;
+            this.nmrPlaats.Location = new System.Drawing.Point(799, 34);
+            this.nmrPlaats.Name = "nmrPlaats";
+            this.nmrPlaats.Size = new System.Drawing.Size(186, 32);
+            this.nmrPlaats.TabIndex = 14;
+            // 
             // lbUser
             // 
             this.lbUser.FormattingEnabled = true;
-            this.lbUser.ItemHeight = 18;
+            this.lbUser.ItemHeight = 24;
             this.lbUser.Location = new System.Drawing.Point(755, 101);
             this.lbUser.Name = "lbUser";
-            this.lbUser.Size = new System.Drawing.Size(169, 166);
+            this.lbUser.Size = new System.Drawing.Size(169, 148);
             this.lbUser.TabIndex = 13;
             // 
             // btnAddUser
@@ -147,7 +158,7 @@
             this.txtGebruikers.Location = new System.Drawing.Point(755, 69);
             this.txtGebruikers.Name = "txtGebruikers";
             this.txtGebruikers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGebruikers.Size = new System.Drawing.Size(169, 25);
+            this.txtGebruikers.Size = new System.Drawing.Size(169, 30);
             this.txtGebruikers.TabIndex = 10;
             this.txtGebruikers.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -171,20 +182,6 @@
             this.label3.Size = new System.Drawing.Size(110, 32);
             this.label3.TabIndex = 9;
             this.label3.Text = "Gebruikers:";
-            /*
-            // 
-            // nmrPlaats
-            // 
-            this.nmrPlaats.Location = new System.Drawing.Point(755, 36);
-            this.nmrPlaats.Maximum = new decimal(new int[] {
-            678,
-            0,
-            0,
-            0});
-            this.nmrPlaats.Name = "nmrPlaats";
-            this.nmrPlaats.Size = new System.Drawing.Size(169, 25);
-            this.nmrPlaats.TabIndex = 7;
-             */
             // 
             // label2
             // 
@@ -434,5 +431,6 @@
         private System.Windows.Forms.ListBox lbUser;
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.FlowLayoutPanel flowEvent;
+        private System.Windows.Forms.ComboBox nmrPlaats;
     }
 }
