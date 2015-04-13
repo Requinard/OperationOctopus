@@ -65,7 +65,7 @@
             // 
             this.nmrPlaats.Location = new System.Drawing.Point(876, 60);
             this.nmrPlaats.Maximum = new decimal(new int[] {
-            678,
+            679,
             0,
             0,
             0});
