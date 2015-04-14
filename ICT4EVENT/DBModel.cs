@@ -74,7 +74,9 @@ namespace ICT4EVENT
             string values = "'" + name + "','" + location + "','" + description + "','" + startDate + "','" + endDate +
                             "'";
             string finalQuery = String.Format(INSERTSTRING, "EVENT", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
 
             return true;
         }
@@ -83,6 +85,9 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "EVENT", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return false;
+
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             name = reader["EventName"].ToString();
@@ -99,14 +104,20 @@ namespace ICT4EVENT
             string columnvalues = "EventName='" + name + "', EventLocation='" + location + "', Description='" +
                                   description + "', BeginTime='" + startDate + "', EndTime='" + endDate + "'";
             string finalQuery = String.Format(UPDATESTRING, "EVENT", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
+
             return true;
         }
 
         public bool Destroy()
         {
             string query = String.Format(DESTROYSTRING, "EVENT", Id);
-            DBManager.QueryDB(query);
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -178,7 +189,9 @@ namespace ICT4EVENT
             string values = "'" + RFIDnumber + "','" + address + "','" + username + "','" + email + "','" +
                             telephonenumber + "','" + password + "','" + level + "'";
             string finalQuery = String.Format(INSERTSTRING, "USERS", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader =  DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -186,6 +199,9 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "USERS", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return false;
+
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             RFIDnumber = reader["RFIDnumber"].ToString();
@@ -205,14 +221,18 @@ namespace ICT4EVENT
                                   "', Email='" + email + "', TelephoneNumber='" + telephonenumber + "', UserPassword='" +
                                   password + "'";
             string finalQuery = String.Format(UPDATESTRING, "USERS", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false; 
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "USERS", "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -244,7 +264,9 @@ namespace ICT4EVENT
             string columns = "UserID, EventID";
             string values = "'" + user.Id + "','" + event_item.Id + "'";
             string finalQuery = String.Format(INSERTSTRING, "REGISTRATION", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -252,6 +274,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "REGISTRATION", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             user.Id = Convert.ToInt32(reader["UserID"].ToString());
@@ -264,13 +287,18 @@ namespace ICT4EVENT
         {
             string columnvalues = "UserID='" + User.Id + "', EventID='" + event_item.Id + "'";
             string finalQuery = String.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "REGISTRATION", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -293,7 +321,9 @@ namespace ICT4EVENT
             string columns = "UserID,EventID,InOrOut";
             string values = "'" + user.Id + "','" + event_item.Id + "','" + InOrOut + "'";
             string finalQuery = String.Format(INSERTSTRING, "RFIDLOG", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false; ;
             return true;
         }
 
@@ -301,6 +331,8 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "RFIDLOG", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             user.Id = Convert.ToInt32(reader["UserID"].ToString());
@@ -314,13 +346,19 @@ namespace ICT4EVENT
         {
             string columnvalues = "UserID='" + user.Id + "', EventID='" + event_item.Id + "', InOrOut='" + InOrOut + "'";
             string finalQuery = String.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "RFIDLOG", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
+
             return true;
         }
     }
@@ -365,7 +403,9 @@ namespace ICT4EVENT
             string columns = "EventID, Description, Price, Amount";
             string values = "'" + event_item.Id + "','" + description + "','" + price + "','" + amount + "'";
             string finalQuery = String.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -373,6 +413,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "RENTABLEOBJECT", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
@@ -388,13 +429,19 @@ namespace ICT4EVENT
             string columnvalues = "EventID='" + event_item.Id + "', Description='" + description + "', Price='" + price +
                                   "', Amount='" + amount + "'";
             string finalQuery = String.Format(UPDATESTRING, "RENTABLEOBJECT", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "RENTABLEOBJECT", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
+
             return true;
         }
     }
@@ -454,7 +501,9 @@ namespace ICT4EVENT
             string values = "'" + user.Id + "','" + event_item.Id + "','" + parent.Id + "','" + content + "','" +
                             pathToFile + "','" + datePosted + "'";
             string finalQuery = String.Format(INSERTSTRING, "POST", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -462,6 +511,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "POST", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             User.Id = Convert.ToInt32(reader["UserID"].ToString());
@@ -480,13 +530,18 @@ namespace ICT4EVENT
                                   "', PostContent='" + content + "', PathToFile='" + pathToFile + "', DATETIME='" +
                                   datePosted + "'";
             string finalQuery = String.Format(UPDATESTRING, "POST", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "POST", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -553,7 +608,9 @@ namespace ICT4EVENT
             string values = "'" + event_item.Id + "','" + description + "','" + price + "','" + amount + "','" +
                             location + "','" + category + "','" + capacity + "'";
             string finalQuery = String.Format(INSERTSTRING, "PLACE", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -561,6 +618,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "PLACE", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
@@ -580,13 +638,18 @@ namespace ICT4EVENT
                                   "', Amount='" + amount + "', PlaceLocation='" + location + "', PlaceCategory='" +
                                   category + "', PlaceCapacity='" + capacity + "'";
             string finalQuery = String.Format(UPDATESTRING, "PLACE", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "PLACE", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -601,7 +664,9 @@ namespace ICT4EVENT
             string columns = "UserID, PostID";
             string values = "'" + user.Id + "','" + post.Id + "'";
             string finalQuery = String.Format(INSERTSTRING, "LIKES", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -609,6 +674,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "LIKES", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if(reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             user.Id = Convert.ToInt32(reader["UserID"].ToString());
@@ -621,14 +687,18 @@ namespace ICT4EVENT
         {
             string columnvalues = "UserID='" + user.Id + "', PostID='" + post.Id + "'";
             string finalQuery = String.Format(UPDATESTRING, "LIKES", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "LIKES", "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -645,7 +715,9 @@ namespace ICT4EVENT
             string columns = "PostID, UserID, Reason, Status";
             string values = "'" + post.Id + "','" + user.Id + "','" + reason + "','" + status + "'";
             string finalQuery = String.Format(INSERTSTRING, "REPORT", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -653,6 +725,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "REPORT", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             post.Id = Convert.ToInt32(reader["PostID"].ToString());
@@ -668,14 +741,18 @@ namespace ICT4EVENT
             string columnvalues = "PostID='" + post.Id + "', UserID='" + user.Id + "', Reason='" + reason +
                                   "', Status='" + status + "'";
             string finalQuery = String.Format(UPDATESTRING, "REPORT", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "REPORT", "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -693,7 +770,9 @@ namespace ICT4EVENT
             string columns = "RegistrationID, Amount, PaymentType";
             string values = "'" + registration.Id + "','" + amount + "','" + paymentType + "'";
             string finalQuery = String.Format(INSERTSTRING, "PAYMENT", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -701,6 +780,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "PAYMENT", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
@@ -715,14 +795,18 @@ namespace ICT4EVENT
             string columnvalues = "RegistrationID='" + registration.Id + "', Amount='" + amount + "', PaymentType='" +
                                   paymentType + "'";
             string finalQuery = String.Format(UPDATESTRING, "PAYMENT", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "PAYMENT", "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
@@ -743,7 +827,9 @@ namespace ICT4EVENT
             string columns = "UserID, ItemID, ReturnDate, Amount";
             string values = "'" + user.Id + "','" + item.Id + "','" + returnDate + "','" + amount + "'";
             string finalQuery = String.Format(INSERTSTRING, "RESERVATION", columns, values);
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
@@ -751,6 +837,7 @@ namespace ICT4EVENT
         {
             string query = String.Format(READSTRING, "RESERVATION", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null) return false;
             reader.Read();
             Id = Convert.ToInt32(reader["Ident"].ToString());
             user.Id = Convert.ToInt32(reader["UserID"].ToString());
@@ -766,14 +853,18 @@ namespace ICT4EVENT
             string columnvalues = "UserID='" + user.Id + "', ItemID='" + item.Id + "', ReturnDate='" + returnDate +
                                   "', Amount='" + amount + "'";
             string finalQuery = String.Format(UPDATESTRING, "RESERVATION", columnvalues, "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
 
         public bool Destroy()
         {
             string finalQuery = String.Format(DESTROYSTRING, "RESERVATION", "'" + Id + "'");
-            DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null) return false;
             return true;
         }
     }
