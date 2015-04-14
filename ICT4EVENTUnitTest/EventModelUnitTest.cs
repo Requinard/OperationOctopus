@@ -12,13 +12,7 @@ namespace ICT4EVENTUnitTest
         {
             Init.Initialize();
 
-            EventModel event_item = new EventModel();
-
-            event_item.Location = "Eindhoven";
-            event_item.Description = "We're testing our things";
-            event_item.Name = "ICT Testing";
-            event_item.StartDate = DateTime.Now;
-            event_item.EndDate = DateTime.Now;
+            EventModel event_item = Init.getLocalEvent(); 
 
             Assert.IsTrue(event_item.Create());
         }

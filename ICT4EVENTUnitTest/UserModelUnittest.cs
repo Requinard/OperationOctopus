@@ -13,43 +13,21 @@ namespace ICT4EVENTUnitTest
     {
         private UserModel test_user;
  
-        private UserModel getTestUser()
-        {
-            UserModel user = new UserModel();
-
-            string query = "SELECT * FROM USERS where username = 'testcaseuser'";
-
-            OracleDataReader reader = DBManager.QueryDB(query);
-
-            reader.Read();
-
-            user.Id = Int32.Parse(reader["ident"].ToString());
-
-            user.Read();
-
-            return user;
-        }
-
-        public UserModel InitExampleUser()
-        {
-            UserModel user = new UserModel();
-
-            user.Address = "Testing Street 1";
-            user.Email = "Testing@test.com";
-            user.Level = 2;
-            user.Password = "test";
-            user.RfiDnumber = "00d0wad0aw";
-            user.Telephonenumber = "0638212327";
-            user.Username = "testcaseuser";
-
-            return user;
-        }
+        
 
         [TestMethod]
+        public void UnitCRUDTest()
+        {
+            this.CreateTest();
+            this.ReadTest();
+            this.AlterTest();
+            this.DestroyTest();
+        }
+
         public void CreateTest()
         {
             Init.Initialize();
-            UserModel user = this.InitExampleUser();
+            UserModel user = Init.getLocalTestUser();
             // set up
             
 
@@ -58,22 +36,22 @@ namespace ICT4EVENTUnitTest
             test_user = user;
         }
 
-        [TestMethod]
         public void ReadTest()
         {
             Init.Initialize();
             // set up
-            UserModel user = getTestUser();
+            UserModel user = Init.getExternalTestUser();
 
 
-            Assert.AreEqual(user.Email, this.InitExampleUser().Email, "Reading returned an unexpected result");
+            Assert.AreEqual(user.Email, Init.getLocalTestUser().Email, "Reading returned an unexpected result");
+
         }
 
-        [TestMethod]
         public void AlterTest()
         {
             Init.Initialize();
-            UserModel user = getTestUser();
+            UserModel user = Init.getExternalTestUser();
+            UserModel exampleUser = Init.getLocalTestUser();
 
             user.Email = "test@testing.com";
 
@@ -81,14 +59,13 @@ namespace ICT4EVENTUnitTest
 
             user.Read();
 
-            Assert.AreNotEqual(user.Email, test_user.Email);
+            Assert.AreNotEqual(user.Email, exampleUser.Email);
         }
 
-        [TestMethod]
         public void DestroyTest()
         {
             Init.Initialize();
-            UserModel user = getTestUser();
+            UserModel user = Init.getExternalTestUser();
 
             Assert.IsTrue(user.Destroy(), "Could not destroy user");
         }
