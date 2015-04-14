@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -17,7 +16,8 @@ namespace ICT4EVENT
         public static void Initalize()
         {
             // make sure the dbmanager can't reinitialise
-            if (oracleConnection != null &&(oracleConnection.State != ConnectionState.Broken || oracleConnection.State != ConnectionState.Closed))
+            if (oracleConnection != null &&
+                (oracleConnection.State != ConnectionState.Broken || oracleConnection.State != ConnectionState.Closed))
                 return;
 
             // If the file exist, we deserialize our configs
@@ -25,7 +25,7 @@ namespace ICT4EVENT
             {
                 Settings.DeserializeDatabase();
             }
-                // Else we get new configs and we serialize them
+            // Else we get new configs and we serialize them
             else if (!File.Exists(Settings.DBCONFIGFILENAME))
             {
                 if (Settings.DbConfig == null)
@@ -34,11 +34,10 @@ namespace ICT4EVENT
                     dbConfigForm.ShowDialog();
                     Settings.SerializeDatabase();
                 }
-                
             }
 
             oracleConnection = new OracleConnection();
-            oracleConnection.ConnectionString = String.Format("User Id={0};Password={1};Data Source=//{2}:{3}/{4}",
+            oracleConnection.ConnectionString = string.Format("User Id={0};Password={1};Data Source=//{2}:{3}/{4}",
                 Settings.DbConfig.user, Settings.DbConfig.pw, Settings.DbConfig.host,
                 Settings.DbConfig.port, Settings.DbConfig.database);
 
@@ -105,7 +104,7 @@ namespace ICT4EVENT
         {
             OracleDataReader queryResult;
 
-            OracleCommand oracleCommand = oracleConnection.CreateCommand();
+            var oracleCommand = oracleConnection.CreateCommand();
 
             // Replace ; with EOS, so that this won't ever be a problem again
             oracleCommand.CommandText = query.Replace(';', '\0');

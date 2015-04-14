@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -9,6 +8,19 @@ namespace ICT4EVENT
     /// </summary>
     public class UserModel : DBModel, IDataModelUpdate
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="UserModel" /> class.
+        /// </summary>
+        public UserModel()
+        {
+            level = 1;
+            RegistrationList = new List<RegistrationModel>();
+        }
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -58,19 +70,6 @@ namespace ICT4EVENT
 
         #endregion
 
-        #region Constructors and Destructors
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UserModel" /> class.
-        /// </summary>
-        public UserModel()
-        {
-            this.level = 1;
-            this.RegistrationList = new List<RegistrationModel>();
-        }
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
@@ -78,15 +77,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Address
         {
-            get
-            {
-                return this.address;
-            }
+            get { return address; }
 
-            set
-            {
-                this.address = value;
-            }
+            set { address = value; }
         }
 
         /// <summary>
@@ -94,15 +87,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Email
         {
-            get
-            {
-                return this.email;
-            }
+            get { return email; }
 
-            set
-            {
-                this.email = value;
-            }
+            set { email = value; }
         }
 
         /// <summary>
@@ -110,15 +97,9 @@ namespace ICT4EVENT
         /// </summary>
         public int Level
         {
-            get
-            {
-                return this.level;
-            }
+            get { return level; }
 
-            set
-            {
-                this.level = value;
-            }
+            set { level = value; }
         }
 
         /// <summary>
@@ -126,16 +107,10 @@ namespace ICT4EVENT
         /// </summary>
         public string Password
         {
-            get
-            {
-                return this.password;
-            }
+            get { return password; }
 
             // Automatically hashes a new string when it's set
-            set
-            {
-                this.password = value;
-            }
+            set { password = value; }
         }
 
         /// <summary>
@@ -143,15 +118,9 @@ namespace ICT4EVENT
         /// </summary>
         public string RfiDnumber
         {
-            get
-            {
-                return this.RFIDnumber;
-            }
+            get { return RFIDnumber; }
 
-            set
-            {
-                this.RFIDnumber = value;
-            }
+            set { RFIDnumber = value; }
         }
 
         /// <summary>
@@ -159,15 +128,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Telephonenumber
         {
-            get
-            {
-                return this.telephonenumber;
-            }
+            get { return telephonenumber; }
 
-            set
-            {
-                this.telephonenumber = value;
-            }
+            set { telephonenumber = value; }
         }
 
         /// <summary>
@@ -175,15 +138,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Username
         {
-            get
-            {
-                return this.username;
-            }
+            get { return username; }
 
-            set
-            {
-                this.username = value;
-            }
+            set { username = value; }
         }
 
         #endregion
@@ -198,18 +155,18 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
-            string values = string.Format(
-                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", 
-                this.RFIDnumber, 
-                this.address, 
-                this.username, 
-                this.email, 
-                this.telephonenumber, 
-                this.password, 
-                this.level);
-            string finalQuery = string.Format(INSERTSTRING, "USERS", columns, values);
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
+            var values = string.Format(
+                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}'",
+                RFIDnumber,
+                address,
+                username,
+                email,
+                telephonenumber,
+                password,
+                level);
+            var finalQuery = string.Format(INSERTSTRING, "USERS", columns, values);
+            var reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -227,8 +184,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "USERS", "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var finalQuery = string.Format(DESTROYSTRING, "USERS", "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -246,8 +203,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "USERS", this.Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var query = string.Format(READSTRING, "USERS", Id);
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null)
             {
@@ -255,14 +212,14 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            this.Id = Convert.ToInt32(reader["Ident"].ToString());
-            this.RFIDnumber = reader["RFIDnumber"].ToString();
-            this.address = reader["Address"].ToString();
-            this.username = reader["Username"].ToString();
-            this.email = reader["Email"].ToString();
-            this.telephonenumber = reader["TelephoneNumber"].ToString();
-            this.password = reader["UserPassword"].ToString();
-            this.level = Convert.ToInt32(reader["UserLevel"].ToString());
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            RFIDnumber = reader["RFIDnumber"].ToString();
+            address = reader["Address"].ToString();
+            username = reader["Username"].ToString();
+            email = reader["Email"].ToString();
+            telephonenumber = reader["TelephoneNumber"].ToString();
+            password = reader["UserPassword"].ToString();
+            level = Convert.ToInt32(reader["UserLevel"].ToString());
 
             return true;
         }
@@ -275,17 +232,17 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            string columnvalues =
+            var columnvalues =
                 string.Format(
-                    "RFIDnumber='{0}', Address='{1}', Username='{2}', Email='{3}', TelephoneNumber='{4}', UserPassword='{5}'", 
-                    this.RFIDnumber, 
-                    this.address, 
-                    this.username, 
-                    this.email, 
-                    this.telephonenumber, 
-                    this.password);
-            string finalQuery = string.Format(UPDATESTRING, "USERS", columnvalues, "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+                    "RFIDnumber='{0}', Address='{1}', Username='{2}', Email='{3}', TelephoneNumber='{4}', UserPassword='{5}'",
+                    RFIDnumber,
+                    address,
+                    username,
+                    email,
+                    telephonenumber,
+                    password);
+            var finalQuery = string.Format(UPDATESTRING, "USERS", columnvalues, "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {

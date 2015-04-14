@@ -1,5 +1,4 @@
 using System;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -45,13 +44,13 @@ namespace ICT4EVENT
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PostModel"/> class.
+        ///     Initializes a new instance of the <see cref="PostModel" /> class.
         /// </summary>
         /// <param name="user">
-        /// The user.
+        ///     The user.
         /// </param>
         /// <param name="event_item">
-        /// The event_item.
+        ///     The event_item.
         /// </param>
         public PostModel(UserModel user, EventModel event_item)
         {
@@ -74,15 +73,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Content
         {
-            get
-            {
-                return this.content;
-            }
+            get { return content; }
 
-            set
-            {
-                this.content = value;
-            }
+            set { content = value; }
         }
 
         /// <summary>
@@ -90,15 +83,9 @@ namespace ICT4EVENT
         /// </summary>
         public DateTime DatePosted
         {
-            get
-            {
-                return this.datePosted;
-            }
+            get { return datePosted; }
 
-            set
-            {
-                this.datePosted = value;
-            }
+            set { datePosted = value; }
         }
 
         /// <summary>
@@ -106,10 +93,7 @@ namespace ICT4EVENT
         /// </summary>
         public EventModel EventItem
         {
-            get
-            {
-                return this.event_item;
-            }
+            get { return event_item; }
         }
 
         /// <summary>
@@ -117,15 +101,9 @@ namespace ICT4EVENT
         /// </summary>
         public PostModel Parent
         {
-            get
-            {
-                return this.parent;
-            }
+            get { return parent; }
 
-            set
-            {
-                this.parent = value;
-            }
+            set { parent = value; }
         }
 
         /// <summary>
@@ -133,15 +111,9 @@ namespace ICT4EVENT
         /// </summary>
         public string PathToFile
         {
-            get
-            {
-                return this.pathToFile;
-            }
+            get { return pathToFile; }
 
-            set
-            {
-                this.pathToFile = value;
-            }
+            set { pathToFile = value; }
         }
 
         /// <summary>
@@ -149,10 +121,7 @@ namespace ICT4EVENT
         /// </summary>
         public UserModel User
         {
-            get
-            {
-                return this.user;
-            }
+            get { return user; }
         }
 
         #endregion
@@ -167,20 +136,20 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "";
-            string values = "";
+            var columns = "";
+            var values = "";
             if (parent != null)
             {
                 columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
 
                 values = string.Format(
                     "'{0}','{1}','{2}','{3}','{4}',,to_date('{5}', 'fmmm-fmdd-yyyy hh:mi:ss')'",
-                    this.user.Id,
-                    this.event_item.Id,
-                    this.parent.Id,
-                    this.content,
-                    this.pathToFile,
-                    this.datePosted.ToString(dateFormat));
+                    user.Id,
+                    event_item.Id,
+                    parent.Id,
+                    content,
+                    pathToFile,
+                    datePosted.ToString(dateFormat));
             }
             else
             {
@@ -188,15 +157,15 @@ namespace ICT4EVENT
 
                 values = string.Format(
                     "'{0}','{1}','{2}','{3}',to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')",
-                    this.user.Id,
-                    this.event_item.Id,
-                    this.content,
-                    this.pathToFile,
-                    this.datePosted.ToString(dateFormat));
+                    user.Id,
+                    event_item.Id,
+                    content,
+                    pathToFile,
+                    datePosted.ToString(dateFormat));
             }
-            
-            string finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            var finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -209,8 +178,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "POST", "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var finalQuery = string.Format(DESTROYSTRING, "POST", "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -223,28 +192,28 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "POST", this.Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var query = string.Format(READSTRING, "POST", Id);
+            var reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
             }
 
             reader.Read();
-            this.Id = Convert.ToInt32(reader["Ident"].ToString());
-            this.User.Id = Convert.ToInt32(reader["UserID"].ToString());
-            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            User.Id = Convert.ToInt32(reader["UserID"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
             try
             {
-                this.parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+                parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
             }
             catch (Exception)
             {
-                this.parent = null;
+                parent = null;
             }
-            this.content = reader["PostContent"].ToString();
-            this.pathToFile = reader["PathToFile"].ToString();
-            this.datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
+            content = reader["PostContent"].ToString();
+            pathToFile = reader["PathToFile"].ToString();
+            datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
 
             return true;
         }
@@ -257,32 +226,32 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            string columnvalues = "";
+            var columnvalues = "";
             if (parent != null)
             {
                 columnvalues =
                     string.Format(
                         "UserID='{0}', EventID='{1}', ReplyID='{2}', PostContent='{3}', PathToFile='{4}', DATETIME=to_date('{5}', 'fmmm-fmdd-yyyy hh:mi:ss')",
-                        this.user.Id,
-                        this.event_item.Id,
-                        this.parent.Id,
-                        this.content,
-                        this.pathToFile,
-                        this.datePosted.ToString(dateFormat));
+                        user.Id,
+                        event_item.Id,
+                        parent.Id,
+                        content,
+                        pathToFile,
+                        datePosted.ToString(dateFormat));
             }
             else
             {
                 columnvalues =
                     string.Format(
                         "UserID='{0}', EventID='{1}', PostContent='{2}', PathToFile='{3}', DATETIME=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')",
-                        this.user.Id,
-                        this.event_item.Id,
-                        this.content,
-                        this.pathToFile,
-                        this.datePosted.ToString(dateFormat)); 
+                        user.Id,
+                        event_item.Id,
+                        content,
+                        pathToFile,
+                        datePosted.ToString(dateFormat));
             }
-            string finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

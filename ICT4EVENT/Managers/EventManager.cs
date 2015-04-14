@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Security.Authentication;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -12,27 +8,27 @@ namespace ICT4EVENT
     {
         public static EventModel FindEvent(int id)
         {
-            EventModel eventModel = new EventModel();
+            var eventModel = new EventModel();
             eventModel.Id = id;
 
-            if(eventModel.Read())
+            if (eventModel.Read())
                 return eventModel;
             return null;
         }
 
         public static EventModel FindEvent(string name)
         {
-            string query = string.Format("SELECT * FROM event WHERE eventname = '{0}'", name);
+            var query = string.Format("SELECT * FROM event WHERE eventname = '{0}'", name);
 
-            EventModel eventModel = new EventModel();
+            var eventModel = new EventModel();
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             reader.Read();
-            eventModel.Id = Int32.Parse(reader["ident"].ToString());
+            eventModel.Id = int.Parse(reader["ident"].ToString());
 
             eventModel.Read();
 
@@ -41,20 +37,20 @@ namespace ICT4EVENT
 
         public static List<EventModel> FindAllEvents()
         {
-            string query = string.Format("SELECT * FROM event ");
+            var query = "SELECT * FROM event ";
 
-            List<EventModel> eventModels = new List<EventModel>();
+            var eventModels = new List<EventModel>();
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                EventModel eventModel = new EventModel();
+                var eventModel = new EventModel();
 
-                eventModel.Id = Int32.Parse(reader["ident"].ToString());
+                eventModel.Id = int.Parse(reader["ident"].ToString());
 
                 eventModel.Read();
 
@@ -66,20 +62,20 @@ namespace ICT4EVENT
 
         public static List<EventModel> FindEvents(string name)
         {
-            string query = string.Format("SELECT * FROM event WHERE eventname IS LIKE '%{0}%'", name);
+            var query = string.Format("SELECT * FROM event WHERE eventname IS LIKE '%{0}%'", name);
 
-            List<EventModel> eventModels = new List<EventModel>();
+            var eventModels = new List<EventModel>();
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                EventModel eventModel = new EventModel();
+                var eventModel = new EventModel();
 
-                eventModel.Id = Int32.Parse(reader["ident"].ToString());
+                eventModel.Id = int.Parse(reader["ident"].ToString());
 
                 eventModel.Read();
 
@@ -89,12 +85,13 @@ namespace ICT4EVENT
             return eventModels;
         }
 
-        public static EventModel CreateNewEvent(string name, string location, string description, DateTime startDate, DateTime endDate)
+        public static EventModel CreateNewEvent(string name, string location, string description, DateTime startDate,
+            DateTime endDate)
         {
-            if(Settings.ActiveUser.Level != 3)
+            if (Settings.ActiveUser.Level != 3)
                 throw new AuthenticationException();
 
-            EventModel eventModel = new EventModel();
+            var eventModel = new EventModel();
 
             eventModel.Name = name;
             eventModel.Location = location;

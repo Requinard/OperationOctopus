@@ -1,5 +1,4 @@
 using System;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -43,7 +42,7 @@ namespace ICT4EVENT
 
         public UserModel User
         {
-            get { return user;  }
+            get { return user; }
             set { user = value; }
         }
 
@@ -83,16 +82,16 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "PostID, UserID, Reason, DateTime, Status";
-            string values = string.Format(
-                "'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),'{4}'", 
-                this.post.Id, 
-                this.user.Id, 
-                this.reason,
-                this.date.ToString(dateFormat),
-                this.status);
-            string finalQuery = string.Format(INSERTSTRING, "REPORT", columns, values);
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var columns = "PostID, UserID, Reason, DateTime, Status";
+            var values = string.Format(
+                "'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),'{4}'",
+                post.Id,
+                user.Id,
+                reason,
+                date.ToString(dateFormat),
+                status);
+            var finalQuery = string.Format(INSERTSTRING, "REPORT", columns, values);
+            var reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -110,8 +109,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "REPORT", "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var finalQuery = string.Format(DESTROYSTRING, "REPORT", "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -124,19 +123,19 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "REPORT", this.Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var query = string.Format(READSTRING, "REPORT", Id);
+            var reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
             }
 
             reader.Read();
-            this.Id = Convert.ToInt32(reader["Ident"].ToString());
-            this.post.Id = Convert.ToInt32(reader["PostID"].ToString());
-            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            this.reason = reader["Reason"].ToString();
-            this.status = reader["status"].ToString();
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            reason = reader["Reason"].ToString();
+            status = reader["status"].ToString();
 
             return true;
         }
@@ -149,15 +148,15 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format(
-                "PostID='{0}', UserID='{1}', Reason='{2}', DateTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), Status='{4}'", 
-                this.post.Id, 
-                this.user.Id, 
-                this.reason,
-                this.Date.ToString(dateFormat),
-                this.status);
-            string finalQuery = string.Format(UPDATESTRING, "REPORT", columnvalues, "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var columnvalues = string.Format(
+                "PostID='{0}', UserID='{1}', Reason='{2}', DateTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), Status='{4}'",
+                post.Id,
+                user.Id,
+                reason,
+                Date.ToString(dateFormat),
+                status);
+            var finalQuery = string.Format(UPDATESTRING, "REPORT", columnvalues, "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

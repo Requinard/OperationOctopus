@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -18,21 +16,21 @@ namespace ICT4EVENT
             rentables = new List<RentableObjectModel>();
 
             // Get places
-            OracleDataReader reader = DBManager.QueryDB(select_places);
+            var reader = DBManager.QueryDB(select_places);
 
             while (reader.Read())
             {
-                EventModel event_item = EventManager.FindEvent(Int32.Parse(reader["eventid"].ToString()));
+                var event_item = EventManager.FindEvent(int.Parse(reader["eventid"].ToString()));
 
-                PlaceModel model = new PlaceModel(event_item);
+                var model = new PlaceModel(event_item);
 
                 model.Description = reader["description"].ToString();
-                model.Price = Decimal.Parse(reader["price"].ToString());
-                model.Amount = Int32.Parse(reader["amount"].ToString());
+                model.Price = decimal.Parse(reader["price"].ToString());
+                model.Amount = int.Parse(reader["amount"].ToString());
                 model.Category = reader["PlaceCategory"].ToString();
-                model.Capacity = Int32.Parse(reader["PlaceCapacity"].ToString());
+                model.Capacity = int.Parse(reader["PlaceCapacity"].ToString());
                 model.Location = reader["PlaceLocation"].ToString();
-                model.Id = Int32.Parse(reader["ident"].ToString());
+                model.Id = int.Parse(reader["ident"].ToString());
 
                 places.Add(model);
             }
@@ -42,14 +40,14 @@ namespace ICT4EVENT
 
             while (reader.Read())
             {
-                EventModel event_item = EventManager.FindEvent(Int32.Parse(reader["eventid"].ToString()));
+                var event_item = EventManager.FindEvent(int.Parse(reader["eventid"].ToString()));
 
-                RentableObjectModel model = new RentableObjectModel(event_item);
+                var model = new RentableObjectModel(event_item);
 
-                model.Id = Int32.Parse(reader["ident"].ToString());
+                model.Id = int.Parse(reader["ident"].ToString());
                 model.Description = reader["description"].ToString();
-                model.Price = Decimal.Parse(reader["price"].ToString());
-                model.Amount = Int32.Parse(reader["amount"].ToString());
+                model.Price = decimal.Parse(reader["price"].ToString());
+                model.Amount = int.Parse(reader["amount"].ToString());
 
                 rentables.Add(model);
             }

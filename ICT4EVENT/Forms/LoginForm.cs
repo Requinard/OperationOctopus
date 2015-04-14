@@ -67,11 +67,10 @@ namespace ICT4EVENT
             }
         }
 
-
         private void FillActionList()
         {
             // Fill active events
-            foreach (RegistrationModel registrationModel in Settings.ActiveUser.RegistrationList)
+            foreach (var registrationModel in Settings.ActiveUser.RegistrationList)
             {
                 comboBox1.Items.Add(registrationModel.EventItem.Name);
             }
@@ -126,7 +125,6 @@ namespace ICT4EVENT
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void btnGO_Click(object sender, EventArgs e)
@@ -157,7 +155,6 @@ namespace ICT4EVENT
                     openForm(new MainForm());
                     break;
             }
-        
         }
     }
 }

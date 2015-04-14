@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using ICT4EVENT;
-
 namespace ICT4EVENT
 {
     /// <summary>
@@ -16,10 +14,23 @@ namespace ICT4EVENT
     /// </summary>
     public abstract class DBModel
     {
+        // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
+
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        #endregion
+
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
+
         #region Constants
 
         protected string dateFormat = "MM-dd-yyyy hh:mm:ss";
+
         /// <summary>
         ///     The destroystring.
         /// </summary>
@@ -42,16 +53,6 @@ namespace ICT4EVENT
         ///     The updatestring.
         /// </summary>
         protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE ident={2}";
-
-        #endregion
-
-        // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
-        #region Public Properties
-
-        /// <summary>
-        ///     Gets or sets the id.
-        /// </summary>
-        public int Id { get; set; }
 
         #endregion
     }

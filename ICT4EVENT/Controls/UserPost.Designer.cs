@@ -43,7 +43,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             //TODO: FIX THIS
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = null;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);

@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -9,19 +7,20 @@ namespace ICT4EVENT
     {
         public static PostModel CreateNewPost(string body, string filepath)
         {
-            PostModel post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
+            var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
             // Set up post details
             post.Content = body;
-            DateTime datePosted = DateTime.Now;
+            var datePosted = DateTime.Now;
             post.DatePosted = datePosted;
 
             //Upload file to FTP
 
             // First we copy it to a local directory
             //Extract filename
-            string fileName = Path.GetFileName(filepath);
-            string localDirectory = String.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", "test", datePosted.Year, datePosted.Month, datePosted.Day,
+            var fileName = Path.GetFileName(filepath);
+            var localDirectory = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", "test", datePosted.Year,
+                datePosted.Month, datePosted.Day,
                 datePosted.Hour, datePosted.Minute, datePosted.Second, fileName);
 
             Directory.CreateDirectory(localDirectory.Replace(fileName, ""));
@@ -40,7 +39,7 @@ namespace ICT4EVENT
 
         public static LikeModel CreateNewLike(PostModel post)
         {
-            LikeModel like = new LikeModel();
+            var like = new LikeModel();
 
             like.User = Settings.ActiveUser;
             like.Post = post;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -9,6 +8,18 @@ namespace ICT4EVENT
     /// </summary>
     public class EventModel : DBModel, IDataModelUpdate
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="EventModel" /> class.
+        /// </summary>
+        public EventModel()
+        {
+            registrationsList = new List<RegistrationModel>();
+        }
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -43,18 +54,6 @@ namespace ICT4EVENT
 
         #endregion
 
-        #region Constructors and Destructors
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="EventModel" /> class.
-        /// </summary>
-        public EventModel()
-        {
-            this.registrationsList = new List<RegistrationModel>();
-        }
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
@@ -62,15 +61,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Description
         {
-            get
-            {
-                return this.description;
-            }
+            get { return description; }
 
-            set
-            {
-                this.description = value;
-            }
+            set { description = value; }
         }
 
         /// <summary>
@@ -78,15 +71,9 @@ namespace ICT4EVENT
         /// </summary>
         public DateTime EndDate
         {
-            get
-            {
-                return this.endDate;
-            }
+            get { return endDate; }
 
-            set
-            {
-                this.endDate = value;
-            }
+            set { endDate = value; }
         }
 
         /// <summary>
@@ -94,15 +81,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Location
         {
-            get
-            {
-                return this.location;
-            }
+            get { return location; }
 
-            set
-            {
-                this.location = value;
-            }
+            set { location = value; }
         }
 
         /// <summary>
@@ -110,15 +91,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
+            get { return name; }
 
-            set
-            {
-                this.name = value;
-            }
+            set { name = value; }
         }
 
         /// <summary>
@@ -126,10 +101,7 @@ namespace ICT4EVENT
         /// </summary>
         public List<RegistrationModel> RegistrationsList
         {
-            get
-            {
-                return this.registrationsList;
-            }
+            get { return registrationsList; }
         }
 
         /// <summary>
@@ -137,15 +109,9 @@ namespace ICT4EVENT
         /// </summary>
         public DateTime StartDate
         {
-            get
-            {
-                return this.startDate;
-            }
+            get { return startDate; }
 
-            set
-            {
-                this.startDate = value;
-            }
+            set { startDate = value; }
         }
 
         #endregion
@@ -160,10 +126,13 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            string values = string.Format("'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),to_date('{4}', 'fmMM-fmDD-yyyy hh24:mi:ss')", this.name, this.location, this.description, this.startDate.ToString(dateFormat), this.endDate.ToString(dateFormat));
-            string finalQuery = string.Format(INSERTSTRING, "EVENT", columns, values);
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var columns = "EventName, EventLocation, Description, BeginTime, EndTime";
+            var values =
+                string.Format(
+                    "'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),to_date('{4}', 'fmMM-fmDD-yyyy hh24:mi:ss')",
+                    name, location, description, startDate.ToString(dateFormat), endDate.ToString(dateFormat));
+            var finalQuery = string.Format(INSERTSTRING, "EVENT", columns, values);
+            var reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -181,8 +150,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string query = string.Format(DESTROYSTRING, "EVENT", this.Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var query = string.Format(DESTROYSTRING, "EVENT", Id);
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null)
             {
@@ -200,8 +169,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "EVENT", this.Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var query = string.Format(READSTRING, "EVENT", Id);
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null)
             {
@@ -209,12 +178,12 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            this.Id = Convert.ToInt32(reader["Ident"].ToString());
-            this.name = reader["EventName"].ToString();
-            this.location = reader["EventLocation"].ToString();
-            this.description = reader["Description"].ToString();
-            this.startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
-            this.endDate = Convert.ToDateTime(reader["EndTime"].ToString());
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            name = reader["EventName"].ToString();
+            location = reader["EventLocation"].ToString();
+            description = reader["Description"].ToString();
+            startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
+            endDate = Convert.ToDateTime(reader["EndTime"].ToString());
 
             return true;
         }
@@ -227,10 +196,13 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("EventName='{0}', EventLocation='{1}', Description='{2}', BeginTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), EndTime=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')", this.name, this.location, this.description, this.startDate.ToString(dateFormat), this.endDate.ToString(dateFormat));
-            string finalQuery = string.Format(UPDATESTRING, "EVENT", columnvalues, "'" + this.Id + "'");
+            var columnvalues =
+                string.Format(
+                    "EventName='{0}', EventLocation='{1}', Description='{2}', BeginTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), EndTime=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')",
+                    name, location, description, startDate.ToString(dateFormat), endDate.ToString(dateFormat));
+            var finalQuery = string.Format(UPDATESTRING, "EVENT", columnvalues, "'" + Id + "'");
 
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {

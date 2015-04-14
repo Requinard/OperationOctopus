@@ -1,5 +1,4 @@
 using System;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -8,6 +7,21 @@ namespace ICT4EVENT
     /// </summary>
     public class RentableObjectModel : DBModel, IDataModelUpdate
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="RentableObjectModel" /> class.
+        /// </summary>
+        /// <param name="event_item">
+        ///     The event_item.
+        /// </param>
+        public RentableObjectModel(EventModel event_item)
+        {
+            this.event_item = event_item;
+        }
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -37,21 +51,6 @@ namespace ICT4EVENT
 
         #endregion
 
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RentableObjectModel"/> class.
-        /// </summary>
-        /// <param name="event_item">
-        /// The event_item.
-        /// </param>
-        public RentableObjectModel(EventModel event_item)
-        {
-            this.event_item = event_item;
-        }
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
@@ -59,15 +58,9 @@ namespace ICT4EVENT
         /// </summary>
         public int Amount
         {
-            get
-            {
-                return this.amount;
-            }
+            get { return amount; }
 
-            set
-            {
-                this.amount = value;
-            }
+            set { amount = value; }
         }
 
         /// <summary>
@@ -75,15 +68,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Description
         {
-            get
-            {
-                return this.description;
-            }
+            get { return description; }
 
-            set
-            {
-                this.description = value;
-            }
+            set { description = value; }
         }
 
         /// <summary>
@@ -91,15 +78,9 @@ namespace ICT4EVENT
         /// </summary>
         public string ObjectType
         {
-            get
-            {
-                return this.objectType;
-            }
+            get { return objectType; }
 
-            set
-            {
-                this.objectType = value;
-            }
+            set { objectType = value; }
         }
 
         /// <summary>
@@ -107,10 +88,7 @@ namespace ICT4EVENT
         /// </summary>
         public EventModel EventItem
         {
-            get
-            {
-                return this.event_item;
-            }
+            get { return event_item; }
         }
 
         /// <summary>
@@ -118,15 +96,9 @@ namespace ICT4EVENT
         /// </summary>
         public decimal Price
         {
-            get
-            {
-                return this.price;
-            }
+            get { return price; }
 
-            set
-            {
-                this.price = value;
-            }
+            set { price = value; }
         }
 
         #endregion
@@ -141,10 +113,11 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "EventID, Description, Price, Amount, TypeOfObject, ItemType";
-            string values = string.Format("'{0}','{1}','{2}','{3}','{4}', 'RentableObject'", this.event_item.Id, this.description, this.price, this.amount, this.objectType);
-            string finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var columns = "EventID, Description, Price, Amount, TypeOfObject, ItemType";
+            var values = string.Format("'{0}','{1}','{2}','{3}','{4}', 'RentableObject'", event_item.Id, description,
+                price, amount, objectType);
+            var finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -157,8 +130,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -171,20 +144,20 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "ITEM", this.Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var query = string.Format(READSTRING, "ITEM", Id);
+            var reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
             }
 
             reader.Read();
-            this.Id = Convert.ToInt32(reader["Ident"].ToString());
-            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            this.description = reader["Description"].ToString();
-            this.objectType = reader["TypeOfObject"].ToString();
-            this.price = Convert.ToDecimal(reader["Price"].ToString());
-            this.amount = Convert.ToInt32(reader["Amount"].ToString());
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            description = reader["Description"].ToString();
+            objectType = reader["TypeOfObject"].ToString();
+            price = Convert.ToDecimal(reader["Price"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
 
             return true;
         }
@@ -197,15 +170,15 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format(
-                "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', TypeOfObject='{4}'", 
-                this.event_item.Id, 
-                this.description, 
-                this.price, 
-                this.amount,
-                this.objectType);
-            string finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var columnvalues = string.Format(
+                "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', TypeOfObject='{4}'",
+                event_item.Id,
+                description,
+                price,
+                amount,
+                objectType);
+            var finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

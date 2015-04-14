@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
     public partial class MainForm : Form
     {
-
-
         public MainForm()
         {
             InitializeComponent();
@@ -26,24 +18,24 @@ namespace ICT4EVENT
             if (Settings.DEBUG)
             {
                 CreateTestPosts();
-        }
+            }
         }
 
         private void CreateTestPosts()
         {
-            Random r = new Random(8);
+            var r = new Random(8);
             UserPost post;
             post = new UserPost("David == fucking haat", "Guus", Image.FromFile(@"The Cage.jpg"),
-                Image.FromFile(@"nicolas-cage-will-be-in-the-expendables-3.jpg"), new UserPost("@Guus, Random Text", null, null, null));
+                Image.FromFile(@"nicolas-cage-will-be-in-the-expendables-3.jpg"),
+                new UserPost("@Guus, Random Text", null, null, null));
             flowUserPosts.Controls.Add(post);
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 post = new UserPost("Random Text", null, null, null);
                 flowUserPosts.Controls.Add(post);
             }
         }
-
 
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
@@ -54,7 +46,6 @@ namespace ICT4EVENT
             }
         }
 
-
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
@@ -62,39 +53,25 @@ namespace ICT4EVENT
                 btnDynamicButton.Text = "Post";
 
                 // button actions happen here
-
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
                 btnDynamicButton.Text = "Huur";
 
                 // button actions happen here
-
             }
             if (tabMainTab.SelectedTab.Name == "tabProfile")
             {
                 btnDynamicButton.Text = "Bevestig";
 
                 // button actions happen here
-
             }
             if (tabMainTab.SelectedTab.Name == "tabSettings")
             {
                 btnDynamicButton.Text = "Bevestig";
 
                 // button actions happen here
-
             }
         }
-
-
-       
-
-        
-
-
-
-
-
     }
 }

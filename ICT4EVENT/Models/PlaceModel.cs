@@ -1,5 +1,4 @@
 using System;
-using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -8,6 +7,21 @@ namespace ICT4EVENT
     /// </summary>
     public class PlaceModel : DBModel, IDataModelUpdate
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="PlaceModel" /> class.
+        /// </summary>
+        /// <param name="event_item">
+        ///     The event_item.
+        /// </param>
+        public PlaceModel(EventModel event_item)
+        {
+            this.event_item = event_item;
+        }
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -47,21 +61,6 @@ namespace ICT4EVENT
 
         #endregion
 
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PlaceModel"/> class.
-        /// </summary>
-        /// <param name="event_item">
-        /// The event_item.
-        /// </param>
-        public PlaceModel(EventModel event_item)
-        {
-            this.event_item = event_item;
-        }
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
@@ -69,15 +68,9 @@ namespace ICT4EVENT
         /// </summary>
         public int Amount
         {
-            get
-            {
-                return this.amount;
-            }
+            get { return amount; }
 
-            set
-            {
-                this.amount = value;
-            }
+            set { amount = value; }
         }
 
         /// <summary>
@@ -85,15 +78,9 @@ namespace ICT4EVENT
         /// </summary>
         public int Capacity
         {
-            get
-            {
-                return this.capacity;
-            }
+            get { return capacity; }
 
-            set
-            {
-                this.capacity = value;
-            }
+            set { capacity = value; }
         }
 
         /// <summary>
@@ -101,15 +88,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Category
         {
-            get
-            {
-                return this.category;
-            }
+            get { return category; }
 
-            set
-            {
-                this.category = value;
-            }
+            set { category = value; }
         }
 
         /// <summary>
@@ -117,15 +98,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Description
         {
-            get
-            {
-                return this.description;
-            }
+            get { return description; }
 
-            set
-            {
-                this.description = value;
-            }
+            set { description = value; }
         }
 
         /// <summary>
@@ -133,10 +108,7 @@ namespace ICT4EVENT
         /// </summary>
         public EventModel EventItem
         {
-            get
-            {
-                return this.event_item;
-            }
+            get { return event_item; }
         }
 
         /// <summary>
@@ -144,15 +116,9 @@ namespace ICT4EVENT
         /// </summary>
         public string Location
         {
-            get
-            {
-                return this.location;
-            }
+            get { return location; }
 
-            set
-            {
-                this.location = value;
-            }
+            set { location = value; }
         }
 
         /// <summary>
@@ -160,15 +126,9 @@ namespace ICT4EVENT
         /// </summary>
         public decimal Price
         {
-            get
-            {
-                return this.price;
-            }
+            get { return price; }
 
-            set
-            {
-                this.price = value;
-            }
+            set { price = value; }
         }
 
         #endregion
@@ -183,18 +143,18 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity, ItemType";
-            string values = string.Format(
-                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}', 'Place'", 
-                this.event_item.Id, 
-                this.description, 
-                this.price, 
-                this.amount, 
-                this.location, 
-                this.category, 
-                this.capacity);
-            string finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity, ItemType";
+            var values = string.Format(
+                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}', 'Place'",
+                event_item.Id,
+                description,
+                price,
+                amount,
+                location,
+                category,
+                capacity);
+            var finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -207,8 +167,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+            var finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -221,22 +181,22 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "ITEM", this.Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var query = string.Format(READSTRING, "ITEM", Id);
+            var reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
             }
 
             reader.Read();
-            this.Id = Convert.ToInt32(reader["Ident"].ToString());
-            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            this.description = reader["Description"].ToString();
-            this.price = Convert.ToDecimal(reader["Price"].ToString());
-            this.amount = Convert.ToInt32(reader["Amount"].ToString());
-            this.location = reader["PlaceLocation"].ToString();
-            this.category = reader["PlaceCategory"].ToString();
-            this.capacity = Convert.ToInt32(reader["PlaceCapacity"].ToString());
+            Id = Convert.ToInt32(reader["Ident"].ToString());
+            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            description = reader["Description"].ToString();
+            price = Convert.ToDecimal(reader["Price"].ToString());
+            amount = Convert.ToInt32(reader["Amount"].ToString());
+            location = reader["PlaceLocation"].ToString();
+            category = reader["PlaceCategory"].ToString();
+            capacity = Convert.ToInt32(reader["PlaceCapacity"].ToString());
 
             return true;
         }
@@ -249,18 +209,18 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            string columnvalues =
+            var columnvalues =
                 string.Format(
-                    "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', PlaceLocation='{4}', PlaceCategory='{5}', PlaceCapacity='{6}'", 
-                    this.event_item.Id, 
-                    this.description, 
-                    this.price, 
-                    this.amount, 
-                    this.location, 
-                    this.category, 
-                    this.capacity);
-            string finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + this.Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+                    "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', PlaceLocation='{4}', PlaceCategory='{5}', PlaceCapacity='{6}'",
+                    event_item.Id,
+                    description,
+                    price,
+                    amount,
+                    location,
+                    category,
+                    capacity);
+            var finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + Id + "'");
+            var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

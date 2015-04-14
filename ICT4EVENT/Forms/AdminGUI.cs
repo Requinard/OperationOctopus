@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,8 +9,8 @@ namespace ICT4EVENT
     {
         private readonly CampingLogic campingLogic;
         private readonly EventManagmentLogic eventManagment;
-        private PostReviewLogic postReview;
         private bool FirstTime = true;
+        private PostReviewLogic postReview;
 
         public AdminGUI()
         {
@@ -19,7 +18,6 @@ namespace ICT4EVENT
             eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
-
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -116,7 +114,7 @@ namespace ICT4EVENT
                 parent.txtGebruikers.Text = "";
             }
 
-            public bool CheckPlaceSize(Int32 place, int amountofusers)
+            public bool CheckPlaceSize(int place, int amountofusers)
             {
                 if (amountofusers == 0)
                 {
@@ -333,16 +331,16 @@ namespace ICT4EVENT
 
         public class RegistrationLogic
         {
-
         }
 
         public class PostReviewLogic
         {
-            private AdminGUI parent;
+            private readonly AdminGUI parent;
+
             public PostReviewLogic(AdminGUI gui)
             {
                 parent = gui;
-               CreateDummyData();
+                CreateDummyData();
             }
 
             public void CreateDummyData()
@@ -359,7 +357,7 @@ namespace ICT4EVENT
 
                 post = new UserPost("David != fucking haat", "Guus", null,
                     null);
-                parent.flowPostReview.Controls.Add(new UserPostReview(post));   
+                parent.flowPostReview.Controls.Add(new UserPostReview(post));
             }
         }
     }
