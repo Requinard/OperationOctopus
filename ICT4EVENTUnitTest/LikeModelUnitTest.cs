@@ -10,7 +10,7 @@ namespace ICT4EVENTUnitTest
     public class LikeModelUnitTest
     {
         [TestMethod]
-        public void CreateLike()
+        public void CreateTest()
         {
             Init.Initialize();
             LikeModel like = new LikeModel();
@@ -25,7 +25,7 @@ namespace ICT4EVENTUnitTest
         }
 
         [TestMethod]
-        public void ReadLike()
+        public void ReadTest()
         {
             Init.Initialize();
             UserModel user = Init.getExternalTestUser();
@@ -49,7 +49,7 @@ namespace ICT4EVENTUnitTest
         }
 
         [TestMethod]
-        public void DestroyLike()
+        public void DestroyTest()
         {
             Init.Initialize();
             UserModel user = Init.getExternalTestUser();
