@@ -56,10 +56,10 @@
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabEventManagment = new System.Windows.Forms.TabPage();
             this.gbEventManagment = new System.Windows.Forms.GroupBox();
+            this.btnDeleteEvent = new System.Windows.Forms.Button();
+            this.btnEditEvent = new System.Windows.Forms.Button();
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
-            this.btnEditEvent = new System.Windows.Forms.Button();
-            this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -106,6 +106,7 @@
             // 
             // nmrPlaats
             // 
+            this.nmrPlaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.nmrPlaats.FormattingEnabled = true;
             this.nmrPlaats.Location = new System.Drawing.Point(755, 34);
             this.nmrPlaats.Name = "nmrPlaats";
@@ -334,6 +335,26 @@
             this.gbEventManagment.TabStop = false;
             this.gbEventManagment.Text = "Evenment Beheer";
             // 
+            // btnDeleteEvent
+            // 
+            this.btnDeleteEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnDeleteEvent.Location = new System.Drawing.Point(742, 566);
+            this.btnDeleteEvent.Name = "btnDeleteEvent";
+            this.btnDeleteEvent.Size = new System.Drawing.Size(241, 54);
+            this.btnDeleteEvent.TabIndex = 5;
+            this.btnDeleteEvent.Text = "Remove Evenement";
+            this.btnDeleteEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnEditEvent
+            // 
+            this.btnEditEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnEditEvent.Location = new System.Drawing.Point(382, 566);
+            this.btnEditEvent.Name = "btnEditEvent";
+            this.btnEditEvent.Size = new System.Drawing.Size(241, 54);
+            this.btnEditEvent.TabIndex = 4;
+            this.btnEditEvent.Text = "Edit Evenement";
+            this.btnEditEvent.UseVisualStyleBackColor = true;
+            // 
             // flowEvent
             // 
             this.flowEvent.AutoScroll = true;
@@ -351,26 +372,6 @@
             this.btnCreateEvent.TabIndex = 0;
             this.btnCreateEvent.Text = "Nieuw Evenement";
             this.btnCreateEvent.UseVisualStyleBackColor = true;
-            // 
-            // btnEditEvent
-            // 
-            this.btnEditEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnEditEvent.Location = new System.Drawing.Point(382, 566);
-            this.btnEditEvent.Name = "btnEditEvent";
-            this.btnEditEvent.Size = new System.Drawing.Size(241, 54);
-            this.btnEditEvent.TabIndex = 4;
-            this.btnEditEvent.Text = "Edit Evenement";
-            this.btnEditEvent.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteEvent
-            // 
-            this.btnDeleteEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnDeleteEvent.Location = new System.Drawing.Point(742, 566);
-            this.btnDeleteEvent.Name = "btnDeleteEvent";
-            this.btnDeleteEvent.Size = new System.Drawing.Size(241, 54);
-            this.btnDeleteEvent.TabIndex = 5;
-            this.btnDeleteEvent.Text = "Remove Evenement";
-            this.btnDeleteEvent.UseVisualStyleBackColor = true;
             // 
             // AdminGUI
             // 
