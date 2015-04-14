@@ -88,5 +88,24 @@ namespace ICT4EVENTUnitTest
 
             return event_item; 
         }
+
+        
+        public static PostModel GetExternalPost()
+        {
+            PostModel post = new PostModel();
+            string query = "SELECT ident FROM post WHERE TO_CHAR(Postcontent) ='Testing post'";
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            Assert.IsNotNull(reader, "Could not read from database");
+
+            reader.Read();
+
+            post.Id = Int32.Parse(reader["ident"].ToString());
+
+            post.Read();
+
+            return post;
+        }
     }
 }
