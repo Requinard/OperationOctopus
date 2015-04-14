@@ -1359,7 +1359,7 @@ using Oracle.DataAccess.Client;
         /// <summary>
         ///     The capacity.
         /// </summary>
-        private string capacity;
+        private int capacity;
 
         /// <summary>
         ///     The category.
@@ -1419,7 +1419,7 @@ using Oracle.DataAccess.Client;
         /// <summary>
         ///     Gets or sets the capacity.
         /// </summary>
-        public string Capacity
+        public int Capacity
         {
             get
             {
@@ -1572,7 +1572,7 @@ using Oracle.DataAccess.Client;
             this.amount = Convert.ToInt32(reader["Amount"].ToString());
             this.location = reader["PlaceLocation"].ToString();
             this.category = reader["PlaceCategory"].ToString();
-            this.capacity = reader["PlaceCapacity"].ToString();
+            this.capacity = Convert.ToInt32(reader["PlaceCapacity"].ToString());
 
             return true;
         }

@@ -89,6 +89,41 @@ namespace ICT4EVENTUnitTest
             return event_item; 
         }
 
+        public static PlaceModel getLocalPlace()
+        {
+            EventModel event_item = Init.getExternalEvent();
+            PlaceModel place_item = new PlaceModel(event_item);
+
+            place_item.Amount = 3;
+            place_item.Capacity = 6 ;
+            place_item.Category = "Bungalow";
+            place_item.Description = "The most fun you'll never have";
+            place_item.Location = "Somewhere over the rainbow";
+            place_item.Price = 5.70m;
+
+            return place_item;
+        }
+
+        public static PlaceModel getExternalPlace()
+        {
+            EventModel event_item = Init.getExternalEvent();
+            PlaceModel place_item = new PlaceModel(event_item);
+
+            string query = "SELECT * FROM item where PlaceLocation  = 'Somewhere over the rainbow'";
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            Assert.IsNotNull(reader, "Could not read from database");
+
+            reader.Read();
+
+            place_item.Id = Int32.Parse(reader["ident"].ToString());
+
+            place_item.Read();
+
+            return place_item;
+        }
+
         public static PostModel GetLocalPost()
         {
             UserModel user = Init.getExternalTestUser();

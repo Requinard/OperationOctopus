@@ -76,6 +76,7 @@
     <Compile Include="Neccesary.cs" />
     <Compile Include="EventModelUnitTest.cs" />
     <Compile Include="PostModelUnitTest.cs" />
+    <Compile Include="PlaceModelUnitTest.cs" />
     <Compile Include="UserModelUnittest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
