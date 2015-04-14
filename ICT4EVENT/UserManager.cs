@@ -172,6 +172,28 @@ namespace ICT4EVENT
             return user;
         }
 
+        public static RegistrationModel RegisterUserForEvent(UserModel user, EventModel eventModel)
+        {
+            RegistrationModel registration = new RegistrationModel(user, eventModel);
+
+            if (registration.Create())
+                return registration;
+
+            return null;
+        }
+
+        public static PaymentModel RegistrationMarkPaid(RegistrationModel registration, decimal amount, string type)
+        {
+            PaymentModel payment = new PaymentModel();
+            payment.Registration = registration;
+            payment.Amount = amount;
+            payment.PaymentType = type;
+
+            if(payment.Create())
+                return payment;
+            return null;
+        }
+
         private static string CreateHashPassword(string password)
         {
             byte[] buf = new byte[SALT_SIZE];

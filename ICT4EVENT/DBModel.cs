@@ -1920,12 +1920,30 @@ using Oracle.DataAccess.Client;
         /// <summary>
         ///     The amount.
         /// </summary>
-        private int amount;
+        private decimal amount;
 
         /// <summary>
         ///     The payment type.
         /// </summary>
         private string paymentType;
+
+        public decimal Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+
+        public string PaymentType
+        {
+            get { return paymentType; }
+            set { paymentType = value; }
+        }
+
+        public RegistrationModel Registration
+        {
+            get { return registration; }
+            set { registration = value; }
+        }
 
         /// <summary>
         ///     The registration.
