@@ -1984,17 +1984,92 @@ using Oracle.DataAccess.Client;
 
         #endregion
 
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentableObjectModel"/> class.
+        /// </summary>
+        /// <param name="rent_item">
+        /// The rent_item.
+        /// </param>
+        /// <param name="user_item">
+        /// The user_item.
+        /// </param>
+        public ReservationModel(RentableObjectModel rent_item, UserModel user_item)
+        {
+            this.Item = rent_item;
+            this.User = user_item;
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         ///     Gets or sets the amount.
         /// </summary>
-        private int Amount { get; set; }
+        public int Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.amount = value;
+            }
+        }
+
+        /// <summary>
+        ///     Gets or sets the item.
+        /// </summary>
+        public RentableObjectModel Item
+        {
+            get
+            {
+                return this.item;
+            }
+
+            set
+            {
+                this.item = value;
+            }
+        }
 
         /// <summary>
         ///     Gets or sets the return date.
         /// </summary>
-        private DateTime ReturnDate { get; set; }
+        public DateTime ReturnDate
+        {
+            get
+            {
+                return this.returnDate;
+            }
+
+            set
+            {
+                this.returnDate = value;
+            }
+        }
+
+
+        /// <summary>
+        ///     Gets or sets the user.
+        /// </summary>
+        public UserModel User
+        {
+            get
+            {
+                return this.user;
+            }
+
+            set
+            {
+                this.user = value;
+            }
+        }
+
 
         #endregion
 

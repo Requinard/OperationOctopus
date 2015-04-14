@@ -124,6 +124,71 @@ namespace ICT4EVENTUnitTest
             return place_item;
         }
 
+        public static RentableObjectModel getLocalRentItem()
+        {
+            EventModel event_item = Init.getExternalEvent();
+            RentableObjectModel rent_item = new RentableObjectModel(event_item);
+
+            rent_item.Amount = 3;
+            rent_item.Description = "3D printer";
+            rent_item.Price = 9.99m;
+
+            return rent_item;
+        }
+
+        public static RentableObjectModel getExternalRentItem()
+        {
+            EventModel event_item = Init.getExternalEvent();
+            RentableObjectModel rent_item = new RentableObjectModel(event_item);
+
+            string query = "SELECT * FROM item where TypeOfObject = '3D printer'";
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            Assert.IsNotNull(reader, "Could not read from database");
+
+            reader.Read();
+
+            rent_item.Id = Int32.Parse(reader["ident"].ToString());
+
+            rent_item.Read();
+
+            return rent_item;
+        }
+
+        public static ReservationModel GetLocalReservation()
+        {
+            UserModel user_item = Init.getExternalTestUser();
+            RentableObjectModel rent_item = Init.getExternalRentItem();
+            ReservationModel reservation_item = new ReservationModel(rent_item, user_item);
+
+            reservation_item.Amount = 3;
+            reservation_item.ReturnDate = DateTime.Now;
+
+            return reservation_item;
+        }
+
+        public static ReservationModel getExternalReservation()
+        {
+            UserModel user_item = Init.getExternalTestUser();
+            RentableObjectModel rent_item = Init.getExternalRentItem();
+            ReservationModel reservation_item = new ReservationModel(rent_item, user_item);
+
+            string query = "SELECT * FROM reservation where Amount = '3'";
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            Assert.IsNotNull(reader, "Could not read from database");
+
+            reader.Read();
+
+            reservation_item.Id = Int32.Parse(reader["ident"].ToString());
+
+            reservation_item.Read();
+
+            return reservation_item;
+        }
+
         public static PostModel GetLocalPost()
         {
             UserModel user = Init.getExternalTestUser();
