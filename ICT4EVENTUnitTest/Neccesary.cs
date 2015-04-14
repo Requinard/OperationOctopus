@@ -4,6 +4,8 @@ namespace ICT4EVENTUnitTest
 {
     using System;
 
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using Oracle.DataAccess.Client;
 
     public static class Init
@@ -60,12 +62,31 @@ namespace ICT4EVENTUnitTest
             EventModel event_item = new EventModel();
 
             event_item.Location = "Eindhoven";
-            event_item.Description = "We're testing our things";
+            event_item.Description = "We are testing our things";
             event_item.Name = "ICT Testing";
             event_item.StartDate = DateTime.Now;
             event_item.EndDate = DateTime.Now;
 
             return event_item;
+        }
+
+        public static EventModel getExternalEvent()
+        {
+            EventModel event_item = new EventModel();
+
+            string query = "SELECT * FROM event where eventname = 'ICT Testing'";
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            Assert.IsNotNull(reader, "Could not read from database");
+
+            reader.Read();
+
+            event_item.Id = Int32.Parse(reader["ident"].ToString());
+
+            event_item.Read();
+
+            return event_item; 
         }
     }
 }

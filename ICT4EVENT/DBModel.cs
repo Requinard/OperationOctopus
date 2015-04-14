@@ -21,6 +21,7 @@ using Oracle.DataAccess.Client;
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
         #region Constants
 
+        protected string dateFormat = "MM/dd/yyyy hh:mm:ss tt";
         /// <summary>
         ///     The destroystring.
         /// </summary>
@@ -214,8 +215,7 @@ using Oracle.DataAccess.Client;
         public bool Create()
         {
             string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            string values = "'" + this.name + "','" + this.location + "','" + this.description + "','" + this.startDate
-                            + "','" + this.endDate + "'";
+            string values = string.Format("'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),to_date('{4}', 'fmMM-fmDD-yyyy hh24:mi:ss')", this.name, this.location, this.description, this.startDate, this.endDate);
             string finalQuery = string.Format(INSERTSTRING, "EVENT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -281,9 +281,7 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Update()
         {
-            string columnvalues = "EventName='" + this.name + "', EventLocation='" + this.location + "', Description='"
-                                  + this.description + "', BeginTime='" + this.startDate + "', EndTime='" + this.endDate
-                                  + "'";
+            string columnvalues = string.Format("EventName='{0}', EventLocation='{1}', Description='{2}', BeginTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), EndTime=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')", this.name, this.location, this.description, this.startDate, this.endDate);
             string finalQuery = string.Format(UPDATESTRING, "EVENT", columnvalues, "'" + this.Id + "'");
 
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
@@ -854,8 +852,7 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Update()
         {
-            string columnvalues = "UserID='" + this.user.Id + "', EventID='" + this.event_item.Id + "', InOrOut='"
-                                  + this.InOrOut + "'";
+            string columnvalues = string.Format("UserID='{0}', EventID='{1}', InOrOut='{2}'", this.user.Id, this.event_item.Id, this.InOrOut);
             string finalQuery = string.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -983,8 +980,7 @@ using Oracle.DataAccess.Client;
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount";
-            string values = "'" + this.event_item.Id + "','" + this.description + "','" + this.price + "','"
-                            + this.amount + "'";
+            string values = string.Format("'{0}','{1}','{2}','{3}'", this.event_item.Id, this.description, this.price, this.amount);
             string finalQuery = string.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1211,15 +1207,34 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Create()
         {
-            string columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
-            string values = string.Format(
-                "'{0}','{1}','{2}','{3}','{4}','{5}'", 
-                this.user.Id, 
-                this.event_item.Id, 
-                this.parent.Id, 
-                this.content, 
-                this.pathToFile, 
-                this.datePosted);
+            string columns = "";
+            string values = "";
+            if (parent != null)
+            {
+                columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
+
+                values = string.Format(
+                    "'{0}','{1}','{2}','{3}','{4}',,to_date('{5}', 'fmmm-fmdd-yyyy hh:mi:ss')'",
+                    this.user.Id,
+                    this.event_item.Id,
+                    this.parent.Id,
+                    this.content,
+                    this.pathToFile,
+                    this.datePosted);
+            }
+            else
+                {
+                columns = "UserID, EventID, PostContent, PathToFile, DATETIME";
+
+                values = string.Format(
+                    "'{0}','{1}','{2}','{3}',to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')",
+                    this.user.Id,
+                    this.event_item.Id,
+                    this.content,
+                    this.pathToFile,
+                    this.datePosted);
+            }
+            
             string finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1259,7 +1274,14 @@ using Oracle.DataAccess.Client;
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.User.Id = Convert.ToInt32(reader["UserID"].ToString());
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            this.parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+            try
+            {
+                this.parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+            }
+            catch (Exception)
+            {
+                this.parent = null;
+            }
             this.content = reader["PostContent"].ToString();
             this.pathToFile = reader["PathToFile"].ToString();
             this.datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
@@ -1275,15 +1297,30 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Update()
         {
-            string columnvalues =
-                string.Format(
-                    "UserID='{0}', EventID='{1}', ReplyID='{2}', PostContent='{3}', PathToFile='{4}', DATETIME='{5}'", 
-                    this.user.Id, 
-                    this.event_item.Id, 
-                    this.parent.Id, 
-                    this.content, 
-                    this.pathToFile, 
-                    this.datePosted);
+            string columnvalues = "";
+            if (parent != null)
+            {
+                columnvalues =
+                    string.Format(
+                        "UserID='{0}', EventID='{1}', ReplyID='{2}', PostContent='{3}', PathToFile='{4}', DATETIME=to_date('{5}', 'fmmm-fmdd-yyyy hh:mi:ss')",
+                        this.user.Id,
+                        this.event_item.Id,
+                        this.parent.Id,
+                        this.content,
+                        this.pathToFile,
+                        this.datePosted);
+            }
+            else
+            {
+                columnvalues =
+                     string.Format(
+                         "UserID='{0}', EventID='{1}', PostContent='{2}', PathToFile='{3}', DATETIME=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')",
+                         this.user.Id,
+                         this.event_item.Id,
+                         this.content,
+                         this.pathToFile,
+                         this.datePosted); 
+            }
             string finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1575,6 +1612,8 @@ using Oracle.DataAccess.Client;
         /// </summary>
         private UserModel user;
         public UserModel User { get; set; }
+
+        public PostModel Post { get; set; }
 
         #endregion
 
