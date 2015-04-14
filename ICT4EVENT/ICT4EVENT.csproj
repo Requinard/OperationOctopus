@@ -96,63 +96,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminGUI.cs">
+    <Compile Include="Forms\AdminGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminGUI.Designer.cs">
+    <Compile Include="Forms\AdminGUI.Designer.cs">
       <DependentUpon>AdminGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBConfigForm.cs">
+    <Compile Include="Forms\DBConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DBConfigForm.Designer.cs">
+    <Compile Include="Forms\DBConfigForm.Designer.cs">
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBManager.cs" />
-    <Compile Include="DBModel.cs" />
-    <Compile Include="EquipmentManager.cs" />
-    <Compile Include="EventManager.cs" />
-    <Compile Include="FTPManager.cs" />
-    <Compile Include="LoginForm.cs">
+    <Compile Include="Managers\DBManager.cs" />
+    <Compile Include="Models\DBModel.cs" />
+    <Compile Include="Managers\EquipmentManager.cs" />
+    <Compile Include="Managers\EventManager.cs" />
+    <Compile Include="Managers\FTPManager.cs" />
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IDataModelUpdate.cs" />
-    <Compile Include="PostManager.cs" />
+    <Compile Include="Models\Interface\IDataModelUpdate.cs" />
+    <Compile Include="Managers\PostManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="UserManager.cs" />
-    <Compile Include="UserEvent.cs">
+    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="Controls\UserEvent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserEvent.Designer.cs">
+    <Compile Include="Controls\UserEvent.Designer.cs">
       <DependentUpon>UserEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserPost.cs">
+    <Compile Include="Controls\UserPost.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserPost.Designer.cs">
+    <Compile Include="Controls\UserPost.Designer.cs">
       <DependentUpon>UserPost.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AdminGUI.resx">
+    <EmbeddedResource Include="Forms\AdminGUI.resx">
       <DependentUpon>AdminGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DBConfigForm.resx">
+    <EmbeddedResource Include="Forms\DBConfigForm.resx">
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -165,10 +165,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UserEvent.resx">
+    <EmbeddedResource Include="Controls\UserEvent.resx">
       <DependentUpon>UserEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserPost.resx" />
+    <EmbeddedResource Include="Controls\UserPost.resx" />
     <None Include="Main Diagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
