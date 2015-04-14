@@ -1108,6 +1108,11 @@ using Oracle.DataAccess.Client;
             this.event_item = event_item;
         }
 
+        public PostModel()
+        {
+            // TODO: Complete member initialization
+        }
+
         #endregion
 
         #region Public Properties

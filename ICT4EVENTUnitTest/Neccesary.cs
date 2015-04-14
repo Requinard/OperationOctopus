@@ -89,6 +89,20 @@ namespace ICT4EVENTUnitTest
             return event_item; 
         }
 
+        public static PostModel GetLocalPost()
+        {
+            UserModel user = Init.getExternalTestUser();
+            EventModel event_item = Init.getExternalEvent();
+
+            PostModel post = new PostModel(user, event_item);
+
+            post.Content = "Testing post";
+            post.DatePosted = DateTime.Now;
+            post.PathToFile = "";
+            post.Parent = null;
+
+            return post;
+        }
         
         public static PostModel GetExternalPost()
         {
