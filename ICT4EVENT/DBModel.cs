@@ -24,7 +24,7 @@ using Oracle.DataAccess.Client;
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
         #region Constants
 
-        protected string dateFormat = "yy-MM-dd-yyyy hh:mm:ss";
+        protected string dateFormat = "MM-dd-yyyy hh:mm:ss";
         /// <summary>
         ///     The destroystring.
         /// </summary>
