@@ -1108,6 +1108,12 @@ using Oracle.DataAccess.Client;
             this.event_item = event_item;
         }
 
+        public PostModel()
+        {
+            user = new UserModel();
+            event_item = new EventModel();
+        }
+
         #endregion
 
         #region Public Properties
@@ -1614,9 +1620,24 @@ using Oracle.DataAccess.Client;
         ///     The user.
         /// </summary>
         private UserModel user;
-        public UserModel User { get; set; }
 
-        public PostModel Post { get; set; }
+        public LikeModel()
+        {
+            this.post = new PostModel();
+            this.user = new UserModel();
+        }
+
+        public PostModel Post
+        {
+            get { return post; }
+            set { post = value; }
+        }
+
+        public UserModel User
+        {
+            get { return user; }
+            set { user = value; }
+        }
 
         #endregion
 
