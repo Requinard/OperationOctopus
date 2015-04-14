@@ -6,6 +6,9 @@
 //   The db model.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using ICT4EVENT;
+
 namespace ICT4EVENT
 {
 using System;
@@ -1698,7 +1701,7 @@ using Oracle.DataAccess.Client;
         }
 
         #endregion
-}
+
     }
 
     /// <summary>
