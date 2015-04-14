@@ -1659,6 +1659,8 @@ using Oracle.DataAccess.Client;
         }
 
         #endregion
+
+        public PostModel Post { get; set; }
     }
 
     /// <summary>
