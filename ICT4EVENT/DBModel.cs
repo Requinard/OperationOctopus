@@ -2151,10 +2151,10 @@ using Oracle.DataAccess.Client;
         {
             string columns = "UserID, ItemID, ReturnDate, Amount";
             string values = string.Format(
-                "'{0}','{1}','{2}','{3}'", 
+                "'{0}','{1}',to_date('{2}', 'fmmm-fmdd-yyyy hh:mi:ss'),'{3}'", 
                 this.user.Id, 
-                this.item.Id, 
-                this.returnDate, 
+                this.item.Id,
+                this.returnDate.ToString(dateFormat),
                 this.amount);
             string finalQuery = string.Format(INSERTSTRING, "RESERVATION", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
@@ -2215,10 +2215,10 @@ using Oracle.DataAccess.Client;
         public bool Update()
         {
             string columnvalues = string.Format(
-                "UserID='{0}', ItemID='{1}', ReturnDate='{2}', Amount='{3}'", 
+                "UserID='{0}', ItemID='{1}', ReturnDate=to_date('{2}', 'fmmm-fmdd-yyyy hh:mi:ss'), Amount='{3}'", 
                 this.user.Id, 
-                this.item.Id, 
-                this.returnDate, 
+                this.item.Id,
+                this.returnDate.ToString(dateFormat), 
                 this.amount);
             string finalQuery = string.Format(
                 UPDATESTRING, 

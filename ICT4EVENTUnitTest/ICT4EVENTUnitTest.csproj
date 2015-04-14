@@ -99,6 +99,7 @@
     <Compile Include="LikeModelUnitTest.cs" />
     <Compile Include="ReportModelUnitTest.cs" />
     <Compile Include="RentItemModelUnitTest.cs" />
+    <Compile Include="ReservationModelUnitTest.cs" />
     <Compile Include="UserModelUnittest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
