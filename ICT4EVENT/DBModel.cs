@@ -595,6 +595,7 @@ namespace ICT4EVENT
     {
         private PostModel post;
         private UserModel user;
+        public UserModel User { get; set; }
 
         public bool Create()
         {
@@ -631,6 +632,8 @@ namespace ICT4EVENT
             DBManager.QueryDB(finalQuery);
             return true;
         }
+
+        public PostModel Post { get; set; }
     }
 
     public class PostReportModel : DBModel, IDataModelUpdate
