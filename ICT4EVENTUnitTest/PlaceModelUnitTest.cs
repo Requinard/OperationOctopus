@@ -40,7 +40,7 @@ namespace ICT4EVENTUnitTest
             EventModel event_item = Init.getExternalEvent();
             PlaceModel place_item = new PlaceModel(event_item);
 
-            string query = "SELECT ident FROM item where eventname = 'ICT Testing'";
+            string query = string.Format("SELECT ident FROM item where EventID = '{0}'", event_item.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 

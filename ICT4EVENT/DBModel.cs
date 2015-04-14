@@ -1519,9 +1519,9 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Create()
         {
-            string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity";
+            string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity, ItemType";
             string values = string.Format(
-                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", 
+                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}', 'Place'", 
                 this.event_item.Id, 
                 this.description, 
                 this.price, 
@@ -1529,7 +1529,7 @@ using Oracle.DataAccess.Client;
                 this.location, 
                 this.category, 
                 this.capacity);
-            string finalQuery = string.Format(INSERTSTRING, "PLACE", columns, values);
+            string finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
@@ -1543,7 +1543,7 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "PLACE", "'" + this.Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
@@ -1557,7 +1557,7 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "PLACE", this.Id);
+            string query = string.Format(READSTRING, "ITEM", this.Id);
             OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
@@ -1595,7 +1595,7 @@ using Oracle.DataAccess.Client;
                     this.location, 
                     this.category, 
                     this.capacity);
-            string finalQuery = string.Format(UPDATESTRING, "PLACE", columnvalues, "'" + this.Id + "'");
+            string finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;

@@ -97,7 +97,7 @@ namespace ICT4EVENTUnitTest
             place_item.Amount = 3;
             place_item.Capacity = 6 ;
             place_item.Category = "Bungalow";
-            place_item.Description = "The most fun you'll never have";
+            place_item.Description = "The most fun you will never have";
             place_item.Location = "Somewhere over the rainbow";
             place_item.Price = 5.70m;
 
