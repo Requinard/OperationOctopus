@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace ICT4EVENT
 {
-    using System;
-    using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
-    using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Client;
 
     /// <summary>
     ///     The db model.
@@ -118,12 +118,12 @@ namespace ICT4EVENT
             get
             {
                 return this.description;
-            }
+        }
 
             set
-            {
+        {
                 this.description = value;
-            }
+        }
         }
 
         /// <summary>
@@ -150,12 +150,12 @@ namespace ICT4EVENT
             get
             {
                 return this.location;
-            }
+        }
 
             set
-            {
+        {
                 this.location = value;
-            }
+        }
         }
 
         /// <summary>
@@ -193,12 +193,12 @@ namespace ICT4EVENT
             get
             {
                 return this.startDate;
-            }
+        }
 
             set
-            {
+        {
                 this.startDate = value;
-            }
+        }
         }
 
         #endregion
@@ -289,7 +289,7 @@ namespace ICT4EVENT
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
-            {
+        {
                 return false;
             }
 
@@ -408,12 +408,12 @@ namespace ICT4EVENT
             get
             {
                 return this.level;
-            }
+        }
 
             set
-            {
+        {
                 this.level = value;
-            }
+        }
         }
 
         /// <summary>
@@ -424,13 +424,13 @@ namespace ICT4EVENT
             get
             {
                 return this.password;
-            }
+        }
 
             // Automatically hashes a new string when it's set
             set
-            {
+        {
                 this.password = value;
-            }
+        }
         }
 
         /// <summary>
@@ -457,7 +457,7 @@ namespace ICT4EVENT
             get
             {
                 return this.telephonenumber;
-            }
+        }
 
             set
             {
@@ -473,12 +473,12 @@ namespace ICT4EVENT
             get
             {
                 return this.username;
-            }
+        }
 
             set
-            {
+        {
                 this.username = value;
-            }
+        }
         }
 
         #endregion
@@ -583,7 +583,7 @@ namespace ICT4EVENT
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
-            {
+        {
                 return false;
             }
 
@@ -641,7 +641,7 @@ namespace ICT4EVENT
             get
             {
                 return this.event_item;
-            }
+        }
         }
 
         /// <summary>
@@ -652,7 +652,7 @@ namespace ICT4EVENT
             get
             {
                 return this.user;
-            }
+        }
         }
 
         #endregion
@@ -738,7 +738,7 @@ namespace ICT4EVENT
         }
 
         #endregion
-    }
+        }
 
     /// <summary>
     ///     The rfid log model.
@@ -863,7 +863,7 @@ namespace ICT4EVENT
         }
 
         #endregion
-    }
+        }
 
     /// <summary>
     ///     The rentable object model.
@@ -919,7 +919,7 @@ namespace ICT4EVENT
             get
             {
                 return this.amount;
-            }
+        }
 
             set
             {
@@ -935,7 +935,7 @@ namespace ICT4EVENT
             get
             {
                 return this.description;
-            }
+        }
 
             set
             {
@@ -962,12 +962,12 @@ namespace ICT4EVENT
             get
             {
                 return this.price;
-            }
+        }
 
             set
-            {
+        {
                 this.price = value;
-            }
+        }
         }
 
         #endregion
@@ -1164,10 +1164,10 @@ namespace ICT4EVENT
             get
             {
                 return this.parent;
-            }
+        }
 
             set
-            {
+        {
                 this.parent = value;
             }
         }
@@ -1180,10 +1180,10 @@ namespace ICT4EVENT
             get
             {
                 return this.pathToFile;
-            }
+        }
 
             set
-            {
+        {
                 this.pathToFile = value;
             }
         }
@@ -1365,7 +1365,7 @@ namespace ICT4EVENT
             }
 
             set
-            {
+        {
                 this.amount = value;
             }
         }
@@ -1410,10 +1410,10 @@ namespace ICT4EVENT
             get
             {
                 return this.description;
-            }
+        }
 
             set
-            {
+        {
                 this.description = value;
             }
         }
@@ -1437,10 +1437,10 @@ namespace ICT4EVENT
             get
             {
                 return this.location;
-            }
+        }
 
             set
-            {
+        {
                 this.location = value;
             }
         }
@@ -1451,12 +1451,12 @@ namespace ICT4EVENT
         public decimal Price
         {
             get
-            {
+        {
                 return this.price;
-            }
+        }
 
             set
-            {
+        {
                 this.price = value;
             }
         }
@@ -1574,6 +1574,7 @@ namespace ICT4EVENT
         ///     The user.
         /// </summary>
         private UserModel user;
+        public UserModel User { get; set; }
 
         #endregion
 
@@ -1652,7 +1653,7 @@ namespace ICT4EVENT
             if (reader == null)
             {
                 return false;
-            }
+        }
 
             return true;
         }

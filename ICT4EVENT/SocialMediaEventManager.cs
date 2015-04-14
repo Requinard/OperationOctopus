@@ -244,33 +244,9 @@ namespace ICT4EVENT
 
     public static class PostManager
     {
-        private static List<PostModel> posts;
-
         public static void Initialize()
         {
-            //TODO: REDO from scratch. Only work with active event.
-
-            const string select_posts = "SELECT ident FROM POST WHERE EVENTID = {0}";
-            posts = new List<PostModel>();
-
-            OracleDataReader reader = DBManager.QueryDB(String.Format(select_posts, Settings.ActiveEvent.Id));
-
-            while (reader.Read())
-            {
-                UserModel user = UserManager.FindUser(Int32.Parse(reader["userid"].ToString()));
-
-                PostModel post = new PostModel(user, Settings.ActiveEvent);
-
-                post.Id = Int32.Parse(reader["ident"].ToString());
-                post.PathToFile = reader["pathtofile"].ToString();
-                post.Content = reader["PostContent"].ToString();
-
-                posts.Add(post);
-
-                //TODO: Add tags
-                //TODO: add likes
-                //TODO: add reports
-            }
+            
         }
 
         public static PostModel CreateNewPost(string body, string filepath)
@@ -302,6 +278,18 @@ namespace ICT4EVENT
             post.Read();
 
             return post;
+        }
+
+        public static LikeModel CreateNewLike(PostModel post)
+        {
+            LikeModel like = new LikeModel();
+
+            like.User = Settings.ActiveUser;
+            like.Post = post;
+
+            like.Create();
+
+            return like;
         }
 
         public static PostModel RetrievePostFile(PostModel post)
