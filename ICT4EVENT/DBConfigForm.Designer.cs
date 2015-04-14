@@ -53,6 +53,7 @@
             // 
             this.tbPassword.Location = new System.Drawing.Point(85, 40);
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
             this.tbPassword.TabIndex = 1;
             // 
@@ -134,7 +135,7 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // DatabaseConfigForm
+            // DBConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,7 +154,7 @@
             this.Controls.Add(this.tbUser);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "DatabaseConfigForm";
+            this.Name = "DBConfigForm";
             this.Text = "DatabaseConfigForm";
             this.ResumeLayout(false);
             this.PerformLayout();

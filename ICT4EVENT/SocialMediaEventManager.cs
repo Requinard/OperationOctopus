@@ -196,6 +196,7 @@ namespace ICT4EVENT
             string computedHash = Convert.ToBase64String(deriver2898.GetBytes(16));
             return parts[1].Equals(computedHash);
         }
+
     }
 
     public static class EventManager

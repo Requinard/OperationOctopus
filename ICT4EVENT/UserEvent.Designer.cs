@@ -42,6 +42,7 @@
             this.pbEventLogo.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.pbEventLogo.Name = "pbEventLogo";
             this.pbEventLogo.Size = new System.Drawing.Size(157, 190);
+            this.pbEventLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbEventLogo.TabIndex = 0;
             this.pbEventLogo.TabStop = false;
             // 
@@ -62,8 +63,10 @@
             this.lblDescription.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescription.Location = new System.Drawing.Point(165, 71);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDescription.MaximumSize = new System.Drawing.Size(814, 5000);
+            this.lblDescription.MinimumSize = new System.Drawing.Size(814, 24);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(88, 24);
+            this.lblDescription.Size = new System.Drawing.Size(814, 24);
             this.lblDescription.TabIndex = 2;
             this.lblDescription.Text = "<Description>";
             // 
@@ -100,6 +103,7 @@
             this.Controls.Add(this.pbEventLogo);
             this.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.MinimumSize = new System.Drawing.Size(982, 200);
             this.Name = "UserEvent";
             this.Size = new System.Drawing.Size(982, 200);
             ((System.ComponentModel.ISupportInitialize)(this.pbEventLogo)).EndInit();

@@ -16,7 +16,7 @@ namespace ICT4EVENT
 
         private bool FirstTime = true;
         private CampingLogic campingLogic;
-        private EventManagment eventManagment;
+        private EventManagmentLogic eventManagment;
 
 
 
@@ -24,50 +24,57 @@ namespace ICT4EVENT
         public AdminGUI()
         {
             InitializeComponent();
-            eventManagment = new EventManagment();
-            eventManagment.EventCreated += addEvent;
-
+            eventManagment = new EventManagmentLogic(this);
+            campingLogic = new CampingLogic(this);
 
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            lbUser.Items.Add(txtGebruikers.Text);
-            txtGebruikers.Text = "";
+            campingLogic.AddUserToList();
         }
 
         private void addEvent(UserEvent userEvent)
         {
-            flowEvent.Controls.Add(userEvent);
+            eventManagment.AddEvent(userEvent);
         }
 
-        public class EventManagment : AdminGUI
+        public class EventManagmentLogic
         {
-            public delegate void EventCreatedEventHandeler(UserEvent userEvent);
-
-            public event EventCreatedEventHandeler EventCreated;
-
-            public EventManagment()
+            private AdminGUI parent;
+            public EventManagmentLogic(AdminGUI gui)
             {
+                this.parent = gui;
                 CreateDummyData();
+
+            }
+
+            public void AddEvent(UserEvent userEvent)
+            {
+                parent.flowEvent.Controls.Add(userEvent);
             }
 
             public void CreateDummyData()
             {
-                for (int i = 0; i < 10; i++)
+                Random r = new Random();
+                UserEvent newUserEvent = new UserEvent("Honor The Cage", "Luud", "De kleine lepel",
+                        "A event to honor the all mighty cage, Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultricies tellus a ligula facilisis, id fringilla odio pharetra. Sed consequat leo nibh, in facilisis lorem luctus non. Curabitur risus augue, placerat at efficitur quis, aliquam sed arcu. Nam condimentum ligula eros, ut euismod turpis sodales nec. Duis mattis facilisis feugiat. Ut eu sollicitudin diam. Suspendisse vel ex et magna placerat lacinia. Vivamus mollis at justo eu ornare. Ut lacinia arcu a diam efficitur, vel malesuada nibh pretium. Pellentesque nec blandit leo. Quisque consectetur molestie ex, ut dapibus sem lacinia eu. Etiam ligula sem, sollicitudin eu eros eu, sollicitudin luctus orci. In nisl nunc, auctor vitae aliquet sit amet, placerat pellentesque nulla. Donec egestas tempus egestas. Donec a tellus id orci hendrerit consectetur. Fusce a fringilla nulla, non dictum purus. Aliquam placerat, metus eget volutpat feugiat, nisi mi varius odio, sit amet accumsan purus libero non dui. Sed quis massa cursus, feugiat elit a, imperdiet sem. Fusce non feugiat libero. Suspendisse purus magna, maximus eget imperdiet non, suscipit ac metus. Nulla id felis vitae tortor porta tincidunt quis commodo magna. Sed sollicitudin cursus orci, eget finibus leo dignissim id. Sed aliquam ex in tincidunt ornare.", Image.FromFile(@"Nick The Cage.jpg"),r);
+                parent.flowEvent.Controls.Add(newUserEvent);
+                
+                 for (int i = 0; i < 10; i++)
                 {
-                    UserEvent userEvent = new UserEvent("EventName", "Sjaak", "Camping Reeendaal",
-                        "Een social media event");
-                    if (EventCreated != null)
-                    {
-                        EventCreated(userEvent);
-                    }
+                    UserEvent userEvent = new UserEvent("Social Media Event", "Sjaak", "Camping Reeendaal",
+                        "Een social media event",null,r);
+                   parent.flowEvent.Controls.Add(userEvent);
                 }
+
+                
             }
         }
 
-        public class CampingLogic : AdminGUI
+        public class CampingLogic
         {
+            private AdminGUI parent;
             private List<string> guests;
             private decimal amount;
             private int[] Bungalows;
@@ -86,10 +93,9 @@ namespace ICT4EVENT
                 get { return userList; }
             }
 
-            public CampingLogic(List<string> Guests, decimal Amount)
+            public CampingLogic(AdminGUI gui)
             {
-                guests = Guests;
-                amount = Amount;
+                parent = gui;
                 userList = new List<string>();
                 EigenTenten = EigenTentenArray();
                 Bungalows = BungalowArray();
@@ -103,10 +109,13 @@ namespace ICT4EVENT
                 FillAllPlaces();
             }
 
-            public void AddUser(string user)
+            public void AddUserToList()
             {
-                userList.Add(user);
+                parent.lbUser.Items.Add(parent.txtGebruikers.Text);
+                parent.txtGebruikers.Text = "";
             }
+
+
 
             public bool CheckPlaceSize(decimal place, int amountofusers)
             {
@@ -222,10 +231,17 @@ namespace ICT4EVENT
 
             private void FillAllPlaces()
             {
+                for (int i = 0; i <= 678; i++)
+                {
+                    parent.nmrPlaats.Items.Add(i);
+                }
+                /*
                 foreach (int place in AllPlaces)
                 {
-                    nmrPlaats.Items.Add(place);
+                    parent.nmrPlaats.Items.Add(place);
                 }
+                 */
+                
             }
 
             private int[] EigenTentenArray()
@@ -307,6 +323,7 @@ namespace ICT4EVENT
                 return allplaces;
             }
 
+           /*
             private void btnReserve_Click(object sender, EventArgs e)
             {
                 List<string> userList = new List<string>();
@@ -322,6 +339,7 @@ namespace ICT4EVENT
                     txtGebruikers.Text = "";
                 }
             }
+            */
         }
 
         public class RegistrationLogic
