@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminGUI));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -43,13 +43,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbRecent = new System.Windows.Forms.ListBox();
             this.gbCheckIn = new System.Windows.Forms.GroupBox();
-            this.groupDetail = new System.Windows.Forms.GroupBox();
-            this.pictureDetail = new System.Windows.Forms.PictureBox();
+            this.btnFindUser = new System.Windows.Forms.Button();
+            this.gbUserDetails = new System.Windows.Forms.GroupBox();
+            this.btnConformUser = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lblAtEventStatus = new System.Windows.Forms.Label();
+            this.lblPaymentStatusOfUser = new System.Windows.Forms.Label();
+            this.lblNameOfUser = new System.Windows.Forms.Label();
             this.txtRFIDCode = new System.Windows.Forms.TextBox();
             this.tabPostReview = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabMaterialRental = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gbMaterialControl = new System.Windows.Forms.GroupBox();
             this.lblSelectReservation = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.cbReservations = new System.Windows.Forms.ComboBox();
@@ -60,15 +67,18 @@
             this.btnEditEvent = new System.Windows.Forms.Button();
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
+            this.flowPostReview = new System.Windows.Forms.FlowLayoutPanel();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.gbCheckIn.SuspendLayout();
-            this.groupDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).BeginInit();
+            this.gbUserDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.tabPostReview.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabMaterialRental.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gbMaterialControl.SuspendLayout();
             this.tabEventManagment.SuspendLayout();
             this.gbEventManagment.SuspendLayout();
             this.SuspendLayout();
@@ -196,6 +206,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.lbRecent);
             this.tabPage1.Controls.Add(this.gbCheckIn);
             this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
@@ -203,46 +214,127 @@
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Gasten Inschrijven";
             // 
+            // lbRecent
+            // 
+            this.lbRecent.Font = new System.Drawing.Font("Agency FB", 18F);
+            this.lbRecent.FormattingEnabled = true;
+            this.lbRecent.ItemHeight = 28;
+            this.lbRecent.Location = new System.Drawing.Point(10, 331);
+            this.lbRecent.Name = "lbRecent";
+            this.lbRecent.Size = new System.Drawing.Size(973, 284);
+            this.lbRecent.TabIndex = 14;
+            // 
             // gbCheckIn
             // 
             this.gbCheckIn.BackColor = System.Drawing.Color.Transparent;
-            this.gbCheckIn.Controls.Add(this.groupDetail);
+            this.gbCheckIn.Controls.Add(this.btnFindUser);
+            this.gbCheckIn.Controls.Add(this.gbUserDetails);
             this.gbCheckIn.Controls.Add(this.txtRFIDCode);
             this.gbCheckIn.Location = new System.Drawing.Point(4, 4);
             this.gbCheckIn.Name = "gbCheckIn";
-            this.gbCheckIn.Size = new System.Drawing.Size(814, 629);
+            this.gbCheckIn.Size = new System.Drawing.Size(985, 321);
             this.gbCheckIn.TabIndex = 13;
             this.gbCheckIn.TabStop = false;
             this.gbCheckIn.Text = "Schrijf bezoeker in";
             // 
-            // groupDetail
+            // btnFindUser
             // 
-            this.groupDetail.Controls.Add(this.pictureDetail);
-            this.groupDetail.Location = new System.Drawing.Point(27, 135);
-            this.groupDetail.Name = "groupDetail";
-            this.groupDetail.Size = new System.Drawing.Size(730, 411);
-            this.groupDetail.TabIndex = 1;
-            this.groupDetail.TabStop = false;
-            this.groupDetail.Text = "Details";
+            this.btnFindUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnFindUser.Location = new System.Drawing.Point(826, 25);
+            this.btnFindUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnFindUser.Name = "btnFindUser";
+            this.btnFindUser.Size = new System.Drawing.Size(156, 40);
+            this.btnFindUser.TabIndex = 14;
+            this.btnFindUser.Tag = "SMSS";
+            this.btnFindUser.Text = "Zoek gebruiker";
+            this.btnFindUser.UseVisualStyleBackColor = true;
             // 
-            // pictureDetail
+            // gbUserDetails
             // 
-            this.pictureDetail.Location = new System.Drawing.Point(533, 15);
-            this.pictureDetail.Name = "pictureDetail";
-            this.pictureDetail.Size = new System.Drawing.Size(190, 190);
-            this.pictureDetail.TabIndex = 0;
-            this.pictureDetail.TabStop = false;
+            this.gbUserDetails.BackColor = System.Drawing.SystemColors.Control;
+            this.gbUserDetails.Controls.Add(this.btnConformUser);
+            this.gbUserDetails.Controls.Add(this.pictureBox3);
+            this.gbUserDetails.Controls.Add(this.lblAtEventStatus);
+            this.gbUserDetails.Controls.Add(this.lblPaymentStatusOfUser);
+            this.gbUserDetails.Controls.Add(this.lblNameOfUser);
+            this.gbUserDetails.Location = new System.Drawing.Point(6, 81);
+            this.gbUserDetails.Name = "gbUserDetails";
+            this.gbUserDetails.Size = new System.Drawing.Size(979, 236);
+            this.gbUserDetails.TabIndex = 1;
+            this.gbUserDetails.TabStop = false;
+            this.gbUserDetails.Text = "Details of <Username>";
+            // 
+            // btnConformUser
+            // 
+            this.btnConformUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConformUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnConformUser.Location = new System.Drawing.Point(660, 196);
+            this.btnConformUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnConformUser.Name = "btnConformUser";
+            this.btnConformUser.Size = new System.Drawing.Size(310, 40);
+            this.btnConformUser.TabIndex = 15;
+            this.btnConformUser.Tag = "SMSS";
+            this.btnConformUser.Text = "Bevestig Gebruiker";
+            this.btnConformUser.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.OrangeRed;
+            this.pictureBox3.Location = new System.Drawing.Point(820, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox3.TabIndex = 14;
+            this.pictureBox3.TabStop = false;
+            // 
+            // lblAtEventStatus
+            // 
+            this.lblAtEventStatus.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblAtEventStatus.Font = new System.Drawing.Font("Agency FB", 18F);
+            this.lblAtEventStatus.Location = new System.Drawing.Point(6, 196);
+            this.lblAtEventStatus.Name = "lblAtEventStatus";
+            this.lblAtEventStatus.Size = new System.Drawing.Size(428, 33);
+            this.lblAtEventStatus.TabIndex = 13;
+            this.lblAtEventStatus.Tag = "";
+            this.lblAtEventStatus.Text = "At event: <Status>";
+            this.lblAtEventStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPaymentStatusOfUser
+            // 
+            this.lblPaymentStatusOfUser.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblPaymentStatusOfUser.Font = new System.Drawing.Font("Agency FB", 18F);
+            this.lblPaymentStatusOfUser.Location = new System.Drawing.Point(6, 87);
+            this.lblPaymentStatusOfUser.Name = "lblPaymentStatusOfUser";
+            this.lblPaymentStatusOfUser.Size = new System.Drawing.Size(428, 33);
+            this.lblPaymentStatusOfUser.TabIndex = 12;
+            this.lblPaymentStatusOfUser.Tag = "";
+            this.lblPaymentStatusOfUser.Text = "Payment status: <Status>";
+            this.lblPaymentStatusOfUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblNameOfUser
+            // 
+            this.lblNameOfUser.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblNameOfUser.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameOfUser.Location = new System.Drawing.Point(6, 30);
+            this.lblNameOfUser.Name = "lblNameOfUser";
+            this.lblNameOfUser.Size = new System.Drawing.Size(428, 34);
+            this.lblNameOfUser.TabIndex = 10;
+            this.lblNameOfUser.Tag = "";
+            this.lblNameOfUser.Text = "Naam: <Name Of User>";
+            this.lblNameOfUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtRFIDCode
             // 
-            this.txtRFIDCode.Enabled = false;
-            this.txtRFIDCode.Location = new System.Drawing.Point(6, 40);
+            this.txtRFIDCode.Font = new System.Drawing.Font("Agency FB", 14.25F);
+            this.txtRFIDCode.Location = new System.Drawing.Point(6, 25);
+            this.txtRFIDCode.MinimumSize = new System.Drawing.Size(815, 40);
             this.txtRFIDCode.Name = "txtRFIDCode";
-            this.txtRFIDCode.Size = new System.Drawing.Size(730, 25);
+            this.txtRFIDCode.Size = new System.Drawing.Size(815, 30);
             this.txtRFIDCode.TabIndex = 0;
             // 
             // tabPostReview
             // 
+            this.tabPostReview.Controls.Add(this.groupBox1);
             this.tabPostReview.Location = new System.Drawing.Point(4, 27);
             this.tabPostReview.Name = "tabPostReview";
             this.tabPostReview.Size = new System.Drawing.Size(992, 629);
@@ -250,9 +342,19 @@
             this.tabPostReview.Text = "Post Review";
             this.tabPostReview.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.flowPostReview);
+            this.groupBox1.Location = new System.Drawing.Point(2, -1);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(989, 630);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Materiaal Beheer";
+            // 
             // tabMaterialRental
             // 
-            this.tabMaterialRental.Controls.Add(this.groupBox4);
+            this.tabMaterialRental.Controls.Add(this.gbMaterialControl);
             this.tabMaterialRental.Location = new System.Drawing.Point(4, 27);
             this.tabMaterialRental.Name = "tabMaterialRental";
             this.tabMaterialRental.Size = new System.Drawing.Size(992, 629);
@@ -260,18 +362,18 @@
             this.tabMaterialRental.Text = "Materiaal Uitgifte";
             this.tabMaterialRental.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // gbMaterialControl
             // 
-            this.groupBox4.Controls.Add(this.lblSelectReservation);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.cbReservations);
-            this.groupBox4.Controls.Add(this.listView3);
-            this.groupBox4.Location = new System.Drawing.Point(3, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(989, 630);
-            this.groupBox4.TabIndex = 15;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
+            this.gbMaterialControl.Controls.Add(this.lblSelectReservation);
+            this.gbMaterialControl.Controls.Add(this.button2);
+            this.gbMaterialControl.Controls.Add(this.cbReservations);
+            this.gbMaterialControl.Controls.Add(this.listView3);
+            this.gbMaterialControl.Location = new System.Drawing.Point(3, 3);
+            this.gbMaterialControl.Name = "gbMaterialControl";
+            this.gbMaterialControl.Size = new System.Drawing.Size(989, 630);
+            this.gbMaterialControl.TabIndex = 15;
+            this.gbMaterialControl.TabStop = false;
+            this.gbMaterialControl.Text = "Materiaal Beheer";
             // 
             // lblSelectReservation
             // 
@@ -303,11 +405,11 @@
             // listView3
             // 
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem7,
+            listViewItem8});
             this.listView3.Location = new System.Drawing.Point(6, 56);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(741, 372);
+            this.listView3.Size = new System.Drawing.Size(983, 372);
             this.listView3.TabIndex = 2;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
@@ -373,6 +475,16 @@
             this.btnCreateEvent.Text = "Nieuw Evenement";
             this.btnCreateEvent.UseVisualStyleBackColor = true;
             // 
+            // flowPostReview
+            // 
+            this.flowPostReview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPostReview.Location = new System.Drawing.Point(-2, 25);
+            this.flowPostReview.MinimumSize = new System.Drawing.Size(992, 605);
+            this.flowPostReview.Name = "flowPostReview";
+            this.flowPostReview.Size = new System.Drawing.Size(992, 605);
+            this.flowPostReview.TabIndex = 0;
+            this.flowPostReview.WrapContents = false;
+            // 
             // AdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
@@ -391,11 +503,13 @@
             this.tabPage1.ResumeLayout(false);
             this.gbCheckIn.ResumeLayout(false);
             this.gbCheckIn.PerformLayout();
-            this.groupDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureDetail)).EndInit();
+            this.gbUserDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.tabPostReview.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.tabMaterialRental.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gbMaterialControl.ResumeLayout(false);
+            this.gbMaterialControl.PerformLayout();
             this.tabEventManagment.ResumeLayout(false);
             this.gbEventManagment.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -414,12 +528,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox gbCheckIn;
-        private System.Windows.Forms.GroupBox groupDetail;
-        private System.Windows.Forms.PictureBox pictureDetail;
+        private System.Windows.Forms.GroupBox gbUserDetails;
         private System.Windows.Forms.TextBox txtRFIDCode;
         private System.Windows.Forms.TabPage tabPostReview;
         private System.Windows.Forms.TabPage tabMaterialRental;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbMaterialControl;
         private System.Windows.Forms.Label lblSelectReservation;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox cbReservations;
@@ -433,5 +546,14 @@
         private System.Windows.Forms.ComboBox nmrPlaats;
         private System.Windows.Forms.Button btnDeleteEvent;
         private System.Windows.Forms.Button btnEditEvent;
+        private System.Windows.Forms.Button btnFindUser;
+        private System.Windows.Forms.Button btnConformUser;
+        private System.Windows.Forms.Label lblAtEventStatus;
+        private System.Windows.Forms.Label lblPaymentStatusOfUser;
+        private System.Windows.Forms.Label lblNameOfUser;
+        private System.Windows.Forms.ListBox lbRecent;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowPostReview;
     }
 }

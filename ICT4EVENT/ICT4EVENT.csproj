@@ -128,6 +128,12 @@
     <Compile Include="UserPost.Designer.cs">
       <DependentUpon>UserPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserPostReview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserPostReview.Designer.cs">
+      <DependentUpon>UserPostReview.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminGUI.resx">
       <DependentUpon>AdminGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +160,9 @@
       <DependentUpon>UserEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserPost.resx" />
+    <EmbeddedResource Include="UserPostReview.resx">
+      <DependentUpon>UserPostReview.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Main Diagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

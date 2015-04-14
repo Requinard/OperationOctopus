@@ -10,6 +10,7 @@ namespace ICT4EVENT
     {
         private readonly CampingLogic campingLogic;
         private readonly EventManagmentLogic eventManagment;
+        private PostReviewLogic postReview;
         private bool FirstTime = true;
 
         public AdminGUI()
@@ -17,6 +18,8 @@ namespace ICT4EVENT
             InitializeComponent();
             eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
+            postReview = new PostReviewLogic(this);
+
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -331,6 +334,34 @@ namespace ICT4EVENT
 
         public class RegistrationLogic
         {
+
+        }
+
+        public class PostReviewLogic
+        {
+            private AdminGUI parent;
+            public PostReviewLogic(AdminGUI gui)
+            {
+                parent = gui;
+               CreateDummyData();
+            }
+
+            public void CreateDummyData()
+            {
+                UserPost post;
+                post = new UserPost("David != fucking haat", "Guus", null,
+                    null);
+                parent.flowPostReview.Controls.Add(new UserPostReview(post));
+
+
+                post = new UserPost("David != fucking haat", "Guus", null,
+                    null);
+                parent.flowPostReview.Controls.Add(new UserPostReview(post));
+
+                post = new UserPost("David != fucking haat", "Guus", null,
+                    null);
+                parent.flowPostReview.Controls.Add(new UserPostReview(post));   
+            }
         }
     }
 }

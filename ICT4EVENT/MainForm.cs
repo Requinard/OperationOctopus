@@ -23,8 +23,10 @@ namespace ICT4EVENT
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if(Settings.DEBUG)
+            if (Settings.DEBUG)
+            {
                 CreateTestPosts();
+            }
         }
 
         private void CreateTestPosts()
@@ -32,7 +34,7 @@ namespace ICT4EVENT
             Random r = new Random(8);
             UserPost post;
             post = new UserPost("David == fucking haat", "Guus", Image.FromFile(@"The Cage.jpg"),
-                Image.FromFile(@"nicolas-cage-will-be-in-the-expendables-3.jpg"));
+                Image.FromFile(@"nicolas-cage-will-be-in-the-expendables-3.jpg"), new UserPost("@Guus, Random Text", null, null, null));
             flowUserPosts.Controls.Add(post);
 
             for (int i = 0; i < 10; i++)
