@@ -17,7 +17,7 @@ namespace ICT4EVENT
         public static void Initalize()
         {
             // make sure the dbmanager can't reinitialise
-            if (oracleConnection.State != ConnectionState.Broken || oracleConnection.State != ConnectionState.Closed)
+            if (oracleConnection != null &&(oracleConnection.State != ConnectionState.Broken || oracleConnection.State != ConnectionState.Closed))
                 return;
 
             // If the file exist, we deserialize our configs

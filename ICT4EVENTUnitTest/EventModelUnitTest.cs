@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.OracleClient;
+using Oracle. DataAccess;
 using ICT4EVENT;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

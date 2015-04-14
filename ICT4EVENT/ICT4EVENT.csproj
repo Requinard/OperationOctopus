@@ -76,10 +76,7 @@
       <HintPath>.\ApplicationLogger.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Oracle.DataAccess.dll</HintPath>
-    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="Phidget21.NET, Version=2.1.8.208, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>B:\Program Files\Phidgets\Phidget21.NET.dll</HintPath>
@@ -96,13 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminGUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminGUI.Designer.cs">
-      <DependentUpon>AdminGUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBConfigForm.cs">
+    <Compile Include="Forms\AdminGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AdminGUI.Designer.cs">
@@ -157,21 +148,14 @@
     <Compile Include="Controls\UserPost.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserPost.Designer.cs">
-      <DependentUpon>UserPost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserPostReview.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserPostReview.Designer.cs">
-      <DependentUpon>UserPostReview.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AdminGUI.resx">
-      <DependentUpon>AdminGUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBConfigForm.resx">
     <Compile Include="Controls\UserPost.Designer.cs">
       <DependentUpon>UserPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserPostReview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserPostReview.Designer.cs">
+      <DependentUpon>UserPostReview.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\AdminGUI.resx">
       <DependentUpon>AdminGUI.cs</DependentUpon>
@@ -199,10 +183,9 @@
       <DependentUpon>UserEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserPost.resx" />
-    <EmbeddedResource Include="UserPostReview.resx">
+    <EmbeddedResource Include="Controls\UserPostReview.resx">
       <DependentUpon>UserPostReview.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Main Diagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
