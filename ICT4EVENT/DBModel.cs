@@ -892,6 +892,11 @@ using Oracle.DataAccess.Client;
         /// </summary>
         private decimal price;
 
+        /// <summary>
+        ///     The price.
+        /// </summary>
+        private string objectType;
+
         #endregion
 
         #region Constructors and Destructors
@@ -944,6 +949,22 @@ using Oracle.DataAccess.Client;
         }
 
         /// <summary>
+        ///     Gets or sets the kind of object.
+        /// </summary>
+        public string ObjectType
+        {
+            get
+            {
+                return this.objectType;
+            }
+
+            set
+            {
+                this.objectType = value;
+            }
+        }
+
+        /// <summary>
         ///     Gets the event item.
         /// </summary>
         public EventModel EventItem
@@ -982,9 +1003,9 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Create()
         {
-            string columns = "EventID, Description, Price, Amount";
-            string values = string.Format("'{0}','{1}','{2}','{3}'", this.event_item.Id, this.description, this.price, this.amount);
-            string finalQuery = string.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
+            string columns = "EventID, Description, Price, Amount, TypeOfObject, ItemType";
+            string values = string.Format("'{0}','{1}','{2}','{3}','{4}', 'RentableObject'", this.event_item.Id, this.description, this.price, this.amount, this.objectType);
+            string finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
@@ -998,7 +1019,7 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "RENTABLEOBJECT", "'" + this.Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
@@ -1012,7 +1033,7 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Read()
         {
-            string query = string.Format(READSTRING, "RENTABLEOBJECT", this.Id);
+            string query = string.Format(READSTRING, "ITEM", this.Id);
             OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
@@ -1023,6 +1044,7 @@ using Oracle.DataAccess.Client;
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
             this.description = reader["Description"].ToString();
+            this.objectType = reader["TypeOfObject"].ToString();
             this.price = Convert.ToDecimal(reader["Price"].ToString());
             this.amount = Convert.ToInt32(reader["Amount"].ToString());
 
@@ -1038,12 +1060,13 @@ using Oracle.DataAccess.Client;
         public bool Update()
         {
             string columnvalues = string.Format(
-                "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}'", 
+                "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', TypeOfObject='{4}'", 
                 this.event_item.Id, 
                 this.description, 
                 this.price, 
-                this.amount);
-            string finalQuery = string.Format(UPDATESTRING, "RENTABLEOBJECT", columnvalues, "'" + this.Id + "'");
+                this.amount,
+                this.objectType);
+            string finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;

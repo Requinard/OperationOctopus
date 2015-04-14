@@ -130,7 +130,8 @@ namespace ICT4EVENTUnitTest
             RentableObjectModel rent_item = new RentableObjectModel(event_item);
 
             rent_item.Amount = 3;
-            rent_item.Description = "3D printer";
+            rent_item.Description = "For all your keychain needs";
+            rent_item.ObjectType = "3D printer";
             rent_item.Price = 9.99m;
 
             return rent_item;
