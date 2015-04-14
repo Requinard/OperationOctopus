@@ -9,7 +9,6 @@ namespace ICT4EVENT
     public static class DBManager
     {
         private static OracleConnection oracleConnection;
-        private static bool disposed;
 
         /// <summary>
         ///     Connects to our database

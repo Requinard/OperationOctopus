@@ -106,7 +106,7 @@ namespace ICT4EVENT
                     requestStream.Close();
                     response.Close();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Directory already exists
                 }
@@ -121,7 +121,6 @@ namespace ICT4EVENT
         /// <param name="path"></param>
         public static void DownloadFile(string path)
         {
-            StreamReader s;
             byte[] content = {};
             FtpWebResponse response;
             Stream responseStream;

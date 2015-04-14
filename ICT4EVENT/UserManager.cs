@@ -11,7 +11,6 @@ namespace ICT4EVENT
 {
     public static class UserManager
     {
-        private static RNGCryptoServiceProvider crypto;
         private static readonly RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
         private static int NUM_ITERATIONS = 1000;
         private static int SALT_SIZE = 12;
