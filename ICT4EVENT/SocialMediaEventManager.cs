@@ -326,7 +326,7 @@ namespace ICT4EVENT
                 model.Price = Decimal.Parse(reader["price"].ToString());
                 model.Amount = Int32.Parse(reader["amount"].ToString());
                 model.Category = reader["PlaceCategory"].ToString();
-                model.Capacity = reader["PlaceCapacity"].ToString();
+                model.Capacity = Int32.Parse(reader["PlaceCapacity"].ToString());
                 model.Location = reader["PlaceLocation"].ToString();
                 model.Id = Int32.Parse(reader["ident"].ToString());
 
