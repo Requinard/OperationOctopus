@@ -1,871 +1,1954 @@
-﻿using System;
-using System.Collections.Generic;
-using Oracle.DataAccess.Client;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DBModel.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The db model.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace ICT4EVENT
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Oracle.DataAccess.Client;
+
+    /// <summary>
+    /// The db model.
+    /// </summary>
     public abstract class DBModel
     {
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
-        protected const string INSERTSTRING = "INSERT INTO {0} ({1}) VALUES ({2})";
-        // Updates a row in the database. {0} is table name, {1} is columns and values and {2} is the row id
-        protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE ident={2}";
-        // Reads the corresponding row from the database. {0} is table name, {1} is the row id
-        protected const string READSTRING = "SELECT * FROM {0} WHERE ident={1}";
-        // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
+        #region Constants
+
+        /// <summary>
+        /// The destroystring.
+        /// </summary>
         protected const string DESTROYSTRING = "DELETE FROM {0} WHERE ident={1}";
 
+        /// <summary>
+        /// The insertstring.
+        /// </summary>
+        protected const string INSERTSTRING = "INSERT INTO {0} ({1}) VALUES ({2})";
+
+        // Updates a row in the database. {0} is table name, {1} is columns and values and {2} is the row id
+
+        // Reads the corresponding row from the database. {0} is table name, {1} is the row id
+        /// <summary>
+        /// The readstring.
+        /// </summary>
+        protected const string READSTRING = "SELECT * FROM {0} WHERE ident={1}";
+
+        /// <summary>
+        /// The updatestring.
+        /// </summary>
+        protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE ident={2}";
+
+        #endregion
+
+        // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int Id { get; set; }
 
+        #endregion
     }
 
+    /// <summary>
+    /// The event model.
+    /// </summary>
     public class EventModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The registrations list.
+        /// </summary>
         private readonly List<RegistrationModel> registrationsList;
+
+        /// <summary>
+        /// The description.
+        /// </summary>
         private string description;
+
+        /// <summary>
+        /// The end date.
+        /// </summary>
         private DateTime endDate;
+
+        /// <summary>
+        /// The location.
+        /// </summary>
         private string location;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
         private string name;
+
+        /// <summary>
+        /// The start date.
+        /// </summary>
         private DateTime startDate;
 
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventModel"/> class.
+        /// </summary>
         public EventModel()
         {
-            registrationsList = new List<RegistrationModel>();
+            this.registrationsList = new List<RegistrationModel>();
         }
 
-        public List<RegistrationModel> RegistrationsList
-        {
-            get { return registrationsList; }
-        }
+        #endregion
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        #region Public Properties
 
-        public string Location
-        {
-            get { return location; }
-            set { location = value; }
-        }
-
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
         public string Description
         {
-            get { return description; }
-            set { description = value; }
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.description = value;
+            }
         }
 
-        public DateTime StartDate
-        {
-            get { return startDate; }
-            set { startDate = value; }
-        }
-
+        /// <summary>
+        /// Gets or sets the end date.
+        /// </summary>
         public DateTime EndDate
         {
-            get { return endDate; }
-            set { endDate = value; }
+            get
+            {
+                return this.endDate;
+            }
+
+            set
+            {
+                this.endDate = value;
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the location.
+        /// </summary>
+        public string Location
+        {
+            get
+            {
+                return this.location;
+            }
+
+            set
+            {
+                this.location = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the registrations list.
+        /// </summary>
+        public List<RegistrationModel> RegistrationsList
+        {
+            get
+            {
+                return this.registrationsList;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the start date.
+        /// </summary>
+        public DateTime StartDate
+        {
+            get
+            {
+                return this.startDate;
+            }
+
+            set
+            {
+                this.startDate = value;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            string values = "'" + name + "','" + location + "','" + description + "','" + startDate + "','" + endDate +
-                            "'";
-            string finalQuery = String.Format(INSERTSTRING, "EVENT", columns, values);
+            string values = "'" + this.name + "','" + this.location + "','" + this.description + "','" + this.startDate
+                            + "','" + this.endDate + "'";
+            string finalQuery = string.Format(INSERTSTRING, "EVENT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
 
             return true;
         }
 
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "EVENT", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-
-            if (reader == null) return false;
-
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            name = reader["EventName"].ToString();
-            location = reader["EventLocation"].ToString();
-            description = reader["Description"].ToString();
-            startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
-            endDate = Convert.ToDateTime(reader["EndTime"].ToString());
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "EventName='" + name + "', EventLocation='" + location + "', Description='" +
-                                  description + "', BeginTime='" + startDate + "', EndTime='" + endDate + "'";
-            string finalQuery = String.Format(UPDATESTRING, "EVENT", columnvalues, "'" + Id + "'");
-
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string query = String.Format(DESTROYSTRING, "EVENT", Id);
+            string query = string.Format(DESTROYSTRING, "EVENT", this.Id);
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
+
             return true;
         }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "EVENT", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.name = reader["EventName"].ToString();
+            this.location = reader["EventLocation"].ToString();
+            this.description = reader["Description"].ToString();
+            this.startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
+            this.endDate = Convert.ToDateTime(reader["EndTime"].ToString());
+
+            return true;
+        }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = "EventName='" + this.name + "', EventLocation='" + this.location + "', Description='"
+                                  + this.description + "', BeginTime='" + this.startDate + "', EndTime='" + this.endDate
+                                  + "'";
+            string finalQuery = string.Format(UPDATESTRING, "EVENT", columnvalues, "'" + this.Id + "'");
+
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The user model.
+    /// </summary>
     public class UserModel : DBModel, IDataModelUpdate
     {
-        private string RFIDnumber;
+        #region Fields
+
+        /// <summary>
+        /// The registration list.
+        /// </summary>
         public List<RegistrationModel> RegistrationList;
+
+        /// <summary>
+        /// The rfi dnumber.
+        /// </summary>
+        private string RFIDnumber;
+
+        /// <summary>
+        /// The address.
+        /// </summary>
         private string address;
+
+        /// <summary>
+        /// The email.
+        /// </summary>
         private string email;
+
+        /// <summary>
+        /// The level.
+        /// </summary>
         private int level;
+
+        /// <summary>
+        /// The password.
+        /// </summary>
         private string password;
+
+        /// <summary>
+        /// The registrations.
+        /// </summary>
         private List<RegistrationModel> registrations;
+
+        /// <summary>
+        /// The telephonenumber.
+        /// </summary>
         private string telephonenumber;
+
+        /// <summary>
+        /// The username.
+        /// </summary>
         private string username;
 
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserModel"/> class.
+        /// </summary>
         public UserModel()
         {
-            level = 1;
-            RegistrationList = new List<RegistrationModel>();
+            this.level = 1;
+            this.RegistrationList = new List<RegistrationModel>();
         }
 
-        public int Level
-        {
-            get { return level; }
-            set { level = value; }
-        }
+        #endregion
 
-        public string RfiDnumber
-        {
-            get { return RFIDnumber; }
-            set { RFIDnumber = value; }
-        }
+        #region Public Properties
 
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
         public string Address
         {
-            get { return address; }
-            set { address = value; }
+            get
+            {
+                return this.address;
+            }
+
+            set
+            {
+                this.address = value;
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the email.
+        /// </summary>
         public string Email
         {
-            get { return email; }
-            set { email = value; }
+            get
+            {
+                return this.email;
+            }
+
+            set
+            {
+                this.email = value;
+            }
         }
 
-        public string Telephonenumber
+        /// <summary>
+        /// Gets or sets the level.
+        /// </summary>
+        public int Level
         {
-            get { return telephonenumber; }
-            set { telephonenumber = value; }
+            get
+            {
+                return this.level;
+            }
+
+            set
+            {
+                this.level = value;
+            }
         }
 
-        public string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
-
+        /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
         public string Password
         {
-            get { return password; }
+            get
+            {
+                return this.password;
+            }
+
             // Automatically hashes a new string when it's set
-            set { password = value; }
+            set
+            {
+                this.password = value;
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the rfi dnumber.
+        /// </summary>
+        public string RfiDnumber
+        {
+            get
+            {
+                return this.RFIDnumber;
+            }
+
+            set
+            {
+                this.RFIDnumber = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the telephonenumber.
+        /// </summary>
+        public string Telephonenumber
+        {
+            get
+            {
+                return this.telephonenumber;
+            }
+
+            set
+            {
+                this.telephonenumber = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        public string Username
+        {
+            get
+            {
+                return this.username;
+            }
+
+            set
+            {
+                this.username = value;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
-            string values = "'" + RFIDnumber + "','" + address + "','" + username + "','" + email + "','" +
-                            telephonenumber + "','" + password + "','" + level + "'";
-            string finalQuery = String.Format(INSERTSTRING, "USERS", columns, values);
-            OracleDataReader reader =  DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "USERS", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-
-            if (reader == null) return false;
-
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            RFIDnumber = reader["RFIDnumber"].ToString();
-            address = reader["Address"].ToString();
-            username = reader["Username"].ToString();
-            email = reader["Email"].ToString();
-            telephonenumber = reader["TelephoneNumber"].ToString();
-            password = reader["UserPassword"].ToString();
-            level = Convert.ToInt32(reader["UserLevel"].ToString());
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "RFIDnumber='" + RFIDnumber + "', Address='" + address + "', Username='" + username +
-                                  "', Email='" + email + "', TelephoneNumber='" + telephonenumber + "', UserPassword='" +
-                                  password + "'";
-            string finalQuery = String.Format(UPDATESTRING, "USERS", columnvalues, "'" + Id + "'");
+            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", this.RFIDnumber, this.address, this.username, this.email, this.telephonenumber, this.password, this.level);
+            string finalQuery = string.Format(INSERTSTRING, "USERS", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false; 
+            if (reader == null)
+            {
+                return false;
+            }
+
             return true;
         }
 
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "USERS", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "USERS", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
+
             return true;
         }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "USERS", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.RFIDnumber = reader["RFIDnumber"].ToString();
+            this.address = reader["Address"].ToString();
+            this.username = reader["Username"].ToString();
+            this.email = reader["Email"].ToString();
+            this.telephonenumber = reader["TelephoneNumber"].ToString();
+            this.password = reader["UserPassword"].ToString();
+            this.level = Convert.ToInt32(reader["UserLevel"].ToString());
+
+            return true;
+        }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format("RFIDnumber='{0}', Address='{1}', Username='{2}', Email='{3}', TelephoneNumber='{4}', UserPassword='{5}'", this.RFIDnumber, this.address, this.username, this.email, this.telephonenumber, this.password);
+            string finalQuery = string.Format(UPDATESTRING, "USERS", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The registration model.
+    /// </summary>
     public class RegistrationModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The event_item.
+        /// </summary>
         private readonly EventModel event_item;
+
+        /// <summary>
+        /// The user.
+        /// </summary>
         private readonly UserModel user;
 
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegistrationModel"/> class.
+        /// </summary>
+        /// <param name="user">
+        /// The user.
+        /// </param>
+        /// <param name="event_item">
+        /// The event_item.
+        /// </param>
         public RegistrationModel(UserModel user, EventModel event_item)
         {
             this.user = user;
             this.event_item = event_item;
         }
 
-        public UserModel User
-        {
-            get { return user; }
-        }
+        #endregion
 
+        #region Public Properties
+
+        /// <summary>
+        /// Gets the event item.
+        /// </summary>
         public EventModel EventItem
         {
-            get { return event_item; }
+            get
+            {
+                return this.event_item;
+            }
         }
 
+        /// <summary>
+        /// Gets the user.
+        /// </summary>
+        public UserModel User
+        {
+            get
+            {
+                return this.user;
+            }
+        }
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "UserID, EventID";
-            string values = "'" + user.Id + "','" + event_item.Id + "'";
-            string finalQuery = String.Format(INSERTSTRING, "REGISTRATION", columns, values);
+            string values = string.Format("'{0}','{1}'", this.user.Id, this.event_item.Id);
+            string finalQuery = string.Format(INSERTSTRING, "REGISTRATION", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
-        }
-
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "REGISTRATION", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            if (reader == null)
+            {
+                return false;
+            }
 
             return true;
         }
 
-        public bool Update()
-        {
-            string columnvalues = "UserID='" + User.Id + "', EventID='" + event_item.Id + "'";
-            string finalQuery = String.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "REGISTRATION", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "REGISTRATION", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
+
             return true;
         }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "REGISTRATION", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+
+            return true;
+        }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = "UserID='" + this.User.Id + "', EventID='" + this.event_item.Id + "'";
+            string finalQuery = string.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The rfid log model.
+    /// </summary>
     public class RFIDLogModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The event_item.
+        /// </summary>
         private readonly EventModel event_item;
+
+        /// <summary>
+        /// The user.
+        /// </summary>
         private readonly UserModel user;
+
+        /// <summary>
+        /// The in or out.
+        /// </summary>
         private string InOrOut;
 
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RFIDLogModel"/> class.
+        /// </summary>
+        /// <param name="user">
+        /// The user.
+        /// </param>
+        /// <param name="event_item">
+        /// The event_item.
+        /// </param>
         public RFIDLogModel(UserModel user, EventModel event_item)
         {
             this.user = user;
             this.event_item = event_item;
         }
 
+        #endregion
 
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "UserID,EventID,InOrOut";
-            string values = "'" + user.Id + "','" + event_item.Id + "','" + InOrOut + "'";
-            string finalQuery = String.Format(INSERTSTRING, "RFIDLOG", columns, values);
+            string values = "'" + this.user.Id + "','" + this.event_item.Id + "','" + this.InOrOut + "'";
+            string finalQuery = string.Format(INSERTSTRING, "RFIDLOG", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false; ;
+            if (reader == null)
+            {
+                return false;
+            }
+
+            ;
             return true;
         }
 
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "RFIDLOG", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            InOrOut = reader["InOrOut"].ToString();
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "UserID='" + user.Id + "', EventID='" + event_item.Id + "', InOrOut='" + InOrOut + "'";
-            string finalQuery = String.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RFIDLOG", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "RFIDLOG", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            return reader != null;
+        }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "RFIDLOG", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.InOrOut = reader["InOrOut"].ToString();
 
             return true;
         }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = "UserID='" + this.user.Id + "', EventID='" + this.event_item.Id + "', InOrOut='"
+                                  + this.InOrOut + "'";
+            string finalQuery = string.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The rentable object model.
+    /// </summary>
     public class RentableObjectModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The event_item.
+        /// </summary>
         private readonly EventModel event_item;
+
+        /// <summary>
+        /// The amount.
+        /// </summary>
         private int amount;
+
+        /// <summary>
+        /// The description.
+        /// </summary>
         private string description;
+
+        /// <summary>
+        /// The price.
+        /// </summary>
         private decimal price;
 
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentableObjectModel"/> class.
+        /// </summary>
+        /// <param name="event_item">
+        /// The event_item.
+        /// </param>
         public RentableObjectModel(EventModel event_item)
         {
             this.event_item = event_item;
         }
 
-        public EventModel EventItem
-        {
-            get { return event_item; }
-        }
+        #endregion
 
-        public string Description
-        {
-            get { return description; }
-            set { description = value; }
-        }
+        #region Public Properties
 
-        public decimal Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
-
+        /// <summary>
+        /// Gets or sets the amount.
+        /// </summary>
         public int Amount
         {
-            get { return amount; }
-            set { amount = value; }
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.amount = value;
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.description = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the event item.
+        /// </summary>
+        public EventModel EventItem
+        {
+            get
+            {
+                return this.event_item;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the price.
+        /// </summary>
+        public decimal Price
+        {
+            get
+            {
+                return this.price;
+            }
+
+            set
+            {
+                this.price = value;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount";
-            string values = "'" + event_item.Id + "','" + description + "','" + price + "','" + amount + "'";
-            string finalQuery = String.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
+            string values = "'" + this.event_item.Id + "','" + this.description + "','" + this.price + "','"
+                            + this.amount + "'";
+            string finalQuery = string.Format(INSERTSTRING, "RENTABLEOBJECT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
+            return reader != null;
         }
 
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "RENTABLEOBJECT", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            description = reader["Description"].ToString();
-            price = Convert.ToDecimal(reader["Price"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "EventID='" + event_item.Id + "', Description='" + description + "', Price='" + price +
-                                  "', Amount='" + amount + "'";
-            string finalQuery = String.Format(UPDATESTRING, "RENTABLEOBJECT", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RENTABLEOBJECT", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "RENTABLEOBJECT", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            return reader != null;
+        }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "RENTABLEOBJECT", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.description = reader["Description"].ToString();
+            this.price = Convert.ToDecimal(reader["Price"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
 
             return true;
         }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format("EventID='{0}', Description='{1}', Price='{2}', Amount='{3}'", this.event_item.Id, this.description, this.price, this.amount);
+            string finalQuery = string.Format(UPDATESTRING, "RENTABLEOBJECT", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The post model.
+    /// </summary>
     public class PostModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The event_item.
+        /// </summary>
         private readonly EventModel event_item;
+
+        /// <summary>
+        /// The user.
+        /// </summary>
         private readonly UserModel user;
+
+        /// <summary>
+        /// The content.
+        /// </summary>
         private string content;
+
+        /// <summary>
+        /// The date posted.
+        /// </summary>
         private DateTime datePosted;
+
+        /// <summary>
+        /// The parent.
+        /// </summary>
         private PostModel parent;
+
+        /// <summary>
+        /// The path to file.
+        /// </summary>
         private string pathToFile;
 
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostModel"/> class.
+        /// </summary>
+        /// <param name="user">
+        /// The user.
+        /// </param>
+        /// <param name="event_item">
+        /// The event_item.
+        /// </param>
         public PostModel(UserModel user, EventModel event_item)
         {
             this.user = user;
             this.event_item = event_item;
         }
 
-        public PostModel Parent
-        {
-            get { return parent; }
-            set { parent = value; }
-        }
+        #endregion
 
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the content.
+        /// </summary>
         public string Content
         {
-            get { return content; }
-            set { content = value; }
+            get
+            {
+                return this.content;
+            }
+
+            set
+            {
+                this.content = value;
+            }
         }
 
-        public string PathToFile
-        {
-            get { return pathToFile; }
-            set { pathToFile = value; }
-        }
-
+        /// <summary>
+        /// Gets or sets the date posted.
+        /// </summary>
         public DateTime DatePosted
         {
-            get { return datePosted; }
-            set { datePosted = value; }
+            get
+            {
+                return this.datePosted;
+            }
+
+            set
+            {
+                this.datePosted = value;
+            }
         }
 
-        public UserModel User
-        {
-            get { return user; }
-        }
-
+        /// <summary>
+        /// Gets the event item.
+        /// </summary>
         public EventModel EventItem
         {
-            get { return event_item; }
+            get
+            {
+                return this.event_item;
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
+        public PostModel Parent
+        {
+            get
+            {
+                return this.parent;
+            }
+
+            set
+            {
+                this.parent = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the path to file.
+        /// </summary>
+        public string PathToFile
+        {
+            get
+            {
+                return this.pathToFile;
+            }
+
+            set
+            {
+                this.pathToFile = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the user.
+        /// </summary>
+        public UserModel User
+        {
+            get
+            {
+                return this.user;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
-            string values = "'" + user.Id + "','" + event_item.Id + "','" + parent.Id + "','" + content + "','" +
-                            pathToFile + "','" + datePosted + "'";
-            string finalQuery = String.Format(INSERTSTRING, "POST", columns, values);
+            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}'", this.user.Id, this.event_item.Id, this.parent.Id, this.content, this.pathToFile, this.datePosted);
+            string finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
+            return reader != null;
         }
 
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "POST", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            User.Id = Convert.ToInt32(reader["UserID"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
-            content = reader["PostContent"].ToString();
-            pathToFile = reader["PathToFile"].ToString();
-            datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "UserID='" + user.Id + "', EventID='" + event_item.Id + "', ReplyID='" + parent.Id +
-                                  "', PostContent='" + content + "', PathToFile='" + pathToFile + "', DATETIME='" +
-                                  datePosted + "'";
-            string finalQuery = String.Format(UPDATESTRING, "POST", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "POST", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "POST", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            return reader != null;
+        }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "POST", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.User.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+            this.content = reader["PostContent"].ToString();
+            this.pathToFile = reader["PathToFile"].ToString();
+            this.datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
+
             return true;
         }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format("UserID='{0}', EventID='{1}', ReplyID='{2}', PostContent='{3}', PathToFile='{4}', DATETIME='{5}'", this.user.Id, this.event_item.Id, this.parent.Id, this.content, this.pathToFile, this.datePosted);
+            string finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The place model.
+    /// </summary>
     public class PlaceModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The event_item.
+        /// </summary>
         private readonly EventModel event_item;
+
+        /// <summary>
+        /// The amount.
+        /// </summary>
         private int amount;
+
+        /// <summary>
+        /// The capacity.
+        /// </summary>
         private string capacity;
+
+        /// <summary>
+        /// The category.
+        /// </summary>
         private string category;
+
+        /// <summary>
+        /// The description.
+        /// </summary>
         private string description;
+
+        /// <summary>
+        /// The location.
+        /// </summary>
         private string location;
+
+        /// <summary>
+        /// The price.
+        /// </summary>
         private decimal price;
 
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaceModel"/> class.
+        /// </summary>
+        /// <param name="event_item">
+        /// The event_item.
+        /// </param>
         public PlaceModel(EventModel event_item)
         {
             this.event_item = event_item;
         }
 
-        public string Description
-        {
-            get { return description; }
-            set { description = value; }
-        }
+        #endregion
 
-        public string Capacity
-        {
-            get { return capacity; }
-            set { capacity = value; }
-        }
+        #region Public Properties
 
-        public decimal Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
-
-        public EventModel EventItem
-        {
-            get { return event_item; }
-        }
-
+        /// <summary>
+        /// Gets or sets the amount.
+        /// </summary>
         public int Amount
         {
-            get { return amount; }
-            set { amount = value; }
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.amount = value;
+            }
         }
 
-        public string Location
+        /// <summary>
+        /// Gets or sets the capacity.
+        /// </summary>
+        public string Capacity
         {
-            get { return location; }
-            set { location = value; }
+            get
+            {
+                return this.capacity;
+            }
+
+            set
+            {
+                this.capacity = value;
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the category.
+        /// </summary>
         public string Category
         {
-            get { return category; }
-            set { category = value; }
+            get
+            {
+                return this.category;
+            }
+
+            set
+            {
+                this.category = value;
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.description = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the event item.
+        /// </summary>
+        public EventModel EventItem
+        {
+            get
+            {
+                return this.event_item;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the location.
+        /// </summary>
+        public string Location
+        {
+            get
+            {
+                return this.location;
+            }
+
+            set
+            {
+                this.location = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the price.
+        /// </summary>
+        public decimal Price
+        {
+            get
+            {
+                return this.price;
+            }
+
+            set
+            {
+                this.price = value;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity";
-            string values = "'" + event_item.Id + "','" + description + "','" + price + "','" + amount + "','" +
-                            location + "','" + category + "','" + capacity + "'";
-            string finalQuery = String.Format(INSERTSTRING, "PLACE", columns, values);
+            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", this.event_item.Id, this.description, this.price, this.amount, this.location, this.category, this.capacity);
+            string finalQuery = string.Format(INSERTSTRING, "PLACE", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
+            return reader != null;
         }
 
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "PLACE", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            description = reader["Description"].ToString();
-            price = Convert.ToDecimal(reader["Price"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
-            location = reader["PlaceLocation"].ToString();
-            category = reader["PlaceCategory"].ToString();
-            capacity = reader["PlaceCapacity"].ToString();
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "EventID='" + event_item.Id + "', Description='" + description + "', Price='" + price +
-                                  "', Amount='" + amount + "', PlaceLocation='" + location + "', PlaceCategory='" +
-                                  category + "', PlaceCapacity='" + capacity + "'";
-            string finalQuery = String.Format(UPDATESTRING, "PLACE", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "PLACE", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "PLACE", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            return reader != null;
+        }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "PLACE", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.description = reader["Description"].ToString();
+            this.price = Convert.ToDecimal(reader["Price"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
+            this.location = reader["PlaceLocation"].ToString();
+            this.category = reader["PlaceCategory"].ToString();
+            this.capacity = reader["PlaceCapacity"].ToString();
+
             return true;
         }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format("EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', PlaceLocation='{4}', PlaceCategory='{5}', PlaceCapacity='{6}'", this.event_item.Id, this.description, this.price, this.amount, this.location, this.category, this.capacity);
+            string finalQuery = string.Format(UPDATESTRING, "PLACE", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The like model.
+    /// </summary>
     public class LikeModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The post.
+        /// </summary>
         private PostModel post;
+
+        /// <summary>
+        /// The user.
+        /// </summary>
         private UserModel user;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "UserID, PostID";
-            string values = "'" + user.Id + "','" + post.Id + "'";
-            string finalQuery = String.Format(INSERTSTRING, "LIKES", columns, values);
+            string values = string.Format("'{0}','{1}'", this.user.Id, this.post.Id);
+            string finalQuery = string.Format(INSERTSTRING, "LIKES", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
+            return reader != null;
         }
 
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "LIKES", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if(reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            post.Id = Convert.ToInt32(reader["PostID"].ToString());
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "UserID='" + user.Id + "', PostID='" + post.Id + "'";
-            string finalQuery = String.Format(UPDATESTRING, "LIKES", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "LIKES", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "LIKES", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
+
             return true;
         }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "LIKES", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.post.Id = Convert.ToInt32(reader["PostID"].ToString());
+
+            return true;
+        }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = "UserID='" + this.user.Id + "', PostID='" + this.post.Id + "'";
+            string finalQuery = string.Format(UPDATESTRING, "LIKES", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The post report model.
+    /// </summary>
     public class PostReportModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The post.
+        /// </summary>
         private PostModel post;
+
+        /// <summary>
+        /// The reason.
+        /// </summary>
         private string reason;
+
+        /// <summary>
+        /// The status.
+        /// </summary>
         private string status;
+
+        /// <summary>
+        /// The user.
+        /// </summary>
         private UserModel user;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "PostID, UserID, Reason, Status";
-            string values = "'" + post.Id + "','" + user.Id + "','" + reason + "','" + status + "'";
-            string finalQuery = String.Format(INSERTSTRING, "REPORT", columns, values);
+            string values = string.Format("'{0}','{1}','{2}','{3}'", this.post.Id, this.user.Id, this.reason, this.status);
+            string finalQuery = string.Format(INSERTSTRING, "REPORT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
-        }
-
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "REPORT", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            post.Id = Convert.ToInt32(reader["PostID"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            reason = reader["Reason"].ToString();
-            status = reader["status"].ToString();
+            if (reader == null)
+            {
+                return false;
+            }
 
             return true;
         }
 
-        public bool Update()
-        {
-            string columnvalues = "PostID='" + post.Id + "', UserID='" + user.Id + "', Reason='" + reason +
-                                  "', Status='" + status + "'";
-            string finalQuery = String.Format(UPDATESTRING, "REPORT", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "REPORT", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "REPORT", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            return reader != null;
+        }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "REPORT", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.reason = reader["Reason"].ToString();
+            this.status = reader["status"].ToString();
+
             return true;
         }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format("PostID='{0}', UserID='{1}', Reason='{2}', Status='{3}'", this.post.Id, this.user.Id, this.reason, this.status);
+            string finalQuery = string.Format(UPDATESTRING, "REPORT", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The payment model.
+    /// </summary>
     public class PaymentModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The amount.
+        /// </summary>
         private int amount;
+
+        /// <summary>
+        /// The payment type.
+        /// </summary>
         private string paymentType;
+
+        /// <summary>
+        /// The registration.
+        /// </summary>
         private RegistrationModel registration;
 
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int ID { get; set; }
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "RegistrationID, Amount, PaymentType";
-            string values = "'" + registration.Id + "','" + amount + "','" + paymentType + "'";
-            string finalQuery = String.Format(INSERTSTRING, "PAYMENT", columns, values);
+            string values = string.Format("'{0}','{1}','{2}'", this.registration.Id, this.amount, this.paymentType);
+            string finalQuery = string.Format(INSERTSTRING, "PAYMENT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
+            return reader != null;
         }
 
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "PAYMENT", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
-            paymentType = reader["PaymentType"].ToString();
-
-            return true;
-        }
-
-        public bool Update()
-        {
-            string columnvalues = "RegistrationID='" + registration.Id + "', Amount='" + amount + "', PaymentType='" +
-                                  paymentType + "'";
-            string finalQuery = String.Format(UPDATESTRING, "PAYMENT", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "PAYMENT", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "PAYMENT", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            return reader != null;
+        }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "PAYMENT", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
+            this.paymentType = reader["PaymentType"].ToString();
+
             return true;
         }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format("RegistrationID='{0}', Amount='{1}', PaymentType='{2}'", this.registration.Id, this.amount, this.paymentType);
+            string finalQuery = string.Format(UPDATESTRING, "PAYMENT", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    /// The reservation model.
+    /// </summary>
     public class ReservationModel : DBModel, IDataModelUpdate
     {
+        #region Fields
+
+        /// <summary>
+        /// The amount.
+        /// </summary>
         private int amount;
+
+        /// <summary>
+        /// The item.
+        /// </summary>
         private RentableObjectModel item;
+
+        /// <summary>
+        /// The return date.
+        /// </summary>
         private DateTime returnDate;
+
+        /// <summary>
+        /// The user.
+        /// </summary>
         private UserModel user;
 
+        #endregion
 
-        private DateTime ReturnDate { get; set; }
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the amount.
+        /// </summary>
         private int Amount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the return date.
+        /// </summary>
+        private DateTime ReturnDate { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Create()
         {
             string columns = "UserID, ItemID, ReturnDate, Amount";
-            string values = "'" + user.Id + "','" + item.Id + "','" + returnDate + "','" + amount + "'";
-            string finalQuery = String.Format(INSERTSTRING, "RESERVATION", columns, values);
+            string values = string.Format("'{0}','{1}','{2}','{3}'", this.user.Id, this.item.Id, this.returnDate, this.amount);
+            string finalQuery = string.Format(INSERTSTRING, "RESERVATION", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
-            return true;
-        }
-
-        public bool Read()
-        {
-            string query = String.Format(READSTRING, "RESERVATION", Id);
-            OracleDataReader reader = DBManager.QueryDB(query);
-            if (reader == null) return false;
-            reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            item.Id = Convert.ToInt32(reader["ItemID"].ToString());
-            returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
+            if (reader == null)
+            {
+                return false;
+            }
 
             return true;
         }
 
-        public bool Update()
-        {
-            string columnvalues = "UserID='" + user.Id + "', ItemID='" + item.Id + "', ReturnDate='" + returnDate +
-                                  "', Amount='" + amount + "'";
-            string finalQuery = String.Format(UPDATESTRING, "RESERVATION", columnvalues, "'" + Id + "'");
-            OracleDataReader reader = DBManager.QueryDB(finalQuery);
-
-            if (reader == null) return false;
-            return true;
-        }
-
+        /// <summary>
+        /// The destroy.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Destroy()
         {
-            string finalQuery = String.Format(DESTROYSTRING, "RESERVATION", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING, "RESERVATION", "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
-            if (reader == null) return false;
+            return reader != null;
+        }
+
+        /// <summary>
+        /// The read.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "RESERVATION", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.item.Id = Convert.ToInt32(reader["ItemID"].ToString());
+            this.returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
+
             return true;
         }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format(
+                "UserID='{0}', ItemID='{1}', ReturnDate='{2}', Amount='{3}'", 
+                this.user.Id, 
+                this.item.Id, 
+                this.returnDate, 
+                this.amount);
+            string finalQuery = string.Format(UPDATESTRING, "RESERVATION", columnvalues, string.Format("'{0}'", this.Id));
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
     }
 }
