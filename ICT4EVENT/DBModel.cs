@@ -1733,6 +1733,11 @@ using Oracle.DataAccess.Client;
         #region Fields
 
         /// <summary>
+        ///     The date.
+        /// </summary>
+        private DateTime date;
+
+        /// <summary>
         ///     The post.
         /// </summary>
         private PostModel post;
@@ -1752,6 +1757,42 @@ using Oracle.DataAccess.Client;
         /// </summary>
         private UserModel user;
 
+        public PostReportModel(PostModel post, UserModel user)
+        {
+            this.post = post;
+            this.user = user;
+        }
+
+        public UserModel User
+        {
+            get { return user;  }
+            set { user = value; }
+        }
+
+        public string Status
+        {
+            get { return status; }
+            set { status = value; }
+        }
+
+        public string Reason
+        {
+            get { return reason; }
+            set { reason = value; }
+        }
+
+        public PostModel Post
+        {
+            get { return post; }
+            set { post = value; }
+        }
+
+        public DateTime Date
+        {
+            get { return date; }
+            set { date = value; }
+        }
+
         #endregion
 
         #region Public Methods and Operators
@@ -1764,12 +1805,13 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Create()
         {
-            string columns = "PostID, UserID, Reason, Status";
+            string columns = "PostID, UserID, Reason, DateTime, Status";
             string values = string.Format(
-                "'{0}','{1}','{2}','{3}'", 
+                "'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),'{4}'", 
                 this.post.Id, 
                 this.user.Id, 
-                this.reason, 
+                this.reason,
+                this.date.ToString(dateFormat),
                 this.status);
             string finalQuery = string.Format(INSERTSTRING, "REPORT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
@@ -1830,10 +1872,11 @@ using Oracle.DataAccess.Client;
         public bool Update()
         {
             string columnvalues = string.Format(
-                "PostID='{0}', UserID='{1}', Reason='{2}', Status='{3}'", 
+                "PostID='{0}', UserID='{1}', Reason='{2}', DateTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), Status='{4}'", 
                 this.post.Id, 
                 this.user.Id, 
-                this.reason, 
+                this.reason,
+                this.Date.ToString(dateFormat),
                 this.status);
             string finalQuery = string.Format(UPDATESTRING, "REPORT", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
