@@ -1,0 +1,134 @@
+using System;
+using Oracle.DataAccess.Client;
+
+namespace ICT4EVENT
+{
+    /// <summary>
+    ///     The payment model.
+    /// </summary>
+    public class PaymentModel : DBModel, IDataModelUpdate
+    {
+        #region Fields
+
+        /// <summary>
+        ///     The amount.
+        /// </summary>
+        private decimal amount;
+
+        /// <summary>
+        ///     The payment type.
+        /// </summary>
+        private string paymentType;
+
+        public decimal Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+
+        public string PaymentType
+        {
+            get { return paymentType; }
+            set { paymentType = value; }
+        }
+
+        public RegistrationModel Registration
+        {
+            get { return registration; }
+            set { registration = value; }
+        }
+
+        /// <summary>
+        ///     The registration.
+        /// </summary>
+        private RegistrationModel registration;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int ID { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        ///     The create.
+        /// </summary>
+        /// <returns>
+        ///     The <see cref="bool" />.
+        /// </returns>
+        public bool Create()
+        {
+            string columns = "RegistrationID, Amount, PaymentType";
+            string values = string.Format("'{0}','{1}','{2}'", this.registration.Id, this.amount, this.paymentType);
+            string finalQuery = string.Format(INSERTSTRING, "PAYMENT", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        /// <summary>
+        ///     The destroy.
+        /// </summary>
+        /// <returns>
+        ///     The <see cref="bool" />.
+        /// </returns>
+        public bool Destroy()
+        {
+            string finalQuery = string.Format(DESTROYSTRING, "PAYMENT", "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        /// <summary>
+        ///     The read.
+        /// </summary>
+        /// <returns>
+        ///     The <see cref="bool" />.
+        /// </returns>
+        public bool Read()
+        {
+            string query = string.Format(READSTRING, "PAYMENT", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
+            if (reader == null)
+            {
+                return false;
+            }
+
+            reader.Read();
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
+            this.paymentType = reader["PaymentType"].ToString();
+
+            return true;
+        }
+
+        /// <summary>
+        ///     The update.
+        /// </summary>
+        /// <returns>
+        ///     The <see cref="bool" />.
+        /// </returns>
+        public bool Update()
+        {
+            string columnvalues = string.Format(
+                "RegistrationID='{0}', Amount='{1}', PaymentType='{2}'", 
+                this.registration.Id, 
+                this.amount, 
+                this.paymentType);
+            string finalQuery = string.Format(UPDATESTRING, "PAYMENT", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            return reader != null;
+        }
+
+        #endregion
+    }
+}

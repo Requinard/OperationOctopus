@@ -125,8 +125,19 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\Interface\IDataModelUpdate.cs" />
     <Compile Include="Managers\PostManager.cs" />
+    <Compile Include="Models\LikeModel.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\PlaceModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\PostReportModel.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\RentableObjectModel.cs" />
+    <Compile Include="Models\ReservationModel.cs" />
+    <Compile Include="Models\RFIDLogModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
