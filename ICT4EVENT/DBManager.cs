@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
@@ -15,6 +16,10 @@ namespace ICT4EVENT
         /// </summary>
         public static void Initalize()
         {
+            // make sure the dbmanager can't reinitialise
+            if (oracleConnection.State != ConnectionState.Broken || oracleConnection.State != ConnectionState.Closed)
+                return;
+
             // If the file exist, we deserialize our configs
             if (File.Exists(Settings.DBCONFIGFILENAME))
             {
@@ -65,6 +70,11 @@ namespace ICT4EVENT
             {
                 RunOracleDatabaseTest();
             }
+        }
+
+        public static void Destruct()
+        {
+            oracleConnection.Close();
         }
 
         /// <summary>
