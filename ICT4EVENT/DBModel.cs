@@ -21,7 +21,7 @@ using Oracle.DataAccess.Client;
         // Creates a new row. {0} is table name, {1} is columns and {2} is values
         #region Constants
 
-        protected string dateFormat = "MM/dd/yyyy hh:mm:ss tt";
+        protected string dateFormat = "yy-MM-dd-yyyy hh:mm:ss";
         /// <summary>
         ///     The destroystring.
         /// </summary>
@@ -215,7 +215,7 @@ using Oracle.DataAccess.Client;
         public bool Create()
         {
             string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            string values = string.Format("'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),to_date('{4}', 'fmMM-fmDD-yyyy hh24:mi:ss')", this.name, this.location, this.description, this.startDate, this.endDate);
+            string values = string.Format("'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),to_date('{4}', 'fmMM-fmDD-yyyy hh24:mi:ss')", this.name, this.location, this.description, this.startDate.ToString(dateFormat), this.endDate.ToString(dateFormat));
             string finalQuery = string.Format(INSERTSTRING, "EVENT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -281,7 +281,7 @@ using Oracle.DataAccess.Client;
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("EventName='{0}', EventLocation='{1}', Description='{2}', BeginTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), EndTime=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')", this.name, this.location, this.description, this.startDate, this.endDate);
+            string columnvalues = string.Format("EventName='{0}', EventLocation='{1}', Description='{2}', BeginTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), EndTime=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')", this.name, this.location, this.description, this.startDate.ToString(dateFormat), this.endDate.ToString(dateFormat));
             string finalQuery = string.Format(UPDATESTRING, "EVENT", columnvalues, "'" + this.Id + "'");
 
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
@@ -1220,7 +1220,7 @@ using Oracle.DataAccess.Client;
                     this.parent.Id,
                     this.content,
                     this.pathToFile,
-                    this.datePosted);
+                    this.datePosted.ToString(dateFormat));
             }
             else
                 {
@@ -1232,7 +1232,7 @@ using Oracle.DataAccess.Client;
                     this.event_item.Id,
                     this.content,
                     this.pathToFile,
-                    this.datePosted);
+                    this.datePosted.ToString(dateFormat));
             }
             
             string finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
@@ -1308,7 +1308,7 @@ using Oracle.DataAccess.Client;
                         this.parent.Id,
                         this.content,
                         this.pathToFile,
-                        this.datePosted);
+                        this.datePosted.ToString(dateFormat));
             }
             else
             {
@@ -1319,7 +1319,7 @@ using Oracle.DataAccess.Client;
                          this.event_item.Id,
                          this.content,
                          this.pathToFile,
-                         this.datePosted); 
+                         this.datePosted.ToString(dateFormat)); 
             }
             string finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
