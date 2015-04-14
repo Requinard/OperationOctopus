@@ -6,7 +6,6 @@
 //   The db model.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace ICT4EVENT
 {
     using System;
@@ -15,7 +14,7 @@ namespace ICT4EVENT
     using Oracle.DataAccess.Client;
 
     /// <summary>
-    /// The db model.
+    ///     The db model.
     /// </summary>
     public abstract class DBModel
     {
@@ -23,12 +22,12 @@ namespace ICT4EVENT
         #region Constants
 
         /// <summary>
-        /// The destroystring.
+        ///     The destroystring.
         /// </summary>
         protected const string DESTROYSTRING = "DELETE FROM {0} WHERE ident={1}";
 
         /// <summary>
-        /// The insertstring.
+        ///     The insertstring.
         /// </summary>
         protected const string INSERTSTRING = "INSERT INTO {0} ({1}) VALUES ({2})";
 
@@ -36,12 +35,12 @@ namespace ICT4EVENT
 
         // Reads the corresponding row from the database. {0} is table name, {1} is the row id
         /// <summary>
-        /// The readstring.
+        ///     The readstring.
         /// </summary>
         protected const string READSTRING = "SELECT * FROM {0} WHERE ident={1}";
 
         /// <summary>
-        /// The updatestring.
+        ///     The updatestring.
         /// </summary>
         protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE ident={2}";
 
@@ -51,7 +50,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         public int Id { get; set; }
 
@@ -59,39 +58,39 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The event model.
+    ///     The event model.
     /// </summary>
     public class EventModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The registrations list.
+        ///     The registrations list.
         /// </summary>
         private readonly List<RegistrationModel> registrationsList;
 
         /// <summary>
-        /// The description.
+        ///     The description.
         /// </summary>
         private string description;
 
         /// <summary>
-        /// The end date.
+        ///     The end date.
         /// </summary>
         private DateTime endDate;
 
         /// <summary>
-        /// The location.
+        ///     The location.
         /// </summary>
         private string location;
 
         /// <summary>
-        /// The name.
+        ///     The name.
         /// </summary>
         private string name;
 
         /// <summary>
-        /// The start date.
+        ///     The start date.
         /// </summary>
         private DateTime startDate;
 
@@ -100,7 +99,7 @@ namespace ICT4EVENT
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventModel"/> class.
+        ///     Initializes a new instance of the <see cref="EventModel" /> class.
         /// </summary>
         public EventModel()
         {
@@ -112,7 +111,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the description.
+        ///     Gets or sets the description.
         /// </summary>
         public string Description
         {
@@ -128,7 +127,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the end date.
+        ///     Gets or sets the end date.
         /// </summary>
         public DateTime EndDate
         {
@@ -144,7 +143,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the location.
+        ///     Gets or sets the location.
         /// </summary>
         public string Location
         {
@@ -160,7 +159,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the name.
+        ///     Gets or sets the name.
         /// </summary>
         public string Name
         {
@@ -176,7 +175,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets the registrations list.
+        ///     Gets the registrations list.
         /// </summary>
         public List<RegistrationModel> RegistrationsList
         {
@@ -187,7 +186,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the start date.
+        ///     Gets or sets the start date.
         /// </summary>
         public DateTime StartDate
         {
@@ -207,10 +206,10 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
@@ -229,10 +228,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -248,10 +247,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -275,10 +274,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
@@ -301,54 +300,54 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The user model.
+    ///     The user model.
     /// </summary>
     public class UserModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The registration list.
+        ///     The registration list.
         /// </summary>
         public List<RegistrationModel> RegistrationList;
 
         /// <summary>
-        /// The rfi dnumber.
+        ///     The rfi dnumber.
         /// </summary>
         private string RFIDnumber;
 
         /// <summary>
-        /// The address.
+        ///     The address.
         /// </summary>
         private string address;
 
         /// <summary>
-        /// The email.
+        ///     The email.
         /// </summary>
         private string email;
 
         /// <summary>
-        /// The level.
+        ///     The level.
         /// </summary>
         private int level;
 
         /// <summary>
-        /// The password.
+        ///     The password.
         /// </summary>
         private string password;
 
         /// <summary>
-        /// The registrations.
+        ///     The registrations.
         /// </summary>
         private List<RegistrationModel> registrations;
 
         /// <summary>
-        /// The telephonenumber.
+        ///     The telephonenumber.
         /// </summary>
         private string telephonenumber;
 
         /// <summary>
-        /// The username.
+        ///     The username.
         /// </summary>
         private string username;
 
@@ -357,7 +356,7 @@ namespace ICT4EVENT
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserModel"/> class.
+        ///     Initializes a new instance of the <see cref="UserModel" /> class.
         /// </summary>
         public UserModel()
         {
@@ -370,7 +369,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the address.
+        ///     Gets or sets the address.
         /// </summary>
         public string Address
         {
@@ -386,7 +385,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the email.
+        ///     Gets or sets the email.
         /// </summary>
         public string Email
         {
@@ -402,7 +401,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the level.
+        ///     Gets or sets the level.
         /// </summary>
         public int Level
         {
@@ -418,7 +417,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the password.
+        ///     Gets or sets the password.
         /// </summary>
         public string Password
         {
@@ -435,7 +434,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the rfi dnumber.
+        ///     Gets or sets the rfi dnumber.
         /// </summary>
         public string RfiDnumber
         {
@@ -451,7 +450,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the telephonenumber.
+        ///     Gets or sets the telephonenumber.
         /// </summary>
         public string Telephonenumber
         {
@@ -467,7 +466,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the username.
+        ///     Gets or sets the username.
         /// </summary>
         public string Username
         {
@@ -487,15 +486,23 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
             string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
-            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", this.RFIDnumber, this.address, this.username, this.email, this.telephonenumber, this.password, this.level);
+            string values = string.Format(
+                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", 
+                this.RFIDnumber, 
+                this.address, 
+                this.username, 
+                this.email, 
+                this.telephonenumber, 
+                this.password, 
+                this.level);
             string finalQuery = string.Format(INSERTSTRING, "USERS", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -508,10 +515,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -527,10 +534,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -556,14 +563,22 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("RFIDnumber='{0}', Address='{1}', Username='{2}', Email='{3}', TelephoneNumber='{4}', UserPassword='{5}'", this.RFIDnumber, this.address, this.username, this.email, this.telephonenumber, this.password);
+            string columnvalues =
+                string.Format(
+                    "RFIDnumber='{0}', Address='{1}', Username='{2}', Email='{3}', TelephoneNumber='{4}', UserPassword='{5}'", 
+                    this.RFIDnumber, 
+                    this.address, 
+                    this.username, 
+                    this.email, 
+                    this.telephonenumber, 
+                    this.password);
             string finalQuery = string.Format(UPDATESTRING, "USERS", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -579,19 +594,19 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The registration model.
+    ///     The registration model.
     /// </summary>
     public class RegistrationModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The event_item.
+        ///     The event_item.
         /// </summary>
         private readonly EventModel event_item;
 
         /// <summary>
-        /// The user.
+        ///     The user.
         /// </summary>
         private readonly UserModel user;
 
@@ -619,7 +634,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets the event item.
+        ///     Gets the event item.
         /// </summary>
         public EventModel EventItem
         {
@@ -630,7 +645,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets the user.
+        ///     Gets the user.
         /// </summary>
         public UserModel User
         {
@@ -645,10 +660,10 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
@@ -666,10 +681,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -685,10 +700,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -708,10 +723,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
@@ -726,24 +741,24 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The rfid log model.
+    ///     The rfid log model.
     /// </summary>
     public class RFIDLogModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The event_item.
+        ///     The event_item.
         /// </summary>
         private readonly EventModel event_item;
 
         /// <summary>
-        /// The user.
+        ///     The user.
         /// </summary>
         private readonly UserModel user;
 
         /// <summary>
-        /// The in or out.
+        ///     The in or out.
         /// </summary>
         private string InOrOut;
 
@@ -771,10 +786,10 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
@@ -793,10 +808,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -807,10 +822,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -832,10 +847,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
@@ -851,29 +866,29 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The rentable object model.
+    ///     The rentable object model.
     /// </summary>
     public class RentableObjectModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The event_item.
+        ///     The event_item.
         /// </summary>
         private readonly EventModel event_item;
 
         /// <summary>
-        /// The amount.
+        ///     The amount.
         /// </summary>
         private int amount;
 
         /// <summary>
-        /// The description.
+        ///     The description.
         /// </summary>
         private string description;
 
         /// <summary>
-        /// The price.
+        ///     The price.
         /// </summary>
         private decimal price;
 
@@ -897,7 +912,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the amount.
+        ///     Gets or sets the amount.
         /// </summary>
         public int Amount
         {
@@ -913,7 +928,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the description.
+        ///     Gets or sets the description.
         /// </summary>
         public string Description
         {
@@ -929,7 +944,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets the event item.
+        ///     Gets the event item.
         /// </summary>
         public EventModel EventItem
         {
@@ -940,7 +955,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the price.
+        ///     Gets or sets the price.
         /// </summary>
         public decimal Price
         {
@@ -960,10 +975,10 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
@@ -977,10 +992,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -991,10 +1006,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -1016,14 +1031,19 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("EventID='{0}', Description='{1}', Price='{2}', Amount='{3}'", this.event_item.Id, this.description, this.price, this.amount);
+            string columnvalues = string.Format(
+                "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}'", 
+                this.event_item.Id, 
+                this.description, 
+                this.price, 
+                this.amount);
             string finalQuery = string.Format(UPDATESTRING, "RENTABLEOBJECT", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1034,39 +1054,39 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The post model.
+    ///     The post model.
     /// </summary>
     public class PostModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The event_item.
+        ///     The event_item.
         /// </summary>
         private readonly EventModel event_item;
 
         /// <summary>
-        /// The user.
+        ///     The user.
         /// </summary>
         private readonly UserModel user;
 
         /// <summary>
-        /// The content.
+        ///     The content.
         /// </summary>
         private string content;
 
         /// <summary>
-        /// The date posted.
+        ///     The date posted.
         /// </summary>
         private DateTime datePosted;
 
         /// <summary>
-        /// The parent.
+        ///     The parent.
         /// </summary>
         private PostModel parent;
 
         /// <summary>
-        /// The path to file.
+        ///     The path to file.
         /// </summary>
         private string pathToFile;
 
@@ -1094,7 +1114,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the content.
+        ///     Gets or sets the content.
         /// </summary>
         public string Content
         {
@@ -1110,7 +1130,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the date posted.
+        ///     Gets or sets the date posted.
         /// </summary>
         public DateTime DatePosted
         {
@@ -1126,7 +1146,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets the event item.
+        ///     Gets the event item.
         /// </summary>
         public EventModel EventItem
         {
@@ -1137,7 +1157,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the parent.
+        ///     Gets or sets the parent.
         /// </summary>
         public PostModel Parent
         {
@@ -1153,7 +1173,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the path to file.
+        ///     Gets or sets the path to file.
         /// </summary>
         public string PathToFile
         {
@@ -1169,7 +1189,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets the user.
+        ///     Gets the user.
         /// </summary>
         public UserModel User
         {
@@ -1184,15 +1204,22 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
             string columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
-            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}'", this.user.Id, this.event_item.Id, this.parent.Id, this.content, this.pathToFile, this.datePosted);
+            string values = string.Format(
+                "'{0}','{1}','{2}','{3}','{4}','{5}'", 
+                this.user.Id, 
+                this.event_item.Id, 
+                this.parent.Id, 
+                this.content, 
+                this.pathToFile, 
+                this.datePosted);
             string finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1200,10 +1227,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -1214,10 +1241,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -1241,14 +1268,22 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("UserID='{0}', EventID='{1}', ReplyID='{2}', PostContent='{3}', PathToFile='{4}', DATETIME='{5}'", this.user.Id, this.event_item.Id, this.parent.Id, this.content, this.pathToFile, this.datePosted);
+            string columnvalues =
+                string.Format(
+                    "UserID='{0}', EventID='{1}', ReplyID='{2}', PostContent='{3}', PathToFile='{4}', DATETIME='{5}'", 
+                    this.user.Id, 
+                    this.event_item.Id, 
+                    this.parent.Id, 
+                    this.content, 
+                    this.pathToFile, 
+                    this.datePosted);
             string finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1259,44 +1294,44 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The place model.
+    ///     The place model.
     /// </summary>
     public class PlaceModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The event_item.
+        ///     The event_item.
         /// </summary>
         private readonly EventModel event_item;
 
         /// <summary>
-        /// The amount.
+        ///     The amount.
         /// </summary>
         private int amount;
 
         /// <summary>
-        /// The capacity.
+        ///     The capacity.
         /// </summary>
         private string capacity;
 
         /// <summary>
-        /// The category.
+        ///     The category.
         /// </summary>
         private string category;
 
         /// <summary>
-        /// The description.
+        ///     The description.
         /// </summary>
         private string description;
 
         /// <summary>
-        /// The location.
+        ///     The location.
         /// </summary>
         private string location;
 
         /// <summary>
-        /// The price.
+        ///     The price.
         /// </summary>
         private decimal price;
 
@@ -1320,7 +1355,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the amount.
+        ///     Gets or sets the amount.
         /// </summary>
         public int Amount
         {
@@ -1336,7 +1371,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the capacity.
+        ///     Gets or sets the capacity.
         /// </summary>
         public string Capacity
         {
@@ -1352,7 +1387,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the category.
+        ///     Gets or sets the category.
         /// </summary>
         public string Category
         {
@@ -1368,7 +1403,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the description.
+        ///     Gets or sets the description.
         /// </summary>
         public string Description
         {
@@ -1384,7 +1419,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets the event item.
+        ///     Gets the event item.
         /// </summary>
         public EventModel EventItem
         {
@@ -1395,7 +1430,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the location.
+        ///     Gets or sets the location.
         /// </summary>
         public string Location
         {
@@ -1411,7 +1446,7 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// Gets or sets the price.
+        ///     Gets or sets the price.
         /// </summary>
         public decimal Price
         {
@@ -1431,15 +1466,23 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
             string columns = "EventID, Description, Price, Amount, PlaceLocation, PlaceCategory, PlaceCapacity";
-            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", this.event_item.Id, this.description, this.price, this.amount, this.location, this.category, this.capacity);
+            string values = string.Format(
+                "'{0}','{1}','{2}','{3}','{4}','{5}','{6}'", 
+                this.event_item.Id, 
+                this.description, 
+                this.price, 
+                this.amount, 
+                this.location, 
+                this.category, 
+                this.capacity);
             string finalQuery = string.Format(INSERTSTRING, "PLACE", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1447,10 +1490,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -1461,10 +1504,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -1489,14 +1532,23 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', PlaceLocation='{4}', PlaceCategory='{5}', PlaceCapacity='{6}'", this.event_item.Id, this.description, this.price, this.amount, this.location, this.category, this.capacity);
+            string columnvalues =
+                string.Format(
+                    "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', PlaceLocation='{4}', PlaceCategory='{5}', PlaceCapacity='{6}'", 
+                    this.event_item.Id, 
+                    this.description, 
+                    this.price, 
+                    this.amount, 
+                    this.location, 
+                    this.category, 
+                    this.capacity);
             string finalQuery = string.Format(UPDATESTRING, "PLACE", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1507,19 +1559,19 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The like model.
+    ///     The like model.
     /// </summary>
     public class LikeModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The post.
+        ///     The post.
         /// </summary>
         private PostModel post;
 
         /// <summary>
-        /// The user.
+        ///     The user.
         /// </summary>
         private UserModel user;
 
@@ -1528,10 +1580,10 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
@@ -1544,10 +1596,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -1563,10 +1615,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -1586,10 +1638,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
@@ -1609,29 +1661,29 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The post report model.
+    ///     The post report model.
     /// </summary>
     public class PostReportModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The post.
+        ///     The post.
         /// </summary>
         private PostModel post;
 
         /// <summary>
-        /// The reason.
+        ///     The reason.
         /// </summary>
         private string reason;
 
         /// <summary>
-        /// The status.
+        ///     The status.
         /// </summary>
         private string status;
 
         /// <summary>
-        /// The user.
+        ///     The user.
         /// </summary>
         private UserModel user;
 
@@ -1640,15 +1692,20 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
             string columns = "PostID, UserID, Reason, Status";
-            string values = string.Format("'{0}','{1}','{2}','{3}'", this.post.Id, this.user.Id, this.reason, this.status);
+            string values = string.Format(
+                "'{0}','{1}','{2}','{3}'", 
+                this.post.Id, 
+                this.user.Id, 
+                this.reason, 
+                this.status);
             string finalQuery = string.Format(INSERTSTRING, "REPORT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1661,10 +1718,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -1675,10 +1732,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -1700,14 +1757,19 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("PostID='{0}', UserID='{1}', Reason='{2}', Status='{3}'", this.post.Id, this.user.Id, this.reason, this.status);
+            string columnvalues = string.Format(
+                "PostID='{0}', UserID='{1}', Reason='{2}', Status='{3}'", 
+                this.post.Id, 
+                this.user.Id, 
+                this.reason, 
+                this.status);
             string finalQuery = string.Format(UPDATESTRING, "REPORT", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1718,24 +1780,24 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The payment model.
+    ///     The payment model.
     /// </summary>
     public class PaymentModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The amount.
+        ///     The amount.
         /// </summary>
         private int amount;
 
         /// <summary>
-        /// The payment type.
+        ///     The payment type.
         /// </summary>
         private string paymentType;
 
         /// <summary>
-        /// The registration.
+        ///     The registration.
         /// </summary>
         private RegistrationModel registration;
 
@@ -1744,7 +1806,7 @@ namespace ICT4EVENT
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         public int ID { get; set; }
 
@@ -1753,10 +1815,10 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
@@ -1769,10 +1831,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -1783,10 +1845,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -1807,14 +1869,18 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
-            string columnvalues = string.Format("RegistrationID='{0}', Amount='{1}', PaymentType='{2}'", this.registration.Id, this.amount, this.paymentType);
+            string columnvalues = string.Format(
+                "RegistrationID='{0}', Amount='{1}', PaymentType='{2}'", 
+                this.registration.Id, 
+                this.amount, 
+                this.paymentType);
             string finalQuery = string.Format(UPDATESTRING, "PAYMENT", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1825,29 +1891,29 @@ namespace ICT4EVENT
     }
 
     /// <summary>
-    /// The reservation model.
+    ///     The reservation model.
     /// </summary>
     public class ReservationModel : DBModel, IDataModelUpdate
     {
         #region Fields
 
         /// <summary>
-        /// The amount.
+        ///     The amount.
         /// </summary>
         private int amount;
 
         /// <summary>
-        /// The item.
+        ///     The item.
         /// </summary>
         private RentableObjectModel item;
 
         /// <summary>
-        /// The return date.
+        ///     The return date.
         /// </summary>
         private DateTime returnDate;
 
         /// <summary>
-        /// The user.
+        ///     The user.
         /// </summary>
         private UserModel user;
 
@@ -1856,12 +1922,12 @@ namespace ICT4EVENT
         #region Properties
 
         /// <summary>
-        /// Gets or sets the amount.
+        ///     Gets or sets the amount.
         /// </summary>
         private int Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets the return date.
+        ///     Gets or sets the return date.
         /// </summary>
         private DateTime ReturnDate { get; set; }
 
@@ -1870,15 +1936,20 @@ namespace ICT4EVENT
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create.
+        ///     The create.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Create()
         {
             string columns = "UserID, ItemID, ReturnDate, Amount";
-            string values = string.Format("'{0}','{1}','{2}','{3}'", this.user.Id, this.item.Id, this.returnDate, this.amount);
+            string values = string.Format(
+                "'{0}','{1}','{2}','{3}'", 
+                this.user.Id, 
+                this.item.Id, 
+                this.returnDate, 
+                this.amount);
             string finalQuery = string.Format(INSERTSTRING, "RESERVATION", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -1891,10 +1962,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The destroy.
+        ///     The destroy.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Destroy()
         {
@@ -1905,10 +1976,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The read.
+        ///     The read.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Read()
         {
@@ -1930,10 +2001,10 @@ namespace ICT4EVENT
         }
 
         /// <summary>
-        /// The update.
+        ///     The update.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        ///     The <see cref="bool" />.
         /// </returns>
         public bool Update()
         {
@@ -1943,7 +2014,11 @@ namespace ICT4EVENT
                 this.item.Id, 
                 this.returnDate, 
                 this.amount);
-            string finalQuery = string.Format(UPDATESTRING, "RESERVATION", columnvalues, string.Format("'{0}'", this.Id));
+            string finalQuery = string.Format(
+                UPDATESTRING, 
+                "RESERVATION", 
+                columnvalues, 
+                string.Format("'{0}'", this.Id));
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
