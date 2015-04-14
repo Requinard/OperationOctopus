@@ -21,21 +21,17 @@ namespace ICT4EVENTUnitTest
             this.ReadTest();
             this.AlterTest();
             this.DestroyTest();
+
+            userTest.DestroyTest();
+
+            eventTest.DestroyEvent();
         }
 
         public void CreateTest()
         {
             Init.Initialize();
 
-            UserModel user = Init.getExternalTestUser();
-            EventModel event_item = Init.getExternalEvent();
-
-            PostModel post = new PostModel(user, event_item);
-
-            post.Content = "Testing post";
-            post.DatePosted = DateTime.Now;
-            post.PathToFile = "";
-            post.Parent = null;
+            PostModel post = Init.GetLocalPost(); 
 
             Assert.IsTrue(post.Create(), "Could not write post to database");
         }
