@@ -15,16 +15,9 @@ namespace ICT4EVENT
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             InitializeApplication();
-            RunTest();
-            Application.Run(new LoginForm());
+            Application.Run(new AdminGUI());
             Logger.Info("Exiting Application");
             Logger.Destruct(Settings.LOGFILENAME);
-        }
-
-        private static void RunTest()
-        {
-            //PostModel post = PostManager.CreateNewPost("test", "test2", @"C:\Users\Davi\Pictures\hallo.gif");
-            //PostManager.RetrievePostFile(post);
         }
 
         private static void InitializeApplication()
