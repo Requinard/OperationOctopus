@@ -115,6 +115,7 @@
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\DBManager.cs" />
+    <Compile Include="Models\Abstracts\DBModel.cs" />
     <Compile Include="Managers\EquipmentManager.cs" />
     <Compile Include="Managers\EventManager.cs" />
     <Compile Include="Managers\FTPManager.cs" />
