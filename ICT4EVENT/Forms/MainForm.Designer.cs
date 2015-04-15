@@ -45,7 +45,7 @@
             this.flowUserPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.treeCategorie = new System.Windows.Forms.TreeView();
             this.btnMediaFile = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbPostContent = new System.Windows.Forms.TextBox();
             this.tabMaterialrent = new System.Windows.Forms.TabPage();
             this.btnRemove = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -195,14 +195,15 @@
             // 
             this.btnDynamicButton.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDynamicButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDynamicButton.Location = new System.Drawing.Point(4, 13);
+            this.btnDynamicButton.Location = new System.Drawing.Point(4, 12);
             this.btnDynamicButton.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnDynamicButton.Name = "btnDynamicButton";
-            this.btnDynamicButton.Size = new System.Drawing.Size(156, 50);
+            this.btnDynamicButton.Size = new System.Drawing.Size(169, 50);
             this.btnDynamicButton.TabIndex = 4;
             this.btnDynamicButton.Tag = "Static";
             this.btnDynamicButton.Text = "DynamicButton";
             this.btnDynamicButton.UseVisualStyleBackColor = true;
+            this.btnDynamicButton.Click += new System.EventHandler(this.btnDynamicButton_Click);
             // 
             // pbBanner
             // 
@@ -245,7 +246,7 @@
             this.tabSocialMediaSharingSystem.Controls.Add(this.flowUserPosts);
             this.tabSocialMediaSharingSystem.Controls.Add(this.treeCategorie);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnMediaFile);
-            this.tabSocialMediaSharingSystem.Controls.Add(this.textBox1);
+            this.tabSocialMediaSharingSystem.Controls.Add(this.tbPostContent);
             this.tabSocialMediaSharingSystem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabSocialMediaSharingSystem.Location = new System.Drawing.Point(4, 27);
             this.tabSocialMediaSharingSystem.Name = "tabSocialMediaSharingSystem";
@@ -284,13 +285,13 @@
             this.btnMediaFile.Text = "Add File(s)";
             this.btnMediaFile.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tbPostContent
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 9);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(617, 57);
-            this.textBox1.TabIndex = 1;
+            this.tbPostContent.Location = new System.Drawing.Point(6, 9);
+            this.tbPostContent.Multiline = true;
+            this.tbPostContent.Name = "tbPostContent";
+            this.tbPostContent.Size = new System.Drawing.Size(617, 57);
+            this.tbPostContent.TabIndex = 1;
             // 
             // tabMaterialrent
             // 
@@ -744,7 +745,7 @@
         private System.Windows.Forms.TabControl tabMainTab;
         private System.Windows.Forms.TabPage tabSocialMediaSharingSystem;
         private System.Windows.Forms.Button btnMediaFile;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbPostContent;
         private System.Windows.Forms.TabPage tabMaterialrent;
         private System.Windows.Forms.TabPage tabSettings;
         private System.Windows.Forms.TabPage tabProfile;

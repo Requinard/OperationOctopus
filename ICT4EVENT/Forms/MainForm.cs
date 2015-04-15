@@ -6,9 +6,11 @@ namespace ICT4EVENT
 {
     public partial class MainForm : Form
     {
+        private MainGuiLogic mainGuiLogic;
         public MainForm()
         {
             InitializeComponent();
+            mainGuiLogic = new MainGuiLogic(this);
             // TODO: Repair initializations from social media manager
             //socialManager = new SocialMediaEventManager();
         }
@@ -19,6 +21,7 @@ namespace ICT4EVENT
             {
                 CreateTestPosts();
             }
+            mainGuiLogic.DynamicButtonLogic();
         }
 
         private void CreateTestPosts()
@@ -48,29 +51,55 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
-            {
-                btnDynamicButton.Text = "Post";
+            mainGuiLogic.DynamicButtonLogic();
+        }
 
-                // button actions happen here
+        private void btnDynamicButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public class MainGuiLogic
+        {
+            private MainForm parent;
+
+            public MainGuiLogic(MainForm mainform)
+            {
+                parent = mainform;
             }
-            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
-            {
-                btnDynamicButton.Text = "Huur";
 
-                // button actions happen here
+            public void DynamicButtonLogic()
+            {
+                if (parent.tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
+                {
+                    parent.btnDynamicButton.Text = "Post";
+
+                    // button actions happen here
+                    PostingLogic(parent.tbPostContent.Text);
+                }
+                if (parent.tabMainTab.SelectedTab.Name == "tabMaterialrent")
+                {
+                    parent.btnDynamicButton.Text = "Huur";
+
+                    // button actions happen here
+                }
+                if (parent.tabMainTab.SelectedTab.Name == "tabProfile")
+                {
+                    parent.btnDynamicButton.Text = "Bevestig";
+
+                    // button actions happen here
+                }
+                if (parent.tabMainTab.SelectedTab.Name == "tabSettings")
+                {
+                    parent.btnDynamicButton.Text = "Bevestig";
+
+                    // button actions happen here
+                }
             }
-            if (tabMainTab.SelectedTab.Name == "tabProfile")
-            {
-                btnDynamicButton.Text = "Bevestig";
 
-                // button actions happen here
-            }
-            if (tabMainTab.SelectedTab.Name == "tabSettings")
+            public bool PostingLogic(string PostContent)
             {
-                btnDynamicButton.Text = "Bevestig";
-
-                // button actions happen here
+                PostManager.CreateNewPost(PostContent);
             }
         }
     }
