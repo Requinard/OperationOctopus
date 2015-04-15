@@ -150,6 +150,7 @@ namespace ICT4EVENT
                     break;
                 case 3:
                     // TODO: Open administrator panel
+                    openForm(new AdminGUI());
                     break;
                 default:
                     openForm(new MainForm());
