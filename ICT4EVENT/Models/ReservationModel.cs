@@ -179,7 +179,9 @@ namespace ICT4EVENT
         {
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            user.Read();
             this.item.Id = Convert.ToInt32(reader["ItemID"].ToString());
+            item.Read();
             this.returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
             this.amount = Convert.ToInt32(reader["Amount"].ToString());
         }

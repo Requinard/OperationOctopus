@@ -213,6 +213,7 @@ namespace ICT4EVENT
         {
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            EventItem.Read();
             this.description = reader["Description"].ToString();
             this.price = Convert.ToDecimal(reader["Price"].ToString());
             this.amount = Convert.ToInt32(reader["Amount"].ToString());

@@ -177,6 +177,7 @@ namespace ICT4EVENT
         {
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            EventItem.Read();
             this.description = reader["Description"].ToString();
             this.objectType = reader["TypeOfObject"].ToString();
             this.price = Convert.ToDecimal(reader["Price"].ToString());

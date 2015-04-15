@@ -124,6 +124,7 @@ namespace ICT4EVENT
         {
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
+            this.Registration.Read();
             this.amount = Convert.ToInt32(reader["Amount"].ToString());
             this.paymentType = reader["PaymentType"].ToString();
         }

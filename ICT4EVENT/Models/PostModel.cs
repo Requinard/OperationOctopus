@@ -249,10 +249,13 @@ namespace ICT4EVENT
         {
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.User.Id = Convert.ToInt32(reader["UserID"].ToString());
+            user.Read();
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            EventItem.Read();
             try
             {
                 this.parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+                parent.Read();
             }
             catch (Exception)
             {
