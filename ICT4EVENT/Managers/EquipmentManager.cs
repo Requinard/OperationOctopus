@@ -1,28 +1,24 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Policy;
 
 namespace ICT4EVENT
 {
-    using Oracle.DataAccess.Client;
-
     public static class EquipmentManager
     {
-        public static List<PlaceModel> GetAllPlaces() 
+        public static List<PlaceModel> GetAllPlaces()
         {
-            List<PlaceModel> places = new List<PlaceModel>();
+            var places = new List<PlaceModel>();
 
-            string query = String.Format("SELECT * FROM Item WHERE itemtype = 'Place' AND eventid = '{0}'",
+            var query = string.Format("SELECT * FROM Item WHERE itemtype = 'Place' AND eventid = '{0}'",
                 Settings.ActiveEvent.Id);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                PlaceModel place = new PlaceModel();
+                var place = new PlaceModel();
 
                 place.ReadFromReader(reader);
 
@@ -34,19 +30,19 @@ namespace ICT4EVENT
 
         public static List<RentableObjectModel> GetAllRentables()
         {
-            List<RentableObjectModel> rentables = new List<RentableObjectModel>();
+            var rentables = new List<RentableObjectModel>();
 
-            string query = String.Format("SELECT * FROM Item WHERE itemtype = 'RentableObject' AND eventid = '{0}'",
+            var query = string.Format("SELECT * FROM Item WHERE itemtype = 'RentableObject' AND eventid = '{0}'",
                 Settings.ActiveEvent.Id);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-            if(reader == null)
+            if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                RentableObjectModel rent = new RentableObjectModel();
+                var rent = new RentableObjectModel();
 
                 rent.ReadFromReader(reader);
 
@@ -56,24 +52,24 @@ namespace ICT4EVENT
             return rentables;
         }
 
-        
         public static RentableObjectModel CreateNewRentable(string description, decimal price, int amount)
         {
-            RentableObjectModel rent = new RentableObjectModel(Settings.ActiveEvent);
+            var rent = new RentableObjectModel(Settings.ActiveEvent);
 
             rent.ObjectType = "RentableObject";
             rent.Description = description;
             rent.Amount = amount;
             rent.Price = price;
 
-            if(rent.Create())
+            if (rent.Create())
                 return rent;
             return null;
         }
 
-        public static PlaceModel CreateNewPlace(string description, decimal price, int amount, string location, string category, int capacity)
+        public static PlaceModel CreateNewPlace(string description, decimal price, int amount, string location,
+            string category, int capacity)
         {
-            PlaceModel place = new PlaceModel(Settings.ActiveEvent);
+            var place = new PlaceModel(Settings.ActiveEvent);
 
             place.ObjectType = "Place";
             place.Description = description;
@@ -83,8 +79,21 @@ namespace ICT4EVENT
             place.Category = category;
             place.Capacity = capacity;
 
-            if(place.Create())
+            if (place.Create())
                 return place;
+            return null;
+        }
+
+        public static ReservationModel MakePlaceReservervation(UserModel user, RentableObjectModel rent)
+        {
+            ReservationModel res = new ReservationModel(rent, user);
+
+            res.ReturnDate = Settings.ActiveEvent.EndDate;
+
+            res.Amount = 1;
+
+            if (res.Create())
+                return res;
             return null;
         }
     }
