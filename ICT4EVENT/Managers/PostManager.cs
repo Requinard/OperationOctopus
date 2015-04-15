@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
+using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -88,6 +91,50 @@ namespace ICT4EVENT
             FTPManager.DownloadFile(post.PathToFile);
 
             return post;
+        }
+
+        public static List<PostModel> GetPostsByPage(PostModel startpost = null, int page = 0, int itemsPerPage = 10)
+        {
+            List<PostModel> posts = new List<PostModel>();
+            OracleDataReader reader = null;
+
+            //Get the data reader
+            if (startpost == null)
+            {
+                string query = "SELECT * FROM post ORDER BY ident desc";
+
+                reader = DBManager.QueryDB(query);
+            }
+            else
+            {
+                string query = String.Format("SELECT * FROM POST WHERE ident <= '{0}' ORDERM BY ident desc",
+                    startpost.Id);
+
+                reader = DBManager.QueryDB(query);
+            }
+
+            if (reader == null)
+                return null;
+
+            //Read the datareader x amount of rows, where x = page*itemsPerPage
+            for (int i = 0; i < page*itemsPerPage; i++)
+            {
+                reader.Read();
+            }
+
+            // Now read itemsPerPage rows
+            for (int i = 0; i < itemsPerPage; i++)
+            {
+                reader.Read();
+
+                PostModel post = new PostModel();
+
+                post.ReadFromReader(reader);
+
+                posts.Add(post);
+            }
+
+            return posts;
         }
     }
 }
