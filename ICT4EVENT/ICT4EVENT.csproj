@@ -115,7 +115,6 @@
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\DBManager.cs" />
-    <Compile Include="Models\Abstracts\DBModel.cs" />
     <Compile Include="Managers\EquipmentManager.cs" />
     <Compile Include="Managers\EventManager.cs" />
     <Compile Include="Managers\FTPManager.cs" />
@@ -131,6 +130,7 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abstracts\DBModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\Interface\IDataModelUpdate.cs" />
     <Compile Include="Managers\PostManager.cs" />
