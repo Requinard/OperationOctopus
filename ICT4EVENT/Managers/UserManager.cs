@@ -191,7 +191,7 @@
 
         public static PaymentModel RegistrationMarkPaid(RegistrationModel registration, decimal amount, string type)
         {
-            PaymentModel payment = new PaymentModel();
+            PaymentModel payment = new PaymentModel(null);
             payment.Registration = registration;
             payment.Amount = amount;
             payment.PaymentType = type;

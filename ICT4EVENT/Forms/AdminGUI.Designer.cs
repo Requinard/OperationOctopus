@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminGUI));
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -67,7 +67,6 @@
             this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.btnEditEvent = new System.Windows.Forms.Button();
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnCreateEvent = new System.Windows.Forms.Button();
             this.gbCreateEvent = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -80,6 +79,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tbDescription = new System.Windows.Forms.TextBox();
             this.tbEventName = new System.Windows.Forms.TextBox();
+            this.btnCreateEvent = new System.Windows.Forms.Button();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,7 +93,6 @@
             this.gbMaterialControl.SuspendLayout();
             this.tabEventManagment.SuspendLayout();
             this.gbEventManagment.SuspendLayout();
-            this.flowEvent.SuspendLayout();
             this.gbCreateEvent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -429,8 +428,8 @@
             // listView3
             // 
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
             this.listView3.Location = new System.Drawing.Point(6, 56);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(983, 372);
@@ -450,6 +449,7 @@
             // 
             // gbEventManagment
             // 
+            this.gbEventManagment.Controls.Add(this.gbCreateEvent);
             this.gbEventManagment.Controls.Add(this.btnDeleteEvent);
             this.gbEventManagment.Controls.Add(this.btnEditEvent);
             this.gbEventManagment.Controls.Add(this.flowEvent);
@@ -484,22 +484,10 @@
             // flowEvent
             // 
             this.flowEvent.AutoScroll = true;
-            this.flowEvent.Controls.Add(this.gbCreateEvent);
             this.flowEvent.Location = new System.Drawing.Point(1, 25);
             this.flowEvent.Name = "flowEvent";
-            this.flowEvent.Size = new System.Drawing.Size(992, 535);
+            this.flowEvent.Size = new System.Drawing.Size(647, 535);
             this.flowEvent.TabIndex = 3;
-            // 
-            // btnCreateEvent
-            // 
-            this.btnCreateEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnCreateEvent.Location = new System.Drawing.Point(6, 566);
-            this.btnCreateEvent.Name = "btnCreateEvent";
-            this.btnCreateEvent.Size = new System.Drawing.Size(241, 54);
-            this.btnCreateEvent.TabIndex = 0;
-            this.btnCreateEvent.Text = "Nieuw Evenement";
-            this.btnCreateEvent.UseVisualStyleBackColor = true;
-            this.btnCreateEvent.Click += new System.EventHandler(this.btnCreateEvent_Click);
             // 
             // gbCreateEvent
             // 
@@ -514,7 +502,7 @@
             this.gbCreateEvent.Controls.Add(this.label8);
             this.gbCreateEvent.Controls.Add(this.tbDescription);
             this.gbCreateEvent.Controls.Add(this.tbEventName);
-            this.gbCreateEvent.Location = new System.Drawing.Point(3, 3);
+            this.gbCreateEvent.Location = new System.Drawing.Point(648, 25);
             this.gbCreateEvent.Name = "gbCreateEvent";
             this.gbCreateEvent.Size = new System.Drawing.Size(334, 237);
             this.gbCreateEvent.TabIndex = 0;
@@ -613,6 +601,17 @@
             this.tbEventName.Size = new System.Drawing.Size(227, 25);
             this.tbEventName.TabIndex = 11;
             // 
+            // btnCreateEvent
+            // 
+            this.btnCreateEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateEvent.Location = new System.Drawing.Point(6, 566);
+            this.btnCreateEvent.Name = "btnCreateEvent";
+            this.btnCreateEvent.Size = new System.Drawing.Size(241, 54);
+            this.btnCreateEvent.TabIndex = 0;
+            this.btnCreateEvent.Text = "Nieuw Evenement";
+            this.btnCreateEvent.UseVisualStyleBackColor = true;
+            this.btnCreateEvent.Click += new System.EventHandler(this.btnCreateEvent_Click);
+            // 
             // AdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
@@ -640,7 +639,6 @@
             this.gbMaterialControl.PerformLayout();
             this.tabEventManagment.ResumeLayout(false);
             this.gbEventManagment.ResumeLayout(false);
-            this.flowEvent.ResumeLayout(false);
             this.gbCreateEvent.ResumeLayout(false);
             this.gbCreateEvent.PerformLayout();
             this.ResumeLayout(false);

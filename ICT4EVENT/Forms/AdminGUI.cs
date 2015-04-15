@@ -20,6 +20,7 @@ namespace ICT4EVENT
             eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
+            gbCreateEvent.Visible = false;
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -351,10 +352,7 @@ namespace ICT4EVENT
 
         private void btnCreateEvent_Click(object sender, EventArgs e)
         {
-            CreateEvent testDialog = new CreateEvent();
-
-            flowEvent.Controls.Add(testDialog);
-            testDialog.Show();
+            gbCreateEvent.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
