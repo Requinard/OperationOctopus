@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The like model.
     /// </summary>
@@ -19,10 +21,26 @@ namespace ICT4EVENT
         /// </summary>
         private UserModel user;
 
+        public LikeModel(PostModel post, UserModel user)
+        {
+            this.post = post;
+            this.user = user;
+        }
+
         public LikeModel()
         {
             post = new PostModel();
-            user = new UserModel();
+            User = new UserModel();
+        }
+
+        public LikeModel(int ID)
+        {
+            this.Id = ID;
+
+            post = new PostModel();
+            User = new UserModel();
+
+            this.Read();
         }
 
         public PostModel Post
@@ -49,10 +67,10 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "UserID, PostID";
-            var values = string.Format("'{0}','{1}'", user.Id, post.Id);
-            var finalQuery = string.Format(INSERTSTRING, "LIKES", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string columns = "UserID, PostID";
+            string values = string.Format("'{0}','{1}'", user.Id, post.Id);
+            string finalQuery = string.Format(INSERTSTRING, "LIKES", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -65,8 +83,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "LIKES", "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "LIKES", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -84,19 +102,26 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "LIKES", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "LIKES", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.user.Read();
+            this.post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            this.post.Read();
         }
 
         /// <summary>
@@ -107,9 +132,9 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = "UserID='" + user.Id + "', PostID='" + post.Id + "'";
-            var finalQuery = string.Format(UPDATESTRING, "LIKES", columnvalues, "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string columnvalues = "UserID='" + user.Id + "', PostID='" + post.Id + "'";
+            string finalQuery = string.Format(UPDATESTRING, "LIKES", columnvalues, "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {

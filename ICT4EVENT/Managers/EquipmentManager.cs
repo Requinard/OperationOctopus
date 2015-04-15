@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     public static class EquipmentManager
     {
         public static List<PlaceModel> places;
@@ -16,13 +18,13 @@ namespace ICT4EVENT
             rentables = new List<RentableObjectModel>();
 
             // Get places
-            var reader = DBManager.QueryDB(select_places);
+            OracleDataReader reader = DBManager.QueryDB(select_places);
 
             while (reader.Read())
             {
-                var event_item = EventManager.FindEvent(int.Parse(reader["eventid"].ToString()));
+                EventModel event_item = EventManager.FindEvent(int.Parse(reader["eventid"].ToString()));
 
-                var model = new PlaceModel(event_item);
+                PlaceModel model = new PlaceModel(event_item);
 
                 model.Description = reader["description"].ToString();
                 model.Price = decimal.Parse(reader["price"].ToString());
@@ -40,9 +42,9 @@ namespace ICT4EVENT
 
             while (reader.Read())
             {
-                var event_item = EventManager.FindEvent(int.Parse(reader["eventid"].ToString()));
+                EventModel event_item = EventManager.FindEvent(int.Parse(reader["eventid"].ToString()));
 
-                var model = new RentableObjectModel(event_item);
+                RentableObjectModel model = new RentableObjectModel(event_item);
 
                 model.Id = int.Parse(reader["ident"].ToString());
                 model.Description = reader["description"].ToString();

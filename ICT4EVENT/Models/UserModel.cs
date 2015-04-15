@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The user model.
     /// </summary>
@@ -17,6 +19,13 @@ namespace ICT4EVENT
         {
             level = 1;
             RegistrationList = new List<RegistrationModel>();
+        }
+
+        public UserModel(int ID)
+        {
+            this.Id = ID;
+
+            this.Read();
         }
 
         #endregion
@@ -155,8 +164,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
-            var values = string.Format(
+            string columns = "RFIDnumber, Address, Username, Email, TelephoneNumber, UserPassword, UserLevel";
+            string values = string.Format(
                 "'{0}','{1}','{2}','{3}','{4}','{5}','{6}'",
                 RFIDnumber,
                 address,
@@ -165,8 +174,8 @@ namespace ICT4EVENT
                 telephonenumber,
                 password,
                 level);
-            var finalQuery = string.Format(INSERTSTRING, "USERS", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(INSERTSTRING, "USERS", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -184,8 +193,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "USERS", "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "USERS", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -203,8 +212,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "USERS", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "USERS", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
             {
@@ -212,16 +221,21 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            RFIDnumber = reader["RFIDnumber"].ToString();
-            address = reader["Address"].ToString();
-            username = reader["Username"].ToString();
-            email = reader["Email"].ToString();
-            telephonenumber = reader["TelephoneNumber"].ToString();
-            password = reader["UserPassword"].ToString();
-            level = Convert.ToInt32(reader["UserLevel"].ToString());
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.RFIDnumber = reader["RFIDnumber"].ToString();
+            this.address = reader["Address"].ToString();
+            this.username = reader["Username"].ToString();
+            this.email = reader["Email"].ToString();
+            this.telephonenumber = reader["TelephoneNumber"].ToString();
+            this.password = reader["UserPassword"].ToString();
+            this.level = Convert.ToInt32(reader["UserLevel"].ToString());
         }
 
         /// <summary>
@@ -232,7 +246,7 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues =
+            string columnvalues =
                 string.Format(
                     "RFIDnumber='{0}', Address='{1}', Username='{2}', Email='{3}', TelephoneNumber='{4}', UserPassword='{5}'",
                     RFIDnumber,
@@ -241,8 +255,8 @@ namespace ICT4EVENT
                     email,
                     telephonenumber,
                     password);
-            var finalQuery = string.Format(UPDATESTRING, "USERS", columnvalues, "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(UPDATESTRING, "USERS", columnvalues, "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {

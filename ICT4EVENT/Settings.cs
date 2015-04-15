@@ -16,7 +16,7 @@ namespace ICT4EVENT
         {
             //Logger.Info("Serializing Database");
             Stream s = new FileStream(DBCONFIGFILENAME, FileMode.Create);
-            var binaryFormatter = new BinaryFormatter();
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
 
             binaryFormatter.Serialize(s, DbConfig);
             //Logger.Success("Successfully serialized database");
@@ -27,7 +27,7 @@ namespace ICT4EVENT
         {
             //Logger.Info("Deserializing Database");
             Stream s = new FileStream(DBCONFIGFILENAME, FileMode.Open);
-            var binaryFormatter = new BinaryFormatter();
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
 
             DbConfig = (DBConfig) binaryFormatter.Deserialize(s);
             //Logger.Success("Successfully deserialized database");

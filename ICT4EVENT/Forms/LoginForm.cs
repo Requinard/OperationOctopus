@@ -70,7 +70,7 @@ namespace ICT4EVENT
         private void FillActionList()
         {
             // Fill active events
-            foreach (var registrationModel in Settings.ActiveUser.RegistrationList)
+            foreach (RegistrationModel registrationModel in Settings.ActiveUser.RegistrationList)
             {
                 comboBox1.Items.Add(registrationModel.EventItem.Name);
             }

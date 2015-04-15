@@ -23,7 +23,7 @@ namespace ICT4EVENT
 
         private void CreateTestPosts()
         {
-            var r = new Random(8);
+            Random r = new Random(8);
             UserPost post;
 
             DynamicButtonLogic(false);
@@ -38,7 +38,7 @@ namespace ICT4EVENT
                 new UserPost("@Guus, Random Text", null, null, null));
             flowUserPosts.Controls.Add(post);
 
-            for (var i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 post = new UserPost("Random Text", null, null, null);
                 flowUserPosts.Controls.Add(post);

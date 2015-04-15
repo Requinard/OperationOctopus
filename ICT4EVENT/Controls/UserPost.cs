@@ -43,7 +43,7 @@ namespace ICT4EVENT
 
 
             MediaImage = mediaImage;
-            var r = new Random();
+            Random r = new Random();
             BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
 
             if (commentUserPost != null)

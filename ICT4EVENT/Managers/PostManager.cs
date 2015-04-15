@@ -3,32 +3,48 @@ using System.IO;
 
 namespace ICT4EVENT
 {
+    using System.Windows.Forms.VisualStyles;
+
     public static class PostManager
     {
-        public static PostModel CreateNewPost(string body, string filepath)
+        public static PostModel CreateNewPost(string body, string filepath = "")
         {
-            var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
+            PostModel post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
             // Set up post details
             post.Content = body;
-            var datePosted = DateTime.Now;
+            DateTime datePosted = DateTime.Now;
             post.DatePosted = datePosted;
 
             //Upload file to FTP
 
             // First we copy it to a local directory
             //Extract filename
-            var fileName = Path.GetFileName(filepath);
-            var localDirectory = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", "test", datePosted.Year,
-                datePosted.Month, datePosted.Day,
-                datePosted.Hour, datePosted.Minute, datePosted.Second, fileName);
+            if (filepath != "")
+            {
+                string fileName = Path.GetFileName(filepath);
+                string localDirectory = string.Format(
+                    "{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}",
+                    "test",
+                    datePosted.Year,
+                    datePosted.Month,
+                    datePosted.Day,
+                    datePosted.Hour,
+                    datePosted.Minute,
+                    datePosted.Second,
+                    fileName);
 
-            Directory.CreateDirectory(localDirectory.Replace(fileName, ""));
-            File.Copy(filepath, localDirectory);
+                Directory.CreateDirectory(localDirectory.Replace(fileName, ""));
+                File.Copy(filepath, localDirectory);
 
-            FTPManager.UploadFile(localDirectory);
+                FTPManager.UploadFile(localDirectory);
 
-            post.PathToFile = localDirectory;
+                post.PathToFile = localDirectory;
+            }
+            else
+            {
+                post.PathToFile = "";
+            }
 
             post.Create();
 
@@ -39,7 +55,7 @@ namespace ICT4EVENT
 
         public static LikeModel CreateNewLike(PostModel post)
         {
-            var like = new LikeModel();
+            LikeModel like = new LikeModel();
 
             like.User = Settings.ActiveUser;
             like.Post = post;
@@ -47,6 +63,24 @@ namespace ICT4EVENT
             like.Create();
 
             return like;
+        }
+
+        public static PostReportModel ReportPost(PostModel post, string reason)
+        {
+            PostReportModel model = new PostReportModel(post, Settings.ActiveUser);
+
+            model.Reason = reason;
+            model.Date = DateTime.Now;
+            model.Status = "Reported";
+
+            model.Create();
+
+            return model;
+        }
+
+        public static PostReportModel GetPostReports(PostModel post)
+        {
+            throw new NotImplementedException();
         }
 
         public static PostModel RetrievePostFile(PostModel post)

@@ -2,6 +2,10 @@ using System;
 
 namespace ICT4EVENT
 {
+    using System.Windows.Forms.VisualStyles;
+
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The registration model.
     /// </summary>
@@ -42,6 +46,21 @@ namespace ICT4EVENT
 
         #region Public Properties
 
+        public RegistrationModel()
+        {
+            event_item = new EventModel();
+            user = new UserModel();
+        }
+
+        public RegistrationModel(int ID)
+        {
+            event_item = new EventModel();
+            user = new UserModel();
+            this.Id = ID;
+
+            this.Read();
+        }
+
         /// <summary>
         ///     Gets the event item.
         /// </summary>
@@ -70,10 +89,10 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "UserID, EventID";
-            var values = string.Format("'{0}','{1}'", user.Id, event_item.Id);
-            var finalQuery = string.Format(INSERTSTRING, "REGISTRATION", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string columns = "UserID, EventID";
+            string values = string.Format("'{0}','{1}'", user.Id, event_item.Id);
+            string finalQuery = string.Format(INSERTSTRING, "REGISTRATION", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -91,8 +110,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "REGISTRATION", "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "REGISTRATION", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -110,19 +129,26 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "REGISTRATION", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "REGISTRATION", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            user.Read();
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            event_item.Read();
         }
 
         /// <summary>
@@ -133,9 +159,9 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = "UserID='" + User.Id + "', EventID='" + event_item.Id + "'";
-            var finalQuery = string.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string columnvalues = "UserID='" + User.Id + "', EventID='" + event_item.Id + "'";
+            string finalQuery = string.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

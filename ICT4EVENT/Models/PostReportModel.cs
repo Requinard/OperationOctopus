@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The post report model.
     /// </summary>
@@ -38,6 +40,16 @@ namespace ICT4EVENT
         {
             this.post = post;
             this.user = user;
+        }
+
+        public PostReportModel(int ID)
+        {
+            this.Id = ID;
+
+            this.post= new PostModel();
+            this.user = new UserModel();
+
+            this.Read();
         }
 
         public UserModel User
@@ -82,16 +94,16 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "PostID, UserID, Reason, DateTime, Status";
-            var values = string.Format(
+            string columns = "PostID, UserID, Reason, DateTime, Status";
+            string values = string.Format(
                 "'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),'{4}'",
                 post.Id,
                 user.Id,
                 reason,
                 date.ToString(dateFormat),
                 status);
-            var finalQuery = string.Format(INSERTSTRING, "REPORT", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(INSERTSTRING, "REPORT", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -109,8 +121,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "REPORT", "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "REPORT", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -123,21 +135,28 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "REPORT", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "REPORT", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            post.Id = Convert.ToInt32(reader["PostID"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            reason = reader["Reason"].ToString();
-            status = reader["status"].ToString();
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            post.Read();
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            user.Read();
+            this.reason = reader["Reason"].ToString();
+            this.status = reader["status"].ToString();
         }
 
         /// <summary>
@@ -148,15 +167,15 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = string.Format(
+            string columnvalues = string.Format(
                 "PostID='{0}', UserID='{1}', Reason='{2}', DateTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), Status='{4}'",
                 post.Id,
                 user.Id,
                 reason,
                 Date.ToString(dateFormat),
                 status);
-            var finalQuery = string.Format(UPDATESTRING, "REPORT", columnvalues, "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(UPDATESTRING, "REPORT", columnvalues, "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
