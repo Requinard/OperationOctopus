@@ -23,7 +23,7 @@ namespace ICT4EVENT
 
             if (picture == null)
             {
-                Picture = Image.FromFile(@"Picture.jpg");
+                //Picture = Image.FromFile(@"Picture.jpg");
             }
             else
             {

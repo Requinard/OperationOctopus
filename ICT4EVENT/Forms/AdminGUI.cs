@@ -44,6 +44,7 @@ namespace ICT4EVENT
                 MessageBox.Show("Succesvol gereserveerd");
                 nmrPlaats.SelectedIndex = 0;
                 txtGebruikers.Text = "";
+                
             }
         }
 
@@ -226,16 +227,10 @@ namespace ICT4EVENT
 
             private void FillAllPlaces()
             {
-                for (var i = 0; i <= 678; i++)
-                {
-                    parent.nmrPlaats.Items.Add(i);
-                }
-                /*
                 foreach (int place in AllPlaces)
                 {
                     parent.nmrPlaats.Items.Add(place);
                 }
-                 */
             }
 
             private int[] EigenTentenArray()
@@ -314,6 +309,7 @@ namespace ICT4EVENT
                     .Concat(StaCaravan)
                     .Concat(Invalidenaccomodatie)
                     .ToArray();
+                Array.Sort(allplaces);
                 return allplaces;
             }
         }
