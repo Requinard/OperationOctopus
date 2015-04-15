@@ -69,17 +69,21 @@
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
             this.tabCreateUser = new System.Windows.Forms.TabPage();
-            this.txtAssignRfid = new System.Windows.Forms.TextBox();
             this.groupCreateUser = new System.Windows.Forms.GroupBox();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.lblTelNr = new System.Windows.Forms.Label();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtTelNr = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtSurName = new System.Windows.Forms.TextBox();
+            this.lblSurName = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
             this.btnCreateUser = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtTelNr = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.lblTelNr = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.txtAssignRfid = new System.Windows.Forms.TextBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -510,16 +514,12 @@
             this.tabCreateUser.Text = "Gebruiker aanmaken";
             this.tabCreateUser.UseVisualStyleBackColor = true;
             // 
-            // txtAssignRfid
-            // 
-            this.txtAssignRfid.Enabled = false;
-            this.txtAssignRfid.Location = new System.Drawing.Point(240, 183);
-            this.txtAssignRfid.Name = "txtAssignRfid";
-            this.txtAssignRfid.Size = new System.Drawing.Size(473, 30);
-            this.txtAssignRfid.TabIndex = 0;
-            // 
             // groupCreateUser
             // 
+            this.groupCreateUser.Controls.Add(this.txtSurName);
+            this.groupCreateUser.Controls.Add(this.lblSurName);
+            this.groupCreateUser.Controls.Add(this.txtName);
+            this.groupCreateUser.Controls.Add(this.lblName);
             this.groupCreateUser.Controls.Add(this.btnCreateUser);
             this.groupCreateUser.Controls.Add(this.txtEmail);
             this.groupCreateUser.Controls.Add(this.txtTelNr);
@@ -537,6 +537,109 @@
             this.groupCreateUser.TabStop = false;
             this.groupCreateUser.Text = "Gebruiker aanmaken";
             // 
+            // txtSurName
+            // 
+            this.txtSurName.Location = new System.Drawing.Point(399, 291);
+            this.txtSurName.Name = "txtSurName";
+            this.txtSurName.Size = new System.Drawing.Size(314, 30);
+            this.txtSurName.TabIndex = 13;
+            // 
+            // lblSurName
+            // 
+            this.lblSurName.AutoSize = true;
+            this.lblSurName.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSurName.Location = new System.Drawing.Point(234, 288);
+            this.lblSurName.Name = "lblSurName";
+            this.lblSurName.Size = new System.Drawing.Size(119, 33);
+            this.lblSurName.TabIndex = 12;
+            this.lblSurName.Text = "Achternaam:";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(399, 255);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(314, 30);
+            this.txtName.TabIndex = 11;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(234, 252);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(104, 33);
+            this.lblName.TabIndex = 10;
+            this.lblName.Text = "Voornaam:";
+            // 
+            // btnCreateUser
+            // 
+            this.btnCreateUser.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateUser.Location = new System.Drawing.Point(369, 524);
+            this.btnCreateUser.Name = "btnCreateUser";
+            this.btnCreateUser.Size = new System.Drawing.Size(212, 68);
+            this.btnCreateUser.TabIndex = 9;
+            this.btnCreateUser.Text = "Gebruiker aanmaken";
+            this.btnCreateUser.UseVisualStyleBackColor = true;
+            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(399, 399);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(314, 30);
+            this.txtEmail.TabIndex = 8;
+            // 
+            // txtTelNr
+            // 
+            this.txtTelNr.Location = new System.Drawing.Point(399, 363);
+            this.txtTelNr.Name = "txtTelNr";
+            this.txtTelNr.Size = new System.Drawing.Size(314, 30);
+            this.txtTelNr.TabIndex = 7;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(399, 327);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(314, 30);
+            this.txtAddress.TabIndex = 6;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(399, 219);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(314, 30);
+            this.txtUsername.TabIndex = 5;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(236, 396);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(70, 33);
+            this.lblEmail.TabIndex = 4;
+            this.lblEmail.Text = "E-mail:";
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddress.Location = new System.Drawing.Point(234, 324);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(68, 33);
+            this.lblAddress.TabIndex = 3;
+            this.lblAddress.Text = "Adres:";
+            // 
+            // lblTelNr
+            // 
+            this.lblTelNr.AutoSize = true;
+            this.lblTelNr.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelNr.Location = new System.Drawing.Point(236, 360);
+            this.lblTelNr.Name = "lblTelNr";
+            this.lblTelNr.Size = new System.Drawing.Size(60, 33);
+            this.lblTelNr.TabIndex = 2;
+            this.lblTelNr.Text = "Telnr:";
+            // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
@@ -547,74 +650,13 @@
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "Gebruikersnaam:";
             // 
-            // lblTelNr
+            // txtAssignRfid
             // 
-            this.lblTelNr.AutoSize = true;
-            this.lblTelNr.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelNr.Location = new System.Drawing.Point(236, 288);
-            this.lblTelNr.Name = "lblTelNr";
-            this.lblTelNr.Size = new System.Drawing.Size(60, 33);
-            this.lblTelNr.TabIndex = 2;
-            this.lblTelNr.Text = "Telnr:";
-            // 
-            // lblAddress
-            // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(234, 252);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(68, 33);
-            this.lblAddress.TabIndex = 3;
-            this.lblAddress.Text = "Adres:";
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(236, 324);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(70, 33);
-            this.lblEmail.TabIndex = 4;
-            this.lblEmail.Text = "E-mail:";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Location = new System.Drawing.Point(399, 219);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(314, 30);
-            this.txtUsername.TabIndex = 5;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(399, 255);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(314, 30);
-            this.txtAddress.TabIndex = 6;
-            // 
-            // txtTelNr
-            // 
-            this.txtTelNr.Location = new System.Drawing.Point(399, 291);
-            this.txtTelNr.Name = "txtTelNr";
-            this.txtTelNr.Size = new System.Drawing.Size(314, 30);
-            this.txtTelNr.TabIndex = 7;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(399, 327);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(314, 30);
-            this.txtEmail.TabIndex = 8;
-            // 
-            // btnCreateUser
-            // 
-            this.btnCreateUser.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateUser.Location = new System.Drawing.Point(360, 408);
-            this.btnCreateUser.Name = "btnCreateUser";
-            this.btnCreateUser.Size = new System.Drawing.Size(212, 68);
-            this.btnCreateUser.TabIndex = 9;
-            this.btnCreateUser.Text = "Gebruiker aanmaken";
-            this.btnCreateUser.UseVisualStyleBackColor = true;
-            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
+            this.txtAssignRfid.Enabled = false;
+            this.txtAssignRfid.Location = new System.Drawing.Point(240, 183);
+            this.txtAssignRfid.Name = "txtAssignRfid";
+            this.txtAssignRfid.Size = new System.Drawing.Size(473, 30);
+            this.txtAssignRfid.TabIndex = 0;
             // 
             // AdminGUI
             // 
@@ -701,5 +743,9 @@
         private System.Windows.Forms.TextBox txtTelNr;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtSurName;
+        private System.Windows.Forms.Label lblSurName;
     }
 }

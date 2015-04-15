@@ -9,7 +9,7 @@ namespace ICT4EVENT
     {
         private readonly CampingLogic campingLogic;
         private readonly EventManagmentLogic eventManagment;
-        private bool FirstTime = true;
+        private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
 
         public AdminGUI()
@@ -18,6 +18,7 @@ namespace ICT4EVENT
             eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
+            createUser = new CreateUserLogic(this);
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -42,6 +43,11 @@ namespace ICT4EVENT
                 nmrPlaats.SelectedIndex = 0;
                 txtGebruikers.Text = "";
             }
+        }
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            createUser.CreateUser();
         }
 
         public class EventManagmentLogic
@@ -326,10 +332,6 @@ namespace ICT4EVENT
             }
         }
 
-        public class RegistrationLogic
-        {
-        }
-
         public class PostReviewLogic
         {
             private readonly AdminGUI parent;
@@ -358,9 +360,40 @@ namespace ICT4EVENT
             }
         }
 
-        private void btnCreateUser_Click(object sender, EventArgs e)
+        public class CreateUserLogic
         {
+            private readonly AdminGUI parent;
+            public CreateUserLogic(AdminGUI gui)
+            {
+                parent = gui;
+            }
 
-        }
+            public void CreateUser()
+            {
+                string FullName = parent.txtName.Text + " " + parent.txtSurName.Text;
+                string Password = GeneratePassword();
+                string userName = parent.txtUsername.Text;
+                string Address = parent.txtAddress.Text;
+                string TelNr = parent.txtTelNr.Text;
+                string Email = parent.txtEmail.Text;
+                string Rfid = parent.txtAssignRfid.Text;
+                UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+            }
+
+            private string GeneratePassword()
+            {
+                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                char[] PasswordChars = new char[8];
+                Random r = new Random();
+
+                for (int i = 0; i < PasswordChars.Length; i++)
+                {
+                    PasswordChars[i] = chars[r.Next(chars.Length)];
+                }
+
+                string RandomPassword = new String(PasswordChars);
+                return RandomPassword;
+            }
+        }     
     }
 }
