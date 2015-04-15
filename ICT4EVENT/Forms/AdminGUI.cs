@@ -25,12 +25,30 @@ namespace ICT4EVENT
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            campingLogic.AddUserToList();
+            try
+            {
+                UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text));
+                campingLogic.AddUserToList();
+            }
+            catch
+            {
+                try
+                {
+                    UserManager.FindUser(txtGebruikers.Text);
+                    campingLogic.AddUserToList();
+                }
+                catch
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
+            }
         }
 
         private void addEvent(UserEvent userEvent)
         {
             eventManagment.AddEvent(userEvent);
+            //ToDo: Deze Methode weghalen en direct aanroepen.
         }
 
         private void btnReserve_Click(object sender, EventArgs e)
