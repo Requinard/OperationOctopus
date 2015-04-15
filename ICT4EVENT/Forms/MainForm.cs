@@ -23,7 +23,7 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             mainGuiLogic.DynamicButtonLogic();
-            FillList();
+            //FillList();
         }
 
         private void CreateTestPosts()

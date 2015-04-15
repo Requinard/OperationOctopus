@@ -86,6 +86,7 @@ namespace ICT4EVENT
             }
 
             comboOptions.Enabled = true;
+            comboBox1.Enabled = true;
             comboOptions.SelectedIndex = 0;
             btnGO.Enabled = true;
         }
