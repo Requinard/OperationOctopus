@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The rfid log model.
     /// </summary>
@@ -100,12 +102,17 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            InOrOut = reader["InOrOut"].ToString();
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.InOrOut = reader["InOrOut"].ToString();
         }
 
         /// <summary>

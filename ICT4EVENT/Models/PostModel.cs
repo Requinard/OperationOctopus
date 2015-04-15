@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The post model.
     /// </summary>
@@ -200,22 +202,27 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            User.Id = Convert.ToInt32(reader["UserID"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.ReadFromReader(reader);
+
+            return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.User.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
             try
             {
-                parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
+                this.parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
             }
             catch (Exception)
             {
-                parent = null;
+                this.parent = null;
             }
-            content = reader["PostContent"].ToString();
-            pathToFile = reader["PathToFile"].ToString();
-            datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
-
-            return true;
+            this.content = reader["PostContent"].ToString();
+            this.pathToFile = reader["PathToFile"].ToString();
+            this.datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
         }
 
         /// <summary>

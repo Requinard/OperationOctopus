@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The event model.
     /// </summary>
@@ -178,14 +180,20 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            name = reader["EventName"].ToString();
-            location = reader["EventLocation"].ToString();
-            description = reader["Description"].ToString();
-            startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
-            endDate = Convert.ToDateTime(reader["EndTime"].ToString());
+
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.name = reader["EventName"].ToString();
+            this.location = reader["EventLocation"].ToString();
+            this.description = reader["Description"].ToString();
+            this.startDate = Convert.ToDateTime(reader["BeginTime"].ToString());
+            this.endDate = Convert.ToDateTime(reader["EndTime"].ToString());
         }
 
         /// <summary>

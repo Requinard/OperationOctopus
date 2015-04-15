@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The reservation model.
     /// </summary>
@@ -153,13 +155,18 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            item.Id = Convert.ToInt32(reader["ItemID"].ToString());
-            returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.item.Id = Convert.ToInt32(reader["ItemID"].ToString());
+            this.returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
         }
 
         /// <summary>

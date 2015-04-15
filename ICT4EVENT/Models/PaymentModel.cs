@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The payment model.
     /// </summary>
@@ -101,12 +103,17 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
-            paymentType = reader["PaymentType"].ToString();
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.registration.Id = Convert.ToInt32(reader["RegistrationID"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
+            this.paymentType = reader["PaymentType"].ToString();
         }
 
         /// <summary>

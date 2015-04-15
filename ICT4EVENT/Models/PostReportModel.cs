@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The post report model.
     /// </summary>
@@ -131,13 +133,18 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            post.Id = Convert.ToInt32(reader["PostID"].ToString());
-            user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            reason = reader["Reason"].ToString();
-            status = reader["status"].ToString();
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.post.Id = Convert.ToInt32(reader["PostID"].ToString());
+            this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
+            this.reason = reader["Reason"].ToString();
+            this.status = reader["status"].ToString();
         }
 
         /// <summary>

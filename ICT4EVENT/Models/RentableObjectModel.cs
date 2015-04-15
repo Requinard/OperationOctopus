@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The rentable object model.
     /// </summary>
@@ -152,14 +154,19 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            description = reader["Description"].ToString();
-            objectType = reader["TypeOfObject"].ToString();
-            price = Convert.ToDecimal(reader["Price"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.description = reader["Description"].ToString();
+            this.objectType = reader["TypeOfObject"].ToString();
+            this.price = Convert.ToDecimal(reader["Price"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
         }
 
         /// <summary>

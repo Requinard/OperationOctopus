@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The place model.
     /// </summary>
@@ -189,16 +191,21 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
-            description = reader["Description"].ToString();
-            price = Convert.ToDecimal(reader["Price"].ToString());
-            amount = Convert.ToInt32(reader["Amount"].ToString());
-            location = reader["PlaceLocation"].ToString();
-            category = reader["PlaceCategory"].ToString();
-            capacity = Convert.ToInt32(reader["PlaceCapacity"].ToString());
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
+            this.description = reader["Description"].ToString();
+            this.price = Convert.ToDecimal(reader["Price"].ToString());
+            this.amount = Convert.ToInt32(reader["Amount"].ToString());
+            this.location = reader["PlaceLocation"].ToString();
+            this.category = reader["PlaceCategory"].ToString();
+            this.capacity = Convert.ToInt32(reader["PlaceCapacity"].ToString());
         }
 
         /// <summary>

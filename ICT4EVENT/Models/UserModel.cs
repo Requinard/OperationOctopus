@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     /// <summary>
     ///     The user model.
     /// </summary>
@@ -212,16 +214,21 @@ namespace ICT4EVENT
             }
 
             reader.Read();
-            Id = Convert.ToInt32(reader["Ident"].ToString());
-            RFIDnumber = reader["RFIDnumber"].ToString();
-            address = reader["Address"].ToString();
-            username = reader["Username"].ToString();
-            email = reader["Email"].ToString();
-            telephonenumber = reader["TelephoneNumber"].ToString();
-            password = reader["UserPassword"].ToString();
-            level = Convert.ToInt32(reader["UserLevel"].ToString());
+            this.ReadFromReader(reader);
 
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Ident"].ToString());
+            this.RFIDnumber = reader["RFIDnumber"].ToString();
+            this.address = reader["Address"].ToString();
+            this.username = reader["Username"].ToString();
+            this.email = reader["Email"].ToString();
+            this.telephonenumber = reader["TelephoneNumber"].ToString();
+            this.password = reader["UserPassword"].ToString();
+            this.level = Convert.ToInt32(reader["UserLevel"].ToString());
         }
 
         /// <summary>
