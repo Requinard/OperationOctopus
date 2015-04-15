@@ -3,6 +3,8 @@ using System.IO;
 
 namespace ICT4EVENT
 {
+    using System.Windows.Forms.VisualStyles;
+
     public static class PostManager
     {
         public static PostModel CreateNewPost(string body, string filepath = "")
@@ -61,6 +63,24 @@ namespace ICT4EVENT
             like.Create();
 
             return like;
+        }
+
+        public static PostReportModel ReportPost(PostModel post, string reason)
+        {
+            PostReportModel model = new PostReportModel(post, Settings.ActiveUser);
+
+            model.Reason = reason;
+            model.Date = DateTime.Now;
+            model.Status = "Reported";
+
+            model.Create();
+
+            return model;
+        }
+
+        public static PostReportModel GetPostReports(PostModel post)
+        {
+            throw new NotImplementedException();
         }
 
         public static PostModel RetrievePostFile(PostModel post)
