@@ -40,8 +40,6 @@
 
             user.Create();
 
-            user.Read();
-
             return user;
         }
 
@@ -191,7 +189,7 @@
 
         public static PaymentModel RegistrationMarkPaid(RegistrationModel registration, decimal amount, string type)
         {
-            PaymentModel payment = new PaymentModel();
+            PaymentModel payment = new PaymentModel(registration);
             payment.Registration = registration;
             payment.Amount = amount;
             payment.PaymentType = type;

@@ -91,15 +91,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Neccesary.cs" />
-    <Compile Include="EventModelUnitTest.cs" />
-    <Compile Include="PostModelUnitTest.cs" />
-    <Compile Include="PlaceModelUnitTest.cs" />
-    <Compile Include="LikeModelUnitTest.cs" />
-    <Compile Include="ReportModelUnitTest.cs" />
-    <Compile Include="RentItemModelUnitTest.cs" />
-    <Compile Include="ReservationModelUnitTest.cs" />
-    <Compile Include="UserModelUnittest.cs" />
+    <Compile Include="Managers\UserManagerUnitTest.cs" />
+    <Compile Include="Models\Neccesary.cs" />
+    <Compile Include="Models\EventModelUnitTest.cs" />
+    <Compile Include="Models\PostModelUnitTest.cs" />
+    <Compile Include="Models\PlaceModelUnitTest.cs" />
+    <Compile Include="Models\LikeModelUnitTest.cs" />
+    <Compile Include="Models\ReportModelUnitTest.cs" />
+    <Compile Include="Models\RentItemModelUnitTest.cs" />
+    <Compile Include="Models\ReservationModelUnitTest.cs" />
+    <Compile Include="Models\UserModelUnittest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

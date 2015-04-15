@@ -100,7 +100,11 @@ namespace ICT4EVENT
             public bool PostingLogic(string PostContent)
             {
                 PostManager.CreateNewPost(PostContent);
+
+                return false;
             }
+
+            
         }
     }
 }
