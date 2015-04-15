@@ -76,7 +76,7 @@
       <HintPath>.\ApplicationLogger.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
     <Reference Include="Phidget21.NET, Version=2.1.8.208, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>B:\Program Files\Phidgets\Phidget21.NET.dll</HintPath>
@@ -106,7 +106,7 @@
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\DBManager.cs" />
-    <Compile Include="Models\DBModel.cs" />
+    <Compile Include="Models\Abstracts\DBModel.cs" />
     <Compile Include="Managers\EquipmentManager.cs" />
     <Compile Include="Managers\EventManager.cs" />
     <Compile Include="Managers\FTPManager.cs" />
