@@ -57,7 +57,6 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        UserModel testuser = UserManager.FindUser("UnitTestUser");
         [Priority(1)]
         public void FindUsersByName()
         {
@@ -70,7 +69,8 @@ namespace ICT4EVENTUnitTest.Managers
         [Priority(2)]
         public void AuthenticateUserByUserModel()
         {
-            Assert.IsTrue(UserManager.AuthenticateUser(userArch, "testingPassword"), "Could not authenticate user");
+            UserModel testuser = UserManager.FindUser("UnitTestUser");
+            Assert.IsTrue(UserManager.AuthenticateUser(testuser, "testingPassword"), "Could not authenticate user");
         }
         [TestMethod]
         [Priority(1)]
