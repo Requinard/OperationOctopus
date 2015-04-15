@@ -40,8 +40,6 @@
 
             user.Create();
 
-            user.Read();
-
             return user;
         }
 
@@ -53,7 +51,7 @@
         /// <returns>Success of the operation</returns>
         public static bool AuthenticateUser(string username, string password)
         {
-            string query = string.Format("SELECT ident FROM users WHERE username = '{0}'", username);
+            string query = string.Format("SELECT * FROM users WHERE username = '{0}'", username);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
@@ -129,7 +127,7 @@
         public static List<UserModel> FindUsers(string username)
         {
             List<UserModel> users = new List<UserModel>();
-            string query = string.Format("SELECT * FROM USERS WHERE USERNAME LIKE %'{0}'%");
+            string query = string.Format("SELECT * FROM USERS WHERE USERNAME LIKE '%{0}%'", username);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
@@ -191,7 +189,7 @@
 
         public static PaymentModel RegistrationMarkPaid(RegistrationModel registration, decimal amount, string type)
         {
-            PaymentModel payment = new PaymentModel(null);
+            PaymentModel payment = new PaymentModel(registration);
             payment.Registration = registration;
             payment.Amount = amount;
             payment.PaymentType = type;
