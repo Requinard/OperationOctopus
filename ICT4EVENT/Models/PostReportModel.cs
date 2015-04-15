@@ -42,6 +42,16 @@ namespace ICT4EVENT
             this.user = user;
         }
 
+        public PostReportModel(int ID)
+        {
+            this.Id = ID;
+
+            this.post= new PostModel();
+            this.user = new UserModel();
+
+            this.Read();
+        }
+
         public UserModel User
         {
             get { return user; }

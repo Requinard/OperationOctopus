@@ -2,6 +2,8 @@ using System;
 
 namespace ICT4EVENT
 {
+    using System.Windows.Forms.VisualStyles;
+
     using Oracle.DataAccess.Client;
 
     /// <summary>
@@ -43,6 +45,21 @@ namespace ICT4EVENT
         #endregion
 
         #region Public Properties
+
+        public RegistrationModel()
+        {
+            event_item = new EventModel();
+            user = new UserModel();
+        }
+
+        public RegistrationModel(int ID)
+        {
+            event_item = new EventModel();
+            user = new UserModel();
+            this.Id = ID;
+
+            this.Read();
+        }
 
         /// <summary>
         ///     Gets the event item.

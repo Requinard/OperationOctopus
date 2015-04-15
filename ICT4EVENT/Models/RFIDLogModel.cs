@@ -26,6 +26,21 @@ namespace ICT4EVENT
             this.event_item = event_item;
         }
 
+        public RFIDLogModel()
+        {
+            this.user = new UserModel();
+            this.event_item = new EventModel();
+        }
+
+        public RFIDLogModel(int ID)
+        {
+            this.Id = ID;
+            this.user = new UserModel();
+            this.event_item = new EventModel();
+
+            this.Read();
+        }
+
         #endregion
 
         #region Fields

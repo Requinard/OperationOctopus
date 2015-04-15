@@ -22,6 +22,20 @@ namespace ICT4EVENT
             this.event_item = event_item;
         }
 
+        public RentableObjectModel()
+        {
+            this.event_item = new EventModel();
+        }
+
+        public RentableObjectModel(int ID)
+        {
+            this.Id = ID;
+
+            this.event_item = new EventModel();
+
+            this.Read();
+        }
+
         #endregion
 
         #region Fields

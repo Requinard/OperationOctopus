@@ -21,6 +21,13 @@ namespace ICT4EVENT
             RegistrationList = new List<RegistrationModel>();
         }
 
+        public UserModel(int ID)
+        {
+            this.Id = ID;
+
+            this.Read();
+        }
+
         #endregion
 
         #region Fields

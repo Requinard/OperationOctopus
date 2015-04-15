@@ -21,10 +21,26 @@ namespace ICT4EVENT
         /// </summary>
         private UserModel user;
 
+        public LikeModel(PostModel post, UserModel user)
+        {
+            this.post = post;
+            this.user = user;
+        }
+
         public LikeModel()
         {
             post = new PostModel();
-            user = new UserModel();
+            User = new UserModel();
+        }
+
+        public LikeModel(int ID)
+        {
+            this.Id = ID;
+
+            post = new PostModel();
+            User = new UserModel();
+
+            this.Read();
         }
 
         public PostModel Post

@@ -66,6 +66,15 @@ namespace ICT4EVENT
             event_item = new EventModel();
         }
 
+        public PostModel(int ID)
+        {
+            this.Id = ID;
+            this.user = new UserModel();
+            this.event_item = new EventModel();
+            this.Read();
+        }
+
+
         #endregion
 
         #region Public Properties

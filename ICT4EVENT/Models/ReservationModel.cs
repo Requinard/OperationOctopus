@@ -26,6 +26,21 @@ namespace ICT4EVENT
             User = user_item;
         }
 
+        public ReservationModel()
+        {
+            item = new RentableObjectModel();
+            user = new UserModel();
+        }
+
+        public ReservationModel(int ID)
+        {
+            this.Id = ID;
+
+            item = new RentableObjectModel();
+            user = new UserModel();
+
+            this.Read();
+        }
         #endregion
 
         #region Fields

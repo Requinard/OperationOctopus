@@ -22,6 +22,19 @@ namespace ICT4EVENT
             this.event_item = event_item;
         }
 
+        public PlaceModel()
+        {
+            this.event_item = new EventModel();
+        }
+
+        public PlaceModel(int ID) :base()
+        {
+            this.event_item = new EventModel();
+            this.Id = ID;
+
+            this.Read();
+        }
+
         #endregion
 
         #region Fields

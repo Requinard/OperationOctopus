@@ -11,12 +11,24 @@ namespace ICT4EVENT
     {
         #region Public Properties
 
+        public PaymentModel(int id)
+        {
+            this.ID = id;
+            Registration = new RegistrationModel();
+            this.Read();
+        }
+
         /// <summary>
         ///     Gets or sets the id.
         /// </summary>
         public int ID { get; set; }
 
         #endregion
+
+        public PaymentModel(RegistrationModel registration)
+        {
+            this.registration = registration;
+        }
 
         #region Fields
 
