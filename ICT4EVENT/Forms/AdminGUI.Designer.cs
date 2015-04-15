@@ -64,11 +64,8 @@
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabEventManagment = new System.Windows.Forms.TabPage();
             this.gbEventManagment = new System.Windows.Forms.GroupBox();
-            this.btnDeleteEvent = new System.Windows.Forms.Button();
-            this.btnEditEvent = new System.Windows.Forms.Button();
-            this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.gbCreateEvent = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCreateNewEvent = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -79,6 +76,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tbDescription = new System.Windows.Forms.TextBox();
             this.tbEventName = new System.Windows.Forms.TextBox();
+            this.btnDeleteEvent = new System.Windows.Forms.Button();
+            this.btnUpdateEvents = new System.Windows.Forms.Button();
+            this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
@@ -451,7 +451,7 @@
             // 
             this.gbEventManagment.Controls.Add(this.gbCreateEvent);
             this.gbEventManagment.Controls.Add(this.btnDeleteEvent);
-            this.gbEventManagment.Controls.Add(this.btnEditEvent);
+            this.gbEventManagment.Controls.Add(this.btnUpdateEvents);
             this.gbEventManagment.Controls.Add(this.flowEvent);
             this.gbEventManagment.Controls.Add(this.btnCreateEvent);
             this.gbEventManagment.Location = new System.Drawing.Point(3, 3);
@@ -461,37 +461,9 @@
             this.gbEventManagment.TabStop = false;
             this.gbEventManagment.Text = "Evenment Beheer";
             // 
-            // btnDeleteEvent
-            // 
-            this.btnDeleteEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnDeleteEvent.Location = new System.Drawing.Point(742, 566);
-            this.btnDeleteEvent.Name = "btnDeleteEvent";
-            this.btnDeleteEvent.Size = new System.Drawing.Size(241, 54);
-            this.btnDeleteEvent.TabIndex = 5;
-            this.btnDeleteEvent.Text = "Remove Evenement";
-            this.btnDeleteEvent.UseVisualStyleBackColor = true;
-            // 
-            // btnEditEvent
-            // 
-            this.btnEditEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnEditEvent.Location = new System.Drawing.Point(382, 566);
-            this.btnEditEvent.Name = "btnEditEvent";
-            this.btnEditEvent.Size = new System.Drawing.Size(241, 54);
-            this.btnEditEvent.TabIndex = 4;
-            this.btnEditEvent.Text = "Edit Evenement";
-            this.btnEditEvent.UseVisualStyleBackColor = true;
-            // 
-            // flowEvent
-            // 
-            this.flowEvent.AutoScroll = true;
-            this.flowEvent.Location = new System.Drawing.Point(1, 25);
-            this.flowEvent.Name = "flowEvent";
-            this.flowEvent.Size = new System.Drawing.Size(647, 535);
-            this.flowEvent.TabIndex = 3;
-            // 
             // gbCreateEvent
             // 
-            this.gbCreateEvent.Controls.Add(this.button1);
+            this.gbCreateEvent.Controls.Add(this.btnCreateNewEvent);
             this.gbCreateEvent.Controls.Add(this.label5);
             this.gbCreateEvent.Controls.Add(this.dateTimePicker2);
             this.gbCreateEvent.Controls.Add(this.dateTimePicker1);
@@ -509,15 +481,15 @@
             this.gbCreateEvent.TabStop = false;
             this.gbCreateEvent.Text = "Create a event";
             // 
-            // button1
+            // btnCreateNewEvent
             // 
-            this.button1.Location = new System.Drawing.Point(25, 189);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(242, 32);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Create Event";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnCreateNewEvent.Location = new System.Drawing.Point(25, 189);
+            this.btnCreateNewEvent.Name = "btnCreateNewEvent";
+            this.btnCreateNewEvent.Size = new System.Drawing.Size(242, 32);
+            this.btnCreateNewEvent.TabIndex = 21;
+            this.btnCreateNewEvent.Text = "Create Event";
+            this.btnCreateNewEvent.UseVisualStyleBackColor = true;
+            this.btnCreateNewEvent.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
             // 
@@ -601,6 +573,35 @@
             this.tbEventName.Size = new System.Drawing.Size(227, 25);
             this.tbEventName.TabIndex = 11;
             // 
+            // btnDeleteEvent
+            // 
+            this.btnDeleteEvent.ForeColor = System.Drawing.Color.Black;
+            this.btnDeleteEvent.Location = new System.Drawing.Point(742, 566);
+            this.btnDeleteEvent.Name = "btnDeleteEvent";
+            this.btnDeleteEvent.Size = new System.Drawing.Size(241, 54);
+            this.btnDeleteEvent.TabIndex = 5;
+            this.btnDeleteEvent.Text = "Remove Evenement";
+            this.btnDeleteEvent.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateEvents
+            // 
+            this.btnUpdateEvents.ForeColor = System.Drawing.Color.Black;
+            this.btnUpdateEvents.Location = new System.Drawing.Point(382, 566);
+            this.btnUpdateEvents.Name = "btnUpdateEvents";
+            this.btnUpdateEvents.Size = new System.Drawing.Size(241, 54);
+            this.btnUpdateEvents.TabIndex = 4;
+            this.btnUpdateEvents.Text = "Update Events";
+            this.btnUpdateEvents.UseVisualStyleBackColor = true;
+            this.btnUpdateEvents.Click += new System.EventHandler(this.btnUpdateEvents_Click);
+            // 
+            // flowEvent
+            // 
+            this.flowEvent.AutoScroll = true;
+            this.flowEvent.Location = new System.Drawing.Point(1, 25);
+            this.flowEvent.Name = "flowEvent";
+            this.flowEvent.Size = new System.Drawing.Size(647, 535);
+            this.flowEvent.TabIndex = 3;
+            // 
             // btnCreateEvent
             // 
             this.btnCreateEvent.ForeColor = System.Drawing.Color.Black;
@@ -674,7 +675,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowEvent;
         private System.Windows.Forms.ComboBox nmrPlaats;
         private System.Windows.Forms.Button btnDeleteEvent;
-        private System.Windows.Forms.Button btnEditEvent;
+        private System.Windows.Forms.Button btnUpdateEvents;
         private System.Windows.Forms.Button btnFindUser;
         private System.Windows.Forms.Button btnConformUser;
         private System.Windows.Forms.Label lblAtEventStatus;
@@ -685,7 +686,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowPostReview;
         private System.Windows.Forms.GroupBox gbCreateEvent;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateNewEvent;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

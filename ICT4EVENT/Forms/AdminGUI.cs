@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using ICT4EVENT.Controls;
 
 namespace ICT4EVENT
 {
@@ -12,7 +11,6 @@ namespace ICT4EVENT
         private readonly EventManagmentLogic eventManagment;
         private bool FirstTime = true;
         private PostReviewLogic postReview;
-        
 
         public AdminGUI()
         {
@@ -47,6 +45,23 @@ namespace ICT4EVENT
             }
         }
 
+        private void btnCreateEvent_Click(object sender, EventArgs e)
+        {
+            gbCreateEvent.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value,
+                dateTimePicker2.Value);
+        }
+
+        private void btnUpdateEvents_Click(object sender, EventArgs e)
+        {
+            flowEvent.Controls.Clear();
+            eventManagment.FillEventList(EventManager.FindAllEvents());
+        }
+
         public class EventManagmentLogic
         {
             private readonly AdminGUI parent;
@@ -54,6 +69,7 @@ namespace ICT4EVENT
             public EventManagmentLogic(AdminGUI gui)
             {
                 parent = gui;
+                FillEventList(EventManager.FindAllEvents());
             }
 
             public void AddEvent(UserEvent userEvent)
@@ -61,7 +77,13 @@ namespace ICT4EVENT
                 parent.flowEvent.Controls.Add(userEvent);
             }
 
-            
+            public void FillEventList(List<EventModel> eventModels)
+            {
+                foreach (var eventModel in eventModels)
+                {
+                    parent.flowEvent.Controls.Add(new UserEvent(eventModel));
+                }
+            }
         }
 
         public class CampingLogic
@@ -334,32 +356,8 @@ namespace ICT4EVENT
 
             public void CreateDummyData()
             {
-                UserPost post;
-                post = new UserPost("David != fucking haat", "Guus", null,
-                    null);
-                parent.flowPostReview.Controls.Add(new UserPostReview(post));
-
-
-                post = new UserPost("David != fucking haat", "Guus", null,
-                    null);
-                parent.flowPostReview.Controls.Add(new UserPostReview(post));
-
-                post = new UserPost("David != fucking haat", "Guus", null,
-                    null);
-                parent.flowPostReview.Controls.Add(new UserPostReview(post));
+                
             }
-        }
-
-        private void btnCreateEvent_Click(object sender, EventArgs e)
-        {
-            gbCreateEvent.Visible = true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value,
-                dateTimePicker2.Value);
-
         }
     }
 }

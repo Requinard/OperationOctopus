@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
@@ -15,6 +17,8 @@ namespace ICT4EVENT
             lblLocation.Text = eventModel.Location;
             lblStartDate.Text = eventModel.StartDate.ToString();
             lblEndDate.Text = eventModel.EndDate.ToString();
+            Random r = new Random();
+            BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
         }
     }
 }
