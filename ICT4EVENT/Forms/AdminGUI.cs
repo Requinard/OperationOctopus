@@ -23,12 +23,30 @@ namespace ICT4EVENT
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            campingLogic.AddUserToList();
+            try
+            {
+                UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text));
+                campingLogic.AddUserToList();
+            }
+            catch
+            {
+                try
+                {
+                    UserManager.FindUser(txtGebruikers.Text);
+                    campingLogic.AddUserToList();
+                }
+                catch
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
+            }
         }
 
         private void addEvent(UserEvent userEvent)
         {
             eventManagment.AddEvent(userEvent);
+            //ToDo: Deze Methode weghalen en direct aanroepen.
         }
 
         private void btnReserve_Click(object sender, EventArgs e)
@@ -42,6 +60,7 @@ namespace ICT4EVENT
                 MessageBox.Show("Succesvol gereserveerd");
                 nmrPlaats.SelectedIndex = 0;
                 txtGebruikers.Text = "";
+                
             }
         }
 
@@ -248,16 +267,10 @@ namespace ICT4EVENT
 
             private void FillAllPlaces()
             {
-                for (var i = 0; i <= 678; i++)
-                {
-                    parent.nmrPlaats.Items.Add(i);
-                }
-                /*
                 foreach (int place in AllPlaces)
                 {
                     parent.nmrPlaats.Items.Add(place);
                 }
-                 */
             }
 
             private int[] EigenTentenArray()
@@ -336,6 +349,7 @@ namespace ICT4EVENT
                     .Concat(StaCaravan)
                     .Concat(Invalidenaccomodatie)
                     .ToArray();
+                Array.Sort(allplaces);
                 return allplaces;
             }
         }

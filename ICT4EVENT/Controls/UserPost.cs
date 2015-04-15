@@ -15,7 +15,7 @@ namespace ICT4EVENT
 
             Text = postModel.Content;
             Size = new Size(593, 107);
-            
+
 
             lblPoster.Text = "@" + postModel.User;
 
