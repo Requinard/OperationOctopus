@@ -1,7 +1,7 @@
-using System;
-
 namespace ICT4EVENT
 {
+    using System;
+
     using Oracle.DataAccess.Client;
 
     /// <summary>
@@ -73,7 +73,7 @@ namespace ICT4EVENT
         public bool Create()
         {
             var columns = "UserID,EventID,InOrOut";
-            var values = "'" + user.Id + "','" + event_item.Id + "','" + InOrOut + "'";
+            var values = "'" + this.user.Id + "','" + this.event_item.Id + "','" + this.InOrOut + "'";
             var finalQuery = string.Format(INSERTSTRING, "RFIDLOG", columns, values);
             var reader = DBManager.QueryDB(finalQuery);
 
@@ -94,7 +94,7 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "RFIDLOG", "'" + Id + "'");
+            var finalQuery = string.Format(DESTROYSTRING, "RFIDLOG", "'" + this.Id + "'");
             var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
@@ -108,7 +108,7 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "RFIDLOG", Id);
+            var query = string.Format(READSTRING, "RFIDLOG", this.Id);
             var reader = DBManager.QueryDB(query);
 
             if (reader == null)
@@ -138,9 +138,12 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = string.Format("UserID='{0}', EventID='{1}', InOrOut='{2}'", user.Id, event_item.Id,
-                InOrOut);
-            var finalQuery = string.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + Id + "'");
+            var columnvalues = string.Format(
+                "UserID='{0}', EventID='{1}', InOrOut='{2}'",
+                this.user.Id,
+                this.event_item.Id,
+                this.InOrOut);
+            var finalQuery = string.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + this.Id + "'");
             var reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
