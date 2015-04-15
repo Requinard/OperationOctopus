@@ -5,7 +5,7 @@ namespace ICT4EVENT
 {
     public static class PostManager
     {
-        public static PostModel CreateNewPost(string body, string filepath)
+        public static PostModel CreateNewPost(string body, string filepath = "")
         {
             var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
@@ -18,17 +18,31 @@ namespace ICT4EVENT
 
             // First we copy it to a local directory
             //Extract filename
-            var fileName = Path.GetFileName(filepath);
-            var localDirectory = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}", "test", datePosted.Year,
-                datePosted.Month, datePosted.Day,
-                datePosted.Hour, datePosted.Minute, datePosted.Second, fileName);
+            if (filepath != "")
+            {
+                var fileName = Path.GetFileName(filepath);
+                var localDirectory = string.Format(
+                    "{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}",
+                    "test",
+                    datePosted.Year,
+                    datePosted.Month,
+                    datePosted.Day,
+                    datePosted.Hour,
+                    datePosted.Minute,
+                    datePosted.Second,
+                    fileName);
 
-            Directory.CreateDirectory(localDirectory.Replace(fileName, ""));
-            File.Copy(filepath, localDirectory);
+                Directory.CreateDirectory(localDirectory.Replace(fileName, ""));
+                File.Copy(filepath, localDirectory);
 
-            FTPManager.UploadFile(localDirectory);
+                FTPManager.UploadFile(localDirectory);
 
-            post.PathToFile = localDirectory;
+                post.PathToFile = localDirectory;
+            }
+            else
+            {
+                post.PathToFile = "";
+            }
 
             post.Create();
 
