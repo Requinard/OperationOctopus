@@ -30,7 +30,7 @@ namespace ICT4EVENT
                 return null;
 
             reader.Read();
-            eventModel.Id = int.Parse(reader["ident"].ToString());
+            eventModel.Id = Int32.Parse(reader["ident"].ToString());
 
             eventModel.Read();
 
@@ -52,9 +52,7 @@ namespace ICT4EVENT
             {
                 EventModel eventModel = new EventModel();
 
-                eventModel.Id = int.Parse(reader["ident"].ToString());
-
-                eventModel.Read();
+                eventModel.ReadFromReader(reader);
 
                 eventModels.Add(eventModel);
             }
@@ -77,11 +75,9 @@ namespace ICT4EVENT
             {
                 EventModel eventModel = new EventModel();
 
-                eventModel.Id = int.Parse(reader["ident"].ToString());
+                eventModel.ReadFromReader(reader);
 
-                eventModel.Read();
-
-                eventModels.Add(eventModel);
+                eventModels.Add(eventModel); 
             }
 
             return eventModels;

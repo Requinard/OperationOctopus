@@ -65,34 +65,11 @@ namespace ICT4EVENT
             }
 
 
-            if (Settings.DEBUG)
-            {
-                RunOracleDatabaseTest();
-            }
         }
 
         public static void Destruct()
         {
             oracleConnection.Close();
-        }
-
-        /// <summary>
-        ///     Tests the oracle database to see if we can IO to it
-        /// </summary>
-        /// <returns>success</returns>
-        private static bool RunOracleDatabaseTest()
-        {
-            const string create_table = "CREATE TABLE test_db (number_thing NUMBER)";
-            const string insert_into_table = "INSERT INTO test_db (number_thing) VALUES (1)";
-            const string select_from_table = "SELECT * FROM test_db";
-            const string drop_table = "DROP TABLE test_db";
-
-            Console.WriteLine(QueryDB(create_table));
-            Console.WriteLine(QueryDB(insert_into_table));
-            Console.WriteLine(QueryDB(select_from_table));
-            Console.WriteLine(QueryDB(drop_table));
-
-            return true;
         }
 
         /// <summary>
