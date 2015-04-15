@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminGUI));
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -55,6 +55,7 @@
             this.txtRFIDCode = new System.Windows.Forms.TextBox();
             this.tabPostReview = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowPostReview = new System.Windows.Forms.FlowLayoutPanel();
             this.tabMaterialRental = new System.Windows.Forms.TabPage();
             this.gbMaterialControl = new System.Windows.Forms.GroupBox();
             this.lblSelectReservation = new System.Windows.Forms.Label();
@@ -67,7 +68,18 @@
             this.btnEditEvent = new System.Windows.Forms.Button();
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
-            this.flowPostReview = new System.Windows.Forms.FlowLayoutPanel();
+            this.gbCreateEvent = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbLocation = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbDescription = new System.Windows.Forms.TextBox();
+            this.tbEventName = new System.Windows.Forms.TextBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,6 +93,8 @@
             this.gbMaterialControl.SuspendLayout();
             this.tabEventManagment.SuspendLayout();
             this.gbEventManagment.SuspendLayout();
+            this.flowEvent.SuspendLayout();
+            this.gbCreateEvent.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -244,7 +258,7 @@
             this.btnFindUser.Location = new System.Drawing.Point(826, 25);
             this.btnFindUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnFindUser.Name = "btnFindUser";
-            this.btnFindUser.Size = new System.Drawing.Size(156, 40);
+            this.btnFindUser.Size = new System.Drawing.Size(156, 38);
             this.btnFindUser.TabIndex = 14;
             this.btnFindUser.Tag = "SMSS";
             this.btnFindUser.Text = "Zoek gebruiker";
@@ -352,6 +366,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Materiaal Beheer";
             // 
+            // flowPostReview
+            // 
+            this.flowPostReview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPostReview.Location = new System.Drawing.Point(-2, 25);
+            this.flowPostReview.MinimumSize = new System.Drawing.Size(992, 605);
+            this.flowPostReview.Name = "flowPostReview";
+            this.flowPostReview.Size = new System.Drawing.Size(992, 605);
+            this.flowPostReview.TabIndex = 0;
+            this.flowPostReview.WrapContents = false;
+            // 
             // tabMaterialRental
             // 
             this.tabMaterialRental.Controls.Add(this.gbMaterialControl);
@@ -405,8 +429,8 @@
             // listView3
             // 
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8});
+            listViewItem3,
+            listViewItem4});
             this.listView3.Location = new System.Drawing.Point(6, 56);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(983, 372);
@@ -460,6 +484,7 @@
             // flowEvent
             // 
             this.flowEvent.AutoScroll = true;
+            this.flowEvent.Controls.Add(this.gbCreateEvent);
             this.flowEvent.Location = new System.Drawing.Point(1, 25);
             this.flowEvent.Name = "flowEvent";
             this.flowEvent.Size = new System.Drawing.Size(992, 535);
@@ -474,16 +499,119 @@
             this.btnCreateEvent.TabIndex = 0;
             this.btnCreateEvent.Text = "Nieuw Evenement";
             this.btnCreateEvent.UseVisualStyleBackColor = true;
+            this.btnCreateEvent.Click += new System.EventHandler(this.btnCreateEvent_Click);
             // 
-            // flowPostReview
+            // gbCreateEvent
             // 
-            this.flowPostReview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPostReview.Location = new System.Drawing.Point(-2, 25);
-            this.flowPostReview.MinimumSize = new System.Drawing.Size(992, 605);
-            this.flowPostReview.Name = "flowPostReview";
-            this.flowPostReview.Size = new System.Drawing.Size(992, 605);
-            this.flowPostReview.TabIndex = 0;
-            this.flowPostReview.WrapContents = false;
+            this.gbCreateEvent.Controls.Add(this.button1);
+            this.gbCreateEvent.Controls.Add(this.label5);
+            this.gbCreateEvent.Controls.Add(this.dateTimePicker2);
+            this.gbCreateEvent.Controls.Add(this.dateTimePicker1);
+            this.gbCreateEvent.Controls.Add(this.label4);
+            this.gbCreateEvent.Controls.Add(this.tbLocation);
+            this.gbCreateEvent.Controls.Add(this.label6);
+            this.gbCreateEvent.Controls.Add(this.label7);
+            this.gbCreateEvent.Controls.Add(this.label8);
+            this.gbCreateEvent.Controls.Add(this.tbDescription);
+            this.gbCreateEvent.Controls.Add(this.tbEventName);
+            this.gbCreateEvent.Location = new System.Drawing.Point(3, 3);
+            this.gbCreateEvent.Name = "gbCreateEvent";
+            this.gbCreateEvent.Size = new System.Drawing.Size(334, 237);
+            this.gbCreateEvent.TabIndex = 0;
+            this.gbCreateEvent.TabStop = false;
+            this.gbCreateEvent.Text = "Create a event";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(25, 189);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(242, 32);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Create Event";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 148);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 18);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "End date";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(88, 143);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(227, 25);
+            this.dateTimePicker2.TabIndex = 19;
+            this.dateTimePicker2.Value = new System.DateTime(2015, 4, 15, 12, 57, 43, 0);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(88, 112);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(227, 25);
+            this.dateTimePicker1.TabIndex = 18;
+            this.dateTimePicker1.Value = new System.DateTime(2015, 4, 15, 12, 57, 43, 0);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 18);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Start date";
+            // 
+            // tbLocation
+            // 
+            this.tbLocation.Location = new System.Drawing.Point(88, 49);
+            this.tbLocation.Name = "tbLocation";
+            this.tbLocation.Size = new System.Drawing.Size(227, 25);
+            this.tbLocation.TabIndex = 16;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 83);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 18);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Description";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 18);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Location";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 18);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Event Name";
+            // 
+            // tbDescription
+            // 
+            this.tbDescription.Location = new System.Drawing.Point(88, 80);
+            this.tbDescription.Name = "tbDescription";
+            this.tbDescription.Size = new System.Drawing.Size(227, 25);
+            this.tbDescription.TabIndex = 12;
+            // 
+            // tbEventName
+            // 
+            this.tbEventName.Location = new System.Drawing.Point(88, 18);
+            this.tbEventName.Name = "tbEventName";
+            this.tbEventName.Size = new System.Drawing.Size(227, 25);
+            this.tbEventName.TabIndex = 11;
             // 
             // AdminGUI
             // 
@@ -512,6 +640,9 @@
             this.gbMaterialControl.PerformLayout();
             this.tabEventManagment.ResumeLayout(false);
             this.gbEventManagment.ResumeLayout(false);
+            this.flowEvent.ResumeLayout(false);
+            this.gbCreateEvent.ResumeLayout(false);
+            this.gbCreateEvent.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -555,5 +686,17 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowPostReview;
+        private System.Windows.Forms.GroupBox gbCreateEvent;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbLocation;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbDescription;
+        private System.Windows.Forms.TextBox tbEventName;
     }
 }

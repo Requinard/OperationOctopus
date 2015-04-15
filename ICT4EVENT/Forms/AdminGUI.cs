@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using ICT4EVENT.Controls;
 
 namespace ICT4EVENT
 {
@@ -11,6 +12,7 @@ namespace ICT4EVENT
         private readonly EventManagmentLogic eventManagment;
         private bool FirstTime = true;
         private PostReviewLogic postReview;
+        
 
         public AdminGUI()
         {
@@ -51,7 +53,6 @@ namespace ICT4EVENT
             public EventManagmentLogic(AdminGUI gui)
             {
                 parent = gui;
-                CreateDummyData();
             }
 
             public void AddEvent(UserEvent userEvent)
@@ -59,20 +60,7 @@ namespace ICT4EVENT
                 parent.flowEvent.Controls.Add(userEvent);
             }
 
-            public void CreateDummyData()
-            {
-                var r = new Random();
-                var newUserEvent = new UserEvent("Honor The Cage", "Luud", "De kleine lepel",
-                    "A event to honor the all mighty cage, Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultricies tellus a ligula facilisis, id fringilla odio pharetra. Sed consequat leo nibh, in facilisis lorem luctus non. Curabitur risus augue, placerat at efficitur quis, aliquam sed arcu. Nam condimentum ligula eros, ut euismod turpis sodales nec. Duis mattis facilisis feugiat. Ut eu sollicitudin diam. Suspendisse vel ex et magna placerat lacinia. Vivamus mollis at justo eu ornare. Ut lacinia arcu a diam efficitur, vel malesuada nibh pretium. Pellentesque nec blandit leo. Quisque consectetur molestie ex, ut dapibus sem lacinia eu. Etiam ligula sem, sollicitudin eu eros eu, sollicitudin luctus orci. In nisl nunc, auctor vitae aliquet sit amet, placerat pellentesque nulla. Donec egestas tempus egestas. Donec a tellus id orci hendrerit consectetur. Fusce a fringilla nulla, non dictum purus. Aliquam placerat, metus eget volutpat feugiat, nisi mi varius odio, sit amet accumsan purus libero non dui. Sed quis massa cursus, feugiat elit a, imperdiet sem. Fusce non feugiat libero. Suspendisse purus magna, maximus eget imperdiet non, suscipit ac metus. Nulla id felis vitae tortor porta tincidunt quis commodo magna. Sed sollicitudin cursus orci, eget finibus leo dignissim id. Sed aliquam ex in tincidunt ornare.");
-                parent.flowEvent.Controls.Add(newUserEvent);
-
-                for (var i = 0; i < 10; i++)
-                {
-                    var userEvent = new UserEvent("Social Media Event", "Sjaak", "Camping Reeendaal",
-                        "Een social media event");
-                    parent.flowEvent.Controls.Add(userEvent);
-                }
-            }
+            
         }
 
         public class CampingLogic
@@ -359,6 +347,21 @@ namespace ICT4EVENT
                     null);
                 parent.flowPostReview.Controls.Add(new UserPostReview(post));
             }
+        }
+
+        private void btnCreateEvent_Click(object sender, EventArgs e)
+        {
+            CreateEvent testDialog = new CreateEvent();
+
+            flowEvent.Controls.Add(testDialog);
+            testDialog.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value,
+                dateTimePicker2.Value);
+
         }
     }
 }

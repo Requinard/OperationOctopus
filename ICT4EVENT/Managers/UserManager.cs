@@ -91,7 +91,7 @@ namespace ICT4EVENT
 
             reader.Read();
 
-            user.Id = int.Parse(reader["ident"].ToString());
+            user.Id = Int32.Parse(reader["ident"].ToString());
 
             user.Read();
 

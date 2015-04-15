@@ -4,13 +4,17 @@ namespace ICT4EVENT
 {
     public partial class UserEvent : UserControl
     {
-        public UserEvent(string eventName, string host, string location, string description)
+        private EventModel eventModel;
+        public UserEvent(EventModel eventModel)
         {
+            
             InitializeComponent();
-            lblEventName.Text = eventName;
-            lblHost.Text = host;
-            lblLocation.Text = location;
-            lblDescription.Text = description;
+            this.eventModel = eventModel;
+            lblEventName.Text = eventModel.Name;
+            lblDescription.Text = eventModel.Description;
+            lblLocation.Text = eventModel.Location;
+            lblStartDate.Text = eventModel.StartDate.ToString();
+            lblEndDate.Text = eventModel.EndDate.ToString();
         }
     }
 }
