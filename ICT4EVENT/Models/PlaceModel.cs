@@ -145,6 +145,8 @@ namespace ICT4EVENT
 
             set { price = value; }
         }
+        //TODO Object Type was not available. Either add it here, or remove it in RentableObject
+        public string ObjectType { get; set; }
 
         #endregion
 

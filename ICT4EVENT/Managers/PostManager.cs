@@ -81,9 +81,42 @@ namespace ICT4EVENT
             return model;
         }
 
-        public static PostReportModel GetPostReports(PostModel post)
+        public static List<PostReportModel> GetPostReports(PostModel post)
         {
-            throw new NotImplementedException();
+            string query = String.Format("SELECT * FROM PostReport WHERE postid = '{0}'", post.Id);
+            List<PostReportModel> reports = new List<PostReportModel>();
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            while (reader.Read())
+            {
+                PostReportModel report = new PostReportModel();
+
+                report.ReadFromReader(reader);
+
+                reports.Add(report);
+            }
+
+            return reports;
+        }
+
+        public static List<PostReportModel> GetAllRepots()
+        {
+            string query = String.Format("SELECT * FROM PostReport");
+            List<PostReportModel> reports = new List<PostReportModel>();
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            while (reader.Read())
+            {
+                PostReportModel report = new PostReportModel();
+
+                report.ReadFromReader(reader);
+
+                reports.Add(report);
+            }
+
+            return reports;
         }
 
         public static PostModel RetrievePostFile(PostModel post)

@@ -71,7 +71,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -92,6 +92,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Managers\EventManagerUnitTest.cs" />
+    <Compile Include="Managers\EquipmentManagerUnitTest.cs" />
     <Compile Include="Managers\UserManagerUnitTest.cs" />
     <Compile Include="Models\Neccesary.cs" />
     <Compile Include="Models\EventModelUnitTest.cs" />
