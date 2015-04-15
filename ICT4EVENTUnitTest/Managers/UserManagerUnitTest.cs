@@ -48,12 +48,16 @@ namespace ICT4EVENTUnitTest.Managers
         [Priority(2)]
         public void RetrieveUserByID()
         {
-            UserModel user = UserManager.FindUser(userArch.Id);
+            UserModel testuser = UserManager.FindUser("UnitTestUser");
+
+            UserModel user = UserManager.FindUser(testuser.Id);
+
 
             Assert.IsNotNull(user, "Could not find user by ID");
         }
 
         [TestMethod]
+        UserModel testuser = UserManager.FindUser("UnitTestUser");
         [Priority(1)]
         public void FindUsersByName()
         {
