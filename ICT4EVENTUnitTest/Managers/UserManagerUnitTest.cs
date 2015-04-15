@@ -73,6 +73,13 @@ namespace ICT4EVENTUnitTest.Managers
             Assert.IsTrue(UserManager.AuthenticateUser(testuser, "testingPassword"), "Could not authenticate user");
         }
         [TestMethod]
+        [Priority(2)]
+        public void AuthenticateUserByRFID()
+        {
+            UserModel testuser = UserManager.FindUser("UnitTestUser");
+            Assert.IsTrue(UserManager.AuthenticateUser(testuser.RfiDnumber), "Could not authenticate user");
+        }
+        [TestMethod]
         [Priority(1)]
         public void AuthenticateUserByUsername()
         {
