@@ -85,11 +85,8 @@ namespace ICT4EVENT
 
         public static EventModel CreateNewEvent(string name, string location, string description, DateTime startDate,
             DateTime endDate)
-        {
-            if (Settings.ActiveUser.Level != 3)
-                throw new AuthenticationException();
+        {            EventModel eventModel = new EventModel();
 
-            EventModel eventModel = new EventModel();
 
             eventModel.Name = name;
             eventModel.Location = location;
