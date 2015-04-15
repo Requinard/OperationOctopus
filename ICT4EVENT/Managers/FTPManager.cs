@@ -10,7 +10,7 @@ namespace ICT4EVENT
     {
         private const string username = "PTS08";
         private const string pw = "PTS08";
-        private const string FolderLocation = "ftp://88.159.165.90/Disk/Public/Media/";
+        private const string FolderLocation = "sftp://proftaak.me/home/Media/Files";
         private static readonly string FileName = "sample.mp4";
 
         /// <summary>
