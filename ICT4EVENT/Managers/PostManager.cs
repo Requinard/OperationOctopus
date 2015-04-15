@@ -101,14 +101,14 @@ namespace ICT4EVENT
             //Get the data reader
             if (startpost == null)
             {
-                string query = "SELECT * FROM post ORDER BY ident desc";
+                string query = String.Format("SELECT * FROM post WHERE eventid = '{0}' ORDER BY ident desc", Settings.ActiveEvent.Id);
 
                 reader = DBManager.QueryDB(query);
             }
             else
             {
-                string query = String.Format("SELECT * FROM POST WHERE ident <= '{0}' ORDERM BY ident desc",
-                    startpost.Id);
+                string query = String.Format("SELECT * FROM POST WHERE ident <= '{0}' AND WHERE eventid = '{0}' ORDER BY ident desc",
+                    startpost.Id, Settings.ActiveEvent.Id);
 
                 reader = DBManager.QueryDB(query);
             }
