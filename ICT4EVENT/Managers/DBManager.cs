@@ -30,7 +30,7 @@ namespace ICT4EVENT
             {
                 if (Settings.DbConfig == null)
                 {
-                    var dbConfigForm = new DBConfigForm();
+                    DBConfigForm dbConfigForm = new DBConfigForm();
                     dbConfigForm.ShowDialog();
                     Settings.SerializeDatabase();
                 }
@@ -104,7 +104,7 @@ namespace ICT4EVENT
         {
             OracleDataReader queryResult;
 
-            var oracleCommand = oracleConnection.CreateCommand();
+            OracleCommand oracleCommand = oracleConnection.CreateCommand();
 
             // Replace ; with EOS, so that this won't ever be a problem again
             oracleCommand.CommandText = query.Replace(';', '\0');

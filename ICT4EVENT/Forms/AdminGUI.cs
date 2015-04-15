@@ -32,9 +32,9 @@ namespace ICT4EVENT
 
         private void btnReserve_Click(object sender, EventArgs e)
         {
-            var plaats = Convert.ToInt32(nmrPlaats.Text);
+            int plaats = Convert.ToInt32(nmrPlaats.Text);
 
-            var lines = lbUser.Items.Count;
+            int lines = lbUser.Items.Count;
 
             if (campingLogic.CheckPlaceSize(plaats, lines))
             {
@@ -61,14 +61,14 @@ namespace ICT4EVENT
 
             public void CreateDummyData()
             {
-                var r = new Random();
-                var newUserEvent = new UserEvent("Honor The Cage", "Luud", "De kleine lepel",
+                Random r = new Random();
+                UserEvent newUserEvent = new UserEvent("Honor The Cage", "Luud", "De kleine lepel",
                     "A event to honor the all mighty cage, Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultricies tellus a ligula facilisis, id fringilla odio pharetra. Sed consequat leo nibh, in facilisis lorem luctus non. Curabitur risus augue, placerat at efficitur quis, aliquam sed arcu. Nam condimentum ligula eros, ut euismod turpis sodales nec. Duis mattis facilisis feugiat. Ut eu sollicitudin diam. Suspendisse vel ex et magna placerat lacinia. Vivamus mollis at justo eu ornare. Ut lacinia arcu a diam efficitur, vel malesuada nibh pretium. Pellentesque nec blandit leo. Quisque consectetur molestie ex, ut dapibus sem lacinia eu. Etiam ligula sem, sollicitudin eu eros eu, sollicitudin luctus orci. In nisl nunc, auctor vitae aliquet sit amet, placerat pellentesque nulla. Donec egestas tempus egestas. Donec a tellus id orci hendrerit consectetur. Fusce a fringilla nulla, non dictum purus. Aliquam placerat, metus eget volutpat feugiat, nisi mi varius odio, sit amet accumsan purus libero non dui. Sed quis massa cursus, feugiat elit a, imperdiet sem. Fusce non feugiat libero. Suspendisse purus magna, maximus eget imperdiet non, suscipit ac metus. Nulla id felis vitae tortor porta tincidunt quis commodo magna. Sed sollicitudin cursus orci, eget finibus leo dignissim id. Sed aliquam ex in tincidunt ornare.");
                 parent.flowEvent.Controls.Add(newUserEvent);
 
-                for (var i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    var userEvent = new UserEvent("Social Media Event", "Sjaak", "Camping Reeendaal",
+                    UserEvent userEvent = new UserEvent("Social Media Event", "Sjaak", "Camping Reeendaal",
                         "Een social media event");
                     parent.flowEvent.Controls.Add(userEvent);
                 }
@@ -127,7 +127,7 @@ namespace ICT4EVENT
                     return true;
                 }
 
-                foreach (var p in Bungalows)
+                foreach (int p in Bungalows)
                 {
                     if (p == place)
                     {
@@ -140,7 +140,7 @@ namespace ICT4EVENT
                     }
                 }
 
-                foreach (var p in Bungalinos)
+                foreach (int p in Bungalinos)
                 {
                     if (p == place)
                     {
@@ -153,7 +153,7 @@ namespace ICT4EVENT
                     }
                 }
 
-                foreach (var p in EigenTenten)
+                foreach (int p in EigenTenten)
                 {
                     if (p == place)
                     {
@@ -166,7 +166,7 @@ namespace ICT4EVENT
                     }
                 }
 
-                foreach (var p in Blokhutten)
+                foreach (int p in Blokhutten)
                 {
                     if (p == place)
                     {
@@ -179,7 +179,7 @@ namespace ICT4EVENT
                     }
                 }
 
-                foreach (var p in ComfortPlaatsen)
+                foreach (int p in ComfortPlaatsen)
                 {
                     if (p == place)
                     {
@@ -192,7 +192,7 @@ namespace ICT4EVENT
                     }
                 }
 
-                foreach (var p in Huurtentjes)
+                foreach (int p in Huurtentjes)
                 {
                     if (p == place)
                     {
@@ -205,7 +205,7 @@ namespace ICT4EVENT
                     }
                 }
 
-                foreach (var p in StaCaravan)
+                foreach (int p in StaCaravan)
                 {
                     if (p == place)
                     {
@@ -218,7 +218,7 @@ namespace ICT4EVENT
                     }
                 }
 
-                foreach (var p in Invalidenaccomodatie)
+                foreach (int p in Invalidenaccomodatie)
                 {
                     if (p == place)
                     {
@@ -237,7 +237,7 @@ namespace ICT4EVENT
 
             private void FillAllPlaces()
             {
-                for (var i = 0; i <= 678; i++)
+                for (int i = 0; i <= 678; i++)
                 {
                     parent.nmrPlaats.Items.Add(i);
                 }
@@ -251,34 +251,34 @@ namespace ICT4EVENT
 
             private int[] EigenTentenArray()
             {
-                var Tenten1 = Enumerable.Range(101, 23).ToArray();
-                var Tenten2 = Enumerable.Range(200, 14).ToArray();
-                var Tenten3 = Enumerable.Range(401, 19).ToArray();
-                var Tenten4 = Enumerable.Range(314, 10).ToArray();
+                int[] Tenten1 = Enumerable.Range(101, 23).ToArray();
+                int[] Tenten2 = Enumerable.Range(200, 14).ToArray();
+                int[] Tenten3 = Enumerable.Range(401, 19).ToArray();
+                int[] Tenten4 = Enumerable.Range(314, 10).ToArray();
                 int[] Tenten5 = {544, 431};
-                var Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
+                int[] Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
                 return Tenten;
             }
 
             private int[] BungalowArray()
             {
-                var Bungalows1 = Enumerable.Range(2, 11).ToArray();
-                var Bungalows2 = Enumerable.Range(14, 2).ToArray();
-                var Bungalows3 = Enumerable.Range(17, 4).ToArray();
-                var Bungalows4 = Enumerable.Range(23, 4).ToArray();
-                var Bungalows = Bungalows1.Concat(Bungalows2).Concat(Bungalows3).Concat(Bungalows4).ToArray();
+                int[] Bungalows1 = Enumerable.Range(2, 11).ToArray();
+                int[] Bungalows2 = Enumerable.Range(14, 2).ToArray();
+                int[] Bungalows3 = Enumerable.Range(17, 4).ToArray();
+                int[] Bungalows4 = Enumerable.Range(23, 4).ToArray();
+                int[] Bungalows = Bungalows1.Concat(Bungalows2).Concat(Bungalows3).Concat(Bungalows4).ToArray();
                 return Bungalows;
             }
 
             private int[] BlokHuttenArray()
             {
-                var Blokhutten1 = Enumerable.Range(72, 10).ToArray();
-                var Blokhutten2 = Enumerable.Range(91, 2).ToArray();
-                var Blokhutten3 = Enumerable.Range(95, 2).ToArray();
-                var Blokhutten4 = Enumerable.Range(138, 5).ToArray();
-                var Blokhutten5 = Enumerable.Range(143, 8).ToArray();
+                int[] Blokhutten1 = Enumerable.Range(72, 10).ToArray();
+                int[] Blokhutten2 = Enumerable.Range(91, 2).ToArray();
+                int[] Blokhutten3 = Enumerable.Range(95, 2).ToArray();
+                int[] Blokhutten4 = Enumerable.Range(138, 5).ToArray();
+                int[] Blokhutten5 = Enumerable.Range(143, 8).ToArray();
                 int[] Blokhutten6 = {124};
-                var Blokhutten =
+                int[] Blokhutten =
                     Blokhutten1.Concat(Blokhutten2)
                         .Concat(Blokhutten3)
                         .Concat(Blokhutten4)
@@ -290,34 +290,34 @@ namespace ICT4EVENT
 
             private int[] BungalinosArray()
             {
-                var Bungalinos1 = Enumerable.Range(50, 6).ToArray();
-                var Bungalinos2 = Enumerable.Range(60, 12).ToArray();
-                var Bungalinos3 = Enumerable.Range(101, 5).ToArray();
-                var Bungalinos = Bungalinos1.Concat(Bungalinos2).Concat(Bungalinos3).ToArray();
+                int[] Bungalinos1 = Enumerable.Range(50, 6).ToArray();
+                int[] Bungalinos2 = Enumerable.Range(60, 12).ToArray();
+                int[] Bungalinos3 = Enumerable.Range(101, 5).ToArray();
+                int[] Bungalinos = Bungalinos1.Concat(Bungalinos2).Concat(Bungalinos3).ToArray();
                 return Bungalinos;
             }
 
             private int[] ComfortPlaatsenArray()
             {
-                var Comfortplaats1 = Enumerable.Range(601, 26).ToArray();
-                var Comfortplaats2 = Enumerable.Range(432, 4).ToArray();
-                var ComfortPlaats = Comfortplaats1.Concat(Comfortplaats2).ToArray();
+                int[] Comfortplaats1 = Enumerable.Range(601, 26).ToArray();
+                int[] Comfortplaats2 = Enumerable.Range(432, 4).ToArray();
+                int[] ComfortPlaats = Comfortplaats1.Concat(Comfortplaats2).ToArray();
                 return ComfortPlaats;
             }
 
             private int[] StaCaravanArray()
             {
-                var StaCaravan1 = Enumerable.Range(34, 8).ToArray();
-                var StaCaravan2 = Enumerable.Range(125, 3).ToArray();
-                var StaCaravan3 = Enumerable.Range(93, 2).ToArray();
-                var StaCaravan4 = Enumerable.Range(97, 4).ToArray();
-                var StaCaravan = StaCaravan1.Concat(StaCaravan2).Concat(StaCaravan3).Concat(StaCaravan4).ToArray();
+                int[] StaCaravan1 = Enumerable.Range(34, 8).ToArray();
+                int[] StaCaravan2 = Enumerable.Range(125, 3).ToArray();
+                int[] StaCaravan3 = Enumerable.Range(93, 2).ToArray();
+                int[] StaCaravan4 = Enumerable.Range(97, 4).ToArray();
+                int[] StaCaravan = StaCaravan1.Concat(StaCaravan2).Concat(StaCaravan3).Concat(StaCaravan4).ToArray();
                 return StaCaravan;
             }
 
             private int[] AllPlacesArray()
             {
-                var allplaces = Bungalows.Concat(Blokhutten)
+                int[] allplaces = Bungalows.Concat(Blokhutten)
                     .Concat(Bungalinos)
                     .Concat(ComfortPlaatsen)
                     .Concat(EigenTenten)

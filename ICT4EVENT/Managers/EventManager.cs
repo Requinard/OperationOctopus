@@ -4,11 +4,13 @@ using System.Security.Authentication;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     public static class EventManager
     {
         public static EventModel FindEvent(int id)
         {
-            var eventModel = new EventModel();
+            EventModel eventModel = new EventModel();
             eventModel.Id = id;
 
             if (eventModel.Read())
@@ -18,11 +20,11 @@ namespace ICT4EVENT
 
         public static EventModel FindEvent(string name)
         {
-            var query = string.Format("SELECT * FROM event WHERE eventname = '{0}'", name);
+            string query = string.Format("SELECT * FROM event WHERE eventname = '{0}'", name);
 
-            var eventModel = new EventModel();
+            EventModel eventModel = new EventModel();
 
-            var reader = DBManager.QueryDB(query);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
@@ -37,18 +39,18 @@ namespace ICT4EVENT
 
         public static List<EventModel> FindAllEvents()
         {
-            var query = "SELECT * FROM event ";
+            string query = "SELECT * FROM event ";
 
-            var eventModels = new List<EventModel>();
+            List<EventModel> eventModels = new List<EventModel>();
 
-            var reader = DBManager.QueryDB(query);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                var eventModel = new EventModel();
+                EventModel eventModel = new EventModel();
 
                 eventModel.Id = int.Parse(reader["ident"].ToString());
 
@@ -62,18 +64,18 @@ namespace ICT4EVENT
 
         public static List<EventModel> FindEvents(string name)
         {
-            var query = string.Format("SELECT * FROM event WHERE eventname IS LIKE '%{0}%'", name);
+            string query = string.Format("SELECT * FROM event WHERE eventname IS LIKE '%{0}%'", name);
 
-            var eventModels = new List<EventModel>();
+            List<EventModel> eventModels = new List<EventModel>();
 
-            var reader = DBManager.QueryDB(query);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                var eventModel = new EventModel();
+                EventModel eventModel = new EventModel();
 
                 eventModel.Id = int.Parse(reader["ident"].ToString());
 
@@ -91,7 +93,7 @@ namespace ICT4EVENT
             if (Settings.ActiveUser.Level != 3)
                 throw new AuthenticationException();
 
-            var eventModel = new EventModel();
+            EventModel eventModel = new EventModel();
 
             eventModel.Name = name;
             eventModel.Location = location;

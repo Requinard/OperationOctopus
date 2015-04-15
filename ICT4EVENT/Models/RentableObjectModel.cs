@@ -129,11 +129,11 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "EventID, Description, Price, Amount, TypeOfObject, ItemType";
-            var values = string.Format("'{0}','{1}','{2}','{3}','{4}', 'RentableObject'", event_item.Id, description,
+            string columns = "EventID, Description, Price, Amount, TypeOfObject, ItemType";
+            string values = string.Format("'{0}','{1}','{2}','{3}','{4}', 'RentableObject'", event_item.Id, description,
                 price, amount, objectType);
-            var finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -146,8 +146,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "ITEM", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -160,8 +160,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "ITEM", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "ITEM", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
@@ -192,15 +192,15 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = string.Format(
+            string columnvalues = string.Format(
                 "EventID='{0}', Description='{1}', Price='{2}', Amount='{3}', TypeOfObject='{4}'",
                 event_item.Id,
                 description,
                 price,
                 amount,
                 objectType);
-            var finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(UPDATESTRING, "ITEM", columnvalues, "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

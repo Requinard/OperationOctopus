@@ -122,15 +122,15 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "UserID, ItemID, ReturnDate, Amount";
-            var values = string.Format(
+            string columns = "UserID, ItemID, ReturnDate, Amount";
+            string values = string.Format(
                 "'{0}','{1}',to_date('{2}', 'fmmm-fmdd-yyyy hh:mi:ss'),'{3}'",
                 user.Id,
                 item.Id,
                 returnDate.ToString(dateFormat),
                 amount);
-            var finalQuery = string.Format(INSERTSTRING, "RESERVATION", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(INSERTSTRING, "RESERVATION", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -148,8 +148,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "RESERVATION", "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "RESERVATION", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -162,8 +162,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "RESERVATION", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "RESERVATION", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
@@ -194,18 +194,18 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = string.Format(
+            string columnvalues = string.Format(
                 "UserID='{0}', ItemID='{1}', ReturnDate=to_date('{2}', 'fmmm-fmdd-yyyy hh:mi:ss'), Amount='{3}'",
                 user.Id,
                 item.Id,
                 returnDate.ToString(dateFormat),
                 amount);
-            var finalQuery = string.Format(
+            string finalQuery = string.Format(
                 UPDATESTRING,
                 "RESERVATION",
                 columnvalues,
                 string.Format("'{0}'", Id));
-            var reader = DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

@@ -128,13 +128,13 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "EventName, EventLocation, Description, BeginTime, EndTime";
-            var values =
+            string columns = "EventName, EventLocation, Description, BeginTime, EndTime";
+            string values =
                 string.Format(
                     "'{0}','{1}','{2}',to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'),to_date('{4}', 'fmMM-fmDD-yyyy hh24:mi:ss')",
                     name, location, description, startDate.ToString(dateFormat), endDate.ToString(dateFormat));
-            var finalQuery = string.Format(INSERTSTRING, "EVENT", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(INSERTSTRING, "EVENT", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -152,8 +152,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var query = string.Format(DESTROYSTRING, "EVENT", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(DESTROYSTRING, "EVENT", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
             {
@@ -171,8 +171,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "EVENT", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "EVENT", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
             {
@@ -204,13 +204,13 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues =
+            string columnvalues =
                 string.Format(
                     "EventName='{0}', EventLocation='{1}', Description='{2}', BeginTime=to_date('{3}', 'fmmm-fmdd-yyyy hh:mi:ss'), EndTime=to_date('{4}', 'fmmm-fmdd-yyyy hh:mi:ss')",
                     name, location, description, startDate.ToString(dateFormat), endDate.ToString(dateFormat));
-            var finalQuery = string.Format(UPDATESTRING, "EVENT", columnvalues, "'" + Id + "'");
+            string finalQuery = string.Format(UPDATESTRING, "EVENT", columnvalues, "'" + Id + "'");
 
-            var reader = DBManager.QueryDB(finalQuery);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {

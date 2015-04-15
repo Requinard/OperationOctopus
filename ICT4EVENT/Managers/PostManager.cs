@@ -9,11 +9,11 @@ namespace ICT4EVENT
     {
         public static PostModel CreateNewPost(string body, string filepath = "")
         {
-            var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
+            PostModel post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
             // Set up post details
             post.Content = body;
-            var datePosted = DateTime.Now;
+            DateTime datePosted = DateTime.Now;
             post.DatePosted = datePosted;
 
             //Upload file to FTP
@@ -22,8 +22,8 @@ namespace ICT4EVENT
             //Extract filename
             if (filepath != "")
             {
-                var fileName = Path.GetFileName(filepath);
-                var localDirectory = string.Format(
+                string fileName = Path.GetFileName(filepath);
+                string localDirectory = string.Format(
                     "{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}",
                     "test",
                     datePosted.Year,
@@ -55,7 +55,7 @@ namespace ICT4EVENT
 
         public static LikeModel CreateNewLike(PostModel post)
         {
-            var like = new LikeModel();
+            LikeModel like = new LikeModel();
 
             like.User = Settings.ActiveUser;
             like.Post = post;

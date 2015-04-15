@@ -176,8 +176,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "";
-            var values = "";
+            string columns = "";
+            string values = "";
             if (this.parent != null)
             {
                 columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
@@ -204,8 +204,8 @@ namespace ICT4EVENT
                     this.datePosted.ToString(this.dateFormat));
             }
 
-            var finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -218,8 +218,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "POST", "'" + this.Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "POST", "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -232,8 +232,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "POST", this.Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "POST", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
@@ -274,7 +274,7 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = "";
+            string columnvalues = "";
             if (this.parent != null)
             {
                 columnvalues =
@@ -298,8 +298,8 @@ namespace ICT4EVENT
                         this.pathToFile,
                         this.datePosted.ToString(this.dateFormat));
             }
-            var finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + this.Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(UPDATESTRING, "POST", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

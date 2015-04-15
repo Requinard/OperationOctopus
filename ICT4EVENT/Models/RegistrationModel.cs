@@ -89,10 +89,10 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "UserID, EventID";
-            var values = string.Format("'{0}','{1}'", user.Id, event_item.Id);
-            var finalQuery = string.Format(INSERTSTRING, "REGISTRATION", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string columns = "UserID, EventID";
+            string values = string.Format("'{0}','{1}'", user.Id, event_item.Id);
+            string finalQuery = string.Format(INSERTSTRING, "REGISTRATION", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -110,8 +110,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "REGISTRATION", "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "REGISTRATION", "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -129,8 +129,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "REGISTRATION", Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "REGISTRATION", Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
             if (reader == null)
             {
                 return false;
@@ -159,9 +159,9 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = "UserID='" + User.Id + "', EventID='" + event_item.Id + "'";
-            var finalQuery = string.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string columnvalues = "UserID='" + User.Id + "', EventID='" + event_item.Id + "'";
+            string finalQuery = string.Format(UPDATESTRING, "REGISTRATION", columnvalues, "'" + Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }

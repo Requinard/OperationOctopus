@@ -13,7 +13,7 @@ namespace ICT4EVENT
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            var FieldsAreOk = true;
+            bool FieldsAreOk = true;
 
             if (tbUser.Text.Length > 0)
                 Settings.DbConfig.user = tbUser.Text;

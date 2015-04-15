@@ -72,10 +72,10 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            var columns = "UserID,EventID,InOrOut";
-            var values = "'" + this.user.Id + "','" + this.event_item.Id + "','" + this.InOrOut + "'";
-            var finalQuery = string.Format(INSERTSTRING, "RFIDLOG", columns, values);
-            var reader = DBManager.QueryDB(finalQuery);
+            string columns = "UserID,EventID,InOrOut";
+            string values = "'" + this.user.Id + "','" + this.event_item.Id + "','" + this.InOrOut + "'";
+            string finalQuery = string.Format(INSERTSTRING, "RFIDLOG", columns, values);
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             if (reader == null)
             {
@@ -94,8 +94,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            var finalQuery = string.Format(DESTROYSTRING, "RFIDLOG", "'" + this.Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(DESTROYSTRING, "RFIDLOG", "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
@@ -108,8 +108,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Read()
         {
-            var query = string.Format(READSTRING, "RFIDLOG", this.Id);
-            var reader = DBManager.QueryDB(query);
+            string query = string.Format(READSTRING, "RFIDLOG", this.Id);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
             {
@@ -140,13 +140,13 @@ namespace ICT4EVENT
         /// </returns>
         public bool Update()
         {
-            var columnvalues = string.Format(
+            string columnvalues = string.Format(
                 "UserID='{0}', EventID='{1}', InOrOut='{2}'",
                 this.user.Id,
                 this.event_item.Id,
                 this.InOrOut);
-            var finalQuery = string.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + this.Id + "'");
-            var reader = DBManager.QueryDB(finalQuery);
+            string finalQuery = string.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + this.Id + "'");
+            OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
         }
