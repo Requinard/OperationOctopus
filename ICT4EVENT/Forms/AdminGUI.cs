@@ -127,17 +127,14 @@ namespace ICT4EVENT
                     return true;
                 }
 
-                foreach (var p in Bungalows)
+                if (Bungalows.Contains(place))
                 {
-                    if (p == place)
+                    if (amountofusers > 8)
                     {
-                        if (amountofusers > 8)
-                        {
-                            MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
-                            return false;
-                        }
-                        return true;
+                        MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
+                        return false;
                     }
+                    return true;
                 }
 
                 foreach (var p in Bungalinos)
@@ -359,6 +356,11 @@ namespace ICT4EVENT
                     null);
                 parent.flowPostReview.Controls.Add(new UserPostReview(post));
             }
+        }
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
