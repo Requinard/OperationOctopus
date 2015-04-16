@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ICT4EVENTUnitTest.Managers
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using ICT4EVENT;
 
@@ -14,13 +15,24 @@ namespace ICT4EVENTUnitTest.Managers
         public static void ClassInitialize(TestContext context)
         {
             Init.Initialize();
-            
+            EventModel eventModel = EventManager.CreateNewEvent(
+                "User Testing Event",
+                "test",
+                "test",
+                DateTime.Now,
+                DateTime.Now);
+
+            eventModel.Create();
+
+            Settings.ActiveEvent = EventManager.FindEvent("User Testing Event");
+
         }
 
         [ClassCleanup]
         public static void ClassDestruct()
         {
             UserManager.FindUser("UnitTestUser").Destroy();
+            EventManager.FindEvent("User Testing Event").Destroy();
         }
 
 
@@ -90,19 +102,41 @@ namespace ICT4EVENTUnitTest.Managers
         {
             Assert.IsTrue(UserManager.AuthenticateUser("UnitTestUser", "testingPassword"), "Could not validate password");
         }
-
         [TestMethod]
         [Priority(1)]
+        public void RegisterUserForEvent()
+        {
+            Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
+
+            RegistrationModel reg = UserManager.RegisterUserForEvent(Settings.ActiveUser, Settings.ActiveEvent);
+
+            Assert.IsNotNull(reg);
+        }
+
+        [TestMethod]
+        [Priority(2)]
         public void GetUserRegistration()
         {
-            throw  new NotImplementedException();
+            Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
+
+            List<RegistrationModel> regs = UserManager.GetUserRegistrations(Settings.ActiveUser);
+
+            Assert.IsNotNull(regs);
+
+            Assert.IsTrue(regs.Count > 0);
         }
 
         [TestMethod]
         [Priority(2)]
         public void MarkRegistrationAsPaid()
         {
-            throw new NotImplementedException();
+            Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
+
+            List<RegistrationModel> regs = UserManager.GetUserRegistrations(Settings.ActiveUser);
+
+            PaymentModel pay = UserManager.RegistrationMarkPaid(regs.First(), Decimal.One, "Credit card");
+
+            Assert.IsNotNull(pay);
         }
     }
 }

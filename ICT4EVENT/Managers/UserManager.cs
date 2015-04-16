@@ -155,8 +155,9 @@
             return user;
         }
 
-        public static UserModel GetUserRegistrations(UserModel user)
+        public static List<RegistrationModel> GetUserRegistrations(UserModel user)
         {
+            List<RegistrationModel> regs = new List<RegistrationModel>();
             string query =
                 string.Format(
                     "SELECT * FROM registration WHERE userid = '{0}'",
@@ -164,15 +165,18 @@
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
+            if(reader == null)
+                return null;    
+
             while (reader.Read())
             {
                 RegistrationModel registration = new RegistrationModel();
                 registration.ReadFromReader(reader);
 
-                user.RegistrationList.Add(registration);
+                regs.Add(registration);
             }
-            
-            return user;
+
+            return regs;
         }
 
         public static RegistrationModel RegisterUserForEvent(UserModel user, EventModel eventModel)
