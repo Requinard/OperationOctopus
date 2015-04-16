@@ -41,6 +41,15 @@ namespace ICT4EVENT
             }
         }
 
+        private void FillMaterials()
+        {
+            List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
+            foreach (RentableObjectModel rentModel in Rentables)
+            {
+                flowMaterials.Controls.Add(new Materials(rentModel.ObjectType, rentModel.Description));
+            }
+        }
+
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             if (cbProfileSelector.Text.Length >= 3)
