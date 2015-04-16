@@ -116,14 +116,5 @@ namespace ICT4EVENT
 
             
         }
-
-        private void tabMainTab_Selected(object sender, TabControlEventArgs e)
-        {
-            Image test = new Bitmap(161, 161);
-            foreach (RentableObjectModel ROM in EquipmentManager.GetAllRentables())
-            {
-                flowMaterials.Controls.Add(new Materials(test, ROM.ObjectType, ROM.Description));
-            }
-        }
     }
 }

@@ -20,8 +20,8 @@ namespace ICT4EVENT.Controls
         public Materials(string name, string description)
         {
             InitializeComponent();
-            Name = name;
-            Description = description;
+            this.Name = name;
+            this.Description = description;
         }
     }
 }

@@ -66,13 +66,12 @@ namespace ICT4EVENT
 
         private void btnCreateEvent_Click(object sender, EventArgs e)
         {
-            gbCreateEvent.Visible = true;
+            //gbCreateEvent.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value,
-                dateTimePicker2.Value);
+            //EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
         private void btnUpdateEvents_Click(object sender, EventArgs e)
