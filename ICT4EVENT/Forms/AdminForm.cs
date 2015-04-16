@@ -9,7 +9,7 @@ namespace ICT4EVENT
     {
         private readonly CampingLogic campingLogic;
         private readonly EventManagmentLogic eventManagment;
-        private bool FirstTime = true;
+        private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
 
         public AdminForm()
@@ -18,6 +18,7 @@ namespace ICT4EVENT
             eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
+            createUser = new CreateUserLogic(this);
             gbCreateEvent.Visible = false;
         }
 
@@ -26,8 +27,8 @@ namespace ICT4EVENT
             try
             {
                 UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text));
-                campingLogic.AddUserToList();
-            }
+            campingLogic.AddUserToList();
+        }
             catch
             {
                 try
@@ -157,10 +158,8 @@ namespace ICT4EVENT
                     return true;
                 }
 
-                foreach (var p in Bungalows)
+                if (Bungalows.Contains(place))
                 {
-                    if (p == place)
-                    {
                         if (amountofusers > 8)
                         {
                             MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
@@ -168,7 +167,6 @@ namespace ICT4EVENT
                         }
                         return true;
                     }
-                }
 
                 foreach (var p in Bungalinos)
                 {
@@ -354,10 +352,6 @@ namespace ICT4EVENT
             }
         }
 
-        public class RegistrationLogic
-        {
-        }
-
         public class PostReviewLogic
         {
             private readonly AdminForm parent;
@@ -370,8 +364,44 @@ namespace ICT4EVENT
 
             public void CreateDummyData()
             {
-                
+
             }
         }
+
+        public class CreateUserLogic
+        {
+            private readonly AdminGUI parent;
+            public CreateUserLogic(AdminGUI gui)
+            {
+                parent = gui;
+            }
+
+            public void CreateUser()
+            {
+                string FullName = parent.txtName.Text + " " + parent.txtSurName.Text;
+                string Password = GeneratePassword();
+                string userName = parent.txtUsername.Text;
+                string Address = parent.txtAddress.Text;
+                string TelNr = parent.txtTelNr.Text;
+                string Email = parent.txtEmail.Text;
+                string Rfid = parent.txtAssignRfid.Text;
+                UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+            }
+
+            private string GeneratePassword()
+            {
+                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                char[] PasswordChars = new char[8];
+                Random r = new Random();
+
+                for (int i = 0; i < PasswordChars.Length; i++)
+                {
+                    PasswordChars[i] = chars[r.Next(chars.Length)];
+                }
+
+                string RandomPassword = new String(PasswordChars);
+                return RandomPassword;
+            }
+        }     
     }
 }
