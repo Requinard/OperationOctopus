@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using ICT4EVENT.Controls;
 
 namespace ICT4EVENT
 {
@@ -105,6 +107,16 @@ namespace ICT4EVENT
             }
 
             
+        }
+
+        private void tabMainTab_Selected(object sender, TabControlEventArgs e)
+        {
+            Image test = new Bitmap(161, 161);
+            EquipmentManager.Initialize();
+            foreach (RentableObjectModel ROM in EquipmentManager.rentables)
+            {
+                flowMaterials.Controls.Add(new Materials(test, ROM.ObjectType, ROM.Description));
+            }
         }
     }
 }

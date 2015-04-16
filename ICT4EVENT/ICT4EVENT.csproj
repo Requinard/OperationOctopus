@@ -102,6 +102,12 @@
     <Compile Include="Controls\CreateEvent.Designer.cs">
       <DependentUpon>CreateEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Materials.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Materials.Designer.cs">
+      <DependentUpon>Materials.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AdminGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </Compile>
     <EmbeddedResource Include="Controls\CreateEvent.resx">
       <DependentUpon>CreateEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Materials.resx">
+      <DependentUpon>Materials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdminGUI.resx">
       <DependentUpon>AdminGUI.cs</DependentUpon>

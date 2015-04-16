@@ -15,7 +15,7 @@ namespace ICT4EVENT
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             InitializeApplication();
-            Application.Run(new AdminGUI());
+            Application.Run(new MainForm());
             Logger.Info("Exiting Application");
             Logger.Destruct(Settings.LOGFILENAME);
         }
