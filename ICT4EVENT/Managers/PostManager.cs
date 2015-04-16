@@ -152,6 +152,27 @@ namespace ICT4EVENT
             return post;
         }
 
+        public static List<PostModel> RetrieveUserPosts(UserModel user)
+        {
+            List<PostModel> posts = new List<PostModel>();
+            string query = string.Format("SELECT * FROM POST WHERE userid = '{0}' AND eventid = '{1}'", user.Id, Settings.ActiveEvent.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null || !reader.HasRows) return null;
+
+            while (reader.Read())
+            {
+               PostModel post = new PostModel();
+
+                post.ReadFromReader(reader);
+
+                posts.Add(post);
+            }
+
+            return posts;
+        }
+
         public static List<PostModel> GetPostsByPage(PostModel startpost = null, int page = 0, int itemsPerPage = 10)
         {
             List<PostModel> posts = new List<PostModel>();
