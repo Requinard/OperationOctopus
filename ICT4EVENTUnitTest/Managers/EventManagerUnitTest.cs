@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ICT4EVENTUnitTest.Managers
 {
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Security.Cryptography.X509Certificates;
 
     using ICT4EVENT;
@@ -46,6 +47,13 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
+        [Priority(1)]
+        public void FailFindEventByName()
+        {
+            Assert.IsNull(EventManager.FindEvent("DAWDWADAWNesgvd hvabneb u"));
+        }
+
+        [TestMethod]
         [Priority(2)]
         public void FindEventByID()
         {
@@ -56,6 +64,12 @@ namespace ICT4EVENTUnitTest.Managers
             Assert.IsNotNull(eventModel);
         }
 
+        [TestMethod]
+        [Priority(2)]
+        public void FailFindEventsByID()
+        {
+           Assert.IsNull(EventManager.FindEvent(312903127));
+        }
         [TestMethod]
         [Priority(1)]
         public void FindAllEvents()
