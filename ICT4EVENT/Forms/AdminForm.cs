@@ -57,10 +57,10 @@ namespace ICT4EVENT
 
             if (campingLogic.CheckPlaceSize(plaats, lines))
             {
+                //TODO: EquipmentManager.MakePlaceReservervation();
                 MessageBox.Show("Succesvol gereserveerd");
                 nmrPlaats.SelectedIndex = 0;
                 txtGebruikers.Text = "";
-                
             }
         }
 
