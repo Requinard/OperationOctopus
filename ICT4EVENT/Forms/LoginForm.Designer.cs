@@ -42,7 +42,7 @@
             // txtUserName
             // 
             this.txtUserName.Location = new System.Drawing.Point(71, 14);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(102, 20);
             this.txtUserName.TabIndex = 0;
@@ -50,11 +50,13 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(71, 38);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(102, 20);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
             // lblUsername
             // 
@@ -80,7 +82,7 @@
             // 
             this.btnLogin.BackColor = System.Drawing.Color.Transparent;
             this.btnLogin.Location = new System.Drawing.Point(46, 84);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(101, 28);
             this.btnLogin.TabIndex = 4;
@@ -92,7 +94,7 @@
             // 
             this.txtRFID.Enabled = false;
             this.txtRFID.Location = new System.Drawing.Point(11, 61);
-            this.txtRFID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRFID.Margin = new System.Windows.Forms.Padding(2);
             this.txtRFID.Name = "txtRFID";
             this.txtRFID.Size = new System.Drawing.Size(162, 20);
             this.txtRFID.TabIndex = 5;
@@ -103,7 +105,7 @@
             this.comboOptions.Enabled = false;
             this.comboOptions.FormattingEnabled = true;
             this.comboOptions.Location = new System.Drawing.Point(11, 188);
-            this.comboOptions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboOptions.Margin = new System.Windows.Forms.Padding(2);
             this.comboOptions.Name = "comboOptions";
             this.comboOptions.Size = new System.Drawing.Size(127, 21);
             this.comboOptions.TabIndex = 6;
@@ -113,7 +115,7 @@
             this.btnGO.Enabled = false;
             this.btnGO.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGO.Location = new System.Drawing.Point(142, 188);
-            this.btnGO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGO.Margin = new System.Windows.Forms.Padding(2);
             this.btnGO.Name = "btnGO";
             this.btnGO.Size = new System.Drawing.Size(31, 19);
             this.btnGO.TabIndex = 7;
@@ -146,7 +148,7 @@
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
             this.Text = "LoginScreen";
             this.ResumeLayout(false);

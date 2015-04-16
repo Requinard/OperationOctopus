@@ -26,7 +26,7 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
             reader.Read();
@@ -45,7 +45,7 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
             while (reader.Read())
@@ -68,7 +68,7 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
             while (reader.Read())

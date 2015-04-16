@@ -40,6 +40,9 @@ namespace ICT4EVENT
                 rfid.Error -= RFID_Error;
                 rfid.Tag -= RFID_Tag;
                 rfid.TagLost -= rfid_TagLost;
+                TagEventHandler tag = this.btnLogin_Click;
+
+                this.Invoke(tag, new object[]{sender, e});
             }
 
             rfid.Antenna = true;
@@ -157,6 +160,17 @@ namespace ICT4EVENT
                     openForm(new MainForm());
                     break;
             }
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == '\r' || e.KeyChar == '\n')
+                btnLogin_Click(this, e);
         }
     }
 }

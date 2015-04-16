@@ -22,6 +22,7 @@ namespace ICT4EVENT
 
         private static void InitializeApplication()
         {
+            
             try
             {
                 Logger.Initialize(Settings.LOGFILENAME);
@@ -30,8 +31,21 @@ namespace ICT4EVENT
             {
                 Logger.Initialize();
             }
-            Logger.Success("Initialized Logger");
             DBManager.Initalize();
+            if (UserManager.FindUser("admin") == null)
+            {
+                UserManager.CreateUser(
+                    "admin",
+                    "admin",
+                    "Administrator",
+                    "address",
+                    ".626835",
+                    "teataet",
+                    "teatatae",
+                    3);
+            }
+            Logger.Success("Initialized Logger");
+            
             Logger.Info("Starting Application");
         }
     }

@@ -65,7 +65,7 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null) return null;
+            if (reader == null || !reader.HasRows) return null;
 
             while (reader.Read())
             {
@@ -111,6 +111,8 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
+            if (reader == null || !reader.HasRows) return null;
+
             while (reader.Read())
             {
                 PostReportModel report = new PostReportModel();
@@ -130,6 +132,7 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
+            if(reader == null || !reader.HasRows)
             while (reader.Read())
             {
                 PostReportModel report = new PostReportModel();
@@ -169,7 +172,7 @@ namespace ICT4EVENT
                 reader = DBManager.QueryDB(query);
             }
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
             //Read the datareader x amount of rows, where x = page*itemsPerPage

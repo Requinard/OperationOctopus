@@ -18,7 +18,7 @@ namespace ICT4EVENT
             if (reader == null)
                 return null;
 
-            while (reader.Read())
+            while (reader.Read() || !reader.HasRows)
             {
                 PlaceModel place = new PlaceModel();
 
@@ -42,7 +42,7 @@ namespace ICT4EVENT
             if (reader == null)
                 return null;
 
-            while (reader.Read())
+            while (reader.Read() || !reader.HasRows)
             {
                 RentableObjectModel rent = new RentableObjectModel();
 

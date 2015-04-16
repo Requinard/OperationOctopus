@@ -25,7 +25,8 @@
             string address,
             string telephoneNumber,
             string email,
-            string rfid)
+            string rfid,
+            int privilege = 1)
         {
             var user = new UserModel();
 
@@ -35,6 +36,7 @@
             user.Address = address;
             user.Telephonenumber = telephoneNumber;
             user.Email = email;
+            user.Level = privilege;
 
             user.Create();
 
@@ -53,7 +55,7 @@
 
             var reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
             {
                 return false;
             }
@@ -99,7 +101,7 @@
 
             var reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
             {
                 return false;
             }
@@ -118,7 +120,7 @@
             var query = string.Format("SELECT * FROM USERS WHERE username = '{0}'", username);
 
             var reader = DBManager.QueryDB(query);
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
             {
                 return null;
             }
@@ -138,7 +140,7 @@
 
             var reader = DBManager.QueryDB(query);
 
-            if (reader == null) return null;
+            if (reader == null || !reader.HasRows) return null;
 
             while (reader.Read())
             {
@@ -157,7 +159,7 @@
             var query = string.Format("SELECT * FROM USERS WHERE ident = '{0}'", id);
 
             var reader = DBManager.QueryDB(query);
-            if (reader == null) return null;
+            if (reader == null || !reader.HasRows) return null;
             var user = new UserModel();
             reader.Read();
             user.ReadFromReader(reader);
@@ -172,7 +174,7 @@
 
             var reader = DBManager.QueryDB(query);
 
-            if (reader == null) return null;
+            if (reader == null || !reader.HasRows) return null;
 
             while (reader.Read())
             {
