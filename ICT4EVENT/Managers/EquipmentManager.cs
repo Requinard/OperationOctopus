@@ -2,23 +2,25 @@ using System.Collections.Generic;
 
 namespace ICT4EVENT
 {
+    using Oracle.DataAccess.Client;
+
     public static class EquipmentManager
     {
         public static List<PlaceModel> GetAllPlaces()
         {
-            var places = new List<PlaceModel>();
+            List<PlaceModel> places = new List<PlaceModel>();
 
-            var query = string.Format("SELECT * FROM Item WHERE itemtype = 'Place' AND eventid = '{0}'",
+            string query = string.Format("SELECT * FROM Item WHERE itemtype = 'Place' AND eventid = '{0}'",
                 Settings.ActiveEvent.Id);
 
-            var reader = DBManager.QueryDB(query);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                var place = new PlaceModel();
+                PlaceModel place = new PlaceModel();
 
                 place.ReadFromReader(reader);
 
@@ -30,19 +32,19 @@ namespace ICT4EVENT
 
         public static List<RentableObjectModel> GetAllRentables()
         {
-            var rentables = new List<RentableObjectModel>();
+            List<RentableObjectModel> rentables = new List<RentableObjectModel>();
 
-            var query = string.Format("SELECT * FROM Item WHERE itemtype = 'RentableObject' AND eventid = '{0}'",
+            string query = string.Format("SELECT * FROM Item WHERE itemtype = 'RentableObject' AND eventid = '{0}'",
                 Settings.ActiveEvent.Id);
 
-            var reader = DBManager.QueryDB(query);
+            OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null)
                 return null;
 
             while (reader.Read())
             {
-                var rent = new RentableObjectModel();
+                RentableObjectModel rent = new RentableObjectModel();
 
                 rent.ReadFromReader(reader);
 
@@ -54,7 +56,7 @@ namespace ICT4EVENT
 
         public static RentableObjectModel CreateNewRentable(string description, decimal price, int amount)
         {
-            var rent = new RentableObjectModel(Settings.ActiveEvent);
+            RentableObjectModel rent = new RentableObjectModel(Settings.ActiveEvent);
 
             rent.ObjectType = "RentableObject";
             rent.Description = description;
@@ -69,7 +71,7 @@ namespace ICT4EVENT
         public static PlaceModel CreateNewPlace(string description, decimal price, int amount, string location,
             string category, int capacity)
         {
-            var place = new PlaceModel(Settings.ActiveEvent);
+            PlaceModel place = new PlaceModel(Settings.ActiveEvent);
 
             place.ObjectType = "Place";
             place.Description = description;
