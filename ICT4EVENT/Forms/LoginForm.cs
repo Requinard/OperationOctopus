@@ -144,17 +144,28 @@ namespace ICT4EVENT
             switch (comboOptions.SelectedIndex)
             {
                 case 0:
+                    if (Settings.ActiveUser == null || Settings.ActiveEvent == null)
+                    {
+                        Logger.Error("No user or event were set to active on form initialization");
+                        Environment.Exit(2);
+                    }
                     openForm(new MainForm());
                     break;
                 case 1:
                     // TODO: Open registrations
+                    if (Settings.ActiveUser == null)
+                    {
+                        Logger.Error("No user or event were set to active on form initialization");
+                        Environment.Exit(2);
+                    }
+                    openForm(new AdminForm());
                     break;
                 case 2:
                     // TODO: Open access control
                     break;
                 case 3:
                     // TODO: Open administrator panel
-                    openForm(new AdminForm());
+                    
                     break;
                 default:
                     openForm(new MainForm());
