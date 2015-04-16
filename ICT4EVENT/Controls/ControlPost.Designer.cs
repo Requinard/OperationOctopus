@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPost));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblText = new System.Windows.Forms.Label();
             this.lblPoster = new System.Windows.Forms.LinkLabel();
             this.pbMedia = new System.Windows.Forms.PictureBox();
             this.btnLike = new System.Windows.Forms.Button();
             this.flowComment = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).BeginInit();
             this.SuspendLayout();
@@ -42,8 +42,6 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            //TODO: FIX THIS
-            this.pictureBox1.Image = null;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
@@ -93,11 +91,11 @@
             // btnLike
             // 
             this.btnLike.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLike.Location = new System.Drawing.Point(519, 3);
+            this.btnLike.Location = new System.Drawing.Point(3, 109);
             this.btnLike.Name = "btnLike";
-            this.btnLike.Size = new System.Drawing.Size(71, 23);
+            this.btnLike.Size = new System.Drawing.Size(76, 23);
             this.btnLike.TabIndex = 4;
-            this.btnLike.Text = "<>Likes";
+            this.btnLike.Text = "Like";
             this.btnLike.UseVisualStyleBackColor = true;
             // 
             // flowComment
@@ -114,11 +112,24 @@
             this.flowComment.TabIndex = 5;
             this.flowComment.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(85, 109);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(18, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "!";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // UserPost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.flowComment);
             this.Controls.Add(this.btnLike);
             this.Controls.Add(this.pbMedia);
@@ -145,5 +156,6 @@
         private System.Windows.Forms.PictureBox pbMedia;
         private System.Windows.Forms.Button btnLike;
         private System.Windows.Forms.FlowLayoutPanel flowComment;
+        private System.Windows.Forms.Button button1;
     }
 }

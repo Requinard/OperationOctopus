@@ -25,12 +25,12 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             mainGuiLogic.DynamicButtonLogic();
-            //FillList();
+            FillList();
         }
 
         private void CreateTestPosts()
         {
-            
+            PostManager.CreateNewPost("Wat is het social media event toch geweldig");
         }
 
         private void FillList(List<PostModel> postModels)
