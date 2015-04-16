@@ -42,7 +42,7 @@ namespace ICT4EVENT
         /// <summary>
         ///     The event_item.
         /// </summary>
-        private readonly EventModel event_item;
+        private EventModel event_item;
 
         /// <summary>
         ///     The amount.
@@ -124,6 +124,10 @@ namespace ICT4EVENT
         public EventModel EventItem
         {
             get { return event_item; }
+            set
+            {
+                this.event_item = value;
+            }
         }
 
         /// <summary>

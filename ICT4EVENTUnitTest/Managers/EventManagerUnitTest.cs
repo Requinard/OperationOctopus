@@ -11,10 +11,16 @@ namespace ICT4EVENTUnitTest.Managers
     [TestClass]
     public class EventManagerUnitTest
     {
-        [TestInitialize]
-        public void Initialize()
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
         {
             Init.Initialize();
+
+        }
+        [ClassCleanup]
+        public static void ClassDestruct()
+        {
+            EventManager.FindEvent("Unit Testing Event").Destroy();
         }
 
         [TestMethod]

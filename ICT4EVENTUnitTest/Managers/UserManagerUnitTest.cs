@@ -11,12 +11,19 @@ namespace ICT4EVENTUnitTest.Managers
     public class UserManagerUnitTest
     {
         private static UserModel userArch= null;
-        [TestInitialize]
-        public void Initialize()
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
         {
             Init.Initialize();
+            
         }
 
+        [ClassCleanup]
+        public static void ClassDestruct()
+        {
+            UserManager.FindUser("UnitTestUser").Destroy();
+        }
         [TestMethod]
         [Priority(0)]
         public void TestUserCreation()

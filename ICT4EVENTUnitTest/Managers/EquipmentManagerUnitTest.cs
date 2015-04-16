@@ -5,13 +5,27 @@ using ICT4EVENT;
 
 namespace ICT4EVENTUnitTest.Managers
 {
+    using System.Linq;
+
     [TestClass]
     public class EquimentManagerUnitTest
     {
-        [TestInitialize]
-        public void Initialize()
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
         {
             Init.Initialize();
+            EventManager.CreateNewEvent("EquipmentTest", "Knowhere", "testing equipment", DateTime.Now, DateTime.Now);
+            UserManager.CreateUser("EquipmentTest", "test", "test", "test", "test", "test", "test");
+            Settings.ActiveUser = UserManager.FindUser("EquipmentTest");
+            Settings.ActiveEvent = EventManager.FindEvent("EquipmentTest");
+        }
+
+        [ClassCleanup]
+        public static void ClassDestruct()
+        {
+            Settings.ActiveEvent.Destroy();
+            Settings.ActiveUser.Destroy();
+
         }
 
         [TestMethod]
@@ -52,6 +66,16 @@ namespace ICT4EVENTUnitTest.Managers
             Assert.IsNotNull(rentables, "something went wrong during the database query");
 
             Assert.IsTrue(rentables.Count > 0, "List was empty");
+        }
+        [TestMethod]
+        [Priority(1)]
+        public void ReserveRentable()
+        {
+            List<RentableObjectModel> rent = EquipmentManager.GetAllRentables();
+
+            ReservationModel res = EquipmentManager.MakePlaceReservervation(Settings.ActiveUser, rent.First());
+
+            Assert.IsNotNull(res, "Could not create reservation");            
         }
     }
 }
