@@ -19,7 +19,6 @@ namespace ICT4EVENT
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
             createUser = new CreateUserLogic(this);
-            gbCreateEvent.Visible = false;
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -370,8 +369,8 @@ namespace ICT4EVENT
 
         public class CreateUserLogic
         {
-            private readonly AdminGUI parent;
-            public CreateUserLogic(AdminGUI gui)
+            private readonly AdminForm parent;
+            public CreateUserLogic(AdminForm gui)
             {
                 parent = gui;
             }
@@ -402,6 +401,11 @@ namespace ICT4EVENT
                 string RandomPassword = new String(PasswordChars);
                 return RandomPassword;
             }
+        }
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            createUser.CreateUser();
         }     
     }
 }
