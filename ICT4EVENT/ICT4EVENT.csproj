@@ -96,12 +96,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\CreateEvent.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\CreateEvent.Designer.cs">
-      <DependentUpon>CreateEvent.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Materials.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,8 +166,8 @@
     <Compile Include="Controls\ControlPostReview.Designer.cs">
       <DependentUpon>ControlPostReview.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\CreateEvent.resx">
-      <DependentUpon>CreateEvent.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ControlPost.resx">
+      <DependentUpon>ControlPost.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Materials.resx">
       <DependentUpon>Materials.cs</DependentUpon>
