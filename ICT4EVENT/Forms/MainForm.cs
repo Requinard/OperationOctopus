@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -24,21 +25,19 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             mainGuiLogic.DynamicButtonLogic();
+            //FillList();
         }
 
         private void CreateTestPosts()
         {
-            Random r = new Random(8);
-            UserPost post;
-            post = new UserPost("David == fucking haat", "Guus", Image.FromFile(@"The Cage.jpg"),
-                Image.FromFile(@"nicolas-cage-will-be-in-the-expendables-3.jpg"),
-                new UserPost("@Guus, Random Text", null, null, null));
-            flowUserPosts.Controls.Add(post);
+            
+        }
 
-            for (int i = 0; i < 10; i++)
+        private void FillList(List<PostModel> postModels)
+        {
+            foreach (PostModel postModel in postModels)
             {
-                post = new UserPost("Random Text", null, null, null);
-                flowUserPosts.Controls.Add(post);
+                flowPostsFromUser.Controls.Add(new UserPost(postModel));
             }
         }
 

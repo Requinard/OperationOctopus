@@ -6,48 +6,37 @@ namespace ICT4EVENT
 {
     public partial class UserPost : UserControl
     {
-        public UserPost(string text, string user, Image picture, Image mediaImage, UserPost commentUserPost = null)
+        private PostModel postModel;
+        public UserPost(PostModel model)
 
         {
             InitializeComponent();
+            postModel = model;
 
-
-            Text = text;
+            Text = postModel.Content;
             Size = new Size(593, 107);
 
-            // if user is set
-            if (user != null)
-            {
-                lblPoster.Text = "@" + user;
-            }
 
-            if (picture == null)
-            {
-                //Picture = Image.FromFile(@"Picture.jpg");
-            }
-            else
-            {
-                Picture = picture;
-            }
+            lblPoster.Text = "@" + postModel.User;
 
-            if (mediaImage == null)
+            if (postModel.PathToFile == null)
             {
                 Size = new Size(Size.Width, (lblText.Size.Height));
             }
             else
             {
                 pbMedia.Enabled = true;
+                pbMedia.Image = Image.FromFile(postModel.PathToFile);
                 pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
                 Size = new Size(Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
             }
 
-
-            MediaImage = mediaImage;
             Random r = new Random();
             BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
 
-            if (commentUserPost != null)
+            if (postModel.Parent != null)
             {
+                UserPost commentUserPost = new UserPost(postModel.Parent);
                 flowComment.Enabled = true;
                 flowComment.Visible = true;
                 commentUserPost.BackColor = BackColor;

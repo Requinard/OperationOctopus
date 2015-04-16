@@ -42,7 +42,7 @@
             this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabSocialMediaSharingSystem = new System.Windows.Forms.TabPage();
-            this.flowUserPosts = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.treeCategorie = new System.Windows.Forms.TreeView();
             this.btnMediaFile = new System.Windows.Forms.Button();
             this.tbPostContent = new System.Windows.Forms.TextBox();
@@ -60,14 +60,14 @@
             this.flowPostsFromUser = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.cbProfileSelector = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbProfileOfUser = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblUserDisplayName = new System.Windows.Forms.Label();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.gbSettings = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbMyProfile = new System.Windows.Forms.GroupBox();
             this.gbSocialMedia = new System.Windows.Forms.GroupBox();
             this.btnSocialMedia4 = new System.Windows.Forms.Button();
             this.btnSocialMedia3 = new System.Windows.Forms.Button();
@@ -80,10 +80,9 @@
             this.tbMyPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbMyDisplayName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -98,12 +97,12 @@
             this.gbProfielen.SuspendLayout();
             this.gbPostsOfUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbProfileOfUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabSettings.SuspendLayout();
             this.gbSettings.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbMyProfile.SuspendLayout();
             this.gbSocialMedia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMyBanner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMyProfileImage)).BeginInit();
@@ -244,7 +243,7 @@
             // 
             // tabSocialMediaSharingSystem
             // 
-            this.tabSocialMediaSharingSystem.Controls.Add(this.flowUserPosts);
+            this.tabSocialMediaSharingSystem.Controls.Add(this.flowPosts);
             this.tabSocialMediaSharingSystem.Controls.Add(this.treeCategorie);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnMediaFile);
             this.tabSocialMediaSharingSystem.Controls.Add(this.tbPostContent);
@@ -257,13 +256,13 @@
             this.tabSocialMediaSharingSystem.Text = "Social Media Sharing System";
             this.tabSocialMediaSharingSystem.UseVisualStyleBackColor = true;
             // 
-            // flowUserPosts
+            // flowPosts
             // 
-            this.flowUserPosts.AutoScroll = true;
-            this.flowUserPosts.Location = new System.Drawing.Point(7, 73);
-            this.flowUserPosts.Name = "flowUserPosts";
-            this.flowUserPosts.Size = new System.Drawing.Size(616, 543);
-            this.flowUserPosts.TabIndex = 12;
+            this.flowPosts.AutoScroll = true;
+            this.flowPosts.Location = new System.Drawing.Point(7, 73);
+            this.flowPosts.Name = "flowPosts";
+            this.flowPosts.Size = new System.Drawing.Size(616, 543);
+            this.flowPosts.TabIndex = 12;
             // 
             // treeCategorie
             // 
@@ -396,7 +395,7 @@
             // 
             this.gbProfielen.Controls.Add(this.gbPostsOfUser);
             this.gbProfielen.Controls.Add(this.cbProfileSelector);
-            this.gbProfielen.Controls.Add(this.groupBox1);
+            this.gbProfielen.Controls.Add(this.gbProfileOfUser);
             this.gbProfielen.Location = new System.Drawing.Point(3, 3);
             this.gbProfielen.Name = "gbProfielen";
             this.gbProfielen.Size = new System.Drawing.Size(784, 616);
@@ -441,18 +440,18 @@
             this.cbProfileSelector.TabIndex = 16;
             this.cbProfileSelector.DropDown += new System.EventHandler(this.comboBox1_DropDown);
             // 
-            // groupBox1
+            // gbProfileOfUser
             // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.pictureBox3);
-            this.groupBox1.Controls.Add(this.pictureBox4);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(0, 56);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(784, 225);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "profiel van <username>";
+            this.gbProfileOfUser.Controls.Add(this.label3);
+            this.gbProfileOfUser.Controls.Add(this.pictureBox3);
+            this.gbProfileOfUser.Controls.Add(this.pictureBox4);
+            this.gbProfileOfUser.Controls.Add(this.lblUserDisplayName);
+            this.gbProfileOfUser.Location = new System.Drawing.Point(0, 56);
+            this.gbProfileOfUser.Name = "gbProfileOfUser";
+            this.gbProfileOfUser.Size = new System.Drawing.Size(784, 225);
+            this.gbProfileOfUser.TabIndex = 14;
+            this.gbProfileOfUser.TabStop = false;
+            this.gbProfileOfUser.Text = "profiel van <username>";
             // 
             // label3
             // 
@@ -483,17 +482,17 @@
             this.pictureBox4.TabIndex = 12;
             this.pictureBox4.TabStop = false;
             // 
-            // label2
+            // lblUserDisplayName
             // 
-            this.label2.BackColor = System.Drawing.Color.OrangeRed;
-            this.label2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(165, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(613, 24);
-            this.label2.TabIndex = 9;
-            this.label2.Tag = "Settings";
-            this.label2.Text = "Display Name:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblUserDisplayName.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblUserDisplayName.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserDisplayName.Location = new System.Drawing.Point(165, 22);
+            this.lblUserDisplayName.Name = "lblUserDisplayName";
+            this.lblUserDisplayName.Size = new System.Drawing.Size(613, 24);
+            this.lblUserDisplayName.TabIndex = 9;
+            this.lblUserDisplayName.Tag = "Settings";
+            this.lblUserDisplayName.Text = "Display Name:";
+            this.lblUserDisplayName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabSettings
             // 
@@ -507,7 +506,7 @@
             // 
             // gbSettings
             // 
-            this.gbSettings.Controls.Add(this.groupBox2);
+            this.gbSettings.Controls.Add(this.gbMyProfile);
             this.gbSettings.Controls.Add(this.btnLogOut);
             this.gbSettings.Location = new System.Drawing.Point(3, 3);
             this.gbSettings.Name = "gbSettings";
@@ -516,23 +515,23 @@
             this.gbSettings.TabStop = false;
             this.gbSettings.Text = "Settings";
             // 
-            // groupBox2
+            // gbMyProfile
             // 
-            this.groupBox2.Controls.Add(this.gbSocialMedia);
-            this.groupBox2.Controls.Add(this.pbMyBanner);
-            this.groupBox2.Controls.Add(this.tbMyBio);
-            this.groupBox2.Controls.Add(this.lblBiografie);
-            this.groupBox2.Controls.Add(this.pbMyProfileImage);
-            this.groupBox2.Controls.Add(this.tbMyPassword);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.tbMyDisplayName);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(8, 24);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(779, 530);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Mijn Profiel";
+            this.gbMyProfile.Controls.Add(this.gbSocialMedia);
+            this.gbMyProfile.Controls.Add(this.pbMyBanner);
+            this.gbMyProfile.Controls.Add(this.tbMyBio);
+            this.gbMyProfile.Controls.Add(this.lblBiografie);
+            this.gbMyProfile.Controls.Add(this.pbMyProfileImage);
+            this.gbMyProfile.Controls.Add(this.tbMyPassword);
+            this.gbMyProfile.Controls.Add(this.label4);
+            this.gbMyProfile.Controls.Add(this.tbMyDisplayName);
+            this.gbMyProfile.Controls.Add(this.lblDisplayUser);
+            this.gbMyProfile.Location = new System.Drawing.Point(8, 24);
+            this.gbMyProfile.Name = "gbMyProfile";
+            this.gbMyProfile.Size = new System.Drawing.Size(779, 530);
+            this.gbMyProfile.TabIndex = 12;
+            this.gbMyProfile.TabStop = false;
+            this.gbMyProfile.Text = "Mijn Profiel";
             // 
             // gbSocialMedia
             // 
@@ -651,18 +650,18 @@
             this.tbMyDisplayName.Size = new System.Drawing.Size(516, 24);
             this.tbMyDisplayName.TabIndex = 11;
             // 
-            // label1
+            // lblDisplayUser
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.OrangeRed;
-            this.label1.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 28);
-            this.label1.TabIndex = 10;
-            this.label1.Tag = "Settings";
-            this.label1.Text = "Display Name:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDisplayUser.AutoSize = true;
+            this.lblDisplayUser.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblDisplayUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisplayUser.Location = new System.Drawing.Point(6, 27);
+            this.lblDisplayUser.Name = "lblDisplayUser";
+            this.lblDisplayUser.Size = new System.Drawing.Size(90, 24);
+            this.lblDisplayUser.TabIndex = 10;
+            this.lblDisplayUser.Tag = "Settings";
+            this.lblDisplayUser.Text = "Display Name:";
+            this.lblDisplayUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnLogOut
             // 
@@ -717,13 +716,13 @@
             this.gbProfielen.ResumeLayout(false);
             this.gbPostsOfUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.gbProfileOfUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.gbSettings.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbMyProfile.ResumeLayout(false);
+            this.gbMyProfile.PerformLayout();
             this.gbSocialMedia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbMyBanner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMyProfileImage)).EndInit();
@@ -755,18 +754,18 @@
         private System.Windows.Forms.GroupBox gbSettings;
         private System.Windows.Forms.TreeView treeCategorie;
         private System.Windows.Forms.ComboBox cbProfileSelector;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbProfileOfUser;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblUserDisplayName;
+        private System.Windows.Forms.GroupBox gbMyProfile;
         private System.Windows.Forms.TextBox tbMyBio;
         private System.Windows.Forms.Label lblBiografie;
         private System.Windows.Forms.PictureBox pbMyProfileImage;
         private System.Windows.Forms.TextBox tbMyPassword;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbMyDisplayName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDisplayUser;
         private System.Windows.Forms.ImageList MateriaalVerhuurImages;
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
@@ -780,8 +779,7 @@
         private System.Windows.Forms.PictureBox pbMyBanner;
         private System.Windows.Forms.GroupBox gbPostsOfUser;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.FlowLayoutPanel flowUserPosts;
+        private System.Windows.Forms.FlowLayoutPanel flowPosts;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.FlowLayoutPanel flowMaterials;
         private System.Windows.Forms.Label label3;
