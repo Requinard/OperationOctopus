@@ -51,9 +51,32 @@ namespace ICT4EVENT
 
             post.Create();
 
-            post.Read();
-
             return post;
+        }
+
+        public static List<PostModel> FindPost(string test)
+        {
+            List<PostModel> posts = new List<PostModel>();
+            string query =
+                String.Format(
+                    "SELECT * FROM POST where eventid ='{0}' AND postcontent LIKE '%{1}%'",
+                    Settings.ActiveEvent.Id,
+                    test);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return null;
+
+            while (reader.Read())
+            {
+                PostModel post = new PostModel();
+
+                post.ReadFromReader(reader);
+
+                posts.Add(post);
+            }
+
+            return posts;
         }
 
         public static LikeModel CreateNewLike(PostModel post)
@@ -83,7 +106,7 @@ namespace ICT4EVENT
 
         public static List<PostReportModel> GetPostReports(PostModel post)
         {
-            string query = String.Format("SELECT * FROM PostReport WHERE postid = '{0}'", post.Id);
+            string query = String.Format("SELECT * FROM Report WHERE postid = '{0}'", post.Id);
             List<PostReportModel> reports = new List<PostReportModel>();
 
             OracleDataReader reader = DBManager.QueryDB(query);
@@ -100,9 +123,9 @@ namespace ICT4EVENT
             return reports;
         }
 
-        public static List<PostReportModel> GetAllRepots()
+        public static List<PostReportModel> GetAllReports()
         {
-            string query = String.Format("SELECT * FROM PostReport");
+            string query = String.Format("SELECT * FROM Report");
             List<PostReportModel> reports = new List<PostReportModel>();
 
             OracleDataReader reader = DBManager.QueryDB(query);
@@ -158,7 +181,7 @@ namespace ICT4EVENT
             // Now read itemsPerPage rows
             for (int i = 0; i < itemsPerPage; i++)
             {
-                reader.Read();
+                if (!reader.Read()) break;
 
                 PostModel post = new PostModel();
 

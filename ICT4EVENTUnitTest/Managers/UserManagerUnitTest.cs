@@ -10,8 +10,6 @@ namespace ICT4EVENTUnitTest.Managers
     [TestClass]
     public class UserManagerUnitTest
     {
-        private static UserModel userArch= null;
-
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
@@ -24,6 +22,8 @@ namespace ICT4EVENTUnitTest.Managers
         {
             UserManager.FindUser("UnitTestUser").Destroy();
         }
+
+
         [TestMethod]
         [Priority(0)]
         public void TestUserCreation()
@@ -47,8 +47,6 @@ namespace ICT4EVENTUnitTest.Managers
             UserModel testuser = UserManager.FindUser("UnitTestUser");
 
             Assert.IsNotNull(testuser, "Could not find user in database");
-
-            userArch = testuser;
         }
 
         [TestMethod]
