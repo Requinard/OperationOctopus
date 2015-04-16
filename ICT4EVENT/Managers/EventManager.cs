@@ -62,7 +62,7 @@ namespace ICT4EVENT
 
         public static List<EventModel> FindEvents(string name)
         {
-            string query = string.Format("SELECT * FROM event WHERE eventname IS LIKE '%{0}%'", name);
+            string query = string.Format("SELECT * FROM event WHERE eventname LIKE '%{0}%'", name);
 
             List<EventModel> eventModels = new List<EventModel>();
 

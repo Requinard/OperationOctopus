@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
+using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
@@ -48,9 +51,32 @@ namespace ICT4EVENT
 
             post.Create();
 
-            post.Read();
-
             return post;
+        }
+
+        public static List<PostModel> FindPost(string test)
+        {
+            List<PostModel> posts = new List<PostModel>();
+            string query =
+                String.Format(
+                    "SELECT * FROM POST where eventid ='{0}' AND postcontent LIKE '%{1}%'",
+                    Settings.ActiveEvent.Id,
+                    test);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return null;
+
+            while (reader.Read())
+            {
+                PostModel post = new PostModel();
+
+                post.ReadFromReader(reader);
+
+                posts.Add(post);
+            }
+
+            return posts;
         }
 
         public static LikeModel CreateNewLike(PostModel post)
@@ -78,9 +104,42 @@ namespace ICT4EVENT
             return model;
         }
 
-        public static PostReportModel GetPostReports(PostModel post)
+        public static List<PostReportModel> GetPostReports(PostModel post)
         {
-            throw new NotImplementedException();
+            string query = String.Format("SELECT * FROM Report WHERE postid = '{0}'", post.Id);
+            List<PostReportModel> reports = new List<PostReportModel>();
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            while (reader.Read())
+            {
+                PostReportModel report = new PostReportModel();
+
+                report.ReadFromReader(reader);
+
+                reports.Add(report);
+            }
+
+            return reports;
+        }
+
+        public static List<PostReportModel> GetAllReports()
+        {
+            string query = String.Format("SELECT * FROM Report");
+            List<PostReportModel> reports = new List<PostReportModel>();
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            while (reader.Read())
+            {
+                PostReportModel report = new PostReportModel();
+
+                report.ReadFromReader(reader);
+
+                reports.Add(report);
+            }
+
+            return reports;
         }
 
         public static PostModel RetrievePostFile(PostModel post)
@@ -88,6 +147,50 @@ namespace ICT4EVENT
             FTPManager.DownloadFile(post.PathToFile);
 
             return post;
+        }
+
+        public static List<PostModel> GetPostsByPage(PostModel startpost = null, int page = 0, int itemsPerPage = 10)
+        {
+            List<PostModel> posts = new List<PostModel>();
+            OracleDataReader reader = null;
+
+            //Get the data reader
+            if (startpost == null)
+            {
+                string query = String.Format("SELECT * FROM post WHERE eventid = '{0}' ORDER BY ident desc", Settings.ActiveEvent.Id);
+
+                reader = DBManager.QueryDB(query);
+            }
+            else
+            {
+                string query = String.Format("SELECT * FROM POST WHERE ident <= '{0}' AND WHERE eventid = '{0}' ORDER BY ident desc",
+                    startpost.Id, Settings.ActiveEvent.Id);
+
+                reader = DBManager.QueryDB(query);
+            }
+
+            if (reader == null)
+                return null;
+
+            //Read the datareader x amount of rows, where x = page*itemsPerPage
+            for (int i = 0; i < page*itemsPerPage; i++)
+            {
+                reader.Read();
+            }
+
+            // Now read itemsPerPage rows
+            for (int i = 0; i < itemsPerPage; i++)
+            {
+                if (!reader.Read()) break;
+
+                PostModel post = new PostModel();
+
+                post.ReadFromReader(reader);
+
+                posts.Add(post);
+            }
+
+            return posts;
         }
     }
 }

@@ -9,10 +9,13 @@
 
 namespace ICT4EVENT
 {
+    using System;
+    using System.Collections;
+
     /// <summary>
     ///     The db model.
     /// </summary>
-    public abstract class DBModel
+    public abstract class DBModel :IEqualityComparer
     {
         // Destroys the corresponding row in the table. {0} is the table name, {1} is the table id
 
@@ -55,5 +58,23 @@ namespace ICT4EVENT
         protected const string UPDATESTRING = "UPDATE {0} SET {1} WHERE ident={2}";
 
         #endregion
+
+        public bool Equals(object x, object y)
+        {
+            DBModel xModel = (DBModel)x;
+            DBModel yModel = (DBModel)y;
+
+            Type xType = x.GetType();
+            Type yType = y.GetType();
+
+            if (xType != yType) return false;
+
+            return xModel.Id == yModel.Id;
+        }
+
+        public int GetHashCode(object obj)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

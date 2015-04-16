@@ -92,6 +92,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Managers\EventManagerUnitTest.cs" />
+    <Compile Include="Managers\EquipmentManagerUnitTest.cs" />
+    <Compile Include="Managers\PostManagerUnitTest.cs" />
     <Compile Include="Managers\UserManagerUnitTest.cs" />
     <Compile Include="Models\Neccesary.cs" />
     <Compile Include="Models\EventModelUnitTest.cs" />

@@ -4,18 +4,37 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ICT4EVENTUnitTest.Managers
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using ICT4EVENT;
 
     [TestClass]
     public class UserManagerUnitTest
     {
-        private static UserModel userArch= null;
-        [TestInitialize]
-        public void Initialize()
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
         {
             Init.Initialize();
+            EventModel eventModel = EventManager.CreateNewEvent(
+                "User Testing Event",
+                "test",
+                "test",
+                DateTime.Now,
+                DateTime.Now);
+
+            eventModel.Create();
+
+            Settings.ActiveEvent = EventManager.FindEvent("User Testing Event");
+
         }
+
+        [ClassCleanup]
+        public static void ClassDestruct()
+        {
+            UserManager.FindUser("UnitTestUser").Destroy();
+            EventManager.FindEvent("User Testing Event").Destroy();
+        }
+
 
         [TestMethod]
         [Priority(0)]
@@ -40,8 +59,6 @@ namespace ICT4EVENTUnitTest.Managers
             UserModel testuser = UserManager.FindUser("UnitTestUser");
 
             Assert.IsNotNull(testuser, "Could not find user in database");
-
-            userArch = testuser;
         }
 
         [TestMethod]
@@ -57,7 +74,7 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(1)]
+        [Priority(3)]
         public void FindUsersByName()
         {
             List<UserModel> users = UserManager.FindUsers("est");
@@ -66,31 +83,60 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(4)]
         public void AuthenticateUserByUserModel()
         {
             UserModel testuser = UserManager.FindUser("UnitTestUser");
             Assert.IsTrue(UserManager.AuthenticateUser(testuser, "testingPassword"), "Could not authenticate user");
         }
         [TestMethod]
-        [Priority(1)]
+        [Priority(5)]
+        public void AuthenticateUserByRFID()
+        {
+            UserModel testuser = UserManager.FindUser("UnitTestUser");
+            Assert.IsTrue(UserManager.AuthenticateUser(testuser.RfiDnumber), "Could not authenticate user");
+        }
+        [TestMethod]
+        [Priority(6)]
         public void AuthenticateUserByUsername()
         {
             Assert.IsTrue(UserManager.AuthenticateUser("UnitTestUser", "testingPassword"), "Could not validate password");
         }
-
         [TestMethod]
-        [Priority(1)]
-        public void GetUserRegistration()
+        [Priority(7)]
+        public void RegisterUserForEvent()
         {
-            throw  new NotImplementedException();
+            Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
+
+            RegistrationModel reg = UserManager.RegisterUserForEvent(Settings.ActiveUser, Settings.ActiveEvent);
+
+            Assert.IsNotNull(reg);
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(8)]
+        public void GetUserRegistration()
+        {
+            Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
+
+            List<RegistrationModel> regs = UserManager.GetUserRegistrations(Settings.ActiveUser);
+
+            Assert.IsNotNull(regs);
+
+            Assert.IsTrue(regs.Count > 0);
+        }
+
+        [TestMethod]
+        [Priority(9)]
         public void MarkRegistrationAsPaid()
         {
-            throw new NotImplementedException();
+            Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
+
+            List<RegistrationModel> regs = UserManager.GetUserRegistrations(Settings.ActiveUser);
+
+            PaymentModel pay = UserManager.RegistrationMarkPaid(regs.First(), Decimal.One, "Credit card");
+
+            Assert.IsNotNull(pay);
         }
     }
 }

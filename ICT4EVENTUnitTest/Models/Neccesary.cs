@@ -82,9 +82,8 @@ namespace ICT4EVENTUnitTest
 
             reader.Read();
 
-            event_item.Id = Int32.Parse(reader["ident"].ToString());
+            event_item.ReadFromReader(reader);
 
-            event_item.Read();
 
             return event_item; 
         }
