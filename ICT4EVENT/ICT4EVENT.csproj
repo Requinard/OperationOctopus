@@ -96,17 +96,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Materials.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Materials.Designer.cs">
-      <DependentUpon>Materials.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AdminGUI.cs">
+    <Compile Include="Forms\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AdminGUI.Designer.cs">
-      <DependentUpon>AdminGUI.cs</DependentUpon>
+    <Compile Include="Forms\AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DBConfigForm.cs">
       <SubType>Form</SubType>
@@ -166,14 +160,8 @@
     <Compile Include="Controls\ControlPostReview.Designer.cs">
       <DependentUpon>ControlPostReview.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\ControlPost.resx">
-      <DependentUpon>ControlPost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Materials.resx">
-      <DependentUpon>Materials.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AdminGUI.resx">
-      <DependentUpon>AdminGUI.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DBConfigForm.resx">
       <DependentUpon>DBConfigForm.cs</DependentUpon>

@@ -42,7 +42,7 @@ namespace ICT4EVENT
         /// <summary>
         ///     The event_item.
         /// </summary>
-        private readonly EventModel event_item;
+        private EventModel event_item;
 
         /// <summary>
         ///     The amount.
@@ -124,6 +124,10 @@ namespace ICT4EVENT
         public EventModel EventItem
         {
             get { return event_item; }
+            set
+            {
+                this.event_item = value;
+            }
         }
 
         /// <summary>
@@ -145,6 +149,8 @@ namespace ICT4EVENT
 
             set { price = value; }
         }
+        //TODO Object Type was not available. Either add it here, or remove it in RentableObject
+        public string ObjectType { get; set; }
 
         #endregion
 

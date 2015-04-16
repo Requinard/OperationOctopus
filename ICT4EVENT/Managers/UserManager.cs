@@ -4,8 +4,6 @@
     using System.Collections.Generic;
     using System.Security.Cryptography;
 
-    using Oracle.DataAccess.Client;
-
     public static class UserManager
     {
         private static readonly RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -27,9 +25,10 @@
             string address,
             string telephoneNumber,
             string email,
-            string rfid)
+            string rfid,
+            int privilege = 1)
         {
-            UserModel user = new UserModel();
+            var user = new UserModel();
 
             user.Username = username;
             user.Password = CreateHashPassword(password);
@@ -37,6 +36,7 @@
             user.Address = address;
             user.Telephonenumber = telephoneNumber;
             user.Email = email;
+            user.Level = privilege;
 
             user.Create();
 
@@ -51,16 +51,21 @@
         /// <returns>Success of the operation</returns>
         public static bool AuthenticateUser(string username, string password)
         {
-            string query = string.Format("SELECT * FROM users WHERE username = '{0}'", username);
+            var query = string.Format("SELECT * FROM users WHERE username = '{0}'", username);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
+
+            if (reader == null || !reader.HasRows)
+            {
+                return false;
+            }
 
             reader.Read();
 
-            UserModel user = new UserModel();
+            var user = new UserModel();
             user.ReadFromReader(reader);
 
-            bool success = AuthenticateUser(user, password);
+            var success = AuthenticateUser(user, password);
 
             if (success)
             {
@@ -90,13 +95,13 @@
         /// <returns>Whether the operation was a success</returns>
         public static bool AuthenticateUser(string RFIDNumber)
         {
-            string query = string.Format("SELECT * FROM users WHERE rfidnumber = '{0}'", RFIDNumber);
+            var query = string.Format("SELECT * FROM users WHERE rfidnumber = '{0}'", RFIDNumber);
 
-            UserModel user = new UserModel();
+            var user = new UserModel();
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-            if (reader.RecordsAffected == 0)
+            if (reader == null || !reader.HasRows)
             {
                 return false;
             }
@@ -112,10 +117,14 @@
 
         public static UserModel FindUser(string username)
         {
-            string query = string.Format("SELECT * FROM USERS WHERE username = '{0}'", username);
+            var query = string.Format("SELECT * FROM USERS WHERE username = '{0}'", username);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
-            UserModel user = new UserModel();
+            var reader = DBManager.QueryDB(query);
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
+            var user = new UserModel();
 
             reader.Read();
 
@@ -126,14 +135,16 @@
 
         public static List<UserModel> FindUsers(string username)
         {
-            List<UserModel> users = new List<UserModel>();
-            string query = string.Format("SELECT * FROM USERS WHERE USERNAME LIKE '%{0}%'", username);
+            var users = new List<UserModel>();
+            var query = string.Format("SELECT * FROM USERS WHERE USERNAME LIKE '%{0}%'", username);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
+
+            if (reader == null || !reader.HasRows) return null;
 
             while (reader.Read())
             {
-                UserModel user = new UserModel { Id = int.Parse(reader["ident"].ToString()) };
+                var user = new UserModel { Id = int.Parse(reader["ident"].ToString()) };
 
                 user.Read();
 
@@ -145,39 +156,40 @@
 
         public static UserModel FindUser(int id)
         {
-            string query = string.Format("SELECT * FROM USERS WHERE ident = '{0}'", id);
+            var query = string.Format("SELECT * FROM USERS WHERE ident = '{0}'", id);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
-            UserModel user = new UserModel();
+            var reader = DBManager.QueryDB(query);
+            if (reader == null || !reader.HasRows) return null;
+            var user = new UserModel();
             reader.Read();
             user.ReadFromReader(reader);
             user.Read();
             return user;
         }
 
-        public static UserModel GetUserRegistrations(UserModel user)
+        public static List<RegistrationModel> GetUserRegistrations(UserModel user)
         {
-            string query =
-                string.Format(
-                    "SELECT * FROM registration WHERE userid = '{0}'",
-                    user.Id);
+            var regs = new List<RegistrationModel>();
+            var query = string.Format("SELECT * FROM registration WHERE userid = '{0}'", user.Id);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
+
+            if (reader == null || !reader.HasRows) return null;
 
             while (reader.Read())
             {
-                RegistrationModel registration = new RegistrationModel();
+                var registration = new RegistrationModel();
                 registration.ReadFromReader(reader);
 
-                user.RegistrationList.Add(registration);
+                regs.Add(registration);
             }
-            
-            return user;
+
+            return regs;
         }
 
         public static RegistrationModel RegisterUserForEvent(UserModel user, EventModel eventModel)
         {
-            RegistrationModel registration = new RegistrationModel(user, eventModel);
+            var registration = new RegistrationModel(user, eventModel);
 
             if (registration.Create())
             {
@@ -189,7 +201,7 @@
 
         public static PaymentModel RegistrationMarkPaid(RegistrationModel registration, decimal amount, string type)
         {
-            PaymentModel payment = new PaymentModel(registration);
+            var payment = new PaymentModel(registration);
             payment.Registration = registration;
             payment.Amount = amount;
             payment.PaymentType = type;
@@ -203,25 +215,25 @@
 
         private static string CreateHashPassword(string password)
         {
-            byte[] buf = new byte[SALT_SIZE];
+            var buf = new byte[SALT_SIZE];
             rng.GetBytes(buf);
-            string salt = Convert.ToBase64String(buf);
+            var salt = Convert.ToBase64String(buf);
 
-            Rfc2898DeriveBytes deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
-            string hash = Convert.ToBase64String(deriver2898.GetBytes(16));
+            var deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
+            var hash = Convert.ToBase64String(deriver2898.GetBytes(16));
             return salt + ':' + hash;
         }
 
         private static bool IsPasswordValid(string password, string saltHash)
         {
-            string[] parts = saltHash.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+            var parts = saltHash.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length != 2)
             {
                 return false;
             }
-            byte[] buf = Convert.FromBase64String(parts[0]);
-            Rfc2898DeriveBytes deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
-            string computedHash = Convert.ToBase64String(deriver2898.GetBytes(16));
+            var buf = Convert.FromBase64String(parts[0]);
+            var deriver2898 = new Rfc2898DeriveBytes(password.Trim(), buf, NUM_ITERATIONS);
+            var computedHash = Convert.ToBase64String(deriver2898.GetBytes(16));
             return parts[1].Equals(computedHash);
         }
     }

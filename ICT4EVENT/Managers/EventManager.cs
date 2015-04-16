@@ -26,7 +26,7 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
             reader.Read();
@@ -45,7 +45,7 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
             while (reader.Read())
@@ -62,13 +62,13 @@ namespace ICT4EVENT
 
         public static List<EventModel> FindEvents(string name)
         {
-            string query = string.Format("SELECT * FROM event WHERE eventname IS LIKE '%{0}%'", name);
+            string query = string.Format("SELECT * FROM event WHERE eventname LIKE '%{0}%'", name);
 
             List<EventModel> eventModels = new List<EventModel>();
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
             while (reader.Read())

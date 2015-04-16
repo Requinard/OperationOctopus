@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ICT4EVENTUnitTest.Managers
 {
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Security.Cryptography.X509Certificates;
 
     using ICT4EVENT;
@@ -11,10 +12,16 @@ namespace ICT4EVENTUnitTest.Managers
     [TestClass]
     public class EventManagerUnitTest
     {
-        [TestInitialize]
-        public void Initialize()
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
         {
             Init.Initialize();
+
+        }
+        [ClassCleanup]
+        public static void ClassDestruct()
+        {
+            EventManager.FindEvent("Unit Testing Event").Destroy();
         }
 
         [TestMethod]
@@ -41,6 +48,13 @@ namespace ICT4EVENTUnitTest.Managers
 
         [TestMethod]
         [Priority(2)]
+        public void FailFindEventByName()
+        {
+            Assert.IsNull(EventManager.FindEvent("DAWDWADAWNesgvd hvabneb u"));
+        }
+
+        [TestMethod]
+        [Priority(3)]
         public void FindEventByID()
         {
             EventModel protomodel = EventManager.FindEvent("Unit Testing Event");
@@ -51,7 +65,13 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(1)]
+        [Priority(4)]
+        public void FailFindEventsByID()
+        {
+           Assert.IsNull(EventManager.FindEvent(312903127));
+        }
+        [TestMethod]
+        [Priority(5)]
         public void FindAllEvents()
         {
             List<EventModel> events = EventManager.FindAllEvents();
@@ -59,7 +79,7 @@ namespace ICT4EVENTUnitTest.Managers
             Assert.IsTrue(events.Count > 0);
         }
 [TestMethod]
-        [Priority(1)]
+        [Priority(6)]
         public void FindEvents()
         {
             List<EventModel> events = EventManager.FindEvents("e");

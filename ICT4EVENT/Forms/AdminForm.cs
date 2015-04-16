@@ -5,14 +5,14 @@ using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
-    public partial class AdminGUI : Form
+    public partial class AdminForm : Form
     {
         private readonly CampingLogic campingLogic;
         private readonly EventManagmentLogic eventManagment;
         private bool FirstTime = true;
         private PostReviewLogic postReview;
 
-        public AdminGUI()
+        public AdminForm()
         {
             InitializeComponent();
             eventManagment = new EventManagmentLogic(this);
@@ -83,11 +83,11 @@ namespace ICT4EVENT
 
         public class EventManagmentLogic
         {
-            private readonly AdminGUI parent;
+            private readonly AdminForm parent;
 
-            public EventManagmentLogic(AdminGUI gui)
+            public EventManagmentLogic(AdminForm form)
             {
-                parent = gui;
+                parent = form;
                 FillEventList(EventManager.FindAllEvents());
             }
 
@@ -114,15 +114,15 @@ namespace ICT4EVENT
             private readonly int[] EigenTenten;
             private readonly int[] Huurtentjes;
             private readonly int[] Invalidenaccomodatie;
-            private readonly AdminGUI parent;
+            private readonly AdminForm parent;
             private readonly int[] StaCaravan;
             private int[] AllPlaces;
             private decimal amount;
             private List<string> guests;
 
-            public CampingLogic(AdminGUI gui)
+            public CampingLogic(AdminForm form)
             {
-                parent = gui;
+                parent = form;
                 UserList = new List<string>();
                 EigenTenten = EigenTentenArray();
                 Bungalows = BungalowArray();
@@ -360,11 +360,11 @@ namespace ICT4EVENT
 
         public class PostReviewLogic
         {
-            private readonly AdminGUI parent;
+            private readonly AdminForm parent;
 
-            public PostReviewLogic(AdminGUI gui)
+            public PostReviewLogic(AdminForm form)
             {
-                parent = gui;
+                parent = form;
                 CreateDummyData();
             }
 

@@ -15,13 +15,14 @@ namespace ICT4EVENT
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             InitializeApplication();
-            Application.Run(new MainForm());
+            Application.Run(new LoginForm());
             Logger.Info("Exiting Application");
             Logger.Destruct(Settings.LOGFILENAME);
         }
 
         private static void InitializeApplication()
         {
+            
             try
             {
                 Logger.Initialize(Settings.LOGFILENAME);
@@ -30,9 +31,21 @@ namespace ICT4EVENT
             {
                 Logger.Initialize();
             }
-            Logger.Success("Initialized Logger");
             DBManager.Initalize();
-            EquipmentManager.Initialize();
+            if (UserManager.FindUser("admin") == null)
+            {
+                UserManager.CreateUser(
+                    "admin",
+                    "admin",
+                    "Administrator",
+                    "address",
+                    ".626835",
+                    "teataet",
+                    "teatatae",
+                    3);
+            }
+            Logger.Success("Initialized Logger");
+            
             Logger.Info("Starting Application");
         }
     }

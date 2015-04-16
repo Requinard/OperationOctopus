@@ -52,6 +52,11 @@ namespace ICT4EVENT
             this.Read();
         }
 
+        public PostReportModel()
+        {
+            // TODO: Complete member initialization
+        }
+
         public UserModel User
         {
             get { return user; }
