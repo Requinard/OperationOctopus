@@ -74,7 +74,7 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(1)]
+        [Priority(3)]
         public void FindUsersByName()
         {
             List<UserModel> users = UserManager.FindUsers("est");
@@ -83,27 +83,27 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(4)]
         public void AuthenticateUserByUserModel()
         {
             UserModel testuser = UserManager.FindUser("UnitTestUser");
             Assert.IsTrue(UserManager.AuthenticateUser(testuser, "testingPassword"), "Could not authenticate user");
         }
         [TestMethod]
-        [Priority(2)]
+        [Priority(5)]
         public void AuthenticateUserByRFID()
         {
             UserModel testuser = UserManager.FindUser("UnitTestUser");
             Assert.IsTrue(UserManager.AuthenticateUser(testuser.RfiDnumber), "Could not authenticate user");
         }
         [TestMethod]
-        [Priority(1)]
+        [Priority(6)]
         public void AuthenticateUserByUsername()
         {
             Assert.IsTrue(UserManager.AuthenticateUser("UnitTestUser", "testingPassword"), "Could not validate password");
         }
         [TestMethod]
-        [Priority(1)]
+        [Priority(7)]
         public void RegisterUserForEvent()
         {
             Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
@@ -114,7 +114,7 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(8)]
         public void GetUserRegistration()
         {
             Settings.ActiveUser = UserManager.FindUser("UnitTestUser");
@@ -127,7 +127,7 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(9)]
         public void MarkRegistrationAsPaid()
         {
             Settings.ActiveUser = UserManager.FindUser("UnitTestUser");

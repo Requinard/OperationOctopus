@@ -47,14 +47,14 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(1)]
+        [Priority(2)]
         public void FailFindEventByName()
         {
             Assert.IsNull(EventManager.FindEvent("DAWDWADAWNesgvd hvabneb u"));
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(3)]
         public void FindEventByID()
         {
             EventModel protomodel = EventManager.FindEvent("Unit Testing Event");
@@ -65,13 +65,13 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(4)]
         public void FailFindEventsByID()
         {
            Assert.IsNull(EventManager.FindEvent(312903127));
         }
         [TestMethod]
-        [Priority(1)]
+        [Priority(5)]
         public void FindAllEvents()
         {
             List<EventModel> events = EventManager.FindAllEvents();
@@ -79,7 +79,7 @@ namespace ICT4EVENTUnitTest.Managers
             Assert.IsTrue(events.Count > 0);
         }
 [TestMethod]
-        [Priority(1)]
+        [Priority(6)]
         public void FindEvents()
         {
             List<EventModel> events = EventManager.FindEvents("e");
