@@ -315,6 +315,7 @@
             this.listMaterials.Size = new System.Drawing.Size(624, 447);
             this.listMaterials.TabIndex = 6;
             this.listMaterials.UseCompatibleStateImageBehavior = false;
+            this.listMaterials.View = System.Windows.Forms.View.Details;
             this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
             // 
             // Naam
@@ -325,6 +326,7 @@
             // Description
             // 
             this.Description.Text = "Beschrijving";
+            this.Description.Width = 500;
             // 
             // btnRemove
             // 
