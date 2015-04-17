@@ -80,6 +80,8 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -305,6 +307,9 @@
             // 
             // listMaterials
             // 
+            this.listMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Naam,
+            this.Description});
             this.listMaterials.Location = new System.Drawing.Point(6, 3);
             this.listMaterials.Name = "listMaterials";
             this.listMaterials.Size = new System.Drawing.Size(624, 447);
@@ -360,6 +365,7 @@
             this.btnHireMaterial.TabIndex = 2;
             this.btnHireMaterial.Text = "Voeg toe aan winkelwagen";
             this.btnHireMaterial.UseVisualStyleBackColor = false;
+            this.btnHireMaterial.Click += new System.EventHandler(this.btnHireMaterial_Click);
             // 
             // lblDetails
             // 
@@ -669,6 +675,15 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
+            // Naam
+            // 
+            this.Naam.Text = "Naam";
+            this.Naam.Width = 120;
+            // 
+            // Description
+            // 
+            this.Description.Text = "Beschrijving";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -767,6 +782,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
         private System.Windows.Forms.ListView listMaterials;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ColumnHeader Naam;
+        private System.Windows.Forms.ColumnHeader Description;
     }
 }
 
