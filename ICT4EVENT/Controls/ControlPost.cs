@@ -17,9 +17,9 @@ namespace ICT4EVENT
             Size = new Size(593, 107);
 
 
-            lblPoster.Text = "@" + postModel.User.Username;
+            lblPoster.Text = "@" + postModel.User;
 
-            if (postModel.PathToFile == "")
+            if (postModel.PathToFile == null)
             {
                 Size = new Size(Size.Width, (lblText.Size.Height));
             }
@@ -64,15 +64,13 @@ namespace ICT4EVENT
             set { lblText.Text = value; }
         }
 
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Test");
-        }
-
-        private void btnLike_Click(object sender, EventArgs e)
-        {
-            PostManager.CreateNewLike(postModel);
         }
     }
 }
