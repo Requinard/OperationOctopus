@@ -46,8 +46,6 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
-            listMaterials.Columns.Add("Naam");
-            listMaterials.Columns.Add("Beschrijving");
             List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
             foreach (RentableObjectModel rentModel in Rentables)
             {
