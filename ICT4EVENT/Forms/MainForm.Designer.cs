@@ -56,7 +56,6 @@
             this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
             this.flowPostsFromUser = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.cbProfileSelector = new System.Windows.Forms.ComboBox();
             this.gbProfileOfUser = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -80,6 +79,7 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.tbSearchUser = new System.Windows.Forms.TextBox();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -381,8 +381,8 @@
             // 
             // gbProfielen
             // 
+            this.gbProfielen.Controls.Add(this.tbSearchUser);
             this.gbProfielen.Controls.Add(this.gbPostsOfUser);
-            this.gbProfielen.Controls.Add(this.cbProfileSelector);
             this.gbProfielen.Controls.Add(this.gbProfileOfUser);
             this.gbProfielen.Location = new System.Drawing.Point(3, 3);
             this.gbProfielen.Name = "gbProfielen";
@@ -400,7 +400,7 @@
             this.gbPostsOfUser.Size = new System.Drawing.Size(781, 376);
             this.gbPostsOfUser.TabIndex = 15;
             this.gbPostsOfUser.TabStop = false;
-            this.gbPostsOfUser.Text = "Posts van <username>";
+            this.gbPostsOfUser.Text = "Posts van ";
             // 
             // flowPostsFromUser
             // 
@@ -419,15 +419,6 @@
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
             // 
-            // cbProfileSelector
-            // 
-            this.cbProfileSelector.FormattingEnabled = true;
-            this.cbProfileSelector.Location = new System.Drawing.Point(9, 24);
-            this.cbProfileSelector.Name = "cbProfileSelector";
-            this.cbProfileSelector.Size = new System.Drawing.Size(769, 26);
-            this.cbProfileSelector.TabIndex = 16;
-            this.cbProfileSelector.DropDown += new System.EventHandler(this.comboBox1_DropDown);
-            // 
             // gbProfileOfUser
             // 
             this.gbProfileOfUser.Controls.Add(this.label3);
@@ -439,7 +430,7 @@
             this.gbProfileOfUser.Size = new System.Drawing.Size(784, 225);
             this.gbProfileOfUser.TabIndex = 14;
             this.gbProfileOfUser.TabStop = false;
-            this.gbProfileOfUser.Text = "profiel van <username>";
+            this.gbProfileOfUser.Text = "profiel van ";
             // 
             // label3
             // 
@@ -669,6 +660,13 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
+            // tbSearchUser
+            // 
+            this.tbSearchUser.Location = new System.Drawing.Point(9, 25);
+            this.tbSearchUser.Name = "tbSearchUser";
+            this.tbSearchUser.Size = new System.Drawing.Size(769, 25);
+            this.tbSearchUser.TabIndex = 16;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
@@ -697,6 +695,7 @@
             this.groupDetails.ResumeLayout(false);
             this.tabProfile.ResumeLayout(false);
             this.gbProfielen.ResumeLayout(false);
+            this.gbProfielen.PerformLayout();
             this.gbPostsOfUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.gbProfileOfUser.ResumeLayout(false);
@@ -736,7 +735,6 @@
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.GroupBox gbSettings;
         private System.Windows.Forms.TreeView treeCategorie;
-        private System.Windows.Forms.ComboBox cbProfileSelector;
         private System.Windows.Forms.GroupBox gbProfileOfUser;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -767,6 +765,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
         private System.Windows.Forms.ListView listMaterials;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TextBox tbSearchUser;
     }
 }
 
