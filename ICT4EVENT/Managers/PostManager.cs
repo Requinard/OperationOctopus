@@ -261,6 +261,27 @@ namespace ICT4EVENT
             return posts;
         }
 
+        public static List<TagModel> GetAllTags()
+        {
+            List<TagModel> tags = new List<TagModel>();
+            string query = "SELECT * FROM TAG";
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return null;
+
+            while (reader.Read())
+            {
+                TagModel tag = new TagModel();
+
+                tag.ReadFromReader(reader);
+
+                tags.Add(tag);
+            }
+
+            return tags;
+        }
+
         public static List<PostModel> GetPostsByPage(PostModel startpost = null, int page = 0, int itemsPerPage = 10)
         {
             var posts = new List<PostModel>();
