@@ -9,7 +9,7 @@ namespace ICT4EVENT
     {
         private readonly CampingLogic campingLogic;
         private readonly EventManagmentLogic eventManagment;
-        private bool FirstTime = true;
+        private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
 
         public AdminForm()
@@ -18,7 +18,7 @@ namespace ICT4EVENT
             eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
-            gbCreateEvent.Visible = false;
+            createUser = new CreateUserLogic(this);
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -26,8 +26,8 @@ namespace ICT4EVENT
             try
             {
                 UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text));
-                campingLogic.AddUserToList();
-            }
+            campingLogic.AddUserToList();
+        }
             catch
             {
                 try
@@ -57,22 +57,21 @@ namespace ICT4EVENT
 
             if (campingLogic.CheckPlaceSize(plaats, lines))
             {
+                //TODO: EquipmentManager.MakePlaceReservervation();
                 MessageBox.Show("Succesvol gereserveerd");
                 nmrPlaats.SelectedIndex = 0;
                 txtGebruikers.Text = "";
-                
             }
         }
 
         private void btnCreateEvent_Click(object sender, EventArgs e)
         {
-            gbCreateEvent.Visible = true;
+            //gbCreateEvent.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value,
-                dateTimePicker2.Value);
+            //EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
         private void btnUpdateEvents_Click(object sender, EventArgs e)
@@ -157,10 +156,8 @@ namespace ICT4EVENT
                     return true;
                 }
 
-                foreach (var p in Bungalows)
+                if (Bungalows.Contains(place))
                 {
-                    if (p == place)
-                    {
                         if (amountofusers > 8)
                         {
                             MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
@@ -168,7 +165,6 @@ namespace ICT4EVENT
                         }
                         return true;
                     }
-                }
 
                 foreach (var p in Bungalinos)
                 {
@@ -354,10 +350,6 @@ namespace ICT4EVENT
             }
         }
 
-        public class RegistrationLogic
-        {
-        }
-
         public class PostReviewLogic
         {
             private readonly AdminForm parent;
@@ -370,8 +362,49 @@ namespace ICT4EVENT
 
             public void CreateDummyData()
             {
-                
+
             }
         }
+
+        public class CreateUserLogic
+        {
+            private readonly AdminForm parent;
+            public CreateUserLogic(AdminForm gui)
+            {
+                parent = gui;
+            }
+
+            public void CreateUser()
+            {
+                string FullName = parent.txtName.Text + " " + parent.txtSurName.Text;
+                string Password = GeneratePassword();
+                string userName = parent.txtUsername.Text;
+                string Address = parent.txtAddress.Text;
+                string TelNr = parent.txtTelNr.Text;
+                string Email = parent.txtEmail.Text;
+                string Rfid = parent.txtAssignRfid.Text;
+                UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+            }
+
+            private string GeneratePassword()
+            {
+                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                char[] PasswordChars = new char[8];
+                Random r = new Random();
+
+                for (int i = 0; i < PasswordChars.Length; i++)
+                {
+                    PasswordChars[i] = chars[r.Next(chars.Length)];
+                }
+
+                string RandomPassword = new String(PasswordChars);
+                return RandomPassword;
+            }
+        }
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            createUser.CreateUser();
+        }     
     }
 }

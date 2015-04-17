@@ -96,7 +96,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Materials.cs" />
+    <Compile Include="Controls\Materials.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\Materials.Designer.cs">
       <DependentUpon>Materials.cs</DependentUpon>
     </Compile>
@@ -141,6 +143,7 @@
     <Compile Include="Models\RentableObjectModel.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Models\RFIDLogModel.cs" />
+    <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

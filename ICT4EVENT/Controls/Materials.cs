@@ -17,12 +17,11 @@ namespace ICT4EVENT.Controls
         string Name{ get; set; }
 
         string Description { get; set; }
-        public Materials(Image image, string name, string description)
+        public Materials(string name, string description)
         {
             InitializeComponent();
-            Image = image;
-            Name = name;
-            Description = description;
+            this.Name = name;
+            this.Description = description;
         }
     }
 }

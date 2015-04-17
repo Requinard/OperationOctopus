@@ -64,22 +64,26 @@
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabEventManagment = new System.Windows.Forms.TabPage();
             this.gbEventManagment = new System.Windows.Forms.GroupBox();
-            this.gbCreateEvent = new System.Windows.Forms.GroupBox();
-            this.btnCreateNewEvent = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbLocation = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbDescription = new System.Windows.Forms.TextBox();
-            this.tbEventName = new System.Windows.Forms.TextBox();
             this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.btnUpdateEvents = new System.Windows.Forms.Button();
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
+            this.tabCreateUser = new System.Windows.Forms.TabPage();
+            this.groupCreateUser = new System.Windows.Forms.GroupBox();
+            this.txtSurName = new System.Windows.Forms.TextBox();
+            this.lblSurName = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.btnCreateUser = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtTelNr = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.lblTelNr = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.txtAssignRfid = new System.Windows.Forms.TextBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,7 +97,8 @@
             this.gbMaterialControl.SuspendLayout();
             this.tabEventManagment.SuspendLayout();
             this.gbEventManagment.SuspendLayout();
-            this.gbCreateEvent.SuspendLayout();
+            this.tabCreateUser.SuspendLayout();
+            this.groupCreateUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -103,6 +108,7 @@
             this.tabMainTab.Controls.Add(this.tabPostReview);
             this.tabMainTab.Controls.Add(this.tabMaterialRental);
             this.tabMainTab.Controls.Add(this.tabEventManagment);
+            this.tabMainTab.Controls.Add(this.tabCreateUser);
             this.tabMainTab.Location = new System.Drawing.Point(-1, 0);
             this.tabMainTab.Name = "tabMainTab";
             this.tabMainTab.SelectedIndex = 0;
@@ -234,7 +240,7 @@
             this.lbRecent.ItemHeight = 28;
             this.lbRecent.Location = new System.Drawing.Point(10, 331);
             this.lbRecent.Name = "lbRecent";
-            this.lbRecent.Size = new System.Drawing.Size(973, 284);
+            this.lbRecent.Size = new System.Drawing.Size(973, 256);
             this.lbRecent.TabIndex = 14;
             // 
             // gbCheckIn
@@ -449,7 +455,6 @@
             // 
             // gbEventManagment
             // 
-            this.gbEventManagment.Controls.Add(this.gbCreateEvent);
             this.gbEventManagment.Controls.Add(this.btnDeleteEvent);
             this.gbEventManagment.Controls.Add(this.btnUpdateEvents);
             this.gbEventManagment.Controls.Add(this.flowEvent);
@@ -460,118 +465,6 @@
             this.gbEventManagment.TabIndex = 15;
             this.gbEventManagment.TabStop = false;
             this.gbEventManagment.Text = "Evenment Beheer";
-            // 
-            // gbCreateEvent
-            // 
-            this.gbCreateEvent.Controls.Add(this.btnCreateNewEvent);
-            this.gbCreateEvent.Controls.Add(this.label5);
-            this.gbCreateEvent.Controls.Add(this.dateTimePicker2);
-            this.gbCreateEvent.Controls.Add(this.dateTimePicker1);
-            this.gbCreateEvent.Controls.Add(this.label4);
-            this.gbCreateEvent.Controls.Add(this.tbLocation);
-            this.gbCreateEvent.Controls.Add(this.label6);
-            this.gbCreateEvent.Controls.Add(this.label7);
-            this.gbCreateEvent.Controls.Add(this.label8);
-            this.gbCreateEvent.Controls.Add(this.tbDescription);
-            this.gbCreateEvent.Controls.Add(this.tbEventName);
-            this.gbCreateEvent.Location = new System.Drawing.Point(648, 25);
-            this.gbCreateEvent.Name = "gbCreateEvent";
-            this.gbCreateEvent.Size = new System.Drawing.Size(334, 237);
-            this.gbCreateEvent.TabIndex = 0;
-            this.gbCreateEvent.TabStop = false;
-            this.gbCreateEvent.Text = "Create a event";
-            // 
-            // btnCreateNewEvent
-            // 
-            this.btnCreateNewEvent.Location = new System.Drawing.Point(25, 189);
-            this.btnCreateNewEvent.Name = "btnCreateNewEvent";
-            this.btnCreateNewEvent.Size = new System.Drawing.Size(242, 32);
-            this.btnCreateNewEvent.TabIndex = 21;
-            this.btnCreateNewEvent.Text = "Create Event";
-            this.btnCreateNewEvent.UseVisualStyleBackColor = true;
-            this.btnCreateNewEvent.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 18);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "End date";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(88, 143);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(227, 25);
-            this.dateTimePicker2.TabIndex = 19;
-            this.dateTimePicker2.Value = new System.DateTime(2015, 4, 15, 12, 57, 43, 0);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(88, 112);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(227, 25);
-            this.dateTimePicker1.TabIndex = 18;
-            this.dateTimePicker1.Value = new System.DateTime(2015, 4, 15, 12, 57, 43, 0);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 18);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Start date";
-            // 
-            // tbLocation
-            // 
-            this.tbLocation.Location = new System.Drawing.Point(88, 49);
-            this.tbLocation.Name = "tbLocation";
-            this.tbLocation.Size = new System.Drawing.Size(227, 25);
-            this.tbLocation.TabIndex = 16;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 83);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 18);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Description";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 18);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Location";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 21);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 18);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Event Name";
-            // 
-            // tbDescription
-            // 
-            this.tbDescription.Location = new System.Drawing.Point(88, 80);
-            this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(227, 25);
-            this.tbDescription.TabIndex = 12;
-            // 
-            // tbEventName
-            // 
-            this.tbEventName.Location = new System.Drawing.Point(88, 18);
-            this.tbEventName.Name = "tbEventName";
-            this.tbEventName.Size = new System.Drawing.Size(227, 25);
-            this.tbEventName.TabIndex = 11;
             // 
             // btnDeleteEvent
             // 
@@ -611,7 +504,160 @@
             this.btnCreateEvent.TabIndex = 0;
             this.btnCreateEvent.Text = "Nieuw Evenement";
             this.btnCreateEvent.UseVisualStyleBackColor = true;
-            this.btnCreateEvent.Click += new System.EventHandler(this.btnCreateEvent_Click);
+            // 
+            // tabCreateUser
+            // 
+            this.tabCreateUser.Controls.Add(this.groupCreateUser);
+            this.tabCreateUser.Location = new System.Drawing.Point(4, 27);
+            this.tabCreateUser.Name = "tabCreateUser";
+            this.tabCreateUser.Size = new System.Drawing.Size(992, 629);
+            this.tabCreateUser.TabIndex = 5;
+            this.tabCreateUser.Text = "Gebruiker aanmaken";
+            this.tabCreateUser.UseVisualStyleBackColor = true;
+            // 
+            // groupCreateUser
+            // 
+            this.groupCreateUser.Controls.Add(this.txtSurName);
+            this.groupCreateUser.Controls.Add(this.lblSurName);
+            this.groupCreateUser.Controls.Add(this.txtName);
+            this.groupCreateUser.Controls.Add(this.lblName);
+            this.groupCreateUser.Controls.Add(this.btnCreateUser);
+            this.groupCreateUser.Controls.Add(this.txtEmail);
+            this.groupCreateUser.Controls.Add(this.txtTelNr);
+            this.groupCreateUser.Controls.Add(this.txtAddress);
+            this.groupCreateUser.Controls.Add(this.txtUsername);
+            this.groupCreateUser.Controls.Add(this.lblEmail);
+            this.groupCreateUser.Controls.Add(this.lblAddress);
+            this.groupCreateUser.Controls.Add(this.lblTelNr);
+            this.groupCreateUser.Controls.Add(this.lblUsername);
+            this.groupCreateUser.Controls.Add(this.txtAssignRfid);
+            this.groupCreateUser.Location = new System.Drawing.Point(7, 6);
+            this.groupCreateUser.Name = "groupCreateUser";
+            this.groupCreateUser.Size = new System.Drawing.Size(982, 617);
+            this.groupCreateUser.TabIndex = 1;
+            this.groupCreateUser.TabStop = false;
+            this.groupCreateUser.Text = "Gebruiker aanmaken";
+            // 
+            // txtSurName
+            // 
+            this.txtSurName.Location = new System.Drawing.Point(399, 291);
+            this.txtSurName.Name = "txtSurName";
+            this.txtSurName.Size = new System.Drawing.Size(314, 25);
+            this.txtSurName.TabIndex = 13;
+            // 
+            // lblSurName
+            // 
+            this.lblSurName.AutoSize = true;
+            this.lblSurName.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSurName.Location = new System.Drawing.Point(234, 288);
+            this.lblSurName.Name = "lblSurName";
+            this.lblSurName.Size = new System.Drawing.Size(96, 26);
+            this.lblSurName.TabIndex = 12;
+            this.lblSurName.Text = "Achternaam:";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(399, 255);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(314, 25);
+            this.txtName.TabIndex = 11;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(234, 252);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(83, 26);
+            this.lblName.TabIndex = 10;
+            this.lblName.Text = "Voornaam:";
+            // 
+            // btnCreateUser
+            // 
+            this.btnCreateUser.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateUser.Location = new System.Drawing.Point(369, 524);
+            this.btnCreateUser.Name = "btnCreateUser";
+            this.btnCreateUser.Size = new System.Drawing.Size(212, 68);
+            this.btnCreateUser.TabIndex = 9;
+            this.btnCreateUser.Text = "Gebruiker aanmaken";
+            this.btnCreateUser.UseVisualStyleBackColor = true;
+            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(399, 399);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(314, 25);
+            this.txtEmail.TabIndex = 8;
+            // 
+            // txtTelNr
+            // 
+            this.txtTelNr.Location = new System.Drawing.Point(399, 363);
+            this.txtTelNr.Name = "txtTelNr";
+            this.txtTelNr.Size = new System.Drawing.Size(314, 25);
+            this.txtTelNr.TabIndex = 7;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(399, 327);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(314, 25);
+            this.txtAddress.TabIndex = 6;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(399, 219);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(314, 25);
+            this.txtUsername.TabIndex = 5;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(236, 396);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(57, 26);
+            this.lblEmail.TabIndex = 4;
+            this.lblEmail.Text = "E-mail:";
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddress.Location = new System.Drawing.Point(234, 324);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(55, 26);
+            this.lblAddress.TabIndex = 3;
+            this.lblAddress.Text = "Adres:";
+            // 
+            // lblTelNr
+            // 
+            this.lblTelNr.AutoSize = true;
+            this.lblTelNr.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelNr.Location = new System.Drawing.Point(236, 360);
+            this.lblTelNr.Name = "lblTelNr";
+            this.lblTelNr.Size = new System.Drawing.Size(51, 26);
+            this.lblTelNr.TabIndex = 2;
+            this.lblTelNr.Text = "Telnr:";
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(236, 216);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(126, 26);
+            this.lblUsername.TabIndex = 1;
+            this.lblUsername.Text = "Gebruikersnaam:";
+            // 
+            // txtAssignRfid
+            // 
+            this.txtAssignRfid.Enabled = false;
+            this.txtAssignRfid.Location = new System.Drawing.Point(240, 183);
+            this.txtAssignRfid.Name = "txtAssignRfid";
+            this.txtAssignRfid.Size = new System.Drawing.Size(473, 25);
+            this.txtAssignRfid.TabIndex = 0;
             // 
             // AdminForm
             // 
@@ -640,8 +686,9 @@
             this.gbMaterialControl.PerformLayout();
             this.tabEventManagment.ResumeLayout(false);
             this.gbEventManagment.ResumeLayout(false);
-            this.gbCreateEvent.ResumeLayout(false);
-            this.gbCreateEvent.PerformLayout();
+            this.tabCreateUser.ResumeLayout(false);
+            this.groupCreateUser.ResumeLayout(false);
+            this.groupCreateUser.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -685,17 +732,21 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowPostReview;
-        private System.Windows.Forms.GroupBox gbCreateEvent;
-        private System.Windows.Forms.Button btnCreateNewEvent;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbLocation;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tbDescription;
-        private System.Windows.Forms.TextBox tbEventName;
+        private System.Windows.Forms.TabPage tabCreateUser;
+        private System.Windows.Forms.GroupBox groupCreateUser;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.Label lblTelNr;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.TextBox txtAssignRfid;
+        private System.Windows.Forms.Button btnCreateUser;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtTelNr;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtSurName;
+        private System.Windows.Forms.Label lblSurName;
     }
 }

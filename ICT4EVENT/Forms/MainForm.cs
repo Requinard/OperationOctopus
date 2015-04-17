@@ -25,7 +25,7 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             mainGuiLogic.DynamicButtonLogic();
-            FillList();
+            FillList(PostManager.GetPostsByPage());
         }
 
         private void CreateTestPosts()
@@ -38,6 +38,15 @@ namespace ICT4EVENT
             foreach (PostModel postModel in postModels)
             {
                 flowPostsFromUser.Controls.Add(new UserPost(postModel));
+            }
+        }
+
+        private void FillMaterials()
+        {
+            List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
+            foreach (RentableObjectModel rentModel in Rentables)
+            {
+                flowMaterials.Controls.Add(new Materials(rentModel.ObjectType, rentModel.Description));
             }
         }
 
@@ -106,16 +115,6 @@ namespace ICT4EVENT
             }
 
             
-        }
-
-        private void tabMainTab_Selected(object sender, TabControlEventArgs e)
-        {
-            Image test = new Bitmap(161, 161);
-            EquipmentManager.Initialize();
-            foreach (RentableObjectModel ROM in EquipmentManager.rentables)
-            {
-                flowMaterials.Controls.Add(new Materials(test, ROM.ObjectType, ROM.Description));
-            }
         }
     }
 }
