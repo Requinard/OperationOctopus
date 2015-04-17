@@ -5,7 +5,7 @@ namespace ICT4EVENT
 {
     public static class Settings
     {
-        public const bool DEBUG = true;
+        public const bool DEBUG = false;
         public const string DBCONFIGFILENAME = "db.cnf";
         public const string LOGFILENAME = "log.log";
         public static UserModel ActiveUser = null;

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ICT4EVENT.Models
 {
+    using System.Windows.Forms.VisualStyles;
+
     using Microsoft.SqlServer.Server;
 
     using Oracle.DataAccess.Client;
@@ -13,6 +15,18 @@ namespace ICT4EVENT.Models
     class TagModel : DBModel, IDataModelUpdate
     {
         private string name;
+
+        public TagModel()
+        {
+            name = "";
+        }
+
+        public TagModel(int id)
+        {
+            this.Id = id;
+
+            this.Read();
+        }
 
         public void ReadFromReader(OracleDataReader reader)
         {
@@ -55,6 +69,18 @@ namespace ICT4EVENT.Models
             ReadFromReader(reader);
 
             return true;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+            set
+            {
+                this.name = value;
+            }
         }
 
         public bool Destroy()

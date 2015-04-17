@@ -7,6 +7,8 @@ using System.Windows.Forms.VisualStyles;
 
 namespace ICT4EVENT
 {
+    using ICT4EVENT.Controls;
+
     public partial class MainForm : Form
     {
         private MainGuiLogic mainGuiLogic;

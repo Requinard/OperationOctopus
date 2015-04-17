@@ -20,7 +20,7 @@ namespace ICT4EVENT
             DateTime datePosted = DateTime.Now;
             post.DatePosted = datePosted;
 
-            Regex reg = new Regex("/([#]\w+/");
+            Regex reg = new Regex(@"/([#]\w+)/");
 
             foreach (Match match in reg.Matches(post.Content)) 
             {

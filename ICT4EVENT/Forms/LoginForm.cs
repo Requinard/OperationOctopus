@@ -133,7 +133,7 @@ namespace ICT4EVENT
 
         private void btnGO_Click(object sender, EventArgs e)
         {
-            Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedText);
+            Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedItem.ToString());
 
             if (Settings.ActiveUser == null || Settings.ActiveEvent == null)
             {
