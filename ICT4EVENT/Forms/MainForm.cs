@@ -111,7 +111,7 @@ namespace ICT4EVENT
             
         }
 
-        private void btnHireMaterial_Click(object sender, EventArgs e)
+        /*private void btnHireMaterial_Click(object sender, EventArgs e)
         {
             ListViewItem selectedItem = listMaterials.SelectedItems[0];
             string selectedString = selectedItem.SubItems[0].Text;
@@ -124,4 +124,5 @@ namespace ICT4EVENT
             string selectedString = selectedItem.SubItems[1].Text;
             lblDetails.Text = selectedString;
         }
+         */
     }

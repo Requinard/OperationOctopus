@@ -238,7 +238,7 @@ namespace ICT4EVENT
                 var Tenten2 = Enumerable.Range(200, 14).ToArray();
                 var Tenten3 = Enumerable.Range(401, 19).ToArray();
                 var Tenten4 = Enumerable.Range(314, 10).ToArray();
-                int[] Tenten5 = {544, 431};
+                int[] Tenten5 = { 544, 431 };
                 var Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
                 return Tenten;
             }
@@ -260,7 +260,7 @@ namespace ICT4EVENT
                 var Blokhutten3 = Enumerable.Range(95, 2).ToArray();
                 var Blokhutten4 = Enumerable.Range(138, 5).ToArray();
                 var Blokhutten5 = Enumerable.Range(143, 8).ToArray();
-                int[] Blokhutten6 = {124};
+                int[] Blokhutten6 = { 124 };
                 var Blokhutten =
                     Blokhutten1.Concat(Blokhutten2)
                         .Concat(Blokhutten3)
