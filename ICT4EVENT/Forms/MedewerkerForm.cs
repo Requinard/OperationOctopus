@@ -326,6 +326,8 @@ namespace ICT4EVENT
                 string Email = parent.txtEmail.Text;
                 string Rfid = parent.txtAssignRfid.Text;
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+                MessageBox.Show("User aangemaakt." + Environment.NewLine + "Gebruikersnaam:" + userName +
+                                Environment.NewLine + "Wachtwoord:" + Password);
             }
 
             private string GeneratePassword()
