@@ -11,11 +11,13 @@ namespace ICT4EVENT
 
     public partial class MainForm : Form
     {
-        string filePath = "";
+        private string filePath = "";
+
         public MainForm()
         {
             InitializeComponent();
             FillList();
+            FillMaterials();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -25,7 +27,7 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             DynamicButtonLogic(false);
-            
+
         }
 
         private void CreateTestPosts()
@@ -35,7 +37,7 @@ namespace ICT4EVENT
 
         private void FillList()
         {
-            List<PostModel>postModels = PostManager.GetPostsByPage();
+            List<PostModel> postModels = PostManager.GetPostsByPage();
             foreach (PostModel postModel in postModels)
             {
                 flowPosts.Controls.Add(new UserPost(postModel));
@@ -81,8 +83,8 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                    
-                    PostModel postModel = PostManager.CreateNewPost(tbPostContent.Text,filePath);
+
+                    PostModel postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
                     if (postModel != null)
                     {
                         flowPosts.Controls.Add(new UserPost(postModel));
@@ -91,38 +93,34 @@ namespace ICT4EVENT
 
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
-                {
+            {
                 btnDynamicButton.Text = "Huur";
 
-                    // button actions happen here
-                }
-            if (tabMainTab.SelectedTab.Name == "tabProfile")
-                {
-                btnDynamicButton.Text = "Bevestig";
-
-                    // button actions happen here
-                }
-            if (tabMainTab.SelectedTab.Name == "tabSettings")
-                {
-                btnDynamicButton.Text = "Bevestig";
-
-                    // button actions happen here
-                }
+                // button actions happen here
             }
+            if (tabMainTab.SelectedTab.Name == "tabProfile")
+            {
+                btnDynamicButton.Text = "Bevestig";
+
+                // button actions happen here
+            }
+            if (tabMainTab.SelectedTab.Name == "tabSettings")
+            {
+                btnDynamicButton.Text = "Bevestig";
+
+                // button actions happen here
+            }
+        }
 
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
             {
                 filePath = openFileDialog1.FileName;
-                
+
             }
-            
-
-        }
 
 
-            
         }
 
         /*private void btnHireMaterial_Click(object sender, EventArgs e)
@@ -131,6 +129,7 @@ namespace ICT4EVENT
             string selectedString = selectedItem.SubItems[0].Text;
             listCart.Items.Add(selectedString);
         }
+    */
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -138,5 +137,5 @@ namespace ICT4EVENT
             string selectedString = selectedItem.SubItems[1].Text;
             lblDetails.Text = selectedString;
         }
-         */
     }
+}
