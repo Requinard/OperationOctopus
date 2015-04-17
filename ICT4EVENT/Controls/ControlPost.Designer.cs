@@ -35,6 +35,7 @@
             this.btnLike = new System.Windows.Forms.Button();
             this.flowComment = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.tbReport = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).BeginInit();
             this.SuspendLayout();
@@ -42,9 +43,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(125, 125);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -54,11 +56,12 @@
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblText.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblText.Location = new System.Drawing.Point(113, 24);
-            this.lblText.MaximumSize = new System.Drawing.Size(500, 1000);
-            this.lblText.MinimumSize = new System.Drawing.Size(500, 0);
+            this.lblText.Location = new System.Drawing.Point(141, 30);
+            this.lblText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblText.MaximumSize = new System.Drawing.Size(625, 1250);
+            this.lblText.MinimumSize = new System.Drawing.Size(625, 0);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(500, 24);
+            this.lblText.Size = new System.Drawing.Size(625, 28);
             this.lblText.TabIndex = 1;
             this.lblText.Tag = "UserControl";
             this.lblText.Text = "<TEXT>";
@@ -67,9 +70,10 @@
             // 
             this.lblPoster.AutoSize = true;
             this.lblPoster.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPoster.Location = new System.Drawing.Point(109, 0);
+            this.lblPoster.Location = new System.Drawing.Point(136, 0);
+            this.lblPoster.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPoster.Name = "lblPoster";
-            this.lblPoster.Size = new System.Drawing.Size(109, 24);
+            this.lblPoster.Size = new System.Drawing.Size(143, 31);
             this.lblPoster.TabIndex = 2;
             this.lblPoster.TabStop = true;
             this.lblPoster.Tag = "UserControl";
@@ -79,7 +83,8 @@
             // 
             this.pbMedia.BackColor = System.Drawing.Color.Transparent;
             this.pbMedia.Enabled = false;
-            this.pbMedia.Location = new System.Drawing.Point(109, 96);
+            this.pbMedia.Location = new System.Drawing.Point(136, 120);
+            this.pbMedia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbMedia.MaximumSize = new System.Drawing.Size(450, 450);
             this.pbMedia.MinimumSize = new System.Drawing.Size(100, 100);
             this.pbMedia.Name = "pbMedia";
@@ -91,9 +96,10 @@
             // btnLike
             // 
             this.btnLike.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLike.Location = new System.Drawing.Point(3, 109);
+            this.btnLike.Location = new System.Drawing.Point(4, 136);
+            this.btnLike.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLike.Name = "btnLike";
-            this.btnLike.Size = new System.Drawing.Size(76, 23);
+            this.btnLike.Size = new System.Drawing.Size(95, 29);
             this.btnLike.TabIndex = 4;
             this.btnLike.Text = "Like";
             this.btnLike.UseVisualStyleBackColor = true;
@@ -104,11 +110,11 @@
             this.flowComment.BackColor = System.Drawing.Color.Transparent;
             this.flowComment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowComment.Enabled = false;
-            this.flowComment.Location = new System.Drawing.Point(0, 177);
-            this.flowComment.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.flowComment.MaximumSize = new System.Drawing.Size(5000, 106);
+            this.flowComment.Location = new System.Drawing.Point(0, 221);
+            this.flowComment.Margin = new System.Windows.Forms.Padding(0, 4, 4, 4);
+            this.flowComment.MaximumSize = new System.Drawing.Size(6250, 132);
             this.flowComment.Name = "flowComment";
-            this.flowComment.Size = new System.Drawing.Size(593, 106);
+            this.flowComment.Size = new System.Drawing.Size(741, 132);
             this.flowComment.TabIndex = 5;
             this.flowComment.Visible = false;
             // 
@@ -116,19 +122,30 @@
             // 
             this.button1.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(85, 109);
+            this.button1.Location = new System.Drawing.Point(106, 136);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(18, 23);
+            this.button1.Size = new System.Drawing.Size(22, 29);
             this.button1.TabIndex = 6;
             this.button1.Text = "!";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // tbReport
+            // 
+            this.tbReport.Location = new System.Drawing.Point(4, 173);
+            this.tbReport.Multiline = true;
+            this.tbReport.Name = "tbReport";
+            this.tbReport.Size = new System.Drawing.Size(124, 41);
+            this.tbReport.TabIndex = 7;
+            this.tbReport.Visible = false;
+            // 
             // UserPost
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Controls.Add(this.tbReport);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.flowComment);
             this.Controls.Add(this.btnLike);
@@ -136,10 +153,11 @@
             this.Controls.Add(this.lblPoster);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.pictureBox1);
-            this.MaximumSize = new System.Drawing.Size(593, 3000);
-            this.MinimumSize = new System.Drawing.Size(593, 106);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(741, 3750);
+            this.MinimumSize = new System.Drawing.Size(741, 132);
             this.Name = "UserPost";
-            this.Size = new System.Drawing.Size(593, 203);
+            this.Size = new System.Drawing.Size(741, 254);
             this.Load += new System.EventHandler(this.UserControl1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).EndInit();
@@ -157,5 +175,6 @@
         private System.Windows.Forms.Button btnLike;
         private System.Windows.Forms.FlowLayoutPanel flowComment;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tbReport;
     }
 }

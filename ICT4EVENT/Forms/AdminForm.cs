@@ -117,11 +117,24 @@ namespace ICT4EVENT
             {
                 parent = form;
                 CreateDummyData();
+
+                List<PostModel> posts = new List<PostModel>();
+                posts = PostManager.GetPostsByPage();
+
+                foreach (PostModel post in posts)
+                {
+                    List<PostReportModel> reports = new List<PostReportModel>();
+                    reports = PostManager.GetPostReports(post);
+                    foreach (PostReportModel report in reports)
+                    {
+                        parent.flowPostReview.Controls.Add(new UserPostReview(post, report.Reason));
+                    }
+                }
+
             }
 
             public void CreateDummyData()
             {
-
             }
         }
 
