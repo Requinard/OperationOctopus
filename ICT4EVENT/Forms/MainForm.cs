@@ -133,9 +133,18 @@ namespace ICT4EVENT
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem selectedItem = listMaterials.SelectedItems[0];
-            string selectedString = selectedItem.SubItems[1].Text;
-            lblDetails.Text = selectedString;
+            if (listMaterials.SelectedIndices.Count <= 0)
+            {
+                lblDetails.Text = "Selecteer een product.";
+                return;
+            }
+            int intselectedindex = listMaterials.SelectedIndices[0];
+            if (intselectedindex >= 0)
+            {
+                ListViewItem selectedItem = listMaterials.SelectedItems[intselectedindex];
+                string selectedString = selectedItem.SubItems[1].Text;
+                lblDetails.Text = selectedString;
+            }
         }
     }
 }
