@@ -1,18 +1,27 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
     public partial class UserPostReview : UserControl
     {
-        private UserPost userPost;
+        private PostModel postmodel;
+        private string reason;
 
-        public UserPostReview(UserPost userPost)
+        public UserPostReview(PostModel postmodel, string reason)
         {
             InitializeComponent();
-            this.userPost = userPost;
-            flowLayoutPanel1.Controls.Add(userPost);
-            //this.Size = new Size(this.Width,(userPost.Height+3));
-            BackColor = userPost.BackColor;
+            this.postmodel = postmodel;
+            this.reason = reason;
+
+            Size = new Size(970, 150);
+
+            flowLayoutPanel1.Controls.Add(new UserPost(postmodel));
+            lblReason.Text = "Reason: " + reason;
+
+            Random r = new Random();
+            BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
         }
     }
 }
