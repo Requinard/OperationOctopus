@@ -282,6 +282,28 @@ namespace ICT4EVENT
             return tags;
         }
 
+        public static List<LikeModel> GetPostLikes(PostModel post)
+        {
+            List<LikeModel> likes= new List<LikeModel>();
+
+            string query = string.Format("SELECT * FROM Like WHERE postid = '{0}'", post.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return null;
+
+            while (reader.Read())
+            {
+                LikeModel like = new LikeModel();
+
+                like.ReadFromReader(reader);
+
+                likes.Add(like);
+            }
+
+            return likes;
+        }
+
         public static List<PostModel> GetPostsByPage(PostModel startpost = null, int page = 0, int itemsPerPage = 10)
         {
             var posts = new List<PostModel>();
