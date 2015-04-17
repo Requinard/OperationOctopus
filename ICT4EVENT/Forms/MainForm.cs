@@ -11,11 +11,14 @@ namespace ICT4EVENT
 
     public partial class MainForm : Form
     {
+        private MainGuiLogic mainGuiLogic;
         public MainForm()
         {
             InitializeComponent();
-            FillList();
             FillMaterials();
+            mainGuiLogic = new MainGuiLogic(this);
+            // TODO: Repair initializations from social media manager
+            //socialManager = new SocialMediaEventManager();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -24,8 +27,8 @@ namespace ICT4EVENT
             {
                 CreateTestPosts();
             }
-            DynamicButtonLogic(false);
-
+            mainGuiLogic.DynamicButtonLogic();
+            FillList(PostManager.GetPostsByPage());
         }
 
         private void CreateTestPosts()
@@ -33,9 +36,8 @@ namespace ICT4EVENT
             PostManager.CreateNewPost("Wat is het social media event toch geweldig");
         }
 
-        private void FillList()
+        private void FillList(List<PostModel> postModels)
         {
-            List<PostModel> postModels = PostManager.GetPostsByPage();
             foreach (PostModel postModel in postModels)
             {
                 flowPostsFromUser.Controls.Add(new UserPost(postModel));
@@ -46,8 +48,8 @@ namespace ICT4EVENT
         {
             listMaterials.Columns.Add("Naam");
             listMaterials.Columns.Add("Beschrijving");
-            List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
-            foreach (RentableObjectModel rentModel in Rentables)
+            List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
+            foreach (RentableObjectModel rentModel in rentables)
             {
                 listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
             }
@@ -64,56 +66,60 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DynamicButtonLogic(false);
+            mainGuiLogic.DynamicButtonLogic();
         }
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
         {
-            DynamicButtonLogic(true);
+            mainGuiLogic.DynamicButtonLogic();
         }
 
-        public void DynamicButtonLogic(bool action)
+        public class MainGuiLogic
         {
-            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
-            {
-                btnDynamicButton.Text = "Post";
+            private MainForm parent;
 
-                // button actions happen here
-                if (action)
+            public MainGuiLogic(MainForm mainform)
+            {
+                parent = mainform;
+            }
+
+            public void DynamicButtonLogic()
+            {
+                if (parent.tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
                 {
-                    PostModel postModel = PostManager.CreateNewPost(tbPostContent.Text);
-                    if (postModel != null)
-                    {
-                        flowPosts.Controls.Add(new UserPost(postModel));
-                    }
+                    parent.btnDynamicButton.Text = "Post";
+
+                    // button actions happen here
+                    PostingLogic(parent.tbPostContent.Text);
                 }
+                if (parent.tabMainTab.SelectedTab.Name == "tabMaterialrent")
+                {
+                    parent.btnDynamicButton.Text = "Huur";
 
+                    // button actions happen here
+                }
+                if (parent.tabMainTab.SelectedTab.Name == "tabProfile")
+                {
+                    parent.btnDynamicButton.Text = "Bevestig";
+
+                    // button actions happen here
+                }
+                if (parent.tabMainTab.SelectedTab.Name == "tabSettings")
+                {
+                    parent.btnDynamicButton.Text = "Bevestig";
+
+                    // button actions happen here
+                }
             }
-            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
+
+            public bool PostingLogic(string PostContent)
             {
-                btnDynamicButton.Text = "Huur";
+                PostManager.CreateNewPost(PostContent);
 
-                // button actions happen here
+                return false;
             }
-            if (tabMainTab.SelectedTab.Name == "tabProfile")
-            {
-                btnDynamicButton.Text = "Bevestig";
 
-                // button actions happen here
-            }
-            if (tabMainTab.SelectedTab.Name == "tabSettings")
-            {
-                btnDynamicButton.Text = "Bevestig";
-
-                // button actions happen here
-            }
-        }
-
-        private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ListViewItem selectedItem = listMaterials.SelectedItems[0];
-            string selectedString = selectedItem.SubItems[1].Text;
-            lblDetails.Text = selectedString;
+            
         }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
@@ -123,9 +129,16 @@ namespace ICT4EVENT
             listCart.Items.Add(selectedString);
         }
 
+        private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = listMaterials.SelectedItems[0];
+            string selectedString = selectedItem.SubItems[1].Text;
+            lblDetails.Text = selectedString;
+        }
+
         private void btnRemove_Click(object sender, EventArgs e)
         {
-
+            listCart.Items.RemoveAt(listCart.SelectedIndex);
         }
     }
 }
