@@ -23,5 +23,10 @@ namespace ICT4EVENT
             Random r = new Random();
             BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
         }
+
+        private void btnActionConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

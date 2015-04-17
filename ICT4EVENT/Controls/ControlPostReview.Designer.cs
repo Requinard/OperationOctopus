@@ -42,7 +42,7 @@
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(791, 250);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(791, 250);
@@ -64,12 +64,13 @@
             // 
             this.btnActionConfirm.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActionConfirm.Location = new System.Drawing.Point(1139, 91);
-            this.btnActionConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActionConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnActionConfirm.Name = "btnActionConfirm";
             this.btnActionConfirm.Size = new System.Drawing.Size(156, 53);
             this.btnActionConfirm.TabIndex = 12;
             this.btnActionConfirm.Text = "Bevestig";
             this.btnActionConfirm.UseVisualStyleBackColor = true;
+            this.btnActionConfirm.Click += new System.EventHandler(this.btnActionConfirm_Click);
             // 
             // gbReviewAction
             // 
@@ -78,9 +79,9 @@
             this.gbReviewAction.Controls.Add(this.rbPostRemove);
             this.gbReviewAction.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbReviewAction.Location = new System.Drawing.Point(848, 34);
-            this.gbReviewAction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbReviewAction.Margin = new System.Windows.Forms.Padding(4);
             this.gbReviewAction.Name = "gbReviewAction";
-            this.gbReviewAction.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbReviewAction.Padding = new System.Windows.Forms.Padding(4);
             this.gbReviewAction.Size = new System.Drawing.Size(267, 110);
             this.gbReviewAction.TabIndex = 13;
             this.gbReviewAction.TabStop = false;
@@ -90,7 +91,7 @@
             // 
             this.rbPostIgnore.AutoSize = true;
             this.rbPostIgnore.Location = new System.Drawing.Point(9, 75);
-            this.rbPostIgnore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbPostIgnore.Margin = new System.Windows.Forms.Padding(4);
             this.rbPostIgnore.Name = "rbPostIgnore";
             this.rbPostIgnore.Size = new System.Drawing.Size(73, 28);
             this.rbPostIgnore.TabIndex = 2;
@@ -102,7 +103,7 @@
             // 
             this.rbPostEdit.AutoSize = true;
             this.rbPostEdit.Location = new System.Drawing.Point(9, 47);
-            this.rbPostEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbPostEdit.Margin = new System.Windows.Forms.Padding(4);
             this.rbPostEdit.Name = "rbPostEdit";
             this.rbPostEdit.Size = new System.Drawing.Size(115, 28);
             this.rbPostEdit.TabIndex = 1;
@@ -114,7 +115,7 @@
             // 
             this.rbPostRemove.AutoSize = true;
             this.rbPostRemove.Location = new System.Drawing.Point(9, 18);
-            this.rbPostRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbPostRemove.Margin = new System.Windows.Forms.Padding(4);
             this.rbPostRemove.Name = "rbPostRemove";
             this.rbPostRemove.Size = new System.Drawing.Size(116, 28);
             this.rbPostRemove.TabIndex = 0;
@@ -130,7 +131,7 @@
             this.Controls.Add(this.btnActionConfirm);
             this.Controls.Add(this.lblReason);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1305, 250);
             this.Name = "UserPostReview";
             this.Size = new System.Drawing.Size(1305, 250);
