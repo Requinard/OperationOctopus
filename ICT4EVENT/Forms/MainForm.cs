@@ -145,5 +145,17 @@ namespace ICT4EVENT
                 lblDetails.Text = selectedString;
             }
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (listCart.SelectedIndex >= 0)
+            {
+                listCart.Items.RemoveAt(listCart.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een product.");
+            }
+        }
     }
 }

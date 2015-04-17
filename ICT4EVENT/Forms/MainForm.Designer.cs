@@ -46,6 +46,8 @@
             this.tbPostContent = new System.Windows.Forms.TextBox();
             this.tabMaterialrent = new System.Windows.Forms.TabPage();
             this.listMaterials = new System.Windows.Forms.ListView();
+            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRemove = new System.Windows.Forms.Button();
             this.listCart = new System.Windows.Forms.ListBox();
             this.groupDetails = new System.Windows.Forms.GroupBox();
@@ -80,8 +82,6 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -317,11 +317,20 @@
             this.listMaterials.UseCompatibleStateImageBehavior = false;
             this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
             // 
+            // Naam
+            // 
+            this.Naam.Text = "Naam";
+            this.Naam.Width = 120;
+            // 
+            // Description
+            // 
+            this.Description.Text = "Beschrijving";
+            // 
             // btnRemove
             // 
             this.btnRemove.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRemove.Location = new System.Drawing.Point(642, 572);
+            this.btnRemove.Location = new System.Drawing.Point(642, 558);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(145, 50);
@@ -329,6 +338,7 @@
             this.btnRemove.Tag = "Static";
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // listCart
             // 
@@ -674,15 +684,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
-            // 
-            // Naam
-            // 
-            this.Naam.Text = "Naam";
-            this.Naam.Width = 120;
-            // 
-            // Description
-            // 
-            this.Description.Text = "Beschrijving";
             // 
             // MainForm
             // 
