@@ -43,12 +43,12 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
-            listMaterials.Columns.Add("Naam");
-            listMaterials.Columns.Add("Beschrijving");
-            List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
-            foreach (RentableObjectModel rentModel in Rentables)
+            //listMaterials.Columns.Add("Naam");
+            //listMaterials.Columns.Add("Beschrijving");
+            List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
+            foreach (RentableObjectModel rentModel in rentables)
             {
-                listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
+                listMaterials.Items.Add(rentModel.ObjectType).SubItems.Add(rentModel.Description);
             }
         }
 
@@ -68,7 +68,7 @@ namespace ICT4EVENT
         public void DynamicButtonLogic(bool action)
         {
             if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
-            {
+        {
                 btnDynamicButton.Text = "Post";
 
                 // button actions happen here
@@ -138,6 +138,34 @@ namespace ICT4EVENT
             ListViewItem selectedItem = listMaterials.SelectedItems[0];
             string selectedString = selectedItem.SubItems[0].Text;
             listCart.Items.Add(selectedString);
+        }
+
+        private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listMaterials.SelectedIndices.Count <= 0)
+            {
+                lblDetails.Text = "Selecteer een product.";
+                return;
+            } 
+            int intselectedindex = listMaterials.SelectedIndices[0];
+            if (intselectedindex >= 0)
+            {
+                ListViewItem selectedItem = listMaterials.SelectedItems[intselectedindex];
+                string selectedString = selectedItem.SubItems[1].Text;
+                lblDetails.Text = selectedString;
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (listCart.SelectedIndex >= 0)
+            {
+                listCart.Items.RemoveAt(listCart.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een product.");
+            }
         }
     }
 }
