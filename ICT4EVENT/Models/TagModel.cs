@@ -2,7 +2,7 @@
 {
     using Oracle.DataAccess.Client;
 
-    internal class TagModel : DBModel, IDataModelUpdate
+    public class TagModel : DBModel, IDataModelUpdate
     {
         public TagModel()
         {
