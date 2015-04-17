@@ -52,7 +52,6 @@
             this.groupDetails = new System.Windows.Forms.GroupBox();
             this.btnHireMaterial = new System.Windows.Forms.Button();
             this.lblDetails = new System.Windows.Forms.Label();
-            this.pictureDetails = new System.Windows.Forms.PictureBox();
             this.tabProfile = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
             this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
@@ -92,7 +91,6 @@
             this.tabSocialMediaSharingSystem.SuspendLayout();
             this.tabMaterialrent.SuspendLayout();
             this.groupDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).BeginInit();
             this.tabProfile.SuspendLayout();
             this.gbProfielen.SuspendLayout();
             this.gbPostsOfUser.SuspendLayout();
@@ -338,7 +336,6 @@
             // 
             this.groupDetails.Controls.Add(this.btnHireMaterial);
             this.groupDetails.Controls.Add(this.lblDetails);
-            this.groupDetails.Controls.Add(this.pictureDetails);
             this.groupDetails.Location = new System.Drawing.Point(6, 456);
             this.groupDetails.Name = "groupDetails";
             this.groupDetails.Size = new System.Drawing.Size(630, 166);
@@ -360,19 +357,11 @@
             // 
             // lblDetails
             // 
-            this.lblDetails.Location = new System.Drawing.Point(143, 29);
+            this.lblDetails.Location = new System.Drawing.Point(6, 29);
             this.lblDetails.Name = "lblDetails";
-            this.lblDetails.Size = new System.Drawing.Size(298, 131);
+            this.lblDetails.Size = new System.Drawing.Size(435, 131);
             this.lblDetails.TabIndex = 1;
             this.lblDetails.Text = "Details";
-            // 
-            // pictureDetails
-            // 
-            this.pictureDetails.Location = new System.Drawing.Point(6, 29);
-            this.pictureDetails.Name = "pictureDetails";
-            this.pictureDetails.Size = new System.Drawing.Size(131, 131);
-            this.pictureDetails.TabIndex = 0;
-            this.pictureDetails.TabStop = false;
             // 
             // tabProfile
             // 
@@ -713,7 +702,6 @@
             this.tabSocialMediaSharingSystem.PerformLayout();
             this.tabMaterialrent.ResumeLayout(false);
             this.groupDetails.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).EndInit();
             this.tabProfile.ResumeLayout(false);
             this.gbProfielen.ResumeLayout(false);
             this.gbPostsOfUser.ResumeLayout(false);
@@ -772,7 +760,6 @@
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
         private System.Windows.Forms.Label lblDetails;
-        private System.Windows.Forms.PictureBox pictureDetails;
         private System.Windows.Forms.ListBox listCart;
         private System.Windows.Forms.GroupBox gbSocialMedia;
         private System.Windows.Forms.Button btnSocialMedia3;
