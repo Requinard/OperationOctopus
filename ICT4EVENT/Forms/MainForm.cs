@@ -151,6 +151,10 @@ namespace ICT4EVENT
             {
                 listCart.Items.RemoveAt(listCart.SelectedIndex);
             }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een product.");
+            }
         }
     }
 }
