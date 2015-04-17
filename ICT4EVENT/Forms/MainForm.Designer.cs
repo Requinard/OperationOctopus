@@ -1,4 +1,6 @@
-﻿namespace ICT4EVENT
+﻿using System.Windows.Forms;
+
+namespace ICT4EVENT
 {
     partial class MainForm
     {
@@ -46,6 +48,8 @@
             this.tbPostContent = new System.Windows.Forms.TextBox();
             this.tabMaterialrent = new System.Windows.Forms.TabPage();
             this.listMaterials = new System.Windows.Forms.ListView();
+            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRemove = new System.Windows.Forms.Button();
             this.listCart = new System.Windows.Forms.ListBox();
             this.groupDetails = new System.Windows.Forms.GroupBox();
@@ -126,7 +130,7 @@
             this.lblTrending.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrending.Location = new System.Drawing.Point(4, 67);
             this.lblTrending.Name = "lblTrending";
-            this.lblTrending.Size = new System.Drawing.Size(120, 24);
+            this.lblTrending.Size = new System.Drawing.Size(154, 28);
             this.lblTrending.TabIndex = 5;
             this.lblTrending.Tag = "Static";
             this.lblTrending.Text = "Trending right now:";
@@ -146,10 +150,10 @@
             // Posts
             // 
             this.Posts.Controls.Add(this.lbTrendingPosts);
-            this.Posts.Location = new System.Drawing.Point(4, 27);
+            this.Posts.Location = new System.Drawing.Point(4, 33);
             this.Posts.Name = "Posts";
             this.Posts.Padding = new System.Windows.Forms.Padding(3);
-            this.Posts.Size = new System.Drawing.Size(165, 540);
+            this.Posts.Size = new System.Drawing.Size(165, 534);
             this.Posts.TabIndex = 0;
             this.Posts.Text = "Posts";
             this.Posts.UseVisualStyleBackColor = true;
@@ -160,7 +164,7 @@
             this.lbTrendingPosts.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTrendingPosts.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbTrendingPosts.FormattingEnabled = true;
-            this.lbTrendingPosts.ItemHeight = 24;
+            this.lbTrendingPosts.ItemHeight = 28;
             this.lbTrendingPosts.Location = new System.Drawing.Point(-3, 6);
             this.lbTrendingPosts.Name = "lbTrendingPosts";
             this.lbTrendingPosts.Size = new System.Drawing.Size(172, 508);
@@ -169,19 +173,19 @@
             // 
             // Media
             // 
-            this.Media.Location = new System.Drawing.Point(4, 27);
+            this.Media.Location = new System.Drawing.Point(4, 33);
             this.Media.Name = "Media";
             this.Media.Padding = new System.Windows.Forms.Padding(3);
-            this.Media.Size = new System.Drawing.Size(165, 540);
+            this.Media.Size = new System.Drawing.Size(165, 534);
             this.Media.TabIndex = 1;
             this.Media.Text = "Media";
             this.Media.UseVisualStyleBackColor = true;
             // 
             // Organisation
             // 
-            this.Organisation.Location = new System.Drawing.Point(4, 27);
+            this.Organisation.Location = new System.Drawing.Point(4, 33);
             this.Organisation.Name = "Organisation";
-            this.Organisation.Size = new System.Drawing.Size(165, 540);
+            this.Organisation.Size = new System.Drawing.Size(165, 534);
             this.Organisation.TabIndex = 2;
             this.Organisation.Text = "Organisation";
             this.Organisation.UseVisualStyleBackColor = true;
@@ -243,10 +247,10 @@
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnMediaFile);
             this.tabSocialMediaSharingSystem.Controls.Add(this.tbPostContent);
             this.tabSocialMediaSharingSystem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabSocialMediaSharingSystem.Location = new System.Drawing.Point(4, 27);
+            this.tabSocialMediaSharingSystem.Location = new System.Drawing.Point(4, 33);
             this.tabSocialMediaSharingSystem.Name = "tabSocialMediaSharingSystem";
             this.tabSocialMediaSharingSystem.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSocialMediaSharingSystem.Size = new System.Drawing.Size(802, 622);
+            this.tabSocialMediaSharingSystem.Size = new System.Drawing.Size(802, 616);
             this.tabSocialMediaSharingSystem.TabIndex = 0;
             this.tabSocialMediaSharingSystem.Text = "Social Media Sharing System";
             this.tabSocialMediaSharingSystem.UseVisualStyleBackColor = true;
@@ -295,27 +299,42 @@
             this.tabMaterialrent.Controls.Add(this.btnRemove);
             this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.groupDetails);
-            this.tabMaterialrent.Location = new System.Drawing.Point(4, 27);
+            this.tabMaterialrent.Location = new System.Drawing.Point(4, 33);
             this.tabMaterialrent.Name = "tabMaterialrent";
             this.tabMaterialrent.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMaterialrent.Size = new System.Drawing.Size(802, 622);
+            this.tabMaterialrent.Size = new System.Drawing.Size(802, 616);
             this.tabMaterialrent.TabIndex = 1;
             this.tabMaterialrent.Text = "Materiaalverhuur";
             this.tabMaterialrent.UseVisualStyleBackColor = true;
             // 
             // listMaterials
             // 
+            this.listMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Naam,
+            this.Description});
             this.listMaterials.Location = new System.Drawing.Point(6, 3);
             this.listMaterials.Name = "listMaterials";
             this.listMaterials.Size = new System.Drawing.Size(624, 447);
             this.listMaterials.TabIndex = 6;
             this.listMaterials.UseCompatibleStateImageBehavior = false;
+            this.listMaterials.View = System.Windows.Forms.View.Details;
+            this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
+            // 
+            // Naam
+            // 
+            this.Naam.Text = "Naam";
+            this.Naam.Width = 120;
+            // 
+            // Description
+            // 
+            this.Description.Text = "Beschrijving";
+            this.Description.Width = 500;
             // 
             // btnRemove
             // 
             this.btnRemove.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRemove.Location = new System.Drawing.Point(642, 572);
+            this.btnRemove.Location = new System.Drawing.Point(642, 558);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(145, 50);
@@ -323,20 +342,17 @@
             this.btnRemove.Tag = "Static";
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // listCart
             // 
             this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listCart.Enabled = false;
             this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listCart.FormattingEnabled = true;
-            this.listCart.ItemHeight = 18;
-            this.listCart.Items.AddRange(new object[] {
-            "Test1",
-            "Test2"});
+            this.listCart.ItemHeight = 24;
             this.listCart.Location = new System.Drawing.Point(642, 6);
             this.listCart.Name = "listCart";
-            this.listCart.Size = new System.Drawing.Size(145, 544);
+            this.listCart.Size = new System.Drawing.Size(145, 532);
             this.listCart.TabIndex = 2;
             // 
             // groupDetails
@@ -360,6 +376,7 @@
             this.btnHireMaterial.TabIndex = 2;
             this.btnHireMaterial.Text = "Voeg toe aan winkelwagen";
             this.btnHireMaterial.UseVisualStyleBackColor = false;
+            this.btnHireMaterial.Click += new System.EventHandler(this.btnHireMaterial_Click);
             // 
             // lblDetails
             // 
@@ -372,9 +389,9 @@
             // tabProfile
             // 
             this.tabProfile.Controls.Add(this.gbProfielen);
-            this.tabProfile.Location = new System.Drawing.Point(4, 27);
+            this.tabProfile.Location = new System.Drawing.Point(4, 33);
             this.tabProfile.Name = "tabProfile";
-            this.tabProfile.Size = new System.Drawing.Size(802, 622);
+            this.tabProfile.Size = new System.Drawing.Size(802, 616);
             this.tabProfile.TabIndex = 4;
             this.tabProfile.Text = "Profiel";
             this.tabProfile.UseVisualStyleBackColor = true;
@@ -476,9 +493,9 @@
             // tabSettings
             // 
             this.tabSettings.Controls.Add(this.gbSettings);
-            this.tabSettings.Location = new System.Drawing.Point(4, 27);
+            this.tabSettings.Location = new System.Drawing.Point(4, 33);
             this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Size = new System.Drawing.Size(802, 622);
+            this.tabSettings.Size = new System.Drawing.Size(802, 616);
             this.tabSettings.TabIndex = 3;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
@@ -585,7 +602,7 @@
             this.lblBiografie.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBiografie.Location = new System.Drawing.Point(6, 90);
             this.lblBiografie.Name = "lblBiografie";
-            this.lblBiografie.Size = new System.Drawing.Size(64, 24);
+            this.lblBiografie.Size = new System.Drawing.Size(82, 28);
             this.lblBiografie.TabIndex = 15;
             this.lblBiografie.Tag = "Profiel";
             this.lblBiografie.Text = "Biografie:";
@@ -615,7 +632,7 @@
             this.label4.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 24);
+            this.label4.Size = new System.Drawing.Size(107, 28);
             this.label4.TabIndex = 12;
             this.label4.Tag = "Profiel";
             this.label4.Text = "Wachtwoord:";
@@ -636,7 +653,7 @@
             this.lblDisplayUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplayUser.Location = new System.Drawing.Point(6, 27);
             this.lblDisplayUser.Name = "lblDisplayUser";
-            this.lblDisplayUser.Size = new System.Drawing.Size(90, 24);
+            this.lblDisplayUser.Size = new System.Drawing.Size(116, 28);
             this.lblDisplayUser.TabIndex = 10;
             this.lblDisplayUser.Tag = "Settings";
             this.lblDisplayUser.Text = "Display Name:";
@@ -669,7 +686,7 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 666);
             this.Controls.Add(this.gbStaticUpdates);
@@ -766,6 +783,8 @@
         private System.Windows.Forms.ListView listMaterials;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox tbSearchUser;
+        private System.Windows.Forms.ColumnHeader Naam;
+        private System.Windows.Forms.ColumnHeader Description;
     }
 }
 
