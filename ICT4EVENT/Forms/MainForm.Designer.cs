@@ -83,8 +83,6 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
-            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Beschrijving = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
