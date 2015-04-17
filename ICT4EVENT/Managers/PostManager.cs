@@ -6,6 +6,7 @@ using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
 {
+    using System.Text.RegularExpressions;
     using System.Windows.Forms.VisualStyles;
 
     public static class PostManager
@@ -18,6 +19,13 @@ namespace ICT4EVENT
             post.Content = body;
             DateTime datePosted = DateTime.Now;
             post.DatePosted = datePosted;
+
+            Regex reg = new Regex("/([#]\w+/");
+
+            foreach (Match match in reg.Matches(post.Content)) 
+            {
+                Console.WriteLine(match);
+            }
 
             //Upload file to FTP
 
