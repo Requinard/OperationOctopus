@@ -12,8 +12,7 @@ namespace ICT4EVENT
         public MainForm()
         {
             InitializeComponent();
-            // TODO: Repair initializations from social media manager
-            //socialManager = new SocialMediaEventManager();
+            FillList();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -23,7 +22,7 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             DynamicButtonLogic(false);
-            FillList(PostManager.GetPostsByPage());
+            FillList();
         }
 
         private void CreateTestPosts()
@@ -31,8 +30,9 @@ namespace ICT4EVENT
             PostManager.CreateNewPost("Wat is het social media event toch geweldig");
         }
 
-        private void FillList(List<PostModel> postModels)
+        private void FillList()
         {
+            List<PostModel>postModels = PostManager.GetPostsByPage();
             foreach (PostModel postModel in postModels)
             {
                 flowPostsFromUser.Controls.Add(new UserPost(postModel));
@@ -76,7 +76,11 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                    PostingLogic(tbPostContent.Text);
+                    PostModel postModel = PostManager.CreateNewPost(tbPostContent.Text);
+                    if (postModel != null)
+                    {
+                        flowPosts.Controls.Add(new UserPost(postModel));
+                    }
                 }
                 
             }
@@ -100,16 +104,5 @@ namespace ICT4EVENT
             }
         }
 
-        public bool PostingLogic(string PostContent)
-        {
-            if (PostManager.CreateNewPost(PostContent) != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-       
     }
 }

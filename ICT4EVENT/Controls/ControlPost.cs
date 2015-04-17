@@ -72,5 +72,10 @@ namespace ICT4EVENT
         {
             MessageBox.Show("Test");
         }
+
+        private void btnLike_Click(object sender, EventArgs e)
+        {
+            PostManager.CreateNewLike(postModel);
+        }
     }
 }

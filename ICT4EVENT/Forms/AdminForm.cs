@@ -36,6 +36,8 @@ namespace ICT4EVENT
 
         public void FillEventList(List<EventModel> eventModels)
         {
+            List<EventModel> sortedEventModels = eventModels;
+            sortedEventModels.Sort();
             foreach (var eventModel in eventModels)
             {
                 flowEvent.Controls.Add(new UserEvent(eventModel));
