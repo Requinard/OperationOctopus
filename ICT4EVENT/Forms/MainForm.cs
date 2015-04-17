@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using ICT4EVENT.Models;
 
 
 namespace ICT4EVENT
@@ -15,6 +16,7 @@ namespace ICT4EVENT
         {
             InitializeComponent();
             FillList();
+            treeTags();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -108,6 +110,16 @@ namespace ICT4EVENT
                     // button actions happen here
                 }
             }
+
+        private void treeTags()
+        {
+            List<TagModel> tags = new List<TagModel>();
+            tags = PostManager.GetAllTags();
+            foreach (TagModel tag in tags)
+            {
+                treeCategorie.Nodes.Add(tag.Name);
+            }
+        }
 
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
