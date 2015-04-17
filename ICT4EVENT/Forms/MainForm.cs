@@ -112,7 +112,7 @@ namespace ICT4EVENT
             Image test = new Bitmap(161, 161);
             foreach (RentableObjectModel ROM in EquipmentManager.GetAllRentables())
             {
-                flowMaterials.Controls.Add(new Materials(test, ROM.ObjectType, ROM.Description));
+                //flowMaterials.Controls.Add(new Materials(test, ROM.ObjectType, ROM.Description));
             }
         }
     }
