@@ -598,7 +598,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "MedewerkerForm";
-            this.Text = "AdminForm";
+            this.Text = "Medewerker";
             this.tabMainTab.ResumeLayout(false);
             this.tabCampingPlace.ResumeLayout(false);
             this.tabCampingPlace.PerformLayout();

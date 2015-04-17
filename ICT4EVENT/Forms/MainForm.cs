@@ -11,12 +11,11 @@ namespace ICT4EVENT
 
     public partial class MainForm : Form
     {
-        private MainGuiLogic mainGuiLogic;
         public MainForm()
         {
             InitializeComponent();
             FillMaterials();
-            mainGuiLogic = new MainGuiLogic(this);
+            DynamicButtonLogic(false);
             // TODO: Repair initializations from social media manager
             //socialManager = new SocialMediaEventManager();
         }
@@ -27,7 +26,6 @@ namespace ICT4EVENT
             {
                 CreateTestPosts();
             }
-            mainGuiLogic.DynamicButtonLogic();
             FillList(PostManager.GetPostsByPage());
         }
 
@@ -55,72 +53,83 @@ namespace ICT4EVENT
             }
         }
 
-        private void comboBox1_DropDown(object sender, EventArgs e)
-        {
-            if (cbProfileSelector.Text.Length >= 3)
-            {
-                //Add the results of the search query here
-                cbProfileSelector.Items.Add(null);
-            }
-        }
+        
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mainGuiLogic.DynamicButtonLogic();
+            DynamicButtonLogic(false);
         }
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
         {
-            mainGuiLogic.DynamicButtonLogic();
+            DynamicButtonLogic(true);
         }
 
-        public class MainGuiLogic
+
+        public void DynamicButtonLogic(bool action)
         {
-            private MainForm parent;
-
-            public MainGuiLogic(MainForm mainform)
+            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
             {
-                parent = mainform;
-            }
+                btnDynamicButton.Text = "Post";
 
-            public void DynamicButtonLogic()
+                // button actions happen here
+                if (action)
+                {
+                    PostingLogic(tbPostContent.Text);
+                }
+
+            }
+            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
-                if (parent.tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
-                {
-                    parent.btnDynamicButton.Text = "Post";
+                btnDynamicButton.Text = "Huur";
 
-                    // button actions happen here
-                    PostingLogic(parent.tbPostContent.Text);
-                }
-                if (parent.tabMainTab.SelectedTab.Name == "tabMaterialrent")
-                {
-                    parent.btnDynamicButton.Text = "Huur";
-
-                    // button actions happen here
-                }
-                if (parent.tabMainTab.SelectedTab.Name == "tabProfile")
-                {
-                    parent.btnDynamicButton.Text = "Bevestig";
-
-                    // button actions happen here
-                }
-                if (parent.tabMainTab.SelectedTab.Name == "tabSettings")
-                {
-                    parent.btnDynamicButton.Text = "Bevestig";
-
-                    // button actions happen here
-                }
+                // button actions happen here
             }
-
-            public bool PostingLogic(string PostContent)
+            if (tabMainTab.SelectedTab.Name == "tabProfile")
             {
-                PostManager.CreateNewPost(PostContent);
+                btnDynamicButton.Text = "Zoek User";
 
-                return false;
+                // button actions happen here
+
+                if (action)
+                {
+                    UserModel userModel = UserManager.FindUser(tbUserToFind.Text);
+
+                    if (userModel != null)
+                    {
+                        gbProfileOfUser.Enabled = true;
+                        gbPostsOfUser.Enabled = true;
+                        gbProfileOfUser.Text += userModel.Username;
+                        gbPostsOfUser.Text += userModel.Username;
+                        lblUserDisplayName.Text += userModel.Username;
+
+                        List<PostModel> postsFromUserList = PostManager.RetrieveUserPosts(userModel);
+                        foreach (PostModel postModel in postsFromUserList)
+                        {
+                            flowPostsFromUser.Controls.Add(new UserPost(postModel));
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("User niet gevonden");
+                    }
+                }
             }
+            if (tabMainTab.SelectedTab.Name == "tabSettings")
+            {
+                btnDynamicButton.Text = "Bevestig";
 
-            
+                // button actions happen here
+            }
         }
+
+        public bool PostingLogic(string PostContent)
+        {
+            PostManager.CreateNewPost(PostContent);
+
+            return false;
+        }
+        
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
         {
