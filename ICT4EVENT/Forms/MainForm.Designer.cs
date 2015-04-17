@@ -83,8 +83,6 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
-            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Beschrijving = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -307,12 +305,7 @@
             this.tabMaterialrent.TabIndex = 1;
             this.tabMaterialrent.Text = "Materiaalverhuur";
             this.tabMaterialrent.UseVisualStyleBackColor = true;
-            // 
-            // listMaterials
-            // 
-            this.listMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Naam,
-            this.Beschrijving});
+
             this.listMaterials.Location = new System.Drawing.Point(4, 6);
             this.listMaterials.Name = "listMaterials";
             this.listMaterials.Size = new System.Drawing.Size(633, 447);
@@ -688,16 +681,7 @@
             this.MateriaalVerhuurImages.Images.SetKeyName(1, "219643-nicolas-cage.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
-            // 
-            // Naam
-            // 
-            this.Naam.Text = "Naam";
-            this.Naam.Width = 120;
-            // 
-            // Beschrijving
-            // 
-            this.Beschrijving.Text = "Beschrijving";
-            this.Beschrijving.Width = 500;
+
             // 
             // MainForm
             // 
