@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using ICT4EVENT.Controls;
+//using ICT4EVENT.Controls;
 
 namespace ICT4EVENT
 {
@@ -24,6 +24,7 @@ namespace ICT4EVENT
             }
             DynamicButtonLogic(false);
             FillList(PostManager.GetPostsByPage());
+            FillMaterials();
         }
 
         private void CreateTestPosts()
@@ -41,10 +42,12 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
+            listMaterials.Columns.Add("Naam");
+            listMaterials.Columns.Add("Beschrijving");
             List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
             foreach (RentableObjectModel rentModel in Rentables)
             {
-                flowMaterials.Controls.Add(new Materials(rentModel.ObjectType, rentModel.Description));
+                listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
             }
         }
 
@@ -75,46 +78,51 @@ namespace ICT4EVENT
 
                 // button actions happen here
                 if (action)
-                {
-                    PostingLogic(tbPostContent.Text);
-                }
-                
-            }
-            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
+                    PostingLogic(tbPostContent.Text);
+            }
+
+                }
+            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
+                {
                 btnDynamicButton.Text = "Huur";
 
-                // button actions happen here
-            }
+                    // button actions happen here
+                }
             if (tabMainTab.SelectedTab.Name == "tabProfile")
-            {
+                {
                 btnDynamicButton.Text = "Bevestig";
 
-                // button actions happen here
-            }
+                    // button actions happen here
+                }
             if (tabMainTab.SelectedTab.Name == "tabSettings")
-            {
+                {
                 btnDynamicButton.Text = "Bevestig";
 
-                // button actions happen here
+                    // button actions happen here
+                }
             }
-        }
 
-        public bool PostingLogic(string PostContent)
-        {
+            public bool PostingLogic(string PostContent)
+            {
             if (PostManager.CreateNewPost(PostContent) != null)
             {
                 return true;
             }
 
-            return false;
+                return false;
+            }
+
+        private void btnHireMaterial_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
         {
-
+            ListViewItem selectedItem = listMaterials.SelectedItems[0];
+            string selectedString = selectedItem.SubItems[0].Text;
+            listCart.Items.Add(selectedString);
         }
-
-       
     }
 }
