@@ -47,6 +47,7 @@
             this.btnMediaFile = new System.Windows.Forms.Button();
             this.tbPostContent = new System.Windows.Forms.TextBox();
             this.tabMaterialrent = new System.Windows.Forms.TabPage();
+            this.listMaterials = new System.Windows.Forms.ListView();
             this.btnRemove = new System.Windows.Forms.Button();
             this.listCart = new System.Windows.Forms.ListBox();
             this.groupDetails = new System.Windows.Forms.GroupBox();
@@ -81,7 +82,6 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
-            this.listMaterials = new System.Windows.Forms.ListView();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -304,6 +304,15 @@
             this.tabMaterialrent.Text = "Materiaalverhuur";
             this.tabMaterialrent.UseVisualStyleBackColor = true;
             // 
+            // listMaterials
+            // 
+            this.listMaterials.Location = new System.Drawing.Point(4, 6);
+            this.listMaterials.Name = "listMaterials";
+            this.listMaterials.Size = new System.Drawing.Size(632, 444);
+            this.listMaterials.TabIndex = 6;
+            this.listMaterials.UseCompatibleStateImageBehavior = false;
+            this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
+            // 
             // btnRemove
             // 
             this.btnRemove.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -316,6 +325,7 @@
             this.btnRemove.Tag = "Static";
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // listCart
             // 
@@ -353,6 +363,7 @@
             this.btnHireMaterial.TabIndex = 2;
             this.btnHireMaterial.Text = "Voeg toe aan winkelwagen";
             this.btnHireMaterial.UseVisualStyleBackColor = false;
+            this.btnHireMaterial.Click += new System.EventHandler(this.btnHireMaterial_Click);
             // 
             // lblDetails
             // 
@@ -665,14 +676,6 @@
             this.MateriaalVerhuurImages.Images.SetKeyName(1, "219643-nicolas-cage.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
-            // 
-            // listMaterials
-            // 
-            this.listMaterials.Location = new System.Drawing.Point(6, 3);
-            this.listMaterials.Name = "listMaterials";
-            this.listMaterials.Size = new System.Drawing.Size(624, 447);
-            this.listMaterials.TabIndex = 6;
-            this.listMaterials.UseCompatibleStateImageBehavior = false;
             // 
             // MainForm
             // 
