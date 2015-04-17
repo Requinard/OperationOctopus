@@ -15,18 +15,7 @@ namespace ICT4EVENT
         public AdminForm()
         {
             InitializeComponent();
-            FillEventList(EventManager.FindAllEvents());
-        }
-
-        private void btnCreateEvent_Click(object sender, EventArgs e)
-        {
-            gbCreateEvent.Visible = true;
-        }
-
-        private void btnUpdateEvents_Click(object sender, EventArgs e)
-        {
-            flowEvent.Controls.Clear();
-            FillEventList(EventManager.FindAllEvents());
+            FillEventList();
         }
 
         public void AddEvent(UserEvent userEvent)
@@ -34,11 +23,32 @@ namespace ICT4EVENT
             flowEvent.Controls.Add(userEvent);
         }
 
-        public void FillEventList(List<EventModel> eventModels)
+        public void FillEventList()
         {
-            List<EventModel> sortedEventModels = eventModels;
-            sortedEventModels.Sort();
-            foreach (var eventModel in eventModels)
+            List<EventModel> eventModels = EventManager.FindAllEvents();
+            foreach (EventModel eventModel in eventModels)
+            {
+                flowEvent.Controls.Add(new UserEvent(eventModel));
+            }
+        }
+
+        private void btnUpdateEvents_Click_1(object sender, EventArgs e)
+        {
+            flowEvent.Controls.Clear();
+            FillEventList();
+        }
+
+        private void btnCreateEvent_Click_1(object sender, EventArgs e)
+        {
+            gbCreateEvent.Visible = true;
+        }
+
+        private void btnConfirmEvent_Click(object sender, EventArgs e)
+        {
+            EventModel eventModel = EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text,
+                dateTimePicker1.Value, dateTimePicker2.Value);
+
+            if (eventModel != null)
             {
                 flowEvent.Controls.Add(new UserEvent(eventModel));
             }

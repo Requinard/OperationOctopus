@@ -30,7 +30,7 @@
         {
             this.gbEventManagment = new System.Windows.Forms.GroupBox();
             this.gbCreateEvent = new System.Windows.Forms.GroupBox();
-            this.btnCreateNewEvent = new System.Windows.Forms.Button();
+            this.btnConfirmEvent = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -65,7 +65,7 @@
             // 
             // gbCreateEvent
             // 
-            this.gbCreateEvent.Controls.Add(this.btnCreateNewEvent);
+            this.gbCreateEvent.Controls.Add(this.btnConfirmEvent);
             this.gbCreateEvent.Controls.Add(this.label5);
             this.gbCreateEvent.Controls.Add(this.dateTimePicker2);
             this.gbCreateEvent.Controls.Add(this.dateTimePicker1);
@@ -83,15 +83,15 @@
             this.gbCreateEvent.TabStop = false;
             this.gbCreateEvent.Text = "Create a event";
             // 
-            // btnCreateNewEvent
+            // btnConfirmEvent
             // 
-            this.btnCreateNewEvent.Location = new System.Drawing.Point(25, 189);
-            this.btnCreateNewEvent.Name = "btnCreateNewEvent";
-            this.btnCreateNewEvent.Size = new System.Drawing.Size(242, 32);
-            this.btnCreateNewEvent.TabIndex = 21;
-            this.btnCreateNewEvent.Text = "Create Event";
-            this.btnCreateNewEvent.UseVisualStyleBackColor = true;
-            this.btnCreateNewEvent.Click += new System.EventHandler(this.btnCreateEvent_Click);
+            this.btnConfirmEvent.Location = new System.Drawing.Point(25, 189);
+            this.btnConfirmEvent.Name = "btnConfirmEvent";
+            this.btnConfirmEvent.Size = new System.Drawing.Size(242, 32);
+            this.btnConfirmEvent.TabIndex = 21;
+            this.btnConfirmEvent.Text = "Create Event";
+            this.btnConfirmEvent.UseVisualStyleBackColor = true;
+            this.btnConfirmEvent.Click += new System.EventHandler(this.btnConfirmEvent_Click);
             // 
             // label5
             // 
@@ -193,6 +193,7 @@
             this.btnUpdateEvents.TabIndex = 4;
             this.btnUpdateEvents.Text = "Update Events";
             this.btnUpdateEvents.UseVisualStyleBackColor = true;
+            this.btnUpdateEvents.Click += new System.EventHandler(this.btnUpdateEvents_Click_1);
             // 
             // flowEvent
             // 
@@ -211,6 +212,7 @@
             this.btnCreateEvent.TabIndex = 0;
             this.btnCreateEvent.Text = "Nieuw Evenement";
             this.btnCreateEvent.UseVisualStyleBackColor = true;
+            this.btnCreateEvent.Click += new System.EventHandler(this.btnCreateEvent_Click_1);
             // 
             // AdminForm
             // 
@@ -231,7 +233,7 @@
 
         private System.Windows.Forms.GroupBox gbEventManagment;
         private System.Windows.Forms.GroupBox gbCreateEvent;
-        private System.Windows.Forms.Button btnCreateNewEvent;
+        private System.Windows.Forms.Button btnConfirmEvent;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
