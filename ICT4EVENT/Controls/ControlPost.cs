@@ -4,6 +4,8 @@ using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
+    using global::ICT4EVENT.ICT4EVENT;
+
     public partial class UserPost : UserControl
     {
         private PostModel postModel;
@@ -19,7 +21,7 @@ namespace ICT4EVENT
 
             lblPoster.Text = "@" + postModel.User;
 
-            if (postModel.PathToFile == null)
+            if (postModel.PathToFile == "")
             {
                 Size = new Size(Size.Width, (lblText.Size.Height));
             }

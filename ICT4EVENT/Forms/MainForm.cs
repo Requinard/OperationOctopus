@@ -7,6 +7,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace ICT4EVENT
 {
+    using global::ICT4EVENT.ICT4EVENT;
 
     public partial class MainForm : Form
     {
