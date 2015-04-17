@@ -94,9 +94,6 @@ namespace ICT4EVENT
                 //Logger.Info("Querying Database");
                 //Logger.Debug("Query: " + query);
                 queryResult = oracleCommand.ExecuteReader();
-
-                //Check if the result has no rows
-                if (queryResult.HasRows == false) return null;
                 oracleCommand.CommandText = "commit";
                 oracleCommand.ExecuteReader();
                 //Logger.Success("Query Successfully executed");

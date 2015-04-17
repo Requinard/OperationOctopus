@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-
+//using ICT4EVENT.Controls;
 
 namespace ICT4EVENT
 {
-    using ICT4EVENT.Controls;
-
     public partial class MainForm : Form
     {
         public MainForm()
@@ -27,6 +25,7 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             FillList(PostManager.GetPostsByPage());
+            FillMaterials();
         }
 
         private void CreateTestPosts()
@@ -38,7 +37,7 @@ namespace ICT4EVENT
         {
             foreach (PostModel postModel in postModels)
             {
-                flowPosts.Controls.Add(new UserPost(postModel));
+                flowPostsFromUser.Controls.Add(new UserPost(postModel));
             }
         }
 
@@ -46,14 +45,14 @@ namespace ICT4EVENT
         {
             listMaterials.Columns.Add("Naam");
             listMaterials.Columns.Add("Beschrijving");
-            List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
-            foreach (RentableObjectModel rentModel in rentables)
+            List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
+            foreach (RentableObjectModel rentModel in Rentables)
             {
                 listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
             }
         }
 
-        
+
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -74,9 +73,9 @@ namespace ICT4EVENT
 
                 // button actions happen here
                 if (action)
-                {
+            {
                     PostingLogic(tbPostContent.Text);
-                }
+            }
 
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
@@ -84,12 +83,12 @@ namespace ICT4EVENT
                 btnDynamicButton.Text = "Huur";
 
                 // button actions happen here
-            }
+                }
             if (tabMainTab.SelectedTab.Name == "tabProfile")
-            {
+                {
                 btnDynamicButton.Text = "Zoek User";
 
-                // button actions happen here
+                    // button actions happen here
 
                 if (action)
                 {
@@ -108,46 +107,37 @@ namespace ICT4EVENT
                         {
                             flowPostsFromUser.Controls.Add(new UserPost(postModel));
                         }
-                    }
+                }
                     else
-                    {
+                {
                         MessageBox.Show("User niet gevonden");
                     }
                 }
-            }
+                }
             if (tabMainTab.SelectedTab.Name == "tabSettings")
-            {
+                {
                 btnDynamicButton.Text = "Bevestig";
 
-                // button actions happen here
+                    // button actions happen here
+                }
             }
-        }
 
-        public bool PostingLogic(string PostContent)
-        {
-            PostManager.CreateNewPost(PostContent);
+            public bool PostingLogic(string PostContent)
+            {
+            if (PostManager.CreateNewPost(PostContent) != null)
+            {
+                return true;
+            }
 
-            return false;
-        }
-        
+                return false;
+            }
+
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
         {
             ListViewItem selectedItem = listMaterials.SelectedItems[0];
             string selectedString = selectedItem.SubItems[0].Text;
             listCart.Items.Add(selectedString);
-        }
-
-        private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ListViewItem selectedItem = listMaterials.SelectedItems[0];
-            string selectedString = selectedItem.SubItems[1].Text;
-            lblDetails.Text = selectedString;
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            listCart.Items.RemoveAt(listCart.SelectedIndex);
         }
     }
 }
