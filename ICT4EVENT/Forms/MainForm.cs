@@ -95,6 +95,10 @@ namespace ICT4EVENT
                 btnDynamicButton.Text = "Huur";
 
                 // button actions happen here
+                if (action)
+                {
+                    //Make object reservation in manager.
+                }
             }
             if (tabMainTab.SelectedTab.Name == "tabProfile")
             {
@@ -117,8 +121,6 @@ namespace ICT4EVENT
                 filePath = openFileDialog1.FileName;
 
             }
-
-
         }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
