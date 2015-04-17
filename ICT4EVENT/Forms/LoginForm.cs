@@ -137,8 +137,6 @@ namespace ICT4EVENT
 
         private void btnGO_Click(object sender, EventArgs e)
         {
-
-
             switch (comboOptions.SelectedIndex)
             {
                 case 0:

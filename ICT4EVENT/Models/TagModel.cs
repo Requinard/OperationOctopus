@@ -81,7 +81,7 @@
         public void ReadFromReader(OracleDataReader reader)
         {
             this.Id = int.Parse(reader["ident"].ToString());
-            this.Name = reader["name"].ToString();
+            this.Name = reader["tagname"].ToString();
         }
     }
 }
