@@ -45,10 +45,12 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
+            listMaterials.Columns.Add("Naam");
+            listMaterials.Columns.Add("Beschrijving");
             List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
             foreach (RentableObjectModel rentModel in Rentables)
             {
-                flowMaterials.Controls.Add(new Materials(rentModel.ObjectType, rentModel.Description));
+                listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
             }
         }
 
@@ -117,6 +119,20 @@ namespace ICT4EVENT
             }
 
             
+        }
+
+        private void btnHireMaterial_Click(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = listMaterials.SelectedItems[0];
+            string selectedString = selectedItem.SubItems[0].Text;
+            listCart.Items.Add(selectedString);
+        }
+
+        private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = listMaterials.SelectedItems[0];
+            string selectedString = selectedItem.SubItems[1].Text;
+            lblDetails.Text = selectedString;
         }
     }
 }

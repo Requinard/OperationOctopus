@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Phidgets;
+using Phidgets.Events;
 
 namespace ICT4EVENT
 {
@@ -12,9 +14,12 @@ namespace ICT4EVENT
         private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
 
+        private RFID rfid;
         public AdminForm()
         {
             InitializeComponent();
+            OpenRFIDConnection();
+
             eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
@@ -384,6 +389,7 @@ namespace ICT4EVENT
                 string Email = parent.txtEmail.Text;
                 string Rfid = parent.txtAssignRfid.Text;
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+                RemoveInput();
             }
 
             private string GeneratePassword()
@@ -400,11 +406,81 @@ namespace ICT4EVENT
                 string RandomPassword = new String(PasswordChars);
                 return RandomPassword;
             }
+
+            private void RemoveInput()
+            {
+                parent.txtName.Text = "";
+                parent.txtSurName.Text = "";
+                parent.txtUsername.Text = "";
+                parent.txtAddress.Text = "";
+                parent.txtTelNr.Text = "";
+                parent.txtEmail.Text = "";
+                parent.txtAssignRfid.Text = "";
+            }
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-            createUser.CreateUser();
-        }     
+            if (txtAssignRfid.Text != null)
+            {
+                createUser.CreateUser();
+                MessageBox.Show("Gebruiker aangemaakt");
+            }
+            else
+            {
+                MessageBox.Show("Scan eerst een RFID");
+            }
+        }
+
+        private void OpenRFIDConnection()
+        {
+            try
+            {
+                rfid = new RFID();
+                rfid.Error += RFID_Error;
+                rfid.Tag += RFID_Tag;
+
+                rfid.open(-1);
+
+                rfid.waitForAttachment(1000);
+            }
+            catch (PhidgetException ex)
+            {
+                MessageBox.Show(ex.Description);
+            }
+        }
+
+        private void RFID_Error(object sender, ErrorEventArgs e)
+        {
+            MessageBox.Show(e.Description);
+        }
+
+        private void RFID_Tag(object sender, TagEventArgs e)
+        {
+            txtAssignRfid.Text = Convert.ToString(e.Tag);
+        }
+
+
+        private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabMainTab.SelectedTab.Name == "tabCreateUser")
+            {
+                try
+                {
+                    rfid.Antenna = true;
+                    rfid.LED = true;  
+                }
+                catch { }
+            }
+            else
+            {
+                try
+                {
+                    rfid.Antenna = false;
+                    rfid.LED = false;  
+                }
+                catch { }
+            }
+        }
     }
 }

@@ -48,8 +48,7 @@
             this.tbPostContent = new System.Windows.Forms.TextBox();
             this.tabMaterialrent = new System.Windows.Forms.TabPage();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.flowMaterials = new System.Windows.Forms.FlowLayoutPanel();
-            this.listMandje = new System.Windows.Forms.ListBox();
+            this.listCart = new System.Windows.Forms.ListBox();
             this.groupDetails = new System.Windows.Forms.GroupBox();
             this.btnHireMaterial = new System.Windows.Forms.Button();
             this.lblDetails = new System.Windows.Forms.Label();
@@ -83,6 +82,7 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
+            this.listMaterials = new System.Windows.Forms.ListView();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -294,9 +294,9 @@
             // 
             // tabMaterialrent
             // 
+            this.tabMaterialrent.Controls.Add(this.listMaterials);
             this.tabMaterialrent.Controls.Add(this.btnRemove);
-            this.tabMaterialrent.Controls.Add(this.flowMaterials);
-            this.tabMaterialrent.Controls.Add(this.listMandje);
+            this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.groupDetails);
             this.tabMaterialrent.Location = new System.Drawing.Point(4, 33);
             this.tabMaterialrent.Name = "tabMaterialrent";
@@ -319,27 +319,20 @@
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             // 
-            // flowMaterials
+            // listCart
             // 
-            this.flowMaterials.Location = new System.Drawing.Point(6, 7);
-            this.flowMaterials.Name = "flowMaterials";
-            this.flowMaterials.Size = new System.Drawing.Size(624, 443);
-            this.flowMaterials.TabIndex = 3;
-            // 
-            // listMandje
-            // 
-            this.listMandje.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listMandje.Enabled = false;
-            this.listMandje.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.listMandje.FormattingEnabled = true;
-            this.listMandje.ItemHeight = 24;
-            this.listMandje.Items.AddRange(new object[] {
+            this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listCart.Enabled = false;
+            this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.listCart.FormattingEnabled = true;
+            this.listCart.ItemHeight = 24;
+            this.listCart.Items.AddRange(new object[] {
             "Test1",
             "Test2"});
-            this.listMandje.Location = new System.Drawing.Point(642, 6);
-            this.listMandje.Name = "listMandje";
-            this.listMandje.Size = new System.Drawing.Size(145, 556);
-            this.listMandje.TabIndex = 2;
+            this.listCart.Location = new System.Drawing.Point(642, 6);
+            this.listCart.Name = "listCart";
+            this.listCart.Size = new System.Drawing.Size(145, 556);
+            this.listCart.TabIndex = 2;
             // 
             // groupDetails
             // 
@@ -357,12 +350,13 @@
             // 
             this.btnHireMaterial.BackColor = System.Drawing.Color.Transparent;
             this.btnHireMaterial.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHireMaterial.Location = new System.Drawing.Point(447, 29);
+            this.btnHireMaterial.Location = new System.Drawing.Point(447, 22);
             this.btnHireMaterial.Name = "btnHireMaterial";
             this.btnHireMaterial.Size = new System.Drawing.Size(177, 131);
             this.btnHireMaterial.TabIndex = 2;
             this.btnHireMaterial.Text = "Voeg toe aan winkelwagen";
             this.btnHireMaterial.UseVisualStyleBackColor = false;
+            this.btnHireMaterial.Click += new System.EventHandler(this.btnHireMaterial_Click);
             // 
             // lblDetails
             // 
@@ -656,7 +650,7 @@
             this.lblDisplayUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplayUser.Location = new System.Drawing.Point(6, 27);
             this.lblDisplayUser.Name = "lblDisplayUser";
-            this.lblDisplayUser.Size = new System.Drawing.Size(90, 24);
+            this.lblDisplayUser.Size = new System.Drawing.Size(116, 28);
             this.lblDisplayUser.TabIndex = 10;
             this.lblDisplayUser.Tag = "Settings";
             this.lblDisplayUser.Text = "Display Name:";
@@ -683,6 +677,15 @@
             this.MateriaalVerhuurImages.Images.SetKeyName(1, "219643-nicolas-cage.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
+            // 
+            // listMaterials
+            // 
+            this.listMaterials.Location = new System.Drawing.Point(6, 3);
+            this.listMaterials.Name = "listMaterials";
+            this.listMaterials.Size = new System.Drawing.Size(624, 447);
+            this.listMaterials.TabIndex = 6;
+            this.listMaterials.UseCompatibleStateImageBehavior = false;
+            this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -770,7 +773,7 @@
         private System.Windows.Forms.Button btnHireMaterial;
         private System.Windows.Forms.Label lblDetails;
         private System.Windows.Forms.PictureBox pictureDetails;
-        private System.Windows.Forms.ListBox listMandje;
+        private System.Windows.Forms.ListBox listCart;
         private System.Windows.Forms.GroupBox gbSocialMedia;
         private System.Windows.Forms.Button btnSocialMedia3;
         private System.Windows.Forms.Button btnSocialMedia2;
@@ -780,10 +783,10 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.FlowLayoutPanel flowPosts;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.FlowLayoutPanel flowMaterials;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSocialMedia4;
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
+        private System.Windows.Forms.ListView listMaterials;
     }
 }
 
