@@ -51,16 +51,7 @@ namespace ICT4EVENT
                 listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
             }
         }
-
-        private void comboBox1_DropDown(object sender, EventArgs e)
-        {
-            if (cbProfileSelector.Text.Length >= 3)
-            {
-                //Add the results of the search query here
-                cbProfileSelector.Items.Add(null);
-            }
-        }
-
+        
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             DynamicButtonLogic(false);
@@ -97,9 +88,25 @@ namespace ICT4EVENT
                 }
             if (tabMainTab.SelectedTab.Name == "tabProfile")
                 {
-                btnDynamicButton.Text = "Bevestig";
+                btnDynamicButton.Text = "Search User";
 
                     // button actions happen here
+                    if (action)
+                    {
+                        UserModel userModel = UserManager.FindUser(tbSearchUser.Text);
+                        if (userModel != null)
+                        {
+                            gbProfileOfUser.Text += userModel.Username;
+                            gbPostsOfUser.Text += userModel.Username;
+                            lblUserDisplayName.Text += userModel.Username;
+
+                            List<PostModel> postModels = PostManager.RetrieveUserPosts(userModel);
+                            foreach (PostModel postModel in postModels)
+                            {
+                                flowPostsFromUser.Controls.Add(new UserPost(postModel));
+                            }
+                        }
+                    }
                 }
             if (tabMainTab.SelectedTab.Name == "tabSettings")
                 {
