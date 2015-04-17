@@ -64,7 +64,7 @@ namespace ICT4EVENT
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
         {
-            DynamicButtonLogic();
+            DynamicButtonLogic(false);
         }
 
         public void DynamicButtonLogic(bool action)
