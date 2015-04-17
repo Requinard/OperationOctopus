@@ -11,6 +11,7 @@ namespace ICT4EVENT
 
     public partial class MainForm : Form
     {
+        string filePath = "";
         public MainForm()
         {
             InitializeComponent();
@@ -79,15 +80,16 @@ namespace ICT4EVENT
 
                 // button actions happen here
                 if (action)
-            {
-                    PostModel postModel = PostManager.CreateNewPost(tbPostContent.Text);
-                    if (postModel != null)
                 {
+                    
+                    PostModel postModel = PostManager.CreateNewPost(tbPostContent.Text,filePath);
+                    if (postModel != null)
+                    {
                         flowPosts.Controls.Add(new UserPost(postModel));
                     }
                 }
 
-                }
+            }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
                 {
                 btnDynamicButton.Text = "Huur";
@@ -107,6 +109,18 @@ namespace ICT4EVENT
                     // button actions happen here
                 }
             }
+
+        private void btnMediaFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            {
+                filePath = openFileDialog1.FileName;
+                
+            }
+            
+
+        }
+
 
             
         }
