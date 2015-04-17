@@ -5,17 +5,15 @@ using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
-    public partial class AdminForm : Form
+    public partial class MedewerkerForm : Form
     {
         private readonly CampingLogic campingLogic;
-        private readonly EventManagmentLogic eventManagment;
         private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
 
-        public AdminForm()
+        public MedewerkerForm()
         {
             InitializeComponent();
-            eventManagment = new EventManagmentLogic(this);
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
             createUser = new CreateUserLogic(this);
@@ -42,13 +40,7 @@ namespace ICT4EVENT
                 }
             }
         }
-
-        private void addEvent(UserEvent userEvent)
-        {
-            eventManagment.AddEvent(userEvent);
-            //ToDo: Deze Methode weghalen en direct aanroepen.
-        }
-
+        
         private void btnReserve_Click(object sender, EventArgs e)
         {
             var plaats = Convert.ToInt32(nmrPlaats.Text);
@@ -63,45 +55,16 @@ namespace ICT4EVENT
                 txtGebruikers.Text = "";
             }
         }
-
-        private void btnCreateEvent_Click(object sender, EventArgs e)
-        {
-            //gbCreateEvent.Visible = true;
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             //EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
-        private void btnUpdateEvents_Click(object sender, EventArgs e)
-        {
-            flowEvent.Controls.Clear();
-            eventManagment.FillEventList(EventManager.FindAllEvents());
-        }
-
+       
         public class EventManagmentLogic
         {
-            private readonly AdminForm parent;
 
-            public EventManagmentLogic(AdminForm form)
-            {
-                parent = form;
-                FillEventList(EventManager.FindAllEvents());
-            }
-
-            public void AddEvent(UserEvent userEvent)
-            {
-                parent.flowEvent.Controls.Add(userEvent);
-            }
-
-            public void FillEventList(List<EventModel> eventModels)
-            {
-                foreach (var eventModel in eventModels)
-                {
-                    parent.flowEvent.Controls.Add(new UserEvent(eventModel));
-                }
-            }
         }
 
         public class CampingLogic
@@ -113,13 +76,13 @@ namespace ICT4EVENT
             private readonly int[] EigenTenten;
             private readonly int[] Huurtentjes;
             private readonly int[] Invalidenaccomodatie;
-            private readonly AdminForm parent;
+            private readonly MedewerkerForm parent;
             private readonly int[] StaCaravan;
             private int[] AllPlaces;
             private decimal amount;
             private List<string> guests;
 
-            public CampingLogic(AdminForm form)
+            public CampingLogic(MedewerkerForm form)
             {
                 parent = form;
                 UserList = new List<string>();
@@ -352,9 +315,9 @@ namespace ICT4EVENT
 
         public class PostReviewLogic
         {
-            private readonly AdminForm parent;
+            private readonly MedewerkerForm parent;
 
-            public PostReviewLogic(AdminForm form)
+            public PostReviewLogic(MedewerkerForm form)
             {
                 parent = form;
                 CreateDummyData();
@@ -368,8 +331,8 @@ namespace ICT4EVENT
 
         public class CreateUserLogic
         {
-            private readonly AdminForm parent;
-            public CreateUserLogic(AdminForm gui)
+            private readonly MedewerkerForm parent;
+            public CreateUserLogic(MedewerkerForm gui)
             {
                 parent = gui;
             }

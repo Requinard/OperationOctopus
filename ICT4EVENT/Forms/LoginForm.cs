@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ApplicationLogger;
+using Phidget21COM;
 using Phidgets;
 using Phidgets.Events;
 
@@ -85,6 +86,7 @@ namespace ICT4EVENT
             }
             if (Settings.ActiveUser.Level == 3)
             {
+                comboOptions.Items.Add("Medewerker Form");
                 comboOptions.Items.Add("Ultra mega holocaust nigger 9000");
             }
 
@@ -153,15 +155,21 @@ namespace ICT4EVENT
                     break;
                 case 1:
                     // TODO: Open registrations
+                    if (Settings.ActiveUser == null || Settings.ActiveEvent == null)
+                    {
+                        Logger.Error("No user or event were set to active on form initialization");
+                        Environment.Exit(2);
+                    }
+                    openForm(new MedewerkerForm());
+                    break;
+                case 2:
+                    // TODO: Open access control
                     if (Settings.ActiveUser == null)
                     {
                         Logger.Error("No user or event were set to active on form initialization");
                         Environment.Exit(2);
                     }
                     openForm(new AdminForm());
-                    break;
-                case 2:
-                    // TODO: Open access control
                     break;
                 case 3:
                     // TODO: Open administrator panel
