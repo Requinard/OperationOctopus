@@ -348,9 +348,6 @@
             this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listCart.FormattingEnabled = true;
             this.listCart.ItemHeight = 24;
-            this.listCart.Items.AddRange(new object[] {
-            "Test1",
-            "Test2"});
             this.listCart.Location = new System.Drawing.Point(642, 6);
             this.listCart.Name = "listCart";
             this.listCart.Size = new System.Drawing.Size(145, 532);
