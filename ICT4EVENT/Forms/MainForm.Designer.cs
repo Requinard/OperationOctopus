@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -53,13 +51,12 @@
             this.groupDetails = new System.Windows.Forms.GroupBox();
             this.btnHireMaterial = new System.Windows.Forms.Button();
             this.lblDetails = new System.Windows.Forms.Label();
-            this.pictureDetails = new System.Windows.Forms.PictureBox();
             this.tabProfile = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
-            this.tbUserToFind = new System.Windows.Forms.TextBox();
             this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
             this.flowPostsFromUser = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.cbProfileSelector = new System.Windows.Forms.ComboBox();
             this.gbProfileOfUser = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -82,7 +79,7 @@
             this.tbMyDisplayName = new System.Windows.Forms.TextBox();
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -92,7 +89,6 @@
             this.tabSocialMediaSharingSystem.SuspendLayout();
             this.tabMaterialrent.SuspendLayout();
             this.groupDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).BeginInit();
             this.tabProfile.SuspendLayout();
             this.gbProfielen.SuspendLayout();
             this.gbPostsOfUser.SuspendLayout();
@@ -283,6 +279,7 @@
             this.btnMediaFile.Tag = "SMSS";
             this.btnMediaFile.Text = "Add File(s)";
             this.btnMediaFile.UseVisualStyleBackColor = true;
+            this.btnMediaFile.Click += new System.EventHandler(this.btnMediaFile_Click);
             // 
             // tbPostContent
             // 
@@ -305,14 +302,14 @@
             this.tabMaterialrent.TabIndex = 1;
             this.tabMaterialrent.Text = "Materiaalverhuur";
             this.tabMaterialrent.UseVisualStyleBackColor = true;
-
-            this.listMaterials.Location = new System.Drawing.Point(4, 6);
+            // 
+            // listMaterials
+            // 
+            this.listMaterials.Location = new System.Drawing.Point(6, 3);
             this.listMaterials.Name = "listMaterials";
-            this.listMaterials.Size = new System.Drawing.Size(633, 447);
+            this.listMaterials.Size = new System.Drawing.Size(624, 447);
             this.listMaterials.TabIndex = 6;
             this.listMaterials.UseCompatibleStateImageBehavior = false;
-            this.listMaterials.View = System.Windows.Forms.View.Details;
-            this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
             // 
             // btnRemove
             // 
@@ -330,9 +327,13 @@
             // listCart
             // 
             this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listCart.Enabled = false;
             this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listCart.FormattingEnabled = true;
-            this.listCart.ItemHeight = 24;
+            this.listCart.ItemHeight = 18;
+            this.listCart.Items.AddRange(new object[] {
+            "Test1",
+            "Test2"});
             this.listCart.Location = new System.Drawing.Point(642, 6);
             this.listCart.Name = "listCart";
             this.listCart.Size = new System.Drawing.Size(145, 544);
@@ -342,7 +343,6 @@
             // 
             this.groupDetails.Controls.Add(this.btnHireMaterial);
             this.groupDetails.Controls.Add(this.lblDetails);
-            this.groupDetails.Controls.Add(this.pictureDetails);
             this.groupDetails.Location = new System.Drawing.Point(6, 456);
             this.groupDetails.Name = "groupDetails";
             this.groupDetails.Size = new System.Drawing.Size(630, 166);
@@ -360,23 +360,14 @@
             this.btnHireMaterial.TabIndex = 2;
             this.btnHireMaterial.Text = "Voeg toe aan winkelwagen";
             this.btnHireMaterial.UseVisualStyleBackColor = false;
-            this.btnHireMaterial.Click += new System.EventHandler(this.btnHireMaterial_Click);
             // 
             // lblDetails
             // 
-            this.lblDetails.Location = new System.Drawing.Point(143, 29);
+            this.lblDetails.Location = new System.Drawing.Point(6, 29);
             this.lblDetails.Name = "lblDetails";
-            this.lblDetails.Size = new System.Drawing.Size(298, 131);
+            this.lblDetails.Size = new System.Drawing.Size(435, 131);
             this.lblDetails.TabIndex = 1;
             this.lblDetails.Text = "Details";
-            // 
-            // pictureDetails
-            // 
-            this.pictureDetails.Location = new System.Drawing.Point(6, 29);
-            this.pictureDetails.Name = "pictureDetails";
-            this.pictureDetails.Size = new System.Drawing.Size(131, 131);
-            this.pictureDetails.TabIndex = 0;
-            this.pictureDetails.TabStop = false;
             // 
             // tabProfile
             // 
@@ -390,8 +381,8 @@
             // 
             // gbProfielen
             // 
-            this.gbProfielen.Controls.Add(this.tbUserToFind);
             this.gbProfielen.Controls.Add(this.gbPostsOfUser);
+            this.gbProfielen.Controls.Add(this.cbProfileSelector);
             this.gbProfielen.Controls.Add(this.gbProfileOfUser);
             this.gbProfielen.Location = new System.Drawing.Point(3, 3);
             this.gbProfielen.Name = "gbProfielen";
@@ -400,24 +391,16 @@
             this.gbProfielen.TabStop = false;
             this.gbProfielen.Text = "Profielen:";
             // 
-            // tbUserToFind
-            // 
-            this.tbUserToFind.Location = new System.Drawing.Point(9, 25);
-            this.tbUserToFind.Name = "tbUserToFind";
-            this.tbUserToFind.Size = new System.Drawing.Size(769, 25);
-            this.tbUserToFind.TabIndex = 16;
-            // 
             // gbPostsOfUser
             // 
             this.gbPostsOfUser.Controls.Add(this.flowPostsFromUser);
             this.gbPostsOfUser.Controls.Add(this.pictureBox2);
-            this.gbPostsOfUser.Enabled = false;
             this.gbPostsOfUser.Location = new System.Drawing.Point(3, 236);
             this.gbPostsOfUser.Name = "gbPostsOfUser";
             this.gbPostsOfUser.Size = new System.Drawing.Size(781, 376);
             this.gbPostsOfUser.TabIndex = 15;
             this.gbPostsOfUser.TabStop = false;
-            this.gbPostsOfUser.Text = "Posts van ";
+            this.gbPostsOfUser.Text = "Posts van <username>";
             // 
             // flowPostsFromUser
             // 
@@ -436,19 +419,27 @@
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
             // 
+            // cbProfileSelector
+            // 
+            this.cbProfileSelector.FormattingEnabled = true;
+            this.cbProfileSelector.Location = new System.Drawing.Point(9, 24);
+            this.cbProfileSelector.Name = "cbProfileSelector";
+            this.cbProfileSelector.Size = new System.Drawing.Size(769, 26);
+            this.cbProfileSelector.TabIndex = 16;
+            this.cbProfileSelector.DropDown += new System.EventHandler(this.comboBox1_DropDown);
+            // 
             // gbProfileOfUser
             // 
             this.gbProfileOfUser.Controls.Add(this.label3);
             this.gbProfileOfUser.Controls.Add(this.pictureBox3);
             this.gbProfileOfUser.Controls.Add(this.pictureBox4);
             this.gbProfileOfUser.Controls.Add(this.lblUserDisplayName);
-            this.gbProfileOfUser.Enabled = false;
             this.gbProfileOfUser.Location = new System.Drawing.Point(0, 56);
             this.gbProfileOfUser.Name = "gbProfileOfUser";
-            this.gbProfileOfUser.Size = new System.Drawing.Size(784, 198);
+            this.gbProfileOfUser.Size = new System.Drawing.Size(784, 225);
             this.gbProfileOfUser.TabIndex = 14;
             this.gbProfileOfUser.TabStop = false;
-            this.gbProfileOfUser.Text = "profiel van ";
+            this.gbProfileOfUser.Text = "profiel van <username>";
             // 
             // label3
             // 
@@ -488,7 +479,7 @@
             this.lblUserDisplayName.Size = new System.Drawing.Size(613, 24);
             this.lblUserDisplayName.TabIndex = 9;
             this.lblUserDisplayName.Tag = "Settings";
-            this.lblUserDisplayName.Text = "Display Name:  ";
+            this.lblUserDisplayName.Text = "Display Name:";
             this.lblUserDisplayName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabSettings
@@ -673,15 +664,10 @@
             this.btnLogOut.Text = "Uitloggen";
             this.btnLogOut.UseVisualStyleBackColor = true;
             // 
-            // MateriaalVerhuurImages
+            // openFileDialog1
             // 
-            this.MateriaalVerhuurImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("MateriaalVerhuurImages.ImageStream")));
-            this.MateriaalVerhuurImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.MateriaalVerhuurImages.Images.SetKeyName(0, "40334_pro.jpg");
-            this.MateriaalVerhuurImages.Images.SetKeyName(1, "219643-nicolas-cage.jpg");
-            this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
-            this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
-
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
             // MainForm
             // 
@@ -709,10 +695,8 @@
             this.tabSocialMediaSharingSystem.PerformLayout();
             this.tabMaterialrent.ResumeLayout(false);
             this.groupDetails.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).EndInit();
             this.tabProfile.ResumeLayout(false);
             this.gbProfielen.ResumeLayout(false);
-            this.gbProfielen.PerformLayout();
             this.gbPostsOfUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.gbProfileOfUser.ResumeLayout(false);
@@ -752,6 +736,7 @@
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.GroupBox gbSettings;
         private System.Windows.Forms.TreeView treeCategorie;
+        private System.Windows.Forms.ComboBox cbProfileSelector;
         private System.Windows.Forms.GroupBox gbProfileOfUser;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -764,11 +749,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbMyDisplayName;
         private System.Windows.Forms.Label lblDisplayUser;
-        private System.Windows.Forms.ImageList MateriaalVerhuurImages;
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
         private System.Windows.Forms.Label lblDetails;
-        private System.Windows.Forms.PictureBox pictureDetails;
         private System.Windows.Forms.ListBox listCart;
         private System.Windows.Forms.GroupBox gbSocialMedia;
         private System.Windows.Forms.Button btnSocialMedia3;
@@ -783,7 +766,7 @@
         private System.Windows.Forms.Button btnSocialMedia4;
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
         private System.Windows.Forms.ListView listMaterials;
-        private System.Windows.Forms.TextBox tbUserToFind;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

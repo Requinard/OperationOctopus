@@ -1,10 +1,14 @@
 namespace ICT4EVENT
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
-    using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Client;
+
+namespace ICT4EVENT
+{
+    using System.Windows.Forms.VisualStyles;
 
     public static class PostManager
     {
@@ -49,16 +53,111 @@ namespace ICT4EVENT
 
             post.Create();
 
+             var reg = new Regex(@"/([#]\w+)/");
+
+            foreach (Match match in reg.Matches(post.Content))
+            {
+                TagPost(post, match.ToString());
+            }
             return post;
         }
+        private static void TagPost(PostModel post, string tag)
+        {
+            TagModel tagModel = null;
+            // We check if the tag already exists
 
+            var select_tagname = string.Format("SELECT * FROM TAG WHERE name = '{0}'", tag);
+
+            var reader = DBManager.QueryDB(select_tagname);
+
+            if (reader == null)
+            {
+                tagModel = new TagModel();
+
+                tagModel.Name = tag;
+
+                if (tagModel.Create() == false)
+                {
+                    return;
+                }
+
+                //requery the db
+                reader = DBManager.QueryDB(select_tagname);
+            }
+
+            tagModel = new TagModel();
+
+            reader.Read();
+
+            tagModel.ReadFromReader(reader);
+
+            // We now have the tag. time to create an M2M query
+            var insert_query = string.Format(
+                "INSERT INTO TAGPOST (tagid, postid) VALUES ('{0}', '{1}')",
+                tagModel.Id,
+                post.Id);
+
+            reader = DBManager.QueryDB(insert_query);
+        }
+        private static List<PostModel> GetPostByTags(string tag)
+        {
+            var posts = new List<PostModel>();
+
+            var query = string.Format(
+                "SELECT * FROM TagPost, Tag wHERE tag.name = '{0}' AND tag.ident = tagpost.tagid",
+                tag);
+
+            var reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return null;
+            }
+
+            while (reader.Read())
+            {
+                var post = new PostModel(Int32.Parse(reader["postid"].ToString()));
+
+                posts.Add(post);
+            }
+
+            IEnumerable<PostModel> s = from post in posts where post.EventItem.Id == Settings.ActiveEvent.Id select post;
+
+            return s.ToList();
+        }
+
+        public static List<LikeModel> GetPostLikes(PostModel post)
+        {
+            var likes = new List<LikeModel>();
+
+            var query = string.Format("SELECT * FROM Like WHERE postid = '{0}'", post.Id);
+
+            var reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return null;
+            }
+
+            while (reader.Read())
+            {
+                var like = new LikeModel();
+
+                like.ReadFromReader(reader);
+
+                likes.Add(like);
+            }
+
+            return likes;
+        }
+ 
         public static List<PostModel> FindPost(string test)
         {
             var posts = new List<PostModel>();
             var query = string.Format(
-                "SELECT * FROM POST where eventid ='{0}' AND postcontent LIKE '%{1}%'",
-                Settings.ActiveEvent.Id,
-                test);
+                    "SELECT * FROM POST where eventid ='{0}' AND postcontent LIKE '%{1}%'",
+                    Settings.ActiveEvent.Id,
+                    test);
 
             var reader = DBManager.QueryDB(query);
 
@@ -128,6 +227,26 @@ namespace ICT4EVENT
             return reports;
         }
 
+                 public static List<TagModel> GetAllTags()
+         {
+             List<TagModel> tags = new List<TagModel>();
+             string query = "SELECT * FROM TAG";
+ 
+             OracleDataReader reader = DBManager.QueryDB(query);
+ 
+             if (reader == null) return null;
+ 
+             while (reader.Read())
+             {
+                 TagModel tag = new TagModel();
+ 
+                 tag.ReadFromReader(reader);
+ 
+                 tags.Add(tag);
+             }
+ 
+             return tags;
+  }
         public static List<PostReportModel> GetAllReports()
         {
             var query = "SELECT * FROM Report";
@@ -137,14 +256,14 @@ namespace ICT4EVENT
 
             if (reader == null || !reader.HasRows)
             {
-                while (reader.Read())
-                {
+            while (reader.Read())
+            {
                     var report = new PostReportModel();
 
-                    report.ReadFromReader(reader);
+                report.ReadFromReader(reader);
 
-                    reports.Add(report);
-                }
+                reports.Add(report);
+            }
             }
 
             return reports;
@@ -270,7 +389,7 @@ namespace ICT4EVENT
             for (var i = 0; i < itemsPerPage; i++)
             {
                 if (!reader.Read())
-                {
+            {
                     break;
                 }
 

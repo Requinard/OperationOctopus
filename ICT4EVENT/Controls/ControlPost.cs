@@ -70,7 +70,23 @@ namespace ICT4EVENT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Test");
+            if (tbReport.Visible == false)
+            {
+                tbReport.Visible = true;
+            }
+
+            if (tbReport.Visible == true)
+            {
+                if (string.IsNullOrWhiteSpace(tbReport.Text))
+                {
+                    PostManager.ReportPost(postModel, " ");
+                }
+                else
+                {
+                    PostManager.ReportPost(postModel, tbReport.Text);
+                }
+                tbReport.Visible = false;
+            }
         }
     }
 }

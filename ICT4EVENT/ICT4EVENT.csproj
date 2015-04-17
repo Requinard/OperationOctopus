@@ -137,6 +137,7 @@
     <Compile Include="Models\RentableObjectModel.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Models\RFIDLogModel.cs" />
+    <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +161,9 @@
     <Compile Include="Controls\ControlPostReview.Designer.cs">
       <DependentUpon>ControlPostReview.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\ControlPost.resx">
+      <DependentUpon>ControlPost.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>

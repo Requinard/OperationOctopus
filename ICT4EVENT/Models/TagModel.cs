@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ICT4EVENT.Models
+﻿namespace ICT4EVENT.Models
 {
-    using System.Windows.Forms.VisualStyles;
-
-    using Microsoft.SqlServer.Server;
-
     using Oracle.DataAccess.Client;
 
-    class TagModel : DBModel, IDataModelUpdate
+    public class TagModel : DBModel, IDataModelUpdate
     {
-        private string name;
-
         public TagModel()
         {
-            name = "";
+            this.Name = "";
         }
 
         public TagModel(int id)
@@ -28,69 +16,72 @@ namespace ICT4EVENT.Models
             this.Read();
         }
 
-        public void ReadFromReader(OracleDataReader reader)
-        {
-            this.Id = Int32.Parse(reader["ident"].ToString());
-            this.name = reader["name"].ToString();
-        }
+        public string Name { get; set; }
+
         public bool Create()
         {
-            string query = string.Format("INSERT INTO TAG (name) VALUES ('{0}')", Id);
+            var query = string.Format("INSERT INTO TAG (name) VALUES ('{0}')", this.Id);
 
-            if (DBManager.QueryDB(query) == null) return false;
+            if (DBManager.QueryDB(query) == null)
+            {
+                return false;
+            }
             return true;
         }
 
         public bool Read()
         {
-            string query = string.Format(READSTRING, "Tag", Id);
+            var query = string.Format(READSTRING, "Tag", this.Id);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
 
             reader.Read();
 
-            ReadFromReader(reader);
+            this.ReadFromReader(reader);
 
             return true;
         }
 
         public bool Update()
         {
-            string query = string.Format(UPDATESTRING, "Tag", Id);
+            var query = string.Format(UPDATESTRING, "Tag", this.Id);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
 
             reader.Read();
 
-            ReadFromReader(reader);
+            this.ReadFromReader(reader);
 
             return true;
-        }
-
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                this.name = value;
-            }
         }
 
         public bool Destroy()
         {
-            string query = String.Format(DESTROYSTRING, "Tag", Id);
+            var query = string.Format(DESTROYSTRING, "Tag", this.Id);
 
-            OracleDataReader reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
             return true;
+        }
+
+        public void ReadFromReader(OracleDataReader reader)
+        {
+            this.Id = int.Parse(reader["ident"].ToString());
+            this.Name = reader["name"].ToString();
         }
     }
 }
