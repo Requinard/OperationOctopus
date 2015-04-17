@@ -315,5 +315,10 @@ namespace ICT4EVENT
             return posts;
 
         }
+
+        internal static List<PostModel> RetrieveUserPosts(UserModel userModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
