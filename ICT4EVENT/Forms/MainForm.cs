@@ -110,6 +110,11 @@ namespace ICT4EVENT
             return false;
         }
 
+        private void btnHireMaterial_Click(object sender, EventArgs e)
+        {
+
+        }
+
        
     }
 }

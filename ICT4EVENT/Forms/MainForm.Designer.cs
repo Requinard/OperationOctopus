@@ -357,12 +357,13 @@
             // 
             this.btnHireMaterial.BackColor = System.Drawing.Color.Transparent;
             this.btnHireMaterial.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHireMaterial.Location = new System.Drawing.Point(447, 29);
+            this.btnHireMaterial.Location = new System.Drawing.Point(447, 22);
             this.btnHireMaterial.Name = "btnHireMaterial";
             this.btnHireMaterial.Size = new System.Drawing.Size(177, 131);
             this.btnHireMaterial.TabIndex = 2;
             this.btnHireMaterial.Text = "Voeg toe aan winkelwagen";
             this.btnHireMaterial.UseVisualStyleBackColor = false;
+            this.btnHireMaterial.Click += new System.EventHandler(this.btnHireMaterial_Click);
             // 
             // lblDetails
             // 
@@ -656,7 +657,7 @@
             this.lblDisplayUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplayUser.Location = new System.Drawing.Point(6, 27);
             this.lblDisplayUser.Name = "lblDisplayUser";
-            this.lblDisplayUser.Size = new System.Drawing.Size(90, 24);
+            this.lblDisplayUser.Size = new System.Drawing.Size(116, 28);
             this.lblDisplayUser.TabIndex = 10;
             this.lblDisplayUser.Tag = "Settings";
             this.lblDisplayUser.Text = "Display Name:";
