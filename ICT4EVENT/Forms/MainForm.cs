@@ -46,10 +46,10 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
-            List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
-            foreach (RentableObjectModel rentModel in Rentables)
+            List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
+            foreach (RentableObjectModel rentModel in rentables)
             {
-                listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
+                listMaterials.Items.Add(rentModel.ObjectType).SubItems.Add(rentModel.Description);
             }
         }
 
