@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -81,7 +79,6 @@
             this.tbMyDisplayName = new System.Windows.Forms.TextBox();
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
@@ -667,18 +664,10 @@
             this.btnLogOut.Text = "Uitloggen";
             this.btnLogOut.UseVisualStyleBackColor = true;
             // 
-            // MateriaalVerhuurImages
-            // 
-            this.MateriaalVerhuurImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("MateriaalVerhuurImages.ImageStream")));
-            this.MateriaalVerhuurImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.MateriaalVerhuurImages.Images.SetKeyName(0, "40334_pro.jpg");
-            this.MateriaalVerhuurImages.Images.SetKeyName(1, "219643-nicolas-cage.jpg");
-            this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
-            this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
             // MainForm
             // 
@@ -760,7 +749,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbMyDisplayName;
         private System.Windows.Forms.Label lblDisplayUser;
-        private System.Windows.Forms.ImageList MateriaalVerhuurImages;
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
         private System.Windows.Forms.Label lblDetails;
