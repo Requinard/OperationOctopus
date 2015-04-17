@@ -46,12 +46,12 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
-            listMaterials.Columns.Add("Naam");
-            listMaterials.Columns.Add("Beschrijving");
+            //listMaterials.Columns.Add("Naam");
+            //listMaterials.Columns.Add("Beschrijving");
             List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
             foreach (RentableObjectModel rentModel in rentables)
             {
-                listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
+                listMaterials.Items.Add(rentModel.ObjectType).SubItems.Add(rentModel.Description);
             }
         }
 
@@ -131,14 +131,26 @@ namespace ICT4EVENT
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem selectedItem = listMaterials.SelectedItems[0];
-            string selectedString = selectedItem.SubItems[1].Text;
-            lblDetails.Text = selectedString;
+            if (listMaterials.SelectedIndices.Count <= 0)
+            {
+                lblDetails.Text = "Selecteer een product.";
+                return;
+            } 
+            int intselectedindex = listMaterials.SelectedIndices[0];
+            if (intselectedindex >= 0)
+            {
+                ListViewItem selectedItem = listMaterials.SelectedItems[intselectedindex];
+                string selectedString = selectedItem.SubItems[1].Text;
+                lblDetails.Text = selectedString;
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            listCart.Items.RemoveAt(listCart.SelectedIndex);
+            if (listCart.SelectedIndex >= 0)
+            {
+                listCart.Items.RemoveAt(listCart.SelectedIndex);
+            }
         }
     }
 }

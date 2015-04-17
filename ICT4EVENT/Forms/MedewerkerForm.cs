@@ -13,12 +13,46 @@ namespace ICT4EVENT
         private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
 
+        private RFID rfid;
+
         public MedewerkerForm()
         {
             InitializeComponent();
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
             createUser = new CreateUserLogic(this);
+
+            OpenRFIDConnection();
+        }
+
+        private void OpenRFIDConnection()
+        {
+            try
+            {
+                rfid = new RFID();
+                rfid.Error += RFID_Error;
+                rfid.Tag += RFID_Tag;
+
+                rfid.open(-1);
+
+                rfid.waitForAttachment(1000);
+                rfid.LED = true;
+                rfid.Antenna = true;
+            }
+            catch (PhidgetException ex)
+            {
+                MessageBox.Show(ex.Description);
+            }
+        }
+
+        private void RFID_Error(object sender, ErrorEventArgs e)
+        {
+            MessageBox.Show(e.Description);
+        }
+
+        private void RFID_Tag(object sender, TagEventArgs e)
+        {
+            txtAssignRfid.Text = Convert.ToString(e.Tag);
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -56,17 +90,6 @@ namespace ICT4EVENT
                 nmrPlaats.SelectedIndex = 0;
                 txtGebruikers.Text = "";
             }
-        }
-        
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value, dateTimePicker2.Value);
-        }
-
-       
-        public class EventManagmentLogic
-        {
-
         }
 
         public class CampingLogic
@@ -110,6 +133,7 @@ namespace ICT4EVENT
 
             public bool CheckPlaceSize(int place, int amountofusers)
             {
+                #region Check places in every array
                 if (amountofusers == 0)
                 {
                     MessageBox.Show("Vul minstens een persoon in bij gebruikers");
@@ -203,6 +227,7 @@ namespace ICT4EVENT
 
                 MessageBox.Show("Plaats niet gevonden.");
                 return false;
+                #endregion
             }
 
             private void FillAllPlaces()
@@ -328,8 +353,8 @@ namespace ICT4EVENT
                 string Email = parent.txtEmail.Text;
                 string Rfid = parent.txtAssignRfid.Text;
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
-                MessageBox.Show("User aangemaakt." + Environment.NewLine + "Gebruikersnaam:" + userName +
-                                Environment.NewLine + "Wachtwoord:" + Password);
+                MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
+                                Environment.NewLine + "Wachtwoord: " + Password);
             }
 
             private string GeneratePassword()
@@ -351,6 +376,20 @@ namespace ICT4EVENT
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
             createUser.CreateUser();
+        }
+
+        private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabMainTab.SelectedTab == tabCreateUser)
+            {
+                rfid.Antenna = true;
+                rfid.LED = true;
+            }
+            else
+            {
+                rfid.Antenna = false;
+                rfid.LED = false;
+            }
         }     
     }
 }

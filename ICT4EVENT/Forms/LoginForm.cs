@@ -118,6 +118,10 @@ namespace ICT4EVENT
             rfid.close();
 
             FillActionList();
+
+            txtPassword.Enabled = false;
+            txtUserName.Enabled = false;
+            btnLogin.Enabled = false;
         }
 
         private void openForm(Form form)
