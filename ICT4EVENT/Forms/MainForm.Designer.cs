@@ -83,6 +83,8 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
+            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Beschrijving = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -308,11 +310,16 @@
             // 
             // listMaterials
             // 
-            this.listMaterials.Location = new System.Drawing.Point(3, 3);
+            this.listMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Naam,
+            this.Beschrijving});
+            this.listMaterials.Location = new System.Drawing.Point(4, 6);
             this.listMaterials.Name = "listMaterials";
             this.listMaterials.Size = new System.Drawing.Size(633, 447);
             this.listMaterials.TabIndex = 6;
             this.listMaterials.UseCompatibleStateImageBehavior = false;
+            this.listMaterials.View = System.Windows.Forms.View.Details;
+            this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
             // 
             // btnRemove
             // 
@@ -330,13 +337,9 @@
             // listCart
             // 
             this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listCart.Enabled = false;
             this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listCart.FormattingEnabled = true;
             this.listCart.ItemHeight = 24;
-            this.listCart.Items.AddRange(new object[] {
-            "Test1",
-            "Test2"});
             this.listCart.Location = new System.Drawing.Point(642, 6);
             this.listCart.Name = "listCart";
             this.listCart.Size = new System.Drawing.Size(145, 556);
@@ -686,6 +689,16 @@
             this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
             // 
+            // Naam
+            // 
+            this.Naam.Text = "Naam";
+            this.Naam.Width = 120;
+            // 
+            // Beschrijving
+            // 
+            this.Beschrijving.Text = "Beschrijving";
+            this.Beschrijving.Width = 500;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -786,6 +799,8 @@
         private System.Windows.Forms.Button btnSocialMedia4;
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
         private System.Windows.Forms.ListView listMaterials;
+        private System.Windows.Forms.ColumnHeader Naam;
+        private System.Windows.Forms.ColumnHeader Beschrijving;
     }
 }
 
