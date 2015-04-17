@@ -194,7 +194,6 @@ namespace ICT4EVENT
             }
 
             return posts;
-
         }
     }
 }
