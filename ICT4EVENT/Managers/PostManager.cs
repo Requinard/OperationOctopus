@@ -224,7 +224,7 @@ namespace ICT4EVENT
             return reports;
         }
 
-                 public static List<TagModel> GetAllTags()
+         public static List<TagModel> GetAllTags()
          {
              List<TagModel> tags = new List<TagModel>();
              string query = "SELECT * FROM TAG";
