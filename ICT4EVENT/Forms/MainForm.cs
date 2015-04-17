@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-
+//using ICT4EVENT.Controls;
 
 namespace ICT4EVENT
 {
-    using ICT4EVENT.Controls;
-
     public partial class MainForm : Form
     {
-        private MainGuiLogic mainGuiLogic;
         public MainForm()
         {
             InitializeComponent();
             FillMaterials();
-            mainGuiLogic = new MainGuiLogic(this);
+            DynamicButtonLogic(false);
             // TODO: Repair initializations from social media manager
             //socialManager = new SocialMediaEventManager();
         }
@@ -27,8 +24,8 @@ namespace ICT4EVENT
             {
                 CreateTestPosts();
             }
-            mainGuiLogic.DynamicButtonLogic();
             FillList(PostManager.GetPostsByPage());
+            FillMaterials();
         }
 
         private void CreateTestPosts()
@@ -40,73 +37,86 @@ namespace ICT4EVENT
         {
             foreach (PostModel postModel in postModels)
             {
-                flowPosts.Controls.Add(new UserPost(postModel));
+                flowPostsFromUser.Controls.Add(new UserPost(postModel));
             }
         }
 
         private void FillMaterials()
         {
-            listMaterials.Columns.Add("Naam");
-            listMaterials.Columns.Add("Beschrijving");
+            //listMaterials.Columns.Add("Naam");
+            //listMaterials.Columns.Add("Beschrijving");
             List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
             foreach (RentableObjectModel rentModel in rentables)
             {
-                listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
+                listMaterials.Items.Add(rentModel.ObjectType).SubItems.Add(rentModel.Description);
             }
         }
 
-        private void comboBox1_DropDown(object sender, EventArgs e)
-        {
-            if (cbProfileSelector.Text.Length >= 3)
-            {
-                //Add the results of the search query here
-                cbProfileSelector.Items.Add(null);
-            }
-        }
+
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mainGuiLogic.DynamicButtonLogic();
+            DynamicButtonLogic(false);
         }
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
         {
-            mainGuiLogic.DynamicButtonLogic();
+            DynamicButtonLogic(true);
         }
 
-        public class MainGuiLogic
-        {
-            private MainForm parent;
 
-            public MainGuiLogic(MainForm mainform)
+        public void DynamicButtonLogic(bool action)
+        {
+            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
+        {
+                btnDynamicButton.Text = "Post";
+
+                // button actions happen here
+                if (action)
             {
-                parent = mainform;
+                    PostingLogic(tbPostContent.Text);
             }
 
-            public void DynamicButtonLogic()
+            }
+            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
-                if (parent.tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
+                btnDynamicButton.Text = "Huur";
+
+                // button actions happen here
+                }
+            if (tabMainTab.SelectedTab.Name == "tabProfile")
                 {
-                    parent.btnDynamicButton.Text = "Post";
+                btnDynamicButton.Text = "Zoek User";
 
                     // button actions happen here
-                    PostingLogic(parent.tbPostContent.Text);
-                }
-                if (parent.tabMainTab.SelectedTab.Name == "tabMaterialrent")
-                {
-                    parent.btnDynamicButton.Text = "Huur";
 
-                    // button actions happen here
-                }
-                if (parent.tabMainTab.SelectedTab.Name == "tabProfile")
+                if (action)
                 {
-                    parent.btnDynamicButton.Text = "Bevestig";
+                    UserModel userModel = UserManager.FindUser(tbUserToFind.Text);
 
-                    // button actions happen here
+                    if (userModel != null)
+                    {
+                        gbProfileOfUser.Enabled = true;
+                        gbPostsOfUser.Enabled = true;
+                        gbProfileOfUser.Text += userModel.Username;
+                        gbPostsOfUser.Text += userModel.Username;
+                        lblUserDisplayName.Text += userModel.Username;
+
+                        List<PostModel> postsFromUserList = PostManager.RetrieveUserPosts(userModel);
+                        foreach (PostModel postModel in postsFromUserList)
+                        {
+                            flowPostsFromUser.Controls.Add(new UserPost(postModel));
+                        }
                 }
-                if (parent.tabMainTab.SelectedTab.Name == "tabSettings")
+                    else
                 {
-                    parent.btnDynamicButton.Text = "Bevestig";
+                        MessageBox.Show("User niet gevonden");
+                    }
+                }
+                }
+            if (tabMainTab.SelectedTab.Name == "tabSettings")
+                {
+                btnDynamicButton.Text = "Bevestig";
 
                     // button actions happen here
                 }
@@ -114,13 +124,14 @@ namespace ICT4EVENT
 
             public bool PostingLogic(string PostContent)
             {
-                PostManager.CreateNewPost(PostContent);
+            if (PostManager.CreateNewPost(PostContent) != null)
+            {
+                return true;
+            }
 
                 return false;
             }
 
-            
-        }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
         {
@@ -131,14 +142,30 @@ namespace ICT4EVENT
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem selectedItem = listMaterials.SelectedItems[0];
-            string selectedString = selectedItem.SubItems[1].Text;
-            lblDetails.Text = selectedString;
+            if (listMaterials.SelectedIndices.Count <= 0)
+            {
+                lblDetails.Text = "Selecteer een product.";
+                return;
+            } 
+            int intselectedindex = listMaterials.SelectedIndices[0];
+            if (intselectedindex >= 0)
+            {
+                ListViewItem selectedItem = listMaterials.SelectedItems[intselectedindex];
+                string selectedString = selectedItem.SubItems[1].Text;
+                lblDetails.Text = selectedString;
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            listCart.Items.RemoveAt(listCart.SelectedIndex);
+            if (listCart.SelectedIndex >= 0)
+            {
+                listCart.Items.RemoveAt(listCart.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een product.");
+            }
         }
     }
 }

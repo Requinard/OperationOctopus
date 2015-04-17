@@ -102,23 +102,17 @@
     <Compile Include="Forms\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Materials.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Forms\DBConfigForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Materials.Designer.cs">
-      <DependentUpon>Materials.cs</DependentUpon>
+    <Compile Include="Forms\DBConfigForm.Designer.cs">
+      <DependentUpon>DBConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MedewerkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MedewerkerForm.Designer.cs">
       <DependentUpon>MedewerkerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DBConfigForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DBConfigForm.Designer.cs">
-      <DependentUpon>DBConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\DBManager.cs" />
     <Compile Include="Managers\EquipmentManager.cs" />
@@ -149,7 +143,6 @@
     <Compile Include="Models\RentableObjectModel.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Models\RFIDLogModel.cs" />
-    <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,17 +166,8 @@
     <Compile Include="Controls\ControlPostReview.Designer.cs">
       <DependentUpon>ControlPostReview.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\ControlPost.resx">
-      <DependentUpon>ControlPost.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Materials.resx">
-      <DependentUpon>Materials.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MedewerkerForm.resx">
-      <DependentUpon>MedewerkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DBConfigForm.resx">
       <DependentUpon>DBConfigForm.cs</DependentUpon>
@@ -194,6 +178,9 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MedewerkerForm.resx">
+      <DependentUpon>MedewerkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

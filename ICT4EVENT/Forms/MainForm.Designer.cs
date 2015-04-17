@@ -53,12 +53,13 @@
             this.groupDetails = new System.Windows.Forms.GroupBox();
             this.btnHireMaterial = new System.Windows.Forms.Button();
             this.lblDetails = new System.Windows.Forms.Label();
+            this.pictureDetails = new System.Windows.Forms.PictureBox();
             this.tabProfile = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
+            this.tbUserToFind = new System.Windows.Forms.TextBox();
             this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
             this.flowPostsFromUser = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.cbProfileSelector = new System.Windows.Forms.ComboBox();
             this.gbProfileOfUser = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -82,6 +83,8 @@
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.MateriaalVerhuurImages = new System.Windows.Forms.ImageList(this.components);
+            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Beschrijving = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -91,6 +94,7 @@
             this.tabSocialMediaSharingSystem.SuspendLayout();
             this.tabMaterialrent.SuspendLayout();
             this.groupDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).BeginInit();
             this.tabProfile.SuspendLayout();
             this.gbProfielen.SuspendLayout();
             this.gbPostsOfUser.SuspendLayout();
@@ -128,7 +132,7 @@
             this.lblTrending.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrending.Location = new System.Drawing.Point(4, 67);
             this.lblTrending.Name = "lblTrending";
-            this.lblTrending.Size = new System.Drawing.Size(154, 28);
+            this.lblTrending.Size = new System.Drawing.Size(120, 24);
             this.lblTrending.TabIndex = 5;
             this.lblTrending.Tag = "Static";
             this.lblTrending.Text = "Trending right now:";
@@ -148,10 +152,10 @@
             // Posts
             // 
             this.Posts.Controls.Add(this.lbTrendingPosts);
-            this.Posts.Location = new System.Drawing.Point(4, 33);
+            this.Posts.Location = new System.Drawing.Point(4, 27);
             this.Posts.Name = "Posts";
             this.Posts.Padding = new System.Windows.Forms.Padding(3);
-            this.Posts.Size = new System.Drawing.Size(165, 534);
+            this.Posts.Size = new System.Drawing.Size(165, 540);
             this.Posts.TabIndex = 0;
             this.Posts.Text = "Posts";
             this.Posts.UseVisualStyleBackColor = true;
@@ -162,7 +166,7 @@
             this.lbTrendingPosts.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTrendingPosts.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbTrendingPosts.FormattingEnabled = true;
-            this.lbTrendingPosts.ItemHeight = 28;
+            this.lbTrendingPosts.ItemHeight = 24;
             this.lbTrendingPosts.Location = new System.Drawing.Point(-3, 6);
             this.lbTrendingPosts.Name = "lbTrendingPosts";
             this.lbTrendingPosts.Size = new System.Drawing.Size(172, 508);
@@ -171,19 +175,19 @@
             // 
             // Media
             // 
-            this.Media.Location = new System.Drawing.Point(4, 33);
+            this.Media.Location = new System.Drawing.Point(4, 27);
             this.Media.Name = "Media";
             this.Media.Padding = new System.Windows.Forms.Padding(3);
-            this.Media.Size = new System.Drawing.Size(165, 534);
+            this.Media.Size = new System.Drawing.Size(165, 540);
             this.Media.TabIndex = 1;
             this.Media.Text = "Media";
             this.Media.UseVisualStyleBackColor = true;
             // 
             // Organisation
             // 
-            this.Organisation.Location = new System.Drawing.Point(4, 33);
+            this.Organisation.Location = new System.Drawing.Point(4, 27);
             this.Organisation.Name = "Organisation";
-            this.Organisation.Size = new System.Drawing.Size(165, 534);
+            this.Organisation.Size = new System.Drawing.Size(165, 540);
             this.Organisation.TabIndex = 2;
             this.Organisation.Text = "Organisation";
             this.Organisation.UseVisualStyleBackColor = true;
@@ -245,10 +249,10 @@
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnMediaFile);
             this.tabSocialMediaSharingSystem.Controls.Add(this.tbPostContent);
             this.tabSocialMediaSharingSystem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabSocialMediaSharingSystem.Location = new System.Drawing.Point(4, 33);
+            this.tabSocialMediaSharingSystem.Location = new System.Drawing.Point(4, 27);
             this.tabSocialMediaSharingSystem.Name = "tabSocialMediaSharingSystem";
             this.tabSocialMediaSharingSystem.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSocialMediaSharingSystem.Size = new System.Drawing.Size(802, 616);
+            this.tabSocialMediaSharingSystem.Size = new System.Drawing.Size(802, 622);
             this.tabSocialMediaSharingSystem.TabIndex = 0;
             this.tabSocialMediaSharingSystem.Text = "Social Media Sharing System";
             this.tabSocialMediaSharingSystem.UseVisualStyleBackColor = true;
@@ -296,21 +300,25 @@
             this.tabMaterialrent.Controls.Add(this.btnRemove);
             this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.groupDetails);
-            this.tabMaterialrent.Location = new System.Drawing.Point(4, 33);
+            this.tabMaterialrent.Location = new System.Drawing.Point(4, 27);
             this.tabMaterialrent.Name = "tabMaterialrent";
             this.tabMaterialrent.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMaterialrent.Size = new System.Drawing.Size(802, 616);
+            this.tabMaterialrent.Size = new System.Drawing.Size(802, 622);
             this.tabMaterialrent.TabIndex = 1;
             this.tabMaterialrent.Text = "Materiaalverhuur";
             this.tabMaterialrent.UseVisualStyleBackColor = true;
             // 
             // listMaterials
             // 
+            this.listMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Naam,
+            this.Beschrijving});
             this.listMaterials.Location = new System.Drawing.Point(4, 6);
             this.listMaterials.Name = "listMaterials";
-            this.listMaterials.Size = new System.Drawing.Size(632, 444);
+            this.listMaterials.Size = new System.Drawing.Size(633, 447);
             this.listMaterials.TabIndex = 6;
             this.listMaterials.UseCompatibleStateImageBehavior = false;
+            this.listMaterials.View = System.Windows.Forms.View.Details;
             this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
             // 
             // btnRemove
@@ -325,27 +333,23 @@
             this.btnRemove.Tag = "Static";
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // listCart
             // 
             this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listCart.Enabled = false;
             this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listCart.FormattingEnabled = true;
             this.listCart.ItemHeight = 24;
-            this.listCart.Items.AddRange(new object[] {
-            "Test1",
-            "Test2"});
             this.listCart.Location = new System.Drawing.Point(642, 6);
             this.listCart.Name = "listCart";
-            this.listCart.Size = new System.Drawing.Size(145, 556);
+            this.listCart.Size = new System.Drawing.Size(145, 544);
             this.listCart.TabIndex = 2;
             // 
             // groupDetails
             // 
             this.groupDetails.Controls.Add(this.btnHireMaterial);
             this.groupDetails.Controls.Add(this.lblDetails);
+            this.groupDetails.Controls.Add(this.pictureDetails);
             this.groupDetails.Location = new System.Drawing.Point(6, 456);
             this.groupDetails.Name = "groupDetails";
             this.groupDetails.Size = new System.Drawing.Size(630, 166);
@@ -367,26 +371,34 @@
             // 
             // lblDetails
             // 
-            this.lblDetails.Location = new System.Drawing.Point(6, 29);
+            this.lblDetails.Location = new System.Drawing.Point(143, 29);
             this.lblDetails.Name = "lblDetails";
-            this.lblDetails.Size = new System.Drawing.Size(435, 131);
+            this.lblDetails.Size = new System.Drawing.Size(298, 131);
             this.lblDetails.TabIndex = 1;
             this.lblDetails.Text = "Details";
+            // 
+            // pictureDetails
+            // 
+            this.pictureDetails.Location = new System.Drawing.Point(6, 29);
+            this.pictureDetails.Name = "pictureDetails";
+            this.pictureDetails.Size = new System.Drawing.Size(131, 131);
+            this.pictureDetails.TabIndex = 0;
+            this.pictureDetails.TabStop = false;
             // 
             // tabProfile
             // 
             this.tabProfile.Controls.Add(this.gbProfielen);
-            this.tabProfile.Location = new System.Drawing.Point(4, 33);
+            this.tabProfile.Location = new System.Drawing.Point(4, 27);
             this.tabProfile.Name = "tabProfile";
-            this.tabProfile.Size = new System.Drawing.Size(802, 616);
+            this.tabProfile.Size = new System.Drawing.Size(802, 622);
             this.tabProfile.TabIndex = 4;
             this.tabProfile.Text = "Profiel";
             this.tabProfile.UseVisualStyleBackColor = true;
             // 
             // gbProfielen
             // 
+            this.gbProfielen.Controls.Add(this.tbUserToFind);
             this.gbProfielen.Controls.Add(this.gbPostsOfUser);
-            this.gbProfielen.Controls.Add(this.cbProfileSelector);
             this.gbProfielen.Controls.Add(this.gbProfileOfUser);
             this.gbProfielen.Location = new System.Drawing.Point(3, 3);
             this.gbProfielen.Name = "gbProfielen";
@@ -395,16 +407,24 @@
             this.gbProfielen.TabStop = false;
             this.gbProfielen.Text = "Profielen:";
             // 
+            // tbUserToFind
+            // 
+            this.tbUserToFind.Location = new System.Drawing.Point(9, 25);
+            this.tbUserToFind.Name = "tbUserToFind";
+            this.tbUserToFind.Size = new System.Drawing.Size(769, 25);
+            this.tbUserToFind.TabIndex = 16;
+            // 
             // gbPostsOfUser
             // 
             this.gbPostsOfUser.Controls.Add(this.flowPostsFromUser);
             this.gbPostsOfUser.Controls.Add(this.pictureBox2);
+            this.gbPostsOfUser.Enabled = false;
             this.gbPostsOfUser.Location = new System.Drawing.Point(3, 236);
             this.gbPostsOfUser.Name = "gbPostsOfUser";
             this.gbPostsOfUser.Size = new System.Drawing.Size(781, 376);
             this.gbPostsOfUser.TabIndex = 15;
             this.gbPostsOfUser.TabStop = false;
-            this.gbPostsOfUser.Text = "Posts van <username>";
+            this.gbPostsOfUser.Text = "Posts van ";
             // 
             // flowPostsFromUser
             // 
@@ -423,27 +443,19 @@
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
             // 
-            // cbProfileSelector
-            // 
-            this.cbProfileSelector.FormattingEnabled = true;
-            this.cbProfileSelector.Location = new System.Drawing.Point(9, 24);
-            this.cbProfileSelector.Name = "cbProfileSelector";
-            this.cbProfileSelector.Size = new System.Drawing.Size(769, 32);
-            this.cbProfileSelector.TabIndex = 16;
-            this.cbProfileSelector.DropDown += new System.EventHandler(this.comboBox1_DropDown);
-            // 
             // gbProfileOfUser
             // 
             this.gbProfileOfUser.Controls.Add(this.label3);
             this.gbProfileOfUser.Controls.Add(this.pictureBox3);
             this.gbProfileOfUser.Controls.Add(this.pictureBox4);
             this.gbProfileOfUser.Controls.Add(this.lblUserDisplayName);
+            this.gbProfileOfUser.Enabled = false;
             this.gbProfileOfUser.Location = new System.Drawing.Point(0, 56);
             this.gbProfileOfUser.Name = "gbProfileOfUser";
-            this.gbProfileOfUser.Size = new System.Drawing.Size(784, 225);
+            this.gbProfileOfUser.Size = new System.Drawing.Size(784, 198);
             this.gbProfileOfUser.TabIndex = 14;
             this.gbProfileOfUser.TabStop = false;
-            this.gbProfileOfUser.Text = "profiel van <username>";
+            this.gbProfileOfUser.Text = "profiel van ";
             // 
             // label3
             // 
@@ -483,15 +495,15 @@
             this.lblUserDisplayName.Size = new System.Drawing.Size(613, 24);
             this.lblUserDisplayName.TabIndex = 9;
             this.lblUserDisplayName.Tag = "Settings";
-            this.lblUserDisplayName.Text = "Display Name:";
+            this.lblUserDisplayName.Text = "Display Name:  ";
             this.lblUserDisplayName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabSettings
             // 
             this.tabSettings.Controls.Add(this.gbSettings);
-            this.tabSettings.Location = new System.Drawing.Point(4, 33);
+            this.tabSettings.Location = new System.Drawing.Point(4, 27);
             this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Size = new System.Drawing.Size(802, 616);
+            this.tabSettings.Size = new System.Drawing.Size(802, 622);
             this.tabSettings.TabIndex = 3;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
@@ -598,7 +610,7 @@
             this.lblBiografie.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBiografie.Location = new System.Drawing.Point(6, 90);
             this.lblBiografie.Name = "lblBiografie";
-            this.lblBiografie.Size = new System.Drawing.Size(82, 28);
+            this.lblBiografie.Size = new System.Drawing.Size(64, 24);
             this.lblBiografie.TabIndex = 15;
             this.lblBiografie.Tag = "Profiel";
             this.lblBiografie.Text = "Biografie:";
@@ -628,7 +640,7 @@
             this.label4.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 28);
+            this.label4.Size = new System.Drawing.Size(83, 24);
             this.label4.TabIndex = 12;
             this.label4.Tag = "Profiel";
             this.label4.Text = "Wachtwoord:";
@@ -649,7 +661,7 @@
             this.lblDisplayUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplayUser.Location = new System.Drawing.Point(6, 27);
             this.lblDisplayUser.Name = "lblDisplayUser";
-            this.lblDisplayUser.Size = new System.Drawing.Size(116, 28);
+            this.lblDisplayUser.Size = new System.Drawing.Size(90, 24);
             this.lblDisplayUser.TabIndex = 10;
             this.lblDisplayUser.Tag = "Settings";
             this.lblDisplayUser.Text = "Display Name:";
@@ -677,9 +689,19 @@
             this.MateriaalVerhuurImages.Images.SetKeyName(2, "article-0-01E01C5D0000044D-450_306x423.jpg");
             this.MateriaalVerhuurImages.Images.SetKeyName(3, "d0a269062e9437068b0672ab4735afd978fce768_r.jpg");
             // 
+            // Naam
+            // 
+            this.Naam.Text = "Naam";
+            this.Naam.Width = 120;
+            // 
+            // Beschrijving
+            // 
+            this.Beschrijving.Text = "Beschrijving";
+            this.Beschrijving.Width = 500;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 666);
             this.Controls.Add(this.gbStaticUpdates);
@@ -703,8 +725,10 @@
             this.tabSocialMediaSharingSystem.PerformLayout();
             this.tabMaterialrent.ResumeLayout(false);
             this.groupDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDetails)).EndInit();
             this.tabProfile.ResumeLayout(false);
             this.gbProfielen.ResumeLayout(false);
+            this.gbProfielen.PerformLayout();
             this.gbPostsOfUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.gbProfileOfUser.ResumeLayout(false);
@@ -744,7 +768,6 @@
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.GroupBox gbSettings;
         private System.Windows.Forms.TreeView treeCategorie;
-        private System.Windows.Forms.ComboBox cbProfileSelector;
         private System.Windows.Forms.GroupBox gbProfileOfUser;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -761,6 +784,7 @@
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
         private System.Windows.Forms.Label lblDetails;
+        private System.Windows.Forms.PictureBox pictureDetails;
         private System.Windows.Forms.ListBox listCart;
         private System.Windows.Forms.GroupBox gbSocialMedia;
         private System.Windows.Forms.Button btnSocialMedia3;
@@ -775,6 +799,7 @@
         private System.Windows.Forms.Button btnSocialMedia4;
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
         private System.Windows.Forms.ListView listMaterials;
+        private System.Windows.Forms.TextBox tbUserToFind;
     }
 }
 

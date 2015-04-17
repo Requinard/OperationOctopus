@@ -121,82 +121,103 @@ namespace ICT4EVENT
 
                 if (Bungalows.Contains(place))
                 {
-                    if (amountofusers > 8)
-                    {
-                        MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
-                        return false;
+                        if (amountofusers > 8)
+                        {
+                            MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
-                }
-                if (Bungalinos.Contains(place))
-                {
-                    if (amountofusers > 4)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een bungalino verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
 
-                if (EigenTenten.Contains(place))
+                foreach (var p in Bungalinos)
                 {
-                    if (amountofusers > 5)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 5 personen in een eigen tent verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een bungalino verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (Blokhutten.Contains(place))
+                foreach (var p in EigenTenten)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een blokhut verblijven.");
-                        return false;
+                        if (amountofusers > 5)
+                        {
+                            MessageBox.Show("Er mogen maximaal 5 personen in een eigen tent verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (ComfortPlaatsen.Contains(place))
+                foreach (var p in Blokhutten)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen op een comfortplaats verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een blokhut verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-
-                if (Huurtentjes.Contains(place))
+                foreach (var p in ComfortPlaatsen)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een huurtentje verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen op een comfortplaats verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (StaCaravan.Contains(place))
+                foreach (var p in Huurtentjes)
                 {
-                    if (amountofusers > 6)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een stacaravan verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een huurtentje verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (Invalidenaccomodatie.Contains(place))
+                foreach (var p in StaCaravan)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een invalidenaccomodatie verblijven.");
-                        return false;
+                        if (amountofusers > 6)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een stacaravan verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
+                }
+
+                foreach (var p in Invalidenaccomodatie)
+                {
+                    if (p == place)
+                    {
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een invalidenaccomodatie verblijven.");
+                            return false;
+                        }
+                        return true;
+                    }
                 }
 
                 MessageBox.Show("Plaats niet gevonden.");
@@ -217,7 +238,7 @@ namespace ICT4EVENT
                 var Tenten2 = Enumerable.Range(200, 14).ToArray();
                 var Tenten3 = Enumerable.Range(401, 19).ToArray();
                 var Tenten4 = Enumerable.Range(314, 10).ToArray();
-                int[] Tenten5 = { 544, 431 };
+                int[] Tenten5 = {544, 431};
                 var Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
                 return Tenten;
             }
@@ -239,7 +260,7 @@ namespace ICT4EVENT
                 var Blokhutten3 = Enumerable.Range(95, 2).ToArray();
                 var Blokhutten4 = Enumerable.Range(138, 5).ToArray();
                 var Blokhutten5 = Enumerable.Range(143, 8).ToArray();
-                int[] Blokhutten6 = { 124 };
+                int[] Blokhutten6 = {124};
                 var Blokhutten =
                     Blokhutten1.Concat(Blokhutten2)
                         .Concat(Blokhutten3)
@@ -326,8 +347,6 @@ namespace ICT4EVENT
                 string Email = parent.txtEmail.Text;
                 string Rfid = parent.txtAssignRfid.Text;
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
-                MessageBox.Show("User aangemaakt." + Environment.NewLine + "Gebruikersnaam:" + userName +
-                                Environment.NewLine + "Wachtwoord:" + Password);
             }
 
             private string GeneratePassword()
@@ -348,7 +367,15 @@ namespace ICT4EVENT
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-            createUser.CreateUser();
+            if (txtAssignRfid.Text != null)
+            {
+                createUser.CreateUser();
+                MessageBox.Show("Gebruiker aangemaakt");
+            }
+            else
+            {
+                MessageBox.Show("Scan eerst een RFID");
+            }
         }     
     }
 }
