@@ -14,11 +14,12 @@ namespace ICT4EVENT
             InitializeComponent();
             postModel = model;
 
+            
             Text = postModel.Content;
             Size = new Size(593, 107);
 
 
-            lblPoster.Text = "@" + postModel.User;
+            lblPoster.Text = "@" + postModel.User.Username;
 
             if (postModel.PathToFile == "")
             {
@@ -34,6 +35,7 @@ namespace ICT4EVENT
 
             Random r = new Random();
             BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
+            pictureBox1.BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
 
             if (postModel.Parent != null)
             {
