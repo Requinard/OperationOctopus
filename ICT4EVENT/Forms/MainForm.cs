@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using ICT4EVENT.Controls;
+//using ICT4EVENT.Controls;
 
 namespace ICT4EVENT
 {
@@ -26,6 +26,7 @@ namespace ICT4EVENT
             }
             mainGuiLogic.DynamicButtonLogic();
             FillList(PostManager.GetPostsByPage());
+            FillMaterials();
         }
 
         private void CreateTestPosts()
@@ -43,10 +44,12 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
+            listMaterials.Columns.Add("Naam");
+            listMaterials.Columns.Add("Beschrijving");
             List<RentableObjectModel> Rentables = EquipmentManager.GetAllRentables();
             foreach (RentableObjectModel rentModel in Rentables)
             {
-                flowMaterials.Controls.Add(new Materials(rentModel.ObjectType, rentModel.Description));
+                listMaterials.Items.Add(rentModel.ObjectType, rentModel.Description);
             }
         }
 
@@ -115,6 +118,13 @@ namespace ICT4EVENT
             }
 
             
+        }
+
+        private void btnHireMaterial_Click(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = listMaterials.SelectedItems[0];
+            string selectedString = selectedItem.SubItems[0].Text;
+            listCart.Items.Add(selectedString);
         }
     }
 }
