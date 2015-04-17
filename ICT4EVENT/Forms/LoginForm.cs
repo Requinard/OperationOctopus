@@ -135,13 +135,7 @@ namespace ICT4EVENT
 
         private void btnGO_Click(object sender, EventArgs e)
         {
-            Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedText);
-
-            if (Settings.ActiveUser == null || Settings.ActiveEvent == null)
-            {
-                Logger.Error("No user or event were set to active on form initialization");
-                Environment.Exit(2);
-            }
+            Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedItem.ToString());
 
             switch (comboOptions.SelectedIndex)
             {

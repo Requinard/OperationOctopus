@@ -22,7 +22,7 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             DynamicButtonLogic(false);
-            FillList();
+            
         }
 
         private void CreateTestPosts()
@@ -64,7 +64,7 @@ namespace ICT4EVENT
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
         {
-            DynamicButtonLogic(false);
+            DynamicButtonLogic(true);
         }
 
         public void DynamicButtonLogic(bool action)

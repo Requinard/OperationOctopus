@@ -17,9 +17,9 @@ namespace ICT4EVENT
             Size = new Size(593, 107);
 
 
-            lblPoster.Text = "@" + postModel.User;
+            lblPoster.Text = "@" + postModel.User.Username;
 
-            if (postModel.PathToFile == null)
+            if (postModel.PathToFile == "")
             {
                 Size = new Size(Size.Width, (lblText.Size.Height));
             }
