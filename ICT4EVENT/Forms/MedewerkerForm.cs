@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Phidgets;
-using Phidgets.Events;
 
 namespace ICT4EVENT
 {
@@ -13,46 +11,12 @@ namespace ICT4EVENT
         private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
 
-        private RFID rfid;
-
         public MedewerkerForm()
         {
             InitializeComponent();
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
             createUser = new CreateUserLogic(this);
-
-            OpenRFIDConnection();
-        }
-
-        private void OpenRFIDConnection()
-        {
-            try
-            {
-                rfid = new RFID();
-                rfid.Error += RFID_Error;
-                rfid.Tag += RFID_Tag;
-
-                rfid.open(-1);
-
-                rfid.waitForAttachment(1000);
-                rfid.LED = true;
-                rfid.Antenna = true;
-            }
-            catch (PhidgetException ex)
-            {
-                MessageBox.Show(ex.Description);
-            }
-        }
-
-        private void RFID_Error(object sender, ErrorEventArgs e)
-        {
-            MessageBox.Show(e.Description);
-        }
-
-        private void RFID_Tag(object sender, TagEventArgs e)
-        {
-            txtAssignRfid.Text = Convert.ToString(e.Tag);
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -90,6 +54,17 @@ namespace ICT4EVENT
                 nmrPlaats.SelectedIndex = 0;
                 txtGebruikers.Text = "";
             }
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value, dateTimePicker2.Value);
+        }
+
+       
+        public class EventManagmentLogic
+        {
+
         }
 
         public class CampingLogic
@@ -133,7 +108,6 @@ namespace ICT4EVENT
 
             public bool CheckPlaceSize(int place, int amountofusers)
             {
-                #region Check places in every array
                 if (amountofusers == 0)
                 {
                     MessageBox.Show("Vul minstens een persoon in bij gebruikers");
@@ -147,87 +121,107 @@ namespace ICT4EVENT
 
                 if (Bungalows.Contains(place))
                 {
-                    if (amountofusers > 8)
-                    {
-                        MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
-                        return false;
+                        if (amountofusers > 8)
+                        {
+                            MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
-                }
-                if (Bungalinos.Contains(place))
-                {
-                    if (amountofusers > 4)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een bungalino verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
 
-                if (EigenTenten.Contains(place))
+                foreach (var p in Bungalinos)
                 {
-                    if (amountofusers > 5)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 5 personen in een eigen tent verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een bungalino verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (Blokhutten.Contains(place))
+                foreach (var p in EigenTenten)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een blokhut verblijven.");
-                        return false;
+                        if (amountofusers > 5)
+                        {
+                            MessageBox.Show("Er mogen maximaal 5 personen in een eigen tent verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (ComfortPlaatsen.Contains(place))
+                foreach (var p in Blokhutten)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen op een comfortplaats verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een blokhut verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-
-                if (Huurtentjes.Contains(place))
+                foreach (var p in ComfortPlaatsen)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een huurtentje verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen op een comfortplaats verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (StaCaravan.Contains(place))
+                foreach (var p in Huurtentjes)
                 {
-                    if (amountofusers > 6)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een stacaravan verblijven.");
-                        return false;
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een huurtentje verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
                 }
 
-                if (Invalidenaccomodatie.Contains(place))
+                foreach (var p in StaCaravan)
                 {
-                    if (amountofusers > 4)
+                    if (p == place)
                     {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een invalidenaccomodatie verblijven.");
-                        return false;
+                        if (amountofusers > 6)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een stacaravan verblijven.");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
+                }
+
+                foreach (var p in Invalidenaccomodatie)
+                {
+                    if (p == place)
+                    {
+                        if (amountofusers > 4)
+                        {
+                            MessageBox.Show("Er mogen maximaal 4 personen in een invalidenaccomodatie verblijven.");
+                            return false;
+                        }
+                        return true;
+                    }
                 }
 
                 MessageBox.Show("Plaats niet gevonden.");
                 return false;
-                #endregion
             }
 
             private void FillAllPlaces()
@@ -244,7 +238,7 @@ namespace ICT4EVENT
                 var Tenten2 = Enumerable.Range(200, 14).ToArray();
                 var Tenten3 = Enumerable.Range(401, 19).ToArray();
                 var Tenten4 = Enumerable.Range(314, 10).ToArray();
-                int[] Tenten5 = { 544, 431 };
+                int[] Tenten5 = {544, 431};
                 var Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
                 return Tenten;
             }
@@ -266,7 +260,7 @@ namespace ICT4EVENT
                 var Blokhutten3 = Enumerable.Range(95, 2).ToArray();
                 var Blokhutten4 = Enumerable.Range(138, 5).ToArray();
                 var Blokhutten5 = Enumerable.Range(143, 8).ToArray();
-                int[] Blokhutten6 = { 124 };
+                int[] Blokhutten6 = {124};
                 var Blokhutten =
                     Blokhutten1.Concat(Blokhutten2)
                         .Concat(Blokhutten3)
@@ -353,8 +347,6 @@ namespace ICT4EVENT
                 string Email = parent.txtEmail.Text;
                 string Rfid = parent.txtAssignRfid.Text;
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
-                MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
-                                Environment.NewLine + "Wachtwoord: " + Password);
             }
 
             private string GeneratePassword()
@@ -375,20 +367,14 @@ namespace ICT4EVENT
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-            createUser.CreateUser();
-        }
-
-        private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabMainTab.SelectedTab == tabCreateUser)
+            if (txtAssignRfid.Text != null)
             {
-                rfid.Antenna = true;
-                rfid.LED = true;
+                createUser.CreateUser();
+                MessageBox.Show("Gebruiker aangemaakt");
             }
             else
             {
-                rfid.Antenna = false;
-                rfid.LED = false;
+                MessageBox.Show("Scan eerst een RFID");
             }
         }     
     }
