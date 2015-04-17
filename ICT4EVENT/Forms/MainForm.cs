@@ -11,13 +11,10 @@ namespace ICT4EVENT
 
     public partial class MainForm : Form
     {
-        private MainGuiLogic mainGuiLogic;
         public MainForm()
         {
             InitializeComponent();
-            mainGuiLogic = new MainGuiLogic(this);
-            // TODO: Repair initializations from social media manager
-            //socialManager = new SocialMediaEventManager();
+            FillList();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,8 +23,8 @@ namespace ICT4EVENT
             {
                 CreateTestPosts();
             }
-            mainGuiLogic.DynamicButtonLogic();
-            FillList(PostManager.GetPostsByPage());
+            DynamicButtonLogic(false);
+            
         }
 
         private void CreateTestPosts()
@@ -35,8 +32,9 @@ namespace ICT4EVENT
             PostManager.CreateNewPost("Wat is het social media event toch geweldig");
         }
 
-        private void FillList(List<PostModel> postModels)
+        private void FillList()
         {
+            List<PostModel>postModels = PostManager.GetPostsByPage();
             foreach (PostModel postModel in postModels)
             {
                 flowPostsFromUser.Controls.Add(new UserPost(postModel));
@@ -65,57 +63,49 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mainGuiLogic.DynamicButtonLogic();
+            DynamicButtonLogic(false);
         }
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
         {
-
+            DynamicButtonLogic(true);
         }
 
-        public class MainGuiLogic
+        public void DynamicButtonLogic(bool action)
         {
-            private MainForm parent;
-
-            public MainGuiLogic(MainForm mainform)
+            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
             {
-                parent = mainform;
-            }
+                btnDynamicButton.Text = "Post";
 
-            public void DynamicButtonLogic()
+                // button actions happen here
+                if (action)
             {
-                if (parent.tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
+                    PostModel postModel = PostManager.CreateNewPost(tbPostContent.Text);
+                    if (postModel != null)
                 {
-                    parent.btnDynamicButton.Text = "Post";
-
-                    // button actions happen here
-                    PostingLogic(parent.tbPostContent.Text);
+                        flowPosts.Controls.Add(new UserPost(postModel));
+                    }
                 }
-                if (parent.tabMainTab.SelectedTab.Name == "tabMaterialrent")
-                {
-                    parent.btnDynamicButton.Text = "Huur";
 
-                    // button actions happen here
                 }
-                if (parent.tabMainTab.SelectedTab.Name == "tabProfile")
+            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
                 {
-                    parent.btnDynamicButton.Text = "Bevestig";
+                btnDynamicButton.Text = "Huur";
 
                     // button actions happen here
                 }
-                if (parent.tabMainTab.SelectedTab.Name == "tabSettings")
+            if (tabMainTab.SelectedTab.Name == "tabProfile")
                 {
-                    parent.btnDynamicButton.Text = "Bevestig";
+                btnDynamicButton.Text = "Bevestig";
 
                     // button actions happen here
                 }
-            }
+            if (tabMainTab.SelectedTab.Name == "tabSettings")
+                {
+                btnDynamicButton.Text = "Bevestig";
 
-            public bool PostingLogic(string PostContent)
-            {
-                PostManager.CreateNewPost(PostContent);
-
-                return false;
+                    // button actions happen here
+                }
             }
 
             
@@ -135,4 +125,3 @@ namespace ICT4EVENT
             lblDetails.Text = selectedString;
         }
     }
-}

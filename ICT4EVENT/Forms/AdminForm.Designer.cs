@@ -64,44 +64,27 @@
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabEventManagment = new System.Windows.Forms.TabPage();
             this.gbEventManagment = new System.Windows.Forms.GroupBox();
+            this.gbCreateEvent = new System.Windows.Forms.GroupBox();
+            this.btnCreateNewEvent = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbLocation = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbDescription = new System.Windows.Forms.TextBox();
+            this.tbEventName = new System.Windows.Forms.TextBox();
             this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.btnUpdateEvents = new System.Windows.Forms.Button();
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
-            this.tabCreateUser = new System.Windows.Forms.TabPage();
-            this.groupCreateUser = new System.Windows.Forms.GroupBox();
-            this.txtSurName = new System.Windows.Forms.TextBox();
-            this.lblSurName = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.btnCreateUser = new System.Windows.Forms.Button();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtTelNr = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.lblTelNr = new System.Windows.Forms.Label();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.txtAssignRfid = new System.Windows.Forms.TextBox();
-            this.tabMainTab.SuspendLayout();
-            this.tabCampingPlace.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            this.gbCheckIn.SuspendLayout();
-            this.gbUserDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.tabPostReview.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tabMaterialRental.SuspendLayout();
-            this.gbMaterialControl.SuspendLayout();
-            this.tabEventManagment.SuspendLayout();
             this.gbEventManagment.SuspendLayout();
-            this.tabCreateUser.SuspendLayout();
-            this.groupCreateUser.SuspendLayout();
+            this.gbCreateEvent.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabMainTab
+            // gbEventManagment
             // 
             this.tabMainTab.Controls.Add(this.tabCampingPlace);
             this.tabMainTab.Controls.Add(this.tabPage1);
@@ -115,9 +98,37 @@
             this.tabMainTab.Size = new System.Drawing.Size(1000, 660);
             this.tabMainTab.TabIndex = 2;
             this.tabMainTab.SelectedIndexChanged += new System.EventHandler(this.tabMainTab_SelectedIndexChanged);
+            this.gbEventManagment.Controls.Add(this.gbCreateEvent);
+            this.gbEventManagment.Controls.Add(this.btnDeleteEvent);
+            this.gbEventManagment.Controls.Add(this.btnUpdateEvents);
+            this.gbEventManagment.Controls.Add(this.flowEvent);
+            this.gbEventManagment.Controls.Add(this.btnCreateEvent);
+            this.gbEventManagment.Location = new System.Drawing.Point(2, 2);
+            this.gbEventManagment.Name = "gbEventManagment";
+            this.gbEventManagment.Size = new System.Drawing.Size(989, 626);
+            this.gbEventManagment.TabIndex = 16;
+            this.gbEventManagment.TabStop = false;
+            this.gbEventManagment.Text = "Evenment Beheer";
             // 
-            // tabCampingPlace
+            // gbCreateEvent
             // 
+            this.gbCreateEvent.Controls.Add(this.btnCreateNewEvent);
+            this.gbCreateEvent.Controls.Add(this.label5);
+            this.gbCreateEvent.Controls.Add(this.dateTimePicker2);
+            this.gbCreateEvent.Controls.Add(this.dateTimePicker1);
+            this.gbCreateEvent.Controls.Add(this.label4);
+            this.gbCreateEvent.Controls.Add(this.tbLocation);
+            this.gbCreateEvent.Controls.Add(this.label6);
+            this.gbCreateEvent.Controls.Add(this.label7);
+            this.gbCreateEvent.Controls.Add(this.label8);
+            this.gbCreateEvent.Controls.Add(this.tbDescription);
+            this.gbCreateEvent.Controls.Add(this.tbEventName);
+            this.gbCreateEvent.Location = new System.Drawing.Point(655, 25);
+            this.gbCreateEvent.Name = "gbCreateEvent";
+            this.gbCreateEvent.Size = new System.Drawing.Size(334, 237);
+            this.gbCreateEvent.TabIndex = 6;
+            this.gbCreateEvent.TabStop = false;
+            this.gbCreateEvent.Text = "Create a event";
             this.tabCampingPlace.BackColor = System.Drawing.Color.White;
             this.tabCampingPlace.Controls.Add(this.nmrPlaats);
             this.tabCampingPlace.Controls.Add(this.lbUser);
@@ -134,8 +145,15 @@
             this.tabCampingPlace.TabIndex = 0;
             this.tabCampingPlace.Text = "Kampeerplaats";
             // 
-            // nmrPlaats
+            // btnCreateNewEvent
             // 
+            this.btnCreateNewEvent.Location = new System.Drawing.Point(25, 189);
+            this.btnCreateNewEvent.Name = "btnCreateNewEvent";
+            this.btnCreateNewEvent.Size = new System.Drawing.Size(242, 32);
+            this.btnCreateNewEvent.TabIndex = 21;
+            this.btnCreateNewEvent.Text = "Create Event";
+            this.btnCreateNewEvent.UseVisualStyleBackColor = true;
+            this.btnCreateNewEvent.Click += new System.EventHandler(this.btnCreateNewEvent_Click);
             this.nmrPlaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.nmrPlaats.FormattingEnabled = true;
             this.nmrPlaats.Location = new System.Drawing.Point(755, 34);
@@ -143,8 +161,14 @@
             this.nmrPlaats.Size = new System.Drawing.Size(230, 32);
             this.nmrPlaats.TabIndex = 14;
             // 
-            // lbUser
+            // label5
             // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 148);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "End date";
             this.lbUser.FormattingEnabled = true;
             this.lbUser.ItemHeight = 24;
             this.lbUser.Location = new System.Drawing.Point(755, 101);
@@ -152,17 +176,15 @@
             this.lbUser.Size = new System.Drawing.Size(230, 148);
             this.lbUser.TabIndex = 13;
             // 
-            // btnAddUser
+            // dateTimePicker2
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(930, 69);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(55, 25);
-            this.btnAddUser.TabIndex = 12;
-            this.btnAddUser.Text = "Voeg toe";
-            this.btnAddUser.UseVisualStyleBackColor = true;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.dateTimePicker2.Location = new System.Drawing.Point(88, 143);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(227, 20);
+            this.dateTimePicker2.TabIndex = 19;
+            this.dateTimePicker2.Value = new System.DateTime(2015, 4, 15, 12, 57, 43, 0);
             // 
-            // btnReserve
+            // dateTimePicker1
             // 
             this.btnReserve.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReserve.Location = new System.Drawing.Point(755, 273);
@@ -246,92 +268,62 @@
             // 
             // gbCheckIn
             // 
-            this.gbCheckIn.BackColor = System.Drawing.Color.Transparent;
-            this.gbCheckIn.Controls.Add(this.btnFindUser);
-            this.gbCheckIn.Controls.Add(this.gbUserDetails);
-            this.gbCheckIn.Controls.Add(this.txtRFIDCode);
-            this.gbCheckIn.Location = new System.Drawing.Point(4, 4);
-            this.gbCheckIn.Name = "gbCheckIn";
-            this.gbCheckIn.Size = new System.Drawing.Size(985, 321);
-            this.gbCheckIn.TabIndex = 13;
-            this.gbCheckIn.TabStop = false;
-            this.gbCheckIn.Text = "Schrijf bezoeker in";
+            // label4
             // 
-            // btnFindUser
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Start date";
             // 
-            this.btnFindUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnFindUser.Location = new System.Drawing.Point(826, 25);
-            this.btnFindUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnFindUser.Name = "btnFindUser";
-            this.btnFindUser.Size = new System.Drawing.Size(156, 38);
-            this.btnFindUser.TabIndex = 14;
-            this.btnFindUser.Tag = "SMSS";
-            this.btnFindUser.Text = "Zoek gebruiker";
-            this.btnFindUser.UseVisualStyleBackColor = true;
+            // tbLocation
             // 
-            // gbUserDetails
+            this.tbLocation.Location = new System.Drawing.Point(88, 49);
+            this.tbLocation.Name = "tbLocation";
+            this.tbLocation.Size = new System.Drawing.Size(227, 20);
+            this.tbLocation.TabIndex = 16;
             // 
-            this.gbUserDetails.BackColor = System.Drawing.SystemColors.Control;
-            this.gbUserDetails.Controls.Add(this.btnConformUser);
-            this.gbUserDetails.Controls.Add(this.pictureBox3);
-            this.gbUserDetails.Controls.Add(this.lblAtEventStatus);
-            this.gbUserDetails.Controls.Add(this.lblPaymentStatusOfUser);
-            this.gbUserDetails.Controls.Add(this.lblNameOfUser);
-            this.gbUserDetails.Location = new System.Drawing.Point(6, 81);
-            this.gbUserDetails.Name = "gbUserDetails";
-            this.gbUserDetails.Size = new System.Drawing.Size(979, 236);
-            this.gbUserDetails.TabIndex = 1;
-            this.gbUserDetails.TabStop = false;
-            this.gbUserDetails.Text = "Details of <Username>";
+            // label6
             // 
-            // btnConformUser
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 83);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Description";
             // 
-            this.btnConformUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConformUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnConformUser.Location = new System.Drawing.Point(660, 196);
-            this.btnConformUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnConformUser.Name = "btnConformUser";
-            this.btnConformUser.Size = new System.Drawing.Size(310, 40);
-            this.btnConformUser.TabIndex = 15;
-            this.btnConformUser.Tag = "SMSS";
-            this.btnConformUser.Text = "Bevestig Gebruiker";
-            this.btnConformUser.UseVisualStyleBackColor = true;
+            // label7
             // 
-            // pictureBox3
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Location";
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox3.Location = new System.Drawing.Point(820, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox3.TabIndex = 14;
-            this.pictureBox3.TabStop = false;
+            // label8
             // 
-            // lblAtEventStatus
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Event Name";
             // 
-            this.lblAtEventStatus.BackColor = System.Drawing.Color.OrangeRed;
-            this.lblAtEventStatus.Font = new System.Drawing.Font("Agency FB", 18F);
-            this.lblAtEventStatus.Location = new System.Drawing.Point(6, 196);
-            this.lblAtEventStatus.Name = "lblAtEventStatus";
-            this.lblAtEventStatus.Size = new System.Drawing.Size(428, 33);
-            this.lblAtEventStatus.TabIndex = 13;
-            this.lblAtEventStatus.Tag = "";
-            this.lblAtEventStatus.Text = "At event: <Status>";
-            this.lblAtEventStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // tbDescription
             // 
-            // lblPaymentStatusOfUser
+            this.tbDescription.Location = new System.Drawing.Point(88, 80);
+            this.tbDescription.Name = "tbDescription";
+            this.tbDescription.Size = new System.Drawing.Size(227, 20);
+            this.tbDescription.TabIndex = 12;
             // 
-            this.lblPaymentStatusOfUser.BackColor = System.Drawing.Color.OrangeRed;
-            this.lblPaymentStatusOfUser.Font = new System.Drawing.Font("Agency FB", 18F);
-            this.lblPaymentStatusOfUser.Location = new System.Drawing.Point(6, 87);
-            this.lblPaymentStatusOfUser.Name = "lblPaymentStatusOfUser";
-            this.lblPaymentStatusOfUser.Size = new System.Drawing.Size(428, 33);
-            this.lblPaymentStatusOfUser.TabIndex = 12;
-            this.lblPaymentStatusOfUser.Tag = "";
-            this.lblPaymentStatusOfUser.Text = "Payment status: <Status>";
-            this.lblPaymentStatusOfUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // tbEventName
             // 
-            // lblNameOfUser
+            this.tbEventName.Location = new System.Drawing.Point(88, 18);
+            this.tbEventName.Name = "tbEventName";
+            this.tbEventName.Size = new System.Drawing.Size(227, 20);
+            this.tbEventName.TabIndex = 11;
             // 
             this.lblNameOfUser.BackColor = System.Drawing.Color.OrangeRed;
             this.lblNameOfUser.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -486,14 +478,13 @@
             this.btnUpdateEvents.TabIndex = 4;
             this.btnUpdateEvents.Text = "Update Events";
             this.btnUpdateEvents.UseVisualStyleBackColor = true;
-            this.btnUpdateEvents.Click += new System.EventHandler(this.btnUpdateEvents_Click);
             // 
             // flowEvent
             // 
             this.flowEvent.AutoScroll = true;
-            this.flowEvent.Location = new System.Drawing.Point(1, 25);
+            this.flowEvent.Location = new System.Drawing.Point(6, 19);
             this.flowEvent.Name = "flowEvent";
-            this.flowEvent.Size = new System.Drawing.Size(647, 535);
+            this.flowEvent.Size = new System.Drawing.Size(643, 535);
             this.flowEvent.TabIndex = 3;
             // 
             // btnCreateEvent
@@ -662,92 +653,37 @@
             // 
             // AdminForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 666);
-            this.Controls.Add(this.tabMainTab);
-            this.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.ClientSize = new System.Drawing.Size(994, 629);
+            this.Controls.Add(this.gbEventManagment);
             this.Name = "AdminForm";
             this.Text = "AdminForm";
-            this.tabMainTab.ResumeLayout(false);
-            this.tabCampingPlace.ResumeLayout(false);
-            this.tabCampingPlace.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.gbCheckIn.ResumeLayout(false);
-            this.gbCheckIn.PerformLayout();
-            this.gbUserDetails.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.tabPostReview.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.tabMaterialRental.ResumeLayout(false);
-            this.gbMaterialControl.ResumeLayout(false);
-            this.gbMaterialControl.PerformLayout();
-            this.tabEventManagment.ResumeLayout(false);
             this.gbEventManagment.ResumeLayout(false);
-            this.tabCreateUser.ResumeLayout(false);
-            this.groupCreateUser.ResumeLayout(false);
-            this.groupCreateUser.PerformLayout();
+            this.gbCreateEvent.ResumeLayout(false);
+            this.gbCreateEvent.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabMainTab;
-        private System.Windows.Forms.TabPage tabCampingPlace;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnReserve;
-        private System.Windows.Forms.TextBox txtGebruikers;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox gbCheckIn;
-        private System.Windows.Forms.GroupBox gbUserDetails;
-        private System.Windows.Forms.TextBox txtRFIDCode;
-        private System.Windows.Forms.TabPage tabPostReview;
-        private System.Windows.Forms.TabPage tabMaterialRental;
-        private System.Windows.Forms.GroupBox gbMaterialControl;
-        private System.Windows.Forms.Label lblSelectReservation;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox cbReservations;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.TabPage tabEventManagment;
         private System.Windows.Forms.GroupBox gbEventManagment;
-        private System.Windows.Forms.Button btnCreateEvent;
-        private System.Windows.Forms.ListBox lbUser;
-        private System.Windows.Forms.Button btnAddUser;
-        private System.Windows.Forms.FlowLayoutPanel flowEvent;
-        private System.Windows.Forms.ComboBox nmrPlaats;
+        private System.Windows.Forms.GroupBox gbCreateEvent;
+        private System.Windows.Forms.Button btnCreateNewEvent;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbLocation;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbDescription;
+        private System.Windows.Forms.TextBox tbEventName;
         private System.Windows.Forms.Button btnDeleteEvent;
         private System.Windows.Forms.Button btnUpdateEvents;
-        private System.Windows.Forms.Button btnFindUser;
-        private System.Windows.Forms.Button btnConformUser;
-        private System.Windows.Forms.Label lblAtEventStatus;
-        private System.Windows.Forms.Label lblPaymentStatusOfUser;
-        private System.Windows.Forms.Label lblNameOfUser;
-        private System.Windows.Forms.ListBox lbRecent;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.FlowLayoutPanel flowPostReview;
-        private System.Windows.Forms.TabPage tabCreateUser;
-        private System.Windows.Forms.GroupBox groupCreateUser;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.Label lblTelNr;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.TextBox txtAssignRfid;
-        private System.Windows.Forms.Button btnCreateUser;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtTelNr;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox txtSurName;
-        private System.Windows.Forms.Label lblSurName;
+        private System.Windows.Forms.FlowLayoutPanel flowEvent;
+        private System.Windows.Forms.Button btnCreateEvent;
     }
 }

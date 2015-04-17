@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
@@ -9,212 +14,43 @@ namespace ICT4EVENT
 {
     public partial class AdminForm : Form
     {
-        private readonly CampingLogic campingLogic;
-        private readonly EventManagmentLogic eventManagment;
-        private readonly CreateUserLogic createUser;
-        private PostReviewLogic postReview;
-
-        private RFID rfid;
         public AdminForm()
         {
             InitializeComponent();
-            OpenRFIDConnection();
-
-            eventManagment = new EventManagmentLogic(this);
-            campingLogic = new CampingLogic(this);
-            postReview = new PostReviewLogic(this);
-            createUser = new CreateUserLogic(this);
-        }
-
-        private void btnAddUser_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text));
-            campingLogic.AddUserToList();
-        }
-            catch
-            {
-                try
-                {
-                    UserManager.FindUser(txtGebruikers.Text);
-                    campingLogic.AddUserToList();
-                }
-                catch
-                {
-                    MessageBox.Show("Gebruiker niet gevonden");
-                    txtGebruikers.Text = "";
-                }
-            }
-        }
-
-        private void addEvent(UserEvent userEvent)
-        {
-            eventManagment.AddEvent(userEvent);
-            //ToDo: Deze Methode weghalen en direct aanroepen.
-        }
-
-        private void btnReserve_Click(object sender, EventArgs e)
-        {
-            var plaats = Convert.ToInt32(nmrPlaats.Text);
-
-            var lines = lbUser.Items.Count;
-
-            if (campingLogic.CheckPlaceSize(plaats, lines))
-            {
-                //TODO: EquipmentManager.MakePlaceReservervation();
-                MessageBox.Show("Succesvol gereserveerd");
-                nmrPlaats.SelectedIndex = 0;
-                txtGebruikers.Text = "";
-            }
+            FillEventList(EventManager.FindAllEvents());
         }
 
         private void btnCreateEvent_Click(object sender, EventArgs e)
         {
-            //gbCreateEvent.Visible = true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value, dateTimePicker2.Value);
+            gbCreateEvent.Visible = true;
         }
 
         private void btnUpdateEvents_Click(object sender, EventArgs e)
         {
             flowEvent.Controls.Clear();
-            eventManagment.FillEventList(EventManager.FindAllEvents());
-        }
-
-        public class EventManagmentLogic
-        {
-            private readonly AdminForm parent;
-
-            public EventManagmentLogic(AdminForm form)
-            {
-                parent = form;
                 FillEventList(EventManager.FindAllEvents());
             }
 
             public void AddEvent(UserEvent userEvent)
             {
-                parent.flowEvent.Controls.Add(userEvent);
+            flowEvent.Controls.Add(userEvent);
             }
 
             public void FillEventList(List<EventModel> eventModels)
             {
+            List<EventModel> sortedEventModels = eventModels;
+            sortedEventModels.Sort();
                 foreach (var eventModel in eventModels)
                 {
-                    parent.flowEvent.Controls.Add(new UserEvent(eventModel));
+                flowEvent.Controls.Add(new UserEvent(eventModel));
                 }
             }
-        }
 
-        public class CampingLogic
+        private void btnCreateNewEvent_Click(object sender, EventArgs e)
         {
-            private readonly int[] Blokhutten;
-            private readonly int[] Bungalinos;
-            private readonly int[] Bungalows;
-            private readonly int[] ComfortPlaatsen;
-            private readonly int[] EigenTenten;
-            private readonly int[] Huurtentjes;
-            private readonly int[] Invalidenaccomodatie;
-            private readonly AdminForm parent;
-            private readonly int[] StaCaravan;
-            private int[] AllPlaces;
-            private decimal amount;
-            private List<string> guests;
-
-            public CampingLogic(AdminForm form)
-            {
-                parent = form;
-                UserList = new List<string>();
-                EigenTenten = EigenTentenArray();
-                Bungalows = BungalowArray();
-                Blokhutten = BlokHuttenArray();
-                Bungalinos = BungalinosArray();
-                ComfortPlaatsen = ComfortPlaatsenArray();
-                StaCaravan = StaCaravanArray();
-                Invalidenaccomodatie = Enumerable.Range(85, 6).ToArray();
-                Huurtentjes = Enumerable.Range(643, 36).ToArray();
-                AllPlaces = AllPlacesArray();
-                FillAllPlaces();
-            }
-
-            public List<string> UserList { get; private set; }
-
-            public void AddUserToList()
-            {
-                parent.lbUser.Items.Add(parent.txtGebruikers.Text);
-                parent.txtGebruikers.Text = "";
-            }
-
-            public bool CheckPlaceSize(int place, int amountofusers)
-            {
-                if (amountofusers == 0)
-                {
-                    MessageBox.Show("Vul minstens een persoon in bij gebruikers");
-                    return true;
-                }
-                if (place == 0)
-                {
-                    MessageBox.Show("Vul een geldige plaats in bij plaats");
-                    return true;
-                }
-
-                if (Bungalows.Contains(place))
-                {
-                        if (amountofusers > 8)
-                        {
-                            MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
-                            return false;
-                        }
-                        return true;
-                    }
-
-                foreach (var p in Bungalinos)
-                {
-                    if (p == place)
-                    {
-                        if (amountofusers > 4)
-                        {
-                            MessageBox.Show("Er mogen maximaal 4 personen in een bungalino verblijven.");
-                            return false;
-                        }
-                        return true;
-                    }
-                }
-
-                foreach (var p in EigenTenten)
-                {
-                    if (p == place)
-                    {
-                        if (amountofusers > 5)
-                        {
-                            MessageBox.Show("Er mogen maximaal 5 personen in een eigen tent verblijven.");
-                            return false;
-                        }
-                        return true;
-                    }
-                }
-
-                foreach (var p in Blokhutten)
-                {
-                    if (p == place)
-                    {
-                        if (amountofusers > 4)
-                        {
-                            MessageBox.Show("Er mogen maximaal 4 personen in een blokhut verblijven.");
-                            return false;
-                        }
-                        return true;
-                    }
-                }
-
-                foreach (var p in ComfortPlaatsen)
-                {
-                    if (p == place)
-                    {
-                        if (amountofusers > 4)
+            EventModel eventModel = EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text, dateTimePicker1.Value,
+                    dateTimePicker2.Value);
+            if (eventModel != null)
                         {
                             MessageBox.Show("Er mogen maximaal 4 personen op een comfortplaats verblijven.");
                             return false;
@@ -416,7 +252,7 @@ namespace ICT4EVENT
                 parent.txtTelNr.Text = "";
                 parent.txtEmail.Text = "";
                 parent.txtAssignRfid.Text = "";
-            }
+        }
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)

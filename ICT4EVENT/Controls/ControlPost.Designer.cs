@@ -35,6 +35,7 @@
             this.btnLike = new System.Windows.Forms.Button();
             this.flowComment = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblLikes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).BeginInit();
             this.SuspendLayout();
@@ -97,6 +98,7 @@
             this.btnLike.TabIndex = 4;
             this.btnLike.Text = "Like";
             this.btnLike.UseVisualStyleBackColor = true;
+            this.btnLike.Click += new System.EventHandler(this.btnLike_Click);
             // 
             // flowComment
             // 
@@ -124,11 +126,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblLikes
+            // 
+            this.lblLikes.Font = new System.Drawing.Font("Agency FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLikes.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblLikes.Location = new System.Drawing.Point(3, 135);
+            this.lblLikes.Name = "lblLikes";
+            this.lblLikes.Size = new System.Drawing.Size(100, 24);
+            this.lblLikes.TabIndex = 7;
+            this.lblLikes.Tag = "UserControl";
+            this.lblLikes.Text = "<> Likes";
+            this.lblLikes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // UserPost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Controls.Add(this.lblLikes);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.flowComment);
             this.Controls.Add(this.btnLike);
@@ -157,5 +172,6 @@
         private System.Windows.Forms.Button btnLike;
         private System.Windows.Forms.FlowLayoutPanel flowComment;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblLikes;
     }
 }
