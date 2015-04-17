@@ -8,8 +8,6 @@ using ICT4EVENT.Models;
 
 namespace ICT4EVENT
 {
-    using global::ICT4EVENT.ICT4EVENT;
-
     public partial class MainForm : Form
     {
         string filePath = "";

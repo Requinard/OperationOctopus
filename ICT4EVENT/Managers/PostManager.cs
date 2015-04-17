@@ -1,26 +1,22 @@
-namespace ICT4EVENT
-{
-    namespace ICT4EVENT
-    {
 using System;
 using System.Collections.Generic;
 using System.IO;
-    using System.Linq;
-    using System.Text.RegularExpressions;
+using System.Linq;
+using System.Text.RegularExpressions;
+using ICT4EVENT.Models;
+using Oracle.DataAccess.Client;
 
-        using global::ICT4EVENT.Models;
-
-        using Oracle.DataAccess.Client;
-
+namespace ICT4EVENT
+{
     public static class PostManager
     {
         public static PostModel CreateNewPost(string body, string filepath = "")
         {
-                var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
+            var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
             // Set up post details
             post.Content = body;
-                var datePosted = DateTime.Now;
+            var datePosted = DateTime.Now;
             post.DatePosted = datePosted;
 
             //Upload file to FTP
@@ -29,8 +25,8 @@ using System.IO;
             //Extract filename
             if (filepath != "")
             {
-                    var fileName = Path.GetFileName(filepath);
-                    var localDirectory = string.Format(
+                var fileName = Path.GetFileName(filepath);
+                var localDirectory = string.Format(
                     "{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}",
                     "test",
                     datePosted.Year,
@@ -55,7 +51,7 @@ using System.IO;
 
             post.Create();
 
-             var reg = new Regex(@"/([#]\w+)/");
+            var reg = new Regex(@"/([#]\w+)/");
 
             foreach (Match match in reg.Matches(post.Content))
             {
@@ -107,10 +103,10 @@ using System.IO;
         {
             var posts = new List<PostModel>();
 
-                var query =
-                    string.Format(
-                "SELECT * FROM TagPost, Tag wHERE tag.name = '{0}' AND tag.ident = tagpost.tagid",
-                tag);
+            var query =
+                string.Format(
+                    "SELECT * FROM TagPost, Tag wHERE tag.name = '{0}' AND tag.ident = tagpost.tagid",
+                    tag);
 
             var reader = DBManager.QueryDB(query);
 
@@ -121,12 +117,12 @@ using System.IO;
 
             while (reader.Read())
             {
-                    var post = new PostModel(int.Parse(reader["postid"].ToString()));
+                var post = new PostModel(int.Parse(reader["postid"].ToString()));
 
                 posts.Add(post);
             }
 
-                var s = from post in posts where post.EventItem.Id == Settings.ActiveEvent.Id select post;
+            var s = from post in posts where post.EventItem.Id == Settings.ActiveEvent.Id select post;
 
             return s.ToList();
         }
@@ -155,25 +151,25 @@ using System.IO;
 
             return likes;
         }
- 
+
         public static List<PostModel> FindPost(string test)
         {
-                var posts = new List<PostModel>();
-                var query = string.Format(
-                    "SELECT * FROM POST where eventid ='{0}' AND postcontent LIKE '%{1}%'",
-                    Settings.ActiveEvent.Id,
-                    test);
+            var posts = new List<PostModel>();
+            var query = string.Format(
+                "SELECT * FROM POST where eventid ='{0}' AND postcontent LIKE '%{1}%'",
+                Settings.ActiveEvent.Id,
+                test);
 
-                var reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-                if (reader == null || !reader.HasRows)
-                {
-                    return null;
-                }
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
 
             while (reader.Read())
             {
-                    var post = new PostModel();
+                var post = new PostModel();
 
                 post.ReadFromReader(reader);
 
@@ -185,7 +181,7 @@ using System.IO;
 
         public static LikeModel CreateNewLike(PostModel post)
         {
-                var like = new LikeModel();
+            var like = new LikeModel();
 
             like.User = Settings.ActiveUser;
             like.Post = post;
@@ -197,7 +193,7 @@ using System.IO;
 
         public static PostReportModel ReportPost(PostModel post, string reason)
         {
-                var model = new PostReportModel(post, Settings.ActiveUser);
+            var model = new PostReportModel(post, Settings.ActiveUser);
 
             model.Reason = reason;
             model.Date = DateTime.Now;
@@ -210,19 +206,19 @@ using System.IO;
 
         public static List<PostReportModel> GetPostReports(PostModel post)
         {
-                var query = string.Format("SELECT * FROM Report WHERE postid = '{0}'", post.Id);
-                var reports = new List<PostReportModel>();
+            var query = string.Format("SELECT * FROM Report WHERE postid = '{0}'", post.Id);
+            var reports = new List<PostReportModel>();
 
-                var reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-                if (reader == null || !reader.HasRows)
-                {
-                    return null;
-                }
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
 
             while (reader.Read())
             {
-                    var report = new PostReportModel();
+                var report = new PostReportModel();
 
                 report.ReadFromReader(reader);
 
@@ -232,48 +228,48 @@ using System.IO;
             return reports;
         }
 
-                 public static List<TagModel> GetAllTags()
-         {
-                var tags = new List<TagModel>();
-                var query = "SELECT * FROM TAG";
- 
-                var reader = DBManager.QueryDB(query);
- 
-                if (reader == null)
-                {
-                    return null;
-                }
- 
-             while (reader.Read())
-             {
-                    var tag = new TagModel();
- 
-                 tag.ReadFromReader(reader);
- 
-                 tags.Add(tag);
-             }
- 
-             return tags;
-  }
+        public static List<TagModel> GetAllTags()
+        {
+            var tags = new List<TagModel>();
+            var query = "SELECT * FROM TAG";
+
+            var reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return null;
+            }
+
+            while (reader.Read())
+            {
+                var tag = new TagModel();
+
+                tag.ReadFromReader(reader);
+
+                tags.Add(tag);
+            }
+
+            return tags;
+        }
 
         public static List<PostReportModel> GetAllReports()
         {
-                var query = "SELECT * FROM Report";
-                var reports = new List<PostReportModel>();
+            var query = "SELECT * FROM Report";
+            var reports = new List<PostReportModel>();
 
-                var reader = DBManager.QueryDB(query);
+            var reader = DBManager.QueryDB(query);
 
-                if (reader == null || !reader.HasRows)
-                {
-            while (reader.Read())
+            if (reader == null || !reader.HasRows)
             {
-                        var report = new PostReportModel();
+                while (reader.Read())
+                {
+                    var report = new PostReportModel();
 
-                report.ReadFromReader(reader);
+                    report.ReadFromReader(reader);
 
-                reports.Add(report);
-            }
+                    reports.Add(report);
                 }
+            }
 
             return reports;
         }
@@ -285,81 +281,24 @@ using System.IO;
             return post;
         }
 
-            public static List<PostModel> RetrieveUserPosts(UserModel user)
-            {
-                var posts = new List<PostModel>();
-                var query = string.Format(
-                    "SELECT * FROM POST WHERE userid = '{0}' AND eventid = '{1}'",
-                    user.Id,
-                    Settings.ActiveEvent.Id);
-
-                var reader = DBManager.QueryDB(query);
-
-                if (reader == null || !reader.HasRows)
-                {
-                    return null;
-                }
-
-                while (reader.Read())
-                {
-                    var post = new PostModel();
-
-                    post.ReadFromReader(reader);
-
-                    posts.Add(post);
-                }
-
-                return posts;
-            }
-
-            public static List<PostModel> GetPostsByPage(
-                PostModel startpost = null,
-                int page = 0,
-                int itemsPerPage = 10)
+        public static List<PostModel> RetrieveUserPosts(UserModel user)
         {
-                var posts = new List<PostModel>();
-            OracleDataReader reader = null;
+            var posts = new List<PostModel>();
+            var query = string.Format(
+                "SELECT * FROM POST WHERE userid = '{0}' AND eventid = '{1}'",
+                user.Id,
+                Settings.ActiveEvent.Id);
 
-            //Get the data reader
-            if (startpost == null)
-            {
-                    var query = string.Format(
-                        "SELECT * FROM post WHERE eventid = '{0}' ORDER BY ident desc",
-                        Settings.ActiveEvent.Id);
-
-                reader = DBManager.QueryDB(query);
-            }
-            else
-            {
-                    var query =
-                        string.Format(
-                            "SELECT * FROM POST WHERE ident <= '{0}' AND WHERE eventid = '{0}' ORDER BY ident desc",
-                            startpost.Id,
-                            Settings.ActiveEvent.Id);
-
-                reader = DBManager.QueryDB(query);
-            }
+            var reader = DBManager.QueryDB(query);
 
             if (reader == null || !reader.HasRows)
-                {
-                return null;
-                }
-
-            //Read the datareader x amount of rows, where x = page*itemsPerPage
-                for (var i = 0; i < page * itemsPerPage; i++)
             {
-                reader.Read();
+                return null;
             }
 
-            // Now read itemsPerPage rows
-                for (var i = 0; i < itemsPerPage; i++)
-                {
-                    if (!reader.Read())
+            while (reader.Read())
             {
-                        break;
-                    }
-
-                    var post = new PostModel();
+                var post = new PostModel();
 
                 post.ReadFromReader(reader);
 
@@ -367,12 +306,65 @@ using System.IO;
             }
 
             return posts;
-            }
         }
 
-        internal static List<PostModel> RetrieveUserPosts(UserModel userModel)
+        public static List<PostModel> GetPostsByPage(
+            PostModel startpost = null,
+            int page = 0,
+            int itemsPerPage = 10)
         {
-            throw new NotImplementedException();
+            var posts = new List<PostModel>();
+            OracleDataReader reader = null;
+
+            //Get the data reader
+            if (startpost == null)
+            {
+                var query = string.Format(
+                    "SELECT * FROM post WHERE eventid = '{0}' ORDER BY ident desc",
+                    Settings.ActiveEvent.Id);
+
+                reader = DBManager.QueryDB(query);
+            }
+            else
+            {
+                var query =
+                    string.Format(
+                        "SELECT * FROM POST WHERE ident <= '{0}' AND WHERE eventid = '{0}' ORDER BY ident desc",
+                        startpost.Id,
+                        Settings.ActiveEvent.Id);
+
+                reader = DBManager.QueryDB(query);
+            }
+
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
+
+            //Read the datareader x amount of rows, where x = page*itemsPerPage
+            for (var i = 0; i < page*itemsPerPage; i++)
+            {
+                reader.Read();
+            }
+
+            // Now read itemsPerPage rows
+            for (var i = 0; i < itemsPerPage; i++)
+            {
+                if (!reader.Read())
+                {
+                    break;
+                }
+
+                var post = new PostModel();
+
+                post.ReadFromReader(reader);
+
+                posts.Add(post);
+            }
+
+            return posts;
         }
+
     }
+
 }

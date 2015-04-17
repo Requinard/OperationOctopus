@@ -4,7 +4,6 @@ using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
-    using global::ICT4EVENT.ICT4EVENT;
 
     public partial class UserPost : UserControl
     {
