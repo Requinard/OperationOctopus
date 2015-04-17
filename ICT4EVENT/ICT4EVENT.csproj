@@ -102,11 +102,11 @@
     <Compile Include="Controls\Materials.Designer.cs">
       <DependentUpon>Materials.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AdminForm.cs">
+    <Compile Include="Forms\MedewerkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AdminForm.Designer.cs">
-      <DependentUpon>AdminForm.cs</DependentUpon>
+    <Compile Include="Forms\MedewerkerForm.Designer.cs">
+      <DependentUpon>MedewerkerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DBConfigForm.cs">
       <SubType>Form</SubType>
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="Controls\Materials.resx">
       <DependentUpon>Materials.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AdminForm.resx">
-      <DependentUpon>AdminForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MedewerkerForm.resx">
+      <DependentUpon>MedewerkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DBConfigForm.resx">
       <DependentUpon>DBConfigForm.cs</DependentUpon>
