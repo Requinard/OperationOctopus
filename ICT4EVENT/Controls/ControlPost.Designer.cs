@@ -155,7 +155,6 @@
             this.MinimumSize = new System.Drawing.Size(593, 106);
             this.Name = "UserPost";
             this.Size = new System.Drawing.Size(593, 203);
-            this.Load += new System.EventHandler(this.UserControl1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).EndInit();
             this.ResumeLayout(false);

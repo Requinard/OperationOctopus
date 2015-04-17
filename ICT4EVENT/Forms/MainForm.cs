@@ -40,7 +40,7 @@ namespace ICT4EVENT
         {
             foreach (PostModel postModel in postModels)
             {
-                flowPostsFromUser.Controls.Add(new UserPost(postModel));
+                flowPosts.Controls.Add(new UserPost(postModel));
             }
         }
 
