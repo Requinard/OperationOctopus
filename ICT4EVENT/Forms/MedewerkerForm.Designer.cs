@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -292,6 +292,7 @@
             this.btnConformUser.Tag = "SMSS";
             this.btnConformUser.Text = "Bevestig Gebruiker";
             this.btnConformUser.UseVisualStyleBackColor = true;
+            this.btnConformUser.Click += new System.EventHandler(this.btnConformUser_Click);
             // 
             // pictureBox3
             // 
@@ -311,7 +312,7 @@
             this.lblAtEventStatus.Size = new System.Drawing.Size(428, 33);
             this.lblAtEventStatus.TabIndex = 13;
             this.lblAtEventStatus.Tag = "";
-            this.lblAtEventStatus.Text = "At event: <Status>";
+            this.lblAtEventStatus.Text = "At event: ";
             this.lblAtEventStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPaymentStatusOfUser
@@ -335,7 +336,7 @@
             this.lblNameOfUser.Size = new System.Drawing.Size(428, 34);
             this.lblNameOfUser.TabIndex = 10;
             this.lblNameOfUser.Tag = "";
-            this.lblNameOfUser.Text = "Naam:";
+            this.lblNameOfUser.Text = "Naam: ";
             this.lblNameOfUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtRFIDCode
@@ -345,7 +346,7 @@
             this.txtRFIDCode.Location = new System.Drawing.Point(6, 25);
             this.txtRFIDCode.MinimumSize = new System.Drawing.Size(815, 40);
             this.txtRFIDCode.Name = "txtRFIDCode";
-            this.txtRFIDCode.Size = new System.Drawing.Size(970, 40);
+            this.txtRFIDCode.Size = new System.Drawing.Size(970, 36);
             this.txtRFIDCode.TabIndex = 0;
             this.txtRFIDCode.TextChanged += new System.EventHandler(this.txtRFIDCode_TextChanged);
             // 
@@ -434,8 +435,8 @@
             // listReservedItems
             // 
             this.listReservedItems.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.listReservedItems.Location = new System.Drawing.Point(6, 56);
             this.listReservedItems.Name = "listReservedItems";
             this.listReservedItems.Size = new System.Drawing.Size(983, 372);

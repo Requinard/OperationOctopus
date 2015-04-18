@@ -164,15 +164,24 @@ namespace ICT4EVENT
 
         private void txtRFIDCode_TextChanged(object sender, EventArgs e)
         {
-            if (registerUser.FindRFIDCode())
+            if (UserManager.AuthenticateUser(txtRFIDCode.Text))
             {
                 MessageBox.Show("Gebruiker gevonden.");
+                UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
+                lblNameOfUser.Text = lblNameOfUser.Text + rfiduser.Username;
+                lblPaymentStatusOfUser.Text = lblPaymentStatusOfUser.Text;
+                lblAtEventStatus.Text = lblAtEventStatus.Text + Convert.ToString(Settings.ActiveEvent.Name);
             }
             else
             {
                 txtRFIDCode.Text = "";
                 MessageBox.Show("RFID Niet gevonden.");
             }
+        }
+
+        private void btnConformUser_Click(object sender, EventArgs e)
+        {
+            registerUser.RegisterUser();
         }
 
         #endregion
@@ -518,14 +527,13 @@ namespace ICT4EVENT
                 parent = form;
             }
 
-            public bool FindRFIDCode()
+            public void RegisterUser()
             {
-                if (UserManager.AuthenticateUser(parent.txtRFIDCode.Text))
-                {
-                    return true;
-                }
-                return false;
+                UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
+                UserManager.RegisterUserForEvent(rfiduser, Settings.ActiveEvent);
             }
         }
+
+        
     }
 }

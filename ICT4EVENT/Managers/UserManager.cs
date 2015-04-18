@@ -167,6 +167,19 @@
             return user;
         }
 
+        public static UserModel FindUserFromRFID(string RFID)
+        {
+            var query = string.Format("SELECT * FROM USERS WHERE rfidnumber = '{0}'", RFID);
+
+            var reader = DBManager.QueryDB(query);
+            if (reader == null || !reader.HasRows) return null;
+            var user = new UserModel();
+            reader.Read();
+            user.ReadFromReader(reader);
+            user.Read();
+            return user;
+        }
+
         public static List<RegistrationModel> GetUserRegistrations(UserModel user)
         {
             var regs = new List<RegistrationModel>();
