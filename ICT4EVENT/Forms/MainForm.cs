@@ -95,12 +95,7 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                    List<string> Reserved = new List<string>();
-                    foreach (string item in listCart.Items)
-                    {
-                        Reserved.Add(item);
-                    }
-                    //Make object reservation in manager.
+                    ReserveMaterial();
                 }
             }
             if (tabMainTab.SelectedTab.Name == "tabProfile")
@@ -239,6 +234,21 @@ namespace ICT4EVENT
             {
                 if (lblUserDisplayName.Text != Settings.ActiveUser.Username)
                     UpdateProfile(Settings.ActiveUser);
+            }
+        }
+
+        private void ReserveMaterial()
+        {
+            List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
+            foreach (string rentable in listCart.Items)
+            {
+                foreach (RentableObjectModel rentableobject in rentables)
+                {
+                    if (rentableobject.ObjectType == rentable)
+                    {
+                        EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject);
+                    }
+                }
             }
         }
     }
