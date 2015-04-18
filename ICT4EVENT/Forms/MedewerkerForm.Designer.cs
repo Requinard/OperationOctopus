@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -58,9 +58,9 @@
             this.tabMaterialRental = new System.Windows.Forms.TabPage();
             this.gbMaterialControl = new System.Windows.Forms.GroupBox();
             this.lblSelectReservation = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.cbReservations = new System.Windows.Forms.ComboBox();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.listReservedItems = new System.Windows.Forms.ListView();
             this.tabCreateUser = new System.Windows.Forms.TabPage();
             this.groupCreateUser = new System.Windows.Forms.GroupBox();
             this.txtSurName = new System.Windows.Forms.TextBox();
@@ -403,9 +403,9 @@
             // gbMaterialControl
             // 
             this.gbMaterialControl.Controls.Add(this.lblSelectReservation);
-            this.gbMaterialControl.Controls.Add(this.button2);
+            this.gbMaterialControl.Controls.Add(this.btnDelete);
             this.gbMaterialControl.Controls.Add(this.cbReservations);
-            this.gbMaterialControl.Controls.Add(this.listView3);
+            this.gbMaterialControl.Controls.Add(this.listReservedItems);
             this.gbMaterialControl.Location = new System.Drawing.Point(3, 3);
             this.gbMaterialControl.Name = "gbMaterialControl";
             this.gbMaterialControl.Size = new System.Drawing.Size(989, 630);
@@ -422,15 +422,16 @@
             this.lblSelectReservation.TabIndex = 4;
             this.lblSelectReservation.Text = "Selecteer een reservering";
             // 
-            // button2
+            // btnDelete
             // 
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(304, 434);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 36);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Verwijder";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDelete.Location = new System.Drawing.Point(304, 434);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(133, 36);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Verwijder";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cbReservations
             // 
@@ -439,18 +440,19 @@
             this.cbReservations.Name = "cbReservations";
             this.cbReservations.Size = new System.Drawing.Size(256, 32);
             this.cbReservations.TabIndex = 1;
+            this.cbReservations.SelectedIndexChanged += new System.EventHandler(this.cbReservations_SelectedIndexChanged);
             // 
-            // listView3
+            // listReservedItems
             // 
-            this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.listView3.Location = new System.Drawing.Point(6, 56);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(983, 372);
-            this.listView3.TabIndex = 2;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
+            this.listReservedItems.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem3,
+            listViewItem4});
+            this.listReservedItems.Location = new System.Drawing.Point(6, 56);
+            this.listReservedItems.Name = "listReservedItems";
+            this.listReservedItems.Size = new System.Drawing.Size(983, 372);
+            this.listReservedItems.TabIndex = 2;
+            this.listReservedItems.UseCompatibleStateImageBehavior = false;
+            this.listReservedItems.View = System.Windows.Forms.View.Details;
             // 
             // tabCreateUser
             // 
@@ -825,9 +827,9 @@
         private System.Windows.Forms.TabPage tabMaterialRental;
         private System.Windows.Forms.GroupBox gbMaterialControl;
         private System.Windows.Forms.Label lblSelectReservation;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ComboBox cbReservations;
-        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ListView listReservedItems;
         private System.Windows.Forms.ListBox lbUser;
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.ComboBox nmrPlaats;

@@ -14,6 +14,7 @@ namespace ICT4EVENT
         private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
         private CreatePlaceLogic createPlace;
+        private DeleteReservationLogic deleteReservation;
 
         private RFID rfid;
 
@@ -138,6 +139,11 @@ namespace ICT4EVENT
         private void btnCreatePlace_Click(object sender, EventArgs e)
         {
             createPlace.CreatePlace();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            deleteReservation.DeleteReservation();
         }
 
         public class CampingLogic
@@ -456,6 +462,27 @@ namespace ICT4EVENT
                 parent.txtCategory.Text = "";
                 parent.numCapacity.Value = 1;
             }
-        } 
+        }
+
+        public class DeleteReservationLogic
+        {
+            private readonly MedewerkerForm parent;
+            public DeleteReservationLogic(MedewerkerForm form)
+            {
+                parent = form;
+                //parent.cbReservations.Items.Add();
+            }
+
+            public void DeleteReservation()
+            {
+                
+            }
+        }
+
+        private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cbReservations.Items
+        }
+     
     }
 }
