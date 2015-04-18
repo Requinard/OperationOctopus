@@ -95,6 +95,30 @@ namespace ICT4EVENT
             }
         }
 
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            createUser.CreateUser();
+        }
+
+        private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabMainTab.SelectedTab == tabCreateUser)
+            {
+                rfid.Antenna = true;
+                rfid.LED = true;
+            }
+            else
+            {
+                rfid.Antenna = false;
+                rfid.LED = false;
+            }
+        }
+
+        private void btnCreatePlace_Click(object sender, EventArgs e)
+        {
+            createPlace.CreatePlace();
+        }
+
         public class CampingLogic
         {
             private readonly int[] Blokhutten;
@@ -383,25 +407,17 @@ namespace ICT4EVENT
             {
                 parent = form;
             }
-        }
 
-        private void btnCreateUser_Click(object sender, EventArgs e)
-        {
-            createUser.CreateUser();
-        }
-
-        private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabMainTab.SelectedTab == tabCreateUser)
+            public void CreatePlace()
             {
-                rfid.Antenna = true;
-                rfid.LED = true;
+                string description = parent.txtDescription.Text;
+                decimal price;
+                int amount;
+                string location;
+                string category;
+                int capacity;
+                //EquipmentManager.CreateNewPlace();
             }
-            else
-            {
-                rfid.Antenna = false;
-                rfid.LED = false;
-            }
-        }     
+        } 
     }
 }

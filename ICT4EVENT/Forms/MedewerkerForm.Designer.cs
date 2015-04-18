@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -79,6 +79,17 @@
             this.txtAssignRfid = new System.Windows.Forms.TextBox();
             this.tabCreatePlace = new System.Windows.Forms.TabPage();
             this.groupCreatePlace = new System.Windows.Forms.GroupBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.numPrice = new System.Windows.Forms.NumericUpDown();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.numCapacity = new System.Windows.Forms.NumericUpDown();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.lblCapacity = new System.Windows.Forms.Label();
+            this.numPlaceNumber = new System.Windows.Forms.NumericUpDown();
+            this.btnCreatePlace = new System.Windows.Forms.Button();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,6 +104,10 @@
             this.tabCreateUser.SuspendLayout();
             this.groupCreateUser.SuspendLayout();
             this.tabCreatePlace.SuspendLayout();
+            this.groupCreatePlace.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPlaceNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -428,8 +443,8 @@
             // listView3
             // 
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem5,
+            listViewItem6});
             this.listView3.Location = new System.Drawing.Point(6, 56);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(983, 372);
@@ -603,12 +618,126 @@
             // 
             // groupCreatePlace
             // 
+            this.groupCreatePlace.Controls.Add(this.btnCreatePlace);
+            this.groupCreatePlace.Controls.Add(this.numPlaceNumber);
+            this.groupCreatePlace.Controls.Add(this.lblCapacity);
+            this.groupCreatePlace.Controls.Add(this.lblCategory);
+            this.groupCreatePlace.Controls.Add(this.lblLocation);
+            this.groupCreatePlace.Controls.Add(this.lblPrice);
+            this.groupCreatePlace.Controls.Add(this.lblDescription);
+            this.groupCreatePlace.Controls.Add(this.numCapacity);
+            this.groupCreatePlace.Controls.Add(this.txtCategory);
+            this.groupCreatePlace.Controls.Add(this.numPrice);
+            this.groupCreatePlace.Controls.Add(this.txtDescription);
             this.groupCreatePlace.Location = new System.Drawing.Point(3, 3);
             this.groupCreatePlace.Name = "groupCreatePlace";
             this.groupCreatePlace.Size = new System.Drawing.Size(982, 617);
             this.groupCreatePlace.TabIndex = 0;
             this.groupCreatePlace.TabStop = false;
             this.groupCreatePlace.Text = "Plaats aanmaken";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(374, 97);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(291, 87);
+            this.txtDescription.TabIndex = 0;
+            // 
+            // numPrice
+            // 
+            this.numPrice.DecimalPlaces = 2;
+            this.numPrice.Location = new System.Drawing.Point(374, 190);
+            this.numPrice.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numPrice.Name = "numPrice";
+            this.numPrice.Size = new System.Drawing.Size(291, 30);
+            this.numPrice.TabIndex = 1;
+            // 
+            // txtCategory
+            // 
+            this.txtCategory.Location = new System.Drawing.Point(374, 298);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(291, 30);
+            this.txtCategory.TabIndex = 4;
+            // 
+            // numCapacity
+            // 
+            this.numCapacity.Location = new System.Drawing.Point(374, 262);
+            this.numCapacity.Name = "numCapacity";
+            this.numCapacity.Size = new System.Drawing.Size(291, 30);
+            this.numCapacity.TabIndex = 5;
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Location = new System.Drawing.Point(186, 97);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(108, 28);
+            this.lblDescription.TabIndex = 6;
+            this.lblDescription.Text = "Beschrijving:";
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(186, 189);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(51, 28);
+            this.lblPrice.TabIndex = 7;
+            this.lblPrice.Text = "Prijs:";
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(186, 225);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(125, 28);
+            this.lblLocation.TabIndex = 9;
+            this.lblLocation.Text = "Plaatsnummer:";
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(186, 298);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(88, 28);
+            this.lblCategory.TabIndex = 10;
+            this.lblCategory.Text = "Categorie:";
+            // 
+            // lblCapacity
+            // 
+            this.lblCapacity.AutoSize = true;
+            this.lblCapacity.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCapacity.Location = new System.Drawing.Point(186, 261);
+            this.lblCapacity.Name = "lblCapacity";
+            this.lblCapacity.Size = new System.Drawing.Size(172, 28);
+            this.lblCapacity.TabIndex = 11;
+            this.lblCapacity.Text = "Max. Aantal personen";
+            // 
+            // numPlaceNumber
+            // 
+            this.numPlaceNumber.Location = new System.Drawing.Point(374, 226);
+            this.numPlaceNumber.Name = "numPlaceNumber";
+            this.numPlaceNumber.Size = new System.Drawing.Size(291, 30);
+            this.numPlaceNumber.TabIndex = 12;
+            // 
+            // btnCreatePlace
+            // 
+            this.btnCreatePlace.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreatePlace.Location = new System.Drawing.Point(374, 356);
+            this.btnCreatePlace.Name = "btnCreatePlace";
+            this.btnCreatePlace.Size = new System.Drawing.Size(291, 54);
+            this.btnCreatePlace.TabIndex = 13;
+            this.btnCreatePlace.Text = "Plaats aanmaken";
+            this.btnCreatePlace.UseVisualStyleBackColor = true;
+            this.btnCreatePlace.Click += new System.EventHandler(this.btnCreatePlace_Click);
             // 
             // MedewerkerForm
             // 
@@ -639,6 +768,11 @@
             this.groupCreateUser.ResumeLayout(false);
             this.groupCreateUser.PerformLayout();
             this.tabCreatePlace.ResumeLayout(false);
+            this.groupCreatePlace.ResumeLayout(false);
+            this.groupCreatePlace.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPlaceNumber)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -694,5 +828,16 @@
         private System.Windows.Forms.Label lblSurName;
         private System.Windows.Forms.TabPage tabCreatePlace;
         private System.Windows.Forms.GroupBox groupCreatePlace;
+        private System.Windows.Forms.NumericUpDown numPrice;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.TextBox txtCategory;
+        private System.Windows.Forms.Label lblCapacity;
+        private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.NumericUpDown numCapacity;
+        private System.Windows.Forms.Button btnCreatePlace;
+        private System.Windows.Forms.NumericUpDown numPlaceNumber;
     }
 }
