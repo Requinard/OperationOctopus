@@ -1,4 +1,6 @@
-﻿namespace ICT4EVENT.Models
+﻿using System;
+
+namespace ICT4EVENT.Models
 {
     using Oracle.DataAccess.Client;
 
@@ -20,7 +22,7 @@
 
         public bool Create()
         {
-            var query = string.Format("INSERT INTO TAG (name) VALUES ('{0}')", this.Id);
+            var query = string.Format("INSERT INTO TAG (tagname) VALUES ('{0}')", this.Name);
 
             if (DBManager.QueryDB(query) == null)
             {
@@ -80,7 +82,7 @@
 
         public void ReadFromReader(OracleDataReader reader)
         {
-            this.Id = int.Parse(reader["ident"].ToString());
+            this.Id = Int32.Parse(reader["ident"].ToString());
             this.Name = reader["tagname"].ToString();
         }
     }

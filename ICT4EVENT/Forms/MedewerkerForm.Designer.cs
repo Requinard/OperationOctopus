@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -90,6 +90,7 @@
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.numPrice = new System.Windows.Forms.NumericUpDown();
             this.txtDescription = new System.Windows.Forms.TextBox();
+            this.tabAcceptPayment = new System.Windows.Forms.TabPage();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -118,6 +119,7 @@
             this.tabMainTab.Controls.Add(this.tabMaterialRental);
             this.tabMainTab.Controls.Add(this.tabCreateUser);
             this.tabMainTab.Controls.Add(this.tabCreatePlace);
+            this.tabMainTab.Controls.Add(this.tabAcceptPayment);
             this.tabMainTab.Location = new System.Drawing.Point(-1, 0);
             this.tabMainTab.Name = "tabMainTab";
             this.tabMainTab.SelectedIndex = 0;
@@ -272,7 +274,7 @@
             this.btnFindUser.Location = new System.Drawing.Point(826, 25);
             this.btnFindUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnFindUser.Name = "btnFindUser";
-            this.btnFindUser.Size = new System.Drawing.Size(156, 30);
+            this.btnFindUser.Size = new System.Drawing.Size(156, 36);
             this.btnFindUser.TabIndex = 14;
             this.btnFindUser.Tag = "SMSS";
             this.btnFindUser.Text = "Zoek gebruiker";
@@ -771,6 +773,15 @@
             this.txtDescription.Size = new System.Drawing.Size(291, 87);
             this.txtDescription.TabIndex = 0;
             // 
+            // tabAcceptPayment
+            // 
+            this.tabAcceptPayment.Location = new System.Drawing.Point(4, 33);
+            this.tabAcceptPayment.Name = "tabAcceptPayment";
+            this.tabAcceptPayment.Size = new System.Drawing.Size(992, 623);
+            this.tabAcceptPayment.TabIndex = 7;
+            this.tabAcceptPayment.Text = "Betaling bevestigen";
+            this.tabAcceptPayment.UseVisualStyleBackColor = true;
+            // 
             // MedewerkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -871,5 +882,6 @@
         private System.Windows.Forms.NumericUpDown numCapacity;
         private System.Windows.Forms.Button btnCreatePlace;
         private System.Windows.Forms.NumericUpDown numPlaceNumber;
+        private System.Windows.Forms.TabPage tabAcceptPayment;
     }
 }

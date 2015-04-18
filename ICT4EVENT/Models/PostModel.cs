@@ -1,3 +1,6 @@
+using System.Data.Common;
+using System.Net.Sockets;
+
 namespace ICT4EVENT
 {
     using System;
@@ -206,6 +209,22 @@ namespace ICT4EVENT
 
             string finalQuery = string.Format(INSERTSTRING, "POST", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
+
+            if (reader != null)
+            {
+                string query =
+                    string.Format(
+                        "SELECT * FROM POST WHERE userid = '{0}' AND eventid = '{1}' AND to_char(PostContent) = '{2}'",
+                        User.Id, event_item.Id, Content);
+
+                OracleDataReader second = DBManager.QueryDB(query);
+
+                if (second != null)
+                {
+                    second.Read();
+                    ReadFromReader(second);
+                }
+            }
 
             return reader != null;
         }
