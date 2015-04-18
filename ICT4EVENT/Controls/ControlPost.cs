@@ -28,10 +28,11 @@ namespace ICT4EVENT
             }
             else
             {
-                FTPManager.DownloadFile(postModel.PathToFile);
+                if (!File.Exists(postModel.PathToFile))
+                    FTPManager.DownloadFile(postModel.PathToFile);
                 pbMedia.Enabled = true;
-                if(File.Exists(postModel.PathToFile))
-                    pbMedia.Image = Image.FromFile(postModel.PathToFile);
+                
+                pbMedia.Image = Image.FromFile(postModel.PathToFile);
 
                 pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
                 Size = new Size(Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
