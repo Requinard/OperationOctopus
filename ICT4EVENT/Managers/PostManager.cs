@@ -49,7 +49,6 @@ namespace ICT4EVENT
                 post.PathToFile = "";
             }
 
-            return post;
             post.Create();
 
             var reg = new Regex(@"[#]\w+");
