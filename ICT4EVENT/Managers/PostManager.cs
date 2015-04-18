@@ -284,7 +284,7 @@ namespace ICT4EVENT
             return post;
         }
 
-        public static List<PostModel> RetrieveUserPosts(UserModel user)
+        public static List<PostModel> GetUserPosts(UserModel user, int amountOfPosts = 10)
         {
             var posts = new List<PostModel>();
             var query = string.Format(
@@ -298,7 +298,7 @@ namespace ICT4EVENT
             {
                 return null;
             }
-
+            int cnt = 0;
             while (reader.Read())
             {
                 var post = new PostModel();
@@ -306,6 +306,11 @@ namespace ICT4EVENT
                 post.ReadFromReader(reader);
 
                 posts.Add(post);
+
+                if(++cnt ==10)
+                {
+                    break;
+                }
             }
 
             return posts;

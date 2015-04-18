@@ -30,7 +30,7 @@ namespace ICT4EVENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All Posts");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("All Posts");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -63,7 +63,7 @@ namespace ICT4EVENT
             this.flowPostsFromUser = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gbProfileOfUser = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblUserDescription = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblUserDisplayName = new System.Windows.Forms.Label();
@@ -268,10 +268,10 @@ namespace ICT4EVENT
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
             this.treeCategorie.Name = "treeCategorie";
-            treeNode1.Name = "All Posts";
-            treeNode1.Text = "All Posts";
+            treeNode2.Name = "All Posts";
+            treeNode2.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeCategorie.Size = new System.Drawing.Size(155, 543);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
@@ -420,6 +420,7 @@ namespace ICT4EVENT
             this.tbSearchUser.Name = "tbSearchUser";
             this.tbSearchUser.Size = new System.Drawing.Size(769, 25);
             this.tbSearchUser.TabIndex = 16;
+            this.tbSearchUser.TextChanged += new System.EventHandler(this.tbSearchUser_TextChanged);
             // 
             // gbPostsOfUser
             // 
@@ -451,7 +452,7 @@ namespace ICT4EVENT
             // 
             // gbProfileOfUser
             // 
-            this.gbProfileOfUser.Controls.Add(this.label3);
+            this.gbProfileOfUser.Controls.Add(this.lblUserDescription);
             this.gbProfileOfUser.Controls.Add(this.pictureBox3);
             this.gbProfileOfUser.Controls.Add(this.pictureBox4);
             this.gbProfileOfUser.Controls.Add(this.lblUserDisplayName);
@@ -462,16 +463,16 @@ namespace ICT4EVENT
             this.gbProfileOfUser.TabStop = false;
             this.gbProfileOfUser.Text = "profiel van ";
             // 
-            // label3
+            // lblUserDescription
             // 
-            this.label3.BackColor = System.Drawing.Color.OrangeRed;
-            this.label3.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(165, 56);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(613, 116);
-            this.label3.TabIndex = 16;
-            this.label3.Tag = "Profiel";
-            this.label3.Text = "Biografie:";
+            this.lblUserDescription.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblUserDescription.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserDescription.Location = new System.Drawing.Point(165, 56);
+            this.lblUserDescription.Name = "lblUserDescription";
+            this.lblUserDescription.Size = new System.Drawing.Size(613, 116);
+            this.lblUserDescription.TabIndex = 16;
+            this.lblUserDescription.Tag = "Profiel";
+            this.lblUserDescription.Text = "Biografie:";
             // 
             // pictureBox3
             // 
@@ -783,7 +784,7 @@ namespace ICT4EVENT
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.FlowLayoutPanel flowPosts;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblUserDescription;
         private System.Windows.Forms.Button btnSocialMedia4;
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
         private System.Windows.Forms.ListView listMaterials;
