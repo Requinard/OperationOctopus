@@ -163,6 +163,7 @@ namespace ICT4EVENT
             // Convert repsonse to readable format and write it to a file
             try
             {
+                localCreateFolder(path);
                 responseStream = response.GetResponseStream();
                 using (FileStream stream = File.Create(path))
                 {
