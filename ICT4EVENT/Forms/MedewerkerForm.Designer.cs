@@ -41,10 +41,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabRegisterUser = new System.Windows.Forms.TabPage();
             this.lbRecent = new System.Windows.Forms.ListBox();
             this.gbCheckIn = new System.Windows.Forms.GroupBox();
-            this.btnFindUser = new System.Windows.Forms.Button();
             this.gbUserDetails = new System.Windows.Forms.GroupBox();
             this.btnConformUser = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -94,7 +93,7 @@
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.tabRegisterUser.SuspendLayout();
             this.gbCheckIn.SuspendLayout();
             this.gbUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -114,7 +113,7 @@
             // tabMainTab
             // 
             this.tabMainTab.Controls.Add(this.tabCampingPlace);
-            this.tabMainTab.Controls.Add(this.tabPage1);
+            this.tabMainTab.Controls.Add(this.tabRegisterUser);
             this.tabMainTab.Controls.Add(this.tabPostReview);
             this.tabMainTab.Controls.Add(this.tabMaterialRental);
             this.tabMainTab.Controls.Add(this.tabCreateUser);
@@ -233,16 +232,16 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "CampingPlaats:";
             // 
-            // tabPage1
+            // tabRegisterUser
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.White;
-            this.tabPage1.Controls.Add(this.lbRecent);
-            this.tabPage1.Controls.Add(this.gbCheckIn);
-            this.tabPage1.Location = new System.Drawing.Point(4, 33);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(992, 623);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Gasten Inschrijven";
+            this.tabRegisterUser.BackColor = System.Drawing.Color.White;
+            this.tabRegisterUser.Controls.Add(this.lbRecent);
+            this.tabRegisterUser.Controls.Add(this.gbCheckIn);
+            this.tabRegisterUser.Location = new System.Drawing.Point(4, 33);
+            this.tabRegisterUser.Name = "tabRegisterUser";
+            this.tabRegisterUser.Size = new System.Drawing.Size(992, 623);
+            this.tabRegisterUser.TabIndex = 1;
+            this.tabRegisterUser.Text = "Gasten Inschrijven";
             // 
             // lbRecent
             // 
@@ -257,7 +256,6 @@
             // gbCheckIn
             // 
             this.gbCheckIn.BackColor = System.Drawing.Color.Transparent;
-            this.gbCheckIn.Controls.Add(this.btnFindUser);
             this.gbCheckIn.Controls.Add(this.gbUserDetails);
             this.gbCheckIn.Controls.Add(this.txtRFIDCode);
             this.gbCheckIn.Location = new System.Drawing.Point(4, 4);
@@ -266,19 +264,6 @@
             this.gbCheckIn.TabIndex = 13;
             this.gbCheckIn.TabStop = false;
             this.gbCheckIn.Text = "Schrijf bezoeker in";
-            // 
-            // btnFindUser
-            // 
-            this.btnFindUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnFindUser.Location = new System.Drawing.Point(826, 25);
-            this.btnFindUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnFindUser.Name = "btnFindUser";
-            this.btnFindUser.Size = new System.Drawing.Size(156, 36);
-            this.btnFindUser.TabIndex = 14;
-            this.btnFindUser.Tag = "SMSS";
-            this.btnFindUser.Text = "Zoek gebruiker";
-            this.btnFindUser.UseVisualStyleBackColor = true;
             // 
             // gbUserDetails
             // 
@@ -311,7 +296,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox3.Location = new System.Drawing.Point(820, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(820, 20);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(150, 150);
             this.pictureBox3.TabIndex = 14;
@@ -338,7 +323,7 @@
             this.lblPaymentStatusOfUser.Size = new System.Drawing.Size(428, 33);
             this.lblPaymentStatusOfUser.TabIndex = 12;
             this.lblPaymentStatusOfUser.Tag = "";
-            this.lblPaymentStatusOfUser.Text = "Payment status: <Status>";
+            this.lblPaymentStatusOfUser.Text = "Payment status: ";
             this.lblPaymentStatusOfUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblNameOfUser
@@ -350,17 +335,19 @@
             this.lblNameOfUser.Size = new System.Drawing.Size(428, 34);
             this.lblNameOfUser.TabIndex = 10;
             this.lblNameOfUser.Tag = "";
-            this.lblNameOfUser.Text = "Naam: <Name Of User>";
+            this.lblNameOfUser.Text = "Naam:";
             this.lblNameOfUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtRFIDCode
             // 
+            this.txtRFIDCode.Enabled = false;
             this.txtRFIDCode.Font = new System.Drawing.Font("Agency FB", 14.25F);
             this.txtRFIDCode.Location = new System.Drawing.Point(6, 25);
             this.txtRFIDCode.MinimumSize = new System.Drawing.Size(815, 40);
             this.txtRFIDCode.Name = "txtRFIDCode";
-            this.txtRFIDCode.Size = new System.Drawing.Size(815, 36);
+            this.txtRFIDCode.Size = new System.Drawing.Size(970, 40);
             this.txtRFIDCode.TabIndex = 0;
+            this.txtRFIDCode.TextChanged += new System.EventHandler(this.txtRFIDCode_TextChanged);
             // 
             // tabPostReview
             // 
@@ -446,7 +433,9 @@
             // 
             // listReservedItems
             // 
-            this.listReservedItems.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1, listViewItem2});
+            this.listReservedItems.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
             this.listReservedItems.Location = new System.Drawing.Point(6, 56);
             this.listReservedItems.Name = "listReservedItems";
             this.listReservedItems.Size = new System.Drawing.Size(983, 372);
@@ -795,7 +784,7 @@
             this.tabCampingPlace.ResumeLayout(false);
             this.tabCampingPlace.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage1.ResumeLayout(false);
+            this.tabRegisterUser.ResumeLayout(false);
             this.gbCheckIn.ResumeLayout(false);
             this.gbCheckIn.PerformLayout();
             this.gbUserDetails.ResumeLayout(false);
@@ -828,7 +817,7 @@
         private System.Windows.Forms.TextBox txtGebruikers;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabRegisterUser;
         private System.Windows.Forms.GroupBox gbCheckIn;
         private System.Windows.Forms.GroupBox gbUserDetails;
         private System.Windows.Forms.TextBox txtRFIDCode;
@@ -842,7 +831,6 @@
         private System.Windows.Forms.ListBox lbUser;
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.ComboBox nmrPlaats;
-        private System.Windows.Forms.Button btnFindUser;
         private System.Windows.Forms.Button btnConformUser;
         private System.Windows.Forms.Label lblAtEventStatus;
         private System.Windows.Forms.Label lblPaymentStatusOfUser;

@@ -15,6 +15,7 @@ namespace ICT4EVENT
         private PostReviewLogic postReview;
         private CreatePlaceLogic createPlace;
         private DeleteReservationLogic deleteReservation;
+        private RegisterUserLogic registerUser;
 
         private RFID rfid;
 
@@ -49,6 +50,8 @@ namespace ICT4EVENT
             }
         }
 
+        #region handlers
+
         private void RFID_Error(object sender, ErrorEventArgs e)
         {
             MessageBox.Show(e.Description);
@@ -56,7 +59,15 @@ namespace ICT4EVENT
 
         private void RFID_Tag(object sender, TagEventArgs e)
         {
-            txtAssignRfid.Text = Convert.ToString(e.Tag);
+            if (tabMainTab.SelectedTab == tabCreateUser)
+            {
+                txtAssignRfid.Text = Convert.ToString(e.Tag);     
+            }
+
+            if (tabMainTab.SelectedTab == tabRegisterUser)
+            {
+                txtRFIDCode.Text = Convert.ToString(e.Tag);
+            }
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -145,6 +156,26 @@ namespace ICT4EVENT
         {
             deleteReservation.DeleteReservation();
         }
+
+        private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cbReservations.Items
+        }
+
+        private void txtRFIDCode_TextChanged(object sender, EventArgs e)
+        {
+            if (registerUser.FindRFIDCode())
+            {
+                MessageBox.Show("Gebruiker gevonden.");
+            }
+            else
+            {
+                txtRFIDCode.Text = "";
+                MessageBox.Show("RFID Niet gevonden.");
+            }
+        }
+
+        #endregion
 
         public class CampingLogic
         {
@@ -479,10 +510,22 @@ namespace ICT4EVENT
             }
         }
 
-        private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
+        public class RegisterUserLogic
         {
-            //cbReservations.Items
+            private readonly MedewerkerForm parent;
+            public RegisterUserLogic(MedewerkerForm form)
+            {
+                parent = form;
+            }
+
+            public bool FindRFIDCode()
+            {
+                if (UserManager.AuthenticateUser(parent.txtRFIDCode.Text))
+                {
+                    return true;
+                }
+                return false;
+            }
         }
-     
     }
 }
