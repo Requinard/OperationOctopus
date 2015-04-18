@@ -181,5 +181,14 @@ namespace ICT4EVENT
             if(e.KeyChar == '\r' || e.KeyChar == '\n')
                 btnLogin_Click(this, e);
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                Settings.ActiveUser = UserManager.FindUser("admin");
+                FillActionList();
+            }
+        }
     }
 }

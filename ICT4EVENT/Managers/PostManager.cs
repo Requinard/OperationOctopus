@@ -51,7 +51,7 @@ namespace ICT4EVENT
 
             post.Create();
 
-            var reg = new Regex(@"/([#]\w+)/");
+            var reg = new Regex(@"[#]\w+");
 
             foreach (Match match in reg.Matches(post.Content))
             {
@@ -63,13 +63,16 @@ namespace ICT4EVENT
         private static void TagPost(PostModel post, string tag)
         {
             TagModel tagModel = null;
+
+            tag = tag.ToLower();
+
             // We check if the tag already exists
 
-            var select_tagname = string.Format("SELECT * FROM TAG WHERE name = '{0}'", tag);
+            var select_tagname = string.Format("SELECT * FROM TAG WHERE tagname = '{0}'", tag);
 
             var reader = DBManager.QueryDB(select_tagname);
 
-            if (reader == null)
+            if (reader.HasRows == false)
             {
                 tagModel = new TagModel();
 
@@ -99,13 +102,13 @@ namespace ICT4EVENT
             reader = DBManager.QueryDB(insert_query);
         }
 
-        private static List<PostModel> GetPostByTags(string tag)
+        public static List<PostModel> GetPostByTags(string tag)
         {
             var posts = new List<PostModel>();
 
             var query =
                 string.Format(
-                    "SELECT * FROM TagPost, Tag wHERE tag.name = '{0}' AND tag.ident = tagpost.tagid",
+                    "SELECT * FROM TagPost, Tag wHERE tag.tagname = '{0}' AND tag.ident = tagpost.tagid",
                     tag);
 
             var reader = DBManager.QueryDB(query);

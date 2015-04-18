@@ -80,6 +80,8 @@ namespace ICT4EVENT
                     {
                         flowPosts.Controls.Add(new UserPost(postModel));
                     }
+
+                    treeTags();
                 }
 
             }
@@ -127,6 +129,11 @@ namespace ICT4EVENT
         {
             List<TagModel> tags = new List<TagModel>();
             tags = PostManager.GetAllTags();
+
+            treeCategorie.Nodes.Clear();
+
+            treeCategorie.Nodes.Add("All Posts");
+
             foreach (TagModel tag in tags)
             {
                 treeCategorie.Nodes.Add(tag.Name);
@@ -174,6 +181,29 @@ namespace ICT4EVENT
             else
             {
                 MessageBox.Show("Selecteer eerst een product.");
+            }
+        }
+
+        private void treeCategorie_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            string tag = e.Node.Text;
+
+            if (tag == "All Posts")
+            {
+                FillList();
+                return;
+            }
+
+            List<PostModel> posts = PostManager.GetPostByTags(tag);
+
+            if (posts == null)
+                return;
+
+            flowPosts.Controls.Clear();
+
+            foreach (PostModel postModel in posts)
+            {
+                flowPosts.Controls.Add(new UserPost(postModel));
             }
         }
     }
