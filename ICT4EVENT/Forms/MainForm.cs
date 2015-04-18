@@ -90,6 +90,11 @@ namespace ICT4EVENT
                     // button actions happen here
                 if (action)
                 {
+                    List<string> Reserved = new List<string>();
+                    foreach (string item in listCart.Items)
+                    {
+                        Reserved.Add(item);
+                    }
                     //Make object reservation in manager.
                 }
             }
