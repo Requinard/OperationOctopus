@@ -95,7 +95,7 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                    //Make object reservation in manager.
+                    ReserveMaterial();
                 }
             }
             if (tabMainTab.SelectedTab.Name == "tabProfile")
@@ -234,6 +234,21 @@ namespace ICT4EVENT
             {
                 if (lblUserDisplayName.Text != Settings.ActiveUser.Username)
                     UpdateProfile(Settings.ActiveUser);
+            }
+        }
+
+        private void ReserveMaterial()
+        {
+            List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
+            foreach (string rentable in listCart.Items)
+            {
+                foreach (RentableObjectModel rentableobject in rentables)
+                {
+                    if (rentableobject.ObjectType == rentable)
+                    {
+                        EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject);
+                    }
+                }
             }
         }
     }

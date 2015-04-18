@@ -86,7 +86,7 @@ namespace ICT4EVENT
             return null;
         }
 
-        public static ReservationModel MakePlaceReservervation(UserModel user, RentableObjectModel rent)
+        public static ReservationModel MakeObjectReservervation(UserModel user, RentableObjectModel rent)
         {
             ReservationModel res = new ReservationModel(rent, user);
 
