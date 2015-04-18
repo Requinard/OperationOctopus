@@ -10,7 +10,7 @@ namespace ICT4EVENT
     {
         private const string username = "PTS08";
         private const string pw = "PTS08";
-        private const string FolderLocation = "sftp://proftaak.me/home/Media/Files";
+        private const string FolderLocation = "ftp://proftaak.me/files/";
         private static readonly string FileName = "sample.mp4";
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace ICT4EVENT
         /// <param name="path"></param>
         public static void UploadFile(string path)
         {
-            StreamReader s;
+            FileStream s;
             byte[] content = {};
             FtpWebResponse response;
 
@@ -31,22 +31,19 @@ namespace ICT4EVENT
             FtpWebRequest request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(username, pw);
+            request.UseBinary = true;
 
             // Copy the file to a byte array
             try
             {
-                s = new StreamReader(path);
-                content = Encoding.UTF8.GetBytes(s.ReadToEnd());
-                s.Close();
-                request.ContentLength = content.Length;
-                Logger.Debug("Successfully copied data to stream");
-
-                // Copy contents to the request stream
-                Stream requestStream = request.GetRequestStream();
-                requestStream.Write(content, 0, content.Length);
-                requestStream.Close();
-                Logger.Debug("Successfully copied stream to request");
-                Logger.Debug("Successfully copied stream to request");
+                FTPCreateFolder(path);
+                using (FileStream source = File.OpenRead(path))
+                {
+                    using (Stream requestStream = request.GetRequestStream())
+                    {
+                        source.CopyTo(requestStream);
+                    }
+                }
             }
             catch (FileNotFoundException ex)
             {
@@ -113,6 +110,19 @@ namespace ICT4EVENT
             }
         }
 
+        private static void localCreateFolder(string path)
+        {
+            string[] subPaths = path.Replace(Path.GetFileName(path), "").Split('/');
+            string soFar = "";
+
+            foreach (string sub in subPaths)
+            {
+                Directory.CreateDirectory(soFar + sub);
+
+                soFar += string.Format("{0}/", sub);
+            }
+        }
+
         /// <summary>
         ///     Downloads a file from the server
         ///     https://msdn.microsoft.com/en-us/library/ms229711%28v=vs.110%29.aspx
@@ -132,6 +142,7 @@ namespace ICT4EVENT
             FtpWebRequest request = (FtpWebRequest) WebRequest.Create(FolderLocation + path);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(username, pw);
+            request.UseBinary = true;
 
             // Get the response
             try
@@ -153,11 +164,13 @@ namespace ICT4EVENT
             try
             {
                 responseStream = response.GetResponseStream();
-                reader = new StreamReader(responseStream);
-
-                writer = new StreamWriter(path);
-
-                writer.Write(reader.ReadToEnd());
+                using (FileStream stream = File.Create(path))
+                {
+                    using (Stream requestStream = responseStream)
+                    {
+                        requestStream.CopyTo(stream);
+                    }
+                }
             }
             catch (Exception exception)
             {
@@ -167,8 +180,6 @@ namespace ICT4EVENT
 
 
             // Close streams
-            reader.Close();
-            writer.Close();
             responseStream.Close();
         }
     }

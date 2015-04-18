@@ -98,6 +98,7 @@
             this.btnLike.TabIndex = 4;
             this.btnLike.Text = "Like";
             this.btnLike.UseVisualStyleBackColor = true;
+            this.btnLike.Click += new System.EventHandler(this.btnLike_Click);
             // 
             // flowComment
             // 
@@ -128,7 +129,7 @@
             // tbReport
             // 
             this.tbReport.Location = new System.Drawing.Point(3, 138);
-            this.tbReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbReport.Margin = new System.Windows.Forms.Padding(2);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
             this.tbReport.Size = new System.Drawing.Size(100, 34);
