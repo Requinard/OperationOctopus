@@ -79,14 +79,13 @@ namespace ICT4EVENT
             }
             comboBox1.SelectedIndex = 0;
             comboOptions.Items.Add("Social Media Sharing");
-            if (Settings.ActiveUser.Level == 2)
+            if (Settings.ActiveUser.Level >= 2)
             {
-                comboOptions.Items.Add("Registraties");
-                comboOptions.Items.Add("Toegangscontrole");
+                comboOptions.Items.Add("Medewerker");
             }
-            if (Settings.ActiveUser.Level == 3)
+            if (Settings.ActiveUser.Level >= 3)
             {
-                comboOptions.Items.Add("Ultra mega holocaust nigger 9000");
+                comboOptions.Items.Add("administratie");
             }
 
             comboOptions.Enabled = true;
@@ -152,6 +151,27 @@ namespace ICT4EVENT
                 case 1:
                     Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedItem.ToString());
                     // TODO: Open registrations
+                    if (Settings.ActiveUser == null || Settings.ActiveEvent == null)
+                    {
+                        Logger.Error("No user or event were set to active on form initialization");
+                        Environment.Exit(2);
+                    }
+                    openForm(new MedewerkerForm());
+                    break;
+                case 2:
+                    Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedItem.ToString());
+                    // TODO: Open registrations
+                    if (Settings.ActiveUser == null)
+                    {
+                        Logger.Error("No user or event were set to active on form initialization");
+                        Environment.Exit(2);
+                    }
+                    openForm(new AdminForm());
+                    // TODO: Open access control
+                    break;
+                case 3:
+                    Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedItem.ToString());
+                    // TODO: Open registrations
                     if (Settings.ActiveUser == null)
                     {
                         Logger.Error("No user or event were set to active on form initialization");
@@ -159,12 +179,6 @@ namespace ICT4EVENT
                     }
                     openForm(new AdminForm());
                     break;
-                case 2:
-                    // TODO: Open access control
-                    break;
-                case 3:
-                    // TODO: Open administrator panel
-                    
                     break;
                 default:
                     openForm(new MainForm());
@@ -191,6 +205,11 @@ namespace ICT4EVENT
                 FillActionList();
                 btnGO_Click(this, e);
             }
+        }
+
+        private void comboOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
