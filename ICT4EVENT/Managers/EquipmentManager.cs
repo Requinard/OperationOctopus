@@ -39,10 +39,10 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
                 return null;
 
-            while (reader.Read() || !reader.HasRows)
+            while (reader.Read()
             {
                 RentableObjectModel rent = new RentableObjectModel();
 
