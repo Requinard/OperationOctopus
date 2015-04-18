@@ -417,6 +417,17 @@ namespace ICT4EVENT
                 string category = parent.txtCategory.Text;
                 int capacity = Convert.ToInt32(parent.numCapacity.Value);
                 EquipmentManager.CreateNewPlace(description, price, amount, location, category,capacity);
+                MessageBox.Show("Plaats aangemaakt");
+                EmptyBoxes();
+            }
+
+            private void EmptyBoxes()
+            {
+                parent.txtDescription.Text = "";
+                parent.numPrice.Value = 0;
+                parent.numPlaceNumber.Value = 1;
+                parent.txtCategory.Text = "";
+                parent.numCapacity.Value = 1;
             }
         } 
     }
