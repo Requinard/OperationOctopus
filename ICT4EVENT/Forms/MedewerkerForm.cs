@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
@@ -12,6 +13,7 @@ namespace ICT4EVENT
         private readonly CampingLogic campingLogic;
         private readonly CreateUserLogic createUser;
         private PostReviewLogic postReview;
+        private CreatePlaceLogic createPlace;
 
         private RFID rfid;
 
@@ -21,6 +23,7 @@ namespace ICT4EVENT
             campingLogic = new CampingLogic(this);
             postReview = new PostReviewLogic(this);
             createUser = new CreateUserLogic(this);
+            createPlace = new CreatePlaceLogic(this);
 
             OpenRFIDConnection();
         }
@@ -370,6 +373,15 @@ namespace ICT4EVENT
 
                 string RandomPassword = new String(PasswordChars);
                 return RandomPassword;
+            }
+        }
+
+        public class CreatePlaceLogic
+        {
+            private readonly MedewerkerForm parent;
+            public CreatePlaceLogic(MedewerkerForm form)
+            {
+                parent = form;
             }
         }
 

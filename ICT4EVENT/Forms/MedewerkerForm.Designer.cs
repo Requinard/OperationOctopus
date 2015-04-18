@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedewerkerForm));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
@@ -78,6 +77,8 @@
             this.lblTelNr = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtAssignRfid = new System.Windows.Forms.TextBox();
+            this.tabCreatePlace = new System.Windows.Forms.TabPage();
+            this.groupCreatePlace = new System.Windows.Forms.GroupBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -91,6 +92,7 @@
             this.gbMaterialControl.SuspendLayout();
             this.tabCreateUser.SuspendLayout();
             this.groupCreateUser.SuspendLayout();
+            this.tabCreatePlace.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -100,6 +102,7 @@
             this.tabMainTab.Controls.Add(this.tabPostReview);
             this.tabMainTab.Controls.Add(this.tabMaterialRental);
             this.tabMainTab.Controls.Add(this.tabCreateUser);
+            this.tabMainTab.Controls.Add(this.tabCreatePlace);
             this.tabMainTab.Location = new System.Drawing.Point(-1, 0);
             this.tabMainTab.Name = "tabMainTab";
             this.tabMainTab.SelectedIndex = 0;
@@ -185,8 +188,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(641, 623);
@@ -589,6 +591,25 @@
             this.txtAssignRfid.Size = new System.Drawing.Size(473, 30);
             this.txtAssignRfid.TabIndex = 0;
             // 
+            // tabCreatePlace
+            // 
+            this.tabCreatePlace.Controls.Add(this.groupCreatePlace);
+            this.tabCreatePlace.Location = new System.Drawing.Point(4, 33);
+            this.tabCreatePlace.Name = "tabCreatePlace";
+            this.tabCreatePlace.Size = new System.Drawing.Size(992, 623);
+            this.tabCreatePlace.TabIndex = 6;
+            this.tabCreatePlace.Text = "Plaats aanmaken";
+            this.tabCreatePlace.UseVisualStyleBackColor = true;
+            // 
+            // groupCreatePlace
+            // 
+            this.groupCreatePlace.Location = new System.Drawing.Point(3, 3);
+            this.groupCreatePlace.Name = "groupCreatePlace";
+            this.groupCreatePlace.Size = new System.Drawing.Size(982, 617);
+            this.groupCreatePlace.TabIndex = 0;
+            this.groupCreatePlace.TabStop = false;
+            this.groupCreatePlace.Text = "Plaats aanmaken";
+            // 
             // MedewerkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -617,6 +638,7 @@
             this.tabCreateUser.ResumeLayout(false);
             this.groupCreateUser.ResumeLayout(false);
             this.groupCreateUser.PerformLayout();
+            this.tabCreatePlace.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -670,5 +692,7 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtSurName;
         private System.Windows.Forms.Label lblSurName;
+        private System.Windows.Forms.TabPage tabCreatePlace;
+        private System.Windows.Forms.GroupBox groupCreatePlace;
     }
 }
