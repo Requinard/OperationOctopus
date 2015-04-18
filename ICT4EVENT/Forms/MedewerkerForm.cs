@@ -63,8 +63,8 @@ namespace ICT4EVENT
             try
             {
                 UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text));
-            campingLogic.AddUserToList();
-        }
+                campingLogic.AddUserToList();
+            }
             catch
             {
                 try
@@ -82,16 +82,37 @@ namespace ICT4EVENT
         
         private void btnReserve_Click(object sender, EventArgs e)
         {
-            var plaats = Convert.ToInt32(nmrPlaats.Text);
-
-            var lines = lbUser.Items.Count;
-
-            if (campingLogic.CheckPlaceSize(plaats, lines))
+            PlaceModel plaats = null;
+            foreach (PlaceModel pm in campingLogic.places)
             {
-                //TODO: EquipmentManager.MakePlaceReservervation();
-                MessageBox.Show("Succesvol gereserveerd");
-                nmrPlaats.SelectedIndex = 0;
-                txtGebruikers.Text = "";
+                if (pm.Location == nmrPlaats.Text)
+                {
+                    plaats = pm;
+                    break;
+                }
+            }
+
+            if (plaats != null)
+            {
+                if (campingLogic.CheckPlaceSize(Convert.ToInt32(nmrPlaats.Text), lbUser.Items.Count))
+                {
+                    List<UserModel> users = new List<UserModel>();
+                    foreach (string user in lbUser.Items)
+                    {
+                        users.Add(UserManager.FindUser(user));
+                    }
+
+                    foreach (UserModel user in users)
+                    {
+                        //TODO: EquipmentManager.MakePlaceReservervation(user, plaats);
+                    }
+                    MessageBox.Show("Succesvol gereserveerd");
+                    nmrPlaats.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Deze plaats is niet beschikbaar.");
             }
         }
 
@@ -132,29 +153,35 @@ namespace ICT4EVENT
             private readonly int[] StaCaravan;
             private int[] AllPlaces;
             private decimal amount;
-            private List<string> guests;
+
+            public List<string> UserList { get; private set; }
+            public List<PlaceModel> places { get; private set; }
 
             public CampingLogic(MedewerkerForm form)
             {
                 parent = form;
+
                 UserList = new List<string>();
+                places = EquipmentManager.GetAllPlaces();
+
                 EigenTenten = EigenTentenArray();
                 Bungalows = BungalowArray();
                 Blokhutten = BlokHuttenArray();
                 Bungalinos = BungalinosArray();
                 ComfortPlaatsen = ComfortPlaatsenArray();
                 StaCaravan = StaCaravanArray();
+
                 Invalidenaccomodatie = Enumerable.Range(85, 6).ToArray();
                 Huurtentjes = Enumerable.Range(643, 36).ToArray();
+
                 AllPlaces = AllPlacesArray();
                 FillAllPlaces();
-            }
-
-            public List<string> UserList { get; private set; }
+            }    
 
             public void AddUserToList()
             {
                 parent.lbUser.Items.Add(parent.txtGebruikers.Text);
+                UserList.Add(parent.txtGebruikers.Text);
                 parent.txtGebruikers.Text = "";
             }
 

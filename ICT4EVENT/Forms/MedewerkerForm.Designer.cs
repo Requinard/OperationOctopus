@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -165,7 +165,7 @@
             // 
             this.btnAddUser.Location = new System.Drawing.Point(930, 69);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(55, 25);
+            this.btnAddUser.Size = new System.Drawing.Size(55, 30);
             this.btnAddUser.TabIndex = 12;
             this.btnAddUser.Text = "Voeg toe";
             this.btnAddUser.UseVisualStyleBackColor = true;
@@ -443,8 +443,8 @@
             // listView3
             // 
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
             this.listView3.Location = new System.Drawing.Point(6, 56);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(983, 372);
