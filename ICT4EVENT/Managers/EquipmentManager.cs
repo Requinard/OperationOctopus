@@ -42,7 +42,7 @@ namespace ICT4EVENT
             if (reader == null || !reader.HasRows)
                 return null;
 
-            while (reader.Read()
+            while (reader.Read())
             {
                 RentableObjectModel rent = new RentableObjectModel();
 
