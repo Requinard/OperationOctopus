@@ -446,9 +446,7 @@
             // 
             // listReservedItems
             // 
-            this.listReservedItems.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            this.listReservedItems.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1, listViewItem2});
             this.listReservedItems.Location = new System.Drawing.Point(6, 56);
             this.listReservedItems.Name = "listReservedItems";
             this.listReservedItems.Size = new System.Drawing.Size(983, 372);
