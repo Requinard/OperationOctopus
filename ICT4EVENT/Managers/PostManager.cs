@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -38,8 +39,7 @@ namespace ICT4EVENT
                     fileName);
 
                 Directory.CreateDirectory(localDirectory.Replace(fileName, ""));
-                File.Copy(filepath, localDirectory);
-
+                File.Copy(filepath, localDirectory, true);
                 FTPManager.UploadFile(localDirectory);
 
                 post.PathToFile = localDirectory;
@@ -49,6 +49,7 @@ namespace ICT4EVENT
                 post.PathToFile = "";
             }
 
+            return post;
             post.Create();
 
             var reg = new Regex(@"[#]\w+");

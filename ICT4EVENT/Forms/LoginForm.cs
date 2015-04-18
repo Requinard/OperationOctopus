@@ -77,6 +77,7 @@ namespace ICT4EVENT
             {
                 comboBox1.Items.Add(registrationModel.EventItem.Name);
             }
+            comboBox1.SelectedIndex = 0;
             comboOptions.Items.Add("Social Media Sharing");
             if (Settings.ActiveUser.Level == 2)
             {
@@ -188,6 +189,7 @@ namespace ICT4EVENT
             {
                 Settings.ActiveUser = UserManager.FindUser("admin");
                 FillActionList();
+                btnGO_Click(this, e);
             }
         }
     }

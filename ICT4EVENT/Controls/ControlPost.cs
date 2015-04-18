@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ICT4EVENT
@@ -27,8 +28,11 @@ namespace ICT4EVENT
             }
             else
             {
+                FTPManager.DownloadFile(postModel.PathToFile);
                 pbMedia.Enabled = true;
-                pbMedia.Image = Image.FromFile(postModel.PathToFile);
+                if(File.Exists(postModel.PathToFile))
+                    pbMedia.Image = Image.FromFile(postModel.PathToFile);
+
                 pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
                 Size = new Size(Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
             }
@@ -89,6 +93,15 @@ namespace ICT4EVENT
                     PostManager.ReportPost(postModel, tbReport.Text);
                 }
                 tbReport.Visible = false;
+            }
+        }
+
+        private void btnLike_Click(object sender, EventArgs e)
+        {
+            if (PostManager.CreateNewLike(this.postModel) != null)
+            {
+                this.btnLike.Text = "Liked!";
+                btnLike.Enabled = false;
             }
         }
     }
