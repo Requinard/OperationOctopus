@@ -137,13 +137,21 @@ namespace ICT4EVENT
         {
             if (tabMainTab.SelectedTab == tabCreateUser)
             {
-                rfid.Antenna = true;
-                rfid.LED = true;
+                try
+                {
+                    rfid.Antenna = true;
+                    rfid.LED = true;
+                }
+                catch { }
             }
             else
             {
-                rfid.Antenna = false;
-                rfid.LED = false;
+                try
+                {
+                    rfid.Antenna = false;
+                    rfid.LED = false;
+                }
+                catch { }
             }
         }
 
