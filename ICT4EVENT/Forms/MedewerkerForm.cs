@@ -411,12 +411,12 @@ namespace ICT4EVENT
             public void CreatePlace()
             {
                 string description = parent.txtDescription.Text;
-                decimal price;
-                int amount;
-                string location;
-                string category;
-                int capacity;
-                //EquipmentManager.CreateNewPlace();
+                decimal price = parent.numPrice.Value;
+                int amount = 1;
+                string location = Convert.ToString(parent.numPlaceNumber.Value);
+                string category = parent.txtCategory.Text;
+                int capacity = Convert.ToInt32(parent.numCapacity.Value);
+                EquipmentManager.CreateNewPlace(description, price, amount, location, category,capacity);
             }
         } 
     }

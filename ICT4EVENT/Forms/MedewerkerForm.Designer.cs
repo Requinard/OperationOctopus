@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -79,17 +79,17 @@
             this.txtAssignRfid = new System.Windows.Forms.TextBox();
             this.tabCreatePlace = new System.Windows.Forms.TabPage();
             this.groupCreatePlace = new System.Windows.Forms.GroupBox();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.numPrice = new System.Windows.Forms.NumericUpDown();
-            this.txtCategory = new System.Windows.Forms.TextBox();
-            this.numCapacity = new System.Windows.Forms.NumericUpDown();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.lblLocation = new System.Windows.Forms.Label();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.lblCapacity = new System.Windows.Forms.Label();
-            this.numPlaceNumber = new System.Windows.Forms.NumericUpDown();
             this.btnCreatePlace = new System.Windows.Forms.Button();
+            this.numPlaceNumber = new System.Windows.Forms.NumericUpDown();
+            this.lblCapacity = new System.Windows.Forms.Label();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.numCapacity = new System.Windows.Forms.NumericUpDown();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.numPrice = new System.Windows.Forms.NumericUpDown();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -105,9 +105,9 @@
             this.groupCreateUser.SuspendLayout();
             this.tabCreatePlace.SuspendLayout();
             this.groupCreatePlace.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPlaceNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -443,8 +443,8 @@
             // listView3
             // 
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5,
-            listViewItem6});
+            listViewItem3,
+            listViewItem4});
             this.listView3.Location = new System.Drawing.Point(6, 56);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(983, 372);
@@ -636,13 +636,117 @@
             this.groupCreatePlace.TabStop = false;
             this.groupCreatePlace.Text = "Plaats aanmaken";
             // 
-            // txtDescription
+            // btnCreatePlace
             // 
-            this.txtDescription.Location = new System.Drawing.Point(374, 97);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(291, 87);
-            this.txtDescription.TabIndex = 0;
+            this.btnCreatePlace.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreatePlace.Location = new System.Drawing.Point(374, 356);
+            this.btnCreatePlace.Name = "btnCreatePlace";
+            this.btnCreatePlace.Size = new System.Drawing.Size(291, 54);
+            this.btnCreatePlace.TabIndex = 13;
+            this.btnCreatePlace.Text = "Plaats aanmaken";
+            this.btnCreatePlace.UseVisualStyleBackColor = true;
+            this.btnCreatePlace.Click += new System.EventHandler(this.btnCreatePlace_Click);
+            // 
+            // numPlaceNumber
+            // 
+            this.numPlaceNumber.Location = new System.Drawing.Point(374, 226);
+            this.numPlaceNumber.Maximum = new decimal(new int[] {
+            678,
+            0,
+            0,
+            0});
+            this.numPlaceNumber.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numPlaceNumber.Name = "numPlaceNumber";
+            this.numPlaceNumber.Size = new System.Drawing.Size(291, 30);
+            this.numPlaceNumber.TabIndex = 12;
+            this.numPlaceNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblCapacity
+            // 
+            this.lblCapacity.AutoSize = true;
+            this.lblCapacity.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCapacity.Location = new System.Drawing.Point(186, 261);
+            this.lblCapacity.Name = "lblCapacity";
+            this.lblCapacity.Size = new System.Drawing.Size(172, 28);
+            this.lblCapacity.TabIndex = 11;
+            this.lblCapacity.Text = "Max. Aantal personen";
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(186, 298);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(88, 28);
+            this.lblCategory.TabIndex = 10;
+            this.lblCategory.Text = "Categorie:";
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(186, 225);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(125, 28);
+            this.lblLocation.TabIndex = 9;
+            this.lblLocation.Text = "Plaatsnummer:";
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(186, 189);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(51, 28);
+            this.lblPrice.TabIndex = 7;
+            this.lblPrice.Text = "Prijs:";
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Location = new System.Drawing.Point(186, 97);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(108, 28);
+            this.lblDescription.TabIndex = 6;
+            this.lblDescription.Text = "Beschrijving:";
+            // 
+            // numCapacity
+            // 
+            this.numCapacity.Location = new System.Drawing.Point(374, 262);
+            this.numCapacity.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numCapacity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCapacity.Name = "numCapacity";
+            this.numCapacity.Size = new System.Drawing.Size(291, 30);
+            this.numCapacity.TabIndex = 5;
+            this.numCapacity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // txtCategory
+            // 
+            this.txtCategory.Location = new System.Drawing.Point(374, 298);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(291, 30);
+            this.txtCategory.TabIndex = 4;
             // 
             // numPrice
             // 
@@ -657,87 +761,13 @@
             this.numPrice.Size = new System.Drawing.Size(291, 30);
             this.numPrice.TabIndex = 1;
             // 
-            // txtCategory
+            // txtDescription
             // 
-            this.txtCategory.Location = new System.Drawing.Point(374, 298);
-            this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Size = new System.Drawing.Size(291, 30);
-            this.txtCategory.TabIndex = 4;
-            // 
-            // numCapacity
-            // 
-            this.numCapacity.Location = new System.Drawing.Point(374, 262);
-            this.numCapacity.Name = "numCapacity";
-            this.numCapacity.Size = new System.Drawing.Size(291, 30);
-            this.numCapacity.TabIndex = 5;
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(186, 97);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(108, 28);
-            this.lblDescription.TabIndex = 6;
-            this.lblDescription.Text = "Beschrijving:";
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(186, 189);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(51, 28);
-            this.lblPrice.TabIndex = 7;
-            this.lblPrice.Text = "Prijs:";
-            // 
-            // lblLocation
-            // 
-            this.lblLocation.AutoSize = true;
-            this.lblLocation.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocation.Location = new System.Drawing.Point(186, 225);
-            this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(125, 28);
-            this.lblLocation.TabIndex = 9;
-            this.lblLocation.Text = "Plaatsnummer:";
-            // 
-            // lblCategory
-            // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategory.Location = new System.Drawing.Point(186, 298);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(88, 28);
-            this.lblCategory.TabIndex = 10;
-            this.lblCategory.Text = "Categorie:";
-            // 
-            // lblCapacity
-            // 
-            this.lblCapacity.AutoSize = true;
-            this.lblCapacity.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCapacity.Location = new System.Drawing.Point(186, 261);
-            this.lblCapacity.Name = "lblCapacity";
-            this.lblCapacity.Size = new System.Drawing.Size(172, 28);
-            this.lblCapacity.TabIndex = 11;
-            this.lblCapacity.Text = "Max. Aantal personen";
-            // 
-            // numPlaceNumber
-            // 
-            this.numPlaceNumber.Location = new System.Drawing.Point(374, 226);
-            this.numPlaceNumber.Name = "numPlaceNumber";
-            this.numPlaceNumber.Size = new System.Drawing.Size(291, 30);
-            this.numPlaceNumber.TabIndex = 12;
-            // 
-            // btnCreatePlace
-            // 
-            this.btnCreatePlace.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreatePlace.Location = new System.Drawing.Point(374, 356);
-            this.btnCreatePlace.Name = "btnCreatePlace";
-            this.btnCreatePlace.Size = new System.Drawing.Size(291, 54);
-            this.btnCreatePlace.TabIndex = 13;
-            this.btnCreatePlace.Text = "Plaats aanmaken";
-            this.btnCreatePlace.UseVisualStyleBackColor = true;
-            this.btnCreatePlace.Click += new System.EventHandler(this.btnCreatePlace_Click);
+            this.txtDescription.Location = new System.Drawing.Point(374, 97);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(291, 87);
+            this.txtDescription.TabIndex = 0;
             // 
             // MedewerkerForm
             // 
@@ -770,9 +800,9 @@
             this.tabCreatePlace.ResumeLayout(false);
             this.groupCreatePlace.ResumeLayout(false);
             this.groupCreatePlace.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPlaceNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             this.ResumeLayout(false);
 
         }
