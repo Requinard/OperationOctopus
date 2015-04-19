@@ -186,9 +186,9 @@ namespace ICT4EVENT
             {
                 MessageBox.Show("Gebruiker gevonden.");
                 UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
-                lblNameOfUser.Text = lblNameOfUser.Text + rfiduser.Username;
+                lblNameOfUser.Text = "Naam: " + rfiduser.Username;
                 lblPaymentStatusOfUser.Text = lblPaymentStatusOfUser.Text;
-                lblAtEventStatus.Text = lblAtEventStatus.Text + Convert.ToString(Settings.ActiveEvent.Name);
+                lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
             }
             else
             {
@@ -233,6 +233,23 @@ namespace ICT4EVENT
         private void btnAcceptPayment_Click(object sender, EventArgs e)
         {
             acceptPayment.AcceptPayment();
+        }
+
+        private void btnMakeMaterial_Click(object sender, EventArgs e)
+        {
+            if (txtObjectName.Text != null && txtDescriptionMaterial.Text != null)
+            {
+                EquipmentManager.CreateNewRentable(txtDescriptionMaterial.Text, numMaterialPrice.Value, Convert.ToInt32(numMaterialAmount.Value), txtObjectName.Text);
+                MessageBox.Show("Materiaal aangemaakt!");
+                txtDescription.Text = "";
+                txtObjectName.Text = "";
+                numMaterialAmount.Value = 1;
+                numMaterialPrice.Value = 0;
+            }
+            else
+            {
+                MessageBox.Show("Vul alle velden in!");
+            }
         }
 
         #endregion

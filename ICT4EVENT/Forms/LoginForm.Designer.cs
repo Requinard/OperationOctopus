@@ -119,7 +119,7 @@
             this.btnGO.Location = new System.Drawing.Point(142, 188);
             this.btnGO.Margin = new System.Windows.Forms.Padding(2);
             this.btnGO.Name = "btnGO";
-            this.btnGO.Size = new System.Drawing.Size(31, 19);
+            this.btnGO.Size = new System.Drawing.Size(31, 21);
             this.btnGO.TabIndex = 7;
             this.btnGO.Text = ">";
             this.btnGO.UseVisualStyleBackColor = true;
@@ -151,6 +151,7 @@
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
             this.Text = "LoginScreen";
