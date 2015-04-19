@@ -107,22 +107,21 @@ namespace ICT4EVENT
             return reservations;
         }
 
-        public static ReservationModel MakeObjectReservervation(UserModel user, RentableObjectModel rent)
+        public static ReservationModel MakeObjectReservervation(UserModel user, RentableObjectModel rent, int amount)
         {
-            ReservationModel res = new ReservationModel(rent, user);
+            ReservationModel res = new ReservationModel(rent, user, amount);
 
             res.ReturnDate = Settings.ActiveEvent.EndDate;
 
-            res.Amount = 1;
 
             if (res.Create())
                 return res;
             return null;
         }
 
-        public static bool DeleteObjectReservation(UserModel user, RentableObjectModel rent)
+        public static bool DeleteObjectReservation(UserModel user, RentableObjectModel rent, int amount)
         {
-            ReservationModel res = new ReservationModel(rent, user);
+            ReservationModel res = new ReservationModel(rent, user, amount);
             if (res.Destroy())
             {
                 return true;

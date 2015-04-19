@@ -54,6 +54,7 @@
             this.flowPostReview = new System.Windows.Forms.FlowLayoutPanel();
             this.tabMaterialRental = new System.Windows.Forms.TabPage();
             this.gbMaterialControl = new System.Windows.Forms.GroupBox();
+            this.listReservedItems = new System.Windows.Forms.ListBox();
             this.lblSelectReservation = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.cbReservations = new System.Windows.Forms.ComboBox();
@@ -108,7 +109,6 @@
             this.numMaterialPrice = new System.Windows.Forms.NumericUpDown();
             this.txtObjectName = new System.Windows.Forms.TextBox();
             this.txtDescriptionMaterial = new System.Windows.Forms.TextBox();
-            this.listReservedItems = new System.Windows.Forms.ListBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -430,6 +430,15 @@
             this.gbMaterialControl.TabStop = false;
             this.gbMaterialControl.Text = "Materiaal Beheer";
             // 
+            // listReservedItems
+            // 
+            this.listReservedItems.FormattingEnabled = true;
+            this.listReservedItems.ItemHeight = 24;
+            this.listReservedItems.Location = new System.Drawing.Point(6, 54);
+            this.listReservedItems.Name = "listReservedItems";
+            this.listReservedItems.Size = new System.Drawing.Size(977, 364);
+            this.listReservedItems.TabIndex = 5;
+            // 
             // lblSelectReservation
             // 
             this.lblSelectReservation.AutoSize = true;
@@ -442,7 +451,7 @@
             // btnDelete
             // 
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnDelete.Location = new System.Drawing.Point(304, 434);
+            this.btnDelete.Location = new System.Drawing.Point(405, 448);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(133, 36);
             this.btnDelete.TabIndex = 3;
@@ -1011,15 +1020,6 @@
             this.txtDescriptionMaterial.Name = "txtDescriptionMaterial";
             this.txtDescriptionMaterial.Size = new System.Drawing.Size(231, 87);
             this.txtDescriptionMaterial.TabIndex = 0;
-            // 
-            // listReservedItems
-            // 
-            this.listReservedItems.FormattingEnabled = true;
-            this.listReservedItems.ItemHeight = 24;
-            this.listReservedItems.Location = new System.Drawing.Point(6, 54);
-            this.listReservedItems.Name = "listReservedItems";
-            this.listReservedItems.Size = new System.Drawing.Size(977, 364);
-            this.listReservedItems.TabIndex = 5;
             // 
             // MedewerkerForm
             // 

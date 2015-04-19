@@ -192,7 +192,8 @@ namespace ICT4EVENT
             listReservedItems.Items.Clear();
             foreach (ReservationModel reservation in reservations)
             {
-                listReservedItems.Items.Add(reservation.Item.ObjectType);
+                string item = reservation.Item.ObjectType + " x" + Convert.ToString(reservation.Amount);
+                listReservedItems.Items.Add(item);
             }
         }
 
@@ -620,7 +621,7 @@ namespace ICT4EVENT
                         break;
                     }
                 }
-                EquipmentManager.DeleteObjectReservation(user, rented);
+                EquipmentManager.DeleteObjectReservation(user, rented, 1);
                 MessageBox.Show("Reservatie verwijdert");
                 parent.cbReservations.SelectedIndex = 0;
             }
