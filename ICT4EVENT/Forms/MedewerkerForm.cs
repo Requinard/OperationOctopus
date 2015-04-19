@@ -240,6 +240,11 @@ namespace ICT4EVENT
             if (txtObjectName.Text != null && txtDescriptionMaterial.Text != null)
             {
                 EquipmentManager.CreateNewRentable(txtDescriptionMaterial.Text, numMaterialPrice.Value, Convert.ToInt32(numMaterialAmount.Value), txtObjectName.Text);
+                MessageBox.Show("Materiaal aangemaakt!");
+                txtDescription.Text = "";
+                txtObjectName.Text = "";
+                numMaterialAmount.Value = 1;
+                numMaterialPrice.Value = 0;
             }
             else
             {
