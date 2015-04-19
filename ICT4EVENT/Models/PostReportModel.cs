@@ -158,9 +158,9 @@ namespace ICT4EVENT
         {
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.post.Id = Convert.ToInt32(reader["PostID"].ToString());
-            post.Read();
+            //post.Read();
             this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
-            user.Read();
+            //user.Read();
             this.reason = reader["Reason"].ToString();
             this.status = reader["status"].ToString();
         }

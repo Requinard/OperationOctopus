@@ -268,7 +268,7 @@ namespace ICT4EVENT
         {
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.User.Id = Convert.ToInt32(reader["UserID"].ToString());
-            //user.Read();
+            user.Read();
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
             //EventItem.Read();
             try
