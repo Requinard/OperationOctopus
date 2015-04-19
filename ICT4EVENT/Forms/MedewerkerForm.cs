@@ -181,12 +181,19 @@ namespace ICT4EVENT
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            deleteReservation.DeleteReservation();
+            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
+            deleteReservation.DeleteReservation(selectedUser);
         }
 
         private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //cbReservations.Items
+            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
+            List<ReservationModel> reservations = EquipmentManager.GetUserReservations(selectedUser);
+            listReservedItems.Items.Clear();
+            foreach (ReservationModel reservation in reservations)
+            {
+                listReservedItems.Items.Add(reservation.Item.ObjectType);
+            }
         }
 
         private void txtRFIDCode_TextChanged(object sender, EventArgs e)
@@ -600,9 +607,21 @@ namespace ICT4EVENT
                 //parent.cbReservations.Items.Add();
             }
 
-            public void DeleteReservation()
+            public void DeleteReservation(UserModel user)
             {
-                
+                string selecteditem = parent.listReservedItems.GetItemText(parent.listReservedItems.SelectedItem);
+                List<RentableObjectModel> products = EquipmentManager.GetAllRentables();
+                RentableObjectModel rented = null;
+                foreach (RentableObjectModel rentable in products)
+                {
+                    if (rentable.ObjectType == selecteditem)
+                    {
+                        rented = rentable;
+                        break;
+                    }
+                }
+                EquipmentManager.DeleteObjectReservation(user, rented);
+                MessageBox.Show("Reservatie verwijdert");
             }
         }
 

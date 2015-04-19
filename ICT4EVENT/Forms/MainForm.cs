@@ -157,7 +157,8 @@ namespace ICT4EVENT
             var intselectedindex = listMaterials.SelectedIndices[0];
             if (intselectedindex >= 0)
             {
-                var selectedItem = listMaterials.SelectedItems[intselectedindex];
+                //var selectedItem = listMaterials.SelectedItems[intselectedindex];
+                var selectedItem = listMaterials.SelectedItems[0];
                 var selectedString = selectedItem.SubItems[1].Text;
                 lblDetails.Text = selectedString;
             }

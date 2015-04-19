@@ -119,5 +119,15 @@ namespace ICT4EVENT
                 return res;
             return null;
         }
+
+        public static bool DeleteObjectReservation(UserModel user, RentableObjectModel rent)
+        {
+            ReservationModel res = new ReservationModel(rent, user);
+            if (res.Destroy())
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
