@@ -288,8 +288,8 @@ namespace ICT4EVENT
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            //niet mooi, maar het werkt
-            Application.Restart();
+            //Als we dit form sluiten gaan we automatisch terug naar inlog
+            this.Close(); 
         }
     }
 }

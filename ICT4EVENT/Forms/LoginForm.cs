@@ -71,6 +71,9 @@ namespace ICT4EVENT
         private void FillActionList()
         {
             // Fill active events
+            comboBox1.Items.Clear();
+            comboOptions.Items.Clear();
+
             foreach (RegistrationModel registrationModel in UserManager.GetUserRegistrations(Settings.ActiveUser))
             {
                 comboBox1.Items.Add(registrationModel.EventItem.Name);
@@ -124,8 +127,28 @@ namespace ICT4EVENT
         {
             Hide();
 
-            form.Closed += (s, args) => Close();
+            form.Closed += form_Closed; 
             form.Show();
+        }
+
+        void form_Closed(object sender, EventArgs e)
+        {
+            Settings.ActiveUser = null;
+            Settings.ActiveEvent = null;
+
+            txtPassword.Text = "";
+            txtPassword.Enabled = true;
+            txtUserName.Text = "";
+            txtUserName.Enabled = true;
+
+            btnLogin.Enabled = true;
+
+            comboOptions.Enabled = false;
+            comboBox1.Enabled = false;
+            btnGO.Enabled = false;
+            this.OpenRFIDConnection();
+
+            this.Show();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
