@@ -54,11 +54,11 @@ namespace ICT4EVENT
             return rentables;
         }
 
-        public static RentableObjectModel CreateNewRentable(string description, decimal price, int amount)
+        public static RentableObjectModel CreateNewRentable(string description, decimal price, int amount, string Name)
         {
             RentableObjectModel rent = new RentableObjectModel(Settings.ActiveEvent);
 
-            rent.ObjectType = "RentableObject";
+            rent.ObjectType = Name;
             rent.Description = description;
             rent.Amount = amount;
             rent.Price = price;
