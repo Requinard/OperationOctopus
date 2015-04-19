@@ -34,7 +34,7 @@ namespace ICT4EVENT
             }
             
 
-            if (postModel.PathToFile == "")
+            if (postModel.PathToFile == "" || postModel.PathToFile == null)
             {
                 Size = new Size(Size.Width, (lblText.Size.Height));
             }

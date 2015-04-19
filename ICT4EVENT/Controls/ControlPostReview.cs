@@ -13,9 +13,9 @@ namespace ICT4EVENT
             InitializeComponent();
             this.postReportModel = postReportModel;
 
-            Size = new Size(970, 150);
-
-            flowLayoutPanel1.Controls.Add(new UserPost(postReportModel.Post));
+            //Size = new Size(970, 150);
+            UserPost userPost = new UserPost(postReportModel.Post);
+            flowPost.Controls.Add(userPost);
             lblReason.Text += postReportModel.Reason;
 
         }
