@@ -211,6 +211,25 @@ namespace ICT4EVENT
             return model;
         }
 
+        public static List<PostModel> GetPostComments(PostModel post)
+        {
+            List<PostModel> posts = new List<PostModel>();
+            string query = String.Format("SELECT * FROM POST WHERE PARENTID = '{0}'", post.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return null;
+
+            while (reader.Read())
+            {
+                PostModel ChildPost = new PostModel();
+
+                post.ReadFromReader(reader);
+
+                posts.Add(ChildPost);
+            }
+            return posts;
+        }
         public static List<PostReportModel> GetPostReports(PostModel post)
         {
             var query = string.Format("SELECT * FROM Report WHERE postid = '{0}'", post.Id);

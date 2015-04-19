@@ -99,7 +99,9 @@ namespace ICT4EVENT
 
             while (reader.Read())
             {
-                ReservationModel reservation = new ReservationModel(Int32.Parse(reader["ident"].ToString()));
+                ReservationModel reservation = new ReservationModel();
+
+                reservation.ReadFromReader(reader);
 
                 reservations.Add(reservation);
             }
