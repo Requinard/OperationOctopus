@@ -16,6 +16,7 @@ namespace ICT4EVENT
         private CreatePlaceLogic createPlace;
         private DeleteReservationLogic deleteReservation;
         private RegisterUserLogic registerUser;
+        private AcceptPaymentLogic acceptPayment;
 
         private RFID rfid;
 
@@ -28,6 +29,7 @@ namespace ICT4EVENT
             createPlace = new CreatePlaceLogic(this);
             deleteReservation = new DeleteReservationLogic(this);
             registerUser = new RegisterUserLogic(this);
+            acceptPayment = new AcceptPaymentLogic(this);
 
             OpenRFIDConnection();
         }
@@ -61,14 +63,20 @@ namespace ICT4EVENT
 
         private void RFID_Tag(object sender, TagEventArgs e)
         {
+            string tag = Convert.ToString(e.Tag);
             if (tabMainTab.SelectedTab == tabCreateUser)
             {
-                txtAssignRfid.Text = Convert.ToString(e.Tag);     
+                txtAssignRfid.Text = Convert.ToString(tag);     
             }
 
             if (tabMainTab.SelectedTab == tabRegisterUser)
             {
-                txtRFIDCode.Text = Convert.ToString(e.Tag);
+                txtRFIDCode.Text = Convert.ToString(tag);
+            }
+
+            if (tabMainTab.SelectedTab == tabAcceptPayment)
+            {
+                txtRFIDPayment.Text = Convert.ToString(tag);
             }
         }
 
@@ -137,7 +145,7 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabMainTab.SelectedTab == tabCreateUser || tabMainTab.SelectedTab == tabRegisterUser)
+            if (tabMainTab.SelectedTab == tabCreateUser || tabMainTab.SelectedTab == tabRegisterUser || tabMainTab.SelectedTab == tabAcceptPayment)
             {
                 try
                 {
@@ -185,13 +193,46 @@ namespace ICT4EVENT
             else
             {
                 txtRFIDCode.Text = "";
-                MessageBox.Show("RFID Niet gevonden.");
+                MessageBox.Show("RFID-tag Niet gevonden.");
             }
+        }
+
+        private void txtRFIDPayment_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRFIDPayment != null)
+            {
+                if (UserManager.AuthenticateUser(txtRFIDPayment.Text))
+                {
+                    MessageBox.Show("Gebruiker gevonden.");
+                    UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
+                    lblNamePayment.Text = rfiduser.Username;
+                    List<RegistrationModel> events = UserManager.GetUserRegistrations(rfiduser);
+
+                    foreach (RegistrationModel _event in events)
+                    {
+                        listEvents.Items.Add(_event.EventItem.Name);
+                    }
+                }
+                else
+                {
+                    txtRFIDPayment.Text = "";
+                    MessageBox.Show("RFID-tag Niet gevonden.");
+                }  
+            } 
         }
 
         private void btnConformUser_Click(object sender, EventArgs e)
         {
             registerUser.RegisterUser();
+            lblNameOfUser.Text = "Naam: ";
+            lblPaymentStatusOfUser.Text = "Payment status: ";
+            lblAtEventStatus.Text = "At event: ";
+            txtRFIDCode.Text = "";
+        }
+
+        private void btnAcceptPayment_Click(object sender, EventArgs e)
+        {
+            acceptPayment.AcceptPayment();
         }
 
         #endregion
@@ -545,6 +586,64 @@ namespace ICT4EVENT
             }
         }
 
-        
+        public class AcceptPaymentLogic
+        {
+            private readonly MedewerkerForm parent;
+
+            public AcceptPaymentLogic(MedewerkerForm form)
+            {
+                parent = form;
+            }
+
+            public void AcceptPayment()
+            {
+                if (parent.txtRFIDPayment.Text == null)
+                {
+                    MessageBox.Show("Scan eerst een rfid-tag");
+                    return;
+                }
+                if (parent.listEvents.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Selecteer eerst een event");
+                    return;
+                }
+                if (parent.txtPaymentType.Text == null || parent.numPriceAmount.Value == 0)
+                {
+                    MessageBox.Show("Voer alle velden in");
+                    return;
+                }
+
+                UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDPayment.Text);
+                RegistrationModel registrationevent = null;
+                List<RegistrationModel> events = UserManager.GetUserRegistrations(rfiduser);
+                string selectedevent = parent.listEvents.GetItemText(parent.listEvents.SelectedItem);
+
+                foreach (RegistrationModel registration in events)
+                {
+                    if (registration.EventItem.Name == selectedevent)
+                    {
+                        registrationevent = registration;
+                        break;
+                    }
+                }
+
+                if (registrationevent == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+
+                UserManager.RegistrationMarkPaid(registrationevent, parent.numPriceAmount.Value,
+                    parent.txtPaymentType.Text);
+
+                MessageBox.Show("Betaling geaccepteerd");
+
+                parent.txtRFIDPayment.Text = "";
+                parent.lblNamePayment.Text = "";
+                parent.listEvents.Items.Clear();
+                parent.txtPaymentType.Text = "";
+                parent.numPriceAmount.Value = 0;
+            }
+        }
     }
 }

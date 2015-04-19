@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test1");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test2");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test1");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test2");
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -90,6 +90,17 @@
             this.numPrice = new System.Windows.Forms.NumericUpDown();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.tabAcceptPayment = new System.Windows.Forms.TabPage();
+            this.groupAcceptPayment = new System.Windows.Forms.GroupBox();
+            this.btnAcceptPayment = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numPriceAmount = new System.Windows.Forms.NumericUpDown();
+            this.txtPaymentType = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblNamePayment = new System.Windows.Forms.Label();
+            this.listEvents = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtRFIDPayment = new System.Windows.Forms.TextBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -108,6 +119,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPlaceNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
+            this.tabAcceptPayment.SuspendLayout();
+            this.groupAcceptPayment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPriceAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -435,8 +449,8 @@
             // listReservedItems
             // 
             this.listReservedItems.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
             this.listReservedItems.Location = new System.Drawing.Point(6, 56);
             this.listReservedItems.Name = "listReservedItems";
             this.listReservedItems.Size = new System.Drawing.Size(983, 372);
@@ -763,12 +777,125 @@
             // 
             // tabAcceptPayment
             // 
+            this.tabAcceptPayment.Controls.Add(this.groupAcceptPayment);
             this.tabAcceptPayment.Location = new System.Drawing.Point(4, 33);
             this.tabAcceptPayment.Name = "tabAcceptPayment";
             this.tabAcceptPayment.Size = new System.Drawing.Size(992, 623);
             this.tabAcceptPayment.TabIndex = 7;
             this.tabAcceptPayment.Text = "Betaling bevestigen";
             this.tabAcceptPayment.UseVisualStyleBackColor = true;
+            // 
+            // groupAcceptPayment
+            // 
+            this.groupAcceptPayment.Controls.Add(this.btnAcceptPayment);
+            this.groupAcceptPayment.Controls.Add(this.label7);
+            this.groupAcceptPayment.Controls.Add(this.numPriceAmount);
+            this.groupAcceptPayment.Controls.Add(this.txtPaymentType);
+            this.groupAcceptPayment.Controls.Add(this.label6);
+            this.groupAcceptPayment.Controls.Add(this.lblNamePayment);
+            this.groupAcceptPayment.Controls.Add(this.listEvents);
+            this.groupAcceptPayment.Controls.Add(this.label5);
+            this.groupAcceptPayment.Controls.Add(this.label4);
+            this.groupAcceptPayment.Controls.Add(this.txtRFIDPayment);
+            this.groupAcceptPayment.Location = new System.Drawing.Point(3, 3);
+            this.groupAcceptPayment.Name = "groupAcceptPayment";
+            this.groupAcceptPayment.Size = new System.Drawing.Size(986, 617);
+            this.groupAcceptPayment.TabIndex = 1;
+            this.groupAcceptPayment.TabStop = false;
+            this.groupAcceptPayment.Text = "Betaling bevestigen";
+            // 
+            // btnAcceptPayment
+            // 
+            this.btnAcceptPayment.Location = new System.Drawing.Point(350, 352);
+            this.btnAcceptPayment.Name = "btnAcceptPayment";
+            this.btnAcceptPayment.Size = new System.Drawing.Size(184, 37);
+            this.btnAcceptPayment.TabIndex = 10;
+            this.btnAcceptPayment.Text = "Bevestig Betaling";
+            this.btnAcceptPayment.UseVisualStyleBackColor = true;
+            this.btnAcceptPayment.Click += new System.EventHandler(this.btnAcceptPayment_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(233, 304);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(105, 28);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Hoeveelheid:";
+            // 
+            // numPriceAmount
+            // 
+            this.numPriceAmount.DecimalPlaces = 2;
+            this.numPriceAmount.Location = new System.Drawing.Point(350, 305);
+            this.numPriceAmount.Name = "numPriceAmount";
+            this.numPriceAmount.Size = new System.Drawing.Size(184, 30);
+            this.numPriceAmount.TabIndex = 8;
+            // 
+            // txtPaymentType
+            // 
+            this.txtPaymentType.Location = new System.Drawing.Point(350, 269);
+            this.txtPaymentType.Name = "txtPaymentType";
+            this.txtPaymentType.Size = new System.Drawing.Size(184, 30);
+            this.txtPaymentType.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(207, 269);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(137, 28);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Betalingsmanier:";
+            // 
+            // lblNamePayment
+            // 
+            this.lblNamePayment.AutoSize = true;
+            this.lblNamePayment.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNamePayment.Location = new System.Drawing.Point(345, 143);
+            this.lblNamePayment.Name = "lblNamePayment";
+            this.lblNamePayment.Size = new System.Drawing.Size(19, 28);
+            this.lblNamePayment.TabIndex = 4;
+            this.lblNamePayment.Text = "-";
+            // 
+            // listEvents
+            // 
+            this.listEvents.FormattingEnabled = true;
+            this.listEvents.ItemHeight = 24;
+            this.listEvents.Location = new System.Drawing.Point(350, 180);
+            this.listEvents.Name = "listEvents";
+            this.listEvents.Size = new System.Drawing.Size(184, 76);
+            this.listEvents.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(280, 171);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 28);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Events:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(280, 143);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 28);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Naam:";
+            // 
+            // txtRFIDPayment
+            // 
+            this.txtRFIDPayment.Enabled = false;
+            this.txtRFIDPayment.Location = new System.Drawing.Point(6, 29);
+            this.txtRFIDPayment.Name = "txtRFIDPayment";
+            this.txtRFIDPayment.Size = new System.Drawing.Size(974, 30);
+            this.txtRFIDPayment.TabIndex = 0;
+            this.txtRFIDPayment.TextChanged += new System.EventHandler(this.txtRFIDPayment_TextChanged);
             // 
             // MedewerkerForm
             // 
@@ -804,6 +931,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPlaceNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
+            this.tabAcceptPayment.ResumeLayout(false);
+            this.groupAcceptPayment.ResumeLayout(false);
+            this.groupAcceptPayment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPriceAmount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -870,5 +1001,16 @@
         private System.Windows.Forms.Button btnCreatePlace;
         private System.Windows.Forms.NumericUpDown numPlaceNumber;
         private System.Windows.Forms.TabPage tabAcceptPayment;
+        private System.Windows.Forms.GroupBox groupAcceptPayment;
+        private System.Windows.Forms.TextBox txtRFIDPayment;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblNamePayment;
+        private System.Windows.Forms.ListBox listEvents;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtPaymentType;
+        private System.Windows.Forms.Button btnAcceptPayment;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numPriceAmount;
     }
 }
