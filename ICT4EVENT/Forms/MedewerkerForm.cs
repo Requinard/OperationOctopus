@@ -57,7 +57,10 @@ namespace ICT4EVENT
 
         private void FillReservations()
         {
-            //cbReservations.Items.Add();
+            foreach (UserModel user in UserManager.GetAllUsers())
+            {
+                cbReservations.Items.Add(user.Username);
+            }
         }
 
         #region handlers
