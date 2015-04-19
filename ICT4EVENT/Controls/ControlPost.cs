@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace ICT4EVENT
 {
@@ -92,9 +93,6 @@ namespace ICT4EVENT
             set { lblText.Text = value; }
         }
 
-        private void UserControl1_Load(object sender, EventArgs e)
-        {
-        }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
@@ -148,10 +146,18 @@ namespace ICT4EVENT
             }
             else if (comment)
             {
-                PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text);
+                PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text,"",postModel);
                 if (commentPostModel != null)
                 {
-                    flowComment.Controls.Add(new UserPost(commentPostModel));
+                    gbAction.Enabled = false;
+                    gbAction.Visible = false;
+                    flowComment.Enabled = true;
+                    flowComment.Visible = true;
+
+                    UserPost commentUserPost = new UserPost(commentPostModel);
+                    commentUserPost.BackColor = BackColor;
+                    flowComment.Controls.Add(commentUserPost);
+                    postHasComment();
                 }
             }
         }
@@ -174,6 +180,13 @@ namespace ICT4EVENT
                 this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
                 comment = false;
             }
+        }
+
+        private void postHasComment()
+        {
+            flowComment.Location = new Point(-3, this.Height);
+            this.Size = new Size(this.Width, flowComment.Location.Y + flowComment.Size.Height + 1);
+
         }
     }
 }
