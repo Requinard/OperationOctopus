@@ -6,22 +6,32 @@ using System.Windows.Forms;
 
 namespace ICT4EVENT
 {
-
     public partial class UserPost : UserControl
     {
         private PostModel postModel;
+        private bool comment = false;
+        private bool report = false;
+
         public UserPost(PostModel model)
 
         {
             InitializeComponent();
             postModel = model;
 
-            
+
             Text = postModel.Content;
             Size = new Size(593, 107);
 
-
-            lblPoster.Text = "@" + postModel.User.Username + ", " + postModel.DatePosted;
+            if (postModel.DatePosted.DayOfYear == DateTime.Now.DayOfYear)
+            {
+                lblPoster.Text = "@" + postModel.User.Username + ", " + postModel.DatePosted.Hour + ":" + postModel.DatePosted.Minute;
+            }
+            else
+            {
+                lblPoster.Text = "@" + postModel.User.Username + ", " + postModel.DatePosted.Hour + ":" +
+                                 postModel.DatePosted.Minute + " - " + postModel.DatePosted.ToShortDateString();
+            }
+            
 
             if (postModel.PathToFile == "")
             {
@@ -32,7 +42,7 @@ namespace ICT4EVENT
                 if (!File.Exists(postModel.PathToFile))
                     FTPManager.DownloadFile(postModel.PathToFile);
                 pbMedia.Enabled = true;
-                
+
                 pbMedia.Image = Image.FromFile(postModel.PathToFile);
 
                 pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
@@ -86,41 +96,25 @@ namespace ICT4EVENT
         {
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnReport_Click(object sender, EventArgs e)
         {
-            /*
-             if (tbReport.Visible == false)
+           if (gbAction.Enabled == false)
             {
-                tbReport.Visible = true;
-            }
-
-            if (tbReport.Visible == true)
-            {
-                if (string.IsNullOrWhiteSpace(tbReport.Text))
-                {
-                    PostManager.ReportPost(postModel, " ");
-                }
-                else
-                {
-                    PostManager.ReportPost(postModel, tbReport.Text);
-                }
-                tbReport.Visible = false;
-            }*/
-            if (gbReport.Enabled == false)
-            {
-                gbReport.Enabled = true;
-                gbReport.Visible = true;
-                gbReport.Location = new Point(3, this.Height + 3);
-                this.Size = new Size(this.Width, gbReport.Location.Y + gbReport.Size.Height + 1);
+                gbAction.Text = "Report";
+                gbAction.Enabled = true;
+                gbAction.Visible = true;
+                gbAction.Location = new Point(3, this.Height + 3);
+                this.Size = new Size(this.Width, gbAction.Location.Y + gbAction.Size.Height + 1);
+                report = true;
             }
             else
             {
-                gbReport.Enabled = false;
-                gbReport.Visible = false;
-                this.Size = new Size(this.Width, (gbReport.Location.Y + 1));
+                gbAction.Enabled = false;
+                gbAction.Visible = false;
+                this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                report = false;
             }
         }
-
 
 
         private void btnLike_Click(object sender, EventArgs e)
@@ -134,22 +128,52 @@ namespace ICT4EVENT
 
         private void btnReportConfirm_Click(object sender, EventArgs e)
         {
-            if (
-                MessageBox.Show(("Weet je zeker dat je deze post van " + postModel.User.Username + " wil reporten ?"),
-                    "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (report)
             {
-                PostReportModel postReportModel = PostManager.ReportPost(postModel, tbReport.Text);
-                if (postReportModel != null)
+                if (
+                    MessageBox.Show(
+                        ("Weet je zeker dat je deze post van " + postModel.User.Username + " wil reporten ?"),
+                        "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Post Succesvol Gereport");
-                    gbReport.Enabled = false;
-                    gbReport.Visible = false;
-                    this.Size = new Size(this.Width, (gbReport.Location.Y + 1));
-                    btnReport.ForeColor = Color.Blue;
+                    PostReportModel postReportModel = PostManager.ReportPost(postModel, tbAction.Text);
+                    if (postReportModel != null)
+                    {
+                        MessageBox.Show("Post Succesvol Gereport");
+                        gbAction.Enabled = false;
+                        gbAction.Visible = false;
+                        this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                        btnReport.ForeColor = Color.Blue;
+                    }
                 }
             }
-           
+            else if (comment)
+            {
+                PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text);
+                if (commentPostModel != null)
+                {
+                    flowComment.Controls.Add(new UserPost(commentPostModel));
+                }
+            }
+        }
 
+        private void btnComment_Click(object sender, EventArgs e)
+        {
+            if (gbAction.Enabled == false)
+            {
+                gbAction.Text = "Comment on @" + postModel.User.Username;
+                gbAction.Enabled = true;
+                gbAction.Visible = true;
+                gbAction.Location = new Point(3, this.Height + 3);
+                this.Size = new Size(this.Width, gbAction.Location.Y + gbAction.Size.Height + 1);
+                comment = true;
+            }
+            else
+            {
+                gbAction.Enabled = false;
+                gbAction.Visible = false;
+                this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                comment = false;
+            }
         }
     }
 }
