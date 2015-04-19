@@ -39,6 +39,8 @@ namespace ICT4EVENT
         /// </summary>
         protected const string DESTROYSTRING = "DELETE FROM {0} WHERE ident={1}";
 
+        protected const string DESTROYSTRING2 = "DELETE FROM {0} WHERE ITEMID={1}";
+
         /// <summary>
         ///     The insertstring.
         /// </summary>

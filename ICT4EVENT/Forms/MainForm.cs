@@ -144,6 +144,7 @@ namespace ICT4EVENT
         {
             var selectedItem = listMaterials.SelectedItems[0];
             var selectedString = selectedItem.SubItems[0].Text;
+            selectedString = selectedString + " x" + Convert.ToString(numAmount.Value);
             listCart.Items.Add(selectedString);
         }
 
@@ -157,7 +158,8 @@ namespace ICT4EVENT
             var intselectedindex = listMaterials.SelectedIndices[0];
             if (intselectedindex >= 0)
             {
-                var selectedItem = listMaterials.SelectedItems[intselectedindex];
+                //var selectedItem = listMaterials.SelectedItems[intselectedindex];
+                var selectedItem = listMaterials.SelectedItems[0];
                 var selectedString = selectedItem.SubItems[1].Text;
                 lblDetails.Text = selectedString;
             }
@@ -249,7 +251,7 @@ namespace ICT4EVENT
                     {
                         if (rentableobject.ObjectType == rentable)
                         {
-                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject);
+                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject, Convert.ToInt32(numAmount.Value));
                         }
                     }
                 }

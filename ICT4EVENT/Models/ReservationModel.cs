@@ -20,10 +20,11 @@ namespace ICT4EVENT
         /// <param name="user_item">
         ///     The user_item.
         /// </param>
-        public ReservationModel(RentableObjectModel rent_item, UserModel user_item)
+        public ReservationModel(RentableObjectModel rent_item, UserModel user_item, int amount)
         {
             Item = rent_item;
             User = user_item;
+            Amount = amount;
         }
 
         public ReservationModel()
@@ -148,7 +149,7 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "RESERVATION", "'" + Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING2, "RESERVATION", "'" + Item.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
