@@ -50,9 +50,9 @@ namespace ICT4EVENT
             }
 
             Random r = new Random();
-            BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
-            pictureBox1.BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
-
+            BackColor = Color.FromArgb(255,r.Next(151) + 50, r.Next(151) + 50, r.Next(151) + 50);
+            pictureBox1.BackColor = Color.FromArgb(255,r.Next(151) + 50, r.Next(151) + 50, r.Next(151) + 50);
+            
             if (postModel.Parent != null)
             {
                 UserPost commentUserPost = new UserPost(postModel.Parent);
