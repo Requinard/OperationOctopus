@@ -34,9 +34,12 @@ namespace ICT4EVENT
             if (UserManager.AuthenticateUser(e.Tag))
             {
                 txtPassword.Enabled = txtUserName.Enabled = false;
+                rfid.Antenna = false;
+                rfid.LED = false;
                 rfid.Error -= RFID_Error;
                 rfid.Tag -= RFID_Tag;
                 rfid.TagLost -= rfid_TagLost;
+                rfid = new RFID();
                 TagEventHandler tag = this.btnLogin_Click;
 
                 this.Invoke(tag, new object[]{sender, e});
@@ -107,12 +110,7 @@ namespace ICT4EVENT
 
         private void isAuthenticated()
         {
-            Application.DoEvents();
-
-            rfid.Antenna = false;
-            rfid.LED = false;
-            rfid = new RFID();
-                
+            Application.DoEvents();    
             rfid.close();
 
             FillActionList();
