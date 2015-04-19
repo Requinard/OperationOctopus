@@ -148,7 +148,7 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING, "RESERVATION", "'" + item.Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING2, "RESERVATION", "'" + Item.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;

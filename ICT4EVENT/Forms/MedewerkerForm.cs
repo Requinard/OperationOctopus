@@ -622,6 +622,7 @@ namespace ICT4EVENT
                 }
                 EquipmentManager.DeleteObjectReservation(user, rented);
                 MessageBox.Show("Reservatie verwijdert");
+                parent.cbReservations.SelectedIndex = 0;
             }
         }
 
