@@ -264,8 +264,18 @@ namespace ICT4EVENT
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
+            pageModifier(1);
+        }
+
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            pageModifier(-1);
+        }
+
+        private void pageModifier(int direction)
+        {
             flowPosts.Controls.Clear();
-            List<PostModel>postModels = PostManager.GetPostsByPage(null, currentPage++, 10);
+            List<PostModel> postModels = PostManager.GetPostsByPage(null, currentPage + direction, 10);
             {
                 foreach (PostModel postModel in postModels)
                 {
