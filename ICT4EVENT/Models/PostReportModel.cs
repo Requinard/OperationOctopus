@@ -54,7 +54,8 @@ namespace ICT4EVENT
 
         public PostReportModel()
         {
-            // TODO: Complete member initialization
+            post = new PostModel();
+            user = new UserModel();
         }
 
         public UserModel User

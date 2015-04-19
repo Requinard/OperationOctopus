@@ -98,7 +98,7 @@
             this.btnLike.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLike.Location = new System.Drawing.Point(3, 109);
             this.btnLike.Name = "btnLike";
-            this.btnLike.Size = new System.Drawing.Size(76, 23);
+            this.btnLike.Size = new System.Drawing.Size(63, 23);
             this.btnLike.TabIndex = 4;
             this.btnLike.Text = "Like";
             this.btnLike.UseVisualStyleBackColor = true;
@@ -121,9 +121,9 @@
             // 
             this.btnReport.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.ForeColor = System.Drawing.Color.Red;
-            this.btnReport.Location = new System.Drawing.Point(85, 109);
+            this.btnReport.Location = new System.Drawing.Point(72, 109);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(18, 23);
+            this.btnReport.Size = new System.Drawing.Size(31, 23);
             this.btnReport.TabIndex = 6;
             this.btnReport.Text = "!";
             this.btnReport.UseVisualStyleBackColor = true;

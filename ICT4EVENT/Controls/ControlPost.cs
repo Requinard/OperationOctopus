@@ -73,6 +73,9 @@ namespace ICT4EVENT
             {
                 btnLike.Text = "0 Likes";
             }
+            List<PostReportModel> reports = PostManager.GetPostReports(postModel);
+            if(reports != null)
+                btnReport.Text = string.Format("!{0}", reports.Count);
         }
 
         public Image Picture

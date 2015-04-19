@@ -4,7 +4,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+
 using ICT4EVENT.Models;
+
 using Oracle.DataAccess.Client;
 
 namespace ICT4EVENT
@@ -15,7 +17,10 @@ namespace ICT4EVENT
         {
             var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
-            if (parent != null) post.Parent = parent;
+            if (parent != null)
+            {
+                post.Parent = parent;
+            }
             // Set up post details
             post.Content = body;
             var datePosted = DateTime.Now;
@@ -108,9 +113,7 @@ namespace ICT4EVENT
             var posts = new List<PostModel>();
 
             var query =
-                string.Format(
-                    "SELECT * FROM TagPost, Tag wHERE tag.tagname = '{0}' AND tag.ident = tagpost.tagid",
-                    tag);
+                string.Format("SELECT * FROM TagPost, Tag wHERE tag.tagname = '{0}' AND tag.ident = tagpost.tagid", tag);
 
             var reader = DBManager.QueryDB(query);
 
@@ -265,14 +268,15 @@ namespace ICT4EVENT
 
             if (reader == null || !reader.HasRows)
             {
-                while (reader.Read())
-                {
-                    var report = new PostReportModel();
+                return null;
+            }
+            while (reader.Read())
+            {
+                var report = new PostReportModel();
 
-                    report.ReadFromReader(reader);
+                report.ReadFromReader(reader);
 
-                    reports.Add(report);
-                }
+                reports.Add(report);
             }
 
             return reports;
@@ -308,7 +312,7 @@ namespace ICT4EVENT
 
                 posts.Add(post);
 
-                if(++cnt ==10)
+                if (++cnt == 10)
                 {
                     break;
                 }
@@ -317,10 +321,7 @@ namespace ICT4EVENT
             return posts;
         }
 
-        public static List<PostModel> GetPostsByPage(
-            PostModel startpost = null,
-            int page = 0,
-            int itemsPerPage = 10)
+        public static List<PostModel> GetPostsByPage(PostModel startpost = null, int page = 0, int itemsPerPage = 10)
         {
             var posts = new List<PostModel>();
             OracleDataReader reader = null;
@@ -351,7 +352,7 @@ namespace ICT4EVENT
             }
 
             //Read the datareader x amount of rows, where x = page*itemsPerPage
-            for (var i = 0; i < page*itemsPerPage; i++)
+            for (var i = 0; i < page * itemsPerPage; i++)
             {
                 reader.Read();
             }
@@ -373,7 +374,5 @@ namespace ICT4EVENT
 
             return posts;
         }
-
     }
-
 }
