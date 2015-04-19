@@ -8,6 +8,7 @@ namespace ICT4EVENT
     public partial class MainForm : Form
     {
         private string filePath = "";
+        private int currentPage = 1;
 
         public MainForm()
         {
@@ -239,15 +240,36 @@ namespace ICT4EVENT
 
         private void ReserveMaterial()
         {
-            List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
-            foreach (string rentable in listCart.Items)
+            if (listCart.Items.Count > 0)
             {
-                foreach (RentableObjectModel rentableobject in rentables)
+                List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
+                foreach (string rentable in listCart.Items)
                 {
-                    if (rentableobject.ObjectType == rentable)
+                    foreach (RentableObjectModel rentableobject in rentables)
                     {
-                        EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject);
+                        if (rentableobject.ObjectType == rentable)
+                        {
+                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject);
+                        }
                     }
+                }
+                MessageBox.Show("Artikelen besteld");
+                listCart.Items.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Winkelmandje is leeg");
+            }
+        }
+
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            flowPosts.Controls.Clear();
+            List<PostModel>postModels = PostManager.GetPostsByPage(null, currentPage++, 10);
+            {
+                foreach (PostModel postModel in postModels)
+                {
+                    flowPosts.Controls.Add(new UserPost(postModel));
                 }
             }
         }

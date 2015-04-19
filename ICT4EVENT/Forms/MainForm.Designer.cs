@@ -30,7 +30,7 @@ namespace ICT4EVENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("All Posts");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All Posts");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -85,6 +85,7 @@ namespace ICT4EVENT
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnNextPage = new System.Windows.Forms.Button();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -243,6 +244,7 @@ namespace ICT4EVENT
             // 
             // tabSocialMediaSharingSystem
             // 
+            this.tabSocialMediaSharingSystem.Controls.Add(this.btnNextPage);
             this.tabSocialMediaSharingSystem.Controls.Add(this.flowPosts);
             this.tabSocialMediaSharingSystem.Controls.Add(this.treeCategorie);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnMediaFile);
@@ -268,11 +270,11 @@ namespace ICT4EVENT
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
             this.treeCategorie.Name = "treeCategorie";
-            treeNode4.Name = "All Posts";
-            treeNode4.Text = "All Posts";
+            treeNode1.Name = "All Posts";
+            treeNode1.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            this.treeCategorie.Size = new System.Drawing.Size(155, 543);
+            treeNode1});
+            this.treeCategorie.Size = new System.Drawing.Size(155, 479);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
             this.treeCategorie.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeCategorie_AfterSelect);
@@ -691,6 +693,20 @@ namespace ICT4EVENT
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnNextPage.Location = new System.Drawing.Point(629, 559);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(156, 57);
+            this.btnNextPage.TabIndex = 13;
+            this.btnNextPage.Tag = "SMSS";
+            this.btnNextPage.Text = "Next Page";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
@@ -792,6 +808,7 @@ namespace ICT4EVENT
         private System.Windows.Forms.TextBox tbSearchUser;
         private System.Windows.Forms.ColumnHeader Naam;
         private System.Windows.Forms.ColumnHeader Description;
+        private Button btnNextPage;
     }
 }
 

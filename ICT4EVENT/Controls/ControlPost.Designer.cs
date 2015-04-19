@@ -34,10 +34,13 @@
             this.pbMedia = new System.Windows.Forms.PictureBox();
             this.btnLike = new System.Windows.Forms.Button();
             this.flowComment = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.tbReport = new System.Windows.Forms.TextBox();
+            this.btnReportConfirm = new System.Windows.Forms.Button();
+            this.gbReport = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).BeginInit();
+            this.gbReport.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -85,7 +88,7 @@
             this.pbMedia.MinimumSize = new System.Drawing.Size(100, 100);
             this.pbMedia.Name = "pbMedia";
             this.pbMedia.Size = new System.Drawing.Size(450, 450);
-            this.pbMedia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbMedia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMedia.TabIndex = 3;
             this.pbMedia.TabStop = false;
             // 
@@ -106,7 +109,7 @@
             this.flowComment.BackColor = System.Drawing.Color.Transparent;
             this.flowComment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowComment.Enabled = false;
-            this.flowComment.Location = new System.Drawing.Point(0, 177);
+            this.flowComment.Location = new System.Drawing.Point(4, 209);
             this.flowComment.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.flowComment.MaximumSize = new System.Drawing.Size(5000, 106);
             this.flowComment.Name = "flowComment";
@@ -114,34 +117,58 @@
             this.flowComment.TabIndex = 5;
             this.flowComment.Visible = false;
             // 
-            // button1
+            // btnReport
             // 
-            this.button1.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(85, 109);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(18, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "!";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnReport.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.ForeColor = System.Drawing.Color.Red;
+            this.btnReport.Location = new System.Drawing.Point(85, 109);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(18, 23);
+            this.btnReport.TabIndex = 6;
+            this.btnReport.Text = "!";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.button1_Click);
             // 
             // tbReport
             // 
-            this.tbReport.Location = new System.Drawing.Point(3, 138);
+            this.tbReport.Location = new System.Drawing.Point(4, 18);
             this.tbReport.Margin = new System.Windows.Forms.Padding(2);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
-            this.tbReport.Size = new System.Drawing.Size(100, 34);
+            this.tbReport.Size = new System.Drawing.Size(496, 24);
             this.tbReport.TabIndex = 7;
+            // 
+            // btnReportConfirm
+            // 
+            this.btnReportConfirm.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportConfirm.Location = new System.Drawing.Point(505, 15);
+            this.btnReportConfirm.Name = "btnReportConfirm";
+            this.btnReportConfirm.Size = new System.Drawing.Size(76, 27);
+            this.btnReportConfirm.TabIndex = 8;
+            this.btnReportConfirm.Text = "Confirm";
+            this.btnReportConfirm.UseVisualStyleBackColor = true;
+            this.btnReportConfirm.Click += new System.EventHandler(this.btnReportConfirm_Click);
+            // 
+            // gbReport
+            // 
+            this.gbReport.Controls.Add(this.tbReport);
+            this.gbReport.Controls.Add(this.btnReportConfirm);
+            this.gbReport.Enabled = false;
+            this.gbReport.Location = new System.Drawing.Point(6, 197);
+            this.gbReport.Name = "gbReport";
+            this.gbReport.Size = new System.Drawing.Size(587, 48);
+            this.gbReport.TabIndex = 10;
+            this.gbReport.TabStop = false;
+            this.gbReport.Text = "Report";
+            this.gbReport.Visible = false;
             // 
             // UserPost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.Controls.Add(this.tbReport);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.gbReport);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.flowComment);
             this.Controls.Add(this.btnLike);
             this.Controls.Add(this.pbMedia);
@@ -155,6 +182,8 @@
             this.Load += new System.EventHandler(this.UserControl1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).EndInit();
+            this.gbReport.ResumeLayout(false);
+            this.gbReport.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,7 +197,9 @@
         private System.Windows.Forms.PictureBox pbMedia;
         private System.Windows.Forms.Button btnLike;
         private System.Windows.Forms.FlowLayoutPanel flowComment;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.TextBox tbReport;
+        private System.Windows.Forms.Button btnReportConfirm;
+        private System.Windows.Forms.GroupBox gbReport;
     }
 }

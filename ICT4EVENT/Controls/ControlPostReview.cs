@@ -6,22 +6,18 @@ namespace ICT4EVENT
 {
     public partial class UserPostReview : UserControl
     {
-        private PostModel postmodel;
-        private string reason;
+        private PostReportModel postReportModel;
 
-        public UserPostReview(PostModel postmodel, string reason)
+        public UserPostReview(PostReportModel postReportModel)
         {
             InitializeComponent();
-            this.postmodel = postmodel;
-            this.reason = reason;
+            this.postReportModel = postReportModel;
 
             Size = new Size(970, 150);
 
-            flowLayoutPanel1.Controls.Add(new UserPost(postmodel));
-            lblReason.Text = "Reason: " + reason;
+            flowLayoutPanel1.Controls.Add(new UserPost(postReportModel.Post));
+            lblReason.Text += postReportModel.Reason;
 
-            Random r = new Random();
-            BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
         }
 
         private void btnActionConfirm_Click(object sender, EventArgs e)

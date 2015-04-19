@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -20,7 +21,7 @@ namespace ICT4EVENT
             Size = new Size(593, 107);
 
 
-            lblPoster.Text = "@" + postModel.User.Username;
+            lblPoster.Text = "@" + postModel.User.Username + ", " + postModel.DatePosted;
 
             if (postModel.PathToFile == "")
             {
@@ -52,6 +53,15 @@ namespace ICT4EVENT
                 flowComment.Location = new Point(Location.X, Height);
                 Size = new Size(Width, flowComment.Location.Y + flowComment.Height + 3);
             }
+            List<LikeModel> likes = PostManager.GetPostLikes(postModel);
+            if (likes != null)
+            {
+                btnLike.Text = likes.Count.ToString() + " Likes";
+            }
+            else
+            {
+                btnLike.Text = "0 Likes";
+            }
         }
 
         public Image Picture
@@ -78,7 +88,8 @@ namespace ICT4EVENT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (tbReport.Visible == false)
+            /*
+             if (tbReport.Visible == false)
             {
                 tbReport.Visible = true;
             }
@@ -94,8 +105,23 @@ namespace ICT4EVENT
                     PostManager.ReportPost(postModel, tbReport.Text);
                 }
                 tbReport.Visible = false;
+            }*/
+            if (gbReport.Enabled == false)
+            {
+                gbReport.Enabled = true;
+                gbReport.Visible = true;
+                gbReport.Location = new Point(3, this.Height + 3);
+                this.Size = new Size(this.Width, gbReport.Location.Y + gbReport.Size.Height + 1);
+            }
+            else
+            {
+                gbReport.Enabled = false;
+                gbReport.Visible = false;
+                this.Size = new Size(this.Width, (gbReport.Location.Y + 1));
             }
         }
+
+
 
         private void btnLike_Click(object sender, EventArgs e)
         {
@@ -104,6 +130,26 @@ namespace ICT4EVENT
                 this.btnLike.Text = "Liked!";
                 btnLike.Enabled = false;
             }
+        }
+
+        private void btnReportConfirm_Click(object sender, EventArgs e)
+        {
+            if (
+                MessageBox.Show(("Weet je zeker dat je deze post van " + postModel.User.Username + " wil reporten ?"),
+                    "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                PostReportModel postReportModel = PostManager.ReportPost(postModel, tbReport.Text);
+                if (postReportModel != null)
+                {
+                    MessageBox.Show("Post Succesvol Gereport");
+                    gbReport.Enabled = false;
+                    gbReport.Visible = false;
+                    this.Size = new Size(this.Width, (gbReport.Location.Y + 1));
+                    btnReport.ForeColor = Color.Blue;
+                }
+            }
+           
+
         }
     }
 }
