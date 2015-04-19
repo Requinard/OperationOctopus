@@ -199,7 +199,7 @@ namespace ICT4EVENT
 
         private void txtRFIDPayment_TextChanged(object sender, EventArgs e)
         {
-            if (txtRFIDPayment != null)
+            if (txtRFIDPayment.Text != null)
             {
                 if (UserManager.AuthenticateUser(txtRFIDPayment.Text))
                 {
