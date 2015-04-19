@@ -7,7 +7,7 @@ namespace ICT4EVENT
     /// <summary>
     ///     The reservation model.
     /// </summary>
-    public class RentableReservationModel : DBModel, IDataModelUpdate
+    public class PlaceReservationModel : DBModel, IDataModelUpdate
     {
         #region Constructors and Destructors
 
@@ -20,24 +20,24 @@ namespace ICT4EVENT
         /// <param name="user_item">
         ///     The user_item.
         /// </param>
-        public RentableReservationModel(RentableObjectModel rentRentable, UserModel user_item, int amount)
+        public PlaceReservationModel(PlaceModel place, UserModel user_item, int amount)
         {
-            this.Rentable = rentRentable;
+            this.place = place;
             User = user_item;
             Amount = amount;
         }
 
-        public RentableReservationModel()
+        public PlaceReservationModel()
         {
-            this.rentable = new RentableObjectModel();
+            this.place = new PlaceModel();
             user = new UserModel();
         }
 
-        public RentableReservationModel(int ID)
+        public PlaceReservationModel(int ID)
         {
             this.Id = ID;
 
-            this.rentable = new RentableObjectModel();
+            this.place = new PlaceModel();
             user = new UserModel();
 
             this.Read();
