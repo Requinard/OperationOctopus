@@ -43,6 +43,8 @@ namespace ICT4EVENT
             this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabSocialMediaSharingSystem = new System.Windows.Forms.TabPage();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
             this.flowPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.treeCategorie = new System.Windows.Forms.TreeView();
             this.btnMediaFile = new System.Windows.Forms.Button();
@@ -85,7 +87,6 @@ namespace ICT4EVENT
             this.lblDisplayUser = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnNextPage = new System.Windows.Forms.Button();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -244,6 +245,7 @@ namespace ICT4EVENT
             // 
             // tabSocialMediaSharingSystem
             // 
+            this.tabSocialMediaSharingSystem.Controls.Add(this.btnPreviousPage);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnNextPage);
             this.tabSocialMediaSharingSystem.Controls.Add(this.flowPosts);
             this.tabSocialMediaSharingSystem.Controls.Add(this.treeCategorie);
@@ -257,6 +259,34 @@ namespace ICT4EVENT
             this.tabSocialMediaSharingSystem.TabIndex = 0;
             this.tabSocialMediaSharingSystem.Text = "Social Media Sharing System";
             this.tabSocialMediaSharingSystem.UseVisualStyleBackColor = true;
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.Font = new System.Drawing.Font("Agency FB", 21.75F);
+            this.btnPreviousPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPreviousPage.Location = new System.Drawing.Point(628, 559);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(74, 55);
+            this.btnPreviousPage.TabIndex = 14;
+            this.btnPreviousPage.Tag = "SMSS";
+            this.btnPreviousPage.Text = "<";
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Font = new System.Drawing.Font("Agency FB", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnNextPage.Location = new System.Drawing.Point(710, 559);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(74, 55);
+            this.btnNextPage.TabIndex = 13;
+            this.btnNextPage.Tag = "SMSS";
+            this.btnNextPage.Text = ">";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // flowPosts
             // 
@@ -693,20 +723,6 @@ namespace ICT4EVENT
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
-            // btnNextPage
-            // 
-            this.btnNextPage.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNextPage.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnNextPage.Location = new System.Drawing.Point(629, 559);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(156, 57);
-            this.btnNextPage.TabIndex = 13;
-            this.btnNextPage.Tag = "SMSS";
-            this.btnNextPage.Text = "Next Page";
-            this.btnNextPage.UseVisualStyleBackColor = true;
-            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
@@ -809,6 +825,7 @@ namespace ICT4EVENT
         private System.Windows.Forms.ColumnHeader Naam;
         private System.Windows.Forms.ColumnHeader Description;
         private Button btnNextPage;
+        private Button btnPreviousPage;
     }
 }
 

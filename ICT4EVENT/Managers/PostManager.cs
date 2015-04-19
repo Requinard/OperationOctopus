@@ -11,10 +11,11 @@ namespace ICT4EVENT
 {
     public static class PostManager
     {
-        public static PostModel CreateNewPost(string body, string filepath = "")
+        public static PostModel CreateNewPost(string body, string filepath = "", PostModel parent = null)
         {
             var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
 
+            if (parent != null) post.Parent = parent;
             // Set up post details
             post.Content = body;
             var datePosted = DateTime.Now;
