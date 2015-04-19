@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowPost = new System.Windows.Forms.FlowLayoutPanel();
             this.lblReason = new System.Windows.Forms.Label();
             this.btnActionConfirm = new System.Windows.Forms.Button();
             this.gbReviewAction = new System.Windows.Forms.GroupBox();
@@ -38,14 +38,14 @@
             this.gbReviewAction.SuspendLayout();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // flowPost
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(593, 203);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(593, 203);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowPost.AutoScroll = true;
+            this.flowPost.Location = new System.Drawing.Point(0, 0);
+            this.flowPost.MinimumSize = new System.Drawing.Size(593, 164);
+            this.flowPost.Name = "flowPost";
+            this.flowPost.Size = new System.Drawing.Size(593, 203);
+            this.flowPost.TabIndex = 0;
             // 
             // lblReason
             // 
@@ -122,7 +122,7 @@
             this.Controls.Add(this.gbReviewAction);
             this.Controls.Add(this.btnActionConfirm);
             this.Controls.Add(this.lblReason);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flowPost);
             this.MinimumSize = new System.Drawing.Size(979, 203);
             this.Name = "UserPostReview";
             this.Size = new System.Drawing.Size(979, 203);
@@ -135,7 +135,7 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowPost;
         private System.Windows.Forms.Label lblReason;
         private System.Windows.Forms.Button btnActionConfirm;
         private System.Windows.Forms.GroupBox gbReviewAction;
