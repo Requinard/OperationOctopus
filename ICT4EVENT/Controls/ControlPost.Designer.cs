@@ -108,7 +108,6 @@
             // 
             this.flowComment.AutoSize = true;
             this.flowComment.BackColor = System.Drawing.Color.Transparent;
-            this.flowComment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowComment.Enabled = false;
             this.flowComment.Location = new System.Drawing.Point(-3, 328);
             this.flowComment.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);

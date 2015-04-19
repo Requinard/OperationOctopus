@@ -149,6 +149,7 @@ namespace ICT4EVENT
                 PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text,"",postModel);
                 if (commentPostModel != null)
                 {
+                    this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
                     gbAction.Enabled = false;
                     gbAction.Visible = false;
                     flowComment.Enabled = true;
@@ -185,7 +186,7 @@ namespace ICT4EVENT
         private void postHasComment()
         {
             flowComment.Location = new Point(-3, this.Height);
-            this.Size = new Size(this.Width, flowComment.Location.Y + flowComment.Size.Height + 1);
+            this.Size = new Size(this.Width, flowComment.Location.Y + flowComment.Size.Height + 3);
 
         }
     }
