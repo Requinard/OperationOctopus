@@ -77,8 +77,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "RegistrationID, Amount, PaymentType";
-            string values = string.Format("'{0}','{1}','{2}'", registration.Id, amount, paymentType);
+            string columns = "RegistrationID, DATETIME, Amount, PaymentType";
+            string values = string.Format("'{0}',to_date('{1}', 'fmdd-fmmm-yyyy hh:mi:ss'),'{2}','{3}'", registration.Id, DateTime.Now, amount, paymentType);
             string finalQuery = string.Format(INSERTSTRING, "PAYMENT", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
