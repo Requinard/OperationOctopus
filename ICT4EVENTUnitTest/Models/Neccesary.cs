@@ -156,25 +156,25 @@ namespace ICT4EVENTUnitTest
             return rent_item;
         }
 
-        public static ReservationModel GetLocalReservation()
+        public static RentableReservationModel GetLocalReservation()
         {
             UserModel user_item = Init.getExternalTestUser();
             RentableObjectModel rent_item = Init.getExternalRentItem();
-            ReservationModel reservation_item = new ReservationModel(rent_item, user_item);
+            RentableReservationModel rentableReservationItem = new RentableReservationModel(rent_item, user_item);
 
-            reservation_item.Amount = 3;
-            reservation_item.ReturnDate = DateTime.Now;
+            rentableReservationItem.Amount = 3;
+            rentableReservationItem.ReturnDate = DateTime.Now;
 
-            return reservation_item;
+            return rentableReservationItem;
         }
 
-        public static ReservationModel getExternalReservation()
+        public static RentableReservationModel getExternalReservation()
         {
             UserModel user_item = Init.getExternalTestUser();
             RentableObjectModel rent_item = Init.getExternalRentItem();
-            ReservationModel reservation_item = new ReservationModel(rent_item, user_item);
+            RentableReservationModel rentableReservationItem = new RentableReservationModel(rent_item, user_item);
 
-            string query = "SELECT * FROM reservation where Amount = '3'";
+            string query = "SELECT * FROM rentableReservation where Amount = '3'";
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
@@ -182,11 +182,11 @@ namespace ICT4EVENTUnitTest
 
             reader.Read();
 
-            reservation_item.Id = Int32.Parse(reader["ident"].ToString());
+            rentableReservationItem.Id = Int32.Parse(reader["ident"].ToString());
 
-            reservation_item.Read();
+            rentableReservationItem.Read();
 
-            return reservation_item;
+            return rentableReservationItem;
         }
 
         public static PostModel GetLocalPost()

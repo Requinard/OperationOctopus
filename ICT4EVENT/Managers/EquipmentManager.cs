@@ -88,9 +88,9 @@ namespace ICT4EVENT
             return null;
         }
 
-        public static List<ReservationModel> GetUserReservations(UserModel user)
+        public static List<RentableReservationModel> GetUserReservations(UserModel user)
         {
-            List<ReservationModel> reservations = new List<ReservationModel>();
+            List<RentableReservationModel> reservations = new List<RentableReservationModel>();
             string query = String.Format("SELECT * FROM RESERVATION WHERE USERID = '{0}'", user.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
@@ -99,19 +99,19 @@ namespace ICT4EVENT
 
             while (reader.Read())
             {
-                ReservationModel reservation = new ReservationModel();
+                RentableReservationModel rentableReservation = new RentableReservationModel();
 
-                reservation.ReadFromReader(reader);
+                rentableReservation.ReadFromReader(reader);
 
-                reservations.Add(reservation);
+                reservations.Add(rentableReservation);
             }
 
             return reservations;
         }
 
-        public static ReservationModel MakeObjectReservervation(UserModel user, RentableObjectModel rent, int amount)
+        public static RentableReservationModel MakeObjectReservervation(UserModel user, RentableObjectModel rent, int amount)
         {
-            ReservationModel res = new ReservationModel(rent, user, amount);
+            RentableReservationModel res = new RentableReservationModel(rent, user, amount);
 
             res.ReturnDate = Settings.ActiveEvent.EndDate;
 
@@ -123,7 +123,7 @@ namespace ICT4EVENT
 
         public static bool DeleteObjectReservation(UserModel user, RentableObjectModel rent, int amount)
         {
-            ReservationModel res = new ReservationModel(rent, user, amount);
+            RentableReservationModel res = new RentableReservationModel(rent, user, amount);
             if (res.Destroy())
             {
                 return true;

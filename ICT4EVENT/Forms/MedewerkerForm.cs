@@ -188,11 +188,11 @@ namespace ICT4EVENT
         private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
         {
             UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
-            List<ReservationModel> reservations = EquipmentManager.GetUserReservations(selectedUser);
+            List<RentableReservationModel> reservations = EquipmentManager.GetUserReservations(selectedUser);
             listReservedItems.Items.Clear();
-            foreach (ReservationModel reservation in reservations)
+            foreach (RentableReservationModel reservation in reservations)
             {
-                string item = reservation.Item.ObjectType + " x" + Convert.ToString(reservation.Amount);
+                string item = reservation.Rentable.ObjectType + " x" + Convert.ToString(reservation.Amount);
                 listReservedItems.Items.Add(item);
             }
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace ICT4EVENT
 {
@@ -7,37 +7,37 @@ namespace ICT4EVENT
     /// <summary>
     ///     The reservation model.
     /// </summary>
-    public class ReservationModel : DBModel, IDataModelUpdate
+    public class RentableReservationModel : DBModel, IDataModelUpdate
     {
         #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="RentableObjectModel" /> class.
         /// </summary>
-        /// <param name="rent_item">
-        ///     The rent_item.
+        /// <param name="rentRentable">
+        ///     The rentRentable.
         /// </param>
         /// <param name="user_item">
         ///     The user_item.
         /// </param>
-        public ReservationModel(RentableObjectModel rent_item, UserModel user_item, int amount)
+        public RentableReservationModel(RentableObjectModel rentRentable, UserModel user_item, int amount)
         {
-            Item = rent_item;
+            this.Rentable = rentRentable;
             User = user_item;
             Amount = amount;
         }
 
-        public ReservationModel()
+        public RentableReservationModel()
         {
-            item = new RentableObjectModel();
+            this.rentable = new RentableObjectModel();
             user = new UserModel();
         }
 
-        public ReservationModel(int ID)
+        public RentableReservationModel(int ID)
         {
             this.Id = ID;
 
-            item = new RentableObjectModel();
+            this.rentable = new RentableObjectModel();
             user = new UserModel();
 
             this.Read();
@@ -52,9 +52,9 @@ namespace ICT4EVENT
         private int amount;
 
         /// <summary>
-        ///     The item.
+        ///     The rentable.
         /// </summary>
-        private RentableObjectModel item;
+        private PlaceModel place;
 
         /// <summary>
         ///     The return date.
@@ -80,14 +80,16 @@ namespace ICT4EVENT
             set { amount = value; }
         }
 
-        /// <summary>
-        ///     Gets or sets the item.
-        /// </summary>
-        public RentableObjectModel Item
+        public PlaceModel Place
         {
-            get { return item; }
-
-            set { item = value; }
+            get
+            {
+                return this.place;
+            }
+            set
+            {
+                this.place = value;
+            }
         }
 
         /// <summary>
@@ -127,7 +129,7 @@ namespace ICT4EVENT
             string values = string.Format(
                 "'{0}','{1}',to_date('{2}', 'fmmm-fmdd-yyyy hh:mi:ss'),'{3}'",
                 user.Id,
-                item.Id,
+                this.place.Id,
                 returnDate.ToString(dateFormat),
                 amount);
             string finalQuery = string.Format(INSERTSTRING, "RESERVATION", columns, values);
@@ -149,7 +151,7 @@ namespace ICT4EVENT
         /// </returns>
         public bool Destroy()
         {
-            string finalQuery = string.Format(DESTROYSTRING2, "RESERVATION", "'" + Item.Id + "'");
+            string finalQuery = string.Format(DESTROYSTRING2, "RESERVATION", "'" + this.place.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
             return reader != null;
@@ -181,8 +183,8 @@ namespace ICT4EVENT
             this.Id = Convert.ToInt32(reader["Ident"].ToString());
             this.user.Id = Convert.ToInt32(reader["UserID"].ToString());
             user.Read();
-            this.item.Id = Convert.ToInt32(reader["ItemID"].ToString());
-            item.Read();
+            this.place.Id = Convert.ToInt32(reader["ItemID"].ToString());
+            this.place.Read();
             this.returnDate = Convert.ToDateTime(reader["ReturnDate"].ToString());
             this.amount = Convert.ToInt32(reader["Amount"].ToString());
         }
@@ -198,7 +200,7 @@ namespace ICT4EVENT
             string columnvalues = string.Format(
                 "UserID='{0}', ItemID='{1}', ReturnDate=to_date('{2}', 'fmmm-fmdd-yyyy hh:mi:ss'), Amount='{3}'",
                 user.Id,
-                item.Id,
+                this.place.Id,
                 returnDate.ToString(dateFormat),
                 amount);
             string finalQuery = string.Format(

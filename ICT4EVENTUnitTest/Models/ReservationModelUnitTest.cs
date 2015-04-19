@@ -29,9 +29,9 @@ namespace ICT4EVENTUnitTest
         {
             Init.Initialize();
 
-            ReservationModel reservation_item = Init.GetLocalReservation();
+            RentableReservationModel rentableReservationItem = Init.GetLocalReservation();
 
-            Assert.IsTrue(reservation_item.Create(), "Could not write reservation to database");
+            Assert.IsTrue(rentableReservationItem.Create(), "Could not write rentableReservation to database");
         }
 
         public void ReadTest()
@@ -41,38 +41,38 @@ namespace ICT4EVENTUnitTest
 
             UserModel user_item = Init.getExternalTestUser();
             RentableObjectModel rent_item = Init.getExternalRentItem();
-            ReservationModel reservation_item = new ReservationModel(rent_item, user_item);
+            RentableReservationModel rentableReservationItem = new RentableReservationModel(rent_item, user_item);
 
-            string query = "SELECT ident FROM reservation where Amount = 3";
+            string query = "SELECT ident FROM rentableReservation where Amount = 3";
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
             Assert.IsNotNull(reader, "Reader retrieved no data");
             reader.Read();
 
-            reservation_item.Id = Int32.Parse(reader["ident"].ToString());
+            rentableReservationItem.Id = Int32.Parse(reader["ident"].ToString());
 
-            Assert.IsTrue(reservation_item.Read(), "Could not find data from database");
+            Assert.IsTrue(rentableReservationItem.Read(), "Could not find data from database");
         }
 
         public void AlterTest()
         {
             Init.Initialize();
 
-            ReservationModel reservation_item = Init.getExternalReservation();
+            RentableReservationModel rentableReservationItem = Init.getExternalReservation();
 
-            reservation_item.Amount = 2;
+            rentableReservationItem.Amount = 2;
 
-            Assert.IsTrue(reservation_item.Update(), "Could not update reservation table");
+            Assert.IsTrue(rentableReservationItem.Update(), "Could not update rentableReservation table");
         }
 
         public void DestroyTest()
         {
             Init.Initialize();
 
-            ReservationModel reservation_item = Init.getExternalReservation();
+            RentableReservationModel rentableReservationItem = Init.getExternalReservation();
 
-            Assert.IsTrue(reservation_item.Destroy(), "Reservation could not be destroyed");
+            Assert.IsTrue(rentableReservationItem.Destroy(), "Reservation could not be destroyed");
         }
     }
 }

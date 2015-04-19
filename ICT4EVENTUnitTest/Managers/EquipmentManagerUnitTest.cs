@@ -73,7 +73,7 @@ namespace ICT4EVENTUnitTest.Managers
         {
             List<RentableObjectModel> rent = EquipmentManager.GetAllRentables();
 
-            ReservationModel res = EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rent.First());
+            RentableReservationModel res = EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rent.First());
 
             Assert.IsNotNull(res, "Could not create reservation");            
         }
