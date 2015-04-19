@@ -736,7 +736,7 @@ namespace ICT4EVENT
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Social Media Sharing System";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbStaticUpdates.ResumeLayout(false);
             this.gbStaticUpdates.PerformLayout();

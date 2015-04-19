@@ -108,9 +108,8 @@
             // 
             this.flowComment.AutoSize = true;
             this.flowComment.BackColor = System.Drawing.Color.Transparent;
-            this.flowComment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowComment.Enabled = false;
-            this.flowComment.Location = new System.Drawing.Point(4, 209);
+            this.flowComment.Location = new System.Drawing.Point(-3, 328);
             this.flowComment.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.flowComment.MaximumSize = new System.Drawing.Size(5000, 106);
             this.flowComment.Name = "flowComment";
@@ -155,7 +154,7 @@
             this.gbAction.Controls.Add(this.tbAction);
             this.gbAction.Controls.Add(this.btnReportConfirm);
             this.gbAction.Enabled = false;
-            this.gbAction.Location = new System.Drawing.Point(3, 209);
+            this.gbAction.Location = new System.Drawing.Point(6, 167);
             this.gbAction.Name = "gbAction";
             this.gbAction.Size = new System.Drawing.Size(587, 77);
             this.gbAction.TabIndex = 10;
@@ -192,7 +191,6 @@
             this.MinimumSize = new System.Drawing.Size(593, 164);
             this.Name = "UserPost";
             this.Size = new System.Drawing.Size(593, 347);
-            this.Load += new System.EventHandler(this.UserControl1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).EndInit();
             this.gbAction.ResumeLayout(false);

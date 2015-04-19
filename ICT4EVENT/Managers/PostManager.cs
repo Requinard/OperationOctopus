@@ -135,7 +135,7 @@ namespace ICT4EVENT
         {
             var likes = new List<LikeModel>();
 
-            var query = string.Format("SELECT * FROM Like WHERE postid = '{0}'", post.Id);
+            var query = string.Format("SELECT * FROM Likes WHERE postid = '{0}'", post.Id);
 
             var reader = DBManager.QueryDB(query);
 

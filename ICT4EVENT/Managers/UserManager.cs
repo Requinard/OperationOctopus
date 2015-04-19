@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Security.Cryptography;
 
+    using Oracle.DataAccess.Client;
+
     public static class UserManager
     {
         private static readonly RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -198,6 +200,23 @@
             }
 
             return regs;
+        }
+
+        public static bool SeeIfRegistrationIsPaid(RegistrationModel registration)
+        {
+            var query = string.Format("SELECT * FROM payment WHERE registrationid = '{0}'", registration.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return false;
+
+            return true;
+        }
+
+        public static bool ChangeUserPassword(string password)
+        {
+            Settings.ActiveUser.Password = CreateHashPassword(password);
+            return Settings.ActiveUser.Update();
         }
 
         public static RegistrationModel RegisterUserForEvent(UserModel user, EventModel eventModel)
