@@ -717,6 +717,7 @@ namespace ICT4EVENT
             this.btnLogOut.Tag = "Settings";
             this.btnLogOut.Text = "Uitloggen";
             this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // openFileDialog1
             // 
