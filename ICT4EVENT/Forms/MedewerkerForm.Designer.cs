@@ -454,7 +454,7 @@
             // cbReservations
             // 
             this.cbReservations.FormattingEnabled = true;
-            this.cbReservations.Location = new System.Drawing.Point(142, 24);
+            this.cbReservations.Location = new System.Drawing.Point(182, 24);
             this.cbReservations.Name = "cbReservations";
             this.cbReservations.Size = new System.Drawing.Size(256, 32);
             this.cbReservations.TabIndex = 1;

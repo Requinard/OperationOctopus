@@ -156,6 +156,27 @@
             return users;
         }
 
+        public static List<UserModel> GetAllUsers()
+        {
+            var users = new List<UserModel>();
+            var query = "SELECT * FROM USERS";
+
+            var reader = DBManager.QueryDB(query);
+
+            if (reader == null || !reader.HasRows) return null;
+
+            while (reader.Read())
+            {
+                var user = new UserModel { Id = int.Parse(reader["ident"].ToString()) };
+
+                user.Read();
+
+                users.Add(user);
+            }
+
+            return users;
+        } 
+
         public static UserModel FindUser(int id)
         {
             var query = string.Format("SELECT * FROM USERS WHERE ident = '{0}'", id);

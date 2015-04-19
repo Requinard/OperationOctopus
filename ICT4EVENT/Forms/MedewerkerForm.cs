@@ -32,6 +32,7 @@ namespace ICT4EVENT
             acceptPayment = new AcceptPaymentLogic(this);
 
             OpenRFIDConnection();
+            FillReservations();
         }
 
         private void OpenRFIDConnection()
@@ -52,6 +53,11 @@ namespace ICT4EVENT
             {
                 MessageBox.Show(ex.Description);
             }
+        }
+
+        private void FillReservations()
+        {
+            //cbReservations.Items.Add();
         }
 
         #region handlers
