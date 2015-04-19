@@ -102,15 +102,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtRFIDPayment = new System.Windows.Forms.TextBox();
             this.tabCreateMaterial = new System.Windows.Forms.TabPage();
-            this.txtDescriptionMaterial = new System.Windows.Forms.TextBox();
-            this.txtObjectName = new System.Windows.Forms.TextBox();
-            this.numMaterialPrice = new System.Windows.Forms.NumericUpDown();
-            this.numMaterialAmount = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.btnMakeMaterial = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numMaterialAmount = new System.Windows.Forms.NumericUpDown();
+            this.numMaterialPrice = new System.Windows.Forms.NumericUpDown();
+            this.txtObjectName = new System.Windows.Forms.TextBox();
+            this.txtDescriptionMaterial = new System.Windows.Forms.TextBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -133,8 +133,8 @@
             this.groupAcceptPayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPriceAmount)).BeginInit();
             this.tabCreateMaterial.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaterialPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaterialAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaterialPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -929,28 +929,55 @@
             this.tabCreateMaterial.Text = "Materiaal aanmaken";
             this.tabCreateMaterial.UseVisualStyleBackColor = true;
             // 
-            // txtDescriptionMaterial
+            // btnMakeMaterial
             // 
-            this.txtDescriptionMaterial.Location = new System.Drawing.Point(406, 170);
-            this.txtDescriptionMaterial.Multiline = true;
-            this.txtDescriptionMaterial.Name = "txtDescriptionMaterial";
-            this.txtDescriptionMaterial.Size = new System.Drawing.Size(231, 87);
-            this.txtDescriptionMaterial.TabIndex = 0;
+            this.btnMakeMaterial.Location = new System.Drawing.Point(406, 374);
+            this.btnMakeMaterial.Name = "btnMakeMaterial";
+            this.btnMakeMaterial.Size = new System.Drawing.Size(231, 52);
+            this.btnMakeMaterial.TabIndex = 8;
+            this.btnMakeMaterial.Text = "Materiaal aanmaken";
+            this.btnMakeMaterial.UseVisualStyleBackColor = true;
+            this.btnMakeMaterial.Click += new System.EventHandler(this.btnMakeMaterial_Click);
             // 
-            // txtObjectName
+            // label11
             // 
-            this.txtObjectName.Location = new System.Drawing.Point(406, 134);
-            this.txtObjectName.Name = "txtObjectName";
-            this.txtObjectName.Size = new System.Drawing.Size(231, 30);
-            this.txtObjectName.TabIndex = 1;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(242, 298);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 28);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Prijs:";
             // 
-            // numMaterialPrice
+            // label10
             // 
-            this.numMaterialPrice.DecimalPlaces = 2;
-            this.numMaterialPrice.Location = new System.Drawing.Point(406, 299);
-            this.numMaterialPrice.Name = "numMaterialPrice";
-            this.numMaterialPrice.Size = new System.Drawing.Size(231, 30);
-            this.numMaterialPrice.TabIndex = 2;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(242, 262);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(62, 28);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Aantal:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(242, 170);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(108, 28);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Beschrijving:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(242, 134);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 28);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Naam:";
             // 
             // numMaterialAmount
             // 
@@ -974,54 +1001,28 @@
             0,
             0});
             // 
-            // label8
+            // numMaterialPrice
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(242, 134);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 28);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Naam:";
+            this.numMaterialPrice.DecimalPlaces = 2;
+            this.numMaterialPrice.Location = new System.Drawing.Point(406, 299);
+            this.numMaterialPrice.Name = "numMaterialPrice";
+            this.numMaterialPrice.Size = new System.Drawing.Size(231, 30);
+            this.numMaterialPrice.TabIndex = 2;
             // 
-            // label9
+            // txtObjectName
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(242, 170);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(108, 28);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Beschrijving:";
+            this.txtObjectName.Location = new System.Drawing.Point(406, 134);
+            this.txtObjectName.Name = "txtObjectName";
+            this.txtObjectName.Size = new System.Drawing.Size(231, 30);
+            this.txtObjectName.TabIndex = 1;
             // 
-            // label10
+            // txtDescriptionMaterial
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(242, 262);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 28);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "Aantal:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(242, 298);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(51, 28);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "Prijs:";
-            // 
-            // btnMakeMaterial
-            // 
-            this.btnMakeMaterial.Location = new System.Drawing.Point(406, 374);
-            this.btnMakeMaterial.Name = "btnMakeMaterial";
-            this.btnMakeMaterial.Size = new System.Drawing.Size(231, 52);
-            this.btnMakeMaterial.TabIndex = 8;
-            this.btnMakeMaterial.Text = "Materiaal aanmaken";
-            this.btnMakeMaterial.UseVisualStyleBackColor = true;
+            this.txtDescriptionMaterial.Location = new System.Drawing.Point(406, 170);
+            this.txtDescriptionMaterial.Multiline = true;
+            this.txtDescriptionMaterial.Name = "txtDescriptionMaterial";
+            this.txtDescriptionMaterial.Size = new System.Drawing.Size(231, 87);
+            this.txtDescriptionMaterial.TabIndex = 0;
             // 
             // MedewerkerForm
             // 
@@ -1063,8 +1064,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPriceAmount)).EndInit();
             this.tabCreateMaterial.ResumeLayout(false);
             this.tabCreateMaterial.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaterialPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaterialAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaterialPrice)).EndInit();
             this.ResumeLayout(false);
 
         }

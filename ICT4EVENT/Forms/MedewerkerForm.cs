@@ -235,6 +235,18 @@ namespace ICT4EVENT
             acceptPayment.AcceptPayment();
         }
 
+        private void btnMakeMaterial_Click(object sender, EventArgs e)
+        {
+            if (txtObjectName.Text != null && txtDescriptionMaterial.Text != null)
+            {
+                EquipmentManager.CreateNewRentable(txtDescriptionMaterial.Text, numMaterialPrice.Value, Convert.ToInt32(numMaterialAmount.Value), txtObjectName.Text);
+            }
+            else
+            {
+                MessageBox.Show("Vul alle velden in!");
+            }
+        }
+
         #endregion
 
         public class CampingLogic
