@@ -18,6 +18,8 @@ namespace ICT4EVENT
             flowPost.Controls.Add(userPost);
             lblReason.Text += postReportModel.Reason;
 
+            this.Size = new Size(Width,userPost.Height +3);
+
         }
 
         private void btnActionConfirm_Click(object sender, EventArgs e)

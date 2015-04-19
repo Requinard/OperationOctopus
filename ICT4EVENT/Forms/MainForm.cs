@@ -40,7 +40,10 @@ namespace ICT4EVENT
             var postModels = PostManager.GetPostsByPage();
             foreach (var postModel in postModels)
             {
-                flowPosts.Controls.Add(new UserPost(postModel));
+                if (postModel.Parent == null)
+                {
+                    flowPosts.Controls.Add(new UserPost(postModel));  
+                }
             }
         }
 

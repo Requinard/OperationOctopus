@@ -186,7 +186,7 @@ namespace ICT4EVENT
                 columns = "UserID, EventID, ReplyID, PostContent, PathToFile, DATETIME";
 
                 values = string.Format(
-                    "'{0}','{1}','{2}','{3}','{4}',,to_date('{5}', 'fmmm-fmdd-yyyy hh:mi:ss')'",
+                    "'{0}','{1}','{2}','{3}','{4}',to_date('{5}', 'fmmm-fmdd-yyyy hh:mi:ss')",
                     this.user.Id,
                     this.event_item.Id,
                     this.parent.Id,

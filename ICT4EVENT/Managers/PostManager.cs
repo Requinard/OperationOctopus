@@ -214,17 +214,20 @@ namespace ICT4EVENT
         public static List<PostModel> GetPostComments(PostModel post)
         {
             List<PostModel> posts = new List<PostModel>();
-            string query = String.Format("SELECT * FROM POST WHERE PARENTID = '{0}'", post.Id);
+            string query = String.Format("SELECT * FROM POST WHERE REPLYID = '{0}'", post.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null) return null;
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
 
             while (reader.Read())
             {
                 PostModel ChildPost = new PostModel();
 
-                post.ReadFromReader(reader);
+                ChildPost.ReadFromReader(reader);
 
                 posts.Add(ChildPost);
             }

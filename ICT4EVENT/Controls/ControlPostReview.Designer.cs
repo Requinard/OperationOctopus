@@ -41,6 +41,7 @@
             // flowPost
             // 
             this.flowPost.AutoScroll = true;
+            this.flowPost.AutoSize = true;
             this.flowPost.Location = new System.Drawing.Point(0, 0);
             this.flowPost.MinimumSize = new System.Drawing.Size(593, 164);
             this.flowPost.Name = "flowPost";
@@ -61,7 +62,7 @@
             // btnActionConfirm
             // 
             this.btnActionConfirm.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActionConfirm.Location = new System.Drawing.Point(849, 160);
+            this.btnActionConfirm.Location = new System.Drawing.Point(805, 54);
             this.btnActionConfirm.Name = "btnActionConfirm";
             this.btnActionConfirm.Size = new System.Drawing.Size(117, 43);
             this.btnActionConfirm.TabIndex = 12;
@@ -75,7 +76,7 @@
             this.gbReviewAction.Controls.Add(this.rbPostEdit);
             this.gbReviewAction.Controls.Add(this.rbPostRemove);
             this.gbReviewAction.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbReviewAction.Location = new System.Drawing.Point(608, 111);
+            this.gbReviewAction.Location = new System.Drawing.Point(780, 103);
             this.gbReviewAction.Name = "gbReviewAction";
             this.gbReviewAction.Size = new System.Drawing.Size(200, 89);
             this.gbReviewAction.TabIndex = 13;
@@ -123,9 +124,9 @@
             this.Controls.Add(this.btnActionConfirm);
             this.Controls.Add(this.lblReason);
             this.Controls.Add(this.flowPost);
-            this.MinimumSize = new System.Drawing.Size(979, 203);
+            this.MinimumSize = new System.Drawing.Size(992, 203);
             this.Name = "UserPostReview";
-            this.Size = new System.Drawing.Size(979, 203);
+            this.Size = new System.Drawing.Size(992, 203);
             this.gbReviewAction.ResumeLayout(false);
             this.gbReviewAction.PerformLayout();
             this.ResumeLayout(false);

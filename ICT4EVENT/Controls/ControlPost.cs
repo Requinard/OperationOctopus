@@ -33,8 +33,7 @@ namespace ICT4EVENT
                                  postModel.DatePosted.Minute + " - " + postModel.DatePosted.ToShortDateString();
             }
             
-
-            if (postModel.PathToFile == "" || postModel.PathToFile == null)
+            if (postModel.PathToFile == "")
             {
                 Size = new Size(Size.Width, (lblText.Size.Height));
             }
@@ -53,16 +52,26 @@ namespace ICT4EVENT
             Random r = new Random();
             BackColor = Color.FromArgb(255,r.Next(151) + 50, r.Next(151) + 50, r.Next(151) + 50);
             pictureBox1.BackColor = Color.FromArgb(255,r.Next(151) + 50, r.Next(151) + 50, r.Next(151) + 50);
-            
-            if (postModel.Parent != null)
+
+
+            List<PostModel> comments = PostManager.GetPostComments(postModel);
+
+            if (comments != null)
             {
-                UserPost commentUserPost = new UserPost(postModel.Parent);
                 flowComment.Enabled = true;
                 flowComment.Visible = true;
-                commentUserPost.BackColor = BackColor;
-                flowComment.Controls.Add(commentUserPost);
-                flowComment.Location = new Point(Location.X, Height);
-                Size = new Size(Width, flowComment.Location.Y + flowComment.Height + 3);
+                foreach (PostModel comment1 in comments)
+                {
+                    UserPost commentUserPost = new UserPost(comment1);
+                    commentUserPost.BackColor = BackColor;
+                    flowComment.Controls.Add(commentUserPost);
+                }
+                postHasComment();
+                
+                
+                
+                
+                
             }
             List<LikeModel> likes = PostManager.GetPostLikes(postModel);
             if (likes != null)

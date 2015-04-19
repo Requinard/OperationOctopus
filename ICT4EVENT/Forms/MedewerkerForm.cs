@@ -24,7 +24,6 @@ namespace ICT4EVENT
         {
             InitializeComponent();
             campingLogic = new CampingLogic(this);
-            postReview = new PostReviewLogic(this);
             createUser = new CreateUserLogic(this);
             createPlace = new CreatePlaceLogic(this);
             deleteReservation = new DeleteReservationLogic(this);
@@ -171,6 +170,10 @@ namespace ICT4EVENT
                     rfid.LED = false;
                 }
                 catch { }
+            }
+            if (tabMainTab.SelectedTab == tabPostReview)
+            {
+                postReview = new PostReviewLogic(this);
             }
         }
 
