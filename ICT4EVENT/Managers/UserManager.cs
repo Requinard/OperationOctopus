@@ -213,6 +213,12 @@
             return true;
         }
 
+        public static bool ChangeUserPassword(string password)
+        {
+            Settings.ActiveUser.Password = CreateHashPassword(password);
+            return Settings.ActiveUser.Update();
+        }
+
         public static RegistrationModel RegisterUserForEvent(UserModel user, EventModel eventModel)
         {
             var registration = new RegistrationModel(user, eventModel);
