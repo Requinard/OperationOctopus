@@ -186,9 +186,9 @@ namespace ICT4EVENT
             {
                 MessageBox.Show("Gebruiker gevonden.");
                 UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
-                lblNameOfUser.Text = lblNameOfUser.Text + rfiduser.Username;
+                lblNameOfUser.Text = "Naam: " + rfiduser.Username;
                 lblPaymentStatusOfUser.Text = lblPaymentStatusOfUser.Text;
-                lblAtEventStatus.Text = lblAtEventStatus.Text + Convert.ToString(Settings.ActiveEvent.Name);
+                lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
             }
             else
             {
