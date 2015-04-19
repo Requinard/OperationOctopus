@@ -97,8 +97,6 @@
         {
             var query = string.Format("SELECT * FROM users WHERE rfidnumber = '{0}'", RFIDNumber);
 
-            var user = new UserModel();
-
             var reader = DBManager.QueryDB(query);
 
             if (reader == null || !reader.HasRows)
@@ -108,8 +106,10 @@
 
             reader.Read();
 
+            var user = new UserModel();
             user.ReadFromReader(reader);
 
+            Settings.ActiveUser = user;
             GetUserRegistrations(user);
 
             return true;

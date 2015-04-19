@@ -40,12 +40,14 @@ namespace ICT4EVENT
                 rfid.Error -= RFID_Error;
                 rfid.Tag -= RFID_Tag;
                 rfid.TagLost -= rfid_TagLost;
+                //Settings.ActiveUser = UserManager.FindUserFromRFID(e.Tag);
                 TagEventHandler tag = this.btnLogin_Click;
 
                 this.Invoke(tag, new object[]{sender, e});
             }
 
             rfid.Antenna = true;
+            rfid.LED = true;
         }
 
         private void OpenRFIDConnection()
@@ -114,7 +116,8 @@ namespace ICT4EVENT
         {
             Application.DoEvents();
 
-            rfid.close();
+            rfid.Antenna = false;
+            rfid.LED = false;
 
             FillActionList();
 
