@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 namespace ICT4EVENT
 {
+    using System;
+
     using Oracle.DataAccess.Client;
 
     public static class EquipmentManager
@@ -84,6 +86,25 @@ namespace ICT4EVENT
             if (place.Create())
                 return place;
             return null;
+        }
+
+        public static List<ReservationModel> GetUserReservations(UserModel user)
+        {
+            List<ReservationModel> reservations = new List<ReservationModel>();
+            string query = String.Format("SELECT * FROM RESERVATION WHERE USERID = '{0}'", user.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return null;
+
+            while (reader.Read())
+            {
+                ReservationModel reservation = new ReservationModel(Int32.Parse(reader["ident"].ToString()));
+
+                reservations.Add(reservation);
+            }
+
+            return reservations;
         }
 
         public static ReservationModel MakeObjectReservervation(UserModel user, RentableObjectModel rent)
