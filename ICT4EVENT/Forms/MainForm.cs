@@ -8,6 +8,7 @@ namespace ICT4EVENT
     public partial class MainForm : Form
     {
         private string filePath = "";
+        private int currentPage = 1;
 
         public MainForm()
         {
@@ -258,6 +259,18 @@ namespace ICT4EVENT
             else
             {
                 MessageBox.Show("Winkelmandje is leeg");
+            }
+        }
+
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            flowPosts.Controls.Clear();
+            List<PostModel>postModels = PostManager.GetPostsByPage(null, currentPage++, 10);
+            {
+                foreach (PostModel postModel in postModels)
+                {
+                    flowPosts.Controls.Add(new UserPost(postModel));
+                }
             }
         }
     }

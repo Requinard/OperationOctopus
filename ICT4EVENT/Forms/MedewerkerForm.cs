@@ -477,13 +477,23 @@ namespace ICT4EVENT
             public PostReviewLogic(MedewerkerForm form)
             {
                 parent = form;
-                CreateDummyData();
+                FillList();
+            }
+
+            private void FillList()
+            {
+                List<PostReportModel> reportModels = PostManager.GetAllReports();
+                foreach (PostReportModel postReportModel in reportModels)
+                {
+                    parent.flowPostReview.Controls.Add(new UserPostReview(postReportModel));
+                }
             }
 
             public void CreateDummyData()
             {
 
             }
+
         }
 
         public class CreateUserLogic

@@ -42,31 +42,28 @@
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(791, 250);
+            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(593, 203);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(791, 250);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(593, 203);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // lblReason
             // 
             this.lblReason.AutoSize = true;
             this.lblReason.Font = new System.Drawing.Font("Agency FB", 15.75F);
-            this.lblReason.Location = new System.Drawing.Point(841, 0);
-            this.lblReason.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblReason.MinimumSize = new System.Drawing.Size(465, 31);
+            this.lblReason.Location = new System.Drawing.Point(631, 0);
+            this.lblReason.MinimumSize = new System.Drawing.Size(349, 25);
             this.lblReason.Name = "lblReason";
-            this.lblReason.Size = new System.Drawing.Size(465, 32);
+            this.lblReason.Size = new System.Drawing.Size(349, 25);
             this.lblReason.TabIndex = 9;
-            this.lblReason.Text = "Reason: <Reason>";
+            this.lblReason.Text = "Reden : ";
             // 
             // btnActionConfirm
             // 
             this.btnActionConfirm.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActionConfirm.Location = new System.Drawing.Point(1139, 91);
-            this.btnActionConfirm.Margin = new System.Windows.Forms.Padding(4);
+            this.btnActionConfirm.Location = new System.Drawing.Point(849, 160);
             this.btnActionConfirm.Name = "btnActionConfirm";
-            this.btnActionConfirm.Size = new System.Drawing.Size(156, 53);
+            this.btnActionConfirm.Size = new System.Drawing.Size(117, 43);
             this.btnActionConfirm.TabIndex = 12;
             this.btnActionConfirm.Text = "Bevestig";
             this.btnActionConfirm.UseVisualStyleBackColor = true;
@@ -78,11 +75,9 @@
             this.gbReviewAction.Controls.Add(this.rbPostEdit);
             this.gbReviewAction.Controls.Add(this.rbPostRemove);
             this.gbReviewAction.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbReviewAction.Location = new System.Drawing.Point(848, 34);
-            this.gbReviewAction.Margin = new System.Windows.Forms.Padding(4);
+            this.gbReviewAction.Location = new System.Drawing.Point(608, 111);
             this.gbReviewAction.Name = "gbReviewAction";
-            this.gbReviewAction.Padding = new System.Windows.Forms.Padding(4);
-            this.gbReviewAction.Size = new System.Drawing.Size(267, 110);
+            this.gbReviewAction.Size = new System.Drawing.Size(200, 89);
             this.gbReviewAction.TabIndex = 13;
             this.gbReviewAction.TabStop = false;
             this.gbReviewAction.Text = "Actie";
@@ -90,10 +85,9 @@
             // rbPostIgnore
             // 
             this.rbPostIgnore.AutoSize = true;
-            this.rbPostIgnore.Location = new System.Drawing.Point(9, 75);
-            this.rbPostIgnore.Margin = new System.Windows.Forms.Padding(4);
+            this.rbPostIgnore.Location = new System.Drawing.Point(7, 61);
             this.rbPostIgnore.Name = "rbPostIgnore";
-            this.rbPostIgnore.Size = new System.Drawing.Size(73, 28);
+            this.rbPostIgnore.Size = new System.Drawing.Size(57, 22);
             this.rbPostIgnore.TabIndex = 2;
             this.rbPostIgnore.TabStop = true;
             this.rbPostIgnore.Text = "Negeer";
@@ -102,10 +96,9 @@
             // rbPostEdit
             // 
             this.rbPostEdit.AutoSize = true;
-            this.rbPostEdit.Location = new System.Drawing.Point(9, 47);
-            this.rbPostEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.rbPostEdit.Location = new System.Drawing.Point(7, 38);
             this.rbPostEdit.Name = "rbPostEdit";
-            this.rbPostEdit.Size = new System.Drawing.Size(115, 28);
+            this.rbPostEdit.Size = new System.Drawing.Size(89, 22);
             this.rbPostEdit.TabIndex = 1;
             this.rbPostEdit.TabStop = true;
             this.rbPostEdit.Text = "Verander Post";
@@ -114,10 +107,9 @@
             // rbPostRemove
             // 
             this.rbPostRemove.AutoSize = true;
-            this.rbPostRemove.Location = new System.Drawing.Point(9, 18);
-            this.rbPostRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.rbPostRemove.Location = new System.Drawing.Point(7, 15);
             this.rbPostRemove.Name = "rbPostRemove";
-            this.rbPostRemove.Size = new System.Drawing.Size(116, 28);
+            this.rbPostRemove.Size = new System.Drawing.Size(93, 22);
             this.rbPostRemove.TabIndex = 0;
             this.rbPostRemove.TabStop = true;
             this.rbPostRemove.Text = "Verwijder Post";
@@ -125,16 +117,15 @@
             // 
             // UserPostReview
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbReviewAction);
             this.Controls.Add(this.btnActionConfirm);
             this.Controls.Add(this.lblReason);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1305, 250);
+            this.MinimumSize = new System.Drawing.Size(979, 203);
             this.Name = "UserPostReview";
-            this.Size = new System.Drawing.Size(1305, 250);
+            this.Size = new System.Drawing.Size(979, 203);
             this.gbReviewAction.ResumeLayout(false);
             this.gbReviewAction.PerformLayout();
             this.ResumeLayout(false);

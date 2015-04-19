@@ -152,9 +152,9 @@
             this.tabCampingPlace.Controls.Add(this.pictureBox1);
             this.tabCampingPlace.Controls.Add(this.label3);
             this.tabCampingPlace.Controls.Add(this.label2);
-            this.tabCampingPlace.Location = new System.Drawing.Point(4, 33);
+            this.tabCampingPlace.Location = new System.Drawing.Point(4, 27);
             this.tabCampingPlace.Name = "tabCampingPlace";
-            this.tabCampingPlace.Size = new System.Drawing.Size(992, 623);
+            this.tabCampingPlace.Size = new System.Drawing.Size(992, 629);
             this.tabCampingPlace.TabIndex = 0;
             this.tabCampingPlace.Text = "Kampeerplaats";
             // 
@@ -164,13 +164,13 @@
             this.nmrPlaats.FormattingEnabled = true;
             this.nmrPlaats.Location = new System.Drawing.Point(755, 34);
             this.nmrPlaats.Name = "nmrPlaats";
-            this.nmrPlaats.Size = new System.Drawing.Size(230, 32);
+            this.nmrPlaats.Size = new System.Drawing.Size(230, 26);
             this.nmrPlaats.TabIndex = 14;
             // 
             // lbUser
             // 
             this.lbUser.FormattingEnabled = true;
-            this.lbUser.ItemHeight = 24;
+            this.lbUser.ItemHeight = 18;
             this.lbUser.Location = new System.Drawing.Point(755, 101);
             this.lbUser.Name = "lbUser";
             this.lbUser.Size = new System.Drawing.Size(230, 148);
@@ -203,7 +203,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(650, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(343, 36);
+            this.label1.Size = new System.Drawing.Size(281, 29);
             this.label1.TabIndex = 8;
             this.label1.Text = "Campingplaats verhuur";
             // 
@@ -212,7 +212,7 @@
             this.txtGebruikers.Location = new System.Drawing.Point(755, 69);
             this.txtGebruikers.Name = "txtGebruikers";
             this.txtGebruikers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGebruikers.Size = new System.Drawing.Size(169, 30);
+            this.txtGebruikers.Size = new System.Drawing.Size(169, 25);
             this.txtGebruikers.TabIndex = 10;
             this.txtGebruikers.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -232,7 +232,7 @@
             this.label3.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(653, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 32);
+            this.label3.Size = new System.Drawing.Size(80, 25);
             this.label3.TabIndex = 9;
             this.label3.Text = "Gebruikers:";
             // 
@@ -242,7 +242,7 @@
             this.label2.Font = new System.Drawing.Font("Agency FB", 15.75F);
             this.label2.Location = new System.Drawing.Point(653, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 32);
+            this.label2.Size = new System.Drawing.Size(103, 25);
             this.label2.TabIndex = 8;
             this.label2.Text = "CampingPlaats:";
             // 
@@ -251,9 +251,9 @@
             this.tabRegisterUser.BackColor = System.Drawing.Color.White;
             this.tabRegisterUser.Controls.Add(this.lbRecent);
             this.tabRegisterUser.Controls.Add(this.gbCheckIn);
-            this.tabRegisterUser.Location = new System.Drawing.Point(4, 33);
+            this.tabRegisterUser.Location = new System.Drawing.Point(4, 27);
             this.tabRegisterUser.Name = "tabRegisterUser";
-            this.tabRegisterUser.Size = new System.Drawing.Size(992, 623);
+            this.tabRegisterUser.Size = new System.Drawing.Size(992, 629);
             this.tabRegisterUser.TabIndex = 1;
             this.tabRegisterUser.Text = "Gasten Inschrijven";
             // 
@@ -261,7 +261,7 @@
             // 
             this.lbRecent.Font = new System.Drawing.Font("Agency FB", 18F);
             this.lbRecent.FormattingEnabled = true;
-            this.lbRecent.ItemHeight = 36;
+            this.lbRecent.ItemHeight = 28;
             this.lbRecent.Location = new System.Drawing.Point(10, 331);
             this.lbRecent.Name = "lbRecent";
             this.lbRecent.Size = new System.Drawing.Size(973, 256);
@@ -360,16 +360,16 @@
             this.txtRFIDCode.Location = new System.Drawing.Point(6, 25);
             this.txtRFIDCode.MinimumSize = new System.Drawing.Size(815, 40);
             this.txtRFIDCode.Name = "txtRFIDCode";
-            this.txtRFIDCode.Size = new System.Drawing.Size(970, 36);
+            this.txtRFIDCode.Size = new System.Drawing.Size(970, 30);
             this.txtRFIDCode.TabIndex = 0;
             this.txtRFIDCode.TextChanged += new System.EventHandler(this.txtRFIDCode_TextChanged);
             // 
             // tabPostReview
             // 
             this.tabPostReview.Controls.Add(this.groupBox1);
-            this.tabPostReview.Location = new System.Drawing.Point(4, 33);
+            this.tabPostReview.Location = new System.Drawing.Point(4, 27);
             this.tabPostReview.Name = "tabPostReview";
-            this.tabPostReview.Size = new System.Drawing.Size(992, 623);
+            this.tabPostReview.Size = new System.Drawing.Size(992, 629);
             this.tabPostReview.TabIndex = 2;
             this.tabPostReview.Text = "Post Review";
             this.tabPostReview.UseVisualStyleBackColor = true;
@@ -382,7 +382,7 @@
             this.groupBox1.Size = new System.Drawing.Size(989, 630);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Materiaal Beheer";
+            this.groupBox1.Text = "Post Review";
             // 
             // flowPostReview
             // 
@@ -397,9 +397,9 @@
             // tabMaterialRental
             // 
             this.tabMaterialRental.Controls.Add(this.gbMaterialControl);
-            this.tabMaterialRental.Location = new System.Drawing.Point(4, 33);
+            this.tabMaterialRental.Location = new System.Drawing.Point(4, 27);
             this.tabMaterialRental.Name = "tabMaterialRental";
-            this.tabMaterialRental.Size = new System.Drawing.Size(992, 623);
+            this.tabMaterialRental.Size = new System.Drawing.Size(992, 629);
             this.tabMaterialRental.TabIndex = 3;
             this.tabMaterialRental.Text = "Materiaal Uitgifte";
             this.tabMaterialRental.UseVisualStyleBackColor = true;
@@ -422,7 +422,7 @@
             this.lblSelectReservation.AutoSize = true;
             this.lblSelectReservation.Location = new System.Drawing.Point(13, 27);
             this.lblSelectReservation.Name = "lblSelectReservation";
-            this.lblSelectReservation.Size = new System.Drawing.Size(163, 24);
+            this.lblSelectReservation.Size = new System.Drawing.Size(123, 18);
             this.lblSelectReservation.TabIndex = 4;
             this.lblSelectReservation.Text = "Selecteer een reservering";
             // 
@@ -442,7 +442,7 @@
             this.cbReservations.FormattingEnabled = true;
             this.cbReservations.Location = new System.Drawing.Point(142, 24);
             this.cbReservations.Name = "cbReservations";
-            this.cbReservations.Size = new System.Drawing.Size(256, 32);
+            this.cbReservations.Size = new System.Drawing.Size(256, 26);
             this.cbReservations.TabIndex = 1;
             this.cbReservations.SelectedIndexChanged += new System.EventHandler(this.cbReservations_SelectedIndexChanged);
             // 
@@ -461,9 +461,9 @@
             // tabCreateUser
             // 
             this.tabCreateUser.Controls.Add(this.groupCreateUser);
-            this.tabCreateUser.Location = new System.Drawing.Point(4, 33);
+            this.tabCreateUser.Location = new System.Drawing.Point(4, 27);
             this.tabCreateUser.Name = "tabCreateUser";
-            this.tabCreateUser.Size = new System.Drawing.Size(992, 623);
+            this.tabCreateUser.Size = new System.Drawing.Size(992, 629);
             this.tabCreateUser.TabIndex = 5;
             this.tabCreateUser.Text = "Gebruiker aanmaken";
             this.tabCreateUser.UseVisualStyleBackColor = true;
@@ -495,7 +495,7 @@
             // 
             this.txtSurName.Location = new System.Drawing.Point(399, 291);
             this.txtSurName.Name = "txtSurName";
-            this.txtSurName.Size = new System.Drawing.Size(314, 30);
+            this.txtSurName.Size = new System.Drawing.Size(314, 25);
             this.txtSurName.TabIndex = 13;
             // 
             // lblSurName
@@ -504,7 +504,7 @@
             this.lblSurName.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSurName.Location = new System.Drawing.Point(234, 288);
             this.lblSurName.Name = "lblSurName";
-            this.lblSurName.Size = new System.Drawing.Size(119, 33);
+            this.lblSurName.Size = new System.Drawing.Size(96, 26);
             this.lblSurName.TabIndex = 12;
             this.lblSurName.Text = "Achternaam:";
             // 
@@ -512,7 +512,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(399, 255);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(314, 30);
+            this.txtName.Size = new System.Drawing.Size(314, 25);
             this.txtName.TabIndex = 11;
             // 
             // lblName
@@ -521,7 +521,7 @@
             this.lblName.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Location = new System.Drawing.Point(234, 252);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(104, 33);
+            this.lblName.Size = new System.Drawing.Size(83, 26);
             this.lblName.TabIndex = 10;
             this.lblName.Text = "Voornaam:";
             // 
@@ -540,28 +540,28 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(399, 399);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(314, 30);
+            this.txtEmail.Size = new System.Drawing.Size(314, 25);
             this.txtEmail.TabIndex = 8;
             // 
             // txtTelNr
             // 
             this.txtTelNr.Location = new System.Drawing.Point(399, 363);
             this.txtTelNr.Name = "txtTelNr";
-            this.txtTelNr.Size = new System.Drawing.Size(314, 30);
+            this.txtTelNr.Size = new System.Drawing.Size(314, 25);
             this.txtTelNr.TabIndex = 7;
             // 
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(399, 327);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(314, 30);
+            this.txtAddress.Size = new System.Drawing.Size(314, 25);
             this.txtAddress.TabIndex = 6;
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(399, 219);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(314, 30);
+            this.txtUsername.Size = new System.Drawing.Size(314, 25);
             this.txtUsername.TabIndex = 5;
             // 
             // lblEmail
@@ -570,7 +570,7 @@
             this.lblEmail.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.Location = new System.Drawing.Point(236, 396);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(70, 33);
+            this.lblEmail.Size = new System.Drawing.Size(57, 26);
             this.lblEmail.TabIndex = 4;
             this.lblEmail.Text = "E-mail:";
             // 
@@ -580,7 +580,7 @@
             this.lblAddress.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddress.Location = new System.Drawing.Point(234, 324);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(68, 33);
+            this.lblAddress.Size = new System.Drawing.Size(55, 26);
             this.lblAddress.TabIndex = 3;
             this.lblAddress.Text = "Adres:";
             // 
@@ -590,7 +590,7 @@
             this.lblTelNr.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTelNr.Location = new System.Drawing.Point(236, 360);
             this.lblTelNr.Name = "lblTelNr";
-            this.lblTelNr.Size = new System.Drawing.Size(60, 33);
+            this.lblTelNr.Size = new System.Drawing.Size(51, 26);
             this.lblTelNr.TabIndex = 2;
             this.lblTelNr.Text = "Telnr:";
             // 
@@ -600,7 +600,7 @@
             this.lblUsername.Font = new System.Drawing.Font("Agency FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.Location = new System.Drawing.Point(236, 216);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(157, 33);
+            this.lblUsername.Size = new System.Drawing.Size(126, 26);
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "Gebruikersnaam:";
             // 
@@ -609,15 +609,15 @@
             this.txtAssignRfid.Enabled = false;
             this.txtAssignRfid.Location = new System.Drawing.Point(240, 183);
             this.txtAssignRfid.Name = "txtAssignRfid";
-            this.txtAssignRfid.Size = new System.Drawing.Size(473, 30);
+            this.txtAssignRfid.Size = new System.Drawing.Size(473, 25);
             this.txtAssignRfid.TabIndex = 0;
             // 
             // tabCreatePlace
             // 
             this.tabCreatePlace.Controls.Add(this.groupCreatePlace);
-            this.tabCreatePlace.Location = new System.Drawing.Point(4, 33);
+            this.tabCreatePlace.Location = new System.Drawing.Point(4, 27);
             this.tabCreatePlace.Name = "tabCreatePlace";
-            this.tabCreatePlace.Size = new System.Drawing.Size(992, 623);
+            this.tabCreatePlace.Size = new System.Drawing.Size(992, 629);
             this.tabCreatePlace.TabIndex = 6;
             this.tabCreatePlace.Text = "Plaats aanmaken";
             this.tabCreatePlace.UseVisualStyleBackColor = true;
@@ -667,7 +667,7 @@
             0,
             0});
             this.numPlaceNumber.Name = "numPlaceNumber";
-            this.numPlaceNumber.Size = new System.Drawing.Size(291, 30);
+            this.numPlaceNumber.Size = new System.Drawing.Size(291, 25);
             this.numPlaceNumber.TabIndex = 12;
             this.numPlaceNumber.Value = new decimal(new int[] {
             1,
@@ -681,7 +681,7 @@
             this.lblCapacity.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCapacity.Location = new System.Drawing.Point(186, 261);
             this.lblCapacity.Name = "lblCapacity";
-            this.lblCapacity.Size = new System.Drawing.Size(172, 28);
+            this.lblCapacity.Size = new System.Drawing.Size(133, 24);
             this.lblCapacity.TabIndex = 11;
             this.lblCapacity.Text = "Max. Aantal personen";
             // 
@@ -691,7 +691,7 @@
             this.lblCategory.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCategory.Location = new System.Drawing.Point(186, 298);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(88, 28);
+            this.lblCategory.Size = new System.Drawing.Size(69, 24);
             this.lblCategory.TabIndex = 10;
             this.lblCategory.Text = "Categorie:";
             // 
@@ -701,7 +701,7 @@
             this.lblLocation.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocation.Location = new System.Drawing.Point(186, 225);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(125, 28);
+            this.lblLocation.Size = new System.Drawing.Size(98, 24);
             this.lblLocation.TabIndex = 9;
             this.lblLocation.Text = "Plaatsnummer:";
             // 
@@ -711,7 +711,7 @@
             this.lblPrice.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.Location = new System.Drawing.Point(186, 189);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(51, 28);
+            this.lblPrice.Size = new System.Drawing.Size(40, 24);
             this.lblPrice.TabIndex = 7;
             this.lblPrice.Text = "Prijs:";
             // 
@@ -721,7 +721,7 @@
             this.lblDescription.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescription.Location = new System.Drawing.Point(186, 97);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(108, 28);
+            this.lblDescription.Size = new System.Drawing.Size(83, 24);
             this.lblDescription.TabIndex = 6;
             this.lblDescription.Text = "Beschrijving:";
             // 
@@ -739,7 +739,7 @@
             0,
             0});
             this.numCapacity.Name = "numCapacity";
-            this.numCapacity.Size = new System.Drawing.Size(291, 30);
+            this.numCapacity.Size = new System.Drawing.Size(291, 25);
             this.numCapacity.TabIndex = 5;
             this.numCapacity.Value = new decimal(new int[] {
             1,
@@ -751,7 +751,7 @@
             // 
             this.txtCategory.Location = new System.Drawing.Point(374, 298);
             this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Size = new System.Drawing.Size(291, 30);
+            this.txtCategory.Size = new System.Drawing.Size(291, 25);
             this.txtCategory.TabIndex = 4;
             // 
             // numPrice
@@ -764,7 +764,7 @@
             0,
             0});
             this.numPrice.Name = "numPrice";
-            this.numPrice.Size = new System.Drawing.Size(291, 30);
+            this.numPrice.Size = new System.Drawing.Size(291, 25);
             this.numPrice.TabIndex = 1;
             // 
             // txtDescription
@@ -780,7 +780,7 @@
             this.tabAcceptPayment.Controls.Add(this.groupAcceptPayment);
             this.tabAcceptPayment.Location = new System.Drawing.Point(4, 33);
             this.tabAcceptPayment.Name = "tabAcceptPayment";
-            this.tabAcceptPayment.Size = new System.Drawing.Size(992, 623);
+            this.tabAcceptPayment.Size = new System.Drawing.Size(992, 629);
             this.tabAcceptPayment.TabIndex = 7;
             this.tabAcceptPayment.Text = "Betaling bevestigen";
             this.tabAcceptPayment.UseVisualStyleBackColor = true;
@@ -899,7 +899,7 @@
             // 
             // MedewerkerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 666);
             this.Controls.Add(this.tabMainTab);
