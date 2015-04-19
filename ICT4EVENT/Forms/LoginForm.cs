@@ -199,12 +199,12 @@ namespace ICT4EVENT
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            if (true)
+            /*if (true)
             {
                 Settings.ActiveUser = UserManager.FindUser("admin");
                 FillActionList();
                 btnGO_Click(this, e);
-            }
+            }*/
         }
 
         private void comboOptions_SelectedIndexChanged(object sender, EventArgs e)

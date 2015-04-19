@@ -26,6 +26,8 @@ namespace ICT4EVENT
             postReview = new PostReviewLogic(this);
             createUser = new CreateUserLogic(this);
             createPlace = new CreatePlaceLogic(this);
+            deleteReservation = new DeleteReservationLogic(this);
+            registerUser = new RegisterUserLogic(this);
 
             OpenRFIDConnection();
         }
@@ -135,7 +137,7 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabMainTab.SelectedTab == tabCreateUser)
+            if (tabMainTab.SelectedTab == tabCreateUser || tabMainTab.SelectedTab == tabRegisterUser)
             {
                 try
                 {
@@ -539,6 +541,7 @@ namespace ICT4EVENT
             {
                 UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
                 UserManager.RegisterUserForEvent(rfiduser, Settings.ActiveEvent);
+                MessageBox.Show("Gebruiker succesvol geregistreerd op het event.");
             }
         }
 
