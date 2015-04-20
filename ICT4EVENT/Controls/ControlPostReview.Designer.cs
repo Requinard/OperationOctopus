@@ -33,7 +33,6 @@
             this.btnActionConfirm = new System.Windows.Forms.Button();
             this.gbReviewAction = new System.Windows.Forms.GroupBox();
             this.rbPostIgnore = new System.Windows.Forms.RadioButton();
-            this.rbPostEdit = new System.Windows.Forms.RadioButton();
             this.rbPostRemove = new System.Windows.Forms.RadioButton();
             this.gbReviewAction.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +61,7 @@
             // btnActionConfirm
             // 
             this.btnActionConfirm.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActionConfirm.Location = new System.Drawing.Point(805, 54);
+            this.btnActionConfirm.Location = new System.Drawing.Point(780, 71);
             this.btnActionConfirm.Name = "btnActionConfirm";
             this.btnActionConfirm.Size = new System.Drawing.Size(117, 43);
             this.btnActionConfirm.TabIndex = 12;
@@ -73,12 +72,11 @@
             // gbReviewAction
             // 
             this.gbReviewAction.Controls.Add(this.rbPostIgnore);
-            this.gbReviewAction.Controls.Add(this.rbPostEdit);
             this.gbReviewAction.Controls.Add(this.rbPostRemove);
             this.gbReviewAction.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbReviewAction.Location = new System.Drawing.Point(780, 103);
+            this.gbReviewAction.Location = new System.Drawing.Point(780, 120);
             this.gbReviewAction.Name = "gbReviewAction";
-            this.gbReviewAction.Size = new System.Drawing.Size(200, 89);
+            this.gbReviewAction.Size = new System.Drawing.Size(200, 72);
             this.gbReviewAction.TabIndex = 13;
             this.gbReviewAction.TabStop = false;
             this.gbReviewAction.Text = "Actie";
@@ -86,24 +84,13 @@
             // rbPostIgnore
             // 
             this.rbPostIgnore.AutoSize = true;
-            this.rbPostIgnore.Location = new System.Drawing.Point(7, 61);
+            this.rbPostIgnore.Location = new System.Drawing.Point(7, 43);
             this.rbPostIgnore.Name = "rbPostIgnore";
             this.rbPostIgnore.Size = new System.Drawing.Size(57, 22);
             this.rbPostIgnore.TabIndex = 2;
             this.rbPostIgnore.TabStop = true;
             this.rbPostIgnore.Text = "Negeer";
             this.rbPostIgnore.UseVisualStyleBackColor = true;
-            // 
-            // rbPostEdit
-            // 
-            this.rbPostEdit.AutoSize = true;
-            this.rbPostEdit.Location = new System.Drawing.Point(7, 38);
-            this.rbPostEdit.Name = "rbPostEdit";
-            this.rbPostEdit.Size = new System.Drawing.Size(89, 22);
-            this.rbPostEdit.TabIndex = 1;
-            this.rbPostEdit.TabStop = true;
-            this.rbPostEdit.Text = "Verander Post";
-            this.rbPostEdit.UseVisualStyleBackColor = true;
             // 
             // rbPostRemove
             // 
@@ -141,7 +128,6 @@
         private System.Windows.Forms.Button btnActionConfirm;
         private System.Windows.Forms.GroupBox gbReviewAction;
         private System.Windows.Forms.RadioButton rbPostIgnore;
-        private System.Windows.Forms.RadioButton rbPostEdit;
         private System.Windows.Forms.RadioButton rbPostRemove;
     }
 }

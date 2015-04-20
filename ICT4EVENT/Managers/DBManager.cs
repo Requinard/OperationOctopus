@@ -79,6 +79,7 @@ namespace ICT4EVENT
         /// <returns>Object containing the result</returns>
         public static OracleDataReader QueryDB(string query)
         {
+            TimeSpan time = DateTime.MaxValue - DateTime.MinValue;
             OracleDataReader queryResult;
 
             OracleCommand oracleCommand = oracleConnection.CreateCommand();
@@ -94,6 +95,8 @@ namespace ICT4EVENT
                 //Logger.Info("Querying Database");
                 //Logger.Debug("Query: " + query);
                 queryResult = oracleCommand.ExecuteReader();
+                //Aangezien OracleDB zich niet aan de ACID standaard houd, committen wij na iedere query.
+                // Waarom ondersteunen ze niet gewoon ACID?
                 oracleCommand.CommandText = "commit";
                 oracleCommand.ExecuteReader();
                 //Logger.Success("Query Successfully executed");

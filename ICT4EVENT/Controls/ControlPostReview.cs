@@ -24,7 +24,11 @@ namespace ICT4EVENT
 
         private void btnActionConfirm_Click(object sender, EventArgs e)
         {
+            if (rbPostRemove.Checked) postReportModel.Post.Destroy();
 
+            postReportModel.Destroy();
+
+            this.Dispose();
         }
     }
 }

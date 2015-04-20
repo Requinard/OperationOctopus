@@ -122,16 +122,6 @@ namespace ICT4EVENT
             return null;
         }
 
-        public static bool DeleteObjectReservation(UserModel user, RentableObjectModel rent, int amount)
-        {
-            RentableReservationModel res = new RentableReservationModel(rent, user, amount);
-            if (res.Destroy())
-            {
-                return true;
-            }
-            return false;
-        }
-
         public static PlaceReservationModel MakePlaceReservationModel(UserModel user, PlaceModel place)
         {
             PlaceReservationModel model = new PlaceReservationModel();
