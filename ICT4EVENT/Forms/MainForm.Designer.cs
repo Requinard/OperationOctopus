@@ -30,7 +30,7 @@ namespace ICT4EVENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("All Posts");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All Posts");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -74,13 +74,13 @@ namespace ICT4EVENT
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.gbSettings = new System.Windows.Forms.GroupBox();
             this.gbMyProfile = new System.Windows.Forms.GroupBox();
+            this.tbNewPassword2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.pbMyProfileImage = new System.Windows.Forms.PictureBox();
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbNewPassword2 = new System.Windows.Forms.TextBox();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -137,6 +137,7 @@ namespace ICT4EVENT
             this.tabTrending.Controls.Add(this.Posts);
             this.tabTrending.Controls.Add(this.Media);
             this.tabTrending.Controls.Add(this.Organisation);
+            this.tabTrending.Enabled = false;
             this.tabTrending.Location = new System.Drawing.Point(4, 94);
             this.tabTrending.Name = "tabTrending";
             this.tabTrending.SelectedIndex = 0;
@@ -293,10 +294,10 @@ namespace ICT4EVENT
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
             this.treeCategorie.Name = "treeCategorie";
-            treeNode3.Name = "All Posts";
-            treeNode3.Text = "All Posts";
+            treeNode1.Name = "All Posts";
+            treeNode1.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeCategorie.Size = new System.Drawing.Size(155, 479);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
@@ -592,6 +593,29 @@ namespace ICT4EVENT
             this.gbMyProfile.TabStop = false;
             this.gbMyProfile.Text = "Mijn Profiel";
             // 
+            // tbNewPassword2
+            // 
+            this.tbNewPassword2.Location = new System.Drawing.Point(102, 98);
+            this.tbNewPassword2.MaxLength = 32;
+            this.tbNewPassword2.Multiline = true;
+            this.tbNewPassword2.Name = "tbNewPassword2";
+            this.tbNewPassword2.PasswordChar = '*';
+            this.tbNewPassword2.Size = new System.Drawing.Size(516, 33);
+            this.tbNewPassword2.TabIndex = 21;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.OrangeRed;
+            this.label2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 24);
+            this.label2.TabIndex = 20;
+            this.label2.Tag = "Profiel";
+            this.label2.Text = "Wachtwoord:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pbMyProfileImage
             // 
             this.pbMyProfileImage.BackColor = System.Drawing.Color.OrangeRed;
@@ -643,29 +667,6 @@ namespace ICT4EVENT
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.OrangeRed;
-            this.label2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 24);
-            this.label2.TabIndex = 20;
-            this.label2.Tag = "Profiel";
-            this.label2.Text = "Wachtwoord:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbNewPassword2
-            // 
-            this.tbNewPassword2.Location = new System.Drawing.Point(102, 98);
-            this.tbNewPassword2.MaxLength = 32;
-            this.tbNewPassword2.Multiline = true;
-            this.tbNewPassword2.Name = "tbNewPassword2";
-            this.tbNewPassword2.PasswordChar = '*';
-            this.tbNewPassword2.Size = new System.Drawing.Size(516, 33);
-            this.tbNewPassword2.TabIndex = 21;
             // 
             // MainForm
             // 

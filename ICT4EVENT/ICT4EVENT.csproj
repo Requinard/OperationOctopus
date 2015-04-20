@@ -108,11 +108,11 @@
     <Compile Include="Forms\DBConfigForm.Designer.cs">
       <DependentUpon>DBConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MedewerkerForm.cs">
+    <Compile Include="Forms\EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MedewerkerForm.Designer.cs">
-      <DependentUpon>MedewerkerForm.cs</DependentUpon>
+    <Compile Include="Forms\EmployeeForm.Designer.cs">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\DBManager.cs" />
     <Compile Include="Managers\EquipmentManager.cs" />
@@ -184,8 +184,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MedewerkerForm.resx">
-      <DependentUpon>MedewerkerForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -192,7 +192,7 @@ namespace ICT4EVENT
                         Logger.Error("No user or event were set to active on form initialization");
                         Environment.Exit(2);
                     }
-                    openForm(new MedewerkerForm());
+                    openForm(new EmployeeForm());
                     break;
                 case 2:
                     Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedItem.ToString());
