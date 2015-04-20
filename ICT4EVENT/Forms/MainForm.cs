@@ -117,6 +117,14 @@ namespace ICT4EVENT
                 btnDynamicButton.Text = "Bevestig";
 
                 // button actions happen here
+                if (action)
+                {
+                    if (tbNewPassword.Text == tbNewPassword2.Text)
+                    {
+                        UserManager.ChangeUserPassword(tbNewPassword.Text);
+                    }
+                    
+                }
             }
         }
 

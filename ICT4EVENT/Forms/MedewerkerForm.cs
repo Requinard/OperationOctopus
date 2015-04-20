@@ -74,7 +74,7 @@ namespace ICT4EVENT
             string tag = Convert.ToString(e.Tag);
             if (tabMainTab.SelectedTab == tabCreateUser)
             {
-                txtAssignRfid.Text = Convert.ToString(tag);     
+                tbAssignRfid.Text = Convert.ToString(tag);     
             }
 
             if (tabMainTab.SelectedTab == tabRegisterUser)
@@ -148,7 +148,16 @@ namespace ICT4EVENT
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-            createUser.CreateUser();
+            if (tbUsername.Text == "" || tbAddress.Text == "" || tbAssignRfid.Text == "" || tbName.Text == "" ||
+                tbSurName.Text == "" || tbTelNr.Text == "" || tbEmail.Text == "")
+            {
+                MessageBox.Show("Vul alle velden in");
+            }
+            else
+            {
+                createUser.CreateUser();
+            }
+            
         }
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
@@ -543,13 +552,13 @@ namespace ICT4EVENT
 
             public void CreateUser()
             {
-                string FullName = parent.txtName.Text + " " + parent.txtSurName.Text;
+                string FullName = parent.tbName.Text + " " + parent.tbSurName.Text;
                 string Password = GeneratePassword();
-                string userName = parent.txtUsername.Text;
-                string Address = parent.txtAddress.Text;
-                string TelNr = parent.txtTelNr.Text;
-                string Email = parent.txtEmail.Text;
-                string Rfid = parent.txtAssignRfid.Text;
+                string userName = parent.tbUsername.Text;
+                string Address = parent.tbAddress.Text;
+                string TelNr = parent.tbTelNr.Text;
+                string Email = parent.tbEmail.Text;
+                string Rfid = parent.tbAssignRfid.Text;
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
                 MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
                                 Environment.NewLine + "Wachtwoord: " + Password);
