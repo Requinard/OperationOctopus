@@ -134,7 +134,7 @@ namespace ICT4EVENT
 
                     foreach (UserModel user in users)
                     {
-                        //TODO: EquipmentManager.MakePlaceReservervation(user, plaats);
+                        EquipmentManager.MakePlaceReservationModel(user, plaats);
                     }
                     MessageBox.Show("Succesvol gereserveerd");
                     nmrPlaats.SelectedIndex = 0;
@@ -269,7 +269,7 @@ namespace ICT4EVENT
             {
                 EquipmentManager.CreateNewRentable(txtDescriptionMaterial.Text, numMaterialPrice.Value, Convert.ToInt32(numMaterialAmount.Value), txtObjectName.Text);
                 MessageBox.Show("Materiaal aangemaakt!");
-                txtDescription.Text = "";
+                txtDescriptionMaterial.Text = "";
                 txtObjectName.Text = "";
                 numMaterialAmount.Value = 1;
                 numMaterialPrice.Value = 0;
@@ -522,15 +522,20 @@ namespace ICT4EVENT
             public PostReviewLogic(MedewerkerForm form)
             {
                 parent = form;
+                parent.flowPostReview.Enabled = true;
+                parent.flowPostReview.Visible = true;
                 FillList();
             }
 
             private void FillList()
             {
                 List<PostReportModel> reportModels = PostManager.GetAllReports();
-                foreach (PostReportModel postReportModel in reportModels)
+                if (reportModels != null)
                 {
-                    parent.flowPostReview.Controls.Add(new UserPostReview(postReportModel));
+                    foreach (PostReportModel postReportModel in reportModels)
+                    {
+                        parent.flowPostReview.Controls.Add(new UserPostReview(postReportModel));
+                    }
                 }
             }
 
@@ -627,7 +632,6 @@ namespace ICT4EVENT
                 RentableObjectModel rented = null;
                 foreach (RentableObjectModel rentable in products)
                 {
-                    
                     if (rentable.ObjectType == selecteditem)
                     {
                         rented = rentable;

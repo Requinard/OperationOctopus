@@ -69,7 +69,7 @@ namespace ICT4EVENT
             }
         }
 
-        private void FillActionList()
+        private bool FillActionList()
         {
             // Fill active events
             comboBox1.Items.Clear();
@@ -81,6 +81,7 @@ namespace ICT4EVENT
             {
                 MessageBox.Show("Registeer je voor een event");
                 form_Closed(this, new EventArgs());
+                return false;
             }
 
             foreach (RegistrationModel registrationModel in UserManager.GetUserRegistrations(Settings.ActiveUser))
@@ -102,8 +103,8 @@ namespace ICT4EVENT
             comboBox1.Enabled = true;
             comboOptions.SelectedIndex = 0;
             btnGO.Enabled = true;
-            
-               
+
+            return true;
             
         }
 
@@ -128,11 +129,14 @@ namespace ICT4EVENT
             Application.DoEvents();    
             rfid.close();
 
-            FillActionList();
+            if (FillActionList())
+            {
+                txtPassword.Enabled = false;
+                txtUserName.Enabled = false;
+                btnLogin.Enabled = false;
+            }
 
-            txtPassword.Enabled = false;
-            txtUserName.Enabled = false;
-            btnLogin.Enabled = false;
+           
         }
 
         private void openForm(Form form)
