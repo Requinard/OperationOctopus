@@ -267,7 +267,7 @@
             this.tabRegisterUser.Name = "tabRegisterUser";
             this.tabRegisterUser.Size = new System.Drawing.Size(992, 629);
             this.tabRegisterUser.TabIndex = 1;
-            this.tabRegisterUser.Text = "Gasten Inschrijven";
+            this.tabRegisterUser.Text = "Gasten Aanmelden op Terein";
             // 
             // lbRecent
             // 
@@ -400,6 +400,7 @@
             // 
             this.flowPostReview.AutoScroll = true;
             this.flowPostReview.Enabled = false;
+            this.flowPostReview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowPostReview.Location = new System.Drawing.Point(-2, 25);
             this.flowPostReview.MinimumSize = new System.Drawing.Size(992, 605);
             this.flowPostReview.Name = "flowPostReview";
