@@ -18,7 +18,6 @@ A C# application for the management of event creation, ticketing and infrastruct
 - Install the phidget.exe
 - Add the phidget reference
 - Compile
-- Connect to proftaak.me, Port 1521, Database XE
-- User PTS08, Password: PTS08
+- Connect to database
 
 If you're having problems with MSIL errors, change the target platform from all cpu's to x64 (or x86 if that's how you roll)
