@@ -90,29 +90,39 @@ namespace ICT4EVENT
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            try
+            int num;
+            bool isRfid = int.TryParse(txtGebruikers.Text, out num);
+
+            if (isRfid)
             {
-                UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text));
-                campingLogic.AddUserToList();
-            }
-            catch
-            {
-                try
+                if (UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text)) != null)
                 {
-                    UserManager.FindUser(txtGebruikers.Text);
                     campingLogic.AddUserToList();
                 }
-                catch
+                else
                 {
                     MessageBox.Show("Gebruiker niet gevonden");
                     txtGebruikers.Text = "";
                 }
             }
+            else
+            {
+                if (UserManager.FindUser(txtGebruikers.Text) != null)
+                {
+                    campingLogic.AddUserToList();
+                }
+                else
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }   
+            }     
         }
         
         private void btnReserve_Click(object sender, EventArgs e)
         {
             PlaceModel plaats = null;
+
             foreach (PlaceModel pm in campingLogic.places)
             {
                 if (pm.Location == nmrPlaats.Text)
