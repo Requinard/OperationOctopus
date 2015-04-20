@@ -76,7 +76,7 @@ namespace ICT4EVENT
                 btnDynamicButton.Text = "Post";
 
                 // button actions happen here
-                if (action)
+                if (action && (tbPostContent.Text != "" || filePath != ""))
                 {
                     var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
 
@@ -95,6 +95,10 @@ namespace ICT4EVENT
                     }
 
                     treeTags();
+                }
+                else
+                {
+                    MessageBox.Show("Type een bericht of voeg een mediabestand toe");
                 }
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
