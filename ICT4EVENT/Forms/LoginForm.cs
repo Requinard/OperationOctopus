@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using ApplicationLogger;
 using Phidgets;
@@ -74,6 +75,14 @@ namespace ICT4EVENT
             comboBox1.Items.Clear();
             comboOptions.Items.Clear();
 
+            List<RegistrationModel> regs = UserManager.GetUserRegistrations(Settings.ActiveUser);
+
+            if (regs == null)
+            {
+                MessageBox.Show("Registeer je voor een event");
+                form_Closed(this, new EventArgs());
+            }
+
             foreach (RegistrationModel registrationModel in UserManager.GetUserRegistrations(Settings.ActiveUser))
             {
                 comboBox1.Items.Add(registrationModel.EventItem.Name);
@@ -93,6 +102,9 @@ namespace ICT4EVENT
             comboBox1.Enabled = true;
             comboOptions.SelectedIndex = 0;
             btnGO.Enabled = true;
+            
+               
+            
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

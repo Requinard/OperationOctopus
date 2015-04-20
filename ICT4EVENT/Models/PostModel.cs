@@ -67,6 +67,7 @@ namespace ICT4EVENT
         {
             this.user = new UserModel();
             this.event_item = new EventModel();
+            //this.parent = new PostModel();
         }
 
         public PostModel(int ID)

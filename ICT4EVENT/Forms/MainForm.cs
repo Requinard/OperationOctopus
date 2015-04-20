@@ -14,9 +14,9 @@ namespace ICT4EVENT
         {
             InitializeComponent();
             FillList();
-            FillMaterials();
+            //FillMaterials();
             treeTags();
-            UpdateProfile(Settings.ActiveUser);
+            //UpdateProfile(Settings.ActiveUser);
         }
 
         public ComboBox cbProfileSelector { get; set; }
@@ -49,6 +49,7 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
+            listMaterials.Items.Clear();
             var rentables = EquipmentManager.GetAllRentables();
             foreach (var rentModel in rentables)
             {
@@ -87,6 +88,8 @@ namespace ICT4EVENT
                         flowPosts.Controls.Add(new UserPost(postModel));
 
                         flowPosts.Controls.AddRange(oldControls);
+
+                        filePath = "";
                     }
 
                     treeTags();
@@ -95,6 +98,7 @@ namespace ICT4EVENT
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
                 btnDynamicButton.Text = "Huur";
+                FillMaterials();
 
                 // button actions happen here
                 if (action)
@@ -117,6 +121,21 @@ namespace ICT4EVENT
                 btnDynamicButton.Text = "Bevestig";
 
                 // button actions happen here
+                if (action)
+                {
+                    if (tbNewPassword.Text == tbNewPassword2.Text)
+                    {
+                        if (UserManager.ChangeUserPassword(tbNewPassword.Text))
+                        {
+                            MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("De wachtwoorden komen niet overeen");
+                    }
+                    
+                }
             }
         }
 
@@ -137,17 +156,28 @@ namespace ICT4EVENT
 
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
+
+
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
             {
                 filePath = openFileDialog1.FileName;
             }
+
         }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
         {
-            var selectedItem = listMaterials.SelectedItems[0];
-            var selectedString = selectedItem.SubItems[0].Text;
-            listCart.Items.Add(selectedString);
+            try
+            {
+                var selectedItem = listMaterials.SelectedItems[0];
+                var selectedString = selectedItem.SubItems[0].Text;
+                listCart.Items.Add(selectedString);
+            }
+            catch
+            {
+                MessageBox.Show("Selecteer eerst een product");
+            } 
         }
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
@@ -185,6 +215,7 @@ namespace ICT4EVENT
 
             if (tag == "All Posts")
             {
+                flowPosts.Controls.Clear();
                 FillList();
                 return;
             }
