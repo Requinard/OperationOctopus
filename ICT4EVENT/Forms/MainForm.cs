@@ -87,6 +87,8 @@ namespace ICT4EVENT
                         flowPosts.Controls.Add(new UserPost(postModel));
 
                         flowPosts.Controls.AddRange(oldControls);
+
+                        filePath = "";
                     }
 
                     treeTags();
@@ -122,7 +124,14 @@ namespace ICT4EVENT
                 {
                     if (tbNewPassword.Text == tbNewPassword2.Text)
                     {
-                        UserManager.ChangeUserPassword(tbNewPassword.Text);
+                        if (UserManager.ChangeUserPassword(tbNewPassword.Text))
+                        {
+                            MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("De wachtwoorden komen niet overeen");
                     }
                     
                 }
@@ -146,10 +155,14 @@ namespace ICT4EVENT
 
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
+
+
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
             {
                 filePath = openFileDialog1.FileName;
             }
+
         }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
