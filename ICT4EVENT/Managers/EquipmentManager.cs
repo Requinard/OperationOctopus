@@ -9,17 +9,24 @@ namespace ICT4EVENT
 
     public static class EquipmentManager
     {
+        /// <summary>
+        /// Gets all available place models
+        /// </summary>
+        /// <returns></returns>
         public static List<PlaceModel> GetAllPlaces()
         {
             List<PlaceModel> places = new List<PlaceModel>();
 
-            string query = string.Format("SELECT * FROM Item WHERE itemtype = 'Place' AND eventid = '{0}'",
+            string query = string.Format(
+                "SELECT * FROM Item WHERE itemtype = 'Place' AND eventid = '{0}'",
                 Settings.ActiveEvent.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null || !reader.HasRows)
+            {
                 return null;
+            }
 
             while (reader.Read())
             {
@@ -33,17 +40,24 @@ namespace ICT4EVENT
             return places;
         }
 
+        /// <summary>
+        /// Gets all objects that can be rented
+        /// </summary>
+        /// <returns></returns>
         public static List<RentableObjectModel> GetAllRentables()
         {
             List<RentableObjectModel> rentables = new List<RentableObjectModel>();
 
-            string query = string.Format("SELECT * FROM Item WHERE itemtype = 'RentableObject' AND eventid = '{0}'",
+            string query = string.Format(
+                "SELECT * FROM Item WHERE itemtype = 'RentableObject' AND eventid = '{0}'",
                 Settings.ActiveEvent.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
             if (reader == null || !reader.HasRows)
+            {
                 return null;
+            }
 
             while (reader.Read())
             {
@@ -57,6 +71,14 @@ namespace ICT4EVENT
             return rentables;
         }
 
+        /// <summary>
+        /// Creates a new rentable item
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="price"></param>
+        /// <param name="amount"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static RentableObjectModel CreateNewRentable(string description, decimal price, int amount, string name)
         {
             RentableObjectModel rent = new RentableObjectModel(Settings.ActiveEvent);
@@ -67,12 +89,29 @@ namespace ICT4EVENT
             rent.Price = price;
 
             if (rent.Create())
+            {
                 return rent;
+            }
             return null;
         }
 
-        public static PlaceModel CreateNewPlace(string description, decimal price, int amount, string location,
-            string category, int capacity)
+        /// <summary>
+        /// Creates a new place item
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="price"></param>
+        /// <param name="amount"></param>
+        /// <param name="location"></param>
+        /// <param name="category"></param>
+        /// <param name="capacity"></param>
+        /// <returns></returns>
+        public static PlaceModel CreateNewPlace(
+            string description,
+            decimal price,
+            int amount,
+            string location,
+            string category,
+            int capacity)
         {
             PlaceModel place = new PlaceModel(Settings.ActiveEvent);
 
@@ -85,10 +124,17 @@ namespace ICT4EVENT
             place.Capacity = capacity;
 
             if (place.Create())
+            {
                 return place;
+            }
             return null;
         }
 
+        /// <summary>
+        /// Gets all user reservations that were made (and thus outstanding reservations)
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static List<RentableReservationModel> GetUserReservations(UserModel user)
         {
             List<RentableReservationModel> reservations = new List<RentableReservationModel>();
@@ -96,7 +142,10 @@ namespace ICT4EVENT
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null) return null;
+            if (reader == null)
+            {
+                return null;
+            }
 
             while (reader.Read())
             {
@@ -110,18 +159,35 @@ namespace ICT4EVENT
             return reservations;
         }
 
-        public static RentableReservationModel MakeObjectReservervation(UserModel user, RentableObjectModel rent, int amount)
+        /// <summary>
+        /// Reserves a rentable object for a user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="rent"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public static RentableReservationModel MakeObjectReservervation(
+            UserModel user,
+            RentableObjectModel rent,
+            int amount)
         {
             RentableReservationModel res = new RentableReservationModel(rent, user, amount);
 
             res.ReturnDate = Settings.ActiveEvent.EndDate;
 
-
             if (res.Create())
+            {
                 return res;
+            }
             return null;
         }
 
+        /// <summary>
+        /// Reserves a place for a user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="place"></param>
+        /// <returns></returns>
         public static PlaceReservationModel MakePlaceReservationModel(UserModel user, PlaceModel place)
         {
             PlaceReservationModel model = new PlaceReservationModel();
@@ -133,7 +199,10 @@ namespace ICT4EVENT
 
             model.Amount = 1;
 
-            if(model.Create()) return model;
+            if (model.Create())
+            {
+                return model;
+            }
 
             return null;
         }

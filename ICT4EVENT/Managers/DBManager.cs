@@ -67,10 +67,6 @@ namespace ICT4EVENT
 
         }
 
-        public static void Destruct()
-        {
-            oracleConnection.Close();
-        }
 
         /// <summary>
         ///     Sends a query to the database and returns the result

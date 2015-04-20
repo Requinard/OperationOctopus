@@ -10,6 +10,11 @@ namespace ICT4EVENT
 
     public static class EventManager
     {
+        /// <summary>
+        /// Finds an event by it's database id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static EventModel FindEvent(int id)
         {
             EventModel eventModel = new EventModel();
@@ -20,6 +25,11 @@ namespace ICT4EVENT
             return null;
         }
 
+        /// <summary>
+        /// finds an event with a specific name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static EventModel FindEvent(string name)
         {
             string query = string.Format("SELECT * FROM event WHERE eventname = '{0}'", name);
@@ -39,6 +49,10 @@ namespace ICT4EVENT
             return eventModel;
         }
 
+        /// <summary>
+        /// Finds all events in the database
+        /// </summary>
+        /// <returns></returns>
         public static List<EventModel> FindAllEvents()
         {
             string query = "SELECT * FROM event ";
@@ -62,6 +76,11 @@ namespace ICT4EVENT
             return eventModels;
         }
 
+        /// <summary>
+        /// Finds events that match a name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static List<EventModel> FindEvents(string name)
         {
             string query = string.Format("SELECT * FROM event WHERE eventname LIKE '%{0}%'", name);
@@ -85,6 +104,15 @@ namespace ICT4EVENT
             return eventModels;
         }
 
+        /// <summary>
+        /// Starts a new event in the database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="location"></param>
+        /// <param name="description"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
         public static EventModel CreateNewEvent(string name, string location, string description, DateTime startDate,
             DateTime endDate)
         {            EventModel eventModel = new EventModel();
@@ -101,6 +129,12 @@ namespace ICT4EVENT
             return eventModel;
         }
 
+        /// <summary>
+        /// Creates a log entry for access with RFID
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static RFIDLogModel LogRFID(UserModel user, string text)
         {
             RFIDLogModel rfid = new RFIDLogModel();
