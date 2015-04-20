@@ -17,6 +17,7 @@ namespace ICT4EVENT
             UserPost userPost = new UserPost(postReportModel.Post);
             flowPost.Controls.Add(userPost);
             lblReason.Text += postReportModel.Reason;
+            lblReportedBy.Text += postReportModel.User.Username;
 
             this.Size = new Size(Width,userPost.Height +3);
 

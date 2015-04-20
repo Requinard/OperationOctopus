@@ -9,6 +9,54 @@ namespace ICT4EVENT
     /// </summary>
     public class RFIDLogModel : DBModel, IDataModelUpdate
     {
+        public EventModel EventItem
+        {
+            get
+            {
+                return this.event_item;
+            }
+            set
+            {
+                this.event_item = value;
+            }
+        }
+
+        public UserModel User
+        {
+            get
+            {
+                return this.user;
+            }
+            set
+            {
+                this.user = value;
+            }
+        }
+
+        public string InOrOut1
+        {
+            get
+            {
+                return this.InOrOut;
+            }
+            set
+            {
+                this.InOrOut = value;
+            }
+        }
+
+        public string DateFormat
+        {
+            get
+            {
+                return this.dateFormat;
+            }
+            set
+            {
+                this.dateFormat = value;
+            }
+        }
+
         #region Constructors and Destructors
 
         /// <summary>
@@ -48,12 +96,13 @@ namespace ICT4EVENT
         /// <summary>
         ///     The event_item.
         /// </summary>
-        private readonly EventModel event_item;
+        private  EventModel event_item;
 
         /// <summary>
         ///     The user.
         /// </summary>
-        private readonly UserModel user;
+        private  UserModel user;
+
 
         /// <summary>
         ///     The in or out.
