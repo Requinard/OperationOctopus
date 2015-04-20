@@ -135,6 +135,13 @@ namespace ICT4EVENT
             string finalQuery = string.Format(INSERTSTRING, "ITEM", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
+          /*  if (reader != null)
+            {
+                reader.Read();
+
+                ReadFromReader(reader);
+            } */
+
             return reader != null;
         }
 

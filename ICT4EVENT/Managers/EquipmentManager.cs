@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace ICT4EVENT
 {
     using System;
+    using System.Configuration;
 
     using Oracle.DataAccess.Client;
 
@@ -129,6 +130,22 @@ namespace ICT4EVENT
                 return true;
             }
             return false;
+        }
+
+        public static PlaceReservationModel MakePlaceReservationModel(UserModel user, PlaceModel place)
+        {
+            PlaceReservationModel model = new PlaceReservationModel();
+
+            model.Place = place;
+            model.ReturnDate = Settings.ActiveEvent.EndDate;
+
+            model.User = user;
+
+            model.Amount = 1;
+
+            if(model.Create()) return model;
+
+            return null;
         }
     }
 }
