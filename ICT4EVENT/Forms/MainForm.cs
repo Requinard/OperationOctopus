@@ -49,6 +49,7 @@ namespace ICT4EVENT
 
         private void FillMaterials()
         {
+            listMaterials.Items.Clear();
             var rentables = EquipmentManager.GetAllRentables();
             foreach (var rentModel in rentables)
             {

@@ -559,8 +559,10 @@ namespace ICT4EVENT
                 string Email = parent.tbEmail.Text;
                 string Rfid = parent.tbAssignRfid.Text;
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+                Clipboard.SetText(Password);
                 MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
-                                Environment.NewLine + "Wachtwoord: " + Password);
+                                Environment.NewLine + "Wachtwoord: " + Password + Environment.NewLine + "Je wachtwoord is gekopieerd naar je klembord");
+                
             }
 
             private string GeneratePassword()
