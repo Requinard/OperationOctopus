@@ -77,5 +77,24 @@ namespace ICT4EVENTUnitTest.Managers
 
             Assert.IsNotNull(res, "Could not create reservation");            
         }
+
+        [TestMethod]
+        [Priority(1)]
+        public static void GetReservedItems()
+        {
+            List<RentableReservationModel> rent = EquipmentManager.GetUserReservations(Settings.ActiveUser);
+
+            Assert.IsNotNull(rent);
+
+            Assert.IsTrue(rent.Count > 0);
+        }
+        [TestMethod]
+        [Priority(1)]
+        public static void GetPlaceItems()
+        {
+            PlaceModel place = EquipmentManager.CreateNewPlace("test", Decimal.One, 10, "blabla", "te", 10);
+
+            Assert.IsNotNull(place);
+        }
     }
 }
