@@ -42,7 +42,7 @@ namespace ICT4EVENTUnitTest.Managers
         [Priority(0)]
         public void CreateNewRentable()
         {
-            RentableObjectModel rent = EquipmentManager.CreateNewRentable("A hammer", Decimal.MinusOne, 1);
+            RentableObjectModel rent = EquipmentManager.CreateNewRentable("A hammer", Decimal.MinusOne, 1, "A hammer");
 
             Assert.IsNotNull(rent);
         }
@@ -73,7 +73,7 @@ namespace ICT4EVENTUnitTest.Managers
         {
             List<RentableObjectModel> rent = EquipmentManager.GetAllRentables();
 
-            RentableReservationModel res = EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rent.First());
+            RentableReservationModel res = EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rent.First(), 1);
 
             Assert.IsNotNull(res, "Could not create reservation");            
         }

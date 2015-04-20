@@ -41,7 +41,7 @@ namespace ICT4EVENTUnitTest
 
             UserModel user_item = Init.getExternalTestUser();
             RentableObjectModel rent_item = Init.getExternalRentItem();
-            RentableReservationModel rentableReservationItem = new RentableReservationModel(rent_item, user_item);
+            RentableReservationModel rentableReservationItem = new RentableReservationModel(rent_item, user_item, 1);
 
             string query = "SELECT ident FROM rentableReservation where Amount = 3";
 
