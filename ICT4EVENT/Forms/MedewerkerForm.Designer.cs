@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedewerkerForm));
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabCampingPlace = new System.Windows.Forms.TabPage();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
@@ -230,6 +231,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";

@@ -225,7 +225,7 @@ namespace ICT4EVENT
                 MessageBox.Show("Gebruiker gevonden.");
                 UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
                 lblNameOfUser.Text = "Naam: " + rfiduser.Username;
-                lblPaymentStatusOfUser.Text = lblPaymentStatusOfUser.Text;
+                //lblPaymentStatusOfUser.Text = "Payment status:" + UserManager.SeeIfRegistrationIsPaid();
                 lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
             }
             else
@@ -237,7 +237,7 @@ namespace ICT4EVENT
 
         private void txtRFIDPayment_TextChanged(object sender, EventArgs e)
         {
-            if (txtRFIDPayment.Text != null)
+            if (txtRFIDPayment.Text != "")
             {
                 if (UserManager.AuthenticateUser(txtRFIDPayment.Text))
                 {
