@@ -13,6 +13,13 @@ namespace ICT4EVENT
 {
     public static class PostManager
     {
+        /// <summary>
+        /// Inserts a new post
+        /// </summary>
+        /// <param name="body">Test</param>
+        /// <param name="filepath">File that is uploaded</param>
+        /// <param name="parent">Parent comment</param>
+        /// <returns></returns>
         public static PostModel CreateNewPost(string body, string filepath = "", PostModel parent = null)
         {
             var post = new PostModel(Settings.ActiveUser, Settings.ActiveEvent);
@@ -57,6 +64,7 @@ namespace ICT4EVENT
 
             post.Create();
 
+            // Match the categories with regex
             var reg = new Regex(@"[#]\w+");
 
             foreach (Match match in reg.Matches(post.Content))
@@ -66,6 +74,11 @@ namespace ICT4EVENT
             return post;
         }
 
+        /// <summary>
+        /// Tags a post with a specific tag
+        /// </summary>
+        /// <param name="post"></param>
+        /// <param name="tag"></param>
         private static void TagPost(PostModel post, string tag)
         {
             TagModel tagModel = null;
@@ -108,6 +121,11 @@ namespace ICT4EVENT
             reader = DBManager.QueryDB(insert_query);
         }
 
+        /// <summary>
+        /// Gets posts that have a specific tag
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
         public static List<PostModel> GetPostByTags(string tag)
         {
             var posts = new List<PostModel>();
@@ -134,6 +152,11 @@ namespace ICT4EVENT
             return s.ToList();
         }
 
+        /// <summary>
+        /// Gets the likes on a post
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
         public static List<LikeModel> GetPostLikes(PostModel post)
         {
             var likes = new List<LikeModel>();
@@ -159,6 +182,11 @@ namespace ICT4EVENT
             return likes;
         }
 
+        /// <summary>
+        /// Searches for a post with a text
+        /// </summary>
+        /// <param name="test"></param>
+        /// <returns></returns>
         public static List<PostModel> FindPost(string test)
         {
             var posts = new List<PostModel>();
@@ -186,6 +214,11 @@ namespace ICT4EVENT
             return posts;
         }
 
+        /// <summary>
+        /// Creates a like on a post
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
         public static LikeModel CreateNewLike(PostModel post)
         {
             var like = new LikeModel();
@@ -198,6 +231,12 @@ namespace ICT4EVENT
             return like;
         }
 
+        /// <summary>
+        /// Reports a post with a specific string
+        /// </summary>
+        /// <param name="post"></param>
+        /// <param name="reason"></param>
+        /// <returns></returns>
         public static PostReportModel ReportPost(PostModel post, string reason)
         {
             var model = new PostReportModel(post, Settings.ActiveUser);
@@ -211,6 +250,11 @@ namespace ICT4EVENT
             return model;
         }
 
+        /// <summary>
+        /// Gets all child comments on a post
+        /// </summary>
+        /// <param name="post">Post that has children</param>
+        /// <returns></returns>
         public static List<PostModel> GetPostComments(PostModel post)
         {
             List<PostModel> posts = new List<PostModel>();
@@ -233,6 +277,12 @@ namespace ICT4EVENT
             }
             return posts;
         }
+        
+        /// <summary>
+        /// Gets all reports on a model
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
         public static List<PostReportModel> GetPostReports(PostModel post)
         {
             var query = string.Format("SELECT * FROM Report WHERE postid = '{0}'", post.Id);
@@ -257,6 +307,10 @@ namespace ICT4EVENT
             return reports;
         }
 
+        /// <summary>
+        /// Gets a list of all available tags
+        /// </summary>
+        /// <returns></returns>
         public static List<TagModel> GetAllTags()
         {
             var tags = new List<TagModel>();
@@ -281,6 +335,10 @@ namespace ICT4EVENT
             return tags;
         }
 
+        /// <summary>
+        /// Gets all reports in the database
+        /// </summary>
+        /// <returns></returns>
         public static List<PostReportModel> GetAllReports()
         {
             var query = "SELECT * FROM Report";
@@ -304,6 +362,11 @@ namespace ICT4EVENT
             return reports;
         }
 
+        /// <summary>
+        /// Downloads a post's attached file
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
         public static PostModel RetrievePostFile(PostModel post)
         {
             FTPManager.DownloadFile(post.PathToFile);
@@ -311,6 +374,12 @@ namespace ICT4EVENT
             return post;
         }
 
+        /// <summary>
+        /// Gets all post by a user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="amountOfPosts"></param>
+        /// <returns></returns>
         public static List<PostModel> GetUserPosts(UserModel user, int amountOfPosts = 10)
         {
             var posts = new List<PostModel>();
@@ -343,6 +412,13 @@ namespace ICT4EVENT
             return posts;
         }
 
+        /// <summary>
+        /// Gets a page of posts
+        /// </summary>
+        /// <param name="startpost">First post that was retrieved</param>
+        /// <param name="page">Page you're on. Starts at 0</param>
+        /// <param name="itemsPerPage">How many items you want to see on a page</param>
+        /// <returns></returns>
         public static List<PostModel> GetPostsByPage(PostModel startpost = null, int page = 0, int itemsPerPage = 10)
         {
             var posts = new List<PostModel>();

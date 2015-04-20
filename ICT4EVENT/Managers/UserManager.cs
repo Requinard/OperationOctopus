@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Security.Cryptography;
+    using System.Windows.Forms;
 
     using Oracle.DataAccess.Client;
 
@@ -117,6 +118,11 @@
             return true;
         }
 
+        /// <summary>
+        /// Finds a user on his username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static UserModel FindUser(string username)
         {
             var query = string.Format("SELECT * FROM USERS WHERE username = '{0}'", username);
@@ -135,6 +141,11 @@
             return user;
         }
 
+        /// <summary>
+        /// Finds a list of users that match the username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static List<UserModel> FindUsers(string username)
         {
             var users = new List<UserModel>();
@@ -142,7 +153,10 @@
 
             var reader = DBManager.QueryDB(query);
 
-            if (reader == null || !reader.HasRows) return null;
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
 
             while (reader.Read())
             {
@@ -156,6 +170,10 @@
             return users;
         }
 
+        /// <summary>
+        /// Gets a list of all users in the database
+        /// </summary>
+        /// <returns></returns>
         public static List<UserModel> GetAllUsers()
         {
             var users = new List<UserModel>();
@@ -163,7 +181,10 @@
 
             var reader = DBManager.QueryDB(query);
 
-            if (reader == null || !reader.HasRows) return null;
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
 
             while (reader.Read())
             {
@@ -175,14 +196,22 @@
             }
 
             return users;
-        } 
+        }
 
+        /// <summary>
+        /// Finds a user based on his ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static UserModel FindUser(int id)
         {
             var query = string.Format("SELECT * FROM USERS WHERE ident = '{0}'", id);
 
             var reader = DBManager.QueryDB(query);
-            if (reader == null || !reader.HasRows) return null;
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
             var user = new UserModel();
             reader.Read();
             user.ReadFromReader(reader);
@@ -190,12 +219,20 @@
             return user;
         }
 
+        /// <summary>
+        /// Finds a user based on his RFID tag
+        /// </summary>
+        /// <param name="RFID"></param>
+        /// <returns></returns>
         public static UserModel FindUserFromRFID(string RFID)
         {
             var query = string.Format("SELECT * FROM USERS WHERE rfidnumber = '{0}'", RFID);
 
             var reader = DBManager.QueryDB(query);
-            if (reader == null || !reader.HasRows) return null;
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
             var user = new UserModel();
             reader.Read();
             user.ReadFromReader(reader);
@@ -203,6 +240,11 @@
             return user;
         }
 
+        /// <summary>
+        /// Gets all registrations a user has
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static List<RegistrationModel> GetUserRegistrations(UserModel user)
         {
             var regs = new List<RegistrationModel>();
@@ -210,7 +252,10 @@
 
             var reader = DBManager.QueryDB(query);
 
-            if (reader == null || !reader.HasRows) return null;
+            if (reader == null || !reader.HasRows)
+            {
+                return null;
+            }
 
             while (reader.Read())
             {
@@ -223,23 +268,42 @@
             return regs;
         }
 
+        /// <summary>
+        /// Sees if a registration has bee paid for
+        /// </summary>
+        /// <param name="registration"></param>
+        /// <returns></returns>
         public static bool SeeIfRegistrationIsPaid(RegistrationModel registration)
         {
             var query = string.Format("SELECT * FROM payment WHERE registrationid = '{0}'", registration.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null) return false;
+            if (reader == null)
+            {
+                return false;
+            }
 
             return true;
         }
 
+        /// <summary>
+        /// changes a users password
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool ChangeUserPassword(string password)
         {
             Settings.ActiveUser.Password = CreateHashPassword(password);
             return Settings.ActiveUser.Update();
         }
 
+        /// <summary>
+        /// Registers a user for an event
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="eventModel"></param>
+        /// <returns></returns>
         public static RegistrationModel RegisterUserForEvent(UserModel user, EventModel eventModel)
         {
             var registration = new RegistrationModel(user, eventModel);
@@ -252,6 +316,13 @@
             return null;
         }
 
+        /// <summary>
+        /// Marks a registration as paid
+        /// </summary>
+        /// <param name="registration"></param>
+        /// <param name="amount"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static PaymentModel RegistrationMarkPaid(RegistrationModel registration, decimal amount, string type)
         {
             var payment = new PaymentModel(registration);
@@ -266,6 +337,11 @@
             return null;
         }
 
+        /// <summary>
+        /// Hashes a password
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private static string CreateHashPassword(string password)
         {
             var buf = new byte[SALT_SIZE];
@@ -277,6 +353,12 @@
             return salt + ':' + hash;
         }
 
+        /// <summary>
+        /// Validates a password with it's hash
+        /// </summary>
+        /// <param name="password">User attempt at password</param>
+        /// <param name="saltHash">The salted hashed password from the database</param>
+        /// <returns></returns>
         private static bool IsPasswordValid(string password, string saltHash)
         {
             var parts = saltHash.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);

@@ -84,6 +84,10 @@ namespace ICT4EVENT
             }
         }
 
+        /// <summary>
+        /// Creates a path on FTP
+        /// </summary>
+        /// <param name="path"></param>
         private static void FTPCreateFolder(string path)
         {
             string[] subPaths = path.Replace(Path.GetFileName(path), "").Split('/');
@@ -110,6 +114,10 @@ namespace ICT4EVENT
             }
         }
 
+        /// <summary>
+        /// Creates a local path
+        /// </summary>
+        /// <param name="path"></param>
         private static void localCreateFolder(string path)
         {
             string[] subPaths = path.Replace(Path.GetFileName(path), "").Split('/');
