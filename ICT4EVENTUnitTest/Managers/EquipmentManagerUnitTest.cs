@@ -79,7 +79,7 @@ namespace ICT4EVENTUnitTest.Managers
         }
 
         [TestMethod]
-        [Priority(1)]
+        [Priority(2)]
         public static void GetReservedItems()
         {
             List<RentableReservationModel> rent = EquipmentManager.GetUserReservations(Settings.ActiveUser);
@@ -88,8 +88,9 @@ namespace ICT4EVENTUnitTest.Managers
 
             Assert.IsTrue(rent.Count > 0);
         }
+
         [TestMethod]
-        [Priority(1)]
+        [Priority(2)]
         public static void GetPlaceItems()
         {
             PlaceModel place = EquipmentManager.CreateNewPlace("test", Decimal.One, 10, "blabla", "te", 10);

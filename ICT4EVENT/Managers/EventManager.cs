@@ -4,6 +4,8 @@ using System.Security.Authentication;
 
 namespace ICT4EVENT
 {
+    using System.Reflection.Emit;
+
     using Oracle.DataAccess.Client;
 
     public static class EventManager
@@ -97,6 +99,18 @@ namespace ICT4EVENT
             eventModel.Create();
 
             return eventModel;
+        }
+
+        public static RFIDLogModel LogRFID(UserModel user, string text)
+        {
+            RFIDLogModel rfid = new RFIDLogModel();
+
+            rfid.User = user;
+            rfid.EventItem = Settings.ActiveEvent;
+            rfid.InOrOut1 = text;
+
+            if (rfid.Create()) return rfid;
+            return null;
         }
     }
 }
