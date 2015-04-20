@@ -220,18 +220,21 @@ namespace ICT4EVENT
 
         private void txtRFIDCode_TextChanged(object sender, EventArgs e)
         {
-            if (UserManager.AuthenticateUser(txtRFIDCode.Text))
+            if (txtRFIDCode.Text == "")
             {
-                MessageBox.Show("Gebruiker gevonden.");
-                UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
-                lblNameOfUser.Text = "Naam: " + rfiduser.Username;
-                //lblPaymentStatusOfUser.Text = "Payment status:" + UserManager.SeeIfRegistrationIsPaid();
-                lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
-            }
-            else
-            {
-                txtRFIDCode.Text = "";
-                MessageBox.Show("RFID-tag Niet gevonden.");
+                if (UserManager.AuthenticateUser(txtRFIDCode.Text))
+                {
+                    MessageBox.Show("Gebruiker gevonden.");
+                    UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
+                    lblNameOfUser.Text = "Naam: " + rfiduser.Username;
+                    //lblPaymentStatusOfUser.Text = "Payment status:" + UserManager.SeeIfRegistrationIsPaid();
+                    lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
+                }
+                else
+                {
+                    txtRFIDCode.Text = "";
+                    MessageBox.Show("RFID-tag Niet gevonden.");
+                }
             }
         }
 
