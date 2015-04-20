@@ -31,10 +31,10 @@ namespace ICT4EVENTUnitTest.Managers
         [ClassCleanup]
         public static void ClassDestruct()
         {
-            UserManager.FindUser("UnitTestUser").Destroy();
-            EventManager.FindEvent("User Testing Event").Destroy();
+            //UserManager.FindUser("UnitTestUser").Destroy();
+            //EventManager.FindEvent("User Testing Event").Destroy();
         }
-
+        
 
         [TestMethod]
         [Priority(0)]
@@ -79,7 +79,7 @@ namespace ICT4EVENTUnitTest.Managers
         {
             List<UserModel> users = UserManager.FindUsers("est");
 
-            Assert.IsTrue(users.Count > 1, "Could not find users");
+            Assert.IsTrue(users.Count > 0, "Could not find users");
         }
 
         [TestMethod]

@@ -9,6 +9,7 @@ namespace ICT4EVENTUnitTest.Managers
     using System.Security.Cryptography.X509Certificates;
 
     using ICT4EVENT;
+    using ICT4EVENT.Models;
 
     [TestClass]
     public class PostManagerUnitTest
@@ -47,7 +48,23 @@ namespace ICT4EVENTUnitTest.Managers
 
             Assert.IsNotNull(post);
         }
+        [TestMethod]
+        [Priority(0)]
+        public void CreateNewPostwithHashTag()
+        {
+            PostModel post = PostManager.CreateNewPost("#swagalicious");
 
+            Assert.IsNotNull(post);
+        }
+
+        [TestMethod]
+        [Priority(1)]
+        public static void FindHashtag()
+        {
+            List<PostModel> posts = PostManager.GetPostByTags("#swagalicious");
+
+            Assert.IsNotNull(posts);
+        }
         [TestMethod]
         [Priority(1)]
         public void FindPost()
@@ -67,41 +84,78 @@ namespace ICT4EVENTUnitTest.Managers
 
             Assert.IsNotNull(like);
         }
+        [TestMethod]
+        [Priority(3)]
+        public void GetPostLike()
+        {
+            List<LikeModel> likes = PostManager.GetPostLikes(PostManager.FindPost("<3").First());
+
+            Assert.IsNotNull(likes);
+        }
+
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(3)]
         public void ReportPost()
         {
             PostReportModel report = PostManager.ReportPost(PostManager.FindPost("<3").First(), "This post sux");
 
             Assert.IsNotNull(report);
         }
-
         [TestMethod]
         [Priority(3)]
-        public void GetAllReports()
+        public void CreateChildPostcomment()
         {
-            List<PostReportModel> reports = PostManager.GetAllReports();
+            PostModel post = PostManager.CreateNewPost("testing", parent: PostManager.FindPost("<3").First());
 
-            Assert.IsNotNull(reports);
+            Assert.IsNotNull(post);
         }
 
         [TestMethod]
-        [Priority(3)]
+        [Priority(4)]
+        public void GetAllTags()
+        {
+            List<TagModel> tags = PostManager.GetAllTags();
+
+            Assert.IsNotNull(tags);
+        }
+
+        [TestMethod]
+        [Priority(4)]
+        public void GetPostsByUser()
+        {
+            List<PostModel> posts = PostManager.GetUserPosts(UserManager.FindUser("PostManagerTest"));
+
+            Assert.IsNotNull(posts);
+        }
+        [TestMethod]
+        [Priority(4)]
         public void GetReportOnPost()
         {
+            this.ReportPost();
             List<PostReportModel> reports = PostManager.GetPostReports(PostManager.FindPost("<3").First());
 
             Assert.IsNotNull(reports);
         }
 
         [TestMethod]
-        [Priority(2)]
+        [Priority(5)]
         public void GetPostByPage()
         {
             List<PostModel> posts = PostManager.GetPostsByPage();
 
             Assert.IsNotNull(posts);
+        }
+
+
+        [TestMethod]
+        [Priority(6)]
+        public void GetAllReports()
+        {
+            this.ReportPost();
+            List<PostReportModel> reports = PostManager.GetAllReports();
+
+            Assert.IsNotNull(reports);
         }
     }
 }

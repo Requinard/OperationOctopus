@@ -26,6 +26,12 @@ namespace ICT4EVENTUnitTest.Managers
 
         [TestMethod]
         [Priority(0)]
+        public static void FailFindAllEvents()
+        {
+            Assert.IsNull(EventManager.FindAllEvents());
+        }
+        [TestMethod]
+        [Priority(0)]
         public void CreateEvent()
         {
             EventModel eventModel = EventManager.CreateNewEvent(

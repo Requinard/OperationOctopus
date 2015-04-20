@@ -176,7 +176,7 @@ namespace ICT4EVENT
             string query = string.Format(READSTRING, "EVENT", Id);
             OracleDataReader reader = DBManager.QueryDB(query);
 
-            if (reader == null)
+            if (reader == null || !reader.HasRows)
             {
                 return false;
             }
