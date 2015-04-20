@@ -145,9 +145,16 @@ namespace ICT4EVENT
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
         {
-            var selectedItem = listMaterials.SelectedItems[0];
-            var selectedString = selectedItem.SubItems[0].Text;
-            listCart.Items.Add(selectedString);
+            try
+            {
+                var selectedItem = listMaterials.SelectedItems[0];
+                var selectedString = selectedItem.SubItems[0].Text;
+                listCart.Items.Add(selectedString);
+            }
+            catch
+            {
+                MessageBox.Show("Selecteer eerst een product");
+            } 
         }
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
