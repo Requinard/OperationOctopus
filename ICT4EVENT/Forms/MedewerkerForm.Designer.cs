@@ -399,7 +399,7 @@
             // flowPostReview
             // 
             this.flowPostReview.AutoScroll = true;
-            this.flowPostReview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPostReview.Enabled = false;
             this.flowPostReview.Location = new System.Drawing.Point(-2, 25);
             this.flowPostReview.MinimumSize = new System.Drawing.Size(992, 605);
             this.flowPostReview.Name = "flowPostReview";
