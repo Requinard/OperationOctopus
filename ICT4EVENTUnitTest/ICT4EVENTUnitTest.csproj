@@ -105,12 +105,21 @@
     <Compile Include="Models\ReservationModelUnitTest.cs" />
     <Compile Include="Models\UserModelUnittest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIMap.cs">
+      <DependentUpon>UIMap.uitest</DependentUpon>
+    </Compile>
+    <Compile Include="UIMap.Designer.cs">
+      <DependentUpon>UIMap.uitest</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ICT4EVENT\ICT4EVENT.csproj">
       <Project>{d553b81f-1deb-4323-a969-0c66a9ecbb72}</Project>
       <Name>ICT4EVENT</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UIMap.uitest" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
