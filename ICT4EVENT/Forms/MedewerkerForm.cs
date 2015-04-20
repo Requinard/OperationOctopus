@@ -195,8 +195,7 @@ namespace ICT4EVENT
             listReservedItems.Items.Clear();
             foreach (RentableReservationModel reservation in reservations)
             {
-                string item = reservation.Rentable.ObjectType + " x" + Convert.ToString(reservation.Amount);
-                listReservedItems.Items.Add(item);
+                listReservedItems.Items.Add(reservation.Rentable.ObjectType);
             }
         }
 
@@ -608,7 +607,6 @@ namespace ICT4EVENT
             public DeleteReservationLogic(MedewerkerForm form)
             {
                 parent = form;
-                //parent.cbReservations.Items.Add();
             }
 
             public void DeleteReservation(UserModel user)
@@ -618,6 +616,7 @@ namespace ICT4EVENT
                 RentableObjectModel rented = null;
                 foreach (RentableObjectModel rentable in products)
                 {
+                    
                     if (rentable.ObjectType == selecteditem)
                     {
                         rented = rentable;

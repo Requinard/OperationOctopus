@@ -147,7 +147,6 @@ namespace ICT4EVENT
         {
             var selectedItem = listMaterials.SelectedItems[0];
             var selectedString = selectedItem.SubItems[0].Text;
-            selectedString = selectedString + " x" + Convert.ToString(numAmount.Value);
             listCart.Items.Add(selectedString);
         }
 
