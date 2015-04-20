@@ -38,6 +38,7 @@ namespace ICT4EVENT
         private void FillList()
         {
             var postModels = PostManager.GetPostsByPage();
+            if(postModels == null) return;
             foreach (var postModel in postModels)
             {
                 if (postModel.Parent == null)
@@ -51,6 +52,7 @@ namespace ICT4EVENT
         {
             listMaterials.Items.Clear();
             var rentables = EquipmentManager.GetAllRentables();
+            if (rentables == null) return;
             foreach (var rentModel in rentables)
             {
                 listMaterials.Items.Add(rentModel.ObjectType).SubItems.Add(rentModel.Description);
