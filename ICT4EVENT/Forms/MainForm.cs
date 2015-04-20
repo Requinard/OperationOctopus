@@ -14,9 +14,9 @@ namespace ICT4EVENT
         {
             InitializeComponent();
             FillList();
-            FillMaterials();
+            //FillMaterials();
             treeTags();
-            UpdateProfile(Settings.ActiveUser);
+            //UpdateProfile(Settings.ActiveUser);
         }
 
         public ComboBox cbProfileSelector { get; set; }
@@ -95,6 +95,7 @@ namespace ICT4EVENT
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
                 btnDynamicButton.Text = "Huur";
+                FillMaterials();
 
                 // button actions happen here
                 if (action)
@@ -200,6 +201,7 @@ namespace ICT4EVENT
 
             if (tag == "All Posts")
             {
+                flowPosts.Controls.Clear();
                 FillList();
                 return;
             }
