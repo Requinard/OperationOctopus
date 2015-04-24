@@ -428,7 +428,7 @@ namespace ICT4EVENT
             if (startpost == null)
             {
                 var query = string.Format(
-                    "SELECT * FROM post WHERE eventid = '{0}' ORDER BY ident desc",
+                    "SELECT * FROM post WHERE eventid = '{0}'  and replyid IS NULL ORDER BY ident desc",
                     Settings.ActiveEvent.Id);
 
                 reader = DBManager.QueryDB(query);
@@ -437,7 +437,7 @@ namespace ICT4EVENT
             {
                 var query =
                     string.Format(
-                        "SELECT * FROM POST WHERE ident <= '{0}' AND WHERE eventid = '{0}' ORDER BY ident desc",
+                        "SELECT * FROM POST WHERE ident <= '{0}' AND WHERE eventid = '{0}'  and replyid IS NULL ORDER BY ident desc",
                         startpost.Id,
                         Settings.ActiveEvent.Id);
 
