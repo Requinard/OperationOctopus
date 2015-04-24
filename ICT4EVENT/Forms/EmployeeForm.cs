@@ -466,6 +466,7 @@ namespace ICT4EVENT
             {
                 try
                 {
+                    parent.nmrPlaats.Items.Clear();
                     foreach (PlaceModel place in EquipmentManager.GetAllPlaces())
                     {
                         parent.nmrPlaats.Items.Add(place.Location);
@@ -757,6 +758,7 @@ namespace ICT4EVENT
                 parent.listEvents.Items.Clear();
                 parent.txtPaymentType.Text = "";
                 parent.numPriceAmount.Value = 0;
+                parent.lblEventPaid.Text = "";
             }
         }
     }

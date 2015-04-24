@@ -15,6 +15,7 @@ namespace ICT4EVENT
             InitializeComponent();
             FillList();
             //FillMaterials();
+            FillAllPlaces();
             treeTags();
             //UpdateProfile(Settings.ActiveUser);
         }
@@ -28,6 +29,20 @@ namespace ICT4EVENT
                 CreateTestPosts();
             }
             DynamicButtonLogic(false);
+        }
+
+        private void FillAllPlaces()
+        {
+            lbUser.Items.Add(Settings.ActiveUser.Username);
+            try
+            {
+                nmrPlaats.Items.Clear();
+                foreach (PlaceModel place in EquipmentManager.GetAllPlaces())
+                {
+                    nmrPlaats.Items.Add(place.Location);
+                }
+            }
+            catch { }
         }
 
         private void CreateTestPosts()
@@ -338,6 +353,93 @@ namespace ICT4EVENT
         {
             //Als we dit form sluiten gaan we automatisch terug naar inlog
             this.Close(); 
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            int num;
+            bool isRfid = int.TryParse(txtGebruikers.Text, out num);
+
+            if (isRfid)
+            {
+                if (UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text)) != null)
+                {
+                    lbUser.Items.Add(txtGebruikers.Text);
+                    txtGebruikers.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
+            }
+            else
+            {
+                if (UserManager.FindUser(txtGebruikers.Text) != null)
+                {
+                    lbUser.Items.Add(txtGebruikers.Text);
+                    txtGebruikers.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
+            }
+        }
+
+        private void btnReserve_Click(object sender, EventArgs e)
+        {
+            PlaceModel plaats = null;
+            List<PlaceModel> places = EquipmentManager.GetAllPlaces();
+
+            foreach (PlaceModel pm in places)
+            {
+                if (pm.Location == nmrPlaats.Text)
+                {
+                    plaats = pm;
+                    break;
+                }
+            }
+
+            if (plaats != null)
+            {
+                if (CheckPlaceSize(Convert.ToInt32(nmrPlaats.Text), lbUser.Items.Count))
+                {
+                    List<UserModel> users = new List<UserModel>();
+                    foreach (string user in lbUser.Items)
+                    {
+                        users.Add(UserManager.FindUser(user));
+                    }
+
+                    foreach (UserModel user in users)
+                    {
+                        EquipmentManager.MakePlaceReservationModel(user, plaats);
+                    }
+                    MessageBox.Show("Succesvol gereserveerd");
+                    nmrPlaats.SelectedIndex = 0;
+                    lbUser.Items.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Deze plaats is niet beschikbaar.");
+            }
+        }
+
+        public bool CheckPlaceSize(int place, int amountofusers)
+        {
+            if (amountofusers == 0)
+            {
+                MessageBox.Show("Vul minstens een persoon in bij gebruikers");
+                return false;
+            }
+            if (place == 0)
+            {
+                MessageBox.Show("Vul een geldige plaats in bij plaats");
+                return false;
+            }
+            return true;
         }
     }
 }
