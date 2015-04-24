@@ -203,6 +203,8 @@
     <EmbeddedResource Include="Controls\ControlPostReview.resx">
       <DependentUpon>ControlPostReview.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Diagrams\ManagerDiagram.cd" />
+    <None Include="Diagrams\ModelDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

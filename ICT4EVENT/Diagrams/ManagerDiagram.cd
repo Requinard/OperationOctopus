@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ICT4EVENT.DBManager">
+    <Position X="2.5" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAIAAgAAAAAA=</HashCode>
+      <FileName>Managers\DBManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.EquipmentManager">
+    <Position X="9.25" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAASAAAAAAAAAAAAAAAAAAAAABAgIAAAAAAAAAQ=</HashCode>
+      <FileName>Managers\EquipmentManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.EventManager">
+    <Position X="9.25" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAQAAAAAAAg=</HashCode>
+      <FileName>Managers\EventManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.FTPManager">
+    <Position X="2.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAIAEAAAACAAAAEAABAAgAAAAAAAAABAAAA=</HashCode>
+      <FileName>Managers\FTPManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.PostManager">
+    <Position X="12.5" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EDAAAAAAAAIACAAAABCIBAAIAAgAAAAAAAAAAAgABAg=</HashCode>
+      <FileName>Managers\PostManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICT4EVENT.UserManager">
+    <Position X="5.5" Y="0.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>wAAECAAAAQAAEAEAAAAAAAAAAQAAAAAAIEAAABFAAAA=</HashCode>
+      <FileName>Managers\UserManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
