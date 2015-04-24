@@ -6,7 +6,12 @@ namespace ICT4EVENT
 {
     public partial class UserEvent : UserControl
     {
-        private EventModel eventModel;
+        private EventModel eventModel = null;
+
+        public delegate void EventRemovedEventHandler(EventModel eventModel);
+
+        public static event EventRemovedEventHandler EventRemoved;
+
         public UserEvent(EventModel eventModel)
         {
             
@@ -19,6 +24,16 @@ namespace ICT4EVENT
             lblEndDate.Text = eventModel.EndDate.ToString();
             Random r = new Random();
             BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
+        }
+        
+        private void btnRemoveEvent_Click(object sender, EventArgs e)
+        {
+            if (EventRemoved != null)
+            {
+                EventRemoved(eventModel); 
+            }
+            
+
         }
     }
 }

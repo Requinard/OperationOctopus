@@ -29,30 +29,28 @@
         private void InitializeComponent()
         {
             this.gbEventManagment = new System.Windows.Forms.GroupBox();
-            this.gbCreateEvent = new System.Windows.Forms.GroupBox();
+            this.gbCreateNewEvent = new System.Windows.Forms.GroupBox();
             this.btnConfirmEvent = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblEndDate = new System.Windows.Forms.Label();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.lblStartDate = new System.Windows.Forms.Label();
             this.tbLocation = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.lblEventName = new System.Windows.Forms.Label();
             this.tbDescription = new System.Windows.Forms.TextBox();
             this.tbEventName = new System.Windows.Forms.TextBox();
-            this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.btnUpdateEvents = new System.Windows.Forms.Button();
             this.flowEvent = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCreateEvent = new System.Windows.Forms.Button();
             this.gbEventManagment.SuspendLayout();
-            this.gbCreateEvent.SuspendLayout();
+            this.gbCreateNewEvent.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbEventManagment
             // 
-            this.gbEventManagment.Controls.Add(this.gbCreateEvent);
-            this.gbEventManagment.Controls.Add(this.btnDeleteEvent);
+            this.gbEventManagment.Controls.Add(this.gbCreateNewEvent);
             this.gbEventManagment.Controls.Add(this.btnUpdateEvents);
             this.gbEventManagment.Controls.Add(this.flowEvent);
             this.gbEventManagment.Controls.Add(this.btnCreateEvent);
@@ -63,131 +61,124 @@
             this.gbEventManagment.TabStop = false;
             this.gbEventManagment.Text = "Evenment Beheer";
             // 
-            // gbCreateEvent
+            // gbCreateNewEvent
             // 
-            this.gbCreateEvent.Controls.Add(this.btnConfirmEvent);
-            this.gbCreateEvent.Controls.Add(this.label5);
-            this.gbCreateEvent.Controls.Add(this.dateTimePicker2);
-            this.gbCreateEvent.Controls.Add(this.dateTimePicker1);
-            this.gbCreateEvent.Controls.Add(this.label4);
-            this.gbCreateEvent.Controls.Add(this.tbLocation);
-            this.gbCreateEvent.Controls.Add(this.label6);
-            this.gbCreateEvent.Controls.Add(this.label7);
-            this.gbCreateEvent.Controls.Add(this.label8);
-            this.gbCreateEvent.Controls.Add(this.tbDescription);
-            this.gbCreateEvent.Controls.Add(this.tbEventName);
-            this.gbCreateEvent.Location = new System.Drawing.Point(655, 25);
-            this.gbCreateEvent.Name = "gbCreateEvent";
-            this.gbCreateEvent.Size = new System.Drawing.Size(334, 237);
-            this.gbCreateEvent.TabIndex = 6;
-            this.gbCreateEvent.TabStop = false;
-            this.gbCreateEvent.Text = "Create a event";
+            this.gbCreateNewEvent.Controls.Add(this.btnConfirmEvent);
+            this.gbCreateNewEvent.Controls.Add(this.lblEndDate);
+            this.gbCreateNewEvent.Controls.Add(this.dtpEndDate);
+            this.gbCreateNewEvent.Controls.Add(this.dtpStartDate);
+            this.gbCreateNewEvent.Controls.Add(this.lblStartDate);
+            this.gbCreateNewEvent.Controls.Add(this.tbLocation);
+            this.gbCreateNewEvent.Controls.Add(this.lblDescription);
+            this.gbCreateNewEvent.Controls.Add(this.lblLocation);
+            this.gbCreateNewEvent.Controls.Add(this.lblEventName);
+            this.gbCreateNewEvent.Controls.Add(this.tbDescription);
+            this.gbCreateNewEvent.Controls.Add(this.tbEventName);
+            this.gbCreateNewEvent.Location = new System.Drawing.Point(655, 25);
+            this.gbCreateNewEvent.Name = "gbCreateNewEvent";
+            this.gbCreateNewEvent.Size = new System.Drawing.Size(334, 237);
+            this.gbCreateNewEvent.TabIndex = 6;
+            this.gbCreateNewEvent.TabStop = false;
+            this.gbCreateNewEvent.Text = "Creëer een evenement";
+            this.gbCreateNewEvent.Visible = false;
             // 
             // btnConfirmEvent
             // 
-            this.btnConfirmEvent.Location = new System.Drawing.Point(25, 189);
+            this.btnConfirmEvent.Location = new System.Drawing.Point(9, 189);
             this.btnConfirmEvent.Name = "btnConfirmEvent";
-            this.btnConfirmEvent.Size = new System.Drawing.Size(242, 32);
+            this.btnConfirmEvent.Size = new System.Drawing.Size(306, 32);
             this.btnConfirmEvent.TabIndex = 21;
-            this.btnConfirmEvent.Text = "Create Event";
+            this.btnConfirmEvent.Text = "Creëer evenement";
             this.btnConfirmEvent.UseVisualStyleBackColor = true;
             this.btnConfirmEvent.Click += new System.EventHandler(this.btnConfirmEvent_Click);
             // 
-            // label5
+            // lblEndDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "End date";
+            this.lblEndDate.AutoSize = true;
+            this.lblEndDate.Location = new System.Drawing.Point(6, 148);
+            this.lblEndDate.Name = "lblEndDate";
+            this.lblEndDate.Size = new System.Drawing.Size(62, 13);
+            this.lblEndDate.TabIndex = 20;
+            this.lblEndDate.Text = "Eind Datum";
             // 
-            // dateTimePicker2
+            // dtpEndDate
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(88, 143);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(227, 20);
-            this.dateTimePicker2.TabIndex = 19;
-            this.dateTimePicker2.Value = new System.DateTime(2015, 4, 15, 12, 57, 43, 0);
+            this.dtpEndDate.Location = new System.Drawing.Point(107, 143);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtpEndDate.Size = new System.Drawing.Size(208, 20);
+            this.dtpEndDate.TabIndex = 19;
+            this.dtpEndDate.Value = new System.DateTime(2015, 7, 8, 0, 0, 0, 0);
             // 
-            // dateTimePicker1
+            // dtpStartDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(88, 112);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(227, 20);
-            this.dateTimePicker1.TabIndex = 22;
+            this.dtpStartDate.Location = new System.Drawing.Point(107, 112);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(208, 20);
+            this.dtpStartDate.TabIndex = 22;
+            this.dtpStartDate.Value = new System.DateTime(2015, 7, 1, 0, 0, 0, 0);
             // 
-            // label4
+            // lblStartDate
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Start date";
+            this.lblStartDate.AutoSize = true;
+            this.lblStartDate.Location = new System.Drawing.Point(6, 112);
+            this.lblStartDate.Name = "lblStartDate";
+            this.lblStartDate.Size = new System.Drawing.Size(61, 13);
+            this.lblStartDate.TabIndex = 17;
+            this.lblStartDate.Text = "Start datum";
             // 
             // tbLocation
             // 
-            this.tbLocation.Location = new System.Drawing.Point(88, 49);
+            this.tbLocation.Location = new System.Drawing.Point(107, 49);
             this.tbLocation.Name = "tbLocation";
-            this.tbLocation.Size = new System.Drawing.Size(227, 20);
+            this.tbLocation.Size = new System.Drawing.Size(208, 20);
             this.tbLocation.TabIndex = 16;
             // 
-            // label6
+            // lblDescription
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 83);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Description";
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(6, 83);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(64, 13);
+            this.lblDescription.TabIndex = 15;
+            this.lblDescription.Text = "Beschrijving";
             // 
-            // label7
+            // lblLocation
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Location";
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Location = new System.Drawing.Point(6, 52);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(44, 13);
+            this.lblLocation.TabIndex = 14;
+            this.lblLocation.Text = "Locatiie";
             // 
-            // label8
+            // lblEventName
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 21);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Event Name";
+            this.lblEventName.AutoSize = true;
+            this.lblEventName.Location = new System.Drawing.Point(6, 21);
+            this.lblEventName.Name = "lblEventName";
+            this.lblEventName.Size = new System.Drawing.Size(95, 13);
+            this.lblEventName.TabIndex = 13;
+            this.lblEventName.Text = "Evenement Naam:";
             // 
             // tbDescription
             // 
-            this.tbDescription.Location = new System.Drawing.Point(88, 80);
+            this.tbDescription.Location = new System.Drawing.Point(107, 80);
             this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(227, 20);
+            this.tbDescription.Size = new System.Drawing.Size(208, 20);
             this.tbDescription.TabIndex = 12;
             // 
             // tbEventName
             // 
-            this.tbEventName.Location = new System.Drawing.Point(88, 18);
+            this.tbEventName.Location = new System.Drawing.Point(107, 18);
             this.tbEventName.Name = "tbEventName";
-            this.tbEventName.Size = new System.Drawing.Size(227, 20);
+            this.tbEventName.Size = new System.Drawing.Size(208, 20);
             this.tbEventName.TabIndex = 11;
-            // 
-            // btnDeleteEvent
-            // 
-            this.btnDeleteEvent.ForeColor = System.Drawing.Color.Black;
-            this.btnDeleteEvent.Location = new System.Drawing.Point(742, 566);
-            this.btnDeleteEvent.Name = "btnDeleteEvent";
-            this.btnDeleteEvent.Size = new System.Drawing.Size(241, 54);
-            this.btnDeleteEvent.TabIndex = 5;
-            this.btnDeleteEvent.Text = "Remove Evenement";
-            this.btnDeleteEvent.UseVisualStyleBackColor = true;
             // 
             // btnUpdateEvents
             // 
             this.btnUpdateEvents.ForeColor = System.Drawing.Color.Black;
-            this.btnUpdateEvents.Location = new System.Drawing.Point(382, 566);
+            this.btnUpdateEvents.Location = new System.Drawing.Point(729, 566);
             this.btnUpdateEvents.Name = "btnUpdateEvents";
             this.btnUpdateEvents.Size = new System.Drawing.Size(241, 54);
             this.btnUpdateEvents.TabIndex = 4;
@@ -223,8 +214,8 @@
             this.Name = "AdminForm";
             this.Text = "AdminForm";
             this.gbEventManagment.ResumeLayout(false);
-            this.gbCreateEvent.ResumeLayout(false);
-            this.gbCreateEvent.PerformLayout();
+            this.gbCreateNewEvent.ResumeLayout(false);
+            this.gbCreateNewEvent.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -232,19 +223,18 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbEventManagment;
-        private System.Windows.Forms.GroupBox gbCreateEvent;
+        private System.Windows.Forms.GroupBox gbCreateNewEvent;
         private System.Windows.Forms.Button btnConfirmEvent;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblEndDate;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
+        private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.TextBox tbLocation;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.Label lblEventName;
         private System.Windows.Forms.TextBox tbDescription;
         private System.Windows.Forms.TextBox tbEventName;
-        private System.Windows.Forms.Button btnDeleteEvent;
         private System.Windows.Forms.Button btnUpdateEvents;
         private System.Windows.Forms.FlowLayoutPanel flowEvent;
         private System.Windows.Forms.Button btnCreateEvent;
