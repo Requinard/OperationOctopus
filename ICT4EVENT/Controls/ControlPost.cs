@@ -25,12 +25,13 @@ namespace ICT4EVENT
 
             if (postModel.DatePosted.DayOfYear == DateTime.Now.DayOfYear)
             {
-                lblPoster.Text = "@" + postModel.User.Username + ", " + postModel.DatePosted.Hour + ":" + postModel.DatePosted.Minute;
+                lblPoster.Text = string.Format("@{0}, {1}", postModel.User.Username, postModel.DatePosted.ToString("t"));
             }
             else
             {
-                lblPoster.Text = "@" + postModel.User.Username + ", " + postModel.DatePosted.Hour + ":" +
-                                 postModel.DatePosted.Minute + " - " + postModel.DatePosted.ToShortDateString();
+                lblPoster.Text = string.Format("@{0}, {1} - {2}", postModel.User.Username,
+                    postModel.DatePosted.ToString("t"), postModel.DatePosted.ToShortDateString());
+
             }
             
             if (postModel.PathToFile == "")
@@ -133,6 +134,7 @@ namespace ICT4EVENT
             {
                 this.btnLike.Text = "Liked!";
                 btnLike.Enabled = false;
+
             }
         }
 

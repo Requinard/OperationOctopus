@@ -8,7 +8,7 @@ using Phidgets.Events;
 
 namespace ICT4EVENT
 {
-    public partial class MedewerkerForm : Form
+    public partial class EmployeeForm : Form
     {
         private readonly CampingLogic campingLogic;
         private readonly CreateUserLogic createUser;
@@ -20,7 +20,7 @@ namespace ICT4EVENT
 
         private RFID rfid;
 
-        public MedewerkerForm()
+        public EmployeeForm()
         {
             InitializeComponent();
             campingLogic = new CampingLogic(this);
@@ -220,18 +220,21 @@ namespace ICT4EVENT
 
         private void txtRFIDCode_TextChanged(object sender, EventArgs e)
         {
-            if (UserManager.AuthenticateUser(txtRFIDCode.Text))
+            if (txtRFIDCode.Text == "")
             {
-                MessageBox.Show("Gebruiker gevonden.");
-                UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
-                lblNameOfUser.Text = "Naam: " + rfiduser.Username;
-                //lblPaymentStatusOfUser.Text = "Payment status:" + UserManager.SeeIfRegistrationIsPaid();
-                lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
-            }
-            else
-            {
-                txtRFIDCode.Text = "";
-                MessageBox.Show("RFID-tag Niet gevonden.");
+                if (UserManager.AuthenticateUser(txtRFIDCode.Text))
+                {
+                    MessageBox.Show("Gebruiker gevonden.");
+                    UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
+                    lblNameOfUser.Text = "Naam: " + rfiduser.Username;
+                    //lblPaymentStatusOfUser.Text = "Payment status:" + UserManager.SeeIfRegistrationIsPaid();
+                    lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
+                }
+                else
+                {
+                    txtRFIDCode.Text = "";
+                    MessageBox.Show("RFID-tag Niet gevonden.");
+                }
             }
         }
 
@@ -301,7 +304,7 @@ namespace ICT4EVENT
             private readonly int[] EigenTenten;
             private readonly int[] Huurtentjes;
             private readonly int[] Invalidenaccomodatie;
-            private readonly MedewerkerForm parent;
+            private readonly EmployeeForm parent;
             private readonly int[] StaCaravan;
             private int[] AllPlaces;
             private decimal amount;
@@ -309,7 +312,7 @@ namespace ICT4EVENT
             public List<string> UserList { get; private set; }
             public List<PlaceModel> places { get; private set; }
 
-            public CampingLogic(MedewerkerForm form)
+            public CampingLogic(EmployeeForm form)
             {
                 parent = form;
 
@@ -527,9 +530,9 @@ namespace ICT4EVENT
 
         public class PostReviewLogic
         {
-            private readonly MedewerkerForm parent;
+            private readonly EmployeeForm parent;
 
-            public PostReviewLogic(MedewerkerForm form)
+            public PostReviewLogic(EmployeeForm form)
             {
                 parent = form;
                 parent.flowPostReview.Enabled = true;
@@ -558,8 +561,8 @@ namespace ICT4EVENT
 
         public class CreateUserLogic
         {
-            private readonly MedewerkerForm parent;
-            public CreateUserLogic(MedewerkerForm gui)
+            private readonly EmployeeForm parent;
+            public CreateUserLogic(EmployeeForm gui)
             {
                 parent = gui;
             }
@@ -598,8 +601,8 @@ namespace ICT4EVENT
 
         public class CreatePlaceLogic
         {
-            private readonly MedewerkerForm parent;
-            public CreatePlaceLogic(MedewerkerForm form)
+            private readonly EmployeeForm parent;
+            public CreatePlaceLogic(EmployeeForm form)
             {
                 parent = form;
             }
@@ -629,8 +632,8 @@ namespace ICT4EVENT
 
         public class DeleteReservationLogic
         {
-            private readonly MedewerkerForm parent;
-            public DeleteReservationLogic(MedewerkerForm form)
+            private readonly EmployeeForm parent;
+            public DeleteReservationLogic(EmployeeForm form)
             {
                 parent = form;
             }
@@ -656,8 +659,8 @@ namespace ICT4EVENT
 
         public class RegisterUserLogic
         {
-            private readonly MedewerkerForm parent;
-            public RegisterUserLogic(MedewerkerForm form)
+            private readonly EmployeeForm parent;
+            public RegisterUserLogic(EmployeeForm form)
             {
                 parent = form;
             }
@@ -672,9 +675,9 @@ namespace ICT4EVENT
 
         public class AcceptPaymentLogic
         {
-            private readonly MedewerkerForm parent;
+            private readonly EmployeeForm parent;
 
-            public AcceptPaymentLogic(MedewerkerForm form)
+            public AcceptPaymentLogic(EmployeeForm form)
             {
                 parent = form;
             }

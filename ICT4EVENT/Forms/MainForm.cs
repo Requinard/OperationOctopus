@@ -78,24 +78,31 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                    var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
-
-                    if (postModel != null)
+                    if (tbPostContent.Text != "" || filePath != "")
                     {
-                        Control[] oldControls = new Control[flowPosts.Controls.Count];
-                        flowPosts.Controls.CopyTo(oldControls, 0);
-                        flowPosts.Controls.Clear();
+                      var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+
+                      if (postModel != null)
+                      {
+                          Control[] oldControls = new Control[flowPosts.Controls.Count];
+                          flowPosts.Controls.CopyTo(oldControls, 0);
+                          flowPosts.Controls.Clear();
 
 
-                        flowPosts.Controls.Add(new UserPost(postModel));
+                          flowPosts.Controls.Add(new UserPost(postModel));
 
-                        flowPosts.Controls.AddRange(oldControls);
+                          flowPosts.Controls.AddRange(oldControls);
 
-                        filePath = "";
+                          filePath = "";
+                      }
+                    treeTags();  
                     }
-
-                    treeTags();
+                    else
+                    {
+                        MessageBox.Show("Type een bericht of voeg een mediabestand toe");
+                    }
                 }
+                
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
