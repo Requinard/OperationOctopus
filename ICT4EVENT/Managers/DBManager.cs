@@ -102,8 +102,6 @@ namespace ICT4EVENT
                 //Logger.Error("Error querying datbase: " + exception.ToString());
                 Console.WriteLine(exception.ToString());
 
-                MessageBox.Show(exception.ToString());
-
                 return null;
             }
 

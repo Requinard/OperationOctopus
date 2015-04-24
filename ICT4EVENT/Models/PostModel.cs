@@ -272,15 +272,7 @@ namespace ICT4EVENT
             user.Read();
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
             //EventItem.Read();
-            try
-            {
-                this.parent.Id = Convert.ToInt32(reader["ReplyID"].ToString());
-                //parent.Read();
-            }
-            catch (Exception)
-            {
-                this.parent = null;
-            }
+         
             this.content = reader["PostContent"].ToString();
             this.pathToFile = reader["PathToFile"].ToString();
             this.datePosted = Convert.ToDateTime(reader["DATETIME"].ToString());
