@@ -8,7 +8,7 @@ namespace ICT4EVENT
     public partial class MainForm : Form
     {
         private string filePath = "";
-        private int currentPage = 1;
+        private int currentPage = 0;
 
         public MainForm()
         {
