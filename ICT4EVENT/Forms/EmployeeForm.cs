@@ -266,7 +266,6 @@ namespace ICT4EVENT
         {
             registerUser.RegisterUser();
             lblNameOfUser.Text = "Naam: ";
-            lblPaymentStatusOfUser.Text = "Payment status: ";
             lblAtEventStatus.Text = "At event: ";
             txtRFIDCode.Text = "";
         }
@@ -290,6 +289,30 @@ namespace ICT4EVENT
             else
             {
                 MessageBox.Show("Vul alle velden in!");
+            }
+        }
+
+        private void listEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UserModel user = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
+            List<RegistrationModel> events = UserManager.GetUserRegistrations(user);
+            bool ispaid = false;
+            string text = listEvents.GetItemText(listEvents.SelectedItem);
+            foreach (RegistrationModel _event in events)
+            {
+                if (_event.EventItem.Name == text)
+                {
+                    ispaid = UserManager.SeeIfRegistrationIsPaid(_event);
+                    break;
+                }
+            }
+            if (ispaid)
+            {
+                lblEventPaid.Text = "Betaald";
+            }
+            else
+            {
+                lblEventPaid.Text = "Niet betaald";
             }
         }
 
