@@ -220,7 +220,7 @@ namespace ICT4EVENT
 
         private void txtRFIDCode_TextChanged(object sender, EventArgs e)
         {
-            if (txtRFIDCode.Text == "")
+            if (txtRFIDCode.Text != "")
             {
                 if (UserManager.AuthenticateUser(txtRFIDCode.Text))
                 {
