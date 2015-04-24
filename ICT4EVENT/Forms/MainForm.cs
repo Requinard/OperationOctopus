@@ -244,9 +244,15 @@ namespace ICT4EVENT
 
         private void UpdateProfile(UserModel user)
         {
-            lblUserDisplayName.Text = user.Username;
 
-            lblUserDescription.Text = user.Address;
+
+            gbPostsOfUser.Text += user.Username;
+            gbProfileOfUser.Text += user.Username;
+
+            lblUserDisplayName.Text += user.Username;
+            lblRFIDFromProfile.Text += user.RfiDnumber;
+            lblEmailFromUser.Text += user.Email;
+            lblTelefoonNummer.Text += user.Telephonenumber;
 
             List<PostModel> posts = PostManager.GetUserPosts(user);
 
