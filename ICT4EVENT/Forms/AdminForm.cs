@@ -40,19 +40,20 @@ namespace ICT4EVENT
 
         private void btnCreateEvent_Click_1(object sender, EventArgs e)
         {
-            gbCreateEvent.Visible = true;
+            gbCreateNewEvent.Visible = true;
         }
 
         private void btnConfirmEvent_Click(object sender, EventArgs e)
         {
             EventModel eventModel = EventManager.CreateNewEvent(tbEventName.Text, tbLocation.Text, tbDescription.Text,
-                dateTimePicker1.Value, dateTimePicker2.Value);
+                dtpStartDate.Value, dtpEndDate.Value);
 
             if (eventModel != null)
             {
                 flowEvent.Controls.Add(new UserEvent(eventModel));
             }
         }
+
     }
 
 

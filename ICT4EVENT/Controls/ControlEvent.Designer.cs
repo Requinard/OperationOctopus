@@ -34,6 +34,7 @@
             this.lblStartDate = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
             this.lblEndDate = new System.Windows.Forms.Label();
+            this.btnRemoveEvent = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbEventLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(165, 71);
+            this.lblDescription.Location = new System.Drawing.Point(165, 98);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(88, 24);
@@ -72,7 +73,7 @@
             // 
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartDate.Location = new System.Drawing.Point(238, 34);
+            this.lblStartDate.Location = new System.Drawing.Point(165, 34);
             this.lblStartDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(81, 24);
@@ -83,7 +84,7 @@
             // 
             this.lblLocation.AutoSize = true;
             this.lblLocation.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocation.Location = new System.Drawing.Point(165, 34);
+            this.lblLocation.Location = new System.Drawing.Point(165, 65);
             this.lblLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(69, 24);
@@ -94,17 +95,31 @@
             // 
             this.lblEndDate.AutoSize = true;
             this.lblEndDate.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEndDate.Location = new System.Drawing.Point(481, 34);
+            this.lblEndDate.Location = new System.Drawing.Point(381, 34);
             this.lblEndDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(73, 24);
             this.lblEndDate.TabIndex = 5;
             this.lblEndDate.Text = "<End Date>";
             // 
+            // btnRemoveEvent
+            // 
+            this.btnRemoveEvent.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRemoveEvent.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveEvent.ForeColor = System.Drawing.Color.Red;
+            this.btnRemoveEvent.Location = new System.Drawing.Point(608, 165);
+            this.btnRemoveEvent.Name = "btnRemoveEvent";
+            this.btnRemoveEvent.Size = new System.Drawing.Size(32, 31);
+            this.btnRemoveEvent.TabIndex = 6;
+            this.btnRemoveEvent.Text = "X";
+            this.btnRemoveEvent.UseVisualStyleBackColor = false;
+            this.btnRemoveEvent.Click += new System.EventHandler(this.btnRemoveEvent_Click);
+            // 
             // UserEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnRemoveEvent);
             this.Controls.Add(this.lblEndDate);
             this.Controls.Add(this.lblLocation);
             this.Controls.Add(this.lblStartDate);
@@ -113,8 +128,10 @@
             this.Controls.Add(this.pbEventLogo);
             this.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.MaximumSize = new System.Drawing.Size(643, 750);
+            this.MinimumSize = new System.Drawing.Size(643, 200);
             this.Name = "UserEvent";
-            this.Size = new System.Drawing.Size(982, 200);
+            this.Size = new System.Drawing.Size(643, 200);
             ((System.ComponentModel.ISupportInitialize)(this.pbEventLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -129,5 +146,6 @@
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.Label lblEndDate;
+        private System.Windows.Forms.Button btnRemoveEvent;
     }
 }

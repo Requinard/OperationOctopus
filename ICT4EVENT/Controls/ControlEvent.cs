@@ -7,6 +7,7 @@ namespace ICT4EVENT
     public partial class UserEvent : UserControl
     {
         private EventModel eventModel;
+
         public UserEvent(EventModel eventModel)
         {
             
@@ -19,6 +20,15 @@ namespace ICT4EVENT
             lblEndDate.Text = eventModel.EndDate.ToString();
             Random r = new Random();
             BackColor = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
+        }
+        
+        private void btnRemoveEvent_Click(object sender, EventArgs e)
+        {
+            if (eventModel.Destroy())
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
