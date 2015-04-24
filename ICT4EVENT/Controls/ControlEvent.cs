@@ -6,7 +6,11 @@ namespace ICT4EVENT
 {
     public partial class UserEvent : UserControl
     {
-        private EventModel eventModel;
+        private EventModel eventModel = null;
+
+        public delegate void EventRemovedEventHandler(EventModel eventModel);
+
+        public static event EventRemovedEventHandler EventRemoved;
 
         public UserEvent(EventModel eventModel)
         {
@@ -24,11 +28,12 @@ namespace ICT4EVENT
         
         private void btnRemoveEvent_Click(object sender, EventArgs e)
         {
-            if (eventModel.Destroy())
+            if (EventRemoved != null)
             {
-                return true;
+                EventRemoved(eventModel); 
             }
-            return false;
+            
+
         }
     }
 }
