@@ -220,7 +220,7 @@ namespace ICT4EVENT
 
         private void txtRFIDCode_TextChanged(object sender, EventArgs e)
         {
-            if (txtRFIDCode.Text == "")
+            if (txtRFIDCode.Text != "")
             {
                 if (UserManager.AuthenticateUser(txtRFIDCode.Text))
                 {
@@ -266,7 +266,6 @@ namespace ICT4EVENT
         {
             registerUser.RegisterUser();
             lblNameOfUser.Text = "Naam: ";
-            lblPaymentStatusOfUser.Text = "Payment status: ";
             lblAtEventStatus.Text = "At event: ";
             txtRFIDCode.Text = "";
         }
@@ -293,20 +292,44 @@ namespace ICT4EVENT
             }
         }
 
+        private void listEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UserModel user = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
+            List<RegistrationModel> events = UserManager.GetUserRegistrations(user);
+            bool ispaid = false;
+            string text = listEvents.GetItemText(listEvents.SelectedItem);
+            foreach (RegistrationModel _event in events)
+            {
+                if (_event.EventItem.Name == text)
+                {
+                    ispaid = UserManager.SeeIfRegistrationIsPaid(_event);
+                    break;
+                }
+            }
+            if (ispaid)
+            {
+                lblEventPaid.Text = "Betaald";
+            }
+            else
+            {
+                lblEventPaid.Text = "Niet betaald";
+            }
+        }
+
         #endregion
 
         public class CampingLogic
         {
-            private readonly int[] Blokhutten;
-            private readonly int[] Bungalinos;
-            private readonly int[] Bungalows;
-            private readonly int[] ComfortPlaatsen;
-            private readonly int[] EigenTenten;
-            private readonly int[] Huurtentjes;
-            private readonly int[] Invalidenaccomodatie;
+            //private readonly int[] Blokhutten;
+            //private readonly int[] Bungalinos;
+            //private readonly int[] Bungalows;
+            //private readonly int[] ComfortPlaatsen;
+            //private readonly int[] EigenTenten;
+            //private readonly int[] Huurtentjes;
+            //private readonly int[] Invalidenaccomodatie;
             private readonly EmployeeForm parent;
-            private readonly int[] StaCaravan;
-            private int[] AllPlaces;
+            //private readonly int[] StaCaravan;
+            //private int[] AllPlaces;
             private decimal amount;
 
             public List<string> UserList { get; private set; }
@@ -319,17 +342,17 @@ namespace ICT4EVENT
                 UserList = new List<string>();
                 places = EquipmentManager.GetAllPlaces();
 
-                EigenTenten = EigenTentenArray();
-                Bungalows = BungalowArray();
-                Blokhutten = BlokHuttenArray();
-                Bungalinos = BungalinosArray();
-                ComfortPlaatsen = ComfortPlaatsenArray();
-                StaCaravan = StaCaravanArray();
+                //EigenTenten = EigenTentenArray();
+                //Bungalows = BungalowArray();
+                //Blokhutten = BlokHuttenArray();
+                //Bungalinos = BungalinosArray();
+                //ComfortPlaatsen = ComfortPlaatsenArray();
+                //StaCaravan = StaCaravanArray();
 
-                Invalidenaccomodatie = Enumerable.Range(85, 6).ToArray();
-                Huurtentjes = Enumerable.Range(643, 36).ToArray();
+                //Invalidenaccomodatie = Enumerable.Range(85, 6).ToArray();
+                //Huurtentjes = Enumerable.Range(643, 36).ToArray();
 
-                AllPlaces = AllPlacesArray();
+                //AllPlaces = AllPlacesArray();
                 FillAllPlaces();
             }    
 
@@ -354,85 +377,85 @@ namespace ICT4EVENT
                     return true;
                 }
 
-                if (Bungalows.Contains(place))
-                {
-                    if (amountofusers > 8)
-                    {
-                        MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
-                if (Bungalinos.Contains(place))
-                {
-                    if (amountofusers > 4)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een bungalino verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
+                //if (Bungalows.Contains(place))
+                //{
+                //    if (amountofusers > 8)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 8 personen in een bungalow verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
+                //if (Bungalinos.Contains(place))
+                //{
+                //    if (amountofusers > 4)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 4 personen in een bungalino verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
 
-                if (EigenTenten.Contains(place))
-                {
-                    if (amountofusers > 5)
-                    {
-                        MessageBox.Show("Er mogen maximaal 5 personen in een eigen tent verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
+                //if (EigenTenten.Contains(place))
+                //{
+                //    if (amountofusers > 5)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 5 personen in een eigen tent verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
 
-                if (Blokhutten.Contains(place))
-                {
-                    if (amountofusers > 4)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een blokhut verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
+                //if (Blokhutten.Contains(place))
+                //{
+                //    if (amountofusers > 4)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 4 personen in een blokhut verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
 
-                if (ComfortPlaatsen.Contains(place))
-                {
-                    if (amountofusers > 4)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen op een comfortplaats verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
+                //if (ComfortPlaatsen.Contains(place))
+                //{
+                //    if (amountofusers > 4)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 4 personen op een comfortplaats verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
 
 
-                if (Huurtentjes.Contains(place))
-                {
-                    if (amountofusers > 4)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een huurtentje verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
+                //if (Huurtentjes.Contains(place))
+                //{
+                //    if (amountofusers > 4)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 4 personen in een huurtentje verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
 
-                if (StaCaravan.Contains(place))
-                {
-                    if (amountofusers > 6)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een stacaravan verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
+                //if (StaCaravan.Contains(place))
+                //{
+                //    if (amountofusers > 6)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 4 personen in een stacaravan verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
 
-                if (Invalidenaccomodatie.Contains(place))
-                {
-                    if (amountofusers > 4)
-                    {
-                        MessageBox.Show("Er mogen maximaal 4 personen in een invalidenaccomodatie verblijven.");
-                        return false;
-                    }
-                    return true;
-                }
+                //if (Invalidenaccomodatie.Contains(place))
+                //{
+                //    if (amountofusers > 4)
+                //    {
+                //        MessageBox.Show("Er mogen maximaal 4 personen in een invalidenaccomodatie verblijven.");
+                //        return false;
+                //    }
+                //    return true;
+                //}
 
                 MessageBox.Show("Plaats niet gevonden.");
                 return false;
@@ -441,91 +464,95 @@ namespace ICT4EVENT
 
             private void FillAllPlaces()
             {
-                foreach (int place in AllPlaces)
+                try
                 {
-                    parent.nmrPlaats.Items.Add(place);
+                    foreach (PlaceModel place in EquipmentManager.GetAllPlaces())
+                    {
+                        parent.nmrPlaats.Items.Add(place.Location);
+                    }
                 }
+                catch { }
             }
 
-            private int[] EigenTentenArray()
-            {
-                var Tenten1 = Enumerable.Range(101, 23).ToArray();
-                var Tenten2 = Enumerable.Range(200, 14).ToArray();
-                var Tenten3 = Enumerable.Range(401, 19).ToArray();
-                var Tenten4 = Enumerable.Range(314, 10).ToArray();
-                int[] Tenten5 = { 544, 431 };
-                var Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
-                return Tenten;
-            }
+            //private int[] EigenTentenArray()
+            //{
+            //    var Tenten1 = Enumerable.Range(101, 23).ToArray();
+            //    var Tenten2 = Enumerable.Range(200, 14).ToArray();
+            //    var Tenten3 = Enumerable.Range(401, 19).ToArray();
+            //    var Tenten4 = Enumerable.Range(314, 10).ToArray();
+            //    int[] Tenten5 = { 544, 431 };
+            //    var Tenten = Tenten1.Concat(Tenten2).Concat(Tenten3).Concat(Tenten4).Concat(Tenten5).ToArray();
+            //    return Tenten;
+            //}
 
-            private int[] BungalowArray()
-            {
-                var Bungalows1 = Enumerable.Range(2, 11).ToArray();
-                var Bungalows2 = Enumerable.Range(14, 2).ToArray();
-                var Bungalows3 = Enumerable.Range(17, 4).ToArray();
-                var Bungalows4 = Enumerable.Range(23, 4).ToArray();
-                var Bungalows = Bungalows1.Concat(Bungalows2).Concat(Bungalows3).Concat(Bungalows4).ToArray();
-                return Bungalows;
-            }
+            //private int[] BungalowArray()
+            //{
+            //    var Bungalows1 = Enumerable.Range(2, 11).ToArray();
+            //    var Bungalows2 = Enumerable.Range(14, 2).ToArray();
+            //    var Bungalows3 = Enumerable.Range(17, 4).ToArray();
+            //    var Bungalows4 = Enumerable.Range(23, 4).ToArray();
+            //    var Bungalows = Bungalows1.Concat(Bungalows2).Concat(Bungalows3).Concat(Bungalows4).ToArray();
+            //    return Bungalows;
+            //}
 
-            private int[] BlokHuttenArray()
-            {
-                var Blokhutten1 = Enumerable.Range(72, 10).ToArray();
-                var Blokhutten2 = Enumerable.Range(91, 2).ToArray();
-                var Blokhutten3 = Enumerable.Range(95, 2).ToArray();
-                var Blokhutten4 = Enumerable.Range(138, 5).ToArray();
-                var Blokhutten5 = Enumerable.Range(143, 8).ToArray();
-                int[] Blokhutten6 = { 124 };
-                var Blokhutten =
-                    Blokhutten1.Concat(Blokhutten2)
-                        .Concat(Blokhutten3)
-                        .Concat(Blokhutten4)
-                        .Concat(Blokhutten5)
-                        .Concat(Blokhutten6)
-                        .ToArray();
-                return Blokhutten;
-            }
+            //private int[] BlokHuttenArray()
+            //{
+            //    var Blokhutten1 = Enumerable.Range(72, 10).ToArray();
+            //    var Blokhutten2 = Enumerable.Range(91, 2).ToArray();
+            //    var Blokhutten3 = Enumerable.Range(95, 2).ToArray();
+            //    var Blokhutten4 = Enumerable.Range(138, 5).ToArray();
+            //    var Blokhutten5 = Enumerable.Range(143, 8).ToArray();
+            //    int[] Blokhutten6 = { 124 };
+            //    var Blokhutten =
+            //        Blokhutten1.Concat(Blokhutten2)
+            //            .Concat(Blokhutten3)
+            //            .Concat(Blokhutten4)
+            //            .Concat(Blokhutten5)
+            //            .Concat(Blokhutten6)
+            //            .ToArray();
+            //    return Blokhutten;
+            //}
 
-            private int[] BungalinosArray()
-            {
-                var Bungalinos1 = Enumerable.Range(50, 6).ToArray();
-                var Bungalinos2 = Enumerable.Range(60, 12).ToArray();
-                var Bungalinos3 = Enumerable.Range(101, 5).ToArray();
-                var Bungalinos = Bungalinos1.Concat(Bungalinos2).Concat(Bungalinos3).ToArray();
-                return Bungalinos;
-            }
+            //private int[] BungalinosArray()
+            //{
+            //    var Bungalinos1 = Enumerable.Range(50, 6).ToArray();
+            //    var Bungalinos2 = Enumerable.Range(60, 12).ToArray();
+            //    var Bungalinos3 = Enumerable.Range(101, 5).ToArray();
+            //    var Bungalinos = Bungalinos1.Concat(Bungalinos2).Concat(Bungalinos3).ToArray();
+            //    return Bungalinos;
+            //}
 
-            private int[] ComfortPlaatsenArray()
-            {
-                var Comfortplaats1 = Enumerable.Range(601, 26).ToArray();
-                var Comfortplaats2 = Enumerable.Range(432, 4).ToArray();
-                var ComfortPlaats = Comfortplaats1.Concat(Comfortplaats2).ToArray();
-                return ComfortPlaats;
-            }
+            //private int[] ComfortPlaatsenArray()
+            //{
+            //    var Comfortplaats1 = Enumerable.Range(601, 26).ToArray();
+            //    var Comfortplaats2 = Enumerable.Range(432, 4).ToArray();
+            //    var ComfortPlaats = Comfortplaats1.Concat(Comfortplaats2).ToArray();
+            //    return ComfortPlaats;
+            //}
 
-            private int[] StaCaravanArray()
-            {
-                var StaCaravan1 = Enumerable.Range(34, 8).ToArray();
-                var StaCaravan2 = Enumerable.Range(125, 3).ToArray();
-                var StaCaravan3 = Enumerable.Range(93, 2).ToArray();
-                var StaCaravan4 = Enumerable.Range(97, 4).ToArray();
-                var StaCaravan = StaCaravan1.Concat(StaCaravan2).Concat(StaCaravan3).Concat(StaCaravan4).ToArray();
-                return StaCaravan;
-            }
+            //private int[] StaCaravanArray()
+            //{
+            //    var StaCaravan1 = Enumerable.Range(34, 8).ToArray();
+            //    var StaCaravan2 = Enumerable.Range(125, 3).ToArray();
+            //    var StaCaravan3 = Enumerable.Range(93, 2).ToArray();
+            //    var StaCaravan4 = Enumerable.Range(97, 4).ToArray();
+            //    var StaCaravan = StaCaravan1.Concat(StaCaravan2).Concat(StaCaravan3).Concat(StaCaravan4).ToArray();
+            //    return StaCaravan;
+            //}
 
-            private int[] AllPlacesArray()
-            {
-                var allplaces = Bungalows.Concat(Blokhutten)
-                    .Concat(Bungalinos)
-                    .Concat(ComfortPlaatsen)
-                    .Concat(EigenTenten)
-                    .Concat(Huurtentjes)
-                    .Concat(StaCaravan)
-                    .Concat(Invalidenaccomodatie)
-                    .ToArray();
-                Array.Sort(allplaces);
-                return allplaces;
-            }
+            //private int[] AllPlacesArray()
+            //{
+            //    var allplaces = Bungalows.Concat(Blokhutten)
+            //        .Concat(Bungalinos)
+            //        .Concat(ComfortPlaatsen)
+            //        .Concat(EigenTenten)
+            //        .Concat(Huurtentjes)
+            //        .Concat(StaCaravan)
+            //        .Concat(Invalidenaccomodatie)
+            //        .ToArray();
+            //    Array.Sort(allplaces);
+            //    return allplaces;
+            //}
         }
 
         public class PostReviewLogic
