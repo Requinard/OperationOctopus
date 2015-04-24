@@ -51,6 +51,15 @@ namespace ICT4EVENT
             if (eventModel != null)
             {
                 flowEvent.Controls.Add(new UserEvent(eventModel));
+                List<EventModel> events = new List<EventModel>();
+                events = EventManager.FindAllEvents();
+                foreach (EventModel _event in events)
+                {
+                    if (eventModel.Name == _event.Name)
+                    {
+                        UserManager.RegisterUserForEvent(Settings.ActiveUser, _event);
+                    }
+                }
             }
         }
     }
