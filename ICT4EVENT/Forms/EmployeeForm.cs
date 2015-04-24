@@ -194,6 +194,19 @@ namespace ICT4EVENT
             {
                 postReview = new PostReviewLogic(this);
             }
+            if (tabMainTab.SelectedTab == tabCheckUsersAtEvent)
+            {
+                listMaterials.Items.Clear();
+                // todo replace with manager instead of null
+                List<RFIDLogModel> rfidLogModels = null;
+                if (rfidLogModels != null)
+                {
+                    foreach (RFIDLogModel rfidLogModel in rfidLogModels)
+                    {
+                        listMaterials.Items.Add(rfidLogModel.User.Username);
+                    } 
+                }
+            }
         }
 
         private void btnCreatePlace_Click(object sender, EventArgs e)
