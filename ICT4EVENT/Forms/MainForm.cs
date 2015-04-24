@@ -33,7 +33,7 @@ namespace ICT4EVENT
 
         private void FillAllPlaces()
         {
-            nmrPlaats.Items.Add(Settings.ActiveUser.Username);
+            lbUser.Items.Add(Settings.ActiveUser.Username);
             try
             {
                 nmrPlaats.Items.Clear();
@@ -418,6 +418,7 @@ namespace ICT4EVENT
                     }
                     MessageBox.Show("Succesvol gereserveerd");
                     nmrPlaats.SelectedIndex = 0;
+                    lbUser.Items.Clear();
                 }
             }
             else
@@ -427,19 +428,18 @@ namespace ICT4EVENT
         }
 
         public bool CheckPlaceSize(int place, int amountofusers)
+        {
+            if (amountofusers == 0)
             {
-                if (amountofusers == 0)
-                {
-                    MessageBox.Show("Vul minstens een persoon in bij gebruikers");
-                    return true;
-                }
-                if (place == 0)
-                {
-                    MessageBox.Show("Vul een geldige plaats in bij plaats");
-                    return true;
-                }
-                MessageBox.Show("Plaats niet gevonden.");
+                MessageBox.Show("Vul minstens een persoon in bij gebruikers");
                 return false;
             }
+            if (place == 0)
+            {
+                MessageBox.Show("Vul een geldige plaats in bij plaats");
+                return false;
+            }
+            return true;
+        }
     }
 }

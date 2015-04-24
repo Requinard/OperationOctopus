@@ -30,7 +30,7 @@ namespace ICT4EVENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("All Posts");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("All Posts");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -243,9 +243,9 @@ namespace ICT4EVENT
             // 
             this.tabMainTab.Controls.Add(this.tabSocialMediaSharingSystem);
             this.tabMainTab.Controls.Add(this.tabMaterialrent);
+            this.tabMainTab.Controls.Add(this.tabReservePlace);
             this.tabMainTab.Controls.Add(this.tabProfile);
             this.tabMainTab.Controls.Add(this.tabSettings);
-            this.tabMainTab.Controls.Add(this.tabReservePlace);
             this.tabMainTab.Location = new System.Drawing.Point(5, 12);
             this.tabMainTab.Name = "tabMainTab";
             this.tabMainTab.SelectedIndex = 0;
@@ -310,10 +310,10 @@ namespace ICT4EVENT
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
             this.treeCategorie.Name = "treeCategorie";
-            treeNode8.Name = "All Posts";
-            treeNode8.Text = "All Posts";
+            treeNode9.Name = "All Posts";
+            treeNode9.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8});
+            treeNode9});
             this.treeCategorie.Size = new System.Drawing.Size(155, 479);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
