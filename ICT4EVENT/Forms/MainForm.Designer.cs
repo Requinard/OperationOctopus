@@ -30,7 +30,7 @@ namespace ICT4EVENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("All Posts");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All Posts");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -90,6 +90,12 @@ namespace ICT4EVENT
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.gbSettings = new System.Windows.Forms.GroupBox();
             this.gbMyProfile = new System.Windows.Forms.GroupBox();
+            this.tbNewTelephoneNumber = new System.Windows.Forms.TextBox();
+            this.lblTelephoneNumber = new System.Windows.Forms.Label();
+            this.tbNewEmail = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.tbNewUserName = new System.Windows.Forms.TextBox();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.gbPassword = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbNewPassword2 = new System.Windows.Forms.TextBox();
@@ -97,12 +103,6 @@ namespace ICT4EVENT
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbNewUserName = new System.Windows.Forms.TextBox();
-            this.tbNewEmail = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.tbNewTelephoneNumber = new System.Windows.Forms.TextBox();
-            this.lblTelephoneNumber = new System.Windows.Forms.Label();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -345,10 +345,10 @@ namespace ICT4EVENT
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
             this.treeCategorie.Name = "treeCategorie";
-            treeNode6.Name = "All Posts";
-            treeNode6.Text = "All Posts";
+            treeNode1.Name = "All Posts";
+            treeNode1.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode1});
             this.treeCategorie.Size = new System.Drawing.Size(155, 451);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
@@ -796,7 +796,7 @@ namespace ICT4EVENT
             this.gbMyProfile.Controls.Add(this.tbNewEmail);
             this.gbMyProfile.Controls.Add(this.lblEmail);
             this.gbMyProfile.Controls.Add(this.tbNewUserName);
-            this.gbMyProfile.Controls.Add(this.label6);
+            this.gbMyProfile.Controls.Add(this.lblUserName);
             this.gbMyProfile.Controls.Add(this.gbPassword);
             this.gbMyProfile.Location = new System.Drawing.Point(8, 24);
             this.gbMyProfile.Name = "gbMyProfile";
@@ -804,6 +804,72 @@ namespace ICT4EVENT
             this.gbMyProfile.TabIndex = 12;
             this.gbMyProfile.TabStop = false;
             this.gbMyProfile.Text = "Mijn Profiel";
+            // 
+            // tbNewTelephoneNumber
+            // 
+            this.tbNewTelephoneNumber.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewTelephoneNumber.Location = new System.Drawing.Point(157, 229);
+            this.tbNewTelephoneNumber.MaxLength = 32;
+            this.tbNewTelephoneNumber.Multiline = true;
+            this.tbNewTelephoneNumber.Name = "tbNewTelephoneNumber";
+            this.tbNewTelephoneNumber.Size = new System.Drawing.Size(607, 30);
+            this.tbNewTelephoneNumber.TabIndex = 27;
+            // 
+            // lblTelephoneNumber
+            // 
+            this.lblTelephoneNumber.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblTelephoneNumber.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelephoneNumber.Location = new System.Drawing.Point(6, 229);
+            this.lblTelephoneNumber.Name = "lblTelephoneNumber";
+            this.lblTelephoneNumber.Size = new System.Drawing.Size(132, 30);
+            this.lblTelephoneNumber.TabIndex = 28;
+            this.lblTelephoneNumber.Tag = "Profiel";
+            this.lblTelephoneNumber.Text = "Telefoonnummer:";
+            this.lblTelephoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewEmail
+            // 
+            this.tbNewEmail.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewEmail.Location = new System.Drawing.Point(157, 187);
+            this.tbNewEmail.MaxLength = 32;
+            this.tbNewEmail.Multiline = true;
+            this.tbNewEmail.Name = "tbNewEmail";
+            this.tbNewEmail.Size = new System.Drawing.Size(607, 30);
+            this.tbNewEmail.TabIndex = 23;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblEmail.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(6, 187);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(132, 30);
+            this.lblEmail.TabIndex = 24;
+            this.lblEmail.Tag = "Profiel";
+            this.lblEmail.Text = "Email:";
+            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewUserName
+            // 
+            this.tbNewUserName.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewUserName.Location = new System.Drawing.Point(157, 28);
+            this.tbNewUserName.MaxLength = 32;
+            this.tbNewUserName.Multiline = true;
+            this.tbNewUserName.Name = "tbNewUserName";
+            this.tbNewUserName.Size = new System.Drawing.Size(607, 30);
+            this.tbNewUserName.TabIndex = 22;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblUserName.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(6, 28);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(132, 30);
+            this.lblUserName.TabIndex = 22;
+            this.lblUserName.Tag = "Profiel";
+            this.lblUserName.Text = "Gebruikersnaam:";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // gbPassword
             // 
@@ -881,72 +947,6 @@ namespace ICT4EVENT
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.RoyalBlue;
-            this.label6.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 28);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 30);
-            this.label6.TabIndex = 22;
-            this.label6.Tag = "Profiel";
-            this.label6.Text = "Gebruikersnaam:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tbNewUserName
-            // 
-            this.tbNewUserName.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNewUserName.Location = new System.Drawing.Point(157, 28);
-            this.tbNewUserName.MaxLength = 32;
-            this.tbNewUserName.Multiline = true;
-            this.tbNewUserName.Name = "tbNewUserName";
-            this.tbNewUserName.Size = new System.Drawing.Size(607, 30);
-            this.tbNewUserName.TabIndex = 22;
-            // 
-            // tbNewEmail
-            // 
-            this.tbNewEmail.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNewEmail.Location = new System.Drawing.Point(157, 187);
-            this.tbNewEmail.MaxLength = 32;
-            this.tbNewEmail.Multiline = true;
-            this.tbNewEmail.Name = "tbNewEmail";
-            this.tbNewEmail.Size = new System.Drawing.Size(607, 30);
-            this.tbNewEmail.TabIndex = 23;
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblEmail.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(6, 187);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(132, 30);
-            this.lblEmail.TabIndex = 24;
-            this.lblEmail.Tag = "Profiel";
-            this.lblEmail.Text = "Email:";
-            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tbNewTelephoneNumber
-            // 
-            this.tbNewTelephoneNumber.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNewTelephoneNumber.Location = new System.Drawing.Point(157, 229);
-            this.tbNewTelephoneNumber.MaxLength = 32;
-            this.tbNewTelephoneNumber.Multiline = true;
-            this.tbNewTelephoneNumber.Name = "tbNewTelephoneNumber";
-            this.tbNewTelephoneNumber.Size = new System.Drawing.Size(607, 30);
-            this.tbNewTelephoneNumber.TabIndex = 27;
-            // 
-            // lblTelephoneNumber
-            // 
-            this.lblTelephoneNumber.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblTelephoneNumber.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelephoneNumber.Location = new System.Drawing.Point(6, 229);
-            this.lblTelephoneNumber.Name = "lblTelephoneNumber";
-            this.lblTelephoneNumber.Size = new System.Drawing.Size(132, 30);
-            this.lblTelephoneNumber.TabIndex = 28;
-            this.lblTelephoneNumber.Tag = "Profiel";
-            this.lblTelephoneNumber.Text = "Telefoonnummer:";
-            this.lblTelephoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 
@@ -1066,7 +1066,7 @@ namespace ICT4EVENT
         private Button btnSearch;
         private GroupBox gbPassword;
         private TextBox tbNewUserName;
-        private Label label6;
+        private Label lblUserName;
         private TextBox tbNewTelephoneNumber;
         private Label lblTelephoneNumber;
         private TextBox tbNewEmail;
