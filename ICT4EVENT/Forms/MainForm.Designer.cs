@@ -70,6 +70,13 @@ namespace ICT4EVENT
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPaymentStat = new System.Windows.Forms.TabPage();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblPaidCheck = new System.Windows.Forms.Label();
+            this.lblPaidEvent = new System.Windows.Forms.Label();
+            this.lblPaidUsername = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabProfile = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
             this.tbSearchUser = new System.Windows.Forms.TextBox();
@@ -95,13 +102,6 @@ namespace ICT4EVENT
             this.label4 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblPaidUsername = new System.Windows.Forms.Label();
-            this.lblPaidEvent = new System.Windows.Forms.Label();
-            this.lblPaidCheck = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -583,6 +583,74 @@ namespace ICT4EVENT
             this.tabPaymentStat.Text = "Betalingsstatus";
             this.tabPaymentStat.UseVisualStyleBackColor = true;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(317, 282);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(106, 35);
+            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.Text = "Ververs";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lblPaidCheck
+            // 
+            this.lblPaidCheck.AutoSize = true;
+            this.lblPaidCheck.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidCheck.Location = new System.Drawing.Point(354, 222);
+            this.lblPaidCheck.Name = "lblPaidCheck";
+            this.lblPaidCheck.Size = new System.Drawing.Size(0, 28);
+            this.lblPaidCheck.TabIndex = 5;
+            // 
+            // lblPaidEvent
+            // 
+            this.lblPaidEvent.AutoSize = true;
+            this.lblPaidEvent.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidEvent.Location = new System.Drawing.Point(354, 194);
+            this.lblPaidEvent.Name = "lblPaidEvent";
+            this.lblPaidEvent.Size = new System.Drawing.Size(0, 28);
+            this.lblPaidEvent.TabIndex = 4;
+            // 
+            // lblPaidUsername
+            // 
+            this.lblPaidUsername.AutoSize = true;
+            this.lblPaidUsername.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidUsername.Location = new System.Drawing.Point(354, 166);
+            this.lblPaidUsername.Name = "lblPaidUsername";
+            this.lblPaidUsername.Size = new System.Drawing.Size(0, 28);
+            this.lblPaidUsername.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(277, 222);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 28);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Betaald:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(211, 194);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(137, 28);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Evenementnaam:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(208, 166);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(140, 28);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Gebruikersnaam:";
+            // 
             // tabProfile
             // 
             this.tabProfile.Controls.Add(this.gbProfielen);
@@ -860,74 +928,6 @@ namespace ICT4EVENT
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(208, 166);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 28);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Gebruikersnaam:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(211, 194);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(137, 28);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Evenementnaam:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(277, 222);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 28);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Betaald:";
-            // 
-            // lblPaidUsername
-            // 
-            this.lblPaidUsername.AutoSize = true;
-            this.lblPaidUsername.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidUsername.Location = new System.Drawing.Point(354, 166);
-            this.lblPaidUsername.Name = "lblPaidUsername";
-            this.lblPaidUsername.Size = new System.Drawing.Size(0, 28);
-            this.lblPaidUsername.TabIndex = 3;
-            // 
-            // lblPaidEvent
-            // 
-            this.lblPaidEvent.AutoSize = true;
-            this.lblPaidEvent.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidEvent.Location = new System.Drawing.Point(354, 194);
-            this.lblPaidEvent.Name = "lblPaidEvent";
-            this.lblPaidEvent.Size = new System.Drawing.Size(0, 28);
-            this.lblPaidEvent.TabIndex = 4;
-            // 
-            // lblPaidCheck
-            // 
-            this.lblPaidCheck.AutoSize = true;
-            this.lblPaidCheck.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidCheck.Location = new System.Drawing.Point(354, 222);
-            this.lblPaidCheck.Name = "lblPaidCheck";
-            this.lblPaidCheck.Size = new System.Drawing.Size(0, 28);
-            this.lblPaidCheck.TabIndex = 5;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(317, 282);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(106, 35);
-            this.btnRefresh.TabIndex = 6;
-            this.btnRefresh.Text = "Ververs";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -942,6 +942,7 @@ namespace ICT4EVENT
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "MainForm";
             this.Text = "Social Media Sharing System";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbStaticUpdates.ResumeLayout(false);
             this.gbStaticUpdates.PerformLayout();

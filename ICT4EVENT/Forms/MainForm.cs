@@ -473,5 +473,10 @@ namespace ICT4EVENT
         {
             tabMainTab.SelectedTab.Refresh();
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }

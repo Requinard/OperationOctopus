@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ApplicationLogger;
 using Phidgets;
 using Phidgets.Events;
+using Phidget21COM;
 
 namespace ICT4EVENT
 {
@@ -14,7 +15,6 @@ namespace ICT4EVENT
         public LoginForm()
         {
             InitializeComponent();
-
             OpenRFIDConnection();
         }
 
@@ -140,8 +140,6 @@ namespace ICT4EVENT
                 txtUserName.Enabled = false;
                 btnLogin.Enabled = false;
             }
-
-           
         }
 
         private void openForm(Form form)

@@ -613,5 +613,10 @@ namespace ICT4EVENT
                 parent.lblEventPaid.Text = "";
             }
         }
+
+        private void EmployeeForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            rfid.close();
+        }
     }
 }
