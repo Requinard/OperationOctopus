@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using ICT4EVENT.Models;
+using Microsoft.VisualBasic;
 
 namespace ICT4EVENT
 {
@@ -42,7 +44,9 @@ namespace ICT4EVENT
                     nmrPlaats.Items.Add(place.Location);
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         private void CreateTestPosts()
@@ -53,12 +57,12 @@ namespace ICT4EVENT
         private void FillList()
         {
             var postModels = PostManager.GetPostsByPage();
-            if(postModels == null) return;
+            if (postModels == null) return;
             foreach (var postModel in postModels)
             {
                 if (postModel.Parent == null)
                 {
-                    flowPosts.Controls.Add(new UserPost(postModel));  
+                    flowPosts.Controls.Add(new UserPost(postModel));
                 }
             }
         }
@@ -95,29 +99,35 @@ namespace ICT4EVENT
                 {
                     if (tbPostContent.Text != "" || filePath != "")
                     {
-                      var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+                        var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
 
-                      if (postModel != null)
-                      {
-                          Control[] oldControls = new Control[flowPosts.Controls.Count];
-                          flowPosts.Controls.CopyTo(oldControls, 0);
-                          flowPosts.Controls.Clear();
+                        if (postModel != null)
+                        {
+                            Control[] oldControls = new Control[flowPosts.Controls.Count];
+                            flowPosts.Controls.CopyTo(oldControls, 0);
+                            flowPosts.Controls.Clear();
 
 
-                          flowPosts.Controls.Add(new UserPost(postModel));
+                            flowPosts.Controls.Add(new UserPost(postModel));
 
-                          flowPosts.Controls.AddRange(oldControls);
+                            flowPosts.Controls.AddRange(oldControls);
 
-                          filePath = "";
-                      }
-                    treeTags();  
+                            filePath = "";
+
+                            btnMediaFile.Size = new Size(156, 57);
+                            btnMediaFile.ForeColor = Color.Black;
+                            lblSelectedFile.Enabled = false;
+                            lblSelectedFile.Visible = false;
+
+                        }
+                        treeTags();
                     }
                     else
                     {
                         MessageBox.Show("Type een bericht of voeg een mediabestand toe");
                     }
                 }
-                
+
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
@@ -147,18 +157,7 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                    if (tbNewPassword.Text == tbNewPassword2.Text)
-                    {
-                        if (UserManager.ChangeUserPassword(tbNewPassword.Text))
-                        {
-                            MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("De wachtwoorden komen niet overeen");
-                    }
-                    
+                   changeUserInformation();
                 }
             }
         }
@@ -178,12 +177,62 @@ namespace ICT4EVENT
             }
         }
 
+        private void changeUserInformation()
+        {
+            bool changed = false;
+            if (tbNewUserName.Text != "")
+            {
+                Settings.ActiveUser.Username = tbNewUserName.Text;
+                changed = true;
+            }
+            if (tbNewEmail.Text != "")
+            {
+                Settings.ActiveUser.Email = tbNewEmail.Text;
+                changed = true;
+            }
+            if (tbNewTelephoneNumber.Text != "")
+            {
+                Settings.ActiveUser.Telephonenumber = tbNewTelephoneNumber.Text;
+                changed = true;
+            }
+            if (tbNewPassword.Text != "" || tbNewPassword2.Text != "")
+            {
+                if (tbNewPassword.Text == tbNewPassword2.Text)
+                {
+                    if (UserManager.ChangeUserPassword(Settings.ActiveUser,tbNewPassword.Text))
+                    {
+                        MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
+                        changed = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("De wachtwoorden komen niet overeen");
+                }
+            }
+            if (changed)
+            {
+                if (Settings.ActiveUser.Update())
+                {
+                    MessageBox.Show("Succesvol aangepast");
+                }
+                else
+                {
+                    MessageBox.Show("Oeps er is iets mis gegaan");
+                }
+            }
+        }
+
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
                 filePath = openFileDialog1.FileName;
+                btnMediaFile.ForeColor = Color.LawnGreen;
+                btnMediaFile.Size = new Size(156, 32);
+                lblSelectedFile.Enabled = true;
+                lblSelectedFile.Visible = true;
                 lblSelectedFile.Text = openFileDialog1.SafeFileNames[0];
             }
 
@@ -200,7 +249,7 @@ namespace ICT4EVENT
             catch
             {
                 MessageBox.Show("Selecteer eerst een product");
-            } 
+            }
         }
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
@@ -313,7 +362,8 @@ namespace ICT4EVENT
                     {
                         if (rentableobject.ObjectType == rentable)
                         {
-                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject, Convert.ToInt32(numAmount.Value));
+                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject,
+                                Convert.ToInt32(numAmount.Value));
                         }
                     }
                 }
@@ -351,7 +401,7 @@ namespace ICT4EVENT
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             //Als we dit form sluiten gaan we automatisch terug naar inlog
-            this.Close(); 
+            this.Close();
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -440,5 +490,37 @@ namespace ICT4EVENT
             }
             return true;
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox("Zoek");
+
+            if (input != "")
+            {
+                List<PostModel> postModels = PostManager.FindPost(input);
+                if (postModels != null)
+                {
+                    flowPosts.Controls.Clear();
+                    foreach (PostModel postModel in postModels)
+                    {
+                        flowPosts.Controls.Add(new UserPost(postModel));
+                    }
+                    MessageBox.Show(string.Format("Er zijn {0} resultaten gevonden", postModels.Count));
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Geen posts gevonden");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vul een zoek term in");
+            }
+
+            
+
+        }
+
     }
 }
