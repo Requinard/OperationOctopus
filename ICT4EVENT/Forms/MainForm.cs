@@ -18,6 +18,8 @@ namespace ICT4EVENT
             InitializeComponent();
             FillPostList();
             //FillMaterials();
+            FillReservedMaterials();
+            FillReservedPlaces();
             FillAllPlaces();
             treeTags();
             //UpdateProfile(Settings.ActiveUser);
@@ -51,9 +53,38 @@ namespace ICT4EVENT
                     }
                 }
             }
-            catch
-            {
+            catch { }
         }
+
+        private void FillReservedMaterials()
+        {
+            try
+            {
+                listReservedMaterials.Items.Clear();
+                List<RentableReservationModel> rentables = EquipmentManager.GetUserReservations(Settings.ActiveUser);
+                foreach (RentableReservationModel rentable in rentables)
+                {
+                    if (rentable.Rentable.ObjectType != "")
+                    {
+                        listReservedMaterials.Items.Add(rentable.Rentable.ObjectType);
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void FillReservedPlaces()
+        {
+            try
+            {
+                listReservedPlaces.Items.Clear();
+                List<PlaceReservationModel> places = EquipmentManager.GetUserPlaceReservations(Settings.ActiveUser);
+                foreach (PlaceReservationModel place in places)
+                {
+                    listReservedPlaces.Items.Add(place.Place.Location);
+                }
+            }
+            catch { }
         }
 
         private void PostLinkClicked(UserModel userModel)
@@ -204,6 +235,11 @@ namespace ICT4EVENT
                     changeUserInformation();
                 }
 
+            }
+
+            else
+            {
+                btnDynamicButton.Text = "Geen actie";
             }
         }
 
@@ -414,6 +450,7 @@ namespace ICT4EVENT
                 }
                 MessageBox.Show("Artikelen besteld");
                 listCart.Items.Clear();
+                FillReservedMaterials();
             }
             else
             {
@@ -520,6 +557,7 @@ namespace ICT4EVENT
             {
                 MessageBox.Show("Deze plaats is niet beschikbaar.");
             }
+            FillReservedPlaces();
         }
 
         public bool CheckPlaceSize(int place, int amountofusers)
