@@ -44,14 +44,32 @@ namespace ICT4EVENT
             }
             else
             {
-                if (!File.Exists(postModel.PathToFile))
-                    FTPManager.DownloadFile(postModel.PathToFile);
-                pbMedia.Enabled = true;
+                string extention = Path.GetExtension(postModel.PathToFile);
+                if (extention == ".avi" || extention == ".mov" || extention == ".mp4" || extention == ".wmv")
+                {
+                    if (!File.Exists(postModel.PathToFile))
+                        FTPManager.DownloadFile(postModel.PathToFile);
+                    mpMedia.Enabled = true;
+                    mpMedia.Visible = true;
 
-                pbMedia.Image = Image.FromFile(postModel.PathToFile);
+                    mpMedia.URL = postModel.PathToFile;
 
-                pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
-                Size = new Size(Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
+                    mpMedia.Location = new Point(mpMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
+                    Size = new Size(Size.Width, (mpMedia.Location.Y + mpMedia.Size.Height + 8));
+
+                    mpMedia.Ctlcontrols.stop();
+                }
+                else
+                {
+                    if (!File.Exists(postModel.PathToFile))
+                        FTPManager.DownloadFile(postModel.PathToFile);
+                    pbMedia.Enabled = true;
+
+                    pbMedia.Image = Image.FromFile(postModel.PathToFile);
+
+                    pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
+                    Size = new Size(Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
+                }
             }
 
             Random r = new Random();
