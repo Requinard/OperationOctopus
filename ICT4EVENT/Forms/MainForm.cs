@@ -38,6 +38,7 @@ namespace ICT4EVENT
 
         private void FillAllPlaces()
         {
+            lbUser.Items.Clear();
             lbUser.Items.Add(Settings.ActiveUser.Username);
             try
             {
@@ -512,6 +513,7 @@ namespace ICT4EVENT
                     MessageBox.Show("Succesvol gereserveerd");
                     nmrPlaats.SelectedIndex = 0;
                     lbUser.Items.Clear();
+                    FillAllPlaces();
                 }
             }
             else
