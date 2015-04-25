@@ -43,6 +43,8 @@ namespace ICT4EVENT
             this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabSocialMediaSharingSystem = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lblSelectedFile = new System.Windows.Forms.Label();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.flowPosts = new System.Windows.Forms.FlowLayoutPanel();
@@ -88,11 +90,17 @@ namespace ICT4EVENT
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.gbSettings = new System.Windows.Forms.GroupBox();
             this.gbMyProfile = new System.Windows.Forms.GroupBox();
-            this.tbNewPassword2 = new System.Windows.Forms.TextBox();
+            this.tbNewTelephoneNumber = new System.Windows.Forms.TextBox();
+            this.lblTelephoneNumber = new System.Windows.Forms.Label();
+            this.tbNewEmail = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.tbNewUserName = new System.Windows.Forms.TextBox();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.gbPassword = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pbMyProfileImage = new System.Windows.Forms.PictureBox();
-            this.tbNewPassword = new System.Windows.Forms.TextBox();
+            this.tbNewPassword2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label6 = new System.Windows.Forms.Label();
@@ -125,7 +133,7 @@ namespace ICT4EVENT
             this.tabSettings.SuspendLayout();
             this.gbSettings.SuspendLayout();
             this.gbMyProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMyProfileImage)).BeginInit();
+            this.gbPassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbStaticUpdates
@@ -150,7 +158,7 @@ namespace ICT4EVENT
             this.lblTrending.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrending.Location = new System.Drawing.Point(4, 67);
             this.lblTrending.Name = "lblTrending";
-            this.lblTrending.Size = new System.Drawing.Size(154, 28);
+            this.lblTrending.Size = new System.Drawing.Size(120, 24);
             this.lblTrending.TabIndex = 5;
             this.lblTrending.Tag = "Static";
             this.lblTrending.Text = "Trending right now:";
@@ -171,10 +179,10 @@ namespace ICT4EVENT
             // Posts
             // 
             this.Posts.Controls.Add(this.lbTrendingPosts);
-            this.Posts.Location = new System.Drawing.Point(4, 33);
+            this.Posts.Location = new System.Drawing.Point(4, 27);
             this.Posts.Name = "Posts";
             this.Posts.Padding = new System.Windows.Forms.Padding(3);
-            this.Posts.Size = new System.Drawing.Size(165, 534);
+            this.Posts.Size = new System.Drawing.Size(165, 540);
             this.Posts.TabIndex = 0;
             this.Posts.Text = "Posts";
             this.Posts.UseVisualStyleBackColor = true;
@@ -185,7 +193,7 @@ namespace ICT4EVENT
             this.lbTrendingPosts.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTrendingPosts.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbTrendingPosts.FormattingEnabled = true;
-            this.lbTrendingPosts.ItemHeight = 28;
+            this.lbTrendingPosts.ItemHeight = 24;
             this.lbTrendingPosts.Location = new System.Drawing.Point(-3, 6);
             this.lbTrendingPosts.Name = "lbTrendingPosts";
             this.lbTrendingPosts.Size = new System.Drawing.Size(172, 508);
@@ -194,19 +202,19 @@ namespace ICT4EVENT
             // 
             // Media
             // 
-            this.Media.Location = new System.Drawing.Point(4, 33);
+            this.Media.Location = new System.Drawing.Point(4, 27);
             this.Media.Name = "Media";
             this.Media.Padding = new System.Windows.Forms.Padding(3);
-            this.Media.Size = new System.Drawing.Size(165, 534);
+            this.Media.Size = new System.Drawing.Size(165, 540);
             this.Media.TabIndex = 1;
             this.Media.Text = "Media";
             this.Media.UseVisualStyleBackColor = true;
             // 
             // Organisation
             // 
-            this.Organisation.Location = new System.Drawing.Point(4, 33);
+            this.Organisation.Location = new System.Drawing.Point(4, 27);
             this.Organisation.Name = "Organisation";
-            this.Organisation.Size = new System.Drawing.Size(165, 534);
+            this.Organisation.Size = new System.Drawing.Size(165, 540);
             this.Organisation.TabIndex = 2;
             this.Organisation.Text = "Organisation";
             this.Organisation.UseVisualStyleBackColor = true;
@@ -265,6 +273,8 @@ namespace ICT4EVENT
             // 
             // tabSocialMediaSharingSystem
             // 
+            this.tabSocialMediaSharingSystem.Controls.Add(this.btnSearch);
+            this.tabSocialMediaSharingSystem.Controls.Add(this.lblSelectedFile);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnPreviousPage);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnNextPage);
             this.tabSocialMediaSharingSystem.Controls.Add(this.flowPosts);
@@ -272,22 +282,45 @@ namespace ICT4EVENT
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnMediaFile);
             this.tabSocialMediaSharingSystem.Controls.Add(this.tbPostContent);
             this.tabSocialMediaSharingSystem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabSocialMediaSharingSystem.Location = new System.Drawing.Point(4, 33);
+            this.tabSocialMediaSharingSystem.Location = new System.Drawing.Point(4, 27);
             this.tabSocialMediaSharingSystem.Name = "tabSocialMediaSharingSystem";
             this.tabSocialMediaSharingSystem.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSocialMediaSharingSystem.Size = new System.Drawing.Size(802, 616);
+            this.tabSocialMediaSharingSystem.Size = new System.Drawing.Size(802, 622);
             this.tabSocialMediaSharingSystem.TabIndex = 0;
             this.tabSocialMediaSharingSystem.Text = "Social Media Sharing System";
             this.tabSocialMediaSharingSystem.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearch.Location = new System.Drawing.Point(629, 531);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(154, 32);
+            this.btnSearch.TabIndex = 16;
+            this.btnSearch.Tag = "SMSS";
+            this.btnSearch.Text = "Zoek";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lblSelectedFile
+            // 
+            this.lblSelectedFile.Enabled = false;
+            this.lblSelectedFile.Location = new System.Drawing.Point(629, 45);
+            this.lblSelectedFile.Name = "lblSelectedFile";
+            this.lblSelectedFile.Size = new System.Drawing.Size(154, 21);
+            this.lblSelectedFile.TabIndex = 15;
+            this.lblSelectedFile.Visible = false;
             // 
             // btnPreviousPage
             // 
             this.btnPreviousPage.Font = new System.Drawing.Font("Agency FB", 21.75F);
             this.btnPreviousPage.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPreviousPage.Location = new System.Drawing.Point(628, 559);
+            this.btnPreviousPage.Location = new System.Drawing.Point(628, 571);
             this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(74, 55);
+            this.btnPreviousPage.Size = new System.Drawing.Size(74, 43);
             this.btnPreviousPage.TabIndex = 14;
             this.btnPreviousPage.Tag = "SMSS";
             this.btnPreviousPage.Text = "<";
@@ -298,10 +331,10 @@ namespace ICT4EVENT
             // 
             this.btnNextPage.Font = new System.Drawing.Font("Agency FB", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNextPage.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnNextPage.Location = new System.Drawing.Point(710, 559);
+            this.btnNextPage.Location = new System.Drawing.Point(710, 571);
             this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(74, 55);
+            this.btnNextPage.Size = new System.Drawing.Size(74, 43);
             this.btnNextPage.TabIndex = 13;
             this.btnNextPage.Tag = "SMSS";
             this.btnNextPage.Text = ">";
@@ -324,7 +357,7 @@ namespace ICT4EVENT
             treeNode1.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
-            this.treeCategorie.Size = new System.Drawing.Size(155, 479);
+            this.treeCategorie.Size = new System.Drawing.Size(155, 451);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
             this.treeCategorie.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeCategorie_AfterSelect);
@@ -357,10 +390,10 @@ namespace ICT4EVENT
             this.tabMaterialrent.Controls.Add(this.btnRemove);
             this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.groupDetails);
-            this.tabMaterialrent.Location = new System.Drawing.Point(4, 33);
+            this.tabMaterialrent.Location = new System.Drawing.Point(4, 27);
             this.tabMaterialrent.Name = "tabMaterialrent";
             this.tabMaterialrent.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMaterialrent.Size = new System.Drawing.Size(802, 616);
+            this.tabMaterialrent.Size = new System.Drawing.Size(802, 622);
             this.tabMaterialrent.TabIndex = 1;
             this.tabMaterialrent.Text = "Materiaalverhuur";
             this.tabMaterialrent.UseVisualStyleBackColor = true;
@@ -407,7 +440,7 @@ namespace ICT4EVENT
             this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
             this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listCart.FormattingEnabled = true;
-            this.listCart.ItemHeight = 24;
+            this.listCart.ItemHeight = 18;
             this.listCart.Location = new System.Drawing.Point(642, 6);
             this.listCart.Name = "listCart";
             this.listCart.Size = new System.Drawing.Size(145, 508);
@@ -435,7 +468,7 @@ namespace ICT4EVENT
             0,
             0});
             this.numAmount.Name = "numAmount";
-            this.numAmount.Size = new System.Drawing.Size(92, 30);
+            this.numAmount.Size = new System.Drawing.Size(92, 25);
             this.numAmount.TabIndex = 4;
             this.numAmount.Value = new decimal(new int[] {
             1,
@@ -448,7 +481,7 @@ namespace ICT4EVENT
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(335, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 24);
+            this.label1.Size = new System.Drawing.Size(37, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "Aantal:";
             // 
@@ -482,9 +515,9 @@ namespace ICT4EVENT
             this.tabReservePlace.Controls.Add(this.txtGebruikers);
             this.tabReservePlace.Controls.Add(this.nmrPlaats);
             this.tabReservePlace.Controls.Add(this.pictureBox1);
-            this.tabReservePlace.Location = new System.Drawing.Point(4, 33);
+            this.tabReservePlace.Location = new System.Drawing.Point(4, 27);
             this.tabReservePlace.Name = "tabReservePlace";
-            this.tabReservePlace.Size = new System.Drawing.Size(802, 616);
+            this.tabReservePlace.Size = new System.Drawing.Size(802, 622);
             this.tabReservePlace.TabIndex = 5;
             this.tabReservePlace.Text = "Plaats reserveren";
             this.tabReservePlace.UseVisualStyleBackColor = true;
@@ -495,7 +528,7 @@ namespace ICT4EVENT
             this.label5.Font = new System.Drawing.Font("Agency FB", 15.75F);
             this.label5.Location = new System.Drawing.Point(615, 88);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 32);
+            this.label5.Size = new System.Drawing.Size(80, 25);
             this.label5.TabIndex = 21;
             this.label5.Text = "Gebruikers:";
             // 
@@ -505,17 +538,17 @@ namespace ICT4EVENT
             this.label3.Font = new System.Drawing.Font("Agency FB", 15.75F);
             this.label3.Location = new System.Drawing.Point(615, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 32);
+            this.label3.Size = new System.Drawing.Size(103, 25);
             this.label3.TabIndex = 20;
             this.label3.Text = "CampingPlaats:";
             // 
             // lbUser
             // 
             this.lbUser.FormattingEnabled = true;
-            this.lbUser.ItemHeight = 24;
+            this.lbUser.ItemHeight = 18;
             this.lbUser.Location = new System.Drawing.Point(615, 159);
             this.lbUser.Name = "lbUser";
-            this.lbUser.Size = new System.Drawing.Size(184, 244);
+            this.lbUser.Size = new System.Drawing.Size(184, 238);
             this.lbUser.TabIndex = 19;
             // 
             // btnAddUser
@@ -544,7 +577,7 @@ namespace ICT4EVENT
             this.txtGebruikers.Location = new System.Drawing.Point(615, 123);
             this.txtGebruikers.Name = "txtGebruikers";
             this.txtGebruikers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGebruikers.Size = new System.Drawing.Size(148, 30);
+            this.txtGebruikers.Size = new System.Drawing.Size(148, 25);
             this.txtGebruikers.TabIndex = 16;
             this.txtGebruikers.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -554,7 +587,7 @@ namespace ICT4EVENT
             this.nmrPlaats.FormattingEnabled = true;
             this.nmrPlaats.Location = new System.Drawing.Point(615, 53);
             this.nmrPlaats.Name = "nmrPlaats";
-            this.nmrPlaats.Size = new System.Drawing.Size(184, 32);
+            this.nmrPlaats.Size = new System.Drawing.Size(184, 26);
             this.nmrPlaats.TabIndex = 15;
             // 
             // pictureBox1
@@ -586,9 +619,9 @@ namespace ICT4EVENT
             // tabProfile
             // 
             this.tabProfile.Controls.Add(this.gbProfielen);
-            this.tabProfile.Location = new System.Drawing.Point(4, 33);
+            this.tabProfile.Location = new System.Drawing.Point(4, 27);
             this.tabProfile.Name = "tabProfile";
-            this.tabProfile.Size = new System.Drawing.Size(802, 616);
+            this.tabProfile.Size = new System.Drawing.Size(802, 622);
             this.tabProfile.TabIndex = 4;
             this.tabProfile.Text = "Profiel";
             this.tabProfile.UseVisualStyleBackColor = true;
@@ -609,7 +642,7 @@ namespace ICT4EVENT
             // 
             this.tbSearchUser.Location = new System.Drawing.Point(9, 25);
             this.tbSearchUser.Name = "tbSearchUser";
-            this.tbSearchUser.Size = new System.Drawing.Size(769, 30);
+            this.tbSearchUser.Size = new System.Drawing.Size(769, 25);
             this.tbSearchUser.TabIndex = 16;
             this.tbSearchUser.TextChanged += new System.EventHandler(this.tbSearchUser_TextChanged);
             // 
@@ -753,9 +786,9 @@ namespace ICT4EVENT
             // tabSettings
             // 
             this.tabSettings.Controls.Add(this.gbSettings);
-            this.tabSettings.Location = new System.Drawing.Point(4, 33);
+            this.tabSettings.Location = new System.Drawing.Point(4, 27);
             this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Size = new System.Drawing.Size(802, 616);
+            this.tabSettings.Size = new System.Drawing.Size(802, 622);
             this.tabSettings.TabIndex = 3;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
@@ -773,11 +806,13 @@ namespace ICT4EVENT
             // 
             // gbMyProfile
             // 
-            this.gbMyProfile.Controls.Add(this.tbNewPassword2);
-            this.gbMyProfile.Controls.Add(this.label2);
-            this.gbMyProfile.Controls.Add(this.pbMyProfileImage);
-            this.gbMyProfile.Controls.Add(this.tbNewPassword);
-            this.gbMyProfile.Controls.Add(this.label4);
+            this.gbMyProfile.Controls.Add(this.tbNewTelephoneNumber);
+            this.gbMyProfile.Controls.Add(this.lblTelephoneNumber);
+            this.gbMyProfile.Controls.Add(this.tbNewEmail);
+            this.gbMyProfile.Controls.Add(this.lblEmail);
+            this.gbMyProfile.Controls.Add(this.tbNewUserName);
+            this.gbMyProfile.Controls.Add(this.lblUserName);
+            this.gbMyProfile.Controls.Add(this.gbPassword);
             this.gbMyProfile.Location = new System.Drawing.Point(8, 24);
             this.gbMyProfile.Name = "gbMyProfile";
             this.gbMyProfile.Size = new System.Drawing.Size(779, 530);
@@ -785,61 +820,129 @@ namespace ICT4EVENT
             this.gbMyProfile.TabStop = false;
             this.gbMyProfile.Text = "Mijn Profiel";
             // 
+            // tbNewTelephoneNumber
+            // 
+            this.tbNewTelephoneNumber.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewTelephoneNumber.Location = new System.Drawing.Point(157, 229);
+            this.tbNewTelephoneNumber.MaxLength = 32;
+            this.tbNewTelephoneNumber.Multiline = true;
+            this.tbNewTelephoneNumber.Name = "tbNewTelephoneNumber";
+            this.tbNewTelephoneNumber.Size = new System.Drawing.Size(607, 30);
+            this.tbNewTelephoneNumber.TabIndex = 27;
+            // 
+            // lblTelephoneNumber
+            // 
+            this.lblTelephoneNumber.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblTelephoneNumber.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelephoneNumber.Location = new System.Drawing.Point(6, 229);
+            this.lblTelephoneNumber.Name = "lblTelephoneNumber";
+            this.lblTelephoneNumber.Size = new System.Drawing.Size(132, 30);
+            this.lblTelephoneNumber.TabIndex = 28;
+            this.lblTelephoneNumber.Tag = "Profiel";
+            this.lblTelephoneNumber.Text = "Telefoonnummer:";
+            this.lblTelephoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewEmail
+            // 
+            this.tbNewEmail.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewEmail.Location = new System.Drawing.Point(157, 187);
+            this.tbNewEmail.MaxLength = 32;
+            this.tbNewEmail.Multiline = true;
+            this.tbNewEmail.Name = "tbNewEmail";
+            this.tbNewEmail.Size = new System.Drawing.Size(607, 30);
+            this.tbNewEmail.TabIndex = 23;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblEmail.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(6, 187);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(132, 30);
+            this.lblEmail.TabIndex = 24;
+            this.lblEmail.Tag = "Profiel";
+            this.lblEmail.Text = "Email:";
+            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewUserName
+            // 
+            this.tbNewUserName.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewUserName.Location = new System.Drawing.Point(157, 28);
+            this.tbNewUserName.MaxLength = 32;
+            this.tbNewUserName.Multiline = true;
+            this.tbNewUserName.Name = "tbNewUserName";
+            this.tbNewUserName.Size = new System.Drawing.Size(607, 30);
+            this.tbNewUserName.TabIndex = 22;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblUserName.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(6, 28);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(132, 30);
+            this.lblUserName.TabIndex = 22;
+            this.lblUserName.Tag = "Profiel";
+            this.lblUserName.Text = "Gebruikersnaam:";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // gbPassword
+            // 
+            this.gbPassword.Controls.Add(this.label2);
+            this.gbPassword.Controls.Add(this.tbNewPassword2);
+            this.gbPassword.Controls.Add(this.label4);
+            this.gbPassword.Controls.Add(this.tbNewPassword);
+            this.gbPassword.Location = new System.Drawing.Point(0, 73);
+            this.gbPassword.Name = "gbPassword";
+            this.gbPassword.Size = new System.Drawing.Size(779, 102);
+            this.gbPassword.TabIndex = 22;
+            this.gbPassword.TabStop = false;
+            this.gbPassword.Text = "Wachtwoord veranderen";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 30);
+            this.label2.TabIndex = 20;
+            this.label2.Tag = "Profiel";
+            this.label2.Text = "Wachtwoord:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tbNewPassword2
             // 
-            this.tbNewPassword2.Location = new System.Drawing.Point(102, 98);
+            this.tbNewPassword2.Location = new System.Drawing.Point(157, 65);
             this.tbNewPassword2.MaxLength = 32;
             this.tbNewPassword2.Multiline = true;
             this.tbNewPassword2.Name = "tbNewPassword2";
             this.tbNewPassword2.PasswordChar = '*';
-            this.tbNewPassword2.Size = new System.Drawing.Size(516, 33);
+            this.tbNewPassword2.Size = new System.Drawing.Size(607, 30);
             this.tbNewPassword2.TabIndex = 21;
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.OrangeRed;
-            this.label2.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 28);
-            this.label2.TabIndex = 20;
-            this.label2.Tag = "Profiel";
-            this.label2.Text = "Wachtwoord:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbMyProfileImage
-            // 
-            this.pbMyProfileImage.BackColor = System.Drawing.Color.OrangeRed;
-            this.pbMyProfileImage.Location = new System.Drawing.Point(624, 24);
-            this.pbMyProfileImage.Name = "pbMyProfileImage";
-            this.pbMyProfileImage.Size = new System.Drawing.Size(150, 150);
-            this.pbMyProfileImage.TabIndex = 14;
-            this.pbMyProfileImage.TabStop = false;
+            this.label4.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label4.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(132, 30);
+            this.label4.TabIndex = 12;
+            this.label4.Tag = "Profiel";
+            this.label4.Text = "Herhaal wachtwoord:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbNewPassword
             // 
             this.tbNewPassword.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNewPassword.Location = new System.Drawing.Point(102, 62);
+            this.tbNewPassword.Location = new System.Drawing.Point(157, 24);
             this.tbNewPassword.MaxLength = 32;
             this.tbNewPassword.Multiline = true;
             this.tbNewPassword.Name = "tbNewPassword";
             this.tbNewPassword.PasswordChar = '*';
-            this.tbNewPassword.Size = new System.Drawing.Size(516, 30);
+            this.tbNewPassword.Size = new System.Drawing.Size(607, 30);
             this.tbNewPassword.TabIndex = 13;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.OrangeRed;
-            this.label4.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 60);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 28);
-            this.label4.TabIndex = 12;
-            this.label4.Tag = "Profiel";
-            this.label4.Text = "Wachtwoord:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnLogOut
             // 
@@ -930,7 +1033,7 @@ namespace ICT4EVENT
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 666);
             this.Controls.Add(this.gbStaticUpdates);
@@ -973,7 +1076,8 @@ namespace ICT4EVENT
             this.gbSettings.ResumeLayout(false);
             this.gbMyProfile.ResumeLayout(false);
             this.gbMyProfile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMyProfileImage)).EndInit();
+            this.gbPassword.ResumeLayout(false);
+            this.gbPassword.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1006,7 +1110,6 @@ namespace ICT4EVENT
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblUserDisplayName;
         private System.Windows.Forms.GroupBox gbMyProfile;
-        private System.Windows.Forms.PictureBox pbMyProfileImage;
         private System.Windows.Forms.TextBox tbNewPassword;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupDetails;
@@ -1044,6 +1147,15 @@ namespace ICT4EVENT
         private Label label5;
         private Label label3;
         private TabPage tabPaymentStat;
+        private Label lblSelectedFile;
+        private Button btnSearch;
+        private GroupBox gbPassword;
+        private TextBox tbNewUserName;
+        private Label lblUserName;
+        private TextBox tbNewTelephoneNumber;
+        private Label lblTelephoneNumber;
+        private TextBox tbNewEmail;
+        private Label lblEmail;
         private Label lblPaidCheck;
         private Label lblPaidEvent;
         private Label lblPaidUsername;

@@ -113,6 +113,24 @@
             this.tabCheckUsersAtEvent = new System.Windows.Forms.TabPage();
             this.gbAtEvent = new System.Windows.Forms.GroupBox();
             this.listMaterials = new System.Windows.Forms.ListView();
+            this.tabUserManagement = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnUpdateUser = new System.Windows.Forms.Button();
+            this.btnRemoveUser = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbNewTelephoneNumber = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbNewEmail = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbNewUserName = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbNewPassword2 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbNewPassword = new System.Windows.Forms.TextBox();
+            this.btnSearchUser = new System.Windows.Forms.Button();
+            this.tbSearchUser = new System.Windows.Forms.TextBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -139,6 +157,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.tabCheckUsersAtEvent.SuspendLayout();
             this.gbAtEvent.SuspendLayout();
+            this.tabUserManagement.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMainTab
@@ -152,6 +174,7 @@
             this.tabMainTab.Controls.Add(this.tabMaterialRental);
             this.tabMainTab.Controls.Add(this.tabCreatePlace);
             this.tabMainTab.Controls.Add(this.tabCheckUsersAtEvent);
+            this.tabMainTab.Controls.Add(this.tabUserManagement);
             this.tabMainTab.Location = new System.Drawing.Point(-1, 0);
             this.tabMainTab.Name = "tabMainTab";
             this.tabMainTab.SelectedIndex = 0;
@@ -1057,6 +1080,219 @@
             this.listMaterials.UseCompatibleStateImageBehavior = false;
             this.listMaterials.View = System.Windows.Forms.View.Details;
             // 
+            // tabUserManagement
+            // 
+            this.tabUserManagement.Controls.Add(this.groupBox4);
+            this.tabUserManagement.Controls.Add(this.btnSearchUser);
+            this.tabUserManagement.Controls.Add(this.tbSearchUser);
+            this.tabUserManagement.Location = new System.Drawing.Point(4, 27);
+            this.tabUserManagement.Name = "tabUserManagement";
+            this.tabUserManagement.Size = new System.Drawing.Size(992, 629);
+            this.tabUserManagement.TabIndex = 10;
+            this.tabUserManagement.Text = "Gebruikers Beheer";
+            this.tabUserManagement.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnUpdateUser);
+            this.groupBox4.Controls.Add(this.btnRemoveUser);
+            this.groupBox4.Controls.Add(this.groupBox3);
+            this.groupBox4.Location = new System.Drawing.Point(0, 51);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(985, 578);
+            this.groupBox4.TabIndex = 30;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Gebruikers Beheer";
+            // 
+            // btnUpdateUser
+            // 
+            this.btnUpdateUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnUpdateUser.Location = new System.Drawing.Point(600, 344);
+            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnUpdateUser.Name = "btnUpdateUser";
+            this.btnUpdateUser.Size = new System.Drawing.Size(169, 39);
+            this.btnUpdateUser.TabIndex = 32;
+            this.btnUpdateUser.Tag = "Static";
+            this.btnUpdateUser.Text = "Update";
+            this.btnUpdateUser.UseVisualStyleBackColor = true;
+            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
+            // 
+            // btnRemoveUser
+            // 
+            this.btnRemoveUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRemoveUser.Location = new System.Drawing.Point(2, 353);
+            this.btnRemoveUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnRemoveUser.Name = "btnRemoveUser";
+            this.btnRemoveUser.Size = new System.Drawing.Size(169, 39);
+            this.btnRemoveUser.TabIndex = 31;
+            this.btnRemoveUser.Tag = "Static";
+            this.btnRemoveUser.Text = "Verwijder";
+            this.btnRemoveUser.UseVisualStyleBackColor = true;
+            this.btnRemoveUser.Click += new System.EventHandler(this.btnRemoveUser_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbNewTelephoneNumber);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.tbNewEmail);
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Controls.Add(this.tbNewUserName);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.groupBox2);
+            this.groupBox3.Location = new System.Drawing.Point(0, 38);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(769, 268);
+            this.groupBox3.TabIndex = 29;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Gegevens";
+            // 
+            // tbNewTelephoneNumber
+            // 
+            this.tbNewTelephoneNumber.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewTelephoneNumber.Location = new System.Drawing.Point(157, 229);
+            this.tbNewTelephoneNumber.MaxLength = 32;
+            this.tbNewTelephoneNumber.Multiline = true;
+            this.tbNewTelephoneNumber.Name = "tbNewTelephoneNumber";
+            this.tbNewTelephoneNumber.Size = new System.Drawing.Size(607, 30);
+            this.tbNewTelephoneNumber.TabIndex = 27;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label12.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(6, 229);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(132, 30);
+            this.label12.TabIndex = 28;
+            this.label12.Tag = "Profiel";
+            this.label12.Text = "Telefoonnummer:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewEmail
+            // 
+            this.tbNewEmail.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewEmail.Location = new System.Drawing.Point(157, 187);
+            this.tbNewEmail.MaxLength = 32;
+            this.tbNewEmail.Multiline = true;
+            this.tbNewEmail.Name = "tbNewEmail";
+            this.tbNewEmail.Size = new System.Drawing.Size(607, 30);
+            this.tbNewEmail.TabIndex = 23;
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label13.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 187);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(132, 30);
+            this.label13.TabIndex = 24;
+            this.label13.Tag = "Profiel";
+            this.label13.Text = "Email:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewUserName
+            // 
+            this.tbNewUserName.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewUserName.Location = new System.Drawing.Point(157, 28);
+            this.tbNewUserName.MaxLength = 32;
+            this.tbNewUserName.Multiline = true;
+            this.tbNewUserName.Name = "tbNewUserName";
+            this.tbNewUserName.Size = new System.Drawing.Size(607, 30);
+            this.tbNewUserName.TabIndex = 22;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label14.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(6, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(132, 30);
+            this.label14.TabIndex = 22;
+            this.label14.Tag = "Profiel";
+            this.label14.Text = "Gebruikersnaam:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.tbNewPassword2);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.tbNewPassword);
+            this.groupBox2.Location = new System.Drawing.Point(0, 73);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(779, 102);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Wachtwoord veranderen";
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label15.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(6, 24);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(132, 30);
+            this.label15.TabIndex = 20;
+            this.label15.Tag = "Profiel";
+            this.label15.Text = "Wachtwoord:";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewPassword2
+            // 
+            this.tbNewPassword2.Location = new System.Drawing.Point(157, 65);
+            this.tbNewPassword2.MaxLength = 32;
+            this.tbNewPassword2.Multiline = true;
+            this.tbNewPassword2.Name = "tbNewPassword2";
+            this.tbNewPassword2.PasswordChar = '*';
+            this.tbNewPassword2.Size = new System.Drawing.Size(607, 30);
+            this.tbNewPassword2.TabIndex = 21;
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label16.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(6, 65);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(132, 30);
+            this.label16.TabIndex = 12;
+            this.label16.Tag = "Profiel";
+            this.label16.Text = "Herhaal wachtwoord:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNewPassword
+            // 
+            this.tbNewPassword.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewPassword.Location = new System.Drawing.Point(157, 24);
+            this.tbNewPassword.MaxLength = 32;
+            this.tbNewPassword.Multiline = true;
+            this.tbNewPassword.Name = "tbNewPassword";
+            this.tbNewPassword.PasswordChar = '*';
+            this.tbNewPassword.Size = new System.Drawing.Size(607, 30);
+            this.tbNewPassword.TabIndex = 13;
+            // 
+            // btnSearchUser
+            // 
+            this.btnSearchUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchUser.Location = new System.Drawing.Point(817, 4);
+            this.btnSearchUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnSearchUser.Name = "btnSearchUser";
+            this.btnSearchUser.Size = new System.Drawing.Size(169, 39);
+            this.btnSearchUser.TabIndex = 6;
+            this.btnSearchUser.Tag = "Static";
+            this.btnSearchUser.Text = "Zoek Gebruiker";
+            this.btnSearchUser.UseVisualStyleBackColor = true;
+            this.btnSearchUser.Click += new System.EventHandler(this.btnSearchUser_Click);
+            // 
+            // tbSearchUser
+            // 
+            this.tbSearchUser.Location = new System.Drawing.Point(9, 4);
+            this.tbSearchUser.Name = "tbSearchUser";
+            this.tbSearchUser.Size = new System.Drawing.Size(769, 25);
+            this.tbSearchUser.TabIndex = 17;
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
@@ -1101,6 +1337,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             this.tabCheckUsersAtEvent.ResumeLayout(false);
             this.gbAtEvent.ResumeLayout(false);
+            this.tabUserManagement.ResumeLayout(false);
+            this.tabUserManagement.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1191,5 +1434,23 @@
         private System.Windows.Forms.TabPage tabCheckUsersAtEvent;
         private System.Windows.Forms.GroupBox gbAtEvent;
         private System.Windows.Forms.ListView listMaterials;
+        private System.Windows.Forms.TabPage tabUserManagement;
+        private System.Windows.Forms.TextBox tbSearchUser;
+        private System.Windows.Forms.Button btnSearchUser;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox tbNewTelephoneNumber;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbNewEmail;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbNewUserName;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbNewPassword2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox tbNewPassword;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnUpdateUser;
+        private System.Windows.Forms.Button btnRemoveUser;
     }
 }
