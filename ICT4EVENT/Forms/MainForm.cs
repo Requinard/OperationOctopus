@@ -18,6 +18,7 @@ namespace ICT4EVENT
             FillAllPlaces();
             treeTags();
             //UpdateProfile(Settings.ActiveUser);
+
         }
 
         public ComboBox cbProfileSelector { get; set; }
@@ -77,6 +78,32 @@ namespace ICT4EVENT
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             DynamicButtonLogic(false);
+            if (tabMainTab.SelectedTab == tabPaymentStat)
+            {
+                lblPaidUsername.Text = Settings.ActiveUser.Username;
+                lblPaidEvent.Text = Settings.ActiveEvent.Name;
+                List<RegistrationModel> registrations = UserManager.GetUserRegistrations(Settings.ActiveUser);
+                bool haspaid = false;
+                foreach (RegistrationModel registration in registrations)
+                {
+                    if (registration.EventItem.Id == Settings.ActiveEvent.Id)
+                    {
+                        if (UserManager.SeeIfRegistrationIsPaid(registration))
+                        {
+                            haspaid = true;
+                            break;
+                        }
+                    }
+                }
+                if (haspaid)
+                {
+                    lblPaidCheck.Text = "Betaald";
+                }
+                else
+                {
+                    lblPaidCheck.Text = "Niet betaald";
+                }
+            }
         }
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
@@ -440,6 +467,11 @@ namespace ICT4EVENT
                 return false;
             }
             return true;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            tabMainTab.SelectedTab.Refresh();
         }
     }
 }
