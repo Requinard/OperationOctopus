@@ -180,12 +180,11 @@ namespace ICT4EVENT
 
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
-
-
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
                 filePath = openFileDialog1.FileName;
+                lblSelectedFile.Text = openFileDialog1.SafeFileNames[0];
             }
 
         }
