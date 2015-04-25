@@ -17,6 +17,7 @@ namespace ICT4EVENT
         private DeleteReservationLogic deleteReservation;
         private RegisterUserLogic registerUser;
         private AcceptPaymentLogic acceptPayment;
+        private UserManagement userManagement;
 
         private RFID rfid;
 
@@ -617,6 +618,106 @@ namespace ICT4EVENT
         private void EmployeeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             rfid.close();
+        }
+
+        public class UserManagement
+        {
+            private UserModel selectedUser = null;
+            private readonly EmployeeForm parent;
+
+            public UserManagement(EmployeeForm form)
+            {
+                parent = form;
+            }
+
+            public UserModel SelectedUser
+            {
+                get { return selectedUser; }
+                set { selectedUser = value; }
+            }
+            
+            public bool EditUserInformation()
+            {
+                bool changed = false;
+                if (parent.tbNewUserName.Text != "")
+                {
+                    selectedUser.Username = parent.tbNewUserName.Text;
+                    changed = true;
+                }
+                if (parent.tbNewEmail.Text != "")
+                {
+                    selectedUser.Email = parent.tbNewEmail.Text;
+                    changed = true;
+                }
+                if (parent.tbNewTelephoneNumber.Text != "")
+                {
+                    selectedUser.Telephonenumber = parent.tbNewTelephoneNumber.Text;
+                    changed = true;
+                }
+                if (parent.tbNewPassword.Text != "" || parent.tbNewPassword2.Text != "")
+                {
+                    if (parent.tbNewPassword.Text == parent.tbNewPassword2.Text)
+                    {
+                        if (UserManager.ChangeUserPassword(selectedUser, parent.tbNewPassword.Text))
+                        {
+                            changed = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("De wachtwoorden komen niet overeen");
+                    }
+                }
+                if (changed)
+                {
+                    if (selectedUser.Update())
+                    {
+                        MessageBox.Show("Succesvol aangepast");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Oeps er is iets mis gegaan");
+                    }
+
+                    
+                }
+                return false;
+            }
+
+        }
+
+        private void btnSearchUser_Click(object sender, EventArgs e)
+        {
+            UserModel userModel = UserManager.FindUser(tbSearchUser.Text);
+
+            if (userModel != null)
+            {
+                if (userManagement == null)
+                {
+                    userManagement = new UserManagement(this);
+                }
+                userManagement.SelectedUser = userModel;
+                MessageBox.Show("Gebruiker gevonden");
+            }
+            else
+            {
+                MessageBox.Show("Geen gebruiker gevonden");
+            }
+        }
+
+        private void btnUpdateUser_Click(object sender, EventArgs e)
+        {
+            userManagement.EditUserInformation();
+        }
+
+        private void btnRemoveUser_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username + " wil verwijderen ?"),
+                    "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                userManagement.SelectedUser.Destroy();
+            }
         }
     }
 }

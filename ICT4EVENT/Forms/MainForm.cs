@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using ICT4EVENT.Models;
+using Microsoft.VisualBasic;
 
 namespace ICT4EVENT
 {
@@ -13,11 +16,12 @@ namespace ICT4EVENT
         public MainForm()
         {
             InitializeComponent();
-            FillList();
+            FillPostList();
             //FillMaterials();
             FillAllPlaces();
             treeTags();
             //UpdateProfile(Settings.ActiveUser);
+            ControlPost.ControlLinkClicked += PostLinkClicked;
 
         }
 
@@ -43,7 +47,16 @@ namespace ICT4EVENT
                     nmrPlaats.Items.Add(place.Location);
                 }
             }
-            catch { }
+            catch
+            {
+        }
+        }
+
+        private void PostLinkClicked(UserModel userModel)
+        {
+            tabMainTab.SelectTab(tabProfile);
+            tbSearchUser.Text = userModel.Username;
+            DynamicButtonLogic(true);
         }
 
         private void CreateTestPosts()
@@ -51,15 +64,15 @@ namespace ICT4EVENT
             PostManager.CreateNewPost("Wat is het social media event toch geweldig");
         }
 
-        private void FillList()
+        private void FillPostList()
         {
             var postModels = PostManager.GetPostsByPage();
-            if(postModels == null) return;
+            if (postModels == null) return;
             foreach (var postModel in postModels)
             {
                 if (postModel.Parent == null)
                 {
-                    flowPosts.Controls.Add(new UserPost(postModel));  
+                    flowPosts.Controls.Add(new ControlPost(postModel));  
                 }
             }
         }
@@ -77,6 +90,10 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
+            foreach (var tab in tabMainTab.TabPages)
+            {
+                
+            }
             DynamicButtonLogic(false);
             if (tabMainTab.SelectedTab == tabPaymentStat)
             {
@@ -122,29 +139,35 @@ namespace ICT4EVENT
                 {
                     if (tbPostContent.Text != "" || filePath != "")
                     {
-                      var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+                        var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
 
-                      if (postModel != null)
-                      {
-                          Control[] oldControls = new Control[flowPosts.Controls.Count];
-                          flowPosts.Controls.CopyTo(oldControls, 0);
-                          flowPosts.Controls.Clear();
+                        if (postModel != null)
+                        {
+                            Control[] oldControls = new Control[flowPosts.Controls.Count];
+                            flowPosts.Controls.CopyTo(oldControls, 0);
+                            flowPosts.Controls.Clear();
 
 
-                          flowPosts.Controls.Add(new UserPost(postModel));
+                            flowPosts.Controls.Add(new ControlPost(postModel));
 
-                          flowPosts.Controls.AddRange(oldControls);
+                            flowPosts.Controls.AddRange(oldControls);
 
-                          filePath = "";
-                      }
-                    treeTags();  
+                            filePath = "";
+
+                            btnMediaFile.Size = new Size(156, 57);
+                            btnMediaFile.ForeColor = Color.Black;
+                            lblSelectedFile.Enabled = false;
+                            lblSelectedFile.Visible = false;
+
+                        }
+                        treeTags();
                     }
                     else
                     {
                         MessageBox.Show("Type een bericht of voeg een mediabestand toe");
                     }
                 }
-                
+
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
@@ -174,21 +197,12 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                    if (tbNewPassword.Text == tbNewPassword2.Text)
-                    {
-                        if (UserManager.ChangeUserPassword(tbNewPassword.Text))
-                        {
-                            MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("De wachtwoorden komen niet overeen");
-                    }
-                    
+                    changeUserInformation();
                 }
+
             }
         }
+
 
         private void treeTags()
         {
@@ -205,14 +219,63 @@ namespace ICT4EVENT
             }
         }
 
+        private void changeUserInformation()
+        {
+            bool changed = false;
+            if (tbNewUserName.Text != "")
+            {
+                Settings.ActiveUser.Username = tbNewUserName.Text;
+                changed = true;
+            }
+            if (tbNewEmail.Text != "")
+            {
+                Settings.ActiveUser.Email = tbNewEmail.Text;
+                changed = true;
+            }
+            if (tbNewTelephoneNumber.Text != "")
+            {
+                Settings.ActiveUser.Telephonenumber = tbNewTelephoneNumber.Text;
+                changed = true;
+            }
+            if (tbNewPassword.Text != "" || tbNewPassword2.Text != "")
+            {
+                if (tbNewPassword.Text == tbNewPassword2.Text)
+                {
+                    if (UserManager.ChangeUserPassword(Settings.ActiveUser,tbNewPassword.Text))
+                    {
+                        MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
+                        changed = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("De wachtwoorden komen niet overeen");
+                }
+            }
+            if (changed)
+            {
+                if (Settings.ActiveUser.Update())
+                {
+                    MessageBox.Show("Succesvol aangepast");
+                }
+                else
+                {
+                    MessageBox.Show("Oeps er is iets mis gegaan");
+                }
+            }
+        }
+
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
-
-
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
                 filePath = openFileDialog1.FileName;
+                btnMediaFile.ForeColor = Color.LawnGreen;
+                btnMediaFile.Size = new Size(156, 32);
+                lblSelectedFile.Enabled = true;
+                lblSelectedFile.Visible = true;
+                lblSelectedFile.Text = openFileDialog1.SafeFileNames[0];
             }
 
         }
@@ -267,7 +330,7 @@ namespace ICT4EVENT
             if (tag == "All Posts")
             {
                 flowPosts.Controls.Clear();
-                FillList();
+                FillPostList();
                 return;
             }
 
@@ -280,7 +343,7 @@ namespace ICT4EVENT
 
             foreach (var postModel in posts)
             {
-                flowPosts.Controls.Add(new UserPost(postModel));
+                flowPosts.Controls.Add(new ControlPost(postModel));
             }
         }
 
@@ -288,13 +351,13 @@ namespace ICT4EVENT
         {
 
 
-            gbPostsOfUser.Text += user.Username;
-            gbProfileOfUser.Text += user.Username;
+            gbPostsOfUser.Text = string.Format("Posts van {0}", user.Username);
+            gbProfileOfUser.Text = string.Format("Profiel van {0}", user.Username);
 
-            lblUserDisplayName.Text += user.Username;
-            lblRFIDFromProfile.Text += user.RfiDnumber;
-            lblEmailFromUser.Text += user.Email;
-            lblTelefoonNummer.Text += user.Telephonenumber;
+            lblUserDisplayName.Text = string.Format("Weergave naam : {0}", user.Username);
+            lblRFIDFromProfile.Text = string.Format("RFID : {0}",user.RfiDnumber);
+            lblEmailFromUser.Text = string.Format("Email : {0}", user.Email);
+            lblTelefoonNummer.Text = string.Format("Telefoonnummer: {0}",user.Telephonenumber);
 
             List<PostModel> posts = PostManager.GetUserPosts(user);
 
@@ -304,7 +367,7 @@ namespace ICT4EVENT
             {
                 foreach (PostModel post in posts)
                 {
-                    flowPostsFromUser.Controls.Add(new UserPost(post));
+                    flowPostsFromUser.Controls.Add(new ControlPost(post));
                 }
             }
         }
@@ -371,7 +434,7 @@ namespace ICT4EVENT
             {
                 foreach (PostModel postModel in postModels)
                 {
-                    flowPosts.Controls.Add(new UserPost(postModel));
+                    flowPosts.Controls.Add(new ControlPost(postModel));
                 }
             }
         }
@@ -468,6 +531,38 @@ namespace ICT4EVENT
             }
             return true;
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox("Zoek");
+
+            if (input != "")
+            {
+                List<PostModel> postModels = PostManager.FindPost(input);
+                if (postModels != null)
+                {
+                    flowPosts.Controls.Clear();
+                    foreach (PostModel postModel in postModels)
+                    {
+                        flowPosts.Controls.Add(new ControlPost(postModel));
+                    }
+                    MessageBox.Show(string.Format("Er zijn {0} resultaten gevonden", postModels.Count));
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Geen posts gevonden");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vul een zoek term in");
+            }
+
+            
+
+        }
+
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {

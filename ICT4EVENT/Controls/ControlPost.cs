@@ -7,13 +7,17 @@ using System.Windows.Forms.VisualStyles;
 
 namespace ICT4EVENT
 {
-    public partial class UserPost : UserControl
+    public partial class ControlPost : UserControl
     {
         private PostModel postModel;
         private bool comment = false;
         private bool report = false;
 
-        public UserPost(PostModel model)
+        public delegate void LinkClickedInControlEventHandler(UserModel userModel);
+
+        public static event LinkClickedInControlEventHandler ControlLinkClicked;
+
+        public ControlPost(PostModel model)
 
         {
             InitializeComponent();
@@ -63,9 +67,9 @@ namespace ICT4EVENT
                 flowComment.Visible = true;
                 foreach (PostModel comment1 in comments)
                 {
-                    UserPost commentUserPost = new UserPost(comment1);
-                    commentUserPost.BackColor = BackColor;
-                    flowComment.Controls.Add(commentUserPost);
+                    ControlPost commentControlPost = new ControlPost(comment1);
+                    commentControlPost.BackColor = BackColor;
+                    flowComment.Controls.Add(commentControlPost);
                 }
                 postHasComment();
                 
@@ -169,9 +173,9 @@ namespace ICT4EVENT
                     flowComment.Enabled = true;
                     flowComment.Visible = true;
 
-                    UserPost commentUserPost = new UserPost(commentPostModel);
-                    commentUserPost.BackColor = BackColor;
-                    flowComment.Controls.Add(commentUserPost);
+                    ControlPost commentControlPost = new ControlPost(commentPostModel);
+                    commentControlPost.BackColor = BackColor;
+                    flowComment.Controls.Add(commentControlPost);
                     postHasComment();
                 }
             }
@@ -202,6 +206,14 @@ namespace ICT4EVENT
             flowComment.Location = new Point(-3, this.Height);
             this.Size = new Size(this.Width, flowComment.Location.Y + flowComment.Size.Height + 3);
 
+        }
+
+        private void lblPoster_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (ControlLinkClicked != null)
+            {
+                ControlLinkClicked(postModel.User);
+            }
         }
     }
 }

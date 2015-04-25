@@ -1,6 +1,6 @@
 ﻿namespace ICT4EVENT
 {
-    partial class UserPost
+    partial class ControlPost
     {
         /// <summary> 
         /// Required designer variable.
@@ -79,6 +79,7 @@
             this.lblPoster.TabStop = true;
             this.lblPoster.Tag = "UserControl";
             this.lblPoster.Text = "@<Displayname>";
+            this.lblPoster.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblPoster_LinkClicked);
             // 
             // pbMedia
             // 
@@ -173,7 +174,7 @@
             this.btnComment.UseVisualStyleBackColor = true;
             this.btnComment.Click += new System.EventHandler(this.btnComment_Click);
             // 
-            // UserPost
+            // ControlPost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -189,7 +190,7 @@
             this.Controls.Add(this.pictureBox1);
             this.MaximumSize = new System.Drawing.Size(593, 3000);
             this.MinimumSize = new System.Drawing.Size(593, 164);
-            this.Name = "UserPost";
+            this.Name = "ControlPost";
             this.Size = new System.Drawing.Size(593, 347);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).EndInit();
