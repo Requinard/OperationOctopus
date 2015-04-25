@@ -165,78 +165,80 @@ namespace ICT4EVENT
 
         public void DynamicButtonLogic(bool action)
         {
-            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
+            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem" || tabMainTab.SelectedTab.Name == "tabMaterialrent" || tabMainTab.SelectedTab.Name == "tabProfile" || tabMainTab.SelectedTab.Name == "tabSettings")
             {
-                btnDynamicButton.Text = "Post";
-
-                // button actions happen here
-                if (action)
+                if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
                 {
-                    if (tbPostContent.Text != "" || filePath != "")
-                    {
-                        var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+                    btnDynamicButton.Text = "Post";
 
-                        if (postModel != null)
+                    // button actions happen here
+                    if (action)
+                    {
+                        if (tbPostContent.Text != "" || filePath != "")
                         {
-                            Control[] oldControls = new Control[flowPosts.Controls.Count];
-                            flowPosts.Controls.CopyTo(oldControls, 0);
-                            flowPosts.Controls.Clear();
+                            var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+
+                            if (postModel != null)
+                            {
+                                Control[] oldControls = new Control[flowPosts.Controls.Count];
+                                flowPosts.Controls.CopyTo(oldControls, 0);
+                                flowPosts.Controls.Clear();
 
 
-                            flowPosts.Controls.Add(new ControlPost(postModel));
+                                flowPosts.Controls.Add(new ControlPost(postModel));
 
-                            flowPosts.Controls.AddRange(oldControls);
+                                flowPosts.Controls.AddRange(oldControls);
 
-                            filePath = "";
+                                filePath = "";
 
-                            btnMediaFile.Size = new Size(156, 57);
-                            btnMediaFile.ForeColor = Color.Black;
-                            lblSelectedFile.Enabled = false;
-                            lblSelectedFile.Visible = false;
+                                btnMediaFile.Size = new Size(156, 57);
+                                btnMediaFile.ForeColor = Color.Black;
+                                lblSelectedFile.Enabled = false;
+                                lblSelectedFile.Visible = false;
 
+                            }
+                            treeTags();
                         }
-                        treeTags();
+                        else
+                        {
+                            MessageBox.Show("Type een bericht of voeg een mediabestand toe");
+                        }
                     }
-                    else
+
+                }
+                if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
+                {
+                    btnDynamicButton.Text = "Huur";
+                    FillMaterials();
+
+                    // button actions happen here
+                    if (action)
                     {
-                        MessageBox.Show("Type een bericht of voeg een mediabestand toe");
+                        ReserveMaterial();
                     }
                 }
-
-            }
-            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
-            {
-                btnDynamicButton.Text = "Huur";
-                FillMaterials();
-
-                // button actions happen here
-                if (action)
+                if (tabMainTab.SelectedTab.Name == "tabProfile")
                 {
-                    ReserveMaterial();
+                    btnDynamicButton.Text = "Search User";
+
+                    // button actions happen here
+                    if (action)
+                    {
+                        SearchUser();
+                    }
+                }
+                if (tabMainTab.SelectedTab.Name == "tabSettings")
+                {
+                    btnDynamicButton.Text = "Bevestig";
+
+                    // button actions happen here
+                    if (action)
+                    {
+                        changeUserInformation();
+                    }
+
                 }
             }
-            if (tabMainTab.SelectedTab.Name == "tabProfile")
-            {
-                btnDynamicButton.Text = "Search User";
-
-                // button actions happen here
-                if (action)
-                {
-                    SearchUser();
-                }
-            }
-            if (tabMainTab.SelectedTab.Name == "tabSettings")
-            {
-                btnDynamicButton.Text = "Bevestig";
-
-                // button actions happen here
-                if (action)
-                {
-                    changeUserInformation();
-                }
-
-            }
-
             else
             {
                 btnDynamicButton.Text = "Geen actie";
