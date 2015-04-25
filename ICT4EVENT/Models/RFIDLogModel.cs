@@ -121,8 +121,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "UserID,EventID,InOrOut";
-            string values = "'" + this.user.Id + "','" + this.event_item.Id + "','" + this.InOrOut + "'";
+            string columns = "UserID,EventID,DateTime,InOrOut";
+            string values = "'" + this.user.Id + "','" + this.event_item.Id + "', to_date('" + DateTime.Now.ToString(dateFormat) + "', 'fmmm-fmdd-yyyy hh:mi:ss'), '" + this.InOrOut + "'";
             string finalQuery = string.Format(INSERTSTRING, "RFIDLOG", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 

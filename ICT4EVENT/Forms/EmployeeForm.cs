@@ -16,6 +16,7 @@ namespace ICT4EVENT
         private CreatePlaceLogic createPlace;
         private DeleteReservationLogic deleteReservation;
         private RegisterUserLogic registerUser;
+        private RFIDLogAddLogic rfidLogAdd;
         private AcceptPaymentLogic acceptPayment;
         private UserManagement userManagement;
 
@@ -30,6 +31,7 @@ namespace ICT4EVENT
             deleteReservation = new DeleteReservationLogic(this);
             registerUser = new RegisterUserLogic(this);
             acceptPayment = new AcceptPaymentLogic(this);
+            rfidLogAdd = new RFIDLogAddLogic(this);
 
             OpenRFIDConnection();
             FillReservations();
@@ -278,10 +280,34 @@ namespace ICT4EVENT
 
         private void btnConformUser_Click(object sender, EventArgs e)
         {
-            registerUser.RegisterUser();
-            lblNameOfUser.Text = "Naam: ";
-            lblAtEventStatus.Text = "At event: ";
-            txtRFIDCode.Text = "";
+            LogButtons(true);
+        }
+
+        private void btnLeaveUser_Click(object sender, EventArgs e)
+        {
+            LogButtons(false);
+        }
+
+        private void LogButtons(bool goesIn)
+        {
+            if (txtRFIDCode.Text != "")
+            {
+                if (goesIn)
+                {
+                    rfidLogAdd.LogAddIn();
+                }
+                else
+                {
+                    rfidLogAdd.LogAddOut();
+                }
+                lblNameOfUser.Text = "Naam: ";
+                lblAtEventStatus.Text = "At event: ";
+                txtRFIDCode.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Er is geen gebruiker aanwezig.");
+            }
         }
 
         private void btnAcceptPayment_Click(object sender, EventArgs e)
@@ -551,6 +577,29 @@ namespace ICT4EVENT
                 UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
                 UserManager.RegisterUserForEvent(rfiduser, Settings.ActiveEvent);
                 MessageBox.Show("Gebruiker succesvol geregistreerd op het event.");
+            }
+        }
+
+        public class RFIDLogAddLogic
+        {
+            private readonly EmployeeForm parent;
+            public RFIDLogAddLogic(EmployeeForm form)
+            {
+                parent = form;
+            }
+
+            public void LogAddIn()
+            {
+                UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
+                EventManager.LogRFID(rfiduser, "In");
+                MessageBox.Show("Gebruiker succesvol het terrein binnen gelaten.");
+            }
+
+            public void LogAddOut()
+            {
+                UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
+                EventManager.LogRFID(rfiduser, "Out");
+                MessageBox.Show("Gebruiker succesvol het terrein verlaten.");
             }
         }
 
