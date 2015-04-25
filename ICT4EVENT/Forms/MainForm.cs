@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using ICT4EVENT.Models;
 using Microsoft.VisualBasic;
 
@@ -15,11 +16,12 @@ namespace ICT4EVENT
         public MainForm()
         {
             InitializeComponent();
-            FillList();
+            FillPostList();
             //FillMaterials();
             FillAllPlaces();
             treeTags();
             //UpdateProfile(Settings.ActiveUser);
+            ControlPost.ControlLinkClicked += PostLinkClicked;
 
         }
 
@@ -50,12 +52,19 @@ namespace ICT4EVENT
         }
         }
 
+        private void PostLinkClicked(UserModel userModel)
+        {
+            tabMainTab.SelectTab(tabProfile);
+            tbSearchUser.Text = userModel.Username;
+            DynamicButtonLogic(true);
+        }
+
         private void CreateTestPosts()
         {
             PostManager.CreateNewPost("Wat is het social media event toch geweldig");
         }
 
-        private void FillList()
+        private void FillPostList()
         {
             var postModels = PostManager.GetPostsByPage();
             if (postModels == null) return;
@@ -63,7 +72,7 @@ namespace ICT4EVENT
             {
                 if (postModel.Parent == null)
                 {
-                    flowPosts.Controls.Add(new UserPost(postModel));  
+                    flowPosts.Controls.Add(new ControlPost(postModel));  
                 }
             }
         }
@@ -81,6 +90,10 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
+            foreach (var tab in tabMainTab.TabPages)
+            {
+                
+            }
             DynamicButtonLogic(false);
             if (tabMainTab.SelectedTab == tabPaymentStat)
             {
@@ -97,7 +110,7 @@ namespace ICT4EVENT
                             haspaid = true;
                             break;
                         }
-        }
+                    }
                 }
                 if (haspaid)
                 {
@@ -126,35 +139,35 @@ namespace ICT4EVENT
                 {
                     if (tbPostContent.Text != "" || filePath != "")
                     {
-                      var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+                        var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
 
-                      if (postModel != null)
-                      {
-                          Control[] oldControls = new Control[flowPosts.Controls.Count];
-                          flowPosts.Controls.CopyTo(oldControls, 0);
-                          flowPosts.Controls.Clear();
+                        if (postModel != null)
+                        {
+                            Control[] oldControls = new Control[flowPosts.Controls.Count];
+                            flowPosts.Controls.CopyTo(oldControls, 0);
+                            flowPosts.Controls.Clear();
 
 
-                          flowPosts.Controls.Add(new UserPost(postModel));
+                            flowPosts.Controls.Add(new ControlPost(postModel));
 
-                          flowPosts.Controls.AddRange(oldControls);
+                            flowPosts.Controls.AddRange(oldControls);
 
-                          filePath = "";
+                            filePath = "";
 
                             btnMediaFile.Size = new Size(156, 57);
                             btnMediaFile.ForeColor = Color.Black;
                             lblSelectedFile.Enabled = false;
                             lblSelectedFile.Visible = false;
 
-                      }
-                    treeTags();  
+                        }
+                        treeTags();
                     }
                     else
                     {
                         MessageBox.Show("Type een bericht of voeg een mediabestand toe");
                     }
                 }
-                
+
             }
             if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
             {
@@ -184,11 +197,13 @@ namespace ICT4EVENT
                 // button actions happen here
                 if (action)
                 {
-                   changeUserInformation();
-                        }
-                    }
-                    }
-                    
+                    changeUserInformation();
+                }
+
+            }
+        }
+
+
         private void treeTags()
         {
             var tags = new List<TagModel>();
@@ -315,7 +330,7 @@ namespace ICT4EVENT
             if (tag == "All Posts")
             {
                 flowPosts.Controls.Clear();
-                FillList();
+                FillPostList();
                 return;
             }
 
@@ -328,7 +343,7 @@ namespace ICT4EVENT
 
             foreach (var postModel in posts)
             {
-                flowPosts.Controls.Add(new UserPost(postModel));
+                flowPosts.Controls.Add(new ControlPost(postModel));
             }
         }
 
@@ -336,13 +351,13 @@ namespace ICT4EVENT
         {
 
 
-            gbPostsOfUser.Text += user.Username;
-            gbProfileOfUser.Text += user.Username;
+            gbPostsOfUser.Text = string.Format("Posts van {0}", user.Username);
+            gbProfileOfUser.Text = string.Format("Profiel van {0}", user.Username);
 
-            lblUserDisplayName.Text += user.Username;
-            lblRFIDFromProfile.Text += user.RfiDnumber;
-            lblEmailFromUser.Text += user.Email;
-            lblTelefoonNummer.Text += user.Telephonenumber;
+            lblUserDisplayName.Text = string.Format("Weergave naam : {0}", user.Username);
+            lblRFIDFromProfile.Text = string.Format("RFID : {0}",user.RfiDnumber);
+            lblEmailFromUser.Text = string.Format("Email : {0}", user.Email);
+            lblTelefoonNummer.Text = string.Format("Telefoonnummer: {0}",user.Telephonenumber);
 
             List<PostModel> posts = PostManager.GetUserPosts(user);
 
@@ -352,7 +367,7 @@ namespace ICT4EVENT
             {
                 foreach (PostModel post in posts)
                 {
-                    flowPostsFromUser.Controls.Add(new UserPost(post));
+                    flowPostsFromUser.Controls.Add(new ControlPost(post));
                 }
             }
         }
@@ -419,7 +434,7 @@ namespace ICT4EVENT
             {
                 foreach (PostModel postModel in postModels)
                 {
-                    flowPosts.Controls.Add(new UserPost(postModel));
+                    flowPosts.Controls.Add(new ControlPost(postModel));
                 }
             }
         }
@@ -529,7 +544,7 @@ namespace ICT4EVENT
                     flowPosts.Controls.Clear();
                     foreach (PostModel postModel in postModels)
                     {
-                        flowPosts.Controls.Add(new UserPost(postModel));
+                        flowPosts.Controls.Add(new ControlPost(postModel));
                     }
                     MessageBox.Show(string.Format("Er zijn {0} resultaten gevonden", postModels.Count));
                     return;

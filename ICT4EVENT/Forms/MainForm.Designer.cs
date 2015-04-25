@@ -30,7 +30,7 @@ namespace ICT4EVENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All Posts");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("All Posts");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -72,12 +72,17 @@ namespace ICT4EVENT
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPaymentStat = new System.Windows.Forms.TabPage();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblPaidCheck = new System.Windows.Forms.Label();
+            this.lblPaidEvent = new System.Windows.Forms.Label();
+            this.lblPaidUsername = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabProfile = new System.Windows.Forms.TabPage();
             this.gbProfielen = new System.Windows.Forms.GroupBox();
             this.tbSearchUser = new System.Windows.Forms.TextBox();
             this.gbPostsOfUser = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.flowPostsFromUser = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gbProfileOfUser = new System.Windows.Forms.GroupBox();
@@ -103,13 +108,6 @@ namespace ICT4EVENT
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblPaidUsername = new System.Windows.Forms.Label();
-            this.lblPaidEvent = new System.Windows.Forms.Label();
-            this.lblPaidCheck = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -353,10 +351,10 @@ namespace ICT4EVENT
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
             this.treeCategorie.Name = "treeCategorie";
-            treeNode1.Name = "All Posts";
-            treeNode1.Text = "All Posts";
+            treeNode2.Name = "All Posts";
+            treeNode2.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeCategorie.Size = new System.Drawing.Size(155, 451);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
@@ -609,12 +607,83 @@ namespace ICT4EVENT
             this.tabPaymentStat.Controls.Add(this.label8);
             this.tabPaymentStat.Controls.Add(this.label7);
             this.tabPaymentStat.Controls.Add(this.label6);
-            this.tabPaymentStat.Location = new System.Drawing.Point(4, 33);
+            this.tabPaymentStat.Location = new System.Drawing.Point(4, 27);
             this.tabPaymentStat.Name = "tabPaymentStat";
-            this.tabPaymentStat.Size = new System.Drawing.Size(802, 616);
+            this.tabPaymentStat.Size = new System.Drawing.Size(802, 622);
             this.tabPaymentStat.TabIndex = 6;
             this.tabPaymentStat.Text = "Betalingsstatus";
             this.tabPaymentStat.UseVisualStyleBackColor = true;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(317, 282);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(106, 35);
+            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.Text = "Ververs";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lblPaidCheck
+            // 
+            this.lblPaidCheck.AutoSize = true;
+            this.lblPaidCheck.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidCheck.Location = new System.Drawing.Point(354, 222);
+            this.lblPaidCheck.Name = "lblPaidCheck";
+            this.lblPaidCheck.Size = new System.Drawing.Size(0, 24);
+            this.lblPaidCheck.TabIndex = 5;
+            // 
+            // lblPaidEvent
+            // 
+            this.lblPaidEvent.AutoSize = true;
+            this.lblPaidEvent.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidEvent.Location = new System.Drawing.Point(354, 194);
+            this.lblPaidEvent.Name = "lblPaidEvent";
+            this.lblPaidEvent.Size = new System.Drawing.Size(0, 24);
+            this.lblPaidEvent.TabIndex = 4;
+            // 
+            // lblPaidUsername
+            // 
+            this.lblPaidUsername.AutoSize = true;
+            this.lblPaidUsername.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidUsername.Location = new System.Drawing.Point(354, 166);
+            this.lblPaidUsername.Name = "lblPaidUsername";
+            this.lblPaidUsername.Size = new System.Drawing.Size(0, 24);
+            this.lblPaidUsername.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label8.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(277, 222);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 24);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Betaald:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label7.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(211, 194);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(107, 24);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Evenementnaam:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label6.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(208, 166);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 24);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Gebruikersnaam:";
             // 
             // tabProfile
             // 
@@ -648,8 +717,6 @@ namespace ICT4EVENT
             // 
             // gbPostsOfUser
             // 
-            this.gbPostsOfUser.Controls.Add(this.button1);
-            this.gbPostsOfUser.Controls.Add(this.button2);
             this.gbPostsOfUser.Controls.Add(this.flowPostsFromUser);
             this.gbPostsOfUser.Controls.Add(this.pictureBox2);
             this.gbPostsOfUser.Location = new System.Drawing.Point(3, 236);
@@ -658,32 +725,6 @@ namespace ICT4EVENT
             this.gbPostsOfUser.TabIndex = 15;
             this.gbPostsOfUser.TabStop = false;
             this.gbPostsOfUser.Text = "Posts van ";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Agency FB", 21.75F);
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(625, 314);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 55);
-            this.button1.TabIndex = 16;
-            this.button1.Tag = "SMSS";
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Agency FB", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(720, 315);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 55);
-            this.button2.TabIndex = 15;
-            this.button2.Tag = "SMSS";
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // flowPostsFromUser
             // 
@@ -963,74 +1004,6 @@ namespace ICT4EVENT
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(208, 166);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 28);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Gebruikersnaam:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(211, 194);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(137, 28);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Evenementnaam:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(277, 222);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 28);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Betaald:";
-            // 
-            // lblPaidUsername
-            // 
-            this.lblPaidUsername.AutoSize = true;
-            this.lblPaidUsername.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidUsername.Location = new System.Drawing.Point(354, 166);
-            this.lblPaidUsername.Name = "lblPaidUsername";
-            this.lblPaidUsername.Size = new System.Drawing.Size(0, 28);
-            this.lblPaidUsername.TabIndex = 3;
-            // 
-            // lblPaidEvent
-            // 
-            this.lblPaidEvent.AutoSize = true;
-            this.lblPaidEvent.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidEvent.Location = new System.Drawing.Point(354, 194);
-            this.lblPaidEvent.Name = "lblPaidEvent";
-            this.lblPaidEvent.Size = new System.Drawing.Size(0, 28);
-            this.lblPaidEvent.TabIndex = 4;
-            // 
-            // lblPaidCheck
-            // 
-            this.lblPaidCheck.AutoSize = true;
-            this.lblPaidCheck.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidCheck.Location = new System.Drawing.Point(354, 222);
-            this.lblPaidCheck.Name = "lblPaidCheck";
-            this.lblPaidCheck.Size = new System.Drawing.Size(0, 28);
-            this.lblPaidCheck.TabIndex = 5;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(317, 282);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(106, 35);
-            this.btnRefresh.TabIndex = 6;
-            this.btnRefresh.Text = "Ververs";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 18F);
@@ -1132,8 +1105,6 @@ namespace ICT4EVENT
         private Label label1;
         private TextBox tbNewPassword2;
         private Label label2;
-        private Button button1;
-        private Button button2;
         private Label lblRFIDFromProfile;
         private Label lblTelefoonNummer;
         private Label lblEmailFromUser;

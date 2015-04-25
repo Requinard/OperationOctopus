@@ -14,12 +14,12 @@ namespace ICT4EVENT
             this.postReportModel = postReportModel;
 
             //Size = new Size(970, 150);
-            UserPost userPost = new UserPost(postReportModel.Post);
-            flowPost.Controls.Add(userPost);
+            ControlPost controlPost = new ControlPost(postReportModel.Post);
+            flowPost.Controls.Add(controlPost);
             lblReason.Text += postReportModel.Reason;
             lblReportedBy.Text += postReportModel.User.Username;
 
-            this.Size = new Size(Width,userPost.Height +3);
+            this.Size = new Size(Width,controlPost.Height +3);
 
         }
 
