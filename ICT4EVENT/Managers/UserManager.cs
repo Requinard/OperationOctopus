@@ -283,6 +283,10 @@
             {
                 return false;
             }
+            if (!reader.HasRows)
+            {
+                return false;
+            }
 
             return true;
         }

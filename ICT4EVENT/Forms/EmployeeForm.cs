@@ -315,8 +315,11 @@ namespace ICT4EVENT
             {
                 if (_event.EventItem.Name == text)
                 {
-                    ispaid = UserManager.SeeIfRegistrationIsPaid(_event);
-                    break;
+                    if(UserManager.SeeIfRegistrationIsPaid(_event) == true)
+                    {
+                        ispaid = true;
+                        break;
+                    }
                 }
             }
             if (ispaid)
