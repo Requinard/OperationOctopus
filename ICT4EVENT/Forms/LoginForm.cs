@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using ApplicationLogger;
 using Phidgets;
 using Phidgets.Events;
-using Phidget21COM;
+//using Phidget21COM;
 
 namespace ICT4EVENT
 {
