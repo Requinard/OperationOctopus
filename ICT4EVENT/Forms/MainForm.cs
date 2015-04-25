@@ -44,7 +44,10 @@ namespace ICT4EVENT
                 nmrPlaats.Items.Clear();
                 foreach (PlaceModel place in EquipmentManager.GetAllPlaces())
                 {
-                    nmrPlaats.Items.Add(place.Location);
+                    if (!EquipmentManager.CheckIfPlaceIsAvailable(place))
+                    {
+                        nmrPlaats.Items.Add(place.Location);
+                    }
                 }
             }
             catch
