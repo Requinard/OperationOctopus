@@ -105,8 +105,9 @@ namespace ICT4EVENT
 
         private void FillPostList()
         {
-            var postModels = PostManager.GetPostsByPage();
-            if (postModels == null) return;
+            flowPosts.Controls.Clear();
+            var postModels = PostManager.GetPostsByPage(null,currentPage,10);
+            if (postModels.Count == 0) return;
             foreach (var postModel in postModels)
             {
                 if (postModel.Parent == null)
@@ -219,11 +220,11 @@ namespace ICT4EVENT
                     }
                     if (haspaid)
                     {
-                        lblPaidCheck.Text = "Betaald : Betaald";
+                        pbPaidCheck.BackColor = Color.GreenYellow;
                     }
                     else
                     {
-                        lblPaidCheck.Text = "Betaald : Niet betaald";
+                        pbPaidCheck.BackColor = Color.Red;
                     }
 
                     if (action)
@@ -483,14 +484,9 @@ namespace ICT4EVENT
 
         private void pageModifier(int direction)
         {
-            flowPosts.Controls.Clear();
-            List<PostModel> postModels = PostManager.GetPostsByPage(null, currentPage + direction, 10);
-            {
-                foreach (PostModel postModel in postModels)
-                {
-                    flowPosts.Controls.Add(new ControlPost(postModel));
-                }
-            }
+            currentPage += direction;
+            numPage.Value = currentPage;
+            FillPostList();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -616,13 +612,14 @@ namespace ICT4EVENT
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void numPage_ValueChanged(object sender, EventArgs e)
         {
-            
-        }
+            if (numPage.Value != currentPage)
+            {
+                currentPage = (int)numPage.Value;
+                pageModifier(0);
+            }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
         }
     }
 }

@@ -43,6 +43,7 @@ namespace ICT4EVENT
             this.gbDynamic = new System.Windows.Forms.GroupBox();
             this.tabMainTab = new System.Windows.Forms.TabControl();
             this.tabSocialMediaSharingSystem = new System.Windows.Forms.TabPage();
+            this.numPage = new System.Windows.Forms.NumericUpDown();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblSelectedFile = new System.Windows.Forms.Label();
             this.btnPreviousPage = new System.Windows.Forms.Button();
@@ -72,7 +73,8 @@ namespace ICT4EVENT
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPaymentStat = new System.Windows.Forms.TabPage();
-            this.lblPaidCheck = new System.Windows.Forms.Label();
+            this.gbPaymentStatus = new System.Windows.Forms.GroupBox();
+            this.pbPaidCheck = new System.Windows.Forms.PictureBox();
             this.lblPaidEvent = new System.Windows.Forms.Label();
             this.lblPaidUsername = new System.Windows.Forms.Label();
             this.tabReserved = new System.Windows.Forms.TabPage();
@@ -116,12 +118,15 @@ namespace ICT4EVENT
             this.gbDynamic.SuspendLayout();
             this.tabMainTab.SuspendLayout();
             this.tabSocialMediaSharingSystem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPage)).BeginInit();
             this.tabMaterialrent.SuspendLayout();
             this.groupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
             this.tabReservePlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPaymentStat.SuspendLayout();
+            this.gbPaymentStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPaidCheck)).BeginInit();
             this.tabReserved.SuspendLayout();
             this.tabProfile.SuspendLayout();
             this.gbProfielen.SuspendLayout();
@@ -274,6 +279,7 @@ namespace ICT4EVENT
             // 
             // tabSocialMediaSharingSystem
             // 
+            this.tabSocialMediaSharingSystem.Controls.Add(this.numPage);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnSearch);
             this.tabSocialMediaSharingSystem.Controls.Add(this.lblSelectedFile);
             this.tabSocialMediaSharingSystem.Controls.Add(this.btnPreviousPage);
@@ -291,17 +297,27 @@ namespace ICT4EVENT
             this.tabSocialMediaSharingSystem.Text = "Social Media Sharing System";
             this.tabSocialMediaSharingSystem.UseVisualStyleBackColor = true;
             // 
+            // numPage
+            // 
+            this.numPage.Location = new System.Drawing.Point(628, 539);
+            this.numPage.MinimumSize = new System.Drawing.Size(73, 0);
+            this.numPage.Name = "numPage";
+            this.numPage.Size = new System.Drawing.Size(77, 25);
+            this.numPage.TabIndex = 17;
+            this.numPage.ValueChanged += new System.EventHandler(this.numPage_ValueChanged);
+            // 
             // btnSearch
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Font = new System.Drawing.Font("Agency FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSearch.Location = new System.Drawing.Point(629, 531);
+            this.btnSearch.Location = new System.Drawing.Point(710, 539);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(154, 32);
+            this.btnSearch.Size = new System.Drawing.Size(73, 25);
             this.btnSearch.TabIndex = 16;
             this.btnSearch.Tag = "SMSS";
             this.btnSearch.Text = "Zoek";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -316,8 +332,9 @@ namespace ICT4EVENT
             // 
             // btnPreviousPage
             // 
+            this.btnPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPreviousPage.Font = new System.Drawing.Font("Agency FB", 21.75F);
-            this.btnPreviousPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPreviousPage.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnPreviousPage.Location = new System.Drawing.Point(628, 571);
             this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnPreviousPage.Name = "btnPreviousPage";
@@ -330,8 +347,10 @@ namespace ICT4EVENT
             // 
             // btnNextPage
             // 
+            this.btnNextPage.BackColor = System.Drawing.Color.Transparent;
+            this.btnNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnNextPage.Font = new System.Drawing.Font("Agency FB", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNextPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnNextPage.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnNextPage.Location = new System.Drawing.Point(710, 571);
             this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnNextPage.Name = "btnNextPage";
@@ -339,7 +358,7 @@ namespace ICT4EVENT
             this.btnNextPage.TabIndex = 13;
             this.btnNextPage.Tag = "SMSS";
             this.btnNextPage.Text = ">";
-            this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.UseVisualStyleBackColor = false;
             this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // flowPosts
@@ -358,7 +377,7 @@ namespace ICT4EVENT
             treeNode1.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
-            this.treeCategorie.Size = new System.Drawing.Size(155, 451);
+            this.treeCategorie.Size = new System.Drawing.Size(155, 460);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
             this.treeCategorie.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeCategorie_AfterSelect);
@@ -603,7 +622,7 @@ namespace ICT4EVENT
             // 
             // tabPaymentStat
             // 
-            this.tabPaymentStat.Controls.Add(this.lblPaidCheck);
+            this.tabPaymentStat.Controls.Add(this.gbPaymentStatus);
             this.tabPaymentStat.Controls.Add(this.lblPaidEvent);
             this.tabPaymentStat.Controls.Add(this.lblPaidUsername);
             this.tabPaymentStat.Location = new System.Drawing.Point(4, 27);
@@ -613,38 +632,46 @@ namespace ICT4EVENT
             this.tabPaymentStat.Text = "Betalingsstatus";
             this.tabPaymentStat.UseVisualStyleBackColor = true;
             // 
-            // lblPaidCheck
+            // gbPaymentStatus
             // 
-            this.lblPaidCheck.AutoSize = true;
-            this.lblPaidCheck.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblPaidCheck.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidCheck.Location = new System.Drawing.Point(277, 222);
-            this.lblPaidCheck.Name = "lblPaidCheck";
-            this.lblPaidCheck.Size = new System.Drawing.Size(56, 24);
-            this.lblPaidCheck.TabIndex = 2;
-            this.lblPaidCheck.Text = "Betaald:";
+            this.gbPaymentStatus.Controls.Add(this.pbPaidCheck);
+            this.gbPaymentStatus.Location = new System.Drawing.Point(4, 297);
+            this.gbPaymentStatus.Name = "gbPaymentStatus";
+            this.gbPaymentStatus.Size = new System.Drawing.Size(802, 109);
+            this.gbPaymentStatus.TabIndex = 4;
+            this.gbPaymentStatus.TabStop = false;
+            this.gbPaymentStatus.Text = "Betalings status";
+            // 
+            // pbPaidCheck
+            // 
+            this.pbPaidCheck.BackColor = System.Drawing.Color.RoyalBlue;
+            this.pbPaidCheck.Location = new System.Drawing.Point(6, 24);
+            this.pbPaidCheck.Name = "pbPaidCheck";
+            this.pbPaidCheck.Size = new System.Drawing.Size(793, 73);
+            this.pbPaidCheck.TabIndex = 3;
+            this.pbPaidCheck.TabStop = false;
             // 
             // lblPaidEvent
             // 
-            this.lblPaidEvent.AutoSize = true;
             this.lblPaidEvent.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblPaidEvent.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidEvent.Location = new System.Drawing.Point(211, 194);
+            this.lblPaidEvent.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidEvent.Location = new System.Drawing.Point(3, 55);
             this.lblPaidEvent.Name = "lblPaidEvent";
-            this.lblPaidEvent.Size = new System.Drawing.Size(107, 24);
+            this.lblPaidEvent.Size = new System.Drawing.Size(795, 30);
             this.lblPaidEvent.TabIndex = 1;
             this.lblPaidEvent.Text = "Evenementnaam:";
+            this.lblPaidEvent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPaidUsername
             // 
-            this.lblPaidUsername.AutoSize = true;
             this.lblPaidUsername.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblPaidUsername.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidUsername.Location = new System.Drawing.Point(208, 166);
+            this.lblPaidUsername.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidUsername.Location = new System.Drawing.Point(4, 9);
             this.lblPaidUsername.Name = "lblPaidUsername";
-            this.lblPaidUsername.Size = new System.Drawing.Size(109, 24);
+            this.lblPaidUsername.Size = new System.Drawing.Size(795, 30);
             this.lblPaidUsername.TabIndex = 0;
             this.lblPaidUsername.Text = "Gebruikersnaam:";
+            this.lblPaidUsername.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tabReserved
             // 
@@ -676,7 +703,7 @@ namespace ICT4EVENT
             this.listReservedPlaces.ItemHeight = 18;
             this.listReservedPlaces.Location = new System.Drawing.Point(413, 49);
             this.listReservedPlaces.Name = "listReservedPlaces";
-            this.listReservedPlaces.Size = new System.Drawing.Size(357, 400);
+            this.listReservedPlaces.Size = new System.Drawing.Size(357, 562);
             this.listReservedPlaces.TabIndex = 2;
             // 
             // label9
@@ -693,9 +720,9 @@ namespace ICT4EVENT
             // 
             this.listReservedMaterials.FormattingEnabled = true;
             this.listReservedMaterials.ItemHeight = 18;
-            this.listReservedMaterials.Location = new System.Drawing.Point(36, 53);
+            this.listReservedMaterials.Location = new System.Drawing.Point(36, 49);
             this.listReservedMaterials.Name = "listReservedMaterials";
-            this.listReservedMaterials.Size = new System.Drawing.Size(357, 400);
+            this.listReservedMaterials.Size = new System.Drawing.Size(357, 562);
             this.listReservedMaterials.TabIndex = 0;
             // 
             // tabProfile
@@ -835,7 +862,7 @@ namespace ICT4EVENT
             this.lblUserDisplayName.TabIndex = 9;
             this.lblUserDisplayName.Tag = "Settings";
             this.lblUserDisplayName.Text = "Display Name: ";
-            this.lblUserDisplayName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblUserDisplayName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tabSettings
             // 
@@ -1032,7 +1059,6 @@ namespace ICT4EVENT
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "MainForm";
             this.Text = "Social Media Sharing System";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbStaticUpdates.ResumeLayout(false);
             this.gbStaticUpdates.PerformLayout();
@@ -1043,6 +1069,7 @@ namespace ICT4EVENT
             this.tabMainTab.ResumeLayout(false);
             this.tabSocialMediaSharingSystem.ResumeLayout(false);
             this.tabSocialMediaSharingSystem.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPage)).EndInit();
             this.tabMaterialrent.ResumeLayout(false);
             this.groupDetails.ResumeLayout(false);
             this.groupDetails.PerformLayout();
@@ -1051,7 +1078,8 @@ namespace ICT4EVENT
             this.tabReservePlace.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPaymentStat.ResumeLayout(false);
-            this.tabPaymentStat.PerformLayout();
+            this.gbPaymentStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPaidCheck)).EndInit();
             this.tabReserved.ResumeLayout(false);
             this.tabReserved.PerformLayout();
             this.tabProfile.ResumeLayout(false);
@@ -1144,7 +1172,6 @@ namespace ICT4EVENT
         private Label lblTelephoneNumber;
         private TextBox tbNewEmail;
         private Label lblEmail;
-        private Label lblPaidCheck;
         private Label lblPaidEvent;
         private Label lblPaidUsername;
         private TabPage tabReserved;
@@ -1152,6 +1179,9 @@ namespace ICT4EVENT
         private ListBox listReservedMaterials;
         private Label label10;
         private ListBox listReservedPlaces;
+        private GroupBox gbPaymentStatus;
+        private PictureBox pbPaidCheck;
+        private NumericUpDown numPage;
     }
 }
 
