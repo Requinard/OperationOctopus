@@ -7,13 +7,17 @@ using System.Windows.Forms.VisualStyles;
 
 namespace ICT4EVENT
 {
-    public partial class UserPost : UserControl
+    public partial class ControlPost : UserControl
     {
         private PostModel postModel;
         private bool comment = false;
         private bool report = false;
 
-        public UserPost(PostModel model)
+        public delegate void LinkClickedInControlEventHandler(UserModel userModel);
+
+        public static event LinkClickedInControlEventHandler ControlLinkClicked;
+
+        public ControlPost(PostModel model)
 
         {
             InitializeComponent();
@@ -40,14 +44,32 @@ namespace ICT4EVENT
             }
             else
             {
-                if (!File.Exists(postModel.PathToFile))
-                    FTPManager.DownloadFile(postModel.PathToFile);
-                pbMedia.Enabled = true;
+                string extention = Path.GetExtension(postModel.PathToFile);
+                if (extention == ".avi" || extention == ".mov" || extention == ".mp4" || extention == ".wmv")
+                {
+                    if (!File.Exists(postModel.PathToFile))
+                        FTPManager.DownloadFile(postModel.PathToFile);
+                    mpMedia.Enabled = true;
+                    mpMedia.Visible = true;
 
-                pbMedia.Image = Image.FromFile(postModel.PathToFile);
+                    mpMedia.URL = postModel.PathToFile;
 
-                pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
-                Size = new Size(Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
+                    mpMedia.Location = new Point(mpMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
+                    Size = new Size(Size.Width, (mpMedia.Location.Y + mpMedia.Size.Height + 8));
+
+                    mpMedia.Ctlcontrols.stop();
+                }
+                else
+                {
+                    if (!File.Exists(postModel.PathToFile))
+                        FTPManager.DownloadFile(postModel.PathToFile);
+                    pbMedia.Enabled = true;
+
+                    pbMedia.Image = Image.FromFile(postModel.PathToFile);
+
+                    pbMedia.Location = new Point(pbMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
+                    Size = new Size(Size.Width, (pbMedia.Location.Y + pbMedia.Size.Height + 3));
+                }
             }
 
             Random r = new Random();
@@ -63,9 +85,9 @@ namespace ICT4EVENT
                 flowComment.Visible = true;
                 foreach (PostModel comment1 in comments)
                 {
-                    UserPost commentUserPost = new UserPost(comment1);
-                    commentUserPost.BackColor = BackColor;
-                    flowComment.Controls.Add(commentUserPost);
+                    ControlPost commentControlPost = new ControlPost(comment1);
+                    commentControlPost.BackColor = BackColor;
+                    flowComment.Controls.Add(commentControlPost);
                 }
                 postHasComment();
                 
@@ -169,9 +191,9 @@ namespace ICT4EVENT
                     flowComment.Enabled = true;
                     flowComment.Visible = true;
 
-                    UserPost commentUserPost = new UserPost(commentPostModel);
-                    commentUserPost.BackColor = BackColor;
-                    flowComment.Controls.Add(commentUserPost);
+                    ControlPost commentControlPost = new ControlPost(commentPostModel);
+                    commentControlPost.BackColor = BackColor;
+                    flowComment.Controls.Add(commentControlPost);
                     postHasComment();
                 }
             }
@@ -202,6 +224,14 @@ namespace ICT4EVENT
             flowComment.Location = new Point(-3, this.Height);
             this.Size = new Size(this.Width, flowComment.Location.Y + flowComment.Size.Height + 3);
 
+        }
+
+        private void lblPoster_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (ControlLinkClicked != null)
+            {
+                ControlLinkClicked(postModel.User);
+            }
         }
     }
 }

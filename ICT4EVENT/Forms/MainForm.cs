@@ -1,22 +1,33 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using ICT4EVENT.Models;
+using Microsoft.VisualBasic;
+
+#endregion
 
 namespace ICT4EVENT
 {
     public partial class MainForm : Form
     {
-        private string filePath = "";
         private int currentPage = 0;
+        private string filePath = "";
 
         public MainForm()
         {
             InitializeComponent();
-            FillList();
+
+            FillPostList();
             //FillMaterials();
+            FillReservedMaterials();
+            FillReservedPlaces();
+            FillAllPlaces();
             treeTags();
             //UpdateProfile(Settings.ActiveUser);
+            ControlPost.ControlLinkClicked += PostLinkClicked;
         }
 
         public ComboBox cbProfileSelector { get; set; }
@@ -25,25 +36,83 @@ namespace ICT4EVENT
         {
             if (Settings.DEBUG)
             {
-                CreateTestPosts();
+               
             }
             DynamicButtonLogic(false);
         }
 
-        private void CreateTestPosts()
+        private void FillAllPlaces()
         {
-            PostManager.CreateNewPost("Wat is het social media event toch geweldig");
+            lbUser.Items.Clear();
+            lbUser.Items.Add(Settings.ActiveUser.Username);
+            try
+            {
+                nmrPlaats.Items.Clear();
+                foreach (PlaceModel place in EquipmentManager.GetAllPlaces())
+                {
+                    if (!EquipmentManager.CheckIfPlaceIsAvailable(place))
+                    {
+                        nmrPlaats.Items.Add(place.Location);
+                    }
+                }
+            }
+            catch
+            {
+            }
         }
 
-        private void FillList()
+        private void FillReservedMaterials()
         {
-            var postModels = PostManager.GetPostsByPage();
-            if(postModels == null) return;
+            try
+            {
+                listReservedMaterials.Items.Clear();
+                List<RentableReservationModel> rentables = EquipmentManager.GetUserReservations(Settings.ActiveUser);
+                foreach (RentableReservationModel rentable in rentables)
+                {
+                    if (rentable.Rentable.ObjectType != "")
+                    {
+                        listReservedMaterials.Items.Add(rentable.Rentable.ObjectType);
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void FillReservedPlaces()
+        {
+            try
+            {
+                listReservedPlaces.Items.Clear();
+                List<PlaceReservationModel> places = EquipmentManager.GetUserPlaceReservations(Settings.ActiveUser);
+                foreach (PlaceReservationModel place in places)
+                {
+                    listReservedPlaces.Items.Add(place.Place.Location);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void PostLinkClicked(UserModel userModel)
+        {
+            tabMainTab.SelectTab(tabProfile);
+            tbSearchUser.Text = userModel.Username;
+            DynamicButtonLogic(true);
+        }
+
+        private void FillPostList()
+        {
+            flowPosts.Controls.Clear();
+            var postModels = PostManager.GetPostsByPage(null,currentPage,10);
+            if (postModels.Count == 0) return;
             foreach (var postModel in postModels)
             {
                 if (postModel.Parent == null)
                 {
-                    flowPosts.Controls.Add(new UserPost(postModel));  
+                    flowPosts.Controls.Add(new ControlPost(postModel));
                 }
             }
         }
@@ -61,7 +130,12 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
+            tabSocialMediaSharingSystem.Enabled = false;
             DynamicButtonLogic(false);
+            if (tabMainTab.SelectedTab == tabPaymentStat)
+            {
+                
+            }
         }
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
@@ -71,80 +145,119 @@ namespace ICT4EVENT
 
         public void DynamicButtonLogic(bool action)
         {
-            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
+            if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem ||
+                tabMainTab.SelectedTab == tabMaterialrent || 
+                tabMainTab.SelectedTab == tabProfile ||
+                tabMainTab.SelectedTab == tabSettings ||
+                tabMainTab.SelectedTab == tabPaymentStat)
             {
-                btnDynamicButton.Text = "Post";
-
-                // button actions happen here
-                if (action)
+                if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem)
                 {
-                    if (tbPostContent.Text != "" || filePath != "")
+                    btnDynamicButton.Text = "Post";
+
+                    // button actions happen here
+                    if (action)
                     {
-                      var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
-
-                      if (postModel != null)
-                      {
-                          Control[] oldControls = new Control[flowPosts.Controls.Count];
-                          flowPosts.Controls.CopyTo(oldControls, 0);
-                          flowPosts.Controls.Clear();
-
-
-                          flowPosts.Controls.Add(new UserPost(postModel));
-
-                          flowPosts.Controls.AddRange(oldControls);
-
-                          filePath = "";
-                      }
-                    treeTags();  
-                    }
-                    else
-                    {
-                        MessageBox.Show("Type een bericht of voeg een mediabestand toe");
-                    }
-                }
-                
-            }
-            if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
-            {
-                btnDynamicButton.Text = "Huur";
-                FillMaterials();
-
-                // button actions happen here
-                if (action)
-                {
-                    ReserveMaterial();
-                }
-            }
-            if (tabMainTab.SelectedTab.Name == "tabProfile")
-            {
-                btnDynamicButton.Text = "Search User";
-
-                // button actions happen here
-                if (action)
-                {
-                    SearchUser();
-                }
-            }
-            if (tabMainTab.SelectedTab.Name == "tabSettings")
-            {
-                btnDynamicButton.Text = "Bevestig";
-
-                // button actions happen here
-                if (action)
-                {
-                    if (tbNewPassword.Text == tbNewPassword2.Text)
-                    {
-                        if (UserManager.ChangeUserPassword(tbNewPassword.Text))
+                        if (tbPostContent.Text != "" || filePath != "")
                         {
-                            MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
+                            var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+
+                            if (postModel != null)
+                            {
+                                Control[] oldControls = new Control[flowPosts.Controls.Count];
+                                flowPosts.Controls.CopyTo(oldControls, 0);
+                                flowPosts.Controls.Clear();
+
+
+                                flowPosts.Controls.Add(new ControlPost(postModel));
+
+                                flowPosts.Controls.AddRange(oldControls);
+
+                                filePath = "";
+
+                                btnMediaFile.Size = new Size(156, 57);
+                                btnMediaFile.ForeColor = Color.Black;
+                                lblSelectedFile.Enabled = false;
+                                lblSelectedFile.Visible = false;
+                            }
+                            treeTags();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Type een bericht of voeg een mediabestand toe");
                         }
                     }
+                }
+                if (tabMainTab.SelectedTab == tabMaterialrent)
+                {
+                    btnDynamicButton.Text = "Huur";
+                    FillMaterials();
+
+                    // button actions happen here
+                    if (action)
+                    {
+                        ReserveMaterial();
+                    }
+                }
+                if (tabMainTab.SelectedTab == tabPaymentStat)
+                {
+                    btnDynamicButton.Text = "Ververs";
+
+                    lblPaidUsername.Text = string.Format("Gebruikersnaam : {0}",Settings.ActiveUser.Username);
+                    lblPaidEvent.Text = string.Format("Evenementnaam : {0}", Settings.ActiveEvent.Name); ;
+                    List<RegistrationModel> registrations = UserManager.GetUserRegistrations(Settings.ActiveUser);
+                    bool haspaid = false;
+                    foreach (RegistrationModel registration in registrations)
+                    {
+                        if (registration.EventItem.Id == Settings.ActiveEvent.Id)
+                        {
+                            if (UserManager.SeeIfRegistrationIsPaid(registration))
+                            {
+                                haspaid = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (haspaid)
+                    {
+                        pbPaidCheck.BackColor = Color.GreenYellow;
+                    }
                     else
                     {
-                        MessageBox.Show("De wachtwoorden komen niet overeen");
+                        pbPaidCheck.BackColor = Color.Red;
                     }
-                    
+
+                    if (action)
+                    {
+                        tabMainTab.SelectedTab.Refresh();
+                    }
+
                 }
+
+                if (tabMainTab.SelectedTab == tabProfile)
+                {
+                    btnDynamicButton.Text = "Search User";
+
+                    // button actions happen here
+                    if (action)
+                    {
+                        SearchUser();
+                    }
+                }
+                if (tabMainTab.SelectedTab == tabSettings)
+                {
+                    btnDynamicButton.Text = "Bevestig";
+
+                    // button actions happen here
+                    if (action)
+                    {
+                        changeUserInformation();
+                    }
+                }
+            }
+            else
+            {
+                btnDynamicButton.Text = "Geen actie";
             }
         }
 
@@ -163,16 +276,64 @@ namespace ICT4EVENT
             }
         }
 
+        private void changeUserInformation()
+        {
+            bool changed = false;
+            if (tbNewUserName.Text != "")
+            {
+                Settings.ActiveUser.Username = tbNewUserName.Text;
+                changed = true;
+            }
+            if (tbNewEmail.Text != "")
+            {
+                Settings.ActiveUser.Email = tbNewEmail.Text;
+                changed = true;
+            }
+            if (tbNewTelephoneNumber.Text != "")
+            {
+                Settings.ActiveUser.Telephonenumber = tbNewTelephoneNumber.Text;
+                changed = true;
+            }
+            if (tbNewPassword.Text != "" || tbNewPassword2.Text != "")
+            {
+                if (tbNewPassword.Text == tbNewPassword2.Text)
+                {
+                    if (UserManager.ChangeUserPassword(Settings.ActiveUser, tbNewPassword.Text))
+                    {
+                        MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
+                        changed = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("De wachtwoorden komen niet overeen");
+                }
+            }
+            if (changed)
+            {
+                if (Settings.ActiveUser.Update())
+                {
+                    MessageBox.Show("Succesvol aangepast");
+                }
+                else
+                {
+                    MessageBox.Show("Oeps er is iets mis gegaan");
+                }
+            }
+        }
+
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
-
-
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
                 filePath = openFileDialog1.FileName;
+                btnMediaFile.ForeColor = Color.LawnGreen;
+                btnMediaFile.Size = new Size(156, 32);
+                lblSelectedFile.Enabled = true;
+                lblSelectedFile.Visible = true;
+                lblSelectedFile.Text = openFileDialog1.SafeFileNames[0];
             }
-
         }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
@@ -186,7 +347,7 @@ namespace ICT4EVENT
             catch
             {
                 MessageBox.Show("Selecteer eerst een product");
-            } 
+            }
         }
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
@@ -225,7 +386,7 @@ namespace ICT4EVENT
             if (tag == "All Posts")
             {
                 flowPosts.Controls.Clear();
-                FillList();
+                FillPostList();
                 return;
             }
 
@@ -238,15 +399,19 @@ namespace ICT4EVENT
 
             foreach (var postModel in posts)
             {
-                flowPosts.Controls.Add(new UserPost(postModel));
+                flowPosts.Controls.Add(new ControlPost(postModel));
             }
         }
 
         private void UpdateProfile(UserModel user)
         {
-            lblUserDisplayName.Text = user.Username;
+            gbPostsOfUser.Text = string.Format("Posts van {0}", user.Username);
+            gbProfileOfUser.Text = string.Format("Profiel van {0}", user.Username);
 
-            lblUserDescription.Text = user.Address;
+            lblUserDisplayName.Text = string.Format("Weergave naam : {0}", user.Username);
+            lblRFIDFromProfile.Text = string.Format("RFID : {0}", user.RfiDnumber);
+            lblEmailFromUser.Text = string.Format("Email : {0}", user.Email);
+            lblTelefoonNummer.Text = string.Format("Telefoonnummer: {0}", user.Telephonenumber);
 
             List<PostModel> posts = PostManager.GetUserPosts(user);
 
@@ -256,14 +421,13 @@ namespace ICT4EVENT
             {
                 foreach (PostModel post in posts)
                 {
-                    flowPostsFromUser.Controls.Add(new UserPost(post));
+                    flowPostsFromUser.Controls.Add(new ControlPost(post));
                 }
             }
         }
 
         private void tbSearchUser_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void SearchUser()
@@ -293,12 +457,14 @@ namespace ICT4EVENT
                     {
                         if (rentableobject.ObjectType == rentable)
                         {
-                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject, Convert.ToInt32(numAmount.Value));
+                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject,
+                                Convert.ToInt32(numAmount.Value));
                         }
                     }
                 }
                 MessageBox.Show("Artikelen besteld");
                 listCart.Items.Clear();
+                FillReservedMaterials();
             }
             else
             {
@@ -318,20 +484,142 @@ namespace ICT4EVENT
 
         private void pageModifier(int direction)
         {
-            flowPosts.Controls.Clear();
-            List<PostModel> postModels = PostManager.GetPostsByPage(null, currentPage + direction, 10);
-            {
-                foreach (PostModel postModel in postModels)
-                {
-                    flowPosts.Controls.Add(new UserPost(postModel));
-                }
-            }
+            currentPage += direction;
+            numPage.Value = currentPage;
+            FillPostList();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             //Als we dit form sluiten gaan we automatisch terug naar inlog
-            this.Close(); 
+            Close();
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            int num;
+            bool isRfid = int.TryParse(txtGebruikers.Text, out num);
+
+            if (isRfid)
+            {
+                if (UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text)) != null)
+                {
+                    lbUser.Items.Add(txtGebruikers.Text);
+                    txtGebruikers.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
+            }
+            else
+            {
+                if (UserManager.FindUser(txtGebruikers.Text) != null)
+                {
+                    lbUser.Items.Add(txtGebruikers.Text);
+                    txtGebruikers.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
+            }
+        }
+
+        private void btnReserve_Click(object sender, EventArgs e)
+        {
+            PlaceModel plaats = null;
+            List<PlaceModel> places = EquipmentManager.GetAllPlaces();
+
+            foreach (PlaceModel pm in places)
+            {
+                if (pm.Location == nmrPlaats.Text)
+                {
+                    plaats = pm;
+                    break;
+                }
+            }
+
+            if (plaats != null)
+            {
+                if (CheckPlaceSize(Convert.ToInt32(nmrPlaats.Text), lbUser.Items.Count))
+                {
+                    List<UserModel> users = new List<UserModel>();
+                    foreach (string user in lbUser.Items)
+                    {
+                        users.Add(UserManager.FindUser(user));
+                    }
+
+                    foreach (UserModel user in users)
+                    {
+                        EquipmentManager.MakePlaceReservationModel(user, plaats);
+                    }
+                    MessageBox.Show("Succesvol gereserveerd");
+                    nmrPlaats.SelectedIndex = 0;
+                    lbUser.Items.Clear();
+                    FillAllPlaces();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Deze plaats is niet beschikbaar.");
+            }
+            FillReservedPlaces();
+        }
+
+        public bool CheckPlaceSize(int place, int amountofusers)
+        {
+            if (amountofusers == 0)
+            {
+                MessageBox.Show("Vul minstens een persoon in bij gebruikers");
+                return false;
+            }
+            if (place == 0)
+            {
+                MessageBox.Show("Vul een geldige plaats in bij plaats");
+                return false;
+            }
+            return true;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox("Zoek");
+
+            if (input != "")
+            {
+                List<PostModel> postModels = PostManager.FindPost(input);
+                if (postModels != null)
+                {
+                    flowPosts.Controls.Clear();
+                    foreach (PostModel postModel in postModels)
+                    {
+                        flowPosts.Controls.Add(new ControlPost(postModel));
+                    }
+                    MessageBox.Show(string.Format("Er zijn {0} resultaten gevonden", postModels.Count));
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Geen posts gevonden");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vul een zoek term in");
+            }
+        }
+
+        private void numPage_ValueChanged(object sender, EventArgs e)
+        {
+            if (numPage.Value != currentPage)
+            {
+                currentPage = (int)numPage.Value;
+                pageModifier(0);
+            }
+
         }
     }
 }

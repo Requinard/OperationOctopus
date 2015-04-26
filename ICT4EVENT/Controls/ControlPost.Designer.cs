@@ -1,6 +1,6 @@
 ﻿namespace ICT4EVENT
 {
-    partial class UserPost
+    partial class ControlPost
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlPost));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblText = new System.Windows.Forms.Label();
             this.lblPoster = new System.Windows.Forms.LinkLabel();
@@ -39,9 +40,11 @@
             this.btnReportConfirm = new System.Windows.Forms.Button();
             this.gbAction = new System.Windows.Forms.GroupBox();
             this.btnComment = new System.Windows.Forms.Button();
+            this.mpMedia = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).BeginInit();
             this.gbAction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mpMedia)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -79,6 +82,7 @@
             this.lblPoster.TabStop = true;
             this.lblPoster.Tag = "UserControl";
             this.lblPoster.Text = "@<Displayname>";
+            this.lblPoster.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblPoster_LinkClicked);
             // 
             // pbMedia
             // 
@@ -173,11 +177,22 @@
             this.btnComment.UseVisualStyleBackColor = true;
             this.btnComment.Click += new System.EventHandler(this.btnComment_Click);
             // 
-            // UserPost
+            // mpMedia
+            // 
+            this.mpMedia.Enabled = true;
+            this.mpMedia.Location = new System.Drawing.Point(109, 96);
+            this.mpMedia.Name = "mpMedia";
+            this.mpMedia.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mpMedia.OcxState")));
+            this.mpMedia.Size = new System.Drawing.Size(450, 320);
+            this.mpMedia.TabIndex = 12;
+            this.mpMedia.Visible = false;
+            // 
+            // ControlPost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Controls.Add(this.mpMedia);
             this.Controls.Add(this.btnComment);
             this.Controls.Add(this.gbAction);
             this.Controls.Add(this.btnReport);
@@ -189,12 +204,13 @@
             this.Controls.Add(this.pictureBox1);
             this.MaximumSize = new System.Drawing.Size(593, 3000);
             this.MinimumSize = new System.Drawing.Size(593, 164);
-            this.Name = "UserPost";
+            this.Name = "ControlPost";
             this.Size = new System.Drawing.Size(593, 347);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).EndInit();
             this.gbAction.ResumeLayout(false);
             this.gbAction.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mpMedia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +229,6 @@
         private System.Windows.Forms.Button btnReportConfirm;
         private System.Windows.Forms.GroupBox gbAction;
         private System.Windows.Forms.Button btnComment;
+        private AxWMPLib.AxWindowsMediaPlayer mpMedia;
     }
 }

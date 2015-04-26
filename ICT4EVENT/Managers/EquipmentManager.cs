@@ -159,6 +159,30 @@ namespace ICT4EVENT
             return reservations;
         }
 
+        public static List<PlaceReservationModel> GetUserPlaceReservations(UserModel user)
+        {
+            List<PlaceReservationModel> reservations = new List<PlaceReservationModel>();
+            string query = String.Format("SELECT * FROM RESERVATION R, ITEM I WHERE R.ITEMID = I.IDENT AND I.ITEMTYPE = 'Place' AND USERID = '{0}'", user.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return null;
+            }
+
+            while (reader.Read())
+            {
+                PlaceReservationModel placeReservation = new PlaceReservationModel();
+
+                placeReservation.ReadFromReader(reader);
+
+                reservations.Add(placeReservation);
+            }
+
+            return reservations;
+        }
+
         /// <summary>
         /// Reserves a rentable object for a user
         /// </summary>
@@ -205,6 +229,23 @@ namespace ICT4EVENT
             }
 
             return null;
+        }
+
+        public static bool CheckIfPlaceIsAvailable(PlaceModel place)
+        {
+            string query = String.Format("SELECT * FROM RESERVATION R, ITEM I WHERE R.ITEMID = I.IDENT AND I.ITEMTYPE = 'Place' AND I.PLACELOCATION= '{0}'", place.Location);
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null)
+            {
+                return false;
+            }
+            if (!reader.HasRows)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

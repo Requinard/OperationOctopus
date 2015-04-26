@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ApplicationLogger;
 using Phidgets;
 using Phidgets.Events;
+//using Phidget21COM;
 
 namespace ICT4EVENT
 {
@@ -14,7 +15,6 @@ namespace ICT4EVENT
         public LoginForm()
         {
             InitializeComponent();
-
             OpenRFIDConnection();
         }
 
@@ -77,18 +77,23 @@ namespace ICT4EVENT
 
             List<RegistrationModel> regs = UserManager.GetUserRegistrations(Settings.ActiveUser);
 
-            if (regs == null)
+            if (regs == null && Settings.ActiveUser.Username != "admin")
             {
                 MessageBox.Show("Registeer je voor een event");
                 form_Closed(this, new EventArgs());
                 return false;
             }
 
-            foreach (RegistrationModel registrationModel in UserManager.GetUserRegistrations(Settings.ActiveUser))
+            if (UserManager.GetUserRegistrations(Settings.ActiveUser) != null)
             {
-                comboBox1.Items.Add(registrationModel.EventItem.Name);
+                foreach (RegistrationModel registrationModel in UserManager.GetUserRegistrations(Settings.ActiveUser))
+                {
+                    comboBox1.Items.Add(registrationModel.EventItem.Name);
+                }
+                comboBox1.SelectedIndex = 0;
             }
-            comboBox1.SelectedIndex = 0;
+            
+            
             comboOptions.Items.Add("Social Media Sharing");
             if (Settings.ActiveUser.Level >= 2)
             {
@@ -96,7 +101,7 @@ namespace ICT4EVENT
             }
             if (Settings.ActiveUser.Level >= 3)
             {
-                comboOptions.Items.Add("administratie");
+                comboOptions.Items.Add("Administrator");
             }
 
             comboOptions.Enabled = true;
@@ -135,8 +140,6 @@ namespace ICT4EVENT
                 txtUserName.Enabled = false;
                 btnLogin.Enabled = false;
             }
-
-           
         }
 
         private void openForm(Form form)
@@ -195,7 +198,6 @@ namespace ICT4EVENT
                     openForm(new EmployeeForm());
                     break;
                 case 2:
-                    Settings.ActiveEvent = EventManager.FindEvent(comboBox1.SelectedItem.ToString());
                     // TODO: Open registrations
                     if (Settings.ActiveUser == null)
                     {

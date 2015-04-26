@@ -283,6 +283,10 @@
             {
                 return false;
             }
+            if (!reader.HasRows)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -290,12 +294,13 @@
         /// <summary>
         /// changes a users password
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static bool ChangeUserPassword(string password)
+        public static bool ChangeUserPassword(UserModel user,string password)
         {
-            Settings.ActiveUser.Password = CreateHashPassword(password);
-            return Settings.ActiveUser.Update();
+            user.Password = CreateHashPassword(password);
+            return user.Update();
         }
 
         /// <summary>
