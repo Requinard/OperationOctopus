@@ -575,7 +575,7 @@ namespace ICT4EVENT
             // 
             this.btnAddUser.Location = new System.Drawing.Point(769, 123);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(30, 30);
+            this.btnAddUser.Size = new System.Drawing.Size(30, 25);
             this.btnAddUser.TabIndex = 18;
             this.btnAddUser.Text = "+";
             this.btnAddUser.UseVisualStyleBackColor = true;
@@ -590,7 +590,6 @@ namespace ICT4EVENT
             this.btnReserve.TabIndex = 17;
             this.btnReserve.Text = "Reserveer";
             this.btnReserve.UseVisualStyleBackColor = true;
-            this.btnReserve.Click += new System.EventHandler(this.btnReserve_Click);
             // 
             // txtGebruikers
             // 
