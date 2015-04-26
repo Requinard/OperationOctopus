@@ -47,12 +47,10 @@ namespace ICT4EVENT
                 string extention = Path.GetExtension(postModel.PathToFile);
                 if (extention == ".avi" || extention == ".mov" || extention == ".mp4" || extention == ".wmv")
                 {
-                    if (!File.Exists(postModel.PathToFile))
-                        FTPManager.DownloadFile(postModel.PathToFile);
+                    
                     mpMedia.Enabled = true;
                     mpMedia.Visible = true;
-
-                    mpMedia.URL = postModel.PathToFile;
+                    
 
                     mpMedia.Location = new Point(mpMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
                     Size = new Size(Size.Width, (mpMedia.Location.Y + mpMedia.Size.Height + 8));
@@ -232,6 +230,13 @@ namespace ICT4EVENT
             {
                 ControlLinkClicked(postModel.User);
             }
+        }
+
+        private void mpMedia_Enter(object sender, EventArgs e)
+        {
+            if (!File.Exists(postModel.PathToFile))
+                FTPManager.DownloadFile(postModel.PathToFile);
+            mpMedia.URL = postModel.PathToFile;
         }
     }
 }

@@ -186,6 +186,7 @@
             this.mpMedia.Size = new System.Drawing.Size(450, 320);
             this.mpMedia.TabIndex = 12;
             this.mpMedia.Visible = false;
+            this.mpMedia.Enter += new System.EventHandler(this.mpMedia_Enter);
             // 
             // ControlPost
             // 
