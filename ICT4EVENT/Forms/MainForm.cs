@@ -107,6 +107,7 @@ namespace ICT4EVENT
         {
             flowPosts.Controls.Clear();
             var postModels = PostManager.GetPostsByPage(null,currentPage,10);
+            if (postModels == null) return;
             if (postModels.Count == 0) return;
             foreach (var postModel in postModels)
             {
@@ -130,12 +131,10 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
+            tabProfile.Enabled = false;
             tabSocialMediaSharingSystem.Enabled = false;
             DynamicButtonLogic(false);
-            if (tabMainTab.SelectedTab == tabPaymentStat)
-            {
-                
-            }
+            
         }
 
         private void btnDynamicButton_Click(object sender, EventArgs e)
@@ -145,134 +144,119 @@ namespace ICT4EVENT
 
         public void DynamicButtonLogic(bool action)
         {
-            if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem ||
-                tabMainTab.SelectedTab == tabMaterialrent || 
-                tabMainTab.SelectedTab == tabProfile ||
-                tabMainTab.SelectedTab == tabSettings ||
-                tabMainTab.SelectedTab == tabPaymentStat)
+            if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem)
             {
-                if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem)
+                btnDynamicButton.Text = "Post";
+                tabSocialMediaSharingSystem.Enabled = true;
+                // button actions happen here
+                if (action)
                 {
-                    btnDynamicButton.Text = "Post";
-
-                    // button actions happen here
-                    if (action)
-                    {
-                        if (tbPostContent.Text != "" || filePath != "")
-                        {
-                            var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
-
-                            if (postModel != null)
-                            {
-                                Control[] oldControls = new Control[flowPosts.Controls.Count];
-                                flowPosts.Controls.CopyTo(oldControls, 0);
-                                flowPosts.Controls.Clear();
-
-
-                                flowPosts.Controls.Add(new ControlPost(postModel));
-
-                                flowPosts.Controls.AddRange(oldControls);
-
-                                filePath = "";
-
-                                btnMediaFile.Size = new Size(156, 57);
-                                btnMediaFile.ForeColor = Color.Black;
-                                lblSelectedFile.Enabled = false;
-                                lblSelectedFile.Visible = false;
-                            }
-                            treeTags();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Type een bericht of voeg een mediabestand toe");
-                        }
-                    }
+                    CreatePost();
+                    return;
                 }
-                if (tabMainTab.SelectedTab == tabMaterialrent)
-                {
-                    btnDynamicButton.Text = "Huur";
-                    FillMaterials();
+            }
+            else if (tabMainTab.SelectedTab == tabMaterialrent)
+            {
+                btnDynamicButton.Text = "Huur";
+                FillMaterials();
 
-                    // button actions happen here
-                    if (action)
-                    {
-                        ReserveMaterial();
-                    }
+                // button actions happen here
+                if (action)
+                {
+                    ReserveMaterial();
+                    return;
                 }
-                if (tabMainTab.SelectedTab == tabPaymentStat)
+            }
+
+            else if (tabMainTab.SelectedTab == tabReservePlace)
+            {
+                btnDynamicButton.Text = "Reserveer";
+
+                if (action)
                 {
-                    btnDynamicButton.Text = "Ververs";
+                    ReservePlace();
+                    return;
+                }
+            }
+            else if (tabMainTab.SelectedTab == tabPaymentStat)
+            {
+                btnDynamicButton.Text = "Ververs";
 
-                    lblPaidUsername.Text = string.Format("Gebruikersnaam : {0}",Settings.ActiveUser.Username);
-                    lblPaidEvent.Text = string.Format("Evenementnaam : {0}", Settings.ActiveEvent.Name); ;
-                    List<RegistrationModel> registrations = UserManager.GetUserRegistrations(Settings.ActiveUser);
-                    bool haspaid = false;
-                    foreach (RegistrationModel registration in registrations)
-                    {
-                        if (registration.EventItem.Id == Settings.ActiveEvent.Id)
-                        {
-                            if (UserManager.SeeIfRegistrationIsPaid(registration))
-                            {
-                                haspaid = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (haspaid)
-                    {
-                        pbPaidCheck.BackColor = Color.GreenYellow;
-                    }
-                    else
-                    {
-                        pbPaidCheck.BackColor = Color.Red;
-                    }
+                PaymentInfo();
 
-                    if (action)
-                    {
-                        tabMainTab.SelectedTab.Refresh();
-                    }
-
+                if (action)
+                {
+                    tabMainTab.SelectedTab.Refresh();
                 }
 
-                if (tabMainTab.SelectedTab == tabProfile)
-                {
-                    btnDynamicButton.Text = "Search User";
+            }
+            else if (tabMainTab.SelectedTab == tabReserved)
+            {
+                btnDynamicButton.Text = "Ververs";
 
-                    // button actions happen here
-                    if (action)
-                    {
-                        SearchUser();
-                    }
-                }
-                if (tabMainTab.SelectedTab == tabSettings)
-                {
-                    btnDynamicButton.Text = "Bevestig";
+                FillReservedMaterials();
+                FillReservedPlaces();
 
-                    // button actions happen here
-                    if (action)
-                    {
-                        changeUserInformation();
-                    }
+                if (action)
+                {
+                    tabMainTab.SelectedTab.Refresh();
                 }
+
+            }
+            else if (tabMainTab.SelectedTab == tabProfile)
+            {
+                btnDynamicButton.Text = "Search User";
+                tabProfile.Enabled = true;
+                // button actions happen here
+                if (action)
+                {
+                    SearchUser();
+                    return;
+                }
+            }
+            else if (tabMainTab.SelectedTab == tabSettings)
+            {
+                btnDynamicButton.Text = "Bevestig";
+
+                // button actions happen here
+                if (action)
+                {
+                    changeUserInformation();
+                    return;
+                }
+            }
+        }
+        #region dynamicButtonActions
+
+        private void CreatePost()
+        {
+            if (tbPostContent.Text != "" || filePath != "")
+            {
+                var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
+
+                if (postModel != null)
+                {
+                    Control[] oldControls = new Control[flowPosts.Controls.Count];
+                    flowPosts.Controls.CopyTo(oldControls, 0);
+                    flowPosts.Controls.Clear();
+
+
+                    flowPosts.Controls.Add(new ControlPost(postModel));
+
+                    flowPosts.Controls.AddRange(oldControls);
+
+                    filePath = "";
+
+                    btnMediaFile.Size = new Size(156, 57);
+                    btnMediaFile.ForeColor = Color.Black;
+                    lblSelectedFile.Enabled = false;
+                    lblSelectedFile.Visible = false;
+                }
+                treeTags();
             }
             else
             {
-                btnDynamicButton.Text = "Geen actie";
-            }
-        }
-
-        private void treeTags()
-        {
-            var tags = new List<TagModel>();
-            tags = PostManager.GetAllTags();
-
-            treeCategorie.Nodes.Clear();
-
-            treeCategorie.Nodes.Add("All Posts");
-
-            foreach (var tag in tags)
-            {
-                treeCategorie.Nodes.Add(tag.Name);
+                MessageBox.Show("Type een bericht of voeg een mediabestand toe");
             }
         }
 
@@ -321,7 +305,157 @@ namespace ICT4EVENT
                 }
             }
         }
+        private void UpdateProfile(UserModel user)
+        {
+            gbPostsOfUser.Text = string.Format("Posts van {0}", user.Username);
+            gbProfileOfUser.Text = string.Format("Profiel van {0}", user.Username);
 
+            lblUserDisplayName.Text = string.Format("Weergave naam : {0}", user.Username);
+            lblRFIDFromProfile.Text = string.Format("RFID : {0}", user.RfiDnumber);
+            lblEmailFromUser.Text = string.Format("Email : {0}", user.Email);
+            lblTelefoonNummer.Text = string.Format("Telefoonnummer: {0}", user.Telephonenumber);
+
+            List<PostModel> posts = PostManager.GetUserPosts(user);
+
+            flowPostsFromUser.Controls.Clear();
+
+            if (posts != null)
+            {
+                foreach (PostModel post in posts)
+                {
+                    flowPostsFromUser.Controls.Add(new ControlPost(post));
+                }
+            }
+        }
+
+        private void PaymentInfo()
+        {
+            lblPaidUsername.Text = string.Format("Gebruikersnaam : {0}", Settings.ActiveUser.Username);
+            lblPaidEvent.Text = string.Format("Evenementnaam : {0}", Settings.ActiveEvent.Name); ;
+            List<RegistrationModel> registrations = UserManager.GetUserRegistrations(Settings.ActiveUser);
+            bool haspaid = false;
+            foreach (RegistrationModel registration in registrations)
+            {
+                if (registration.EventItem.Id == Settings.ActiveEvent.Id)
+                {
+                    if (UserManager.SeeIfRegistrationIsPaid(registration))
+                    {
+                        haspaid = true;
+                        break;
+                    }
+                }
+            }
+            if (haspaid)
+            {
+                pbPaidCheck.BackColor = Color.GreenYellow;
+            }
+            else
+            {
+                pbPaidCheck.BackColor = Color.Red;
+            }
+        }
+        private void SearchUser()
+        {
+            UserModel user = UserManager.FindUser(tbSearchUser.Text);
+
+            if (user != null)
+            {
+                UpdateProfile(user);
+            }
+
+            else
+            {
+                if (lblUserDisplayName.Text != Settings.ActiveUser.Username)
+                    UpdateProfile(Settings.ActiveUser);
+            }
+        }
+        private void ReserveMaterial()
+        {
+            if (listCart.Items.Count > 0)
+            {
+                List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
+                foreach (string rentable in listCart.Items)
+                {
+                    foreach (RentableObjectModel rentableobject in rentables)
+                    {
+                        if (rentableobject.ObjectType == rentable)
+                        {
+                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject,
+                                Convert.ToInt32(numAmount.Value));
+                        }
+                    }
+                }
+                MessageBox.Show("Artikelen besteld");
+                listCart.Items.Clear();
+                FillReservedMaterials();
+            }
+            else
+            {
+                MessageBox.Show("Winkelmandje is leeg");
+            }
+        }
+        private void ReservePlace()
+        {
+            PlaceModel plaats = null;
+            List<PlaceModel> places = EquipmentManager.GetAllPlaces();
+            if (places != null)
+            {
+                foreach (PlaceModel pm in places)
+                {
+                    if (pm.Location == nmrPlaats.Text)
+                    {
+                        plaats = pm;
+                        break;
+                    }
+                }
+
+                if (plaats != null)
+                {
+                    if (CheckPlaceSize(Convert.ToInt32(nmrPlaats.Text), lbUser.Items.Count))
+                    {
+                        List<UserModel> users = new List<UserModel>();
+                        foreach (string user in lbUser.Items)
+                        {
+                            users.Add(UserManager.FindUser(user));
+                        }
+
+                        foreach (UserModel user in users)
+                        {
+                            EquipmentManager.MakePlaceReservationModel(user, plaats);
+                        }
+                        MessageBox.Show("Succesvol gereserveerd");
+                        nmrPlaats.SelectedIndex = 0;
+                        lbUser.Items.Clear();
+                        FillAllPlaces();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Deze plaats is niet beschikbaar.");
+                }
+                
+            }
+           
+            FillReservedPlaces();
+        }
+
+        #endregion
+
+        private void treeTags()
+        {
+            var tags = new List<TagModel>();
+            tags = PostManager.GetAllTags();
+
+            treeCategorie.Nodes.Clear();
+
+            treeCategorie.Nodes.Add("All Posts");
+
+            foreach (var tag in tags)
+            {
+                treeCategorie.Nodes.Add(tag.Name);
+            }
+        }
+       
         private void btnMediaFile_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
@@ -403,74 +537,15 @@ namespace ICT4EVENT
             }
         }
 
-        private void UpdateProfile(UserModel user)
-        {
-            gbPostsOfUser.Text = string.Format("Posts van {0}", user.Username);
-            gbProfileOfUser.Text = string.Format("Profiel van {0}", user.Username);
-
-            lblUserDisplayName.Text = string.Format("Weergave naam : {0}", user.Username);
-            lblRFIDFromProfile.Text = string.Format("RFID : {0}", user.RfiDnumber);
-            lblEmailFromUser.Text = string.Format("Email : {0}", user.Email);
-            lblTelefoonNummer.Text = string.Format("Telefoonnummer: {0}", user.Telephonenumber);
-
-            List<PostModel> posts = PostManager.GetUserPosts(user);
-
-            flowPostsFromUser.Controls.Clear();
-
-            if (posts != null)
-            {
-                foreach (PostModel post in posts)
-                {
-                    flowPostsFromUser.Controls.Add(new ControlPost(post));
-                }
-            }
-        }
+        
 
         private void tbSearchUser_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private void SearchUser()
-        {
-            UserModel user = UserManager.FindUser(tbSearchUser.Text);
+        
 
-            if (user != null)
-            {
-                UpdateProfile(user);
-            }
 
-            else
-            {
-                if (lblUserDisplayName.Text != Settings.ActiveUser.Username)
-                    UpdateProfile(Settings.ActiveUser);
-            }
-        }
-
-        private void ReserveMaterial()
-        {
-            if (listCart.Items.Count > 0)
-            {
-                List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
-                foreach (string rentable in listCart.Items)
-                {
-                    foreach (RentableObjectModel rentableobject in rentables)
-                    {
-                        if (rentableobject.ObjectType == rentable)
-                        {
-                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject,
-                                Convert.ToInt32(numAmount.Value));
-                        }
-                    }
-                }
-                MessageBox.Show("Artikelen besteld");
-                listCart.Items.Clear();
-                FillReservedMaterials();
-            }
-            else
-            {
-                MessageBox.Show("Winkelmandje is leeg");
-            }
-        }
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
@@ -528,46 +603,7 @@ namespace ICT4EVENT
             }
         }
 
-        private void btnReserve_Click(object sender, EventArgs e)
-        {
-            PlaceModel plaats = null;
-            List<PlaceModel> places = EquipmentManager.GetAllPlaces();
-
-            foreach (PlaceModel pm in places)
-            {
-                if (pm.Location == nmrPlaats.Text)
-                {
-                    plaats = pm;
-                    break;
-                }
-            }
-
-            if (plaats != null)
-            {
-                if (CheckPlaceSize(Convert.ToInt32(nmrPlaats.Text), lbUser.Items.Count))
-                {
-                    List<UserModel> users = new List<UserModel>();
-                    foreach (string user in lbUser.Items)
-                    {
-                        users.Add(UserManager.FindUser(user));
-                    }
-
-                    foreach (UserModel user in users)
-                    {
-                        EquipmentManager.MakePlaceReservationModel(user, plaats);
-                    }
-                    MessageBox.Show("Succesvol gereserveerd");
-                    nmrPlaats.SelectedIndex = 0;
-                    lbUser.Items.Clear();
-                    FillAllPlaces();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Deze plaats is niet beschikbaar.");
-            }
-            FillReservedPlaces();
-        }
+        
 
         public bool CheckPlaceSize(int place, int amountofusers)
         {
