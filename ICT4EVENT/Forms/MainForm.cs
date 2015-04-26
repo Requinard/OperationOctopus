@@ -1,21 +1,25 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using ICT4EVENT.Models;
 using Microsoft.VisualBasic;
+
+#endregion
 
 namespace ICT4EVENT
 {
     public partial class MainForm : Form
     {
-        private string filePath = "";
         private int currentPage = 0;
+        private string filePath = "";
 
         public MainForm()
         {
             InitializeComponent();
+
             FillPostList();
             //FillMaterials();
             FillReservedMaterials();
@@ -24,7 +28,6 @@ namespace ICT4EVENT
             treeTags();
             //UpdateProfile(Settings.ActiveUser);
             ControlPost.ControlLinkClicked += PostLinkClicked;
-
         }
 
         public ComboBox cbProfileSelector { get; set; }
@@ -33,7 +36,7 @@ namespace ICT4EVENT
         {
             if (Settings.DEBUG)
             {
-                CreateTestPosts();
+               
             }
             DynamicButtonLogic(false);
         }
@@ -53,7 +56,9 @@ namespace ICT4EVENT
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         private void FillReservedMaterials()
@@ -70,7 +75,9 @@ namespace ICT4EVENT
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         private void FillReservedPlaces()
@@ -84,7 +91,9 @@ namespace ICT4EVENT
                     listReservedPlaces.Items.Add(place.Place.Location);
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         private void PostLinkClicked(UserModel userModel)
@@ -92,11 +101,6 @@ namespace ICT4EVENT
             tabMainTab.SelectTab(tabProfile);
             tbSearchUser.Text = userModel.Username;
             DynamicButtonLogic(true);
-        }
-
-        private void CreateTestPosts()
-        {
-            PostManager.CreateNewPost("Wat is het social media event toch geweldig");
         }
 
         private void FillPostList()
@@ -107,7 +111,7 @@ namespace ICT4EVENT
             {
                 if (postModel.Parent == null)
                 {
-                    flowPosts.Controls.Add(new ControlPost(postModel));  
+                    flowPosts.Controls.Add(new ControlPost(postModel));
                 }
             }
         }
@@ -125,36 +129,11 @@ namespace ICT4EVENT
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (var tab in tabMainTab.TabPages)
-            {
-                
-            }
+            tabSocialMediaSharingSystem.Enabled = false;
             DynamicButtonLogic(false);
             if (tabMainTab.SelectedTab == tabPaymentStat)
             {
-                lblPaidUsername.Text = Settings.ActiveUser.Username;
-                lblPaidEvent.Text = Settings.ActiveEvent.Name;
-                List<RegistrationModel> registrations = UserManager.GetUserRegistrations(Settings.ActiveUser);
-                bool haspaid = false;
-                foreach (RegistrationModel registration in registrations)
-                {
-                    if (registration.EventItem.Id == Settings.ActiveEvent.Id)
-                    {
-                        if (UserManager.SeeIfRegistrationIsPaid(registration))
-                        {
-                            haspaid = true;
-                            break;
-                        }
-                    }
-                }
-                if (haspaid)
-                {
-                    lblPaidCheck.Text = "Betaald";
-                }
-                else
-                {
-                    lblPaidCheck.Text = "Niet betaald";
-                }
+                
             }
         }
 
@@ -165,9 +144,13 @@ namespace ICT4EVENT
 
         public void DynamicButtonLogic(bool action)
         {
-            if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem" || tabMainTab.SelectedTab.Name == "tabMaterialrent" || tabMainTab.SelectedTab.Name == "tabProfile" || tabMainTab.SelectedTab.Name == "tabSettings")
+            if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem ||
+                tabMainTab.SelectedTab == tabMaterialrent || 
+                tabMainTab.SelectedTab == tabProfile ||
+                tabMainTab.SelectedTab == tabSettings ||
+                tabMainTab.SelectedTab == tabPaymentStat)
             {
-                if (tabMainTab.SelectedTab.Name == "tabSocialMediaSharingSystem")
+                if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem)
                 {
                     btnDynamicButton.Text = "Post";
 
@@ -195,7 +178,6 @@ namespace ICT4EVENT
                                 btnMediaFile.ForeColor = Color.Black;
                                 lblSelectedFile.Enabled = false;
                                 lblSelectedFile.Visible = false;
-
                             }
                             treeTags();
                         }
@@ -204,9 +186,8 @@ namespace ICT4EVENT
                             MessageBox.Show("Type een bericht of voeg een mediabestand toe");
                         }
                     }
-
                 }
-                if (tabMainTab.SelectedTab.Name == "tabMaterialrent")
+                if (tabMainTab.SelectedTab == tabMaterialrent)
                 {
                     btnDynamicButton.Text = "Huur";
                     FillMaterials();
@@ -217,7 +198,42 @@ namespace ICT4EVENT
                         ReserveMaterial();
                     }
                 }
-                if (tabMainTab.SelectedTab.Name == "tabProfile")
+                if (tabMainTab.SelectedTab == tabPaymentStat)
+                {
+                    btnDynamicButton.Text = "Ververs";
+
+                    lblPaidUsername.Text = string.Format("Gebruikersnaam : {0}",Settings.ActiveUser.Username);
+                    lblPaidEvent.Text = string.Format("Evenementnaam : {0}", Settings.ActiveEvent.Name); ;
+                    List<RegistrationModel> registrations = UserManager.GetUserRegistrations(Settings.ActiveUser);
+                    bool haspaid = false;
+                    foreach (RegistrationModel registration in registrations)
+                    {
+                        if (registration.EventItem.Id == Settings.ActiveEvent.Id)
+                        {
+                            if (UserManager.SeeIfRegistrationIsPaid(registration))
+                            {
+                                haspaid = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (haspaid)
+                    {
+                        lblPaidCheck.Text = "Betaald : Betaald";
+                    }
+                    else
+                    {
+                        lblPaidCheck.Text = "Betaald : Niet betaald";
+                    }
+
+                    if (action)
+                    {
+                        tabMainTab.SelectedTab.Refresh();
+                    }
+
+                }
+
+                if (tabMainTab.SelectedTab == tabProfile)
                 {
                     btnDynamicButton.Text = "Search User";
 
@@ -227,7 +243,7 @@ namespace ICT4EVENT
                         SearchUser();
                     }
                 }
-                if (tabMainTab.SelectedTab.Name == "tabSettings")
+                if (tabMainTab.SelectedTab == tabSettings)
                 {
                     btnDynamicButton.Text = "Bevestig";
 
@@ -236,7 +252,6 @@ namespace ICT4EVENT
                     {
                         changeUserInformation();
                     }
-
                 }
             }
             else
@@ -244,7 +259,6 @@ namespace ICT4EVENT
                 btnDynamicButton.Text = "Geen actie";
             }
         }
-
 
         private void treeTags()
         {
@@ -283,7 +297,7 @@ namespace ICT4EVENT
             {
                 if (tbNewPassword.Text == tbNewPassword2.Text)
                 {
-                    if (UserManager.ChangeUserPassword(Settings.ActiveUser,tbNewPassword.Text))
+                    if (UserManager.ChangeUserPassword(Settings.ActiveUser, tbNewPassword.Text))
                     {
                         MessageBox.Show("Wachtwoord Succesvol Gewijzigd");
                         changed = true;
@@ -319,7 +333,6 @@ namespace ICT4EVENT
                 lblSelectedFile.Visible = true;
                 lblSelectedFile.Text = openFileDialog1.SafeFileNames[0];
             }
-
         }
 
         private void btnHireMaterial_Click(object sender, EventArgs e)
@@ -333,7 +346,7 @@ namespace ICT4EVENT
             catch
             {
                 MessageBox.Show("Selecteer eerst een product");
-            } 
+            }
         }
 
         private void listMaterials_SelectedIndexChanged(object sender, EventArgs e)
@@ -391,15 +404,13 @@ namespace ICT4EVENT
 
         private void UpdateProfile(UserModel user)
         {
-
-
             gbPostsOfUser.Text = string.Format("Posts van {0}", user.Username);
             gbProfileOfUser.Text = string.Format("Profiel van {0}", user.Username);
 
             lblUserDisplayName.Text = string.Format("Weergave naam : {0}", user.Username);
-            lblRFIDFromProfile.Text = string.Format("RFID : {0}",user.RfiDnumber);
+            lblRFIDFromProfile.Text = string.Format("RFID : {0}", user.RfiDnumber);
             lblEmailFromUser.Text = string.Format("Email : {0}", user.Email);
-            lblTelefoonNummer.Text = string.Format("Telefoonnummer: {0}",user.Telephonenumber);
+            lblTelefoonNummer.Text = string.Format("Telefoonnummer: {0}", user.Telephonenumber);
 
             List<PostModel> posts = PostManager.GetUserPosts(user);
 
@@ -416,7 +427,6 @@ namespace ICT4EVENT
 
         private void tbSearchUser_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void SearchUser()
@@ -446,7 +456,8 @@ namespace ICT4EVENT
                     {
                         if (rentableobject.ObjectType == rentable)
                         {
-                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject, Convert.ToInt32(numAmount.Value));
+                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject,
+                                Convert.ToInt32(numAmount.Value));
                         }
                     }
                 }
@@ -485,7 +496,7 @@ namespace ICT4EVENT
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             //Als we dit form sluiten gaan we automatisch terug naar inlog
-            this.Close(); 
+            Close();
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -603,20 +614,15 @@ namespace ICT4EVENT
             {
                 MessageBox.Show("Vul een zoek term in");
             }
-
-            
-
         }
-
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            tabMainTab.SelectedTab.Refresh();
+            
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
         }
     }
 }

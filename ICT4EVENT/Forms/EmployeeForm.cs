@@ -1,10 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
 using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
+
+#endregion
 
 namespace ICT4EVENT
 {
@@ -12,15 +14,14 @@ namespace ICT4EVENT
     {
         private readonly CampingLogic campingLogic;
         private readonly CreateUserLogic createUser;
-        private PostReviewLogic postReview;
+        private AcceptPaymentLogic acceptPayment;
         private CreatePlaceLogic createPlace;
         private DeleteReservationLogic deleteReservation;
+        private PostReviewLogic postReview;
         private RegisterUserLogic registerUser;
-        private RFIDLogAddLogic rfidLogAdd;
-        private AcceptPaymentLogic acceptPayment;
-        private UserManagement userManagement;
-
         private RFID rfid;
+        private RFIDLogAddLogic rfidLogAdd;
+        private UserManagement userManagement;
 
         public EmployeeForm()
         {
@@ -65,301 +66,44 @@ namespace ICT4EVENT
             }
         }
 
-        #region handlers
-
-        private void RFID_Error(object sender, ErrorEventArgs e)
+        private void EmployeeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBox.Show(e.Description);
+            rfid.close();
         }
 
-        private void RFID_Tag(object sender, TagEventArgs e)
+        private void btnSearchUser_Click(object sender, EventArgs e)
         {
-            string tag = Convert.ToString(e.Tag);
-            if (tabMainTab.SelectedTab == tabCreateUser)
-            {
-                tbAssignRfid.Text = Convert.ToString(tag);     
-            }
+            UserModel userModel = UserManager.FindUser(tbSearchUser.Text);
 
-            if (tabMainTab.SelectedTab == tabRegisterUser)
+            if (userModel != null)
             {
-                txtRFIDCode.Text = Convert.ToString(tag);
-            }
-
-            if (tabMainTab.SelectedTab == tabAcceptPayment)
-            {
-                txtRFIDPayment.Text = Convert.ToString(tag);
-            }
-        }
-
-        private void btnAddUser_Click(object sender, EventArgs e)
-        {
-            int num;
-            bool isRfid = int.TryParse(txtGebruikers.Text, out num);
-
-            if (isRfid)
-            {
-                if (UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text)) != null)
+                if (userManagement == null)
                 {
-                    campingLogic.AddUserToList();
+                    userManagement = new UserManagement(this);
                 }
-                else
-                {
-                    MessageBox.Show("Gebruiker niet gevonden");
-                    txtGebruikers.Text = "";
-                }
+                userManagement.SelectedUser = userModel;
+                MessageBox.Show("Gebruiker gevonden");
             }
             else
             {
-                if (UserManager.FindUser(txtGebruikers.Text) != null)
-                {
-                    campingLogic.AddUserToList();
-                }
-                else
-                {
-                    MessageBox.Show("Gebruiker niet gevonden");
-                    txtGebruikers.Text = "";
-                }   
-            }     
+                MessageBox.Show("Geen gebruiker gevonden");
+            }
         }
-        
-        private void btnReserve_Click(object sender, EventArgs e)
+
+        private void btnUpdateUser_Click(object sender, EventArgs e)
         {
-            PlaceModel plaats = null;
-
-            foreach (PlaceModel pm in campingLogic.places)
-            {
-                if (pm.Location == nmrPlaats.Text)
-                {
-                    plaats = pm;
-                    break;
-                }
-            }
-
-            if (plaats != null)
-            {
-                if (campingLogic.CheckPlaceSize(Convert.ToInt32(nmrPlaats.Text), lbUser.Items.Count))
-                {
-                    List<UserModel> users = new List<UserModel>();
-                    foreach (string user in lbUser.Items)
-                    {
-                        users.Add(UserManager.FindUser(user));
-                    }
-
-                    foreach (UserModel user in users)
-                    {
-                        EquipmentManager.MakePlaceReservationModel(user, plaats);
-                    }
-                    MessageBox.Show("Succesvol gereserveerd");
-                    nmrPlaats.SelectedIndex = 0;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Deze plaats is niet beschikbaar.");
-            }
+            userManagement.EditUserInformation();
         }
 
-        private void btnCreateUser_Click(object sender, EventArgs e)
+        private void btnRemoveUser_Click(object sender, EventArgs e)
         {
-            if (tbUsername.Text == "" || tbAddress.Text == "" || tbAssignRfid.Text == "" || tbName.Text == "" ||
-                tbSurName.Text == "" || tbTelNr.Text == "" || tbEmail.Text == "")
+            if (MessageBox.Show(
+                ("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username + " wil verwijderen ?"),
+                "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("Vul alle velden in");
-            }
-            else
-            {
-                createUser.CreateUser();
-            }
-            
-        }
-
-        private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabMainTab.SelectedTab == tabCreateUser || tabMainTab.SelectedTab == tabRegisterUser || tabMainTab.SelectedTab == tabAcceptPayment)
-            {
-                try
-                {
-                    rfid.Antenna = true;
-                    rfid.LED = true;
-                }
-                catch { }
-            }
-            else
-            {
-                try
-                {
-                    rfid.Antenna = false;
-                    rfid.LED = false;
-                }
-                catch { }
-            }
-            if (tabMainTab.SelectedTab == tabPostReview)
-            {
-                postReview = new PostReviewLogic(this);
-            }
-            if (tabMainTab.SelectedTab == tabCheckUsersAtEvent)
-            {
-                listMaterials.Items.Clear();
-                // todo replace with manager instead of null
-                List<RFIDLogModel> rfidLogModels = null;
-                if (rfidLogModels != null)
-                {
-                    foreach (RFIDLogModel rfidLogModel in rfidLogModels)
-                    {
-                        listMaterials.Items.Add(rfidLogModel.User.Username);
-                    } 
-                }
+                userManagement.SelectedUser.Destroy();
             }
         }
-
-        private void btnCreatePlace_Click(object sender, EventArgs e)
-        {
-            createPlace.CreatePlace();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
-            deleteReservation.DeleteReservation(selectedUser);
-        }
-
-        private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
-            List<RentableReservationModel> reservations = EquipmentManager.GetUserReservations(selectedUser);
-            listReservedItems.Items.Clear();
-            foreach (RentableReservationModel reservation in reservations)
-            {
-                listReservedItems.Items.Add(reservation.Rentable.ObjectType);
-            }
-        }
-
-        private void txtRFIDCode_TextChanged(object sender, EventArgs e)
-        {
-            if (txtRFIDCode.Text != "")
-            {
-                if (UserManager.AuthenticateUser(txtRFIDCode.Text))
-                {
-                    MessageBox.Show("Gebruiker gevonden.");
-                    UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
-                    lblNameOfUser.Text = "Naam: " + rfiduser.Username;
-                    //lblPaymentStatusOfUser.Text = "Payment status:" + UserManager.SeeIfRegistrationIsPaid();
-                    lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
-                }
-                else
-                {
-                    txtRFIDCode.Text = "";
-                    MessageBox.Show("RFID-tag Niet gevonden.");
-                }
-            }
-        }
-
-        private void txtRFIDPayment_TextChanged(object sender, EventArgs e)
-        {
-            if (txtRFIDPayment.Text != "")
-            {
-                if (UserManager.AuthenticateUser(txtRFIDPayment.Text))
-                {
-                    MessageBox.Show("Gebruiker gevonden.");
-                    UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
-                    lblNamePayment.Text = rfiduser.Username;
-                    List<RegistrationModel> events = UserManager.GetUserRegistrations(rfiduser);
-
-                    foreach (RegistrationModel _event in events)
-                    {
-                        listEvents.Items.Add(_event.EventItem.Name);
-                    }
-                }
-                else
-                {
-                    txtRFIDPayment.Text = "";
-                    MessageBox.Show("RFID-tag Niet gevonden.");
-                }  
-            } 
-        }
-
-        private void btnConformUser_Click(object sender, EventArgs e)
-        {
-            LogButtons(true);
-        }
-
-        private void btnLeaveUser_Click(object sender, EventArgs e)
-        {
-            LogButtons(false);
-        }
-
-        private void LogButtons(bool goesIn)
-        {
-            if (txtRFIDCode.Text != "")
-            {
-                if (goesIn)
-                {
-                    rfidLogAdd.LogAddIn();
-                }
-                else
-                {
-                    rfidLogAdd.LogAddOut();
-                }
-                lblNameOfUser.Text = "Naam: ";
-                lblAtEventStatus.Text = "At event: ";
-                txtRFIDCode.Text = "";
-            }
-            else
-            {
-                MessageBox.Show("Er is geen gebruiker aanwezig.");
-            }
-        }
-
-        private void btnAcceptPayment_Click(object sender, EventArgs e)
-        {
-            acceptPayment.AcceptPayment();
-        }
-
-        private void btnMakeMaterial_Click(object sender, EventArgs e)
-        {
-            if (txtObjectName.Text != null && txtDescriptionMaterial.Text != null)
-            {
-                EquipmentManager.CreateNewRentable(txtDescriptionMaterial.Text, numMaterialPrice.Value, Convert.ToInt32(numMaterialAmount.Value), txtObjectName.Text);
-                MessageBox.Show("Materiaal aangemaakt!");
-                txtDescriptionMaterial.Text = "";
-                txtObjectName.Text = "";
-                numMaterialAmount.Value = 1;
-                numMaterialPrice.Value = 0;
-            }
-            else
-            {
-                MessageBox.Show("Vul alle velden in!");
-            }
-        }
-
-        private void listEvents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UserModel user = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
-            List<RegistrationModel> events = UserManager.GetUserRegistrations(user);
-            bool ispaid = false;
-            string text = listEvents.GetItemText(listEvents.SelectedItem);
-            foreach (RegistrationModel _event in events)
-            {
-                if (_event.EventItem.Name == text)
-                {
-                    if(UserManager.SeeIfRegistrationIsPaid(_event) == true)
-                    {
-                        ispaid = true;
-                        break;
-                    }
-                }
-            }
-            if (ispaid)
-            {
-                lblEventPaid.Text = "Betaald";
-            }
-            else
-            {
-                lblEventPaid.Text = "Niet betaald";
-            }
-        }
-
-        #endregion
 
         public class CampingLogic
         {
@@ -374,9 +118,6 @@ namespace ICT4EVENT
             //private readonly int[] StaCaravan;
             //private int[] AllPlaces;
             private decimal amount;
-
-            public List<string> UserList { get; private set; }
-            public List<PlaceModel> places { get; private set; }
 
             public CampingLogic(EmployeeForm form)
             {
@@ -397,7 +138,10 @@ namespace ICT4EVENT
 
                 //AllPlaces = AllPlacesArray();
                 FillAllPlaces();
-            }    
+            }
+
+            public List<string> UserList { get; private set; }
+            public List<PlaceModel> places { get; private set; }
 
             public void AddUserToList()
             {
@@ -431,7 +175,9 @@ namespace ICT4EVENT
                         parent.nmrPlaats.Items.Add(place.Location);
                     }
                 }
-                catch { }
+                catch
+                {
+                }
             }
         }
 
@@ -442,13 +188,16 @@ namespace ICT4EVENT
             public PostReviewLogic(EmployeeForm form)
             {
                 parent = form;
+                parent.flowPostReview.Visible = false;
+                FillList();
+
                 parent.flowPostReview.Enabled = true;
                 parent.flowPostReview.Visible = true;
-                FillList();
             }
 
             private void FillList()
             {
+                parent.flowPostReview.Controls.Clear();
                 List<PostReportModel> reportModels = PostManager.GetAllReports();
                 if (reportModels != null)
                 {
@@ -461,14 +210,13 @@ namespace ICT4EVENT
 
             public void CreateDummyData()
             {
-
             }
-
         }
 
         public class CreateUserLogic
         {
             private readonly EmployeeForm parent;
+
             public CreateUserLogic(EmployeeForm gui)
             {
                 parent = gui;
@@ -486,8 +234,8 @@ namespace ICT4EVENT
                 UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
                 Clipboard.SetText(Password);
                 MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
-                                Environment.NewLine + "Wachtwoord: " + Password + Environment.NewLine + "Je wachtwoord is gekopieerd naar je klembord");
-                
+                                Environment.NewLine + "Wachtwoord: " + Password + Environment.NewLine +
+                                "Je wachtwoord is gekopieerd naar je klembord");
             }
 
             private string GeneratePassword()
@@ -509,6 +257,7 @@ namespace ICT4EVENT
         public class CreatePlaceLogic
         {
             private readonly EmployeeForm parent;
+
             public CreatePlaceLogic(EmployeeForm form)
             {
                 parent = form;
@@ -522,7 +271,7 @@ namespace ICT4EVENT
                 string location = Convert.ToString(parent.numPlaceNumber.Value);
                 string category = parent.txtCategory.Text;
                 int capacity = Convert.ToInt32(parent.numCapacity.Value);
-                EquipmentManager.CreateNewPlace(description, price, amount, location, category,capacity);
+                EquipmentManager.CreateNewPlace(description, price, amount, location, category, capacity);
                 MessageBox.Show("Plaats aangemaakt");
                 EmptyBoxes();
             }
@@ -540,6 +289,7 @@ namespace ICT4EVENT
         public class DeleteReservationLogic
         {
             private readonly EmployeeForm parent;
+
             public DeleteReservationLogic(EmployeeForm form)
             {
                 parent = form;
@@ -558,7 +308,7 @@ namespace ICT4EVENT
                         break;
                     }
                 }
-                rented.Destroy(); 
+                rented.Destroy();
                 MessageBox.Show("Reservatie verwijdert");
                 parent.cbReservations.SelectedIndex = 0;
             }
@@ -567,6 +317,7 @@ namespace ICT4EVENT
         public class RegisterUserLogic
         {
             private readonly EmployeeForm parent;
+
             public RegisterUserLogic(EmployeeForm form)
             {
                 parent = form;
@@ -583,6 +334,7 @@ namespace ICT4EVENT
         public class RFIDLogAddLogic
         {
             private readonly EmployeeForm parent;
+
             public RFIDLogAddLogic(EmployeeForm form)
             {
                 parent = form;
@@ -664,15 +416,10 @@ namespace ICT4EVENT
             }
         }
 
-        private void EmployeeForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            rfid.close();
-        }
-
         public class UserManagement
         {
-            private UserModel selectedUser = null;
             private readonly EmployeeForm parent;
+            private UserModel selectedUser = null;
 
             public UserManagement(EmployeeForm form)
             {
@@ -684,7 +431,7 @@ namespace ICT4EVENT
                 get { return selectedUser; }
                 set { selectedUser = value; }
             }
-            
+
             public bool EditUserInformation()
             {
                 bool changed = false;
@@ -728,45 +475,315 @@ namespace ICT4EVENT
                     {
                         MessageBox.Show("Oeps er is iets mis gegaan");
                     }
-
-                    
                 }
                 return false;
             }
-
         }
 
-        private void btnSearchUser_Click(object sender, EventArgs e)
-        {
-            UserModel userModel = UserManager.FindUser(tbSearchUser.Text);
+        #region handlers
 
-            if (userModel != null)
+        private void RFID_Error(object sender, ErrorEventArgs e)
+        {
+            MessageBox.Show(e.Description);
+        }
+
+        private void RFID_Tag(object sender, TagEventArgs e)
+        {
+            string tag = Convert.ToString(e.Tag);
+            if (tabMainTab.SelectedTab == tabCreateUser)
             {
-                if (userManagement == null)
+                tbAssignRfid.Text = Convert.ToString(tag);
+            }
+
+            if (tabMainTab.SelectedTab == tabRegisterUser)
+            {
+                txtRFIDCode.Text = Convert.ToString(tag);
+            }
+
+            if (tabMainTab.SelectedTab == tabAcceptPayment)
+            {
+                txtRFIDPayment.Text = Convert.ToString(tag);
+            }
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            int num;
+            bool isRfid = int.TryParse(txtGebruikers.Text, out num);
+
+            if (isRfid)
+            {
+                if (UserManager.FindUser(Convert.ToInt32(txtGebruikers.Text)) != null)
                 {
-                    userManagement = new UserManagement(this);
+                    campingLogic.AddUserToList();
                 }
-                userManagement.SelectedUser = userModel;
-                MessageBox.Show("Gebruiker gevonden");
+                else
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
             }
             else
             {
-                MessageBox.Show("Geen gebruiker gevonden");
+                if (UserManager.FindUser(txtGebruikers.Text) != null)
+                {
+                    campingLogic.AddUserToList();
+                }
+                else
+                {
+                    MessageBox.Show("Gebruiker niet gevonden");
+                    txtGebruikers.Text = "";
+                }
             }
         }
 
-        private void btnUpdateUser_Click(object sender, EventArgs e)
+        private void btnReserve_Click(object sender, EventArgs e)
         {
-            userManagement.EditUserInformation();
-        }
+            PlaceModel plaats = null;
 
-        private void btnRemoveUser_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username + " wil verwijderen ?"),
-                    "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            foreach (PlaceModel pm in campingLogic.places)
             {
-                userManagement.SelectedUser.Destroy();
+                if (pm.Location == nmrPlaats.Text)
+                {
+                    plaats = pm;
+                    break;
+                }
+            }
+
+            if (plaats != null)
+            {
+                if (campingLogic.CheckPlaceSize(Convert.ToInt32(nmrPlaats.Text), lbUser.Items.Count))
+                {
+                    List<UserModel> users = new List<UserModel>();
+                    foreach (string user in lbUser.Items)
+                    {
+                        users.Add(UserManager.FindUser(user));
+                    }
+
+                    foreach (UserModel user in users)
+                    {
+                        EquipmentManager.MakePlaceReservationModel(user, plaats);
+                    }
+                    MessageBox.Show("Succesvol gereserveerd");
+                    nmrPlaats.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Deze plaats is niet beschikbaar.");
             }
         }
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            if (tbUsername.Text == "" || tbAddress.Text == "" || tbAssignRfid.Text == "" || tbName.Text == "" ||
+                tbSurName.Text == "" || tbTelNr.Text == "" || tbEmail.Text == "")
+            {
+                MessageBox.Show("Vul alle velden in");
+            }
+            else
+            {
+                createUser.CreateUser();
+            }
+        }
+
+        private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabPostReview.Enabled = false;
+            if (tabMainTab.SelectedTab == tabCreateUser || tabMainTab.SelectedTab == tabRegisterUser ||
+                tabMainTab.SelectedTab == tabAcceptPayment)
+            {
+                try
+                {
+                    rfid.Antenna = true;
+                    rfid.LED = true;
+                }
+                catch
+                {
+                }
+            }
+            else
+            {
+                try
+                {
+                    rfid.Antenna = false;
+                    rfid.LED = false;
+                }
+                catch
+                {
+                }
+            }
+            if (tabMainTab.SelectedTab == tabPostReview)
+            {
+                if (postReview == null)
+                {
+                    postReview = new PostReviewLogic(this);
+                }
+                tabPostReview.Enabled = true;
+            }
+            if (tabMainTab.SelectedTab == tabCheckUsersAtEvent)
+            {
+                listMaterials.Items.Clear();
+                // todo replace with manager instead of null
+                List<RFIDLogModel> rfidLogModels = null;
+                if (rfidLogModels != null)
+                {
+                    foreach (RFIDLogModel rfidLogModel in rfidLogModels)
+                    {
+                        listMaterials.Items.Add(rfidLogModel.User.Username);
+                    }
+                }
+            }
+        }
+
+        private void btnCreatePlace_Click(object sender, EventArgs e)
+        {
+            createPlace.CreatePlace();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
+            deleteReservation.DeleteReservation(selectedUser);
+        }
+
+        private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
+            List<RentableReservationModel> reservations = EquipmentManager.GetUserReservations(selectedUser);
+            listReservedItems.Items.Clear();
+            foreach (RentableReservationModel reservation in reservations)
+            {
+                listReservedItems.Items.Add(reservation.Rentable.ObjectType);
+            }
+        }
+
+        private void txtRFIDCode_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRFIDCode.Text != "")
+            {
+                if (UserManager.AuthenticateUser(txtRFIDCode.Text))
+                {
+                    MessageBox.Show("Gebruiker gevonden.");
+                    UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDCode.Text);
+                    lblNameOfUser.Text = "Naam: " + rfiduser.Username;
+                    //lblPaymentStatusOfUser.Text = "Payment status:" + UserManager.SeeIfRegistrationIsPaid();
+                    lblAtEventStatus.Text = "At Event: " + Convert.ToString(Settings.ActiveEvent.Name);
+                }
+                else
+                {
+                    txtRFIDCode.Text = "";
+                    MessageBox.Show("RFID-tag Niet gevonden.");
+                }
+            }
+        }
+
+        private void txtRFIDPayment_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRFIDPayment.Text != "")
+            {
+                if (UserManager.AuthenticateUser(txtRFIDPayment.Text))
+                {
+                    MessageBox.Show("Gebruiker gevonden.");
+                    UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
+                    lblNamePayment.Text = rfiduser.Username;
+                    List<RegistrationModel> events = UserManager.GetUserRegistrations(rfiduser);
+
+                    foreach (RegistrationModel _event in events)
+                    {
+                        listEvents.Items.Add(_event.EventItem.Name);
+                    }
+                }
+                else
+                {
+                    txtRFIDPayment.Text = "";
+                    MessageBox.Show("RFID-tag Niet gevonden.");
+                }
+            }
+        }
+
+        private void btnConformUser_Click(object sender, EventArgs e)
+        {
+            LogButtons(true);
+        }
+
+        private void btnLeaveUser_Click(object sender, EventArgs e)
+        {
+            LogButtons(false);
+        }
+
+        private void LogButtons(bool goesIn)
+        {
+            if (txtRFIDCode.Text != "")
+            {
+                if (goesIn)
+                {
+                    rfidLogAdd.LogAddIn();
+                }
+                else
+                {
+                    rfidLogAdd.LogAddOut();
+                }
+                lblNameOfUser.Text = "Naam: ";
+                lblAtEventStatus.Text = "At event: ";
+                txtRFIDCode.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Er is geen gebruiker aanwezig.");
+            }
+        }
+
+        private void btnAcceptPayment_Click(object sender, EventArgs e)
+        {
+            acceptPayment.AcceptPayment();
+        }
+
+        private void btnMakeMaterial_Click(object sender, EventArgs e)
+        {
+            if (txtObjectName.Text != null && txtDescriptionMaterial.Text != null)
+            {
+                EquipmentManager.CreateNewRentable(txtDescriptionMaterial.Text, numMaterialPrice.Value,
+                    Convert.ToInt32(numMaterialAmount.Value), txtObjectName.Text);
+                MessageBox.Show("Materiaal aangemaakt!");
+                txtDescriptionMaterial.Text = "";
+                txtObjectName.Text = "";
+                numMaterialAmount.Value = 1;
+                numMaterialPrice.Value = 0;
+            }
+            else
+            {
+                MessageBox.Show("Vul alle velden in!");
+            }
+        }
+
+        private void listEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UserModel user = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
+            List<RegistrationModel> events = UserManager.GetUserRegistrations(user);
+            bool ispaid = false;
+            string text = listEvents.GetItemText(listEvents.SelectedItem);
+            foreach (RegistrationModel _event in events)
+            {
+                if (_event.EventItem.Name == text)
+                {
+                    if (UserManager.SeeIfRegistrationIsPaid(_event) == true)
+                    {
+                        ispaid = true;
+                        break;
+                    }
+                }
+            }
+            if (ispaid)
+            {
+                lblEventPaid.Text = "Betaald";
+            }
+            else
+            {
+                lblEventPaid.Text = "Niet betaald";
+            }
+        }
+
+        #endregion
     }
 }
