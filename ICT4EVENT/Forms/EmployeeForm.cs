@@ -343,14 +343,14 @@ namespace ICT4EVENT
             public void LogAddIn()
             {
                 UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
-                EventManager.LogRFID(rfiduser, "In");
+                EventManager.LogRFID(rfiduser, RFIDAccessType.EnterTerrain);
                 MessageBox.Show("Gebruiker succesvol het terrein binnen gelaten.");
             }
 
             public void LogAddOut()
             {
                 UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
-                EventManager.LogRFID(rfiduser, "Out");
+                EventManager.LogRFID(rfiduser, RFIDAccessType.ExitTerrain); 
                 MessageBox.Show("Gebruiker succesvol het terrein verlaten.");
             }
         }

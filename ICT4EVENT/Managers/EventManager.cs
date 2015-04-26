@@ -142,9 +142,50 @@ namespace ICT4EVENT
             rfid.User = user;
             rfid.EventItem = Settings.ActiveEvent;
             rfid.Status = accessType;
+            rfid.Date = DateTime.Now;
 
             if (rfid.Create()) return rfid;
             return null;
+        }
+
+        public static List<RFIDLogModel> GetUserLog(UserModel user)
+        {
+            List<RFIDLogModel> logs = new List<RFIDLogModel>();
+            string query = string.Format("SELECT * FROM rfidlog where userid = {0}", user.Id);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return null;
+
+            while (reader.Read())
+            {
+                RFIDLogModel log = new RFIDLogModel(Int32.Parse(reader["ident"].ToString()));
+                logs.Add(log);
+            }
+
+            return logs;
+        }
+
+        /// <summary>
+        /// This will return a list of users still on the premises
+        /// </summary>
+        /// <returns></returns>
+        public static List<UserModel> GetUsersStillOnPremises()
+        {
+            List<UserModel> users = new List<UserModel>();
+            string query =
+                string.Format("SELECT * FROM RFIDLOG r1 where r1.inorout = '0' AND r1.userid not in ( select r2.userid from RFIDLOG r2   WHERE r2.inorout = '1') AND eventid = '{0}'", Settings.ActiveEvent);
+
+            OracleDataReader reader = DBManager.QueryDB(query);
+
+            if (reader == null) return users;
+
+            while (reader.Read())
+            {
+                users.Add(new UserModel(Int32.Parse(reader["r1.userid"].ToString())));
+            }
+
+            return users;
         }
     }
 }
