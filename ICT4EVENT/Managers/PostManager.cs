@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -314,7 +315,7 @@ namespace ICT4EVENT
         public static List<TagModel> GetAllTags()
         {
             var tags = new List<TagModel>();
-            var query = "SELECT * FROM TAG";
+            var query = String.Format("SELECT * FROM TAG WHERE Ident in (select tagId FROM tagpost where postid in(select ident from post where eventId = '{0}'))", Settings.ActiveEvent.Id);
 
             var reader = DBManager.QueryDB(query);
 
