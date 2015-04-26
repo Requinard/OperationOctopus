@@ -34,6 +34,8 @@ namespace ICT4EVENT
             acceptPayment = new AcceptPaymentLogic(this);
             rfidLogAdd = new RFIDLogAddLogic(this);
 
+            
+                
             OpenRFIDConnection();
             FillReservations();
         }
@@ -624,13 +626,13 @@ namespace ICT4EVENT
             if (tabMainTab.SelectedTab == tabCheckUsersAtEvent)
             {
                 listMaterials.Items.Clear();
-                // todo replace with manager instead of null
-                List<UserModel> rfidUserModels = EventManager.GetUsersStillOnPremises();
-                if (rfidUserModels != null)
+                List<UserModel> usersOnTerrain = EventManager.GetUsersStillOnPremises();
+
+                if (usersOnTerrain != null)
                 {
-                    foreach (UserModel userModel in rfidUserModels)
+                    foreach (var user in usersOnTerrain)
                     {
-                        listMaterials.Items.Add(userModel.ToString());
+                        listMaterials.Items.Add(user.Username);
                     }
                 }
             }
@@ -785,5 +787,6 @@ namespace ICT4EVENT
         }
 
         #endregion
+
     }
 }

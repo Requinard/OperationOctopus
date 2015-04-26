@@ -174,7 +174,7 @@ namespace ICT4EVENT
         {
             List<UserModel> users = new List<UserModel>();
             string query =
-                string.Format("SELECT * FROM RFIDLOG r1 where r1.inorout = '0' AND r1.userid not in ( select r2.userid from RFIDLOG r2   WHERE r2.inorout = '1') AND eventid = '{0}'", Settings.ActiveEvent);
+                string.Format("SELECT * FROM RFIDLOG r1 where r1.inorout = '0' AND r1.userid not in ( select r2.userid from RFIDLOG r2   WHERE r2.inorout = '1') AND eventid = '{0}'", Settings.ActiveEvent.Id);
 
             OracleDataReader reader = DBManager.QueryDB(query);
 
@@ -182,7 +182,7 @@ namespace ICT4EVENT
 
             while (reader.Read())
             {
-                users.Add(new UserModel(Int32.Parse(reader["r1.userid"].ToString())));
+                users.Add(new UserModel(Int32.Parse(reader[1].ToString())));
             }
 
             return users;

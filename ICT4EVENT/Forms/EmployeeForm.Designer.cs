@@ -60,6 +60,7 @@
             this.lbRecent = new System.Windows.Forms.ListBox();
             this.gbCheckIn = new System.Windows.Forms.GroupBox();
             this.gbUserDetails = new System.Windows.Forms.GroupBox();
+            this.btnLeaveUser = new System.Windows.Forms.Button();
             this.btnConformUser = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblAtEventStatus = new System.Windows.Forms.Label();
@@ -112,7 +113,6 @@
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.tabCheckUsersAtEvent = new System.Windows.Forms.TabPage();
             this.gbAtEvent = new System.Windows.Forms.GroupBox();
-            this.listMaterials = new System.Windows.Forms.ListView();
             this.tabUserManagement = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnUpdateUser = new System.Windows.Forms.Button();
@@ -131,7 +131,7 @@
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnSearchUser = new System.Windows.Forms.Button();
             this.tbSearchUser = new System.Windows.Forms.TextBox();
-            this.btnLeaveUser = new System.Windows.Forms.Button();
+            this.listMaterials = new System.Windows.Forms.ListBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -491,6 +491,20 @@
             this.gbUserDetails.TabIndex = 1;
             this.gbUserDetails.TabStop = false;
             this.gbUserDetails.Text = "Details of <Username>";
+            // 
+            // btnLeaveUser
+            // 
+            this.btnLeaveUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeaveUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLeaveUser.Location = new System.Drawing.Point(472, 196);
+            this.btnLeaveUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnLeaveUser.Name = "btnLeaveUser";
+            this.btnLeaveUser.Size = new System.Drawing.Size(247, 40);
+            this.btnLeaveUser.TabIndex = 16;
+            this.btnLeaveUser.Tag = "SMSS";
+            this.btnLeaveUser.Text = "Gebruiker verlaat het terrein";
+            this.btnLeaveUser.UseVisualStyleBackColor = true;
+            this.btnLeaveUser.Click += new System.EventHandler(this.btnLeaveUser_Click);
             // 
             // btnConformUser
             // 
@@ -1073,15 +1087,6 @@
             this.gbAtEvent.TabStop = false;
             this.gbAtEvent.Text = "Lijst van gebruikers";
             // 
-            // listMaterials
-            // 
-            this.listMaterials.Location = new System.Drawing.Point(6, 24);
-            this.listMaterials.Name = "listMaterials";
-            this.listMaterials.Size = new System.Drawing.Size(974, 593);
-            this.listMaterials.TabIndex = 7;
-            this.listMaterials.UseCompatibleStateImageBehavior = false;
-            this.listMaterials.View = System.Windows.Forms.View.Details;
-            // 
             // tabUserManagement
             // 
             this.tabUserManagement.Controls.Add(this.groupBox4);
@@ -1295,19 +1300,14 @@
             this.tbSearchUser.Size = new System.Drawing.Size(769, 25);
             this.tbSearchUser.TabIndex = 17;
             // 
-            // btnLeaveUser
+            // listMaterials
             // 
-            this.btnLeaveUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeaveUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLeaveUser.Location = new System.Drawing.Point(472, 196);
-            this.btnLeaveUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnLeaveUser.Name = "btnLeaveUser";
-            this.btnLeaveUser.Size = new System.Drawing.Size(247, 40);
-            this.btnLeaveUser.TabIndex = 16;
-            this.btnLeaveUser.Tag = "SMSS";
-            this.btnLeaveUser.Text = "Gebruiker verlaat het terrein";
-            this.btnLeaveUser.UseVisualStyleBackColor = true;
-            this.btnLeaveUser.Click += new System.EventHandler(this.btnLeaveUser_Click);
+            this.listMaterials.FormattingEnabled = true;
+            this.listMaterials.ItemHeight = 18;
+            this.listMaterials.Location = new System.Drawing.Point(6, 24);
+            this.listMaterials.Name = "listMaterials";
+            this.listMaterials.Size = new System.Drawing.Size(968, 580);
+            this.listMaterials.TabIndex = 1;
             // 
             // EmployeeForm
             // 
@@ -1450,7 +1450,6 @@
         private System.Windows.Forms.Label lblEventPaid;
         private System.Windows.Forms.TabPage tabCheckUsersAtEvent;
         private System.Windows.Forms.GroupBox gbAtEvent;
-        private System.Windows.Forms.ListView listMaterials;
         private System.Windows.Forms.TabPage tabUserManagement;
         private System.Windows.Forms.TextBox tbSearchUser;
         private System.Windows.Forms.Button btnSearchUser;
@@ -1470,5 +1469,6 @@
         private System.Windows.Forms.Button btnUpdateUser;
         private System.Windows.Forms.Button btnRemoveUser;
         private System.Windows.Forms.Button btnLeaveUser;
+        private System.Windows.Forms.ListBox listMaterials;
     }
 }
