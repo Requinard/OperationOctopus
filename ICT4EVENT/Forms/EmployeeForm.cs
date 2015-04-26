@@ -741,7 +741,7 @@ namespace ICT4EVENT
 
         private void btnMakeMaterial_Click(object sender, EventArgs e)
         {
-            if (txtObjectName.Text != null && txtDescriptionMaterial.Text != null)
+            if (txtObjectName.Text != "" && txtDescriptionMaterial.Text != "")
             {
                 EquipmentManager.CreateNewRentable(txtDescriptionMaterial.Text, numMaterialPrice.Value,
                     Convert.ToInt32(numMaterialAmount.Value), txtObjectName.Text);
