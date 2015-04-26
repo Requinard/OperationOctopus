@@ -625,12 +625,12 @@ namespace ICT4EVENT
             {
                 listMaterials.Items.Clear();
                 // todo replace with manager instead of null
-                List<RFIDLogModel> rfidLogModels = null;
-                if (rfidLogModels != null)
+                List<UserModel> rfidUserModels = EventManager.GetUsersStillOnPremises();
+                if (rfidUserModels != null)
                 {
-                    foreach (RFIDLogModel rfidLogModel in rfidLogModels)
+                    foreach (UserModel userModel in rfidUserModels)
                     {
-                        listMaterials.Items.Add(rfidLogModel.User.Username);
+                        listMaterials.Items.Add(userModel.ToString());
                     }
                 }
             }
