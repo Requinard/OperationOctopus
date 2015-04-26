@@ -103,6 +103,7 @@
     <Compile Include="Models\ReportModelUnitTest.cs" />
     <Compile Include="Models\RentItemModelUnitTest.cs" />
     <Compile Include="Models\ReservationModelUnitTest.cs" />
+    <Compile Include="Models\UnitTest1.cs" />
     <Compile Include="Models\UserModelUnittest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIMap.cs">

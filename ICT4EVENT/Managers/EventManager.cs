@@ -135,13 +135,13 @@ namespace ICT4EVENT
         /// <param name="user"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static RFIDLogModel LogRFID(UserModel user, string text)
+        public static RFIDLogModel LogRFID(UserModel user, RFIDAccessType accessType)
         {
             RFIDLogModel rfid = new RFIDLogModel();
 
             rfid.User = user;
             rfid.EventItem = Settings.ActiveEvent;
-            rfid.InOrOut1 = text;
+            rfid.Status = accessType;
 
             if (rfid.Create()) return rfid;
             return null;

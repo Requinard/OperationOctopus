@@ -4,6 +4,14 @@ namespace ICT4EVENT
 
     using Oracle.DataAccess.Client;
 
+    public enum RFIDAccessType
+    {
+        EnterTerrain,
+        ExitTerrain,
+        Creation,
+        ApplicationLogOn,
+    }
+
     /// <summary>
     ///     The rfid log model.
     /// </summary>
@@ -33,27 +41,39 @@ namespace ICT4EVENT
             }
         }
 
-        public string InOrOut1
+        public RFIDAccessType Status
         {
             get
             {
-                return this.InOrOut;
+                return this.status;
             }
             set
             {
-                this.InOrOut = value;
+                this.status = value;
             }
         }
 
-        public string DateFormat
+        public EventModel EventItem1
         {
             get
             {
-                return this.dateFormat;
+                return this.event_item;
             }
             set
             {
-                this.dateFormat = value;
+                this.event_item = value;
+            }
+        }
+
+        public DateTime Date
+        {
+            get
+            {
+                return this.date;
+            }
+            set
+            {
+                this.date = value;
             }
         }
 
@@ -98,6 +118,7 @@ namespace ICT4EVENT
         /// </summary>
         private  EventModel event_item;
 
+        private DateTime date;
         /// <summary>
         ///     The user.
         /// </summary>
@@ -107,7 +128,7 @@ namespace ICT4EVENT
         /// <summary>
         ///     The in or out.
         /// </summary>
-        private string InOrOut;
+        private RFIDAccessType status;
 
         #endregion
 
@@ -121,8 +142,8 @@ namespace ICT4EVENT
         /// </returns>
         public bool Create()
         {
-            string columns = "UserID,EventID,InOrOut";
-            string values = "'" + this.user.Id + "','" + this.event_item.Id + "','" + this.InOrOut + "'";
+            string columns = "UserID,EventID,InOrOut, datetime";
+            string values = "'" + this.user.Id + "','" + this.event_item.Id + "','" + ((int)this.status).ToString() + "', to_date('" + date + "', 'fmmm-fmdd-yyyy hh:mi:ss')";
             string finalQuery = string.Format(INSERTSTRING, "RFIDLOG", columns, values);
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
@@ -178,7 +199,8 @@ namespace ICT4EVENT
             user.Read();
             this.event_item.Id = Convert.ToInt32(reader["EventID"].ToString());
             event_item.Read();
-            this.InOrOut = reader["InOrOut"].ToString();
+            this.status = (RFIDAccessType)Int32.Parse(reader["InOrOut"].ToString());
+            this.Date = DateTime.Parse(reader["datetime"].ToString());
         }
 
         /// <summary>
@@ -193,7 +215,7 @@ namespace ICT4EVENT
                 "UserID='{0}', EventID='{1}', InOrOut='{2}'",
                 this.user.Id,
                 this.event_item.Id,
-                this.InOrOut);
+                this.status);
             string finalQuery = string.Format(UPDATESTRING, "RFIDLOG", columnvalues, "'" + this.Id + "'");
             OracleDataReader reader = DBManager.QueryDB(finalQuery);
 
