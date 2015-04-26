@@ -350,7 +350,7 @@ namespace ICT4EVENT
             public void LogAddOut()
             {
                 UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
-                EventManager.LogRFID(rfiduser, RFIDAccessType.ExitTerrain); 
+                EventManager.LogRFID(rfiduser, RFIDAccessType.ExitTerrain);
                 MessageBox.Show("Gebruiker succesvol het terrein verlaten.");
             }
         }
