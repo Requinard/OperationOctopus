@@ -689,12 +689,18 @@ namespace ICT4EVENT
                     MessageBox.Show("Gebruiker gevonden.");
                     UserModel rfiduser = UserManager.FindUserFromRFID(txtRFIDPayment.Text);
                     lblNamePayment.Text = rfiduser.Username;
-                    List<RegistrationModel> events = UserManager.GetUserRegistrations(rfiduser);
-
-                    foreach (RegistrationModel _event in events)
+                    try
                     {
-                        listEvents.Items.Add(_event.EventItem.Name);
+                        List<RegistrationModel> events = UserManager.GetUserRegistrations(rfiduser);
+                        foreach (RegistrationModel _event in events)
+                        {
+                            listEvents.Items.Add(_event.EventItem.Name);
+                        }
                     }
+                    catch
+                    {
+                        MessageBox.Show("Gebruiker is nog niet geregistreerd op een event.");
+                    }                   
                 }
                 else
                 {
