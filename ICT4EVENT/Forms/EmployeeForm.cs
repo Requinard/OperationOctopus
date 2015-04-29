@@ -139,7 +139,7 @@ namespace ICT4EVENT
                 //Huurtentjes = Enumerable.Range(643, 36).ToArray();
 
                 //AllPlaces = AllPlacesArray();
-                FillAllPlaces();
+                parent.FillAllPlaces();
             }
 
             public List<string> UserList { get; private set; }
@@ -165,21 +165,6 @@ namespace ICT4EVENT
                     return false;
                 }
                 return true;
-            }
-
-            private void FillAllPlaces()
-            {
-                try
-                {
-                    parent.nmrPlaats.Items.Clear();
-                    foreach (PlaceModel place in EquipmentManager.GetAllPlaces())
-                    {
-                        parent.nmrPlaats.Items.Add(place.Location);
-                    }
-                }
-                catch
-                {
-                }
             }
         }
 
@@ -641,6 +626,8 @@ namespace ICT4EVENT
         private void btnCreatePlace_Click(object sender, EventArgs e)
         {
             createPlace.CreatePlace();
+            FillAllPlaces();
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -797,6 +784,21 @@ namespace ICT4EVENT
         private void btnRegisterUser_Click(object sender, EventArgs e)
         {
             registerUser.RegisterUser();
+        }
+
+        private void FillAllPlaces()
+        {
+            try
+            {
+                nmrPlaats.Items.Clear();
+                foreach (PlaceModel place in EquipmentManager.GetAllPlaces())
+                {
+                    nmrPlaats.Items.Add(place.Location);
+                }
+            }
+            catch
+            {
+            }
         }
 
     }
