@@ -80,8 +80,8 @@ namespace ICT4EVENT
             if (regs == null && Settings.ActiveUser.Username != "admin")
             {
                 MessageBox.Show("Registeer je voor een event");
-                rfid.close();
-                form_Closed(this, new EventArgs());
+                //form_Closed(this, new EventArgs());
+                Application.Restart();
                 return false;
             }
 
