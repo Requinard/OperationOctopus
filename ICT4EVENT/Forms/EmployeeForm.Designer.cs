@@ -132,6 +132,7 @@
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnSearchUser = new System.Windows.Forms.Button();
             this.tbSearchUser = new System.Windows.Forms.TextBox();
+            this.btnRegisterUser = new System.Windows.Forms.Button();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -480,6 +481,7 @@
             // gbUserDetails
             // 
             this.gbUserDetails.BackColor = System.Drawing.SystemColors.Control;
+            this.gbUserDetails.Controls.Add(this.btnRegisterUser);
             this.gbUserDetails.Controls.Add(this.btnLeaveUser);
             this.gbUserDetails.Controls.Add(this.btnConformUser);
             this.gbUserDetails.Controls.Add(this.pictureBox3);
@@ -1309,6 +1311,20 @@
             this.tbSearchUser.Size = new System.Drawing.Size(769, 30);
             this.tbSearchUser.TabIndex = 17;
             // 
+            // btnRegisterUser
+            // 
+            this.btnRegisterUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegisterUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRegisterUser.Location = new System.Drawing.Point(472, 130);
+            this.btnRegisterUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnRegisterUser.Name = "btnRegisterUser";
+            this.btnRegisterUser.Size = new System.Drawing.Size(247, 40);
+            this.btnRegisterUser.TabIndex = 17;
+            this.btnRegisterUser.Tag = "SMSS";
+            this.btnRegisterUser.Text = "Gebruiker is nieuw";
+            this.btnRegisterUser.UseVisualStyleBackColor = true;
+            this.btnRegisterUser.Click += new System.EventHandler(this.btnRegisterUser_Click);
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -1470,5 +1486,6 @@
         private System.Windows.Forms.Button btnRemoveUser;
         private System.Windows.Forms.Button btnLeaveUser;
         private System.Windows.Forms.ListBox listMaterials;
+        private System.Windows.Forms.Button btnRegisterUser;
     }
 }

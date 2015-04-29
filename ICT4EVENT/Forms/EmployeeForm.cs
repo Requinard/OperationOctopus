@@ -327,7 +327,7 @@ namespace ICT4EVENT
 
             public void RegisterUser()
             {
-                UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDPayment.Text);
+                UserModel rfiduser = UserManager.FindUserFromRFID(parent.txtRFIDCode.Text);
                 UserManager.RegisterUserForEvent(rfiduser, Settings.ActiveEvent);
                 MessageBox.Show("Gebruiker succesvol geregistreerd op het event.");
             }
@@ -738,7 +738,6 @@ namespace ICT4EVENT
 
         private void btnAcceptPayment_Click(object sender, EventArgs e)
         {
-            acceptPayment.AcceptPayment();
             registerUser.RegisterUser();
         }
 
@@ -788,6 +787,11 @@ namespace ICT4EVENT
         }
 
         #endregion
+
+        private void btnRegisterUser_Click(object sender, EventArgs e)
+        {
+            registerUser.RegisterUser();
+        }
 
     }
 }
