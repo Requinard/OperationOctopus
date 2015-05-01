@@ -230,7 +230,7 @@ namespace ICT4EVENT
 
         private void CreatePost()
         {
-            if (tbPostContent.Text != "" || filePath != "")
+            if (tbPostContent.Text != "" && filePath != "")
             {
                 var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
 
