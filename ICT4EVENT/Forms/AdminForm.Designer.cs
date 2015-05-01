@@ -148,9 +148,9 @@
             this.lblLocation.AutoSize = true;
             this.lblLocation.Location = new System.Drawing.Point(6, 52);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(44, 13);
+            this.lblLocation.Size = new System.Drawing.Size(42, 13);
             this.lblLocation.TabIndex = 14;
-            this.lblLocation.Text = "Locatiie";
+            this.lblLocation.Text = "Locatie";
             // 
             // lblEventName
             // 
