@@ -27,9 +27,12 @@ namespace ICT4EVENT
         public void FillEventList()
         {
             List<EventModel> eventModels = EventManager.FindAllEvents();
-            foreach (EventModel eventModel in eventModels)
+            if (eventModels != null)
             {
-                flowEvent.Controls.Add(new UserEvent(eventModel));
+                foreach (EventModel eventModel in eventModels)
+                {
+                    flowEvent.Controls.Add(new UserEvent(eventModel));
+                }
             }
         }
 
