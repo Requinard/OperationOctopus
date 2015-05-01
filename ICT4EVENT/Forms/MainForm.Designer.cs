@@ -30,7 +30,7 @@ namespace ICT4EVENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All Posts");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("All Posts");
             this.gbStaticUpdates = new System.Windows.Forms.GroupBox();
             this.lblTrending = new System.Windows.Forms.Label();
             this.tabTrending = new System.Windows.Forms.TabControl();
@@ -53,11 +53,7 @@ namespace ICT4EVENT
             this.btnMediaFile = new System.Windows.Forms.Button();
             this.tbPostContent = new System.Windows.Forms.TextBox();
             this.tabMaterialrent = new System.Windows.Forms.TabPage();
-            this.listMaterials = new System.Windows.Forms.ListView();
-            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRemove = new System.Windows.Forms.Button();
-            this.listCart = new System.Windows.Forms.ListBox();
             this.groupDetails = new System.Windows.Forms.GroupBox();
             this.numAmount = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -110,6 +106,12 @@ namespace ICT4EVENT
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listMaterials = new System.Windows.Forms.ListView();
+            this.listCart = new System.Windows.Forms.ListView();
+            this.cartName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cartAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -372,10 +374,10 @@ namespace ICT4EVENT
             // 
             this.treeCategorie.Location = new System.Drawing.Point(629, 73);
             this.treeCategorie.Name = "treeCategorie";
-            treeNode1.Name = "All Posts";
-            treeNode1.Text = "All Posts";
+            treeNode2.Name = "All Posts";
+            treeNode2.Text = "All Posts";
             this.treeCategorie.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeCategorie.Size = new System.Drawing.Size(155, 460);
             this.treeCategorie.TabIndex = 7;
             this.treeCategorie.Tag = "SMSS";
@@ -405,9 +407,9 @@ namespace ICT4EVENT
             // 
             // tabMaterialrent
             // 
+            this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.listMaterials);
             this.tabMaterialrent.Controls.Add(this.btnRemove);
-            this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.groupDetails);
             this.tabMaterialrent.Location = new System.Drawing.Point(4, 33);
             this.tabMaterialrent.Name = "tabMaterialrent";
@@ -417,53 +419,19 @@ namespace ICT4EVENT
             this.tabMaterialrent.Text = "Materiaalverhuur";
             this.tabMaterialrent.UseVisualStyleBackColor = true;
             // 
-            // listMaterials
-            // 
-            this.listMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Naam,
-            this.Description});
-            this.listMaterials.Location = new System.Drawing.Point(6, 3);
-            this.listMaterials.Name = "listMaterials";
-            this.listMaterials.Size = new System.Drawing.Size(624, 447);
-            this.listMaterials.TabIndex = 6;
-            this.listMaterials.UseCompatibleStateImageBehavior = false;
-            this.listMaterials.View = System.Windows.Forms.View.Details;
-            this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
-            // 
-            // Naam
-            // 
-            this.Naam.Text = "Naam";
-            this.Naam.Width = 120;
-            // 
-            // Description
-            // 
-            this.Description.Text = "Beschrijving";
-            this.Description.Width = 500;
-            // 
             // btnRemove
             // 
             this.btnRemove.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRemove.Location = new System.Drawing.Point(642, 558);
+            this.btnRemove.Location = new System.Drawing.Point(614, 558);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(145, 50);
+            this.btnRemove.Size = new System.Drawing.Size(173, 50);
             this.btnRemove.TabIndex = 5;
             this.btnRemove.Tag = "Static";
-            this.btnRemove.Text = "Remove";
+            this.btnRemove.Text = "Verwijder";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // listCart
-            // 
-            this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.listCart.FormattingEnabled = true;
-            this.listCart.ItemHeight = 24;
-            this.listCart.Location = new System.Drawing.Point(642, 6);
-            this.listCart.Name = "listCart";
-            this.listCart.Size = new System.Drawing.Size(145, 508);
-            this.listCart.TabIndex = 2;
             // 
             // groupDetails
             // 
@@ -473,14 +441,14 @@ namespace ICT4EVENT
             this.groupDetails.Controls.Add(this.lblDetails);
             this.groupDetails.Location = new System.Drawing.Point(6, 456);
             this.groupDetails.Name = "groupDetails";
-            this.groupDetails.Size = new System.Drawing.Size(630, 166);
+            this.groupDetails.Size = new System.Drawing.Size(602, 166);
             this.groupDetails.TabIndex = 1;
             this.groupDetails.TabStop = false;
             this.groupDetails.Text = "Details";
             // 
             // numAmount
             // 
-            this.numAmount.Location = new System.Drawing.Point(339, 61);
+            this.numAmount.Location = new System.Drawing.Point(321, 49);
             this.numAmount.Minimum = new decimal(new int[] {
             1,
             0,
@@ -498,7 +466,7 @@ namespace ICT4EVENT
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(335, 34);
+            this.label1.Location = new System.Drawing.Point(317, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 24);
             this.label1.TabIndex = 3;
@@ -508,7 +476,7 @@ namespace ICT4EVENT
             // 
             this.btnHireMaterial.BackColor = System.Drawing.Color.Transparent;
             this.btnHireMaterial.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHireMaterial.Location = new System.Drawing.Point(447, 22);
+            this.btnHireMaterial.Location = new System.Drawing.Point(419, 23);
             this.btnHireMaterial.Name = "btnHireMaterial";
             this.btnHireMaterial.Size = new System.Drawing.Size(177, 131);
             this.btnHireMaterial.TabIndex = 2;
@@ -520,7 +488,7 @@ namespace ICT4EVENT
             // 
             this.lblDetails.Location = new System.Drawing.Point(6, 29);
             this.lblDetails.Name = "lblDetails";
-            this.lblDetails.Size = new System.Drawing.Size(323, 131);
+            this.lblDetails.Size = new System.Drawing.Size(305, 131);
             this.lblDetails.TabIndex = 1;
             this.lblDetails.Text = "Details";
             // 
@@ -1032,6 +1000,52 @@ namespace ICT4EVENT
             this.openFileDialog1.Filter = "Image and Video Files (*.bmp, *.jpg, *.png, *.avi, *.mov, *.wmv, *.mp4)|*.bmp;*.j" +
     "pg;*.png;*.avi;*.mov;*.wmv;*.mp4";
             // 
+            // Naam
+            // 
+            this.Naam.Text = "Naam";
+            this.Naam.Width = 120;
+            // 
+            // Description
+            // 
+            this.Description.Text = "Beschrijving";
+            this.Description.Width = 450;
+            // 
+            // listMaterials
+            // 
+            this.listMaterials.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Naam,
+            this.Description});
+            this.listMaterials.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.listMaterials.Location = new System.Drawing.Point(6, 3);
+            this.listMaterials.Name = "listMaterials";
+            this.listMaterials.Size = new System.Drawing.Size(602, 447);
+            this.listMaterials.TabIndex = 6;
+            this.listMaterials.UseCompatibleStateImageBehavior = false;
+            this.listMaterials.View = System.Windows.Forms.View.Details;
+            this.listMaterials.SelectedIndexChanged += new System.EventHandler(this.listMaterials_SelectedIndexChanged);
+            // 
+            // listCart
+            // 
+            this.listCart.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cartName,
+            this.cartAmount});
+            this.listCart.Location = new System.Drawing.Point(614, 4);
+            this.listCart.Name = "listCart";
+            this.listCart.Size = new System.Drawing.Size(182, 446);
+            this.listCart.TabIndex = 7;
+            this.listCart.UseCompatibleStateImageBehavior = false;
+            this.listCart.View = System.Windows.Forms.View.Details;
+            // 
+            // cartName
+            // 
+            this.cartName.Text = "Naam";
+            this.cartName.Width = 120;
+            // 
+            // cartAmount
+            // 
+            this.cartAmount.Text = "Aantal";
+            this.cartAmount.Width = 50;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -1120,17 +1134,13 @@ namespace ICT4EVENT
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
         private System.Windows.Forms.Label lblDetails;
-        private System.Windows.Forms.ListBox listCart;
         private System.Windows.Forms.GroupBox gbPostsOfUser;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.FlowLayoutPanel flowPosts;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.FlowLayoutPanel flowPostsFromUser;
-        private System.Windows.Forms.ListView listMaterials;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox tbSearchUser;
-        private System.Windows.Forms.ColumnHeader Naam;
-        private System.Windows.Forms.ColumnHeader Description;
         private Button btnNextPage;
         private Button btnPreviousPage;
         private NumericUpDown numAmount;
@@ -1168,6 +1178,12 @@ namespace ICT4EVENT
         private GroupBox gbPaymentStatus;
         private PictureBox pbPaidCheck;
         private NumericUpDown numPage;
+        private ListView listMaterials;
+        private ColumnHeader Naam;
+        private ColumnHeader Description;
+        private ListView listCart;
+        private ColumnHeader cartName;
+        private ColumnHeader cartAmount;
     }
 }
 
