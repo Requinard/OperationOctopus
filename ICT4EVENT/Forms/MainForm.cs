@@ -482,7 +482,7 @@ namespace ICT4EVENT
             {
                 var selectedItem = listMaterials.SelectedItems[0];
                 var selectedString = selectedItem.SubItems[0].Text;
-                listCart.Items.Add(selectedString);
+                listCart.Items.Add(selectedString).SubItems.Add(Convert.ToString(numAmount.Value)); ;
             }
             catch
             {
