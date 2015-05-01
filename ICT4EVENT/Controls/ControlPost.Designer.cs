@@ -41,6 +41,7 @@
             this.gbAction = new System.Windows.Forms.GroupBox();
             this.btnComment = new System.Windows.Forms.Button();
             this.mpMedia = new AxWMPLib.AxWindowsMediaPlayer();
+            this.btnDownload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMedia)).BeginInit();
             this.gbAction.SuspendLayout();
@@ -186,13 +187,25 @@
             this.mpMedia.Size = new System.Drawing.Size(450, 320);
             this.mpMedia.TabIndex = 12;
             this.mpMedia.Visible = false;
-            this.mpMedia.Enter += new System.EventHandler(this.mpMedia_Enter);
+            // 
+            // btnDownload
+            // 
+            this.btnDownload.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDownload.Location = new System.Drawing.Point(283, 138);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(100, 23);
+            this.btnDownload.TabIndex = 13;
+            this.btnDownload.Text = "Load Video";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Visible = false;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // ControlPost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.mpMedia);
             this.Controls.Add(this.btnComment);
             this.Controls.Add(this.gbAction);
@@ -231,5 +244,6 @@
         private System.Windows.Forms.GroupBox gbAction;
         private System.Windows.Forms.Button btnComment;
         private AxWMPLib.AxWindowsMediaPlayer mpMedia;
+        private System.Windows.Forms.Button btnDownload;
     }
 }

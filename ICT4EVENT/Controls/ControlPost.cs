@@ -25,7 +25,7 @@ namespace ICT4EVENT
 
 
             Text = postModel.Content;
-            Size = new Size(593, 107);
+            Size = new Size(593, 232);
 
             if (postModel.DatePosted.DayOfYear == DateTime.Now.DayOfYear)
             {
@@ -48,10 +48,10 @@ namespace ICT4EVENT
                 if (extention == ".avi" || extention == ".mov" || extention == ".mp4" || extention == ".wmv")
                 {
                     
-                    mpMedia.Enabled = true;
+                    mpMedia.Enabled = false;
                     mpMedia.Visible = true;
-                    
 
+                    btnDownload.Visible = true;
                     mpMedia.Location = new Point(mpMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
                     Size = new Size(Size.Width, (mpMedia.Location.Y + mpMedia.Size.Height + 8));
 
@@ -232,10 +232,12 @@ namespace ICT4EVENT
             }
         }
 
-        private void mpMedia_Enter(object sender, EventArgs e)
+        private void btnDownload_Click(object sender, EventArgs e)
         {
+            btnDownload.Visible = false;
             if (!File.Exists(postModel.PathToFile))
                 FTPManager.DownloadFile(postModel.PathToFile);
+            mpMedia.Enabled = true;
             mpMedia.URL = postModel.PathToFile;
         }
     }
