@@ -25,7 +25,7 @@ namespace ICT4EVENT
 
 
             Text = postModel.Content;
-            Size = new Size(593, 107);
+            Size = new Size(593, 232);
 
             if (postModel.DatePosted.DayOfYear == DateTime.Now.DayOfYear)
             {
@@ -48,10 +48,10 @@ namespace ICT4EVENT
                 if (extention == ".avi" || extention == ".mov" || extention == ".mp4" || extention == ".wmv")
                 {
                     
-                    mpMedia.Enabled = true;
+                    mpMedia.Enabled = false;
                     mpMedia.Visible = true;
                     
-
+                    btnDownload.Visible = true;
                     mpMedia.Location = new Point(mpMedia.Location.X, (lblText.Location.Y + lblText.Height + 3));
                     Size = new Size(Size.Width, (mpMedia.Location.Y + mpMedia.Size.Height + 8));
 
@@ -162,41 +162,43 @@ namespace ICT4EVENT
         {
             if (tbAction.Text != "")
             {
-                if (report)
+            if (report)
+            {
+                if (
+                    MessageBox.Show(
+                        ("Weet je zeker dat je deze post van " + postModel.User.Username + " wil reporten ?"),
+                        "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    if (
-                        MessageBox.Show(
-                            ("Weet je zeker dat je deze post van " + postModel.User.Username + " wil reporten ?"),
-                            "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    PostReportModel postReportModel = PostManager.ReportPost(postModel, tbAction.Text);
+                    if (postReportModel != null)
                     {
-                        PostReportModel postReportModel = PostManager.ReportPost(postModel, tbAction.Text);
-                        if (postReportModel != null)
-                        {
-                            MessageBox.Show("Post Succesvol Gereport");
-                            gbAction.Enabled = false;
-                            gbAction.Visible = false;
-                            this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
-                            btnReport.ForeColor = Color.Blue;
-                        }
-                    }
-                }
-                else if (comment)
-                {
-                    PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text, "", postModel);
-                    if (commentPostModel != null)
-                    {
-                        this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                        MessageBox.Show("Post Succesvol Gereport");
                         gbAction.Enabled = false;
                         gbAction.Visible = false;
-                        flowComment.Enabled = true;
-                        flowComment.Visible = true;
+                        this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                        btnReport.ForeColor = Color.Blue;
+                        this.Enabled = false;
 
-                        ControlPost commentControlPost = new ControlPost(commentPostModel);
-                        commentControlPost.BackColor = BackColor;
-                        flowComment.Controls.Add(commentControlPost);
-                        postHasComment();
                     }
-                }  
+                }
+            }
+            else if (comment)
+            {
+                    PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text, "", postModel);
+                if (commentPostModel != null)
+                {
+                    this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                    gbAction.Enabled = false;
+                    gbAction.Visible = false;
+                    flowComment.Enabled = true;
+                    flowComment.Visible = true;
+
+                    ControlPost commentControlPost = new ControlPost(commentPostModel);
+                    commentControlPost.BackColor = BackColor;
+                    flowComment.Controls.Add(commentControlPost);
+                    postHasComment();
+                }
+            }
             }
             else
             {
@@ -240,10 +242,12 @@ namespace ICT4EVENT
             }
         }
 
-        private void mpMedia_Enter(object sender, EventArgs e)
+        private void btnDownload_Click(object sender, EventArgs e)
         {
+            btnDownload.Visible = false;
             if (!File.Exists(postModel.PathToFile))
                 FTPManager.DownloadFile(postModel.PathToFile);
+            mpMedia.Enabled = true;
             mpMedia.URL = postModel.PathToFile;
         }
     }
