@@ -94,16 +94,31 @@ namespace ICT4EVENT
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
-            userManagement.EditUserInformation();
+            if (userManagement.SelectedUser != null)
+            {
+                userManagement.EditUserInformation();
+            }
+            else
+            {
+                MessageBox.Show("Er is nog geen gebruiker geselecteerd.");
+            }
         }
 
         private void btnRemoveUser_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(
-                ("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username + " wil verwijderen ?"),
-                "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (userManagement.SelectedUser != null)
             {
-                userManagement.SelectedUser.Destroy();
+                if (MessageBox.Show(
+                    ("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username +
+                     " wil verwijderen ?"),
+                    "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    userManagement.SelectedUser.Destroy();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Er is nog geen gebruiker geselecteerd.");
             }
         }
 
@@ -625,15 +640,37 @@ namespace ICT4EVENT
 
         private void btnCreatePlace_Click(object sender, EventArgs e)
         {
-            createPlace.CreatePlace();
-            FillAllPlaces();
+            if (txtDescription.Text != "" && txtCategory.Text != "")
+            {
+                createPlace.CreatePlace();
+                FillAllPlaces();
+            }
+            else
+            {
+                MessageBox.Show("Vul eerst alle velden in.");
+            }
 
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
-            deleteReservation.DeleteReservation(selectedUser);
+            if (cbReservations.SelectedItem != null)
+            {
+                if (listReservedItems.SelectedItem != null)
+                {
+                    UserModel selectedUser =
+                        UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
+                    deleteReservation.DeleteReservation(selectedUser);
+                }
+                else
+                {
+                    MessageBox.Show("Selecteer eerst een object.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een gebruiker.");
+            }
         }
 
         private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
@@ -731,7 +768,14 @@ namespace ICT4EVENT
 
         private void btnAcceptPayment_Click(object sender, EventArgs e)
         {
-            registerUser.RegisterUser();
+            if (txtRFIDCode.Text != "")
+            {
+                registerUser.RegisterUser();
+            }
+            else
+            {
+                MessageBox.Show("Er is geen gebruiker aanwezig.");
+            }
         }
 
         private void btnMakeMaterial_Click(object sender, EventArgs e)
@@ -783,7 +827,14 @@ namespace ICT4EVENT
 
         private void btnRegisterUser_Click(object sender, EventArgs e)
         {
-            registerUser.RegisterUser();
+            if (txtRFIDCode.Text != "")
+            {
+                registerUser.RegisterUser();
+            }
+            else
+            {
+                MessageBox.Show("Er is geen gebruiker aanwezig.");
+            }
         }
 
         private void FillAllPlaces()
