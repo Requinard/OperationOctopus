@@ -64,6 +64,11 @@ namespace ICT4EVENT
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show(
+                    "Er is iets mis gegaan, controlleer dat alle velden zijn ingevuld en dat de event naam nog niet bestaat");
+            }
         }
 
         private void UpdateEvents()
