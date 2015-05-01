@@ -160,41 +160,49 @@ namespace ICT4EVENT
 
         private void btnReportConfirm_Click(object sender, EventArgs e)
         {
-            if (report)
+            if (tbAction.Text != "")
             {
-                if (
-                    MessageBox.Show(
-                        ("Weet je zeker dat je deze post van " + postModel.User.Username + " wil reporten ?"),
-                        "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (report)
                 {
-                    PostReportModel postReportModel = PostManager.ReportPost(postModel, tbAction.Text);
-                    if (postReportModel != null)
+                    if (
+                        MessageBox.Show(
+                            ("Weet je zeker dat je deze post van " + postModel.User.Username + " wil reporten ?"),
+                            "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Post Succesvol Gereport");
-                        gbAction.Enabled = false;
-                        gbAction.Visible = false;
-                        this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
-                        btnReport.ForeColor = Color.Blue;
+                        PostReportModel postReportModel = PostManager.ReportPost(postModel, tbAction.Text);
+                        if (postReportModel != null)
+                        {
+                            MessageBox.Show("Post Succesvol Gereport");
+                            gbAction.Enabled = false;
+                            gbAction.Visible = false;
+                            this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                            btnReport.ForeColor = Color.Blue;
+                        }
                     }
                 }
-            }
-            else if (comment)
-            {
-                PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text,"",postModel);
-                if (commentPostModel != null)
+                else if (comment)
                 {
-                    this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
-                    gbAction.Enabled = false;
-                    gbAction.Visible = false;
-                    flowComment.Enabled = true;
-                    flowComment.Visible = true;
+                    PostModel commentPostModel = PostManager.CreateNewPost(tbAction.Text, "", postModel);
+                    if (commentPostModel != null)
+                    {
+                        this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
+                        gbAction.Enabled = false;
+                        gbAction.Visible = false;
+                        flowComment.Enabled = true;
+                        flowComment.Visible = true;
 
-                    ControlPost commentControlPost = new ControlPost(commentPostModel);
-                    commentControlPost.BackColor = BackColor;
-                    flowComment.Controls.Add(commentControlPost);
-                    postHasComment();
-                }
+                        ControlPost commentControlPost = new ControlPost(commentPostModel);
+                        commentControlPost.BackColor = BackColor;
+                        flowComment.Controls.Add(commentControlPost);
+                        postHasComment();
+                    }
+                }  
             }
+            else
+            {
+                MessageBox.Show("Vul iets in");
+            }
+           
         }
 
         private void btnComment_Click(object sender, EventArgs e)
