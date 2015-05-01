@@ -209,7 +209,7 @@ namespace ICT4EVENT
                 parent = gui;
             }
 
-            public void CreateUser()
+            public bool CreateUser()
             {
                 string FullName = parent.tbName.Text + " " + parent.tbSurName.Text;
                 string Password = GeneratePassword();
@@ -218,11 +218,17 @@ namespace ICT4EVENT
                 string TelNr = parent.tbTelNr.Text;
                 string Email = parent.tbEmail.Text;
                 string Rfid = parent.tbAssignRfid.Text;
-                UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
-                Clipboard.SetText(Password);
-                MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
-                                Environment.NewLine + "Wachtwoord: " + Password + Environment.NewLine +
-                                "Je wachtwoord is gekopieerd naar je klembord");
+                UserModel userModel = UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+                if (userModel != null)
+                {
+                    Clipboard.SetText(Password);
+                    MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
+                                    Environment.NewLine + "Wachtwoord: " + Password + Environment.NewLine +
+                                    "Je wachtwoord is gekopieerd naar je klembord");
+                    return true;
+                }
+                MessageBox.Show("Er is iets mis gegaan, controlleer dat alle gegevens uniek zijn en dat de rfid niet al in gebruik is");
+                return false;
             }
 
             private string GeneratePassword()
@@ -572,6 +578,9 @@ namespace ICT4EVENT
             {
                 createUser.CreateUser();
             }
+            
+                
+            
         }
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
@@ -610,14 +619,15 @@ namespace ICT4EVENT
             }
             if (tabMainTab.SelectedTab == tabCheckUsersAtEvent)
             {
-                listMaterials.Items.Clear();
+                listUsers.Items.Clear();
                 List<UserModel> usersOnTerrain = EventManager.GetUsersStillOnPremises();
 
                 if (usersOnTerrain != null)
                 {
                     foreach (var user in usersOnTerrain)
                     {
-                        listMaterials.Items.Add(user.Username);
+
+                        listUsers.Items.Add(user.Username);
                     }
                 }
             }
