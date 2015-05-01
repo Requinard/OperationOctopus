@@ -175,6 +175,8 @@ namespace ICT4EVENT
                         gbAction.Visible = false;
                         this.Size = new Size(this.Width, (gbAction.Location.Y + 1));
                         btnReport.ForeColor = Color.Blue;
+                        this.Enabled = false;
+
                     }
                 }
             }

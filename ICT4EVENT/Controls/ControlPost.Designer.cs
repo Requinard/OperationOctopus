@@ -190,10 +190,10 @@
             // 
             // btnDownload
             // 
-            this.btnDownload.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownload.Location = new System.Drawing.Point(283, 138);
+            this.btnDownload.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDownload.Location = new System.Drawing.Point(167, 138);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(100, 23);
+            this.btnDownload.Size = new System.Drawing.Size(320, 100);
             this.btnDownload.TabIndex = 13;
             this.btnDownload.Text = "Load Video";
             this.btnDownload.UseVisualStyleBackColor = true;
