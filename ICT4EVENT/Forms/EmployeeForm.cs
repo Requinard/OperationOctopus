@@ -94,7 +94,7 @@ namespace ICT4EVENT
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
-            if (userManagement.SelectedUser != null)
+            if (userManagement != null)
             {
                 userManagement.EditUserInformation();
             }
@@ -106,7 +106,7 @@ namespace ICT4EVENT
 
         private void btnRemoveUser_Click(object sender, EventArgs e)
         {
-            if (userManagement.SelectedUser != null)
+            if (userManagement != null)
             {
                 if (MessageBox.Show(
                     ("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username +
@@ -436,6 +436,7 @@ namespace ICT4EVENT
 
             public bool EditUserInformation()
             {
+                
                 bool changed = false;
                 if (parent.tbNewUserName.Text != "")
                 {
