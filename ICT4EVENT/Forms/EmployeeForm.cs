@@ -691,7 +691,10 @@ namespace ICT4EVENT
             listReservedItems.Items.Clear();
             foreach (RentableReservationModel reservation in reservations)
             {
-                listReservedItems.Items.Add(reservation.Rentable.ObjectType);
+                if (reservation.Rentable.ObjectType != "")
+                {
+                    listReservedItems.Items.Add(reservation.Rentable.ObjectType);
+                }
             }
         }
 

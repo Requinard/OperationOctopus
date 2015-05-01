@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using ICT4EVENT.Models;
 using Microsoft.VisualBasic;
@@ -374,16 +375,21 @@ namespace ICT4EVENT
             if (listCart.Items.Count > 0)
             {
                 List<RentableObjectModel> rentables = EquipmentManager.GetAllRentables();
-                foreach (string rentable in listCart.Items)
+                foreach (ListViewItem rentable in listCart.Items)
                 {
-                    foreach (RentableObjectModel rentableobject in rentables)
+                    int j = 1;
+                    for (int i = 0; i < rentable.SubItems.Count; i++)
                     {
-                        if (rentableobject.ObjectType == rentable)
-                        {
-                            EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject,
-                                Convert.ToInt32(numAmount.Value));
+                        foreach (RentableObjectModel rentableobject in rentables)
+                            {  
+                                if (rentableobject.ObjectType == rentable.SubItems[i].Text)
+                                {
+                                    EquipmentManager.MakeObjectReservervation(Settings.ActiveUser, rentableobject,
+                                        Convert.ToInt32(rentable.SubItems[j].Text));
+                                    j++;
+                                }
+                            }
                         }
-                    }
                 }
                 MessageBox.Show("Artikelen besteld");
                 listCart.Items.Clear();
@@ -503,13 +509,13 @@ namespace ICT4EVENT
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (listCart.SelectedIndex >= 0)
+            try
             {
-                listCart.Items.RemoveAt(listCart.SelectedIndex);
+                listCart.Items.RemoveAt(listCart.SelectedIndices[0]);
             }
-            else
+            catch
             {
-                MessageBox.Show("Selecteer eerst een product.");
+                MessageBox.Show("Selecteer een item dat u wilt verwijderen!");
             }
         }
 
