@@ -132,9 +132,7 @@
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnSearchUser = new System.Windows.Forms.Button();
             this.tbSearchUser = new System.Windows.Forms.TextBox();
-            this.listReservedItems = new System.Windows.Forms.ListView();
-            this.reservedItemsNaam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.reservedItemsAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listReservedItems = new System.Windows.Forms.ListBox();
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -1320,24 +1318,12 @@
             // 
             // listReservedItems
             // 
-            this.listReservedItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.reservedItemsNaam,
-            this.reservedItemsAmount});
-            this.listReservedItems.Location = new System.Drawing.Point(13, 54);
+            this.listReservedItems.FormattingEnabled = true;
+            this.listReservedItems.ItemHeight = 24;
+            this.listReservedItems.Location = new System.Drawing.Point(7, 55);
             this.listReservedItems.Name = "listReservedItems";
-            this.listReservedItems.Size = new System.Drawing.Size(980, 364);
-            this.listReservedItems.TabIndex = 6;
-            this.listReservedItems.UseCompatibleStateImageBehavior = false;
-            this.listReservedItems.View = System.Windows.Forms.View.Details;
-            // 
-            // reservedItemsNaam
-            // 
-            this.reservedItemsNaam.Text = "Naam";
-            this.reservedItemsNaam.Width = 200;
-            // 
-            // reservedItemsAmount
-            // 
-            this.reservedItemsAmount.Text = "Aantal";
+            this.listReservedItems.Size = new System.Drawing.Size(975, 388);
+            this.listReservedItems.TabIndex = 5;
             // 
             // EmployeeForm
             // 
@@ -1500,8 +1486,6 @@
         private System.Windows.Forms.Button btnLeaveUser;
         private System.Windows.Forms.ListBox listMaterials;
         private System.Windows.Forms.Button btnRegisterUser;
-        private System.Windows.Forms.ListView listReservedItems;
-        private System.Windows.Forms.ColumnHeader reservedItemsNaam;
-        private System.Windows.Forms.ColumnHeader reservedItemsAmount;
+        private System.Windows.Forms.ListBox listReservedItems;
     }
 }
