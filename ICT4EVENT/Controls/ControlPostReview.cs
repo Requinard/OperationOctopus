@@ -25,11 +25,18 @@ namespace ICT4EVENT
 
         private void btnActionConfirm_Click(object sender, EventArgs e)
         {
-            if (rbPostRemove.Checked) postReportModel.Post.Destroy();
+            if (rbPostRemove.Checked || rbPostIgnore.Checked)
+            {
+                if (rbPostRemove.Checked) postReportModel.Post.Destroy();
 
-            postReportModel.Destroy();
+                postReportModel.Destroy();
 
-            this.Dispose();
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst de actie die je wilt ondernemen.");
+            }
         }
     }
 }
