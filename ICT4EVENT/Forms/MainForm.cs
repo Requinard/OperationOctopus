@@ -642,10 +642,6 @@ namespace ICT4EVENT
                     MessageBox.Show("Geen posts gevonden");
                 }
             }
-            else
-            {
-                MessageBox.Show("Vul een zoek term in");
-            }
         }
 
         private void numPage_ValueChanged(object sender, EventArgs e)
