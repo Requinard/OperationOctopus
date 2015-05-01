@@ -1090,7 +1090,7 @@
             this.tabCheckUsersAtEvent.Name = "tabCheckUsersAtEvent";
             this.tabCheckUsersAtEvent.Size = new System.Drawing.Size(992, 629);
             this.tabCheckUsersAtEvent.TabIndex = 9;
-            this.tabCheckUsersAtEvent.Text = "Controleer gebruikers op het event";
+            this.tabCheckUsersAtEvent.Text = "RFID Log";
             this.tabCheckUsersAtEvent.UseVisualStyleBackColor = true;
             // 
             // gbAtEvent
