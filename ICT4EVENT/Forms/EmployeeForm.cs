@@ -284,7 +284,7 @@ namespace ICT4EVENT
 
             public void DeleteReservation(UserModel user)
             {
-                string selecteditem = parent.listReservedItems.GetItemText(parent.listReservedItems.SelectedItem);
+                var selecteditem = parent.listMaterials.SelectedItems[0];
                 List<RentableObjectModel> products = EquipmentManager.GetAllRentables();
                 RentableObjectModel rented = null;
                 foreach (RentableObjectModel rentable in products)
@@ -643,7 +643,7 @@ namespace ICT4EVENT
             listReservedItems.Items.Clear();
             foreach (RentableReservationModel reservation in reservations)
             {
-                listReservedItems.Items.Add(reservation.Rentable.ObjectType);
+                listReservedItems.Items.Add(reservation.Rentable.ObjectType).SubItems.Add(Convert.ToString(reservation.Rentable.Amount));
             }
         }
 

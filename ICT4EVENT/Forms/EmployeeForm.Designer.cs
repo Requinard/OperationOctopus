@@ -60,6 +60,7 @@
             this.lbRecent = new System.Windows.Forms.ListBox();
             this.gbCheckIn = new System.Windows.Forms.GroupBox();
             this.gbUserDetails = new System.Windows.Forms.GroupBox();
+            this.btnRegisterUser = new System.Windows.Forms.Button();
             this.btnLeaveUser = new System.Windows.Forms.Button();
             this.btnConformUser = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -94,7 +95,6 @@
             this.txtDescriptionMaterial = new System.Windows.Forms.TextBox();
             this.tabMaterialRental = new System.Windows.Forms.TabPage();
             this.gbMaterialControl = new System.Windows.Forms.GroupBox();
-            this.listReservedItems = new System.Windows.Forms.ListBox();
             this.lblSelectReservation = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.cbReservations = new System.Windows.Forms.ComboBox();
@@ -132,7 +132,9 @@
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnSearchUser = new System.Windows.Forms.Button();
             this.tbSearchUser = new System.Windows.Forms.TextBox();
-            this.btnRegisterUser = new System.Windows.Forms.Button();
+            this.listReservedItems = new System.Windows.Forms.ListView();
+            this.reservedItemsNaam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.reservedItemsAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabMainTab.SuspendLayout();
             this.tabCampingPlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -493,6 +495,20 @@
             this.gbUserDetails.TabIndex = 1;
             this.gbUserDetails.TabStop = false;
             this.gbUserDetails.Text = "Details of <Username>";
+            // 
+            // btnRegisterUser
+            // 
+            this.btnRegisterUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegisterUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRegisterUser.Location = new System.Drawing.Point(472, 130);
+            this.btnRegisterUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnRegisterUser.Name = "btnRegisterUser";
+            this.btnRegisterUser.Size = new System.Drawing.Size(247, 40);
+            this.btnRegisterUser.TabIndex = 17;
+            this.btnRegisterUser.Tag = "SMSS";
+            this.btnRegisterUser.Text = "Gebruiker is nieuw";
+            this.btnRegisterUser.UseVisualStyleBackColor = true;
+            this.btnRegisterUser.Click += new System.EventHandler(this.btnRegisterUser_Click);
             // 
             // btnLeaveUser
             // 
@@ -866,15 +882,6 @@
             this.gbMaterialControl.TabIndex = 15;
             this.gbMaterialControl.TabStop = false;
             this.gbMaterialControl.Text = "Materiaal Beheer";
-            // 
-            // listReservedItems
-            // 
-            this.listReservedItems.FormattingEnabled = true;
-            this.listReservedItems.ItemHeight = 24;
-            this.listReservedItems.Location = new System.Drawing.Point(6, 54);
-            this.listReservedItems.Name = "listReservedItems";
-            this.listReservedItems.Size = new System.Drawing.Size(977, 364);
-            this.listReservedItems.TabIndex = 5;
             // 
             // lblSelectReservation
             // 
@@ -1311,19 +1318,26 @@
             this.tbSearchUser.Size = new System.Drawing.Size(769, 30);
             this.tbSearchUser.TabIndex = 17;
             // 
-            // btnRegisterUser
+            // listReservedItems
             // 
-            this.btnRegisterUser.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegisterUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRegisterUser.Location = new System.Drawing.Point(472, 130);
-            this.btnRegisterUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnRegisterUser.Name = "btnRegisterUser";
-            this.btnRegisterUser.Size = new System.Drawing.Size(247, 40);
-            this.btnRegisterUser.TabIndex = 17;
-            this.btnRegisterUser.Tag = "SMSS";
-            this.btnRegisterUser.Text = "Gebruiker is nieuw";
-            this.btnRegisterUser.UseVisualStyleBackColor = true;
-            this.btnRegisterUser.Click += new System.EventHandler(this.btnRegisterUser_Click);
+            this.listReservedItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.reservedItemsNaam,
+            this.reservedItemsAmount});
+            this.listReservedItems.Location = new System.Drawing.Point(13, 54);
+            this.listReservedItems.Name = "listReservedItems";
+            this.listReservedItems.Size = new System.Drawing.Size(980, 364);
+            this.listReservedItems.TabIndex = 6;
+            this.listReservedItems.UseCompatibleStateImageBehavior = false;
+            this.listReservedItems.View = System.Windows.Forms.View.Details;
+            // 
+            // reservedItemsNaam
+            // 
+            this.reservedItemsNaam.Text = "Naam";
+            this.reservedItemsNaam.Width = 200;
+            // 
+            // reservedItemsAmount
+            // 
+            this.reservedItemsAmount.Text = "Aantal";
             // 
             // EmployeeForm
             // 
@@ -1462,7 +1476,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numMaterialAmount;
-        private System.Windows.Forms.ListBox listReservedItems;
         private System.Windows.Forms.Label lblEventPaid;
         private System.Windows.Forms.TabPage tabCheckUsersAtEvent;
         private System.Windows.Forms.GroupBox gbAtEvent;
@@ -1487,5 +1500,8 @@
         private System.Windows.Forms.Button btnLeaveUser;
         private System.Windows.Forms.ListBox listMaterials;
         private System.Windows.Forms.Button btnRegisterUser;
+        private System.Windows.Forms.ListView listReservedItems;
+        private System.Windows.Forms.ColumnHeader reservedItemsNaam;
+        private System.Windows.Forms.ColumnHeader reservedItemsAmount;
     }
 }
