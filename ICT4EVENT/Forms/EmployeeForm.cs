@@ -94,16 +94,31 @@ namespace ICT4EVENT
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
-            userManagement.EditUserInformation();
+            if (userManagement != null)
+            {
+                userManagement.EditUserInformation();
+            }
+            else
+            {
+                MessageBox.Show("Er is nog geen gebruiker geselecteerd.");
+            }
         }
 
         private void btnRemoveUser_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(
-                ("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username + " wil verwijderen ?"),
-                "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (userManagement != null)
             {
-                userManagement.SelectedUser.Destroy();
+                if (MessageBox.Show(
+                    ("Weet je zeker dat je het profiel van " + userManagement.SelectedUser.Username +
+                     " wil verwijderen ?"),
+                    "Weet je het zeker", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    userManagement.SelectedUser.Destroy();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Er is nog geen gebruiker geselecteerd.");
             }
         }
 
@@ -209,7 +224,7 @@ namespace ICT4EVENT
                 parent = gui;
             }
 
-            public void CreateUser()
+            public bool CreateUser()
             {
                 string FullName = parent.tbName.Text + " " + parent.tbSurName.Text;
                 string Password = GeneratePassword();
@@ -218,11 +233,17 @@ namespace ICT4EVENT
                 string TelNr = parent.tbTelNr.Text;
                 string Email = parent.tbEmail.Text;
                 string Rfid = parent.tbAssignRfid.Text;
-                UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
-                Clipboard.SetText(Password);
-                MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
-                                Environment.NewLine + "Wachtwoord: " + Password + Environment.NewLine +
-                                "Je wachtwoord is gekopieerd naar je klembord");
+                UserModel userModel = UserManager.CreateUser(userName, Password, FullName, Address, TelNr, Email, Rfid);
+                if (userModel != null)
+                {
+                    Clipboard.SetText(Password);
+                    MessageBox.Show("Gebruiker aangemaakt." + Environment.NewLine + "Gebruikersnaam: " + userName +
+                                    Environment.NewLine + "Wachtwoord: " + Password + Environment.NewLine +
+                                    "Je wachtwoord is gekopieerd naar je klembord");
+                    return true;
+                }
+                MessageBox.Show("Er is iets mis gegaan, controlleer dat alle gegevens uniek zijn en dat de rfid niet al in gebruik is");
+                return false;
             }
 
             private string GeneratePassword()
@@ -284,7 +305,7 @@ namespace ICT4EVENT
 
             public void DeleteReservation(UserModel user)
             {
-                var selecteditem = parent.listMaterials.SelectedItems[0];
+                string selecteditem = parent.listReservedItems.GetItemText(parent.listReservedItems.SelectedItem);
                 List<RentableObjectModel> products = EquipmentManager.GetAllRentables();
                 RentableObjectModel rented = null;
                 foreach (RentableObjectModel rentable in products)
@@ -421,6 +442,7 @@ namespace ICT4EVENT
 
             public bool EditUserInformation()
             {
+                
                 bool changed = false;
                 if (parent.tbNewUserName.Text != "")
                 {
@@ -572,6 +594,9 @@ namespace ICT4EVENT
             {
                 createUser.CreateUser();
             }
+            
+                
+            
         }
 
         private void tabMainTab_SelectedIndexChanged(object sender, EventArgs e)
@@ -610,14 +635,15 @@ namespace ICT4EVENT
             }
             if (tabMainTab.SelectedTab == tabCheckUsersAtEvent)
             {
-                listMaterials.Items.Clear();
+                listUsers.Items.Clear();
                 List<UserModel> usersOnTerrain = EventManager.GetUsersStillOnPremises();
 
                 if (usersOnTerrain != null)
                 {
                     foreach (var user in usersOnTerrain)
                     {
-                        listMaterials.Items.Add(user.Username);
+
+                        listUsers.Items.Add(user.Username);
                     }
                 }
             }
@@ -625,15 +651,37 @@ namespace ICT4EVENT
 
         private void btnCreatePlace_Click(object sender, EventArgs e)
         {
-            createPlace.CreatePlace();
-            FillAllPlaces();
+            if (txtDescription.Text != "" && txtCategory.Text != "")
+            {
+                createPlace.CreatePlace();
+                FillAllPlaces();
+            }
+            else
+            {
+                MessageBox.Show("Vul eerst alle velden in.");
+            }
 
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            UserModel selectedUser = UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
-            deleteReservation.DeleteReservation(selectedUser);
+            if (cbReservations.SelectedItem != null)
+            {
+                if (listReservedItems.SelectedItem != null)
+                {
+                    UserModel selectedUser =
+                        UserManager.FindUser(cbReservations.GetItemText(cbReservations.SelectedItem));
+                    deleteReservation.DeleteReservation(selectedUser);
+                }
+                else
+                {
+                    MessageBox.Show("Selecteer eerst een object.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een gebruiker.");
+            }
         }
 
         private void cbReservations_SelectedIndexChanged(object sender, EventArgs e)
@@ -643,7 +691,10 @@ namespace ICT4EVENT
             listReservedItems.Items.Clear();
             foreach (RentableReservationModel reservation in reservations)
             {
-                listReservedItems.Items.Add(reservation.Rentable.ObjectType).SubItems.Add(Convert.ToString(reservation.Rentable.Amount));
+                if (reservation.Rentable.ObjectType != "")
+                {
+                    listReservedItems.Items.Add(reservation.Rentable.ObjectType);
+                }
             }
         }
 
@@ -731,7 +782,14 @@ namespace ICT4EVENT
 
         private void btnAcceptPayment_Click(object sender, EventArgs e)
         {
-            registerUser.RegisterUser();
+            if (txtRFIDCode.Text != "")
+            {
+                registerUser.RegisterUser();
+            }
+            else
+            {
+                MessageBox.Show("Er is geen gebruiker aanwezig.");
+            }
         }
 
         private void btnMakeMaterial_Click(object sender, EventArgs e)
@@ -783,7 +841,14 @@ namespace ICT4EVENT
 
         private void btnRegisterUser_Click(object sender, EventArgs e)
         {
-            registerUser.RegisterUser();
+            if (txtRFIDCode.Text != "")
+            {
+                registerUser.RegisterUser();
+            }
+            else
+            {
+                MessageBox.Show("Er is geen gebruiker aanwezig.");
+            }
         }
 
         private void FillAllPlaces()

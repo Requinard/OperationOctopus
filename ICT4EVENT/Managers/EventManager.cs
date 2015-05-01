@@ -124,9 +124,14 @@ namespace ICT4EVENT
             eventModel.StartDate = startDate;
             eventModel.EndDate = endDate;
 
-            eventModel.Create();
+            if (eventModel.Create() != false)
+            {
+                return eventModel;
+            }
 
-            return eventModel;
+            return null;
+
+
         }
 
         /// <summary>

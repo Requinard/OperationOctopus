@@ -231,7 +231,7 @@ namespace ICT4EVENT
 
         private void CreatePost()
         {
-            if (tbPostContent.Text != "" || filePath != "")
+            if (tbPostContent.Text != "")
             {
                 var postModel = PostManager.CreateNewPost(tbPostContent.Text, filePath);
 
@@ -482,7 +482,7 @@ namespace ICT4EVENT
             {
                 var selectedItem = listMaterials.SelectedItems[0];
                 var selectedString = selectedItem.SubItems[0].Text;
-                listCart.Items.Add(selectedString).SubItems.Add(Convert.ToString(numAmount.Value));
+                listCart.Items.Add(selectedString);
             }
             catch
             {
@@ -647,10 +647,6 @@ namespace ICT4EVENT
                 {
                     MessageBox.Show("Geen posts gevonden");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Vul een zoek term in");
             }
         }
 

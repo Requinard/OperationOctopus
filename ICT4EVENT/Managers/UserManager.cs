@@ -41,9 +41,12 @@
             user.Email = email;
             user.Level = privilege;
 
-            user.Create();
+            if (user.Create())
+            {
+                return user;
+            }
 
-            return user;
+            return null;
         }
 
         /// <summary>

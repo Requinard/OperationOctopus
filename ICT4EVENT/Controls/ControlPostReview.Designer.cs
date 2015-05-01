@@ -86,11 +86,12 @@
             // 
             this.rbPostIgnore.AutoSize = true;
             this.rbPostIgnore.Location = new System.Drawing.Point(7, 43);
+            this.rbPostIgnore.MaximumSize = new System.Drawing.Size(64, 24);
             this.rbPostIgnore.Name = "rbPostIgnore";
-            this.rbPostIgnore.Size = new System.Drawing.Size(57, 22);
+            this.rbPostIgnore.Size = new System.Drawing.Size(64, 22);
             this.rbPostIgnore.TabIndex = 2;
             this.rbPostIgnore.TabStop = true;
-            this.rbPostIgnore.Text = "Negeer";
+            this.rbPostIgnore.Text = "Negeer Post";
             this.rbPostIgnore.UseVisualStyleBackColor = true;
             // 
             // rbPostRemove

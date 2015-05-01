@@ -57,6 +57,7 @@ namespace ICT4EVENT
             this.Naam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRemove = new System.Windows.Forms.Button();
+            this.listCart = new System.Windows.Forms.ListBox();
             this.groupDetails = new System.Windows.Forms.GroupBox();
             this.numAmount = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@ namespace ICT4EVENT
             this.label3 = new System.Windows.Forms.Label();
             this.lbUser = new System.Windows.Forms.ListBox();
             this.btnAddUser = new System.Windows.Forms.Button();
-            this.btnReserve = new System.Windows.Forms.Button();
             this.txtGebruikers = new System.Windows.Forms.TextBox();
             this.nmrPlaats = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -110,9 +110,6 @@ namespace ICT4EVENT
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.listCart = new System.Windows.Forms.ListView();
-            this.cartNaam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cartAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbStaticUpdates.SuspendLayout();
             this.tabTrending.SuspendLayout();
             this.Posts.SuspendLayout();
@@ -408,9 +405,9 @@ namespace ICT4EVENT
             // 
             // tabMaterialrent
             // 
-            this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.listMaterials);
             this.tabMaterialrent.Controls.Add(this.btnRemove);
+            this.tabMaterialrent.Controls.Add(this.listCart);
             this.tabMaterialrent.Controls.Add(this.groupDetails);
             this.tabMaterialrent.Location = new System.Drawing.Point(4, 33);
             this.tabMaterialrent.Name = "tabMaterialrent";
@@ -427,7 +424,7 @@ namespace ICT4EVENT
             this.Description});
             this.listMaterials.Location = new System.Drawing.Point(6, 3);
             this.listMaterials.Name = "listMaterials";
-            this.listMaterials.Size = new System.Drawing.Size(595, 447);
+            this.listMaterials.Size = new System.Drawing.Size(624, 447);
             this.listMaterials.TabIndex = 6;
             this.listMaterials.UseCompatibleStateImageBehavior = false;
             this.listMaterials.View = System.Windows.Forms.View.Details;
@@ -447,15 +444,26 @@ namespace ICT4EVENT
             // 
             this.btnRemove.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRemove.Location = new System.Drawing.Point(606, 558);
+            this.btnRemove.Location = new System.Drawing.Point(642, 558);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(181, 50);
+            this.btnRemove.Size = new System.Drawing.Size(145, 50);
             this.btnRemove.TabIndex = 5;
             this.btnRemove.Tag = "Static";
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // listCart
+            // 
+            this.listCart.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listCart.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.listCart.FormattingEnabled = true;
+            this.listCart.ItemHeight = 24;
+            this.listCart.Location = new System.Drawing.Point(642, 6);
+            this.listCart.Name = "listCart";
+            this.listCart.Size = new System.Drawing.Size(145, 508);
+            this.listCart.TabIndex = 2;
             // 
             // groupDetails
             // 
@@ -465,14 +473,14 @@ namespace ICT4EVENT
             this.groupDetails.Controls.Add(this.lblDetails);
             this.groupDetails.Location = new System.Drawing.Point(6, 456);
             this.groupDetails.Name = "groupDetails";
-            this.groupDetails.Size = new System.Drawing.Size(595, 166);
+            this.groupDetails.Size = new System.Drawing.Size(630, 166);
             this.groupDetails.TabIndex = 1;
             this.groupDetails.TabStop = false;
             this.groupDetails.Text = "Details";
             // 
             // numAmount
             // 
-            this.numAmount.Location = new System.Drawing.Point(308, 50);
+            this.numAmount.Location = new System.Drawing.Point(339, 61);
             this.numAmount.Minimum = new decimal(new int[] {
             1,
             0,
@@ -490,7 +498,7 @@ namespace ICT4EVENT
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(304, 23);
+            this.label1.Location = new System.Drawing.Point(335, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 24);
             this.label1.TabIndex = 3;
@@ -500,7 +508,7 @@ namespace ICT4EVENT
             // 
             this.btnHireMaterial.BackColor = System.Drawing.Color.Transparent;
             this.btnHireMaterial.Font = new System.Drawing.Font("Agency FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHireMaterial.Location = new System.Drawing.Point(412, 23);
+            this.btnHireMaterial.Location = new System.Drawing.Point(447, 22);
             this.btnHireMaterial.Name = "btnHireMaterial";
             this.btnHireMaterial.Size = new System.Drawing.Size(177, 131);
             this.btnHireMaterial.TabIndex = 2;
@@ -512,7 +520,7 @@ namespace ICT4EVENT
             // 
             this.lblDetails.Location = new System.Drawing.Point(6, 29);
             this.lblDetails.Name = "lblDetails";
-            this.lblDetails.Size = new System.Drawing.Size(292, 131);
+            this.lblDetails.Size = new System.Drawing.Size(323, 131);
             this.lblDetails.TabIndex = 1;
             this.lblDetails.Text = "Details";
             // 
@@ -522,7 +530,6 @@ namespace ICT4EVENT
             this.tabReservePlace.Controls.Add(this.label3);
             this.tabReservePlace.Controls.Add(this.lbUser);
             this.tabReservePlace.Controls.Add(this.btnAddUser);
-            this.tabReservePlace.Controls.Add(this.btnReserve);
             this.tabReservePlace.Controls.Add(this.txtGebruikers);
             this.tabReservePlace.Controls.Add(this.nmrPlaats);
             this.tabReservePlace.Controls.Add(this.pictureBox1);
@@ -571,16 +578,6 @@ namespace ICT4EVENT
             this.btnAddUser.Text = "+";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
-            // 
-            // btnReserve
-            // 
-            this.btnReserve.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReserve.Location = new System.Drawing.Point(615, 409);
-            this.btnReserve.Name = "btnReserve";
-            this.btnReserve.Size = new System.Drawing.Size(184, 43);
-            this.btnReserve.TabIndex = 17;
-            this.btnReserve.Text = "Reserveer";
-            this.btnReserve.UseVisualStyleBackColor = true;
             // 
             // txtGebruikers
             // 
@@ -1035,27 +1032,6 @@ namespace ICT4EVENT
             this.openFileDialog1.Filter = "Image and Video Files (*.bmp, *.jpg, *.png, *.avi, *.mov, *.wmv, *.mp4)|*.bmp;*.j" +
     "pg;*.png;*.avi;*.mov;*.wmv;*.mp4";
             // 
-            // listCart
-            // 
-            this.listCart.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.cartNaam,
-            this.cartAmount});
-            this.listCart.Location = new System.Drawing.Point(607, 3);
-            this.listCart.Name = "listCart";
-            this.listCart.Size = new System.Drawing.Size(180, 533);
-            this.listCart.TabIndex = 7;
-            this.listCart.UseCompatibleStateImageBehavior = false;
-            this.listCart.View = System.Windows.Forms.View.Details;
-            // 
-            // cartNaam
-            // 
-            this.cartNaam.Text = "Naam";
-            this.cartNaam.Width = 120;
-            // 
-            // cartAmount
-            // 
-            this.cartAmount.Text = "Aantal";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
@@ -1144,6 +1120,7 @@ namespace ICT4EVENT
         private System.Windows.Forms.GroupBox groupDetails;
         private System.Windows.Forms.Button btnHireMaterial;
         private System.Windows.Forms.Label lblDetails;
+        private System.Windows.Forms.ListBox listCart;
         private System.Windows.Forms.GroupBox gbPostsOfUser;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.FlowLayoutPanel flowPosts;
@@ -1168,7 +1145,6 @@ namespace ICT4EVENT
         private ComboBox nmrPlaats;
         private ListBox lbUser;
         private Button btnAddUser;
-        private Button btnReserve;
         private TextBox txtGebruikers;
         private Label label5;
         private Label label3;
@@ -1192,9 +1168,6 @@ namespace ICT4EVENT
         private GroupBox gbPaymentStatus;
         private PictureBox pbPaidCheck;
         private NumericUpDown numPage;
-        private ListView listCart;
-        private ColumnHeader cartNaam;
-        private ColumnHeader cartAmount;
     }
 }
 

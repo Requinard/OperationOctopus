@@ -27,9 +27,12 @@ namespace ICT4EVENT
         public void FillEventList()
         {
             List<EventModel> eventModels = EventManager.FindAllEvents();
-            foreach (EventModel eventModel in eventModels)
+            if (eventModels != null)
             {
-                flowEvent.Controls.Add(new UserEvent(eventModel));
+                foreach (EventModel eventModel in eventModels)
+                {
+                    flowEvent.Controls.Add(new UserEvent(eventModel));
+                }
             }
         }
 
@@ -60,6 +63,11 @@ namespace ICT4EVENT
                         UserManager.RegisterUserForEvent(Settings.ActiveUser, _event);
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Er is iets mis gegaan, controlleer dat alle velden zijn ingevuld en dat de event naam nog niet bestaat");
             }
         }
 
