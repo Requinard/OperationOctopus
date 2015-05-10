@@ -374,7 +374,7 @@ namespace ICT4EVENT
 
             public void AcceptPayment()
             {
-                if (parent.txtRFIDPayment.Text == null)
+                if (parent.txtRFIDPayment.Text == "")
                 {
                     MessageBox.Show("Scan eerst een rfid-tag");
                     return;
@@ -782,9 +782,9 @@ namespace ICT4EVENT
 
         private void btnAcceptPayment_Click(object sender, EventArgs e)
         {
-            if (txtRFIDCode.Text != "")
+            if (txtRFIDPayment.Text != "")
             {
-                registerUser.RegisterUser();
+                acceptPayment.AcceptPayment();
             }
             else
             {
