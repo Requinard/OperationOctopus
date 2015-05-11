@@ -355,10 +355,12 @@ namespace ICT4EVENT
             }
             if (haspaid)
             {
+                gbPaymentStatus.Text = string.Format("Betalings status : {0}", "Betaald");
                 pbPaidCheck.BackColor = Color.GreenYellow;
             }
             else
             {
+                gbPaymentStatus.Text = string.Format("Betalings status : {0}", "Nog niet betaald");
                 pbPaidCheck.BackColor = Color.Red;
             }
         }
