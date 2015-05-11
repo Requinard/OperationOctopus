@@ -538,7 +538,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.OrangeRed;
+            this.pictureBox3.BackColor = System.Drawing.Color.RoyalBlue;
             this.pictureBox3.Location = new System.Drawing.Point(820, 20);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(150, 150);
@@ -547,7 +547,7 @@
             // 
             // lblAtEventStatus
             // 
-            this.lblAtEventStatus.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblAtEventStatus.BackColor = System.Drawing.Color.RoyalBlue;
             this.lblAtEventStatus.Font = new System.Drawing.Font("Agency FB", 18F);
             this.lblAtEventStatus.Location = new System.Drawing.Point(6, 196);
             this.lblAtEventStatus.Name = "lblAtEventStatus";
@@ -559,7 +559,7 @@
             // 
             // lblNameOfUser
             // 
-            this.lblNameOfUser.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblNameOfUser.BackColor = System.Drawing.Color.RoyalBlue;
             this.lblNameOfUser.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameOfUser.Location = new System.Drawing.Point(6, 30);
             this.lblNameOfUser.Name = "lblNameOfUser";
@@ -1273,6 +1273,7 @@
             // 
             // tbNewPassword2
             // 
+            this.tbNewPassword2.Font = new System.Drawing.Font("Agency FB", 14.25F);
             this.tbNewPassword2.Location = new System.Drawing.Point(157, 65);
             this.tbNewPassword2.MaxLength = 32;
             this.tbNewPassword2.Multiline = true;
@@ -1295,7 +1296,7 @@
             // 
             // tbNewPassword
             // 
-            this.tbNewPassword.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewPassword.Font = new System.Drawing.Font("Agency FB", 14.25F);
             this.tbNewPassword.Location = new System.Drawing.Point(157, 24);
             this.tbNewPassword.MaxLength = 32;
             this.tbNewPassword.Multiline = true;

@@ -72,7 +72,7 @@ namespace ICT4EVENT
 
             Random r = new Random();
             BackColor = Color.FromArgb(255,r.Next(151) + 50, r.Next(151) + 50, r.Next(151) + 50);
-            pictureBox1.BackColor = Color.FromArgb(255,r.Next(151) + 50, r.Next(151) + 50, r.Next(151) + 50);
+            pictureBox1.BackColor = Color.RoyalBlue;
 
 
             List<PostModel> comments = PostManager.GetPostComments(postModel);
