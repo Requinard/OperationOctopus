@@ -147,13 +147,20 @@ namespace ICT4EVENT
         {
             if (tabMainTab.SelectedTab == tabSocialMediaSharingSystem)
             {
-                btnDynamicButton.Text = "Post";
+                
                 tabSocialMediaSharingSystem.Enabled = true;
                 // button actions happen here
                 if (action)
                 {
+                    btnDynamicButton.Text = "Uploading...";
                     CreatePost();
+                    tbPostContent.Text = "";
+                    btnDynamicButton.Text = "Post";
                     return;
+                }
+                else
+                {
+                    btnDynamicButton.Text = "Post";
                 }
             }
             else if (tabMainTab.SelectedTab == tabMaterialrent)
